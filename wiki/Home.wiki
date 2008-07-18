@@ -1,5 +1,5 @@
 #labels xoops,cube,distribution,Newbies,server,wamp
-=NMG Distribution=
+=UNMG Distribution=
 
 NMG Distribution is mainly based on forum thread started by Angelos
 
