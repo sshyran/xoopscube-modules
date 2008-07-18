@@ -25,20 +25,17 @@ phpMyAdmin - 2.11.0
 
 
 
+
 ==Philosophical==
 
-
+{{{
 "Learn everything you can.
-
 Try everything that comes along.
-
 Look at everything there is to see.
-
 Search, experiment, make mistakes, fail, stand up.
-
 Turn religious, turn conservative, turn radical.
-
 And then forget all about it and find your way to create."
+}}}
 
 
 
