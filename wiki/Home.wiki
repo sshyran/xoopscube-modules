@@ -11,8 +11,9 @@ of XOOPS Cube Legacy that i'm sure everybody will enjoy.
 
 ==Technical==
 
+Original WAMP compilation by Mikhail
 
-*Xoopserver - original WAMP compilation by Mikhail*
+*Xoopserver5* 
 
  * Apache 2.0.59
 
@@ -24,7 +25,13 @@ Extensions : php_curl, php_exif, php_gd2, php_gettext, php_ldap, php_mbstring, p
 phpMyAdmin - 2.11.0
 
 
+*Xoopserver4* 
 
+ * Apache 1.3
+
+ * MySQL 4
+
+ * PHP 4
 
 ==Philosophical==
 
