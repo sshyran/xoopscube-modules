@@ -8,6 +8,17 @@ and built on a server compilation by Mikhail. Plus a few things
 of XOOPS Cube Legacy that i'm sure everybody will enjoy.
 
 
+==Philosophical==
+
+{{{
+"Learn everything you can.
+Try everything that comes along.
+Look at everything there is to see.
+Search, experiment, make mistakes, fail, stand up.
+Turn religious, turn conservative, turn radical.
+And then forget all about it and find your way to create."
+}}}
+
 
 ==Technical==
 
@@ -32,17 +43,6 @@ phpMyAdmin - 2.11.0
  * MySQL 4
 
  * PHP 4
-
-==Philosophical==
-
-{{{
-"Learn everything you can.
-Try everything that comes along.
-Look at everything there is to see.
-Search, experiment, make mistakes, fail, stand up.
-Turn religious, turn conservative, turn radical.
-And then forget all about it and find your way to create."
-}}}
 
 
 
