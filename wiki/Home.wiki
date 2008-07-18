@@ -3,9 +3,12 @@
 
 Ultimate Newbies Modules Guide Distribution is mainly based on [http://xoopscube.org/modules/xhnewbb/viewtopic.php?topic_id=600&viewmode=flat forum thread] started by [http://xoopscube.org/userinfo.php?uid=158 Angelos]
 
-and built on a server compilation by Mikhail. Plus a few things 
+This UNMG Distribution will run Package Legacy and D3 modules out of the box 
 
-of XOOPS Cube Legacy that i'm sure everybody will enjoy.
+thanks to the wamp server compilation made by Mikhail.
+
+UNMG Distribution is not a fork of XOOPS Cube, only a package to set everybody free
+to experiment and enjoy XOOPS Cube Legacy.
 
 
 ==Philosophical==
