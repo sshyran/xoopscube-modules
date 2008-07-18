@@ -14,11 +14,11 @@ of XOOPS Cube Legacy that i'm sure everybody will enjoy.
 
 *Xoopserver - original WAMP compilation by Mikhail*
 
-Apache 2.0.59
+* Apache 2.0.59
 
-MySQL 5.0.51
+* MySQL 5.0.51
 
-PHP 5.2.6
+* PHP 5.2.6
 
 Extensions : php_curl, php_exif, php_gd2, php_gettext, php_ldap, php_mbstring, php_mcrypt, php_mhash, php_mysql, php_openssl, php_pdo, php_soap, etc.
 phpMyAdmin - 2.11.0
@@ -42,12 +42,12 @@ And then forget all about it and find your way to create."
 ==Practical==
 
 
-XOOPS Cube Legacy 2.1.5 rc
+* XOOPS Cube Legacy 2.1.5 rc
 
-New D3 Modules and Xigg
+* New D3 Modules and Xigg
 
-FCKEditor + Ajax File Manager
+* FCKEditor + Kfm Ajax File Manager
 
-Theme Editor + CSS Framework
+* Theme Editor + CSS Framework
 
-Themes, templates and data samples
+* Themes, templates and data samples
