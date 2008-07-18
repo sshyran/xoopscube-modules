@@ -2,34 +2,55 @@
 =NMG Distribution=
 
 NMG Distribution is mainly based on forum thread started by Angelos
+
 and built on a server compilation by Mikhail. Plus a few things 
+
 of XOOPS Cube Legacy that i'm sure everybody will enjoy.
 
+
+
 ==Technical==
+
 
 *Xoopserver - original WAMP compilation by Mikhail*
 
 Apache 2.0.59
+
 MySQL 5.0.51
+
 PHP 5.2.6
+
 Extensions : php_curl, php_exif, php_gd2, php_gettext, php_ldap, php_mbstring, php_mcrypt, php_mhash, php_mysql, php_openssl, php_pdo, php_soap, etc.
 phpMyAdmin - 2.11.0
 
 
+
 ==Philosophical==
 
+
 "Learn everything you can.
+
 Try everything that comes along.
+
 Look at everything there is to see.
+
 Search, experiment, make mistakes, fail, stand up.
+
 Turn religious, turn conservative, turn radical.
+
 And then forget all about it and find your way to create."
+
 
 
 ==Practical==
 
+
 XOOPS Cube Legacy 2.1.5 rc
+
 New D3 Modules and Xigg
+
 FCKEditor + Ajax File Manager
+
 Theme Editor + CSS Framework
+
 Themes, templates and data samples
