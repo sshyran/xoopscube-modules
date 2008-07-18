@@ -1,0 +1,66 @@
+<h1><{$myname}><span style="padding-left:2em"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_MANAGER}></span></h1>
+<h2 class="head"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_LIST}></h2>
+<table class="outer" summary="Category List" cellpadding="5" border="1" style="border-collapse:collapse;empty-cells:show">
+	<thead>
+		<tr>
+			<th style="padding:5px;font-weight:bold"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}></th>
+			<th style="padding:5px;font-weight:bold"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_PARENT}></th>
+			<th style="padding:5px;font-weight:bold"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_WEIGHT}></th>
+			<th style="padding:5px;font-weight:bold"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_IMAGE}></th>
+			<th style="padding:5px;font-weight:bold"></th>
+	</thead>
+	<tbody>
+<{foreach item=cat from=$categories key=cid}>
+		<tr class="<{cycle values="odd,even"}>">
+			<td><{$cat.name}></td>
+			<td><{$categories[$cat.pid].name|default:"-----"}></td>
+			<td><{$cat.weight}></td>
+			<td><{$cat.imgurl}>
+	<{if $cat.imgurl}>
+			<span style="display:block;margin:5px;"><img src="<{$imagepath}>/<{$cat.imgurl}>" alt="<{$cat.imgurl}>" /></span>
+	<{else}>
+			<span style="display:block;margin:5px;"><img src="<{$xoops_url}>/images/blank.gif" alt="" /></span>
+	<{/if}>
+			</td>
+			<td><a href="<{$mod_url}>/admin/index.php?page=category_manager&amp;cid=<{$cat.cid}>" title="EDIT THIS CATEGORY"><{$smarty.const._MD_A_D3BLOG_LANG_EDIT}></a></td>
+<{/foreach}>
+	</tbody>
+</table>
+
+<h2 class="head"><{$smarty.const._MD_A_D3BLOG_LANG_REGISTER_ANDOR_EDIT_CATEGORY}></h2>
+<{$form_error}>
+<form id="categoryform" name="categoryform" action="" method="post">
+<table class="outer" summary="Category edit form" cellpadding="5" border="1" style="border-collapse:collapse;empty-cells:show">
+	<tr>
+		<th style="padding:5px;font-weight:bold"><label for="name"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}></label></th>
+		<td class="odd"><input type="text" name="name" id="name" value="<{$form.name_}>" /></td>
+	<tr>
+		<th style="padding:5px;font-weight:bold"><label for="parent"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_PARENT}></label></th>
+		<td class="odd"><select name="pid" id="parent">
+				<option value="0">-----</option>
+<{foreach item=leaf from=$categories}>
+				<option value="<{$leaf.cid}>"<{if $form.pid_ == $leaf.cid}> selected="selected"<{/if}>><{$leaf.prefix}><{$leaf.name}></option>
+<{/foreach}>
+		</select></td>
+	<tr>
+		<th style="padding:5px;font-weight:bold"><label for="weight"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_WEIGHT}></label></th>
+		<td class="odd"><input type="text" name="weight" id="weight" value="<{$form.weight_}>" /></td>
+	<tr>
+		<th style="padding:5px;font-weight:bold"><label for="imgurl"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_IMAGE}></label></th>
+		<td class="odd"><select size="1" name="imgurl" id="imgurl" onchange='showImgSelected("categoryimage", "imgurl", "<{$imagebasename}>", "", "<{$imagedirname}>")'>
+          		<option value=""></option>
+	<{foreach item=img from=$images}>
+          		<option value="<{$img}>"<{if $form.imgurl_ == $img}> selected="selected"<{/if}>><{$img}></option>
+	<{/foreach}>
+          	</select>
+			<span style="display:block;margin:5px;"><img src="<{$xoops_url}>/images/blank.gif" name="categoryimage" id="categoryimage" alt="" /></span>
+		</td>
+	<tr>
+		<th style="padding:5px;font-weight:bold"></th>
+		<td class="odd"><label for="edit"><input type="submit" name="edit" id="edit" value="<{$smarty.const._SUBMIT}>" /></label>
+			<label for="delete"><input type="submit" name="delete" id="delete" value="<{$smarty.const._DELETE}>" /></label>
+			<input type="hidden" name="cid" value="<{$form.cid_}>" />
+			<{$gticket_hidden}>
+		</td>
+</table>
+</form>

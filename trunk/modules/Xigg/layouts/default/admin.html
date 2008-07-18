@@ -1,0 +1,27 @@
+<?php
+global $xoopsConfig, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger, $xoopsModule, $xoopsOption, $xoopsDB, $xoopsRequestUri;
+xoops_cp_header();
+printf('
+%2$s
+<link rel="stylesheet" type="text/css" href="%1$s/css/screen-admin.css" media="screen" />
+%3$s
+%4$s
+', $LAYOUT_URL, $CSS, $JS_HEAD, $HTML_HEAD);
+?>
+<div id="Xigg">
+<?php if (!empty($FLASH)):
+        foreach ($FLASH as $_flash):
+          if ($_flash['error']):?>
+  <div class="stop">
+<?php     else:?>
+  <div class="go">
+<?php     endif;?>
+    <p><?php _h($_flash['msg']);?></p>
+  </div>
+<?php   endforeach;
+      endif;?>
+<?php echo $CONTENT;?>
+</div>
+<?php
+echo $JS_FOOT;
+xoops_cp_footer();?>

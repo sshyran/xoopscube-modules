@@ -1,0 +1,55 @@
+<{if $mod_config.show_breadcrumbs}>
+	<b><{$category_path}></b>
+<br />
+<{/if}>
+<table width="100%" border="0" cellspacing="5" cellpadding="0" align="center">
+	<tr valign="top" align="left">
+		<td class="d3downloads_head">
+			<form name="cid_select" action="<{$mod_url}>/index.php?cid=<{$cid}>" method="get" style="margin:0px;text-align:center;">
+			<select name="cid" onchange="submit();">
+				<{html_options options=$category selected=$select_id}><br />
+			</select> &nbsp; &nbsp;
+			<{$download_total_num}> &nbsp;| &nbsp;
+			<{$smarty.const._MD_D3DOWNLOADS_LABEL_PERPAGE}>&nbsp;
+			<select name="perpage" onchange="submit();">
+				<{html_options options=$perpage selected=$select_perpage}>
+			</select>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<{include file="db:`$mydirname`_inc_viewcat.html"}>
+
+<div class="d3downloads_sortedby">
+	<{$smarty.const._MD_D3DOWNLOADS_SORTBY}>&nbsp;&nbsp;<{$smarty.const._MD_D3DOWNLOADS_TITLE}> (<a href="index.php?cid=<{$category_id}>&amp;orderby=titleA"><img src="images/up.gif" border="0" align="middle" alt="" /></a><a href="index.php?cid=<{$category_id}>&amp;orderby=titleD"><img src="images/down.gif" border="0" align="middle" alt="" /></a>)&nbsp;<{$smarty.const._MD_D3DOWNLOADS_DATE}> (<a href="index.php?cid=<{$category_id}>&amp;orderby=dateA"><img src="images/up.gif" border="0" align="middle" alt="" /></a><a href="index.php?cid=<{$category_id}>&amp;orderby=dateD"><img src="images/down.gif" border="0" align="middle" alt="" /></a>)&nbsp;<{$smarty.const._MD_D3DOWNLOADS_RATING}> (<a href="index.php?cid=<{$category_id}>&amp;orderby=ratingA"><img src="images/up.gif" border="0" align="middle" alt="" /></a><a href="index.php?cid=<{$category_id}>&amp;orderby=ratingD"><img src="images/down.gif" border="0" align="middle" alt="" /></a>)&nbsp;<{$smarty.const._MD_D3DOWNLOADS_DOWNSUM}> (<a href="index.php?cid=<{$category_id}>&amp;orderby=hitsA"><img src="images/up.gif" border="0" align="middle" alt="" /></a><a href="index.php?cid=<{$category_id}>&amp;orderby=hitsD"><img src="images/down.gif" border="0" align="middle" alt="" /></a>)
+	<br /><b><{$lang_cursortedby}></b>
+</div>
+
+<div class="d3downloads_submitlink">
+	<{if $can_post}>
+		[<a href="<{$mod_url}>/index.php?page=submit&amp;cid=<{$category_id}>"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT}></a>]
+	<{/if}>
+</div>
+
+<table width="100%" cellspacing="0" cellpadding="10" border="0">
+	<tr>
+		<td width="100%" align="center" valign="top">
+			<{if $file}>
+				<!-- Start link loop -->
+				<{section name=i loop=$file}>
+					<{include file="db:`$mydirname`_inc_download.html" down=$file[i]}>
+				<{/section}>
+				<!-- End link loop -->
+			<{else}>
+				<{$smarty.const._MD_D3DOWNLOADS_NOMATCH}>
+			<{/if}>
+		</td>
+	</tr>
+</table>
+
+<div class="d3downloads_pagenav"><{$pagenav}></div>
+<br />
+<hr class="notification" />
+
+<{include file='db:system_notification_select.html'}>

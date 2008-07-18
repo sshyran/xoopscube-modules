@@ -1,0 +1,51 @@
+<h2><{$smarty.const._MD_D3DOWNLOADS_H2CATEGORYMANAGER}></h2>
+<form name="categorymanager" id="categorymanager" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
+<{$gticket_hidden}>
+[<a href="<{$mod_url}>/admin/index.php?page=categoryedit&amp;cid=0"><{$smarty.const._MD_D3DOWNLOADS_NEWCATEGORY}></a>]
+<table class="outer">
+	<tr>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_ID}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_TITLE}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_WEIGHT}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_CONTENTSACTIONS}>
+			<input type="checkbox" onclick="with(document.categorymanager){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+	</tr>
+	<{foreach from=$category item="category"}>
+		<tr class="<{cycle values="even,odd"}>">
+			<td style="text-align:center;">
+				<{$category.cid}>
+			</td>
+			<td nowrap="nowrap">
+				<input type="text" size="24" maxlength="255" name="title[<{$category.cid}>]" id="col_title_<{$category.cid}>" value="<{$category.title}>" />
+			</td>
+			<td align="center">
+				<input type="text" size="3" name="weights[<{$category.cid}>]" id="col_weight_<{$content.id}>" value="<{$category.cat_weight}>" style="text-align:right;" />
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<a href="<{$mod_url}>/admin/index.php?page=categoryedit&amp;cid=<{$category.cid}>"><{$smarty.const._EDIT}></a> |
+				<input type="checkbox" name="action_selects[<{$category.cid}>]" id="col_action_<{$category.cid}>" value="1" />
+			</td>
+		</tr>
+	<{/foreach}>
+	<tr>
+		<td colspan="9" align="center" class="head">
+			<input type="submit" name="category_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
+		</td>
+	</tr>
+	<tr>
+		<th colspan="9" style="text-align:right;">
+			<{$smarty.const._MD_D3DOWNLOADS_LABEL_CATEGORYCHECKED}>
+			<input type="submit" name="delete" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_CATEGORY_DEL}>');" />
+		</th>
+	</tr>
+</table>
+</form>
+<{$smarty.const._MD_D3DOWNLOADS_HELP_CATEGORY_DEL}>

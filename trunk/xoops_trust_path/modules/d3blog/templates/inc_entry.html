@@ -1,0 +1,50 @@
+<div class="d3blogEntry clearFix">
+<div class="d3blogEntryHeader clearFix">
+<h3 class="d3blogEntryTitle"><{if $isIndex}><a href="<{$mod_url}>/details.php?bid=<{$entry.bid}><{if $extra_uri}>&amp;<{$extra_uri}><{/if}>" title="<{$smarty.const._MD_D3BLOG_LANG_LINK_TO_PAGE_OF|replace:'%s':$entry.title}>"><{$entry.title}></a><{else}><{$entry.title}><{/if}></h3>
+<dl class="d3blogEntryCategory"><dt><{$smarty.const._MD_D3BLOG_LANG_CATEGORY}>&nbsp;:&nbsp;</dt>
+<dd><{foreach item=path name=catpathloop from=$entry.categorypath}>
+<a href="<{$path.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_READ_CATEGORY_OF|replace:'%s':$path.name}>"><{$path.name}></a><{if !$smarty.foreach.catpathloop.last}>&nbsp;&raquo;<{/if}>	
+<{/foreach}></dd></dl>
+<dl class="d3blogEntryBlogger"><dt><{$smarty.const._MD_D3BLOG_LANG_BLOGGER_NAME}>&nbsp;:&nbsp;</dt>
+<dd><a href="<{$xoops_url}>/userinfo.php?uid=<{$entry.uid}>" title="<{$smarty.const._MD_D3BLOG_LANG_SEE_BLOGGER_PROFILE|replace:'%s':$entry.blogger.uname}>">
+<{if $moduleConfig.show_avatar and $entry.blogger.avatar}><span class="d3blogAvatar"><img src="<{$entry.blogger.avatar.url}>" alt="Blogger's Avatar" width="<{$entry.blogger.avatar.width}>" height="<{$entry.blogger.avatar.height}>" /></span>
+<{else}><{$entry.blogger.uname}><{/if}></a>&nbsp;<span class="d3blogEntryCreated"><{$entry.published|format_timestamp:"m"}></span></dd>
+</dl>
+</div>
+<div class="d3blogContents clearFix">
+<{$entry.excerpt}>
+<{if $isIndex and $entry.body }>
+    <{if !$moduleConfig.perm_by_entry or $entry.permed_group}>
+	<p class="readMore"><a href="<{$mod_url}>/details.php?bid=<{$entry.bid}><{if $extra_uri}>&amp;<{$extra_uri}><{/if}>" title="<{$smarty.const._MD_D3BLOG_LANG_READ_WHOLE_OF|replace:'%s':$entry.title}>"><{$smarty.const._MD_D3BLOG_LANG_READ_MORE}></a></p>
+    <{else}>
+    <p class="readMore"><{$smarty.const._MD_D3BLOG_LANG_CANT_READ_FARTHER}></p>
+    <{/if}>
+<{elseif $entry.body}>
+    <{if !$moduleConfig.perm_by_entry or $entry.permed_group}>
+	    <{if !$currentUser.user_perm.allow_html}>
+    <div class="d3blogLatterHalf"><{$entry.body}></div>
+        <{else}>
+    <br class="d3blogSeperator" />
+	<{$entry.body}>
+        <{/if}>
+    <{else}>
+    <p class="readMore"><{$smarty.const._MD_D3BLOG_LANG_CANT_READ_FARTHER}></p>
+    <{/if}>
+<{/if}>
+</div>
+<ul class="d3blogFooter clearFix">
+	<{if !$entry.approved}><li class="unapproved"><{$smarty.const._MD_D3BLOG_LANG_UNAPPROVED}></li><{/if}>
+	<{if $bloggers > 1}><li><a href="<{$mod_url}>/index.php?uid=<{$entry.uid}>" title="<{$smarty.const._MD_D3BLOG_LANG_READ_BLOGGER_ENTRIES|replace:'%s':$entry.blogger.uname}>"><{$smarty.const._MD_D3BLOG_LANG_READ_BLOGGER_ENTRIES|replace:'%s':$entry.blogger.uname}></a></li><{/if}>
+	<{if ($currentUser.user_perm.blog_perm_edit and $currentUser.uid eq $entry.uid) or $currentUser.user_perm.blog_editor}><li><a href="<{$xoops_url}>/modules/<{$mydirname}>/submit.php?bid=<{$entry.bid}>" title="<{$smarty.const._MD_D3BLOG_LANG_EDIT_THIS_ENTRY}>"><{$smarty.const._EDIT}></a></li><{/if}>
+<{if $moduleConfig.com_rule ne $smarty.const.XOOPS_COMMENT_APPROVENONE}>
+	<{if $moduleConfig.com_agent ne $mydirname}>
+	<{d3comment mode="count" var="postscount" mydirname=$mydirname class="d3blogD3commentEntry"}>
+	<li><{if $postscount}><a href="<{$mod_url}>/details.php?bid=<{$entry.bid}>#comment" title="<{$smarty.const._MD_D3BLOG_LANG_READ_COMMENTS|replace:'%s':$entry.title}>"><{$smarty.const._MD_D3BLOG_LANG_COMMENTS}></a><{else}><{$smarty.const._MD_D3BLOG_LANG_COMMENTS}><{/if}> (<{$postscount|default:"0"}>)</li>
+	<{else}>
+	<li><{if $entry.comments}><a href="<{$mod_url}>/details.php?bid=<{$entry.bid}>#comment" title="<{$smarty.const._MD_D3BLOG_LANG_READ_COMMENTS|replace:'%s':$entry.title}>"><{$smarty.const._MD_D3BLOG_LANG_COMMENTS}></a><{else}><{$smarty.const._MD_D3BLOG_LANG_COMMENTS}><{/if}> (<{$entry.comments}>)</li>
+	<{/if}>
+<{/if}>
+	<li><{if $entry.trackbacks}><a href="<{$mod_url}>/details.php?bid=<{$entry.bid}>#d3blogTrackbackReceive" title="<{$smarty.const._MD_D3BLOG_LANG_READ_TRACKBACKS|replace:'%s':$entry.title}>"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK}></a><{else}><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK}><{/if}> (<{$entry.trackbacks}>)</li>
+	<li class="last"><{$smarty.const._MD_D3BLOG_LANG_HOW_MANY_READ}> (<{$entry.counter}>)</li>
+</ul>
+</div>

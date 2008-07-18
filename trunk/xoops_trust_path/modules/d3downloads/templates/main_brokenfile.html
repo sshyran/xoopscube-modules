@@ -1,0 +1,19 @@
+<{if $mod_config.show_breadcrumbs}>
+	<b><{$category_path}></b>
+<br />
+<{/if}>
+<div class="d3downloads_brokenlink_frame">
+	<div align="center"><h4><{$down.title}></h4></div>
+	<ul>
+		<li><{$lang_thanksforhelp}></li>
+		<li><{$lang_forsecurity}><br /></li>
+	</ul>
+
+	<div class="d3downloads_brokenlink_form">
+		<form action="<{$mod_url}>/index.php?page=<{$page}>&amp;lid=<{$down.lid}>" method="POST">
+			<input type="hidden" name="lid" value="<{$down.lid}>" />
+			<input type="hidden" name="cid" value="<{$down.cid}>" />
+			<input type="submit" name="submit" value="<{$lang_reportbroken}>" />&nbsp;<input type=button value="<{$lang_cancel}>" onclick="javascript:history.go(-1)" />
+		</form>
+	</div>
+</div>

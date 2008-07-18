@@ -1,0 +1,14 @@
+<{* $Id: main_styleIE.css 398 2008-03-26 02:20:50Z hodaka $ *}>
+/*IE workaround*/
+#d3blogCommonNavi { height:1em; }
+
+.d3blogEntry { zoom:1; clear:both;}
+
+.d3blogContents { height:1%}
+
+/* http://www.pmob.co.uk/pob/centred-float.htm */
+.d3blogCatree { display:inline-block; }
+.d3blogCatree { display:inline;	}
+.d3blogCatree li.level1 { display:inline-block; }
+.d3blogCatree li.level1 { display:inline; }
+.d3blogCatree a { display:inline-block;}

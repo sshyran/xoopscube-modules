@@ -1,0 +1,209 @@
+<{if $mod_config.show_breadcrumbs}>
+	<b><{$category_path}></b>
+<br />
+<{/if}>
+<h2><{$formtitle}>: <{if $download.title}><{$download.title}><{/if}></h2>
+<{if $iserror}>
+	<div class="d3downloads_error_message">
+		<{$error_message}>
+	</div>
+<{/if}>
+<{if $preview_title || $preview_body}>
+	<dl id="post_preview" class="d3downloads_outer">
+		<{if $preview_title}>
+			<dt class="d3downloads_head"><{$preview_title}></dt>
+		<{/if}>
+		<{if $preview_body}>
+			<dd class="d3downloads_odd"><{$preview_body}></dd>
+		<{/if}>
+	</dl>
+<{/if}>
+<form name="makedownloadform" id="makedownloadform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;lid=<{$download.lid}>" method="post" enctype="multipart/form-data">
+	<{$gticket_hidden}>
+	<input type="hidden" name="lid" value="<{$download.lid}>" />
+	<input type="hidden" name="submitter" value="<{$download.submitter}>" />
+	<input type="hidden" name="filename" value="<{$download.filename}>" />
+	<input type="hidden" name="ext" value="<{$download.ext}>" />
+	<input type="hidden" name="logourl" value="<{$download.logourl}>" />
+	<input type="hidden" name="visible" value="<{$download.visible}>" />
+	<input type="hidden" name="comment" value="<{$download.cancomment}>" />
+	<input type="hidden" name="charset" value="<{$smarty.const._MD_D3DOWNLOADS_CHARSET}>" />
+	<table class="d3downloads_outer">
+	<{if ! $preview_title && ! $preview_body}>
+		<tr valign="top" align="left">
+			<td colspan="2">
+				<{if $message}>
+					<{$message}>
+				<{else}>
+					<ul>
+						<li><{$smarty.const._MD_D3DOWNLOADS_DONTABUSE}></li>
+						<{if $check_url && ! $download.lid}>
+							<li><{$smarty.const._MD_D3DOWNLOADS_SUBMITONCE}></li>
+						<{/if}>
+						<{if ! $auto_approved}>
+							<li><{$smarty.const._MD_D3DOWNLOADS_ALLPENDING}></li>
+							<li><{$smarty.const._MD_D3DOWNLOADS_TAKEDAYS}></li>
+						<{/if}>
+					</ul>
+				<{/if}>
+				<br />
+			</td>
+		</tr>
+	<{/if}>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="title"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_TITLE}></label></td>
+			<td class="d3downloads_even">
+				<input type="text" name="title" id="title" size="50" maxlength="105" value="<{$download.title}>" />
+			</td>
+		</tr>
+		<tr valign="top" align="left" id="file_url_line">
+			<td class="d3downloads_head">
+				<label for="url"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_URL}></label></td>
+			<td class="d3downloads_even">
+				<div id="post_url">
+					<input type="text" name="url" id="url" size="90" maxlength="255" value="<{if $download.url}><{$download.url}><{else}>http://<{/if}>" />
+					<{if $download.url}>
+						&nbsp;<{$download.filelink}>
+					<{/if}>
+				</div>
+				<div id="upload">
+					<input type="hidden" name="MAX_FILE_SIZE" value="<{$upload_max_filesize}>" />
+					<input disabled="disabled" type="hidden" name="url" id="url_hidden" value="<{if $download.url}><{$download.url}><{else}>http://<{/if}>" />
+					<input type="file" name="file_upload" id="file_upload" size="25" maxlength="255" pre_style="display;"}>
+					<br />
+					<div id="max_submit_size">
+						<{$max_submit_size}><br />
+						<{$submit_extension}>
+					</div>
+				</div>
+				<{if ! $config_error && $canupload}>
+					<br />
+					<input type="checkbox" id="file_url_onoff" onClick="file_url_line_showhide()">&nbsp;<label for="body_bbcode_onoff"><{$smarty.const._MD_D3DOWNLOADS_LABEL_INPUT_URL}></label>
+				<{/if}>
+			</td>
+		</tr>
+		<{if $download.filename}>
+			<tr valign="top" align="left">
+				<td class="d3downloads_head"><label for="filename"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_FILENAME}></label></td>
+				<td class="d3downloads_even">
+					<{$download.filename}><br>
+				</td>
+			</tr>
+		<{/if}>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="cid"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_CATEGORY}></label></td>
+			<td class="d3downloads_even">
+				<select name="cid" id="cid"><br>
+					<{html_options options=$download.category selected=$download.cid}><br>
+				</select>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="homepage"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_HOMEPAGE}></label></td>
+			<td class="d3downloads_even">
+				<input type="text" name="homepage" id="homepage" size="90" maxlength="100" value="<{if $download.homepage}><{$download.homepage}><{else}>http://<{/if}>" />
+				<{if $download.homepage}>
+					&nbsp;[<a href="<{$download.homepage}>" target="_blank"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_ACCESS_URL}></a>]
+				<{/if}>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="version"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_VERSION}></label></td>
+			<td class="d3downloads_even">
+				<input type="text" name="version" id="version" size="10" maxlength="15" value="<{$download.version}>" />
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="size"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_SIZE}></label></td>
+			<td class="d3downloads_even">
+				<input type="text" name="size" id="size" size="8" maxlength="10" value="<{$download.size}>" />&nbsp;<{$smarty.const._MD_D3DOWNLOADS_SUBMIT_BYTE}>
+				<div id="submit_size_desc">
+					&nbsp;<{$smarty.const._MD_D3DOWNLOADS_SUBMIT_SIZE_DESC}>
+				</div>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="platform"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_PLATFORM}></label></td>
+			<td class="d3downloads_even">
+				<input type="text" name="platform" id="platform" size="50" maxlength="55" value="<{$download.platform}>" /><br />
+				<select name="select_platform" id="select_platform" onchange="if(this.value){xoopsGetElementById('platform').value=xoopsGetElementById('platform').value?xoopsGetElementById('platform').value+' | '+this.value:this.value;}">
+					<{html_options options=$select_platform}>
+				</select>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="description"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_DESCRIPTION}></label></td>
+			<td class="d3downloads_even">
+				<{if $body_wysiwyg && $canhtml}>
+					<{$body_wysiwyg}><br />
+				<{else}>
+					<{xoopsdhtmltarea name="desc" id="desc" cols="60" rows="15" value=$download.description"}><br />
+				<{/if}>
+				<br />
+				<{$smarty.const._MD_D3DOWNLOADS_SUBMIT_DESCRIPTION_DESC}>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"><label for="option"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_OPTION}></label></td>
+			<td class="d3downloads_even">
+				<{if $canhtml}>
+					<label for="html"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_HTML}></label>
+					<input type="checkbox" name="html" id="html" value="1" <{if $download.html}>checked="checked"<{/if}> /><br />
+				<{/if}>
+				<label for="smiley"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_SMILEY}></label>
+				<input type="checkbox" name="smiley" id="smiley" value="1" <{if $download.smiley}>checked="checked"<{/if}> /><br />
+				<label for="br"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_BR}></label>
+				<input type="checkbox" name="br" id="br" value="1" <{if $download.br}>checked="checked"<{/if}> /><br />
+				<label for="xcode"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_XCODE}></label>
+				<input type="checkbox" name="xcode" id="br" value="1" <{if $download.xcode}>checked="checked"<{/if}> /><br />
+				<{if $xoops_isuser && ! $auto_approved}>
+					<label for="notify"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_NOTIFY}></label>
+					<input type="checkbox" name="notify" id="notify" value="1" checked="checked" />
+				<{/if}>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="d3downloads_head"></td>
+			<td class="d3downloads_even">
+				<input type="submit" class="formButton" name="makedownload_post" id="makedownload_post" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_SUBMITEDITING}>" />
+				<input type="submit" class="formButton" name="makedownload_preview"  id="makedownload_preview" value="<{$smarty.const._PREVIEW}>" />
+				<{if $candelete}>
+					<input type="submit" name="makedownloadform_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_MSG_CONFIRMDELETECONTENT}>')" />
+				<{/if}>
+				<input name="back" type="button" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_CANSEL}>" onclick='location.href="<{$mod_url}>/index.php"'/>
+			</td>
+		</tr>
+	</table>
+</form>
+<!-- LiveValidator START -->
+<script>
+<{$liveValidator}>
+</script>
+<!-- LiveValidator END -->
+
+<script type="text/javascript">
+function file_url_line_showhide(){
+	var url_value = xoopsGetElementById('url').value;
+	if( shflag ){
+		shflag=false ;
+		xoopsGetElementById("post_url").style.display="inline";
+		xoopsGetElementById("upload").style.display="none";
+		xoopsGetElementById("url").disabled = false;
+		xoopsGetElementById("url_hidden").disabled = true;
+		xoopsGetElementById("file_upload").disabled = true;
+		xoopsGetElementById("max_submit_size").style.display="none";
+		xoopsGetElementById("submit_size_desc").style.display="none";
+	} else {
+		shflag=true;
+		xoopsGetElementById("post_url").style.display="none";
+		xoopsGetElementById("upload").style.display="inline";
+		xoopsGetElementById("url").disabled = true;
+		xoopsGetElementById("url_hidden").disabled = false;
+		xoopsGetElementById("url_hidden").value = url_value;
+		xoopsGetElementById("file_upload").disabled = false;
+		xoopsGetElementById("max_submit_size").style.display="inline";
+		xoopsGetElementById("submit_size_desc").style.display="inline";
+	}
+}
+shflag=true;file_url_line_showhide()
+</script>

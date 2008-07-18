@@ -1,0 +1,57 @@
+<table width="100%" border="0" cellspacing="5" cellpadding="0" align="center">
+	<tr valign="top" align="left">
+		<td class="d3downloads_head">
+			<form name="cid_select" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cid=<{$cid}>" method="get" style="margin:0px;text-align:center;">
+				<select name="cid" onchange="submit();">
+					<option value=""><{$lang_directcatsel}></option>
+					<{html_options options=$category}><br />
+				</select> &nbsp; &nbsp;
+				<{$download_total_num}>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<{include file="db:`$mydirname`_inc_viewcat.html"}>
+
+<{if $xoops_isadmin}>
+<br />
+	<form name="for_admin" action="<{$mod_url}>/index.php?page=submit&amp;cid=<{$cid}>" method="get">
+		<table width="100%" cellspacing="0" cellpadding="10" border="0">
+			<tr>
+				<td class="d3downloads_admin_link">
+					[<a href="<{$mod_url}>/admin/index.php?page=categoryedit&amp;cid=0"><{$smarty.const._MD_D3DOWNLOADS_ADMIN_NEWCATEGORY}></a>]&nbsp;&nbsp;
+					<select name="category_select_admin" id="category_select">
+						<option value=""><{$lang_directcatsel}></option>
+						<{html_options options=$category_for_post}>
+					</select>
+					<input type="submit" name="file_post" value="<{$smarty.const._MD_D3DOWNLOADS_NEWSUBMIT}>" />
+					<input type="submit" name="cat_edit" value="<{$smarty.const._MD_D3DOWNLOADS_CAT_EDIT}>" />
+				</td>
+			</tr>
+		</table>
+	</form>
+<{/if}>
+
+<{if $file}>
+	<h4><{$smarty.const._MD_D3DOWNLOADS_LATESTLIST}></h4>
+<{/if}>
+<table width="100%" cellspacing="0" cellpadding="10" border="0">
+<tr>
+	<td width="100%" align="center" valign="top">
+		<{if $file}>
+			<!-- Start new link loop -->
+			<{section name=i loop=$file}>
+				<{include file="db:`$mydirname`_inc_download.html" down=$file[i]}>
+			<{/section}>
+			<!-- End new link loop -->
+		<{else}>
+			<{$smarty.const._MD_D3DOWNLOADS_NOMATCH}>
+		<{/if}>
+	</td>
+</tr>
+</table>
+<br />
+<hr class="notification" />
+
+<{include file='db:system_notification_select.html'}>

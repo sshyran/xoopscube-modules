@@ -1,0 +1,20 @@
+<{* for breadcrumbs test
+<{foreach item=breadcrumb from=$xoops_breadcrumbs}>
+	<{if $breadcrumb.url}>
+<a href="<{$breadcrumb.url}>"><{$breadcrumb.name}></a>
+	<{else}>
+<{$breadcrumb.name}>	
+	<{/if}>
+<{/foreach}>
+test end *}>
+<{if $moduleConfig.show_feeder_link and $feeder}>
+<map id="d3blogFeederMap" name="d3blogFeederMap" title="<{$smarty.const._MD_D3BLOG_LANG_RDF_NAVIGATION}>">
+	<ul id="d3blogFeeder">
+		<li class="first"><{$feeder.what_feeder.lang}><{$smarty.const._MD_D3BLOG_LANG_LATEST_ENTRY_FEED}></li>
+		<li><a href="<{$feeder.rss}><{$feeder.what_feeder.uri}>" title="<{$smarty.const._MD_D3BLOG_LANG_RDF_GUIDE|replace:'%s':'RSS'}>"><{*<img src="../images/rss2.0.png" width="85" height="15" alt="RSS" />*}>RSS</a></li>
+		<li><a href="<{$feeder.rdf}><{$feeder.what_feeder.uri}>" title="<{$smarty.const._MD_D3BLOG_LANG_RDF_GUIDE|replace:'%s':'RDF'}>"><{*<img src="../images/rdf.png" width="85" height="15" alt="RDF" />*}>RDF</a></li>
+		<li><a href="<{$feeder.atom}><{$feeder.what_feeder.uri}>" title="<{$smarty.const._MD_D3BLOG_LANG_RDF_GUIDE|replace:'%s':'ATOM'}>"><{*<img src="../images/atom0.3.png" width="85" height="15" alt="ATOM" />*}>ATOM</a></li>
+	</ul>
+</map>
+<{/if}>
+<h2 id="d3blogHeader"><{$myname}> - <{$page_subtitle}></h2>

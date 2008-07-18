@@ -1,0 +1,139 @@
+<{* $Id: block_style.css 420 2008-04-16 11:42:36Z hodaka $ *}>
+/*----- <{$mydirname}> common -----*/
+.<{$mydirname}>BlockTable {
+    width: 100%;
+    border-collapse: collapse;
+    color: #1b1b18;
+    font-size: 1em;
+}
+.<{$mydirname}>BlockTable th {
+    font-weight: bold;
+    background: #2F5376;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #bfbfbf;
+    line-height: 2.0;
+}
+.<{$mydirname}>BlockTable td { border: 1px solid #bfbfbf; line-height: 1.5; }
+.<{$mydirname}>BlockTable .even td { background-color: #dee3e7; }
+.<{$mydirname}>BlockTable .odd td { background-color: #E9E9E9; }
+.<{$mydirname}>BlockTable .center { text-align:center; }
+.<{$mydirname}>BlockTable .right { text-align:right;}
+.<{$mydirname}>BlockTable .top { vertical-align:top;}
+.<{$mydirname}>BlockTable .middle { vertical-align:middle;}
+.<{$mydirname}>BlockTable .bottom { vertical-align:bottom;}
+
+.<{$mydirname}>BlockTable dl,
+.<{$mydirname}>BlockTable dt,
+.<{$mydirname}>BlockTable dd { margin:0; padding:0; }
+
+/* calendar block */
+#<{$mydirname}>BlockCalendar {
+    empty-cells: show;
+    font-size: 100%;
+    margin: 0 auto;
+    width: 132px;   /* change if you like:  pixels = column with * 7 + cellspacing */
+                    /* sample 14*7+6=104 or 18*7+6=132 or 22*7+6=160 */
+}
+
+#<{$mydirname}>BlockCalendar a {text-decoration: underline;}
+
+#<{$mydirname}>BlockCalendar a:hover { background: transparent; color: #c00;}
+
+#<{$mydirname}>BlockCalendar caption {
+    color: #000;
+    font: 100% Tahoma, Arial, Serif;/* Font-size critical if you change box width */
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+#<{$mydirname}>BlockCalendar #to-this { padding: 0; }
+#<{$mydirname}>BlockCalendar caption a { text-decoration:none; }
+#<{$mydirname}>BlockCalendar caption a:hover { color: #c00; }
+#<{$mydirname}>BlockCalendar a#to-nextM { padding: 0 7px; }
+#<{$mydirname}>BlockCalendar a#to-prevM { padding: 0 7px; }
+
+#<{$mydirname}>BlockCalendar th {
+    text-transform: none;
+    font-size: 90%; /* Font-size critical if you change box width */
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    width: 18px;    /* Critical if you change box width */
+    height: 18px;   /* Critical if you change box width */
+    background: #2F5376;
+    padding: 0;
+}
+
+#<{$mydirname}>BlockCalendar td {
+    color: #000;
+    font: normal 100% Tahoma, Arial, Serif; /* Font-size critical if you change box width */
+    text-align: center;
+    vertical-align: middle;
+    width: 18px;    /* Critical if you change box width */
+    height: 18px;   /* Critical if you change box width */
+    padding: 0;
+}
+
+#<{$mydirname}>BlockCalendar .today { border: 1px solid #369; }
+#<{$mydirname}>BlockCalendar .today a{ text-decoration: none !important; }
+
+#<{$mydirname}>BlockCalendar th.sunday,
+#<{$mydirname}>BlockCalendar td.sunday {}
+#<{$mydirname}>BlockCalendar th.saturday,
+#<{$mydirname}>BlockCalendar td.saturday {}
+#<{$mydirname}>BlockCalendar td.prevmonth,
+#<{$mydirname}>BlockCalendar td.nextmonth {color: #dda;}  /* hides if the same color used as background */
+
+/* category block */
+.<{$mydirname}>BlockCategory { margin:0 0 0 3px; padding:0; list-style:inside; }
+.<{$mydirname}>BlockCategory li { margin:0; padding:0; }
+.<{$mydirname}>BlockCatChild { margin:0 0 0 8px; padding:0; list-style:inside; }
+
+/* archive block */
+.<{$mydirname}>BlockArchive { margin:0 0 0 3px; padding:0; list-style:inside; }
+.<{$mydirname}>BlockArchive li { margin:0; padding:0; }
+.<{$mydirname}>BlockArchNav { margin:0 8px 0 0; text-align:right; }
+.<{$mydirname}>BlockArchSort { margin:0 0 0 8px; }
+
+/* latest entries block */
+.<{$mydirname}>BlockLatestEntries { margin:0 0 0 3px; padding:0; list-style:inside; }
+.<{$mydirname}>BlockLatestEntries li { margin:0; padding:0;}
+.<{$mydirname}>BlockLatestEntries li p { margin:.3em 0 .3em 1em; padding:0;}
+
+/* recent trackback block */
+.<{$mydirname}>BlockTB { margin:0 0 0 3px; padding:0; list-style:inside; }
+.<{$mydirname}>BlockTB li { margin:0; padding:0; }
+.<{$mydirname}>BlockTB .tbdate {}
+
+/* recent comment block */
+.<{$mydirname}>BlockComments { margin:0 0 0 3px; padding:0; list-style:inside; }
+.<{$mydirname}>BlockComments li { margin:0; padding:0; }
+.<{$mydirname}>BlockComments li span {}
+
+/* bloggers list */
+.<{$mydirname}>BlockBloggers { margin:0 0 0 3px; padding:0; list-style:inside; }
+.<{$mydirname}>BlockBloggers li { margin:0; padding:0; }
+.<{$mydirname}>BlockBloggersNav { margin:0 8px 0 0; text-align:right; }
+
+.moreBlogs { display:block; text-align:right; }
+.readMore { display:block; padding-top:1em; }
+
+/***------------ experimental -------------***/
+/* Clearing float   www.positioniseverything.net */
+.clearFix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearFix {
+	display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html .clearFix {height: 1%;}
+.clearFfix {display: block;}
+/* End hide from IE-mac */

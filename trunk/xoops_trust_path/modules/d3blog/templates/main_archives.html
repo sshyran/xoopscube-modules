@@ -1,0 +1,68 @@
+<{include file="db:`$mydirname`_inc_header.html"}>
+<h3 class="structurelabel"><{$smarty.const._MD_D3BLOG_LANG_RETRIEVE_ARCHIVES}></h3>
+<form name="catselbox" id="catselbox" action="" method="get">
+<fieldset id="d3blogSelBox">
+	<label for="cid"><{$smarty.const._MD_D3BLOG_LANG_CATEGORY}>
+	<select name="cid" id="cid">
+		<option value=""><{$smarty.const._MD_D3BLOG_LANG_SELECT_ALL}></option>
+	<{foreach item=cat from=$catselbox}>
+		<option value="<{$cat.cid}>"<{if $cat.cid eq $filter.cid_}> selected="selected"<{/if}>><{$cat.prefix}><{$cat.name}></option>
+	<{/foreach}>
+	</select></label>
+	<label for="date"><{$smarty.const._MD_D3BLOG_LANG_PUBLISH_DATE}>
+	<select name="date" id="date">
+	<option value=""><{$smarty.const._MD_D3BLOG_LANG_SELECT_ALL}></option>
+	<{html_options options=$dateselbox selected=$filter.date_}>
+	</select></label>
+<{if $bloggers > 1}>
+	<label for="uid"><{$smarty.const._MD_D3BLOG_LANG_BLOGGER_NAME}>
+	<select name="uid" id="uid">
+	<option value=""><{$smarty.const._MD_D3BLOG_LANG_SELECT_ALL}></option>	
+	<{html_options options=$bloggerselbox selected=$filter.uid_}>
+	</select></label>	
+<{/if}>
+	<input type="submit" value="<{$smarty.const._MD_D3BLOG_LANG_EXTRACT_ARCHIVES}>" />
+</fieldset>
+</form>
+<{if $show_archives}>
+<h3 class="structurelabel"><{$smarty.const._MD_D3BLOG_LANG_ARCHIVE_LIST}></h3>
+<table id="d3blogArchTable" summary="<{$smarty.const._MD_D3BLOG_LANG_ARCHIVE_SUMMARY}>">
+<thead>
+<tr class="head">
+	<th width="15%" scope="col"><{$smarty.const._MD_D3BLOG_LANG_CATEGORY}></th>
+	<th width="15%" scope="col"><{$smarty.const._MD_D3BLOG_LANG_PUBLISH_DATE}></th>
+	<th width="15%" scope="col"><{$smarty.const._MD_D3BLOG_LANG_BLOG_TITLE}></th>
+	<th scope="col"><{$smarty.const._MD_D3BLOG_LANG_BLOG_CONTENTS}></th>
+	<{if $bloggers > 1}>
+	<th width="10%" scope="col"><{$smarty.const._MD_D3BLOG_LANG_BLOGGER_NAME}></th>
+	<{/if}>
+<{*	<th scope="col"><{$smarty.const._MD_D3BLOG_LANG_READS}></th>
+	<{if $moduleConfig.com_rule ne $smarty.const.XOOPS_COMMENT_APPROVENONE}><th scope="col"><{$smarty.const._MD_D3BLOG_LANG_COMMENTS}></th><{/if}>
+	<th scope="col"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK}></th>*}>
+</tr>
+</thead>
+	<{foreach item=entry from=$entries}>
+<tr class="<{cycle values="even, odd"}>">
+	<td><{$entry.category.name}></td>
+	<td><{$entry.publish_date}></td>
+	<td><a href="<{$mod_url}>/details.php?bid=<{$entry.bid}><{if $filter.uid_}>&amp;uid=<{$filter.uid_}><{/if}><{if $filter.cid_}>&amp;cid=<{$filter.cid_}><{/if}><{if $filter.date_}>&amp;date=<{$filter.date_}><{/if}>" title="<{$smarty.const._MD_D3BLOG_LANG_LINK_TO_PAGE_OF|replace:'%s':$entry.title}>"><{$entry.title}></a></td>
+	<td><{$entry.summary}></td>
+		<{if $bloggers > 1}>
+	<td><a href="<{$xoops_url}>/userinfo.php?uid=<{$entry.uid}>" title="<{$smarty.const._MD_D3BLOG_LANG_SEE_BLOGGER_PROFILE|replace:'%s':$entry.blogger.uname}>"><{$entry.blogger.uname}></a></td>
+		<{/if}>
+<{*	<td style="text-align:center;"><{$entry.counter}></td>
+	<{if $moduleConfig.com_rule ne $smarty.const.XOOPS_COMMENT_APPROVENONE}><td style="text-align:center;"><{if $moduleConfig.com_agent ne $mydirname}><{d3comment mode="count" var="comments" mydirname=$mydirname class="d3blogD3commentEntry"}><{$comments|default:"0"}><{else}><{$entry.comments}><{/if}></td><{/if}>
+	<td style="text-align:center;"><{$entry.trackbacks}></td>*}>
+</tr>
+	<{/foreach}>
+</table>
+<h3 class="structurelabel"><{$smarty.const._MD_D3BLOG_LANG_ARCHIVE_FOOTER_NAVIGATION}></h3>
+<map id="d3blogArchivePagenaviMap" name="d3blogArchivePagenaviMap" title="<{$smarty.const._MD_D3BLOG_LANG_ARCHIVE_FOOTER_NAVIGATION}>">
+<ul id="d3blogArchiveFooter">
+<li class="d3blogArchTotal"><{$smarty.const._MD_D3BLOG_LANG_ARCHIVE_COUNTER|replace:"%d":$counter}></li>
+</ul>
+<{if $page_navigater}><{$page_navigater|xoops_pagenavi}><{/if}>
+</map>
+<{else}>
+<p><{$smarty.const._MD_D3BLOG_LANG_NO_ARCHIVE}></p>
+<{/if}>

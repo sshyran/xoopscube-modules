@@ -1,0 +1,116 @@
+<h2><{$smarty.const._MD_D3DOWNLOADS_H2FILEMANAGER}> ( <{$total_num}> )</h2>
+<form name="filemanager" id="filemanager" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
+<{$gticket_hidden}>
+<div align="right">
+	<select name="category_select" id="category_select">
+		<option value=""><{$smarty.const._MD_D3DOWNLOADS_LABEL_CATEGORYSELECT}></option>
+		<{html_options options=$categoryselect selected=$select_cid}>
+	</select>
+	<input type="submit" name="submit_select" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
+</div>
+<table class="outer">
+	<tr>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_ID}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_TITLE}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_CATEGORY}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_VISIBLE}>
+			<input type="checkbox" onclick="with(document.filemanager){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_visible_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_CANCOMMENT}>
+			<input type="checkbox" onclick="with(document.filemanager){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_comment_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_HITS}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_RATING}>
+		</th>
+		<th>
+			<{$smarty.const._MD_D3DOWNLOADS_TH_COMMENTS}>
+		</th>
+		<th>
+			<{$smarty.const._MD_D3DOWNLOADS_TH_BROKEN}>
+		</th>
+		<th style="text-align:center;">
+			<{$smarty.const._MD_D3DOWNLOADS_TH_CONTENTSACTIONS}>
+			<input type="checkbox" onclick="with(document.filemanager){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+	</tr>
+	<{foreach from=$download item="download"}>
+		<tr class="<{cycle values="even,odd"}>">
+			<td style="text-align:center;">
+				<{$download.lid}>
+			</td>
+			<td nowrap="nowrap">
+				<input type="text" size="24" maxlength="255" name="title[<{$download.lid}>]" id="col_title_<{$download.lid}>" value="<{$download.title}>" />
+			</td>
+			<td nowrap="nowrap">
+				<{$download.ctitle}>
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<input type="checkbox" name="visible[<{$download.lid}>]" id="col_visible_<{$download.lid}>" value="1" <{if $download.visible}>checked="checked"<{/if}> />
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<input type="checkbox" name="comment[<{$download.lid}>]" id="col_comment_<{$download.lid}>" value="1" <{if $download.cancomment}>checked="checked"<{/if}> />
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<{$download.hits}>
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<{$download.rating}><br />
+				(<{$download.votes}><{$smarty.const._MD_D3DOWNLOADS_VOTES}>)
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<{$download.comments}>
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<{if $download.broken > 0}>
+					<a href="<{$mod_url}>/index.php?page=modfile&amp;cid=<{$download.cid}>&amp;lid=<{$download.lid}>"><font color="#FF0000"><b><{$download.broken}></b></font></a>
+				<{else}>
+					<{$download.broken}>
+				<{/if}>
+			</td>
+			<td nowrap="nowrap" style="text-align:center;">
+				<a href="<{$mod_url}>/index.php?page=modfile&amp;cid=<{$download.cid}>&amp;lid=<{$download.lid}>"><{$smarty.const._EDIT}></a> |
+				<input type="checkbox" name="action_selects[<{$download.lid}>]" id="col_action_<{$download.lid}>" value="1" /><br />
+				<{if $download.user_url}>
+					<a href="<{$download.user_url}>" target="_blank"><{$download.postname}></a>
+				<{else}>
+					<{$download.postname}>
+				<{/if}>
+				<br />
+				<{$download.date}>
+			</td>
+		</tr>
+	<{/foreach}>
+	<tr>
+		<td colspan="11" align="center" class="head">
+			<input type="submit" name="filemanager_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
+		</td>
+	</tr>
+	<tr>
+		<th colspan="11" style="text-align:right;">
+			<{$smarty.const._MD_D3DOWNLOADS_LABEL_PERPAGE}>&nbsp;
+			<select name="perpage" onchange="submit();">
+				<{html_options options=$perpage selected=$select_perpage}>
+			</select> | 
+			<{$smarty.const._MD_D3DOWNLOADS_LABEL_FILECHECKED}>
+			<input type="submit" name="delete" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_DELETE}>');" /> 
+			<input type="submit" name="move" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_MOVE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_MOVE}>');" /> 
+			<select name="move_select" id="move_select">
+				<{html_options options=$moveselect}>
+			</select><br />
+		</th>
+	</tr>
+</table>
+</form>
+
+<div align="right"><{$pagenav}></div><br />

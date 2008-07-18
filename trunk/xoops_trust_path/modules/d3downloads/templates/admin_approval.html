@@ -1,0 +1,179 @@
+<h2><{$formtitle}>: <{if $unapproval.title}><{$unapproval.title}><{/if}></h2>
+<{if $iserror}>
+	<h4><{$error_message}></h4>
+<{/if}>
+<{if $preview_title || $preview_body}>
+	<dl id="post_preview" class="outer">
+		<{if $preview_title}>
+			<dt class="head"><{$preview_title}></dt>
+		<{/if}>
+		<{if $preview_body}>
+			<dd class="odd"><{$preview_body}></dd>
+		<{/if}>
+	</dl>
+<{/if}>
+<form name="approvalform" id="approvalform" action="<{$mod_url}>/admin/index.php?page=<{$page}>&amp;requestid=<{$unapproval.requestid}>" method="post">
+	<{$gticket_hidden}>
+	<input type="hidden" name="requestid" value="<{$unapproval.requestid}>" />
+	<input type="hidden" name="submitter" value="<{$unapproval.submitter}>" />
+	<input type="hidden" name="date" value="<{$unapproval.date}>" />
+	<input type="hidden" name="modify" value="<{$unapproval.modify}>" />
+	<input type="hidden" name="notify" value="<{$unapproval.notify}>" />
+	<input type="hidden" name="filename" value="<{$unapproval.filename}>" />
+	<input type="hidden" name="ext" value="<{$unapproval.ext}>" />
+	<input type="hidden" name="charset" value="<{$smarty.const._MD_D3DOWNLOADS_CHARSET}>" />
+	<{if $unapproval.lid}>
+		<input type="hidden" name="lid" value="<{$unapproval.lid}>" />
+	<{/if}>
+	<table class="outer">
+		<tr valign="top" align="left">
+			<td class="head"><label for="title"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_TITLE}></label></td>
+			<td class="even">
+				<input type="text" name="title" id="title" size="50" maxlength="199" value="<{$unapproval.title}>" />
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"><label for="postname"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_POSTNAME}></label></td>
+			<td class="even">
+				<{if $unapproval.user_url}>
+					<a href="<{$unapproval.user_url}>" target="_blank"><{$unapproval.postname}></a>
+				<{else}>
+					<{$unapproval.postname}>
+				<{/if}>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"><label for="url"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_URL}></label></td>
+			<td class="even">
+				<input type="text" name="url" id="url" size="90" maxlength="250" value="<{$unapproval.url}>" />&nbsp;<{$unapproval.filelink}>
+			</td>
+		</tr>
+		<{if $unapproval.filename}>
+			<tr valign="top" align="left">
+				<td class="head"><label for="filename"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_FILENAME}></label></td>
+				<td class="even">
+					<{$unapproval.filename}><br>
+				</td>
+			</tr>
+		<{/if}>
+		<tr valign="top" align="left">
+			<td class="head"><label for="cid"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_CATEGORY}></label></td>
+			<td class="even">
+				<select name="cid" id="cid"><br>
+					<{html_options options=$unapproval.category selected=$unapproval.cid}><br>
+				</select>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"><label for="homepage"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_HOMEPAGE}></label></td>
+			<td class="even">
+				<input type="text" name="homepage" id="homepage" size="90" maxlength="100" value="<{if $unapproval.homepage}><{$unapproval.homepage}><{else}>http://<{/if}>" />&nbsp;[<a href="<{$unapproval.homepage}>" target="_blank"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_ACCESS_URL}></a>]
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"><label for="version"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_VERSION}></label></td>
+			<td class="even">
+				<input type="text" name="version" id="version" size="10" maxlength="10" value="<{$unapproval.version}>" />
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"><label for="size"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_SIZE}></label></td>
+			<td class="even">
+				<input type="text" name="size" id="size" size="8" maxlength="8" value="<{$unapproval.size}>" />&nbsp;<{$smarty.const._MD_D3DOWNLOADS_SUBMIT_BYTE}>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"><label for="platform"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_PLATFORM}></label></td>
+			<td class="even">
+				<input type="text" name="platform" id="platform" size="50" maxlength="50" value="<{$unapproval.platform}>" />
+				<select name="select_platform" id="select_platform" onchange="if(this.value){xoopsGetElementById('platform').value=xoopsGetElementById('platform').value?xoopsGetElementById('platform').value+' | '+this.value:this.value;}">
+					<{html_options options=$select_platform}>
+				</select>
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"><label for="description"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_DESCRIPTION}></label></th>
+			<td class="even">
+				<{xoopsdhtmltarea name="description" cols="60" rows="15" value=$unapproval.description"}>
+			</td>
+		</tr>
+		<{if $canuseshots}>
+			<tr valign="top" align="left">
+				<td class="head"><label for="logourl"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_LOGOURL}></label></td>
+				<td class="even">
+					<select name="logourl" id="logourl"><br>
+						<{html_options options=$downimg selected=$unapproval.logourl}><br>
+					</select><br />
+					<{if $shots_help}>
+						<{$shots_help}>
+					<{/if}>
+				</td>
+			</tr>
+		<{/if}>
+		<tr valign="top" align="left">
+			<td class="head"><label for="option"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_OPTION}></label></th>
+			<td class="even">
+				<label for="html"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_HTML}></label>
+				<input type="checkbox" name="html" id="html" value="1" <{if $unapproval.html}>checked="checked"<{/if}> /><br />
+				<label for="smiley"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_SMILEY}></label>
+				<input type="checkbox" name="smiley" id="smiley" value="1" <{if $unapproval.smiley}>checked="checked"<{/if}> /><br />
+				<label for="br"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_BR}></label>
+				<input type="checkbox" name="br" id="br" value="1" <{if $unapproval.br}>checked="checked"<{/if}> /><br />
+				<label for="xcode"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_XCODE}></label>
+				<input type="checkbox" name="xcode" id="br" value="1" <{if $unapproval.xcode}>checked="checked"<{/if}> /><br />
+				<label for="visible"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_VISIBLE}></label>
+				<input type="checkbox" name="visible" id="visible" value="1" <{if $unapproval.visible}>checked="checked"<{/if}> /><br /> 
+				<label for="comment"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_COMMENT}></label>
+				<input type="checkbox" name="comment" id="comment" value="1" <{if $unapproval.cancomment}>checked="checked"<{/if}> />
+			</td>
+		</tr>
+		<tr valign="top" align="left">
+			<td class="head"></td>
+			<td class="even">
+				<input type="submit" class="formButton" name="unapproval_post" id="unapproval_post" value="<{$smarty.const._MD_D3DOWNLOADS_APPROVAL}>" />
+				<input type="submit" class="formButton" name="unapproval_preview"  id="unapproval_preview" value="<{$smarty.const._PREVIEW}>" />
+				<{if $unapproval.requestid}>
+					<input type="submit" name="approvalform_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_MSG_CONFIRMDELETECONTENT}>')" />
+				<{/if}>
+				<input name="back" type="button" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_CANSEL}>" onclick='location.href="<{$mod_url}>/index.php"'/>
+			</td>
+		</tr>
+	</table>
+</form>
+<{if $down}>
+	<br />
+	<h2><{$smarty.const._MD_D3DOWNLOADS_NOWDATA}></h2>	
+	<table width='100%' cellspacing='0' class='outer'>
+		<tr>
+			<td class="head" colspan='2' align='left' height="18">
+				<{$smarty.const._MD_D3DOWNLOADS_CATEGORY}> <{$down.category}>
+			</td>
+		</tr>
+		<tr>
+			<td class='even' width='65%' style='text-align:left;vertical-align:top;'>
+			<{$down.filelink}><b><{$down.title}></b><br />
+			</td>
+			<td class='even' style='text-align:right;vertical-align:bottom;' width='35%'>
+			<b><{$smarty.const._MD_D3DOWNLOADS_VERSION}>:</b>&nbsp;<{$down.version}><br /><b><{$smarty.const._MD_D3DOWNLOADS_DATE}>:</b>&nbsp;&nbsp;<{$down.updated}>
+			</td>
+		</tr>
+		<tr>
+			<td colspan='2' class='odd' align='left'>
+    				<b><{$smarty.const._MD_D3DOWNLOADS_DESCRIPTION}></b>
+			    	<br />
+				<{if $down.shots}>
+					<{$down.shots}>
+				<{/if}>
+				<{$down.description}>
+				<br />
+			</td>
+		</tr>
+		<tr>
+			<td colspan='2' class='even' align='left'>
+				<{$smarty.const._MD_D3DOWNLOADS_SIZE}>&nbsp;<{$down.size}><{$smarty.const._MD_D3DOWNLOADS_KB}><br />
+				<{$smarty.const._MD_D3DOWNLOADS_PLATFORM}>&nbsp;<{$down.platform}><br />
+				<{$smarty.const._MD_D3DOWNLOADS_HOMEPAGE}>&nbsp;<a href="<{$down.homepage}>" target="_blank"><{$down.homepage}></a>
+			</td>
+		</tr>
+	</table>
+<{/if}>

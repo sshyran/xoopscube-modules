@@ -1,0 +1,80 @@
+<{$entry.embeddedRDF}>
+<{include file="db:`$mydirname`_inc_header.html"}>
+<div id="d3blogCommonNavi">
+    <ul class="d3blogCatNavi">
+	<li class="first"><a href="<{$mod_url}>/index.php" title="<{$smarty.const._MD_D3BLOG_LANG_READ_CATEGORY_OF|replace:'%s':$smarty.const._MD_D3BLOG_LANG_D3BLOG_MAIN}>"><{$smarty.const._MD_D3BLOG_LANG_D3BLOG_MAIN}></a></li>
+<{foreach item=cat from=$entry.categorypath name=catloop}>
+	<li>&raquo;&nbsp;<a href="<{$cat.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_READ_CATEGORY_OF|replace:'%s':$cat.name}>"><{$cat.name}></a></li>
+<{/foreach}>
+    </ul>
+    <ul class="d3blogNavigation">
+	<li<{if !$backandforth.prev_entry or !$backandforth.next_entry}> class="noentry"<{/if}>><{if $backandforth.prev_entry}><a href="<{$backandforth.prev_entry.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_GO_BACK_TO_PREV_ENTRY|replace:"%s":$backandforth.prev_entry.title}>"><{$smarty.const._MD_D3BLOG_LANG_PREVIOUS}><{*<{$backandforth.prev_entry.title|xoops_mb_truncate:'18'}>*}></a><{else}><{$smarty.const._MD_D3BLOG_LANG_PREVIOUS}><{/if}></li>
+	<li class="last"><{if $backandforth.next_entry}><a href="<{$backandforth.next_entry.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_GO_TO_NEXT_ENTRY|replace:"%s":$backandforth.next_entry.title}>"><{$smarty.const._MD_D3BLOG_LANG_NEXT}><{*<{$backandforth.next_entry.title|xoops_mb_truncate:'18'}>*}></a><{else}><{$smarty.const._MD_D3BLOG_LANG_NEXT}><{/if}></li>
+    </ul>
+</div>
+<{include file="db:`$mydirname`_inc_entry.html"}>
+
+<{* Forbidden users can't read *}>
+<{if !$moduleConfig.perm_by_entry or $entry.permed_group}>
+<!-- Trackbacks -->
+<h4 id="d3blogTrackback"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK}></h4>
+	<{if !$moduleConfig.trackback_ticket}>
+<h5 id="d3blogShowTrackbackURL"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_URL}>
+<span id="d3blogTrackbackURL"><{$entry.trackback_url}></span></h5>
+	<{else}>
+<h5 id="d3blogShowTrackbackURL"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_URL}>
+<span id='d3blogGetTrackbackURL'><a href='javascript:getTrackbackValidKey(<{$entry.bid}>)'><{$smarty.const._MD_D3BLOG_LANG_GET_VALID_TRACKBACK_URL_KEY}></a></span>
+<span id="d3blogTrackbackURL"></span></h5>
+	<{/if}>
+	<{if $entry.trackback}>
+		<{if $entry.trackback.outbound}>
+<h5 id="d3blogTrackbackTransmit"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_SENT_TO}></h5>
+<dl id="d3blogTrackbackTransmitted">
+			<{foreach from=$entry.trackback.outbound item=trackback}>
+	<dt class="d3blogTBTitle"><{if $trackback.url}><{$trackback.url}><{else}><{$trackback.trackback_url}><{/if}><span class="d3blogTBCreated"><{$trackback.created|format_timestamp:"m"}></span></dt>
+			<{/foreach}>
+</dl>
+		<{/if}>
+		<{if $entry.trackback.inbound}>
+<h5 id="d3blogTrackbackReceive" name="d3blogTrackbackReceive"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_RECEIVED_FROM}></h5>
+<dl id="d3blogTrackbackReceived">
+			<{foreach from=$entry.trackback.inbound item=trackback}>
+	<dt class="d3blogTBTitle" id="trackback<{$trackback.tid}>"><a href="<{$trackback.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_LINK_TO_TRACKBACK_TRANSMITTER}>"><{$trackback.title}></a><span class="d3blogTBCreated"><{$trackback.created|format_timestamp:"m"}></span></dt>
+	<dd class="d3blogTBContents"><{$trackback.excerpt|xoops_mb_truncate:"80":""}><a href="<{$trackback.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_LINK_TO_TRACKBACK_TRANSMITTER}>">...more</a></dd>
+	<dd class="d3blogTBFooter"><a href="<{$trackback.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_LINK_TO_TRACKBACK_TRANSMITTER}>"><{$trackback.blog_name}></a></dd>
+			<{/foreach}>
+</dl>
+		<{/if}>
+	<{/if}>
+
+	<{if $moduleConfig.com_rule ne $smarty.const.XOOPS_COMMENT_APPROVENONE}>
+		<{if $xoops_user or $moduleConfig.com_anonpost or $comments}>
+			<{if $moduleConfig.com_agent ne $mydirname}>
+<{* d3forum comment integration starts *}>
+<{d3comment mydirname=$mydirname class="d3blogD3commentEntry"}>
+			<{else}>
+				<{if $xoops_user or $moduleConfig.com_anonpost}>
+<{include file="db:`$mydirname`_inc_comment_form.html"}>
+				<{/if}>
+				<{if $comments}>
+<!-- Comments -->
+<h4 id="comment" class="d3blogCommentNotice"><{$smarty.const._MD_D3BLOG_LANG_COMMENTS_NOTICE}></h4>
+<{$commentsnav}>
+<div class="d3blogComment">
+<!-- start comments loop -->
+					<{if $comment_mode == "flat"}>
+  <{include file="db:system_comments_flat.html"}>
+					<{elseif $comment_mode == "thread"}>
+  <{include file="db:system_comments_thread.html"}>
+					<{elseif $comment_mode == "nest"}>
+  <{include file="db:system_comments_nest.html"}>
+					<{/if}>
+<!-- end comments loop -->
+</div>
+				<{/if}>
+			<{/if}>
+		<{/if}>
+	<{/if}>
+
+<{include file='db:system_notification_select.html'}>
+<{/if}>

@@ -1,0 +1,22 @@
+<{if $event}>
+<{include file="db:eguide_item.html"}>
+<{/if}>
+<{if $errors}>
+<div class="error">
+<{foreach item=msg from=$errors}>
+   <{$msg}><br/>
+<{/foreach}>
+</div>
+<{/if}>
+<{if $values}>
+<table cellspacing="1" cellpadding="2" border="0" class="outer">
+<{foreach key=lab item=val from=$values}>
+   <tr class="<{cycle values="even, odd"}>"><td class="head"><{$lab}></td><td><{$val}></td></tr>
+<{/foreach}>
+</table>
+<{/if}>
+<div class="evform" style="text-align: center;">
+  <table>
+  <tr><td><{$submit}></td><td><{$cancel}></td></tr>
+  </table>
+</div>

@@ -1,0 +1,62 @@
+<?php
+
+// Abstract of each filter classes
+class ProtectorFilterAbstract {
+	var $protector = null ;
+
+	function ProtectorFilterAbstract()
+	{
+		$this->protector =& Protector::getInstance() ;
+		$lang = empty( $GLOBALS['xoopsConfig']['language'] ) ? 'english' : $GLOBALS['xoopsConfig']['language'] ;
+		@include_once dirname(dirname(__FILE__)).'/language/'.$lang.'/main.php' ;
+	}
+}
+
+
+// Filter Handler class (singleton)
+class ProtectorFilterHandler {
+	var $protector = null ;
+	var $filters_base = '' ;
+
+	function ProtectorFilterHandler()
+	{
+		$this->protector =& Protector::getInstance() ;
+		$this->filters_base = dirname(dirname(__FILE__)).'/filters_enabled' ;
+	}
+
+	function &getInstance()
+	{
+		static $instance ;
+		if( ! isset( $instance ) ) {
+			$instance = new ProtectorFilterHandler() ;
+		}
+		return $instance ;
+	}
+
+	// return: false : execute default action
+	function execute( $type )
+	{
+		$ret = 0 ;
+
+		$dh = opendir( $this->filters_base ) ;
+		while( ( $file = readdir( $dh ) ) !== false ) {
+			if( strncmp( $file , $type.'_' , strlen( $type ) + 1 ) === 0 ) {
+				include_once $this->filters_base.'/'.$file ;
+				$plugin_name = 'protector_'.substr($file,0,-4) ;
+				if( function_exists( $plugin_name ) ) {
+					// old way
+					$ret |= call_user_func( $plugin_name ) ;
+				} else if( class_exists( $plugin_name ) ) {
+					// newer way
+					$plugin_obj =& new $plugin_name() ;
+					$ret |= $plugin_obj->execute() ;
+				}
+			}
+		}
+		closedir( $dh ) ;
+		
+		return $ret ;
+	}
+}
+
+?>
