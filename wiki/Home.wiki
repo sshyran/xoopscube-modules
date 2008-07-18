@@ -1,7 +1,9 @@
 #labels xoops,cube,distribution,Newbies,server,wamp
 =NMG Distribution=
 
-NMG Distribution is mainly based on forum thread started by Angelos and built on a server compilation by Mikhail. Plus a few things discovered in the XOOPS Cube Legacy that i'm sure will make everybody have fun this summer 2008
+NMG Distribution is mainly based on forum thread started by Angelos
+and built on a server compilation by Mikhail. Plus a few things 
+of XOOPS Cube Legacy that i'm sure everybody will enjoy.
 
 ==Technical==
 
