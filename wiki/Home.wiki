@@ -9,7 +9,7 @@ thanks to the wamp server compilation made by Mikhail.
 
 UNMG Distribution is not a fork of XOOPS Cube, 
 
-it is only a package to set everybody free
+UNMG is only a package to set everybody free
 
 to experiment and enjoy XOOPS Cube Legacy.
 
