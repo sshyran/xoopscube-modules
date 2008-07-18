@@ -28,8 +28,8 @@ And then forget all about it and find your way to create."
 
 ==Technical==
 
-Original WAMP compilation by Mikhail
-
+XOOPS Cube Legacy running on a [http://en.wikipedia.org/wiki/WAMP WAMP] compilation by Mikhail
+If you have another Operative System, or if you want to set up an environment similar to your server configuration visit please wikipedia [http://en.wikipedia.org/wiki/Comparison_of_WAMPs Wamp comparision]
 *Xoopserver5* 
 
  * Apache 2.0.59
