@@ -1,7 +1,7 @@
 #labels xoops,cube,distribution,Newbies,server,wamp
 =UNMG Distribution=
 
-NMG Distribution is mainly based on forum thread started by Angelos
+Ultimate Newbies Modules Guide Distribution is mainly based on [http://xoopscube.org/modules/xhnewbb/viewtopic.php?topic_id=600&viewmode=flat forum thread] started by [http://xoopscube.org/userinfo.php?uid=158 Angelos]
 
 and built on a server compilation by Mikhail. Plus a few things 
 
