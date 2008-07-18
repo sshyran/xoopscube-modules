@@ -1,7 +1,7 @@
 #labels xoops,cube,distribution,Newbies,server,wamp
 =UNMG Distribution=
 
-Ultimate Newbies Modules Guide Distribution is mainly based on [http://xoopscube.org/modules/xhnewbb/viewtopic.php?topic_id=600&viewmode=flat forum thread] started by [http://xoopscube.org/userinfo.php?uid=158 Angelos]
+Ultimate Newbies Modules Guide Distribution is mainly based on  [http://xoopscube.org/modules/xhnewbb/viewtopic.php?topic_id=600&viewmode=flat forum thread] started by [http://xoopscube.org/userinfo.php?uid=158 Angelos]
 
 This UNMG Distribution will run Package Legacy and D3 modules out of the box 
 
