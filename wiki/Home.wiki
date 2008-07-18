@@ -7,7 +7,10 @@ This UNMG Distribution will run Package Legacy and D3 modules out of the box
 
 thanks to the wamp server compilation made by Mikhail.
 
-UNMG Distribution is not a fork of XOOPS Cube, only a package to set everybody free
+UNMG Distribution is not a fork of XOOPS Cube, 
+
+it is only a package to set everybody free
+
 to experiment and enjoy XOOPS Cube Legacy.
 
 
