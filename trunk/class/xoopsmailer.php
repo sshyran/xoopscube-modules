@@ -1,5 +1,5 @@
 <?php
-// $Id: xoopsmailer.php,v 1.2 2007/09/22 06:31:26 minahito Exp $
+// $Id: xoopsmailer.php,v 1.4 2008/07/11 18:10:22 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -305,6 +305,7 @@ class XoopsMailer
 			$text = str_replace("{X_UEMAIL}", $user->getVar("email"), $text );
 			$text = str_replace("{X_UNAME}", $user->getVar("uname"), $text );
 			$text = str_replace("{X_UACTLINK}", XOOPS_URL."/user.php?op=actv&id=".$user->getVar("uid")."&actkey=".$user->getVar('actkey'), $text );
+			
 			// send mail
 			if ( $this->isMail ) {
 				if ( !$this->sendMail($user->getVar("email"), $subject, $text, $headers) ) {
