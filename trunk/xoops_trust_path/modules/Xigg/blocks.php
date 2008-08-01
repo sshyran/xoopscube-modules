@@ -117,7 +117,10 @@ function b_xigg_recent_nodes($options)
             default:
                 $sort = array('node_priority', 'node_published');
         }
-        $nodes =& $r->fetchByCriteria(Sabai_Model_Criteria::createValue('node_hidden', 0), $options[1], 0, $sort, $order);
+        $criteria =& $model->createCriteria('Node');
+        $criteria->hiddenIs(0);
+        $criteria->statusIs(XIGG_NODE_STATUS_PUBLISHED);
+        $nodes =& $r->fetchByCriteria($criteria, $options[1], 0, $sort, $order);
         if ($nodes->size() > 0) {
             $nodes =& $nodes->with('Category');
             $nodes =& $nodes->with('User');
@@ -214,12 +217,14 @@ function b_xigg_recent_nodes2($options)
         require dirname(__FILE__) . '/common.php';
         $model =& $xigg->locator->getService('Model');
         $r =& $model->getRepository('Node');
-        $c =& Sabai_Model_Criteria::createValue('node_hidden', 0);
+        $criteria =& $model->createCriteria('Node');
+        $criteria->hiddenIs(0);
+        $criteria->statusIs(XIGG_NODE_STATUS_PUBLISHED);
         $sort = !empty($options[5]) ? array('node_priority', 'node_published') : array('node_published', 'node_priority');
-        $nodes =& $r->fetchByCriteria($c, $options[1], 0, $sort, array('DESC', 'DESC'));
+        $nodes =& $r->fetchByCriteria($criteria, $options[1], 0, $sort, array('DESC', 'DESC'));
         if ($nodes->size() > 0) {
             $nodes =& $nodes->with('Category'); $nodes =& $nodes->with('Tags'); $nodes =& $nodes->with('User');
-            $top_nodes =& $r->fetchByCriteria($c, $options[2], 0, 'node_vote_count', 'DESC');
+            $top_nodes =& $r->fetchByCriteria($criteria, $options[2], 0, 'node_vote_count', 'DESC');
             $top_nodes =& $top_nodes->with('Tags'); $top_nodes =& $top_nodes->with('Category');
             $vars['module_dir'] = $module_dirname;
             $vars['nodes'] =& $nodes;

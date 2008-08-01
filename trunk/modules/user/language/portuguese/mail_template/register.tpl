@@ -3,7 +3,7 @@
 ================================================================================
 
 Para confirmar o seu cadastro no {SITENAME}, visite:
-{X_UACTLINK}
+{USERACTLINK}
 
 
 

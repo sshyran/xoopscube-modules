@@ -47,7 +47,7 @@ foreach (array_keys($tab_class) as $_tab) {
 <?php if ($this->Config->get('useUpcomingFeature') && $node->isPublished()):?>
 <?php   printf(_('%s submitted %s, published <strong>%s</strong>'), $node_user->getHTMLLink(), h($this->XiggTime->ago($node->getTimeCreated())), h($this->XiggTime->ago($node->get('published'))));?>
 <?php else:?>
-<?php   printf(_('%s posted <strong>%s</strong>'), $node_user->getHTMLLink(), h($this->XiggTime->ago($node->get('published'))));?>
+<?php   printf(_('%s posted <strong>%s</strong>'), $node_user->getHTMLLink(), h($this->XiggTime->ago($node->getTimeCreated())));?>
 <?php endif;?>
 <?php if ($this->Config->get('showNodeViewCount')):?>
 <?php   printf(' | ' . _('%d views'), $node->get('views'));?>

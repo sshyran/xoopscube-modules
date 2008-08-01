@@ -8,14 +8,14 @@ if (file_exists($lang_file = $lang_dir . @$xoopsConfig['language'] . '/modinfo.p
 }
 
 $modversion['name'] = constant($const_prefix . '_NAME');
-$modversion['version'] = 1.20;
+$modversion['version'] = 1.21;
 $modversion['description'] = constant($const_prefix . '_DESC');
 $modversion['credits'] = 'Kazumi Ono<br />( http://www.myweb.ne.jp/ )';
 $modversion['author'] = 'Kazumi Ono AKA onokazu';
 $modversion['help'] = '';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;
-$modversion['image'] = 'xigg.png';
+$modversion['image'] = file_exists( $module_dirname.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
 $modversion['dirname'] = $module_dirname;
 
 //Admin

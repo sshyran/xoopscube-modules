@@ -50,11 +50,7 @@ class User_Utils
 			$memberHandler = xoops_gethandler('member');
 			$user =& $memberHandler->getUser($_SESSION['xoopsUserId']);
 			$context->mXoopsUser =& $user;
-			if (!is_object($context->mXoopsUser)) {
-				$context->mXoopsUser = null;
-				$_SESSION = array();
-			}
-			else {
+			if (is_object($context->mXoopsUser)) {
 				$context->mXoopsUser->setGroups($_SESSION['xoopsUserGroups']);
 				
 				$roles = array();
@@ -68,12 +64,14 @@ class User_Utils
 				
 				$identity =& new Legacy_Identity($context->mXoopsUser);
 				$principal = new Legacy_GenericPrincipal($identity, $roles);
+				return;
+			} else {
+				$context->mXoopsUser = null;
+				$_SESSION = array();
 			}
 		}
-		else {
-			$identity =& new Legacy_AnonymousIdentity();
-			$principal = new Legacy_GenericPrincipal($identity, array("Site.GuestUser"));
-		}
+		$identity =& new Legacy_AnonymousIdentity();
+		$principal = new Legacy_GenericPrincipal($identity, array("Site.GuestUser"));
 	}
 	
 	function convertUrlToUser(&$url)

@@ -55,6 +55,7 @@ class Xigg_Main_ShowUpcomingNodesByTag extends Sabai_Controller
         }
         $vars['vote_allowed'] = false;
         $vars['nodes_voted'] = array();
+        $vars['page'] =& $pages->getValidPage($context->request->getAsInt('page', 1, null, 0));
         if ($pages->getElementCount() > 0) {
             $vars['nodes'] =& $vars['page']->getElements();
             if ($context->user->isAuthenticated()) {
@@ -78,7 +79,6 @@ class Xigg_Main_ShowUpcomingNodesByTag extends Sabai_Controller
         $criteria->hiddenIs(0);
         $vars['popular_count'] = $node_r->countByTagAndCriteria($vars['tag']->getId(), $criteria);
         $vars['pages'] =& $pages;
-        $vars['page'] =& $pages->getValidPage($context->request->getAsInt('page', 1, null, 0));
         $vars['requested_sort'] = $sort_req;
         $vars['sorts'] = $context->application->config->get('useVotingFeature') ?
                            array('new'     => _('Newest'),

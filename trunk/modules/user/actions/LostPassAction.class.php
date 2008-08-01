@@ -1,7 +1,7 @@
 <?php
 /**
  * @package user
- * @version $Id: LostPassAction.class.php,v 1.2 2007/06/07 05:27:01 minahito Exp $
+ * @version $Id: LostPassAction.class.php,v 1.3 2008/07/20 05:55:52 minahito Exp $
  */
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
@@ -43,7 +43,10 @@ class User_LostPassAction extends User_Action
 
 	function getDefaultView(&$controller, &$xoopsUser)
 	{
-		if ((!isset($_REQUEST['code'])) || (!isset($_REQUEST['email']))) {
+		$root =& XCube_Root::getSingleton();
+		$code = $root->mContext->mRequest->getRequest('code');	// const $code
+		$email = $root->mContext->mRequest->getRequest('email');	// const $email
+		if (strlen($code) == 0 || strlen($email) == 0) {
 			return USER_FRAME_VIEW_INPUT;
 		} else {
 			return $this->_updatePassword($controller);
@@ -54,7 +57,10 @@ class User_LostPassAction extends User_Action
 		$this->mActionForm->fetch();
 
 		$userHandler =& xoops_gethandler('user');
-		$lostUserArr =& $userHandler->getObjects(new Criteria('email', $this->mActionForm->get('email')));
+		$criteria =& new CriteriaCompo(new Criteria('email', $this->mActionForm->get('email')));
+		$criteria->add(new Criteria('pass', $this->mActionForm->get('code'), '=', '', 'LEFT(%s, 5)'));
+		$lostUserArr =& $userHandler->getObjects($criteria);
+		
 		if (is_array($lostUserArr) && count($lostUserArr) > 0) {
 			$lostUser =& $lostUserArr[0];
 		}

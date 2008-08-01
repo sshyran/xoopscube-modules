@@ -12,7 +12,7 @@
 * 
 * @license LGPL
 * 
-* @version $Id: Code.php,v 1.3 2005/02/23 17:38:29 pmjones Exp $
+* @version $Id: Code.php,v 1.11 2007/06/09 23:11:25 justinpatrin Exp $
 * 
 */
 
@@ -49,8 +49,8 @@ class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/^(\<code( .+)?\>)\n(.+)\n(\<\/code\>)(\s|$)/Umsi';
-    
+/*    var $regex = '/^(\<code( .+)?\>)\n(.+)\n(\<\/code\>)(\s|$)/Umsi';*/
+    var $regex = ';^<code(\s[^>]*)?>((?:(?R)|.*?)*)\n</code>(\s|$);msi';
     
     /**
     * 
@@ -70,11 +70,11 @@ class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
     function process(&$matches)
     {
         // are there additional attribute arguments?
-        $args = trim($matches[2]);
+        $args = trim($matches[1]);
         
         if ($args == '') {
             $options = array(
-                'text' => $matches[3],
+                'text' => $matches[2],
                 'attr' => array('type' => '')
             );
         } else {
@@ -88,12 +88,12 @@ class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
         	
         	// retain the options
             $options = array(
-                'text' => $matches[3],
+                'text' => $matches[2],
                 'attr' => $attr
             );
         }
         
-        return $this->wiki->addToken($this->rule, $options) . $matches[5];
+        return $this->wiki->addToken($this->rule, $options) . $matches[3];
     }
 }
 ?>

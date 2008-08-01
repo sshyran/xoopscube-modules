@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: D3pipesBlockD3bloglist.class.php 336 2008-03-09 02:23:52Z hodaka $
+ * @version $Id: D3pipesBlockD3bloglist.class.php 431 2008-03-09 02:32:57Z hodaka $
  * @brief d3pipes plugin for d3blog module
  * @@author Takeshi Kuriyama <kuri@keynext.co.jp>
  */
@@ -33,7 +33,7 @@ class D3pipesBlockD3bloglist extends D3pipesBlockAbstract {
 		require XOOPS_TRUST_PATH.'/modules/'.$this->trustdirname.'/include/config.inc.php';
 
 		// GET MODULE INFORMATION
-		$myModule = call_user_func(array($mydirname, 'getInstance'));
+		$myModule =& call_user_func(array($mydirname, 'getInstance'));
 
 		// CURRENT USER'S INFO
 		require XOOPS_TRUST_PATH.'/modules/'.$this->trustdirname.'/lib/user.php';

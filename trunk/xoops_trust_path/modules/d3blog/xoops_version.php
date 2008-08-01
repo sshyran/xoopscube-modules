@@ -23,7 +23,7 @@ $modversion['credits'] = "www.kuri3.net";
 $modversion['help'] = "{$mydirname}_help.html";
 $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
-$modversion['image'] = 'module_icon.php';
+$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
 $modversion['dirname'] = $mydirname;
 
 // Any tables can't be touched by modulesadmin.

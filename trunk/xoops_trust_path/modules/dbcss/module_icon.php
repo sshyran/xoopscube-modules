@@ -8,12 +8,12 @@ header("Cache-Control: public, max-age=$icon_cache_limit");
 header("Last-Modified: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit));
 header("Content-type: image/png");
 
-if( file_exists( $mydirpath.'/module_logo.png' ) ) {
+if( file_exists( $mydirpath.'/module_icon.png' ) ) {
 	$use_custom_icon = true ;
-	$icon_fullpath = $mydirpath.'/module_logo.png' ;
+	$icon_fullpath = $mydirpath.'/module_icon.png' ;
 } else {
 	$use_custom_icon = false ;
-	$icon_fullpath = dirname(__FILE__).'/module_logo.png' ;
+	$icon_fullpath = dirname(__FILE__).'/module_icon.png' ;
 }
 
 if( ! $use_custom_icon && function_exists( 'imagecreatefrompng' ) && function_exists( 'imagecolorallocate' ) && function_exists( 'imagestring' ) && function_exists( 'imagepng' ) ) {

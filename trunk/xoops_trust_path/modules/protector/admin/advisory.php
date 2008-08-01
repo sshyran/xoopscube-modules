@@ -7,7 +7,7 @@ xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 
 // open table for ADVISORY
-echo "<br />\n<div style='border: 2px solid #2F5376;padding:8px;width:95%;' class='bg4'>\n" ;
+echo "<br />\n<div class='tips'>\n" ;
 
 // register_globals
 echo "<dl><dt>'register_globals' : " ;
