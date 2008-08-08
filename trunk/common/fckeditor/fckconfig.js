@@ -101,14 +101,14 @@ FCKConfig.ToolbarSets["Default"] = [
 	['FitWindow','-','Source','-','Templates'],
 	['Cut','Copy','Paste','PasteText','PasteWord','-','Print'],
 	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField','-','Image','Flash','Table','Rule','Smiley','SpecialChar'],
+	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField','-','Image','Flash','Table','Rule','Smiley','SpecialChar','-','Link','Unlink','Anchor'],
 	'/',
 	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
 	['OrderedList','UnorderedList','-','Outdent','Indent'],
 	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
-	['Link','Unlink','Anchor','-','TextColor','BGColor'],
+	['TextColor','BGColor'],
 	'/',
-	['Style','FontFormat','FontName','FontSize']
+	['FontFormat','FontName','FontSize']
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [

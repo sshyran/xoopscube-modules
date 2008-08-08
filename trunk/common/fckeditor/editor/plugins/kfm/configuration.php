@@ -149,11 +149,11 @@ $kfm_only_allow_image_upload = 0;
 $kfm_log_level = 0;
 
 // use this array to show the order in which language files will be checked for
-$kfm_preferred_languages = array('en','fr','de','es','pt','nl','ga');
+$kfm_preferred_languages = array('en','fr','de','pt','jp','kr','el','ru','fa');
 
 // themes are located in ./themes/
 // to use a different theme, replace 'default' with the name of the theme's directory.
-$kfm_theme = 'default';
+$kfm_theme = 'cube_default';
 
 // use ImageMagick's 'convert' program?
 $kfm_use_imagemagick = 1;

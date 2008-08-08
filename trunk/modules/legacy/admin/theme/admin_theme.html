@@ -49,10 +49,22 @@ function ccToggle(id)
 </div>
 
 <div class="topnav">
+
 <span class="linkdev">
-<img src="<{"icons/tool.gif"|theme}>" alt="" /> <a href="http://sourceforge.net/projects/xoopscube/" title="XOOPS Cube Development">Project</a> 
-<img src="<{"icons/bug.gif"|theme}>" alt="" /> <a href="http://sourceforge.net/tracker/?group_id=159211" title="Sourceforge.net :: XOOPS Cube Bug Tracker">Bug Tracker</a> 
+<img src="<{"icons/tool.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" title="XOOPS Cube General Settings">Settings</a> 
+<img src="<{"icons/module_add.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleList" title="Module Management">Modules</a> 
+<img src="<{"icons/block_add.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=myblocksadmin" title="Blocks Management">Blocks</a> 
+<img src="<{"icons/layout_content.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/themeditor/admin/index.php" title="Theme Management">Theme</a> 
+<img src="<{"icons/user_add.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/user/admin/index.php" title="User Management">User</a> 
+<img src="<{"icons/group_add.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/user/admin/index.php?action=GroupList" title="Group Management">Group</a> 
+<img src="<{"icons/comments.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList" title="Comments Management">Comments</a>
+
+
+<!--<img src="<{"icons/folder_explore.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ImagecategoryList" title="Files Management">File Manager</a> 
+-->
+<img src="<{"icons/folder_explore.png"|theme}>" alt="" /><a href="javascript:openWithSelfMain('<{$xoops_url}>/common/fckeditor/editor/plugins/kfm/index.php', 'filemanager', 750, 600);">filemanager</a>
 </span> 
+
 <span class="linksite"><img src="<{"icons/home.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/">SITE</a>  
  <img src="<{"icons/logout.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a></span> 
 </div>
@@ -96,7 +108,7 @@ function ccToggle(id)
 </div>
 
 <div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>&copy; 2001-2008 <a href="http://xoopscube.org/" target="_blank">The XOOPS Cube Project<br />
-</a>Help Us to Improve XOOPS Cube - Report All Bugs to : <a href="http://sourceforge.net/tracker/?group_id=159211">Project Bug Tracker</a></div>
+</a>Help Us to Improve XOOPS Cube - Report All Bugs to: <a href="http://sourceforge.net/tracker/?group_id=159211"> Project Bug Tracker</a><img src="<{"icons/bug.gif"|theme}>" alt="" /></div>
 
 </div>
 </body>

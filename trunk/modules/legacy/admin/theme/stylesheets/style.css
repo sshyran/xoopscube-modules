@@ -364,6 +364,12 @@ background:#f2f2f2 url(<{"icons/time_expire.gif"|theme}>) 5px center no-repeat;
 ul.toptab li.addBlock {
 background:#f2f2f2 url(<{"icons/block_add.gif"|theme}>) 5px center no-repeat;
 }
+ul.toptab li.addDir {
+background:#f2f2f2 url(<{"icons/folder_add.png"|theme}>) 5px center no-repeat;
+}
+ul.toptab li.addFile {
+background:#f2f2f2 url(<{"icons/page_add.png"|theme}>) 5px center no-repeat;
+}
 ul.toptab li.addGroup {
 background:#f2f2f2 url(<{"icons/group_add.gif"|theme}>) 5px center no-repeat;
 }
@@ -385,7 +391,15 @@ background:#f2f2f2 url(<{"icons/search_add.gif"|theme}>) 5px center no-repeat;
 ul.toptab li.addSend {
 background:#f2f2f2 url(<{"icons/send.gif"|theme}>) 5px center no-repeat;
 }
-
+ul.toptab li.editFile {
+background:#f2f2f2 url(<{"icons/edit.gif"|theme}>) 5px center no-repeat;
+}
+ul.toptab li.editDir {
+background:#f2f2f2 url(<{"icons/folder_edit.png"|theme}>) 5px center no-repeat;
+}
+ul.toptab li.view {
+background:#f2f2f2 url(<{"icons/view.gif"|theme}>) 5px center no-repeat;
+}
 
 
 /* ====================================================== Module Nav ===== */

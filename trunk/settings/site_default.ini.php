@@ -5,8 +5,8 @@
 Root=XOOPS_ROOT_PATH
 Controller=Legacy_Controller
 #SystemModules=system,legacy,user,legacyRender
-SystemModules=altsys,protector,legacy,user,legacyRender,stdCache
-RecommendedModules=dbcss,pm,pico
+SystemModules=altsys,themeditor,protector,legacy,user,legacyRender,stdCache
+RecommendedModules=pm,pico
 RoleManager=Legacy_RoleManager
 Salt=XOOPS_SALT
 

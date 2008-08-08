@@ -1,8 +1,8 @@
 <form action="<{$xoops_url}>/user.php" method="post" style="margin-top: 0px;">
     <{$smarty.const._MB_USER_USERNAME}><br />
-    <{xoops_input type=text name=uname size=12 value=$block.unamevalue maxlength=25 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_uname"}><br />
+    <{xoops_input type=text name=uname size=14 value=$block.unamevalue maxlength=25 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_uname"}><br />
     <{$smarty.const._MB_USER_PASSWORD}><br />
-    <{xoops_input type=password name=pass size=12 maxlength=32 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_pass"}><br />
+    <{xoops_input type=password name=pass size=14 maxlength=32 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_pass"}><br />
 <!--<label><{xoops_input type=checkbox name=rememberme value=On class=formButton}><{$smarty.const._MB_USER_REMEMBERME}></label><br />-->
     <input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" />
     <{xoops_input type=hidden name=op value=login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_op"}>
