@@ -61,7 +61,7 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
 
     // Database Username
     // Your database user account on the host
-    define('XOOPS_DB_USER', '');
+    define('XOOPS_DB_USER', 'root');
 
     // Database Password
     // Password for your database user account
@@ -69,7 +69,7 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
 
     // Database Name
     // The name of database on the host. The installer will attempt to create the database if not exist
-    define('XOOPS_DB_NAME', '');
+    define('XOOPS_DB_NAME', 'unmg');
 
     // Use persistent connection? (Yes=1 No=0)
     // Default is 'No'. Choose 'No' if you are unsure.

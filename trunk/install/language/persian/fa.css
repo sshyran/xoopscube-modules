@@ -1,0 +1,20 @@
+h4{
+direction:rtl;
+text-align: center;
+}
+
+td {
+text-align: right;
+}
+input {
+font-family : tahoma;
+}
+li {
+direction:rtl;
+}
+p{
+direction:rtl;
+}
+div{
+direction:rtl;
+}
