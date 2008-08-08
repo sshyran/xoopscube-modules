@@ -15,9 +15,14 @@ $adminmenu = array(
 		'title' => constant( $constpref.'_ADMENU_SCRIPTHEAD' ) ,
 		'link' => 'admin/index.php?page=scriptlink' ,
 	) ,
+
 ) ;
 
 $adminmenu4altsys = array(
+	array(
+		'title' => 'Themes' ,
+		'link' => ''.XOOPS_URL.'/modules/legacy/admin/index.php?action=ThemeList' ,
+	) ,
 	array(
 		'title' => constant( $constpref.'_ADMENU_MYLANGADMIN' ) ,
 		'link' => 'admin/index.php?mode=admin&lib=altsys&page=mylangadmin' ,

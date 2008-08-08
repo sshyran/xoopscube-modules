@@ -1,4 +1,4 @@
-<?php /* English Translation by Marcelo Yuji Himoro <http://yuji.ws> & Suin <http://suin.jp>*/
+<?php /* English Translation by Marcelo Yuji Himoro <http://yuji.ws> & Suin <http://xoops.suinyeze.com/>*/
 // Module Info
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'bulletin' ;
@@ -34,14 +34,14 @@ define($constpref."_SMNAME1","Submit news");
 define($constpref."_SMNAME2","Archive");
 
 // Admin
-define($constpref."_ADMENU2","Categories manager");
+define($constpref."_ADMENU2","Categories");
 define($constpref."_ADMENU3","Post a new story");
-define($constpref."_ADMENU4","Posting permission manager");
-define($constpref."_ADMENU5","News manager");
-define($constpref."_ADMENU7","Import from news");
-define($constpref.'_ADMENU_MYLANGADMIN','languages');
-define($constpref.'_ADMENU_MYTPLSADMIN','templates');
-define($constpref.'_ADMENU_MYBLOCKSADMIN','blocks/permissions');
+define($constpref."_ADMENU4","Permissions");
+define($constpref."_ADMENU5","News");
+define($constpref."_ADMENU7","Import");
+define($constpref.'_ADMENU_MYLANGADMIN','Languages');
+define($constpref.'_ADMENU_MYTPLSADMIN','Templates');
+define($constpref.'_ADMENU_MYBLOCKSADMIN','Blocks');
 
 // Title of config items
 define($constpref."_CONFIG1","Number of news to display on the index page");

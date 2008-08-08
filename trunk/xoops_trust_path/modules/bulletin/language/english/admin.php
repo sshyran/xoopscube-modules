@@ -58,9 +58,8 @@ define("_AM_DESTINATION_OF_STORIES","Destination of stories belonging this categ
 define("_AM_FOLLOW_TOPICS_IS_DELETED","The following category will be deleted.");
 
 
-define("_AM_CREDIT","Bulletin(www.suin.jp)");
-// té∆uYqé w≈“éÀ{z{qé“qé {é∫ynqﬂ∂RLqé∆qé≈qé«{nwwqé√qé©qé⁄qéµqaté∆uYqéÀué≈|<u°¶é»qé«{{é¶qé±qÔ“é⁄qéµqa
+define("_AM_CREDIT","Bulletin(xoops.suinyeze.com)");
 // It is able to change a following line into the TRANSLATER's name and website. Follow appears at admin page.
-define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro (http://yuji.ws) and Suin (http://suin.jp)");
+define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro (http://yuji.ws) and Suin (http://xoops.suinyeze.com)");
 // example : define("_AM_TRANSLATER","English patch(www.english-tranlater.com)");
 ?>

@@ -38,8 +38,8 @@
       <{/if}>
       </td>
       <td><{$i.expired}></td>
-      <td><a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;storyid=<{$i.storyid}>"><{$smarty.const._EDIT}></a>
-      &nbsp;<a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;op=delete&amp;storyid=<{$i.storyid}>"><{$smarty.const._DELETE}></a></td>
+      <td><a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
+      &nbsp;<a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;op=delete&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/delete.gif" alt="<{$smarty.const._DELETE}>" /></a></td>
     </tr>
   <{/foreach}>
 </table>

@@ -2,7 +2,7 @@
 <h3 class="structurelabel"><{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL_MANAGER}></h3>
 <p style="text-align:right;"><{$page_navigater}></p>
 <form name="approvalform" id="approvalform" action="" method="post">
-<table id="d3blogArchTable" summary="<{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL_SUMMARY}>">
+<table id="d3blogArchTable" class="outer" summary="<{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL_SUMMARY}>">
 <thead>
 <tr class="head">
 	<th width="5%" scope="col"></th>
@@ -18,7 +18,7 @@
 </thead>
 	<{foreach item=row from=$rows name=rowloop}>
 		<{if $smarty.foreach.rowloop.iteration > $start and $smarty.foreach.rowloop.iteration <= $limit}>
-<tr class="<{cycle values="even, odd"}>">
+<tr class="<{cycle values='odd,even'}>">
 	<td><{$row.bid}></td>
 	<td><{$row.title}></td>
 	<td><{$row.posted|format_timestamp:"m"}></td>
@@ -29,7 +29,7 @@
 		<{else}>
 	<td colspan="3"></td>
 		<{/if}>
-	<td><a href="<{$mod_url}>/submit.php?bid=<{$row.bid}>" title="<{$smarty.const._EDIT}>"><{$smarty.const._EDIT}></a></td>
+	<td><a href="<{$mod_url}>/submit.php?bid=<{$row.bid}>" title="<{$smarty.const._EDIT}>"><img src="<{$mod_url}>/images/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></td>
 		<{if $row.tid}>
 	<td style="text-align:center;"><input type="checkbox" name="approve_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
 	<td style="text-align:center;"><input type="checkbox" name="delete_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
@@ -40,7 +40,7 @@
 		<{/if}>
 	<{/foreach}>
 <tr>
-	<td colspan="9" style="text-align:center;">
+	<td colspan="9" class="foot">
 		<{$gticket_hidden}>
 		<input type="submit" name="send" value="<{$smarty.const._SEND}>" />
 	</td>

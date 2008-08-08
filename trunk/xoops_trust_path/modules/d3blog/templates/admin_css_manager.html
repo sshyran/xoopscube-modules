@@ -1,5 +1,4 @@
 <h2 class="head"><{$smarty.const._MD_A_D3BLOG_H2_CSSMANAGER}></h2>
-<h3 class="head"><{$smarty.const._MD_A_D3BLOG_H3_WRITE_CSSFILE}></h3>
 <h4 class="head"><{$smarty.const._MD_A_D3BLOG_FORMAT_CSS_DIRECTORY|replace:"%s":$css_dir}></h4>
 <{if $check_dir}>
 	<{foreach item=msg from=$check_dir}>
@@ -21,9 +20,9 @@
 	</thead>
 	<tfoot class="head">
 		<tr>
-			<td colspan="4">&nbsp;</td>
+			<td class="foot" colspan="4">&nbsp;</td>
 <{foreach item=tplset from=$tplsets}>
-			<td><{if $num_by_tplset.$tplset > 0}><input name='do_write[<{$tplset|escape}>]' type="submit" value="<{$smarty.const._MD_A_D3BLOG_LANG_WRITE_CSS_FILE}>" onclick="return confirm('<{$smarty.const._MD_A_D3BLOG_MESSAGE_ARE_YOU_SURE_TO_OVERWRITE_CSSFILE}>');" /><{else}>&nbsp;<{/if}></td>
+			<td class="foot"><{if $num_by_tplset.$tplset > 0}><input name='do_write[<{$tplset|escape}>]' type="submit" value="<{$smarty.const._MD_A_D3BLOG_LANG_WRITE_CSS_FILE}>" onclick="return confirm('<{$smarty.const._MD_A_D3BLOG_MESSAGE_ARE_YOU_SURE_TO_OVERWRITE_CSSFILE}>');" /><{else}>&nbsp;<{/if}></td>
 <{/foreach}>
 		</tr>
 	</tfoot>

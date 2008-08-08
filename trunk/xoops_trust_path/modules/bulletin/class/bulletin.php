@@ -234,8 +234,8 @@ class Bulletin extends XoopsObject{
 				
 		$criteria = array();
 		$criteria[] = "type > 0";
-		$criteria[] = "published > $monstart4sql";
-		$criteria[] = "published < $monend4sql";		
+		$criteria[] = "published >= $monstart4sql";
+		$criteria[] = "published <= $monend4sql";		
 		$criteria[] = "published > 0";
 		$criteria[] = "published <= ".time();
 		$criteria[] = "(expired = 0 OR expired > ".time().")";

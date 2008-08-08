@@ -14,13 +14,13 @@ define($constpref."_NAME","pico");
 define($constpref."_DESC","a module for staic contents");
 
 // admin menus
-define( $constpref.'_ADMENU_CONTENTSADMIN' , 'Contents list' ) ;
-define( $constpref.'_ADMENU_CATEGORYACCESS' , 'Permissions of Categories' ) ;
+define( $constpref.'_ADMENU_CONTENTSADMIN' , 'Content' ) ;
+define( $constpref.'_ADMENU_CATEGORYACCESS' , 'Permissions' ) ;
 define( $constpref.'_ADMENU_IMPORT' , 'Import/Sync' ) ;
 define( $constpref.'_ADMENU_EXTRAS' , 'Extra' ) ;
 define( $constpref.'_ADMENU_MYLANGADMIN' , 'Languages' ) ;
 define( $constpref.'_ADMENU_MYTPLSADMIN' , 'Templates' ) ;
-define( $constpref.'_ADMENU_MYBLOCKSADMIN' , 'Blocks/Permissions' ) ;
+define( $constpref.'_ADMENU_MYBLOCKSADMIN' , 'Blocks' ) ;
 define( $constpref.'_ADMENU_MYPREFERENCES' , 'Preferences' ) ;
 
 // configurations

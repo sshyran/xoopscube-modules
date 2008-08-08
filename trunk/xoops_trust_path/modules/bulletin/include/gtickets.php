@@ -186,7 +186,7 @@ class XoopsGTicket {
 		// Notify which file is broken
 		if( headers_sent() ) {
 			restore_error_handler() ;
-			set_error_handler( 'GTicket_ErrorHandler4FindOutput' ) ;
+			set_error_handler( array( &$this , 'errorHandler4FindOutput' ) ) ;
 			header( 'Dummy: for warning' ) ;
 			restore_error_handler() ;
 			exit ;
@@ -275,6 +275,15 @@ class XoopsGTicket {
 		return $ret ;
 	}
 
+	function errorHandler4FindOutput($errNo, $errStr, $errFile, $errLine)
+	{
+		if( preg_match( '?'.preg_quote(XOOPS_ROOT_PATH).'([^:]+)\:(\d+)?' , $errStr , $regs ) ) {
+			echo "Irregular output! check the file ".htmlspecialchars($regs[1])." line ".htmlspecialchars($regs[2]) ;
+		} else {
+			echo "Irregular output! check language files etc." ;
+		}
+		return ;
+	}
 // end of class
 }
 
@@ -299,17 +308,6 @@ function admin_refcheck($chkref = "") {
 }
 
 }
-
-function GTicket_ErrorHandler4FindOutput($errNo, $errStr, $errFile, $errLine)
-{
-	if( preg_match( '?'.preg_quote(XOOPS_ROOT_PATH).'([^:]+)\:(\d+)?' , $errStr , $regs ) ) {
-		echo "Irregular output! check the file ".htmlspecialchars($regs[1])." line ".htmlspecialchars($regs[2]) ;
-	} else {
-		echo "Irregular output! check language files etc." ;
-	}
-	return ;
-}
-
 
 
 ?>

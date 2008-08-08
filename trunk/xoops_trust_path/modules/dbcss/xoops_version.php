@@ -126,7 +126,7 @@ $modversion['config'][] = array(
 	'description'	=> $constpref.'_CSSEXPORT_DIRDSC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'text' ,
-	'default'		=> '' ,
+	'default'		=> 'common/css/' ,
 	'options'		=> array()
 ) ;
 

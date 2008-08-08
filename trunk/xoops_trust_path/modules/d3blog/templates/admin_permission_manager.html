@@ -6,10 +6,11 @@
 	<table class="outer" border="1" style="border-collapse:collapse;empty-cells:show">
 		<thead>
 			<tr>
-				<th style="padding:5px;font-weight:bold"><{$smarty.const._MD_A_D3BLOG_LANG_GROUP_NAME}>
+				<th><{$smarty.const._MD_A_D3BLOG_LANG_GROUP_NAME}></th>
 <{foreach from=$gperm_config item=gperm_name key=gperm_term name=configloop}>
-				<th style="padding:5px;font-weight:bold;text-align:center;"><{$smarty.const.$gperm_name}>
+				<th><{$smarty.const.$gperm_name}>
 					<span style="display:block;text-align:center;"><input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_<{$smarty.foreach.configloop.iteration}>_')>=0){elements[i].checked=this.checked;}}}"></span>
+</th>
 <{/foreach}>
 		</thead>
 		<tbody>
@@ -22,6 +23,11 @@
 	<{/foreach}>
 <{/foreach}>
 		</tbody>
+        <tfoot>
+        <tr>
+        <td class="foot" colspan="6"><input type="submit" name="gperm_renew" value="<{$smarty.const._SUBMIT}>" /></td>
+        </tr>
+        </tfoot>
 	</table>
-	<input type="submit" name="gperm_renew" value="<{$smarty.const._SUBMIT}>" />
+
 </form>

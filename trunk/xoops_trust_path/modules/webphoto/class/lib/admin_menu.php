@@ -50,7 +50,6 @@ function &getInstance( $dirname , $trust_dirname )
 //---------------------------------------------------------
 function build_menu()
 {
-//	if( defined( 'XOOPS_ORETEKI' ) ) { return null; }
 
 	$admin_menu_class =& webphoto_inc_admin_menu::getInstance();
 	$admin_menu = $admin_menu_class->build_menu( $this->_DIRNAME );
@@ -119,9 +118,6 @@ function _build_additinal_menu()
 		if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 			$link = XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id='.$this->_MODULE_ID;
 
-	// XOOPS 2.0
-		} else {
-			$link = XOOPS_URL.'/modules/system/admin.php?fct=preferences&op=showmod&mod='.$this->_MODULE_ID;
 		}
 
 		array_push( $menu_array , array( 
@@ -140,8 +136,8 @@ function _build_additinal_menu()
 
 function _build_highlight( $menu_array )
 {
-	$mymenu_uri  = $_SERVER['REQUEST_URI'];
-	$mymenu_link = substr( strstr( $mymenu_uri , '/admin/' ) , 1 ) ;
+$mymenu_uri = empty( $mymenu_fake_uri ) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri ;
+$mymenu_link = substr( strstr( $mymenu_uri , '/admin/' ) , 1 ) ;
 
 	$flag_highlight = false ;
 
@@ -159,7 +155,7 @@ function _build_highlight( $menu_array )
 		foreach( array_keys( $menu_array ) as $i ) 
 		{
 			if ( $uri_fct == $menu_array[$i]['link'] ) {
-				$menu_array[$i]['color'] = '#FFCCCC' ;
+				$menu_array[$i]['selected'] = true ;
 				$flag_highlight = true ;
 				break ;
 			}
@@ -171,7 +167,7 @@ function _build_highlight( $menu_array )
 		foreach( array_keys( $menu_array ) as $i ) 
 		{
 			if ( stristr( $uri_fct , $menu_array[$i]['link'] ) ) {
-				$menu_array[$i]['color'] = '#FFCCCC' ;
+				$menu_array[$i]['selected'] = true ;
 				$flag_highlight = true ;
 				break ;
 			}
@@ -182,7 +178,7 @@ function _build_highlight( $menu_array )
 		foreach( array_keys( $menu_array ) as $i ) 
 		{
 			if ( $mymenu_link == $menu_array[$i]['link'] ) {
-				$menu_array[$i]['color'] = '#FFCCCC' ;
+				$menu_array[$i]['selected'] = true ;
 				$flag_highlight = true ;
 				break ;
 			}
@@ -196,7 +192,7 @@ function _build_highlight( $menu_array )
 			if ( $link != 'admin/index.php' && 
 			     strpos( $mymenu_link , $link ) === 0 ) {
 
-				$menu_array[$i]['color'] = '#FFCCCC' ;
+				$menu_array[$i]['selected'] = true ;
 				$flag_highlight = true ;
 				break ;
 			}
@@ -207,7 +203,7 @@ function _build_highlight( $menu_array )
 		foreach( array_keys( $menu_array ) as $i ) 
 		{
 			if ( stristr( $mymenu_uri , $menu_array[$i]['link'] ) ) {
-				$menu_array[$i]['color'] = '#FFCCCC' ;
+				$menu_array[$i]['selected'] = true ;
 				break ;
 			}
 		}
@@ -222,7 +218,7 @@ function _build_highlight( $menu_array )
 	}
 
 	// display
-	$text = "<div style='text-align:left;width:98%;'>" ;
+	/*$text = "<div style='text-align:left;width:98%;'>" ;
 
 	foreach( $menu_array as $menuitem ) 
 	{
@@ -235,7 +231,15 @@ function _build_highlight( $menu_array )
 	$text .= "</div>\n";
 	$text .= "<hr style='clear:left;display:block;' />\n" ;
 
-	return $text;
+	return $text;*/
+	
+	// display
+require_once XOOPS_ROOT_PATH.'/class/template.php' ;
+$tpl =& new XoopsTpl() ;
+$tpl->assign( array(
+    'adminmenu' => $menu_array ,
+) ) ;
+$tpl->display( 'db:altsys_inc_mymenu.html' ) ;
 }
 
 //---------------------------------------------------------

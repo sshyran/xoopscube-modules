@@ -8,7 +8,7 @@ if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 define( $constpref.'_LOADED' , 1 ) ;
 
 // The name of this module
-define($constpref."_NAME","DB css");
+define($constpref."_NAME","Theme Editor");
 
 // A brief description of this module
 define($constpref."_DESC","A module enables you to edit your theme in admin area");
@@ -16,11 +16,11 @@ define($constpref."_DESC","A module enables you to edit your theme in admin area
 // admin menus
 define($constpref.'_ADMENU_CSSADMIN','CSS Management') ;
 define($constpref.'_ADMENU_CSSEXPORT','CSS import/export') ;
-define($constpref.'_ADMENU_METAHEAD','META tag management') ;
-define($constpref.'_ADMENU_SCRIPTHEAD','External script tag edit') ;
+define($constpref.'_ADMENU_METAHEAD','META Tag') ;
+define($constpref.'_ADMENU_SCRIPTHEAD','External Script') ;
 define($constpref.'_ADMENU_MYLANGADMIN','Languages') ;
-define($constpref.'_ADMENU_MYTPLSADMIN','Theme templates') ;
-define($constpref.'_ADMENU_MYBLOCKSADMIN','Blocks/Permissions') ;
+define($constpref.'_ADMENU_MYTPLSADMIN','Templates') ;
+define($constpref.'_ADMENU_MYBLOCKSADMIN','Blocks') ;
 define($constpref.'_ADMENU_MYPREFERENCES','Preferences') ;
 
 // blocks

@@ -1,6 +1,6 @@
 <?php
 
-define( '_MI_ALTSYS_MODULENAME' , 'ALTSYS' ) ;
+define( '_MI_ALTSYS_MODULENAME' , 'Common' ) ;
 define( '_MI_ALTSYS_MODULEDESC' , 'Gestión del sistema' ) ;//Managing system easily
 
 // menus

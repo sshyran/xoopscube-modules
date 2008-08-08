@@ -14,7 +14,7 @@ define ( '_MD_A_D3BLOG_LANG_CATEGORY_WEIGHT','Weight' );
 define ( '_MD_A_D3BLOG_LANG_CATEGORY_IMAGE','Category image' );
 define ( '_MD_A_D3BLOG_LANG_REGISTER_ANDOR_EDIT_CATEGORY','Register and/or edit category' );
 define ( '_MD_A_D3BLOG_LANG_CATEGORY_GLOBAL','Overall categories' );
-define ( '_MD_A_D3BLOG_LANG_PERMISSION_MANAGER','Permission manager' );
+define ( '_MD_A_D3BLOG_LANG_PERMISSION_MANAGER','Permissions' );
 define ( '_MD_A_D3BLOG_LANG_GROUP_NAME','Group name' );
 define ( '_MD_A_D3BLOG_LANG_SELECT_INPORTMODULE','Select import module' );
 define ( '_MD_A_D3BLOG_LANG_APPROVAL_MANAGER','Approval manager' );

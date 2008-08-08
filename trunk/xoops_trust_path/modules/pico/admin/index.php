@@ -14,23 +14,24 @@ echo "<div class=\"tips\">
 Location on the server is public path /common/fckeditor</p>
 
 <h6>Text Filters</h6>
-<p>Smarty(cmsTpl) : CMS Variables used for templates</p>
-<p>Php code : It passes as an argument of php function eval(). The php sign is not necessary.</p>
+<p>Smarty(xoopsTpl) : XOOPS Cube variables used for templates</p>
+<p>PHP code : It passes as an argument of php function eval(). The php sign is not necessary.</p>
 <p>HTML special character escape, PEAR TextWiki, BBcode and Emoticon conversion to graphics.</p>
 
 <h6>Import/synchronization</h6>
-<p>Content from other instances of the module page can be imported./p>
-<p>Synchronization should be executed when important changes are made to content, permissions or to keep votes up to date</p>
+<p>Content from other instances of the module Pico can be imported.</p>
+<p>Synchronization should be executed when important changes are made to content, to permissions or to keep votes up to date</p>
 
 <h6>Wrap directory</h6>
-<p>The module can include independent html files within CMS.<br />
+<p>The module can include independent html files within XOOPS Cube.<br />
 Check the wrap function of module from preferences.<br />
 Location on the server is by default a secure path /app/wraps/modulename/<br />
 When you make a new content, files from this folder are displayed in wrap \"selection\" option .</p>
 
 <h6>Permissions</h6>
-<p>Webmasters can give permissions to a groups or a specific user to manage a category content.</p>
-<p>Note  : Remember that you have to previously set CMS user/groups permisions!</p>
+<p>Webmasters can give permissions to a group or a specific user to manage a category content.</p>
+<br />
+<p>Note  : Remember that you have to previously set XOOPS Cube user/groups permisions!</p>
 </div>
 
 <br />
@@ -38,8 +39,10 @@ When you make a new content, files from this folder are displayed in wrap \"sele
 
 <div class=\"tips\">
 <h6>Smarty plugin form</h6>
-<p>This module allows webmasters and webdesigners to create html forms and use smarty</p>
+<p>This module allows webmasters and webdesigners to create html forms using smarty</p>
 <p>plugins processing the forms content.</p>
+<br />
+<p><{capture}> ... <{/capture}></p>
 
 <br />
 

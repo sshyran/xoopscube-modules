@@ -1,5 +1,8 @@
 <h3><{$mod_name}></h3>
-
+<ul class="toptab">
+  <li class="add"><a href="index.php?action=BlockInstallList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a></li>
+  <li class="addBlock"><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></li>
+</ul>
 <!-- category selection -->
 <form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="margin: 20px 0px">
 	<input type="hidden" name="page" value="category_access" />
@@ -49,8 +52,11 @@
 			</tr>
 		<{/foreach}>
 
-	</table>
-	<input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>" />
+<tfoot>
+<td colspan="10" class="foot"><input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>" />
+</td>
+</tfoot>
+</table>
 </form>
 
 
@@ -58,6 +64,8 @@
 <h2 class="head"><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
 <form name="userperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px">
 	<{$gticket_hidden}>
+    <p>	<{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
+</p>
 	<table class="outer">
 
 		<!-- th -->
@@ -111,9 +119,8 @@
 				<{/foreach}>
 			</tr>
 		<{/foreach}>
-
+<tbody>
+<td colspan="11" class="foot"><input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>" /></td>
+</tbody>
 	</table>
-	<input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>" />
-	<br />
-	<{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
 </form>

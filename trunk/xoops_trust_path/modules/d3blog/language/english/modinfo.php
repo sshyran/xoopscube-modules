@@ -13,7 +13,7 @@ if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 define( $constpref.'_LOADED' , 1 ) ;
 
 // <--- BASIC PROPERTY --->
-define ( $constpref.'_BASIC_MODULE_NAME','d3blog' );
+define ( $constpref.'_BASIC_MODULE_NAME','Blog' );
 define ( $constpref.'_BASIC_MODULE_NAME_DSC','A simple d3-type blog module.' );
 
 
@@ -23,14 +23,14 @@ define ( $constpref.'_SUBMENU_MY_BLOG','my blog' );
 define ( $constpref.'_SUBMENU_ARCHIVES','archives' );
 
 // <--- ADMENU PROPERTY --->
-define ( $constpref.'_ADMENU_CATEGORY_MANAGER','Category Manager' );
-define ( $constpref.'_ADMENU_PERMISSION_MANAGER','Permission manager' );
-define ( $constpref.'_ADMENU_APPROVAL_MANAGER','Approval manager' );
-define ( $constpref.'_ADMENU_IMPORT_MANAGER','Import manager' );
+define ( $constpref.'_ADMENU_CATEGORY_MANAGER','Categories' );
+define ( $constpref.'_ADMENU_PERMISSION_MANAGER','Permissions' );
+define ( $constpref.'_ADMENU_APPROVAL_MANAGER','Approval' );
+define ( $constpref.'_ADMENU_IMPORT_MANAGER','Import' );
 define ( $constpref.'_ADMENU_CSS_MANAGER','CSS manager' );
-define ( $constpref.'_ADMENU_MYLANGADMIN','Languages manager' ) ;
-define ( $constpref.'_ADMENU_MYTPLSADMIN','Templates manager' ) ;
-define ( $constpref.'_ADMENU_MYBLOCKSADMIN','Blocks/Module permission' ) ;
+define ( $constpref.'_ADMENU_MYLANGADMIN','Languages' ) ;
+define ( $constpref.'_ADMENU_MYTPLSADMIN','Templates' ) ;
+define ( $constpref.'_ADMENU_MYBLOCKSADMIN','Blocks' ) ;
 define ( $constpref.'_ADMENU_MYPREFERENCES','Preferences' ) ;
 
 // <--- BLOCKS PROPERTY --->
@@ -78,8 +78,8 @@ define ( $constpref.'_URL_CHOICE','Enable to select Updateping servers.' );
 define ( $constpref.'_URL_CHOICE_DSC','You can select updating servers on editing an entry.' );
 define ( $constpref.'_MAX_URLS','Maximum of updating servers' );
 define ( $constpref.'_MAX_URLS_DSC','' );
-define ( $constpref.'_UPDATEPING','Updateping urls' );
-define ( $constpref.'_UPDATEPING_DSC','eperate each by break.');
+define ( $constpref.'_UPDATEPING','Update ping urls' );
+define ( $constpref.'_UPDATEPING_DSC','Seperate each by break.');
 define ( $constpref.'_UPDATEPING_SERVERS',"http://ping.bloggers.jp/rpc/\nhttp://ping.myblog.jp/\nhttp://blog.goo.ne.jp/XMLRPC" );
 define ( $constpref.'_TBAPPROVAL','Trackback approval' );
 define ( $constpref.'_TBAPPROVAL_DSC','' );

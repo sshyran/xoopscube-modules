@@ -44,7 +44,7 @@ $modversion['hasSearch'] = 0;
 $modversion['hasComments'] = 0;
 
 // Configurations
-$modversion['config'][1] = array(
+/*$modversion['config'][1] = array(
 	'name'			=> 'adminmenu_hack_ft' ,
 	'title'			=> '_MI_ALTSYS_ADMINMENU_HFT' ,
 	'description'	=> '_MI_ALTSYS_ADMINMENU_HFTDSC' ,
@@ -52,9 +52,9 @@ $modversion['config'][1] = array(
 	'valuetype'		=> 'int' ,
 	'default'		=> 0 ,
 	'options'		=> array( '_NONE' => 0 , '_MI_ALTSYS_AMHFT_OPT_2COL' => 1 , '_MI_ALTSYS_AMHFT_OPT_NOIMG' => 2 , '_MI_ALTSYS_AMHFT_OPT_XCSTY' => 3 )
-) ;
+) ;*/
 
-$modversion['config'][] = array(
+/*$modversion['config'][] = array(
 	'name'			=> 'adminmenu_insert_mymenu' ,
 	'title'			=> '_MI_ALTSYS_ADMINMENU_IM' ,
 	'description'	=> '_MI_ALTSYS_ADMINMENU_IMDSC' ,
@@ -62,9 +62,9 @@ $modversion['config'][] = array(
 	'valuetype'		=> 'int' ,
 	'default'		=> 0 ,
 	'options'		=> array()
-) ;
+) ;*/
 
-$modversion['config'][] = array(
+/*$modversion['config'][] = array(
 	'name'			=> 'admin_in_theme' ,
 	'title'			=> '_MI_ALTSYS_ADMIN_IN_THEME' ,
 	'description'	=> '_MI_ALTSYS_ADMIN_IN_THEMEDSC' ,
@@ -72,9 +72,9 @@ $modversion['config'][] = array(
 	'valuetype'		=> 'text' ,
 	'default'		=> 'default' ,
 	'options'		=> array()
-) ;
+) ;*/
 
-$modversion['config'][] = array(
+$modversion['config'][1] = array(
 	'name'			=> 'enable_force_clone' ,
 	'title'			=> '_MI_ALTSYS_ENABLEFORCECLONE' ,
 	'description'	=> '_MI_ALTSYS_ENABLEFORCECLONEDSC' ,

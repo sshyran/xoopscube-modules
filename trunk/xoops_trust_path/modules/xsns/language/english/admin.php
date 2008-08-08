@@ -1,8 +1,8 @@
 <?php
 
-define('_AM_MENU_MYTPLSADMIN', 'Templates Management');
-define('_AM_MENU_MYBLOCKSADMIN', 'Blocks Management');
-define('_AM_MENU_MYLANGADMIN', 'Language Constant Management');
+define('_AM_MENU_MYTPLSADMIN', 'Templates');
+define('_AM_MENU_MYBLOCKSADMIN', 'Blocks');
+define('_AM_MENU_MYLANGADMIN', 'Languages');
 define('_AM_MENU_MYPREFERENCES', 'Preferences');
 
 define('_AM_XSNS_POST_DATE', 'Posted Date');

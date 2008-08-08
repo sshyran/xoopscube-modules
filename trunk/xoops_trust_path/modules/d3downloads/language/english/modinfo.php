@@ -23,7 +23,7 @@ define($constpref.'_ADMENU_IMPORT',"Import/Update") ;
 define($constpref.'_ADMENU_CONFIG_CHECK',"Environment Check") ;
 define($constpref.'_ADMENU_MYLANGADMIN',"Languages") ;
 define($constpref.'_ADMENU_MYTPLSADMIN',"Templates") ;
-define($constpref.'_ADMENU_MYBLOCKSADMIN',"Blocks/Permissions") ;
+define($constpref.'_ADMENU_MYBLOCKSADMIN',"Blocks") ;
 define($constpref.'_ADMENU_MYPREFERENCES',"Preferences") ;
 
 // blocks

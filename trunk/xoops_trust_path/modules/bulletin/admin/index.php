@@ -325,10 +325,7 @@ case 'modTopicS':
 		redirect_header( "index.php?op=topicsmanager", 2, _AM_ERRORTOPICNAME );
 	}
 	$BTopic -> setTopicTitle( $_POST['topic_title'] );
-	if ( isset( $_POST['topic_imgurl'] ) && $_POST['topic_imgurl'] != "" )
-	{
-		$BTopic -> setTopicImgurl( $_POST['topic_imgurl'] );
-	}
+	$BTopic -> setTopicImgurl( @$_POST['topic_imgurl'] );
 	$BTopic -> store();
 	redirect_header( 'index.php?op=topicsmanager', 1, _AM_DBUPDATED );
 

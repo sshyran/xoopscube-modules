@@ -197,7 +197,7 @@ $modversion['config'][$k]['title'] = $constpref.'_WYSIWYG';
 $modversion['config'][$k]['description'] = $constpref.'_WYSIWYG_DSC';
 $modversion['config'][$k]['formtype'] = 'select';
 $modversion['config'][$k]['valuetype'] = 'int';
-$modversion['config'][$k]['default'] = '0';
+$modversion['config'][$k]['default'] = '1';
 $modversion['config'][$k]['options'] = array($constpref.'_NO_WYSIWYG' => 0, $constpref.'_WYSIWYG_FCK' => 1);
 $k++;
 $modversion['config'][$k]['name'] = 'dynamic_css';
