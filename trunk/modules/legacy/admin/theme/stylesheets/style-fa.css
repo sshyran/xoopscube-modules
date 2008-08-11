@@ -100,7 +100,7 @@ form {
 	margin:0.5em 0;
 }
 input.formButton {
-	background:url(<{"design/buttonbg.gif"|theme}>);
+	background:url(<{"design/buttonbg.png"|theme}>);
 	border-top:solid 1px #9a9caa;
 	border-left:solid 1px #9a9caa;
 	border-right:solid 1px #43445e;
@@ -255,7 +255,7 @@ tr .even td {
 	margin:0;
 	padding:2px 2px 2px 17px;
 	list-style:none;
-	background:url(<{"design/menulist.gif"|theme}>) no-repeat center left;
+	background:url(<{"design/menulist.png"|theme}>) no-repeat center left;
 }
 #leftcolumn .submenu li a {
 	color:#000000;
@@ -366,7 +366,7 @@ ul.toptab li {
 	border-right:1px solid #666699;
 	border-bottom:1px solid #666699;
 /*Start farsi style by voltan */
-	background:#f6f6f6 /*url(<{"design/menulist.gif"|theme}>) no-repeat center left*/;
+	background:#f6f6f6 /*url(<{"design/menulist.png"|theme}>) no-repeat center left*/;
 /*End farsi style by voltan */
 	padding:5px 5px 5px 18px;
 }
@@ -386,28 +386,28 @@ ul.toptab li {
 	border:1px solid #cc0000;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#ffaaaa url(<{"icons/error.gif"|theme}>) no-repeat 5px 4px;
+	background:#ffaaaa url(<{"icons/error.png"|theme}>) no-repeat 5px 4px;
 }
 .confirm {
 	color:#000000;
 	border:1px solid #ff6633;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#fff8ee url(<{"icons/important.gif"|theme}>) no-repeat 5px 4px;
+	background:#fff8ee url(<{"icons/important.png"|theme}>) no-repeat 5px 4px;
 }
 .tips {
 	color:#000000;
 	border:1px solid #00cc00;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#f8fff8 url(<{"icons/idea.gif"|theme}>) no-repeat 5px 4px;
+	background:#f8fff8 url(<{"icons/idea.png"|theme}>) no-repeat 5px 4px;
 }
 .error {
 	color:#000000;
 	border:2px dotted #ff6633;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background: #fff8ee url(<{"icons/error.gif"|theme}>) no-repeat 5px 4px;
+	background: #fff8ee url(<{"icons/error.png"|theme}>) no-repeat 5px 4px;
 }
 
 /* ===== active ===== */

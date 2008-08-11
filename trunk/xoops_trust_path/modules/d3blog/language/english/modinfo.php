@@ -98,7 +98,7 @@ define ( $constpref.'_BANNEDWORD_DSC','Each must be seperated by break.' );
 define ( $constpref.'_BANNEDWORDS', "drugs\nhydrocodone\npharma\nsex\nsmoking\nviagra" );
 define ( $constpref.'_REGEX','Regex pattern check' );
 define ( $constpref.'_REGEXCHECK','Regex' );
-define ( $constpref.'_REGEXCHECK_DSC','Will check blog name, title, excerpt and url. Eaech must be seperated by break.' );
+define ( $constpref.'_REGEXCHECK_DSC','Will check blog name, title, excerpt and url. Each must be seperated by line-break.' );
 define ( $constpref.'_DNSBL','DNSBL CHECK' );
 define ( $constpref.'_DNSBLSRV','DNSBL servers' );
 define ( $constpref.'_DNSBLSRV_DSC','Will reject if the sender is registered in blacklists. Each must be seperated.' );

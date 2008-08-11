@@ -144,7 +144,7 @@ input[type="radio"] {
 	color:#882200;
 	border-left:5px solid #F8B643;
 	border-bottom:1px solid #F8B643;
-	background:#ffffff url(<{"icons/idea.gif"|theme}>) no-repeat 8px 3px;
+	background:#ffffff url(<{"icons/idea.png"|theme}>) no-repeat 8px 3px;
 }
 .help h5 {
 	font-size:14px;
@@ -207,7 +207,7 @@ input[type="radio"] {
 	padding 1px;
 /* with the arrow :-) */
 /*	padding-left:17px;
-	background:url(<{"design/menulist.gif"|theme}>) no-repeat center left;
+	background:url(<{"design/menulist.png"|theme}>) no-repeat center left;
 */
 }
 .help .highlight_module_name {
@@ -228,9 +228,9 @@ input[type="radio"] {
 
 .help .new {
 	padding-right:58px;
-	background:url(<{"icons/legacy_help_new.gif"|theme}>) no-repeat center right;
+	background:url(<{"icons/legacy_help_new.png"|theme}>) no-repeat center right;
 }
 .help .update {
 	padding-right:58px;
-	background:url(<{"icons/legacy_help_update.gif"|theme}>) no-repeat center right;
+	background:url(<{"icons/legacy_help_update.png"|theme}>) no-repeat center right;
 }

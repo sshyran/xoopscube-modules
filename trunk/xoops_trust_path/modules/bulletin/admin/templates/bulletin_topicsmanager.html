@@ -1,7 +1,7 @@
 <{strip}>
 
 <form method="post" action="index.php?mode=admin">
-  <table class="outer" cellspacing="1" width="100%">
+  <table class="outer" width="100%">
     <tbody>
       <tr>
         <th colspan="2"><{$smarty.const._AM_ADDMTOPIC}></th>
@@ -23,14 +23,13 @@
           <option value="<{$i.image}>"><{$i.image}></option>
           <{/foreach}>
           </select><br />
-          <img src="<{$xoops_url}>/images/blank.gif" name="topicimage" id="topicimage" alt="" vspace="4" />
+          <img src="<{$xoops_url}>/images/blank.png" name="topicimage" id="topicimage" alt="" vspace="4" />
           <br />
           <{$imagelocation}>
         </td>
       </tr>
       <tr>
-        <td class="head"></td>
-        <td class="even">
+          <td colspan="2" class="foot">
           <input type="hidden" name="op" value="addTopic" />
           <input type="submit" value="<{$smarty.const._ADD}>" />
         </td>
@@ -51,8 +50,7 @@
           <td class="even"><{$topicselbox2}></td>
         </tr>
         <tr>
-          <td class="head"></td>
-          <td class="even">
+          <td colspan="2" class="foot">
             <input type="hidden" name="op" value="modTopic" />
             <input type="hidden" name="mode" value="admin" />
             <input type="submit" value="<{$smarty.const._AM_MODIFY}>" />
@@ -63,6 +61,6 @@
   </form>
 <{/if}>
 
-<{include file="$template_path/bulletin_footer.html"}>
+
 
 <{/strip}>

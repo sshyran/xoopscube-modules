@@ -45,7 +45,7 @@
         <{if $object->getShow('com_icon')}>
           <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$object->getShow('com_icon')}>" />
         <{else}>
-          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" />
+          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.png" />
         <{/if}>
       </td>
     </tr>
@@ -141,7 +141,7 @@
       <td class="legacy_list_select"><{$obj->getShow('com_ip')}></td>
       <td class="legacy_list_control">
         <{if $obj->get('com_status') == 2}>
-          <img src="<{"icons/active.gif"|theme}>" />
+          <img src="<{"icons/active.png"|theme}>" />
         <{/if}>
       </td>
     </tr>

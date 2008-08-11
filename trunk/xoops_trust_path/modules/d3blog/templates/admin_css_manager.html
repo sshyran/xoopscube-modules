@@ -1,5 +1,12 @@
-<h2 class="head"><{$smarty.const._MD_A_D3BLOG_H2_CSSMANAGER}></h2>
-<h4 class="head"><{$smarty.const._MD_A_D3BLOG_FORMAT_CSS_DIRECTORY|replace:"%s":$css_dir}></h4>
+<h3><{$smarty.const._MD_A_D3BLOG_H2_CSSMANAGER}></h3>
+<hr />
+<h4><{$smarty.const._MD_A_D3BLOG_FORMAT_CSS_DIRECTORY|replace:"%s":$css_dir}></h4>
+
+
+<div class="tips">
+<{$smarty.const._MD_A_D3BLOG_HELP_CSSMANAGER}>
+</div>
+
 <{if $check_dir}>
 	<{foreach item=msg from=$check_dir}>
 <p style="color:#ff0000;font-weight:bold;"><{$msg}></p>
@@ -40,5 +47,4 @@
 <{/foreach}>
 	</tbody>
 </table>
-<{$smarty.const._MD_A_D3BLOG_HELP_CSSMANAGER}>
 </form>

@@ -23,8 +23,8 @@ if (!$tpl->is_cached("db:{$mydirname}_rss.html")) {
 		$tpl->assign('channel_category', 'News');
 		$tpl->assign('channel_generator', 'XOOPS');
 		$tpl->assign('channel_language', _LANGCODE);
-		$tpl->assign('image_url', XOOPS_URL.'/images/logo.gif');
-		$dimention = getimagesize(XOOPS_ROOT_PATH.'/images/logo.gif');
+		$tpl->assign('image_url', XOOPS_URL.'/images/logo.png');
+		$dimention = getimagesize(XOOPS_ROOT_PATH.'/images/logo.png');
 		if (empty($dimention[0])) {
 			$width = 88;
 		} else {

@@ -33,7 +33,7 @@ define("_AM_ERRORTOPICNAME","Category name has not been filled.");
 
 // Added by SUIN
 
-define("_AM_DISP_CONTENUE","[Show all news]");
+define("_AM_DISP_CONTENUE","Show all news");
 define("_AM_PUB_ARTICLES","Published news");
 define("_AM_WAITING_ARTICLES","Awaiting news");
 define("_AM_ARTICLE_ADMIN","News manager");

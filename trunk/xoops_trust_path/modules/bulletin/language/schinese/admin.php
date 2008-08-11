@@ -33,7 +33,7 @@ define('_AM_ERRORTOPICNAME', '请输入类别名称。');
 
 // Added by SUIN
 
-define('_AM_DISP_CONTENUE', '[显示所有新闻]');
+define('_AM_DISP_CONTENUE', '显示所有新闻');
 define('_AM_PUB_ARTICLES', '已发布的新闻');
 define('_AM_WAITING_ARTICLES', '等候审核的新闻');
 define('_AM_ARTICLE_ADMIN', '新闻管理');

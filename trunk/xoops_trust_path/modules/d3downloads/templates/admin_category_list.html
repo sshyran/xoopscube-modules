@@ -1,7 +1,11 @@
 <h2><{$smarty.const._MD_D3DOWNLOADS_H2CATEGORYMANAGER}></h2>
 <form name="categorymanager" id="categorymanager" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
 <{$gticket_hidden}>
-[<a href="<{$mod_url}>/admin/index.php?page=categoryedit&amp;cid=0"><{$smarty.const._MD_D3DOWNLOADS_NEWCATEGORY}></a>]
+
+<ul class="toptab">
+  <li class="addDir"><a href="<{$mod_url}>/admin/index.php?page=categoryedit&amp;cid=0"><{$smarty.const._MD_D3DOWNLOADS_NEWCATEGORY}></a></li>
+</ul>
+
 <table class="outer">
 	<tr>
 		<th style="text-align:center;">
@@ -48,4 +52,7 @@
 	</tr>
 </table>
 </form>
+<br />
+<div class="tips">
 <{$smarty.const._MD_D3DOWNLOADS_HELP_CATEGORY_DEL}>
+</div>

@@ -79,9 +79,9 @@ class Legacy_BackendAction extends Legacy_Action
 		$renderTarget->setAttribute('channel_editor', $xoopsConfig['adminmail']);
 		$renderTarget->setAttribute('channel_category', 'News');
 		$renderTarget->setAttribute('channel_generator', 'XOOPS Cube');
-		$renderTarget->setAttribute('image_url', XOOPS_URL . '/images/logo.gif');
+		$renderTarget->setAttribute('image_url', XOOPS_URL . '/images/logo.png');
 		
-		$dimention = getimagesize(XOOPS_ROOT_PATH . '/images/logo.gif');
+		$dimention = getimagesize(XOOPS_ROOT_PATH . '/images/logo.png');
 
 		$width = 0;		
 		if (empty($dimention[0])) {

@@ -43,10 +43,10 @@
     <tr>
       <td class="foot" <{if $sendUser && $sendUser->hasAvatar()}>colspan="2"<{/if}> style="text-align:left;">
         <!--- TODO check postr. See original readpmsg --->
-        <a href='#' onclick="javascript:openWithSelfMain('<{$xoops_url}>/pmlite.php?reply=1&amp;msg_id=<{$privMessage->getShow("msg_id")}>','pmlite',480,400);"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$smarty.const._MD_PM_LANG_REPLY}>" title="<{$smarty.const._MD_PM_LANG_REPLY}>" /></a>
+        <a href='#' onclick="javascript:openWithSelfMain('<{$xoops_url}>/pmlite.php?reply=1&amp;msg_id=<{$privMessage->getShow("msg_id")}>','pmlite',480,400);"><img src="<{$xoops_url}>/images/icons/reply.png" alt="<{$smarty.const._MD_PM_LANG_REPLY}>" title="<{$smarty.const._MD_PM_LANG_REPLY}>" /></a>
         <input type="hidden" name="delete" value="1" />  <!--- << check --->
         <input type="hidden" name="msg_id" value="<{$privMessage->getShow('msg_id')}>" />
-        <a href="#<{$privMessage->getShow('msg_id')}>" onclick='javascript:document.delete<{$privMessage->getShow("msg_id")}>.submit();'><img src="<{$xoops_url}>/images/icons/delete.gif" alt="<{$smarty.const._MD_PM_LANG_DELETE}>" title="<{$smarty.const._MD_PM_LANG_DELETE}>" /></a>
+        <a href="#<{$privMessage->getShow('msg_id')}>" onclick='javascript:document.delete<{$privMessage->getShow("msg_id")}>.submit();'><img src="<{$xoops_url}>/images/icons/delete.png" alt="<{$smarty.const._MD_PM_LANG_DELETE}>" title="<{$smarty.const._MD_PM_LANG_DELETE}>" /></a>
       </td>
     </tr>
     <{if $previousMessage || $nextMessage}>

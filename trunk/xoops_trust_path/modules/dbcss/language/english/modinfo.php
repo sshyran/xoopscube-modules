@@ -38,10 +38,10 @@ define($constpref.'_CSSCACHETIME','CSS cache time for browser (sec)') ;
 define($constpref.'_CSSEXPORT_DIR','Directory CSS export ahead') ;
 define($constpref.'_CSSEXPORT_DIRDSC','The directory is specified by passing at the installation destination of XOOPS the export "CSS export" function ahead. Moreover, please use it after writing and setting Zoc to this directory. 
 <br />Setting example: common/css/(It is the first / unnecessary, and  the last / necessary. )') ;
-define($constpref.'_METADATA_CASHE','The data of the META tag is preserved by the file cash. ') ;
-define($constpref.'_METADATA_CASHEDSC','The data edited by "META tag management" is preserved by the file cash when turning it on. XOOPS_TRUST_PATH/cache/directory is made, and when the file cash is preserved, it writes and it is necessary to set Zoc.') ;
-define($constpref.'_SCRIPTDATA_CASHE','The data of an external script is preserved by the file cash. ') ;
-define($constpref.'_SCRIPTDATA_CASHEDSC','The data edited by "External script management" is preserved in XOOPS_TRUST_PATH/cache/by the file cash when turning it on. When XOOPS_TRUST_PATH/cache/cannot be made outside DocumentRoot, we will recommend this function to be turned off.') ;
+define($constpref.'_METADATA_CASHE','The data of the META tag is saved to a file in cache. ') ;
+define($constpref.'_METADATA_CASHEDSC','The data edited by "META tag management" is saved by the file cash when turning it on. XOOPS_TRUST_PATH/cache/directory is made, and when the file in cache is saved, it writes and it is necessary to set Zoc.') ;
+define($constpref.'_SCRIPTDATA_CASHE','The data of an external script is saved to a file in cache. ') ;
+define($constpref.'_SCRIPTDATA_CASHEDSC','The data edited by "External script management" is saved in XOOPS_TRUST_PATH/cache/by the file cash when turning it on. When XOOPS_TRUST_PATH/cache/cannot be made outside DocumentRoot, we will recommend this function to be turned off.') ;
 
 }
 

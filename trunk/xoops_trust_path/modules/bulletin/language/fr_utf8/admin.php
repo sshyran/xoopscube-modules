@@ -33,7 +33,7 @@ define("_AM_ERRORTOPICNAME","Veuillez indiquer le nom du Sujet.");
 
 // Added by SUIN, Translated By Nuno Luciano aka Gigamaster
 
-define('_AM_DISP_CONTENUE','[Afficher tous les Sujets]');
+define('_AM_DISP_CONTENUE','Afficher tous les Sujets');
 define('_AM_PUB_ARTICLES','Articles publi&eacute;s');
 define('_AM_WAITING_ARTICLES','Articles en-attente');
 define('_AM_ARTICLE_ADMIN','Gestionnaire d\'Articles');

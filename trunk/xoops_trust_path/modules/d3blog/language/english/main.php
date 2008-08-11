@@ -93,7 +93,7 @@ define ( '_MD_D3BLOG_LANG_INSERT_SEPERATOR_ON_CLICK',
         'If a seperator is located at the beginning of the contents, then will show a title only. '.
         'Whole the entry is invisible if a seperator does not exist.' );
 define ( '_MD_D3BLOG_LANG_INSERT_HELP','Help' );
-define ( '_MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET','Display xcode pallet' );
+define ( '_MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET','Display xcode editor.' );
 define ( '_MD_D3BLOG_LANG_DISPLAY_OPTIONS','Display options' );
 define ( '_MD_D3BLOG_LANG_SELECT_ALL','Select all' );
 define ( '_MD_D3BLOG_LANG_RETRIEVE_ARCHIVES','Retrieve archives' );

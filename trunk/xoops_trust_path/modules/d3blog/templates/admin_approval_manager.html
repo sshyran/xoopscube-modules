@@ -1,5 +1,6 @@
-<{* $Id: admin_approval_manager.html 338 2008-03-10 02:59:48Z hodaka $ *}>
 <h3 class="structurelabel"><{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL_MANAGER}></h3>
+<hr />
+<br />
 <p style="text-align:right;"><{$page_navigater}></p>
 <form name="approvalform" id="approvalform" action="" method="post">
 <table id="d3blogArchTable" class="outer" summary="<{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL_SUMMARY}>">
@@ -22,20 +23,24 @@
 	<td><{$row.bid}></td>
 	<td><{$row.title}></td>
 	<td><{$row.posted|format_timestamp:"m"}></td>
+    
 		<{if $row.tid}>
-	<td><a href="<{$row.url}>"><{$row.blog_name}></a></td>
-	<td><{$row.excerpt|xoops_mb_truncate:"30":"..."}></td>
-	<td><{$row.transmitted|format_timestamp:"m"}></td>
-		<{else}>
-	<td colspan="3"></td>
+            <td><a href="<{$row.url}>"><{$row.blog_name}></a></td>
+            <td><{$row.excerpt|xoops_mb_truncate:"30":"..."}></td>
+            <td><{$row.transmitted|format_timestamp:"m"}></td>
+        <{else}>
+            <td colspan="3"></td>
 		<{/if}>
-	<td><a href="<{$mod_url}>/submit.php?bid=<{$row.bid}>" title="<{$smarty.const._EDIT}>"><img src="<{$mod_url}>/images/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></td>
-		<{if $row.tid}>
-	<td style="text-align:center;"><input type="checkbox" name="approve_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
-	<td style="text-align:center;"><input type="checkbox" name="delete_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
-		<{else}>	
+        
+	<td><a href="<{$mod_url}>/submit.php?bid=<{$row.bid}>" title="<{$smarty.const._EDIT}>">
+    <img src="<{$mod_url}>/images/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></td>
+		
+     <{if $row.tid}>
+	<td style="text-align:center;">1<input type="checkbox" name="approve_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
+	<td style="text-align:center;">2<input type="checkbox" name="delete_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
+	<{else}>	
 	<td colspan="2"></td>
-		<{/if}>
+	<{/if}>
 </tr>
 		<{/if}>
 	<{/foreach}>

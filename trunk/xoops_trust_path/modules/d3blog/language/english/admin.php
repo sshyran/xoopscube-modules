@@ -94,7 +94,7 @@ define ( '_MD_A_D3BLOG_TITLE', 'Title');
 define ( '_MD_A_D3BLOG_H2_IMPORTFROM', 'Import manager');
 define ( '_MD_A_D3BLOG_H3_IMPORTDATABASE', 'Copy database table');
 define ( '_MD_A_D3BLOG_H3_IMPORTCOM', 'Import comments and event notifications');
-define ( '_MD_A_D3BLOG_H3_SYNCHRONIZE', 'Re-caliculate comments and trackbacks count');
+define ( '_MD_A_D3BLOG_H3_SYNCHRONIZE', 'Re-calculate comments and trackbacks count');
 define ( '_MD_A_D3BLOG_LABEL_SELECTMODULE', 'Modules importable');
 define ( '_MD_A_D3BLOG_LABEL_SELECTDIRECTORY', 'Directory importable');
 define ( '_MD_A_D3BLOG_LANG_SELECT_IMPORTMODULE', 'Select import module');
@@ -109,8 +109,8 @@ define('_MD_A_D3BLOG_HELP_COMIMPORT', '<p>Comments and event notifications confi
     '<p><strong style="padding-right:1em">NOTICE </strong>Re-caliculate both this module and export modules.</p>');
 define('_MD_A_D3BLOG_HELP_SYNCHRONIZE', '<p>Re-caliculate comments and trackbacks.</p>'.
     '<p><strong style="padding-right:1em">NOTICE </strong>Highly recommended after database was editted by phpMyAdmin etc.</p>');
-define ( '_MD_A_D3BLOG_H2_CSSMANAGER','H2 CSSMANAGER' );
-define ( '_MD_A_D3BLOG_H3_WRITE_CSSFILE','H3 WRITE CSSFILE' );
+define ( '_MD_A_D3BLOG_H2_CSSMANAGER','Stylesheet Management' );
+define ( '_MD_A_D3BLOG_H3_WRITE_CSSFILE','Write CSS Files' );
 define ( '_MD_A_D3BLOG_HELP_CSSMANAGER', '<p>You can overwrite css files from the templates. Check the right templates and click "WRITE CSS FILE".</p>'.
     '<p><strong style="padding-right:1em">NOTICE</strong>The templates of the current template set are automatically checked if younger than the css files.</p>');
 

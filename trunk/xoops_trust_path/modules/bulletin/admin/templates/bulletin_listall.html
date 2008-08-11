@@ -1,8 +1,8 @@
 <{strip}>
 
 <p><{$navi}></p>
-
-<table class="outer" cellpadding="4" cellspacing="1" width="100%">
+<br />
+<table class="outer" width="100%">
   <tr align="center">
     <th width="40"><{$smarty.const._AM_STORYID}></th>
     <th><{$smarty.const._AM_TITLE}></th>
@@ -38,13 +38,13 @@
       <{/if}>
       </td>
       <td><{$i.expired}></td>
-      <td><a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
-      &nbsp;<a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;op=delete&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/delete.gif" alt="<{$smarty.const._DELETE}>" /></a></td>
+      <td><a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/edit.png" alt="<{$smarty.const._EDIT}>" /></a>
+      &nbsp;<a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;op=delete&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/delete.png" alt="<{$smarty.const._DELETE}>" /></a></td>
     </tr>
   <{/foreach}>
 </table>
 
 <p><{$navi}></p>
-<{include file="$template_path/bulletin_footer.html"}>
+
 
 <{/strip}>

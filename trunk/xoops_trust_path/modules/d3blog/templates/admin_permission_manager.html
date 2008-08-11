@@ -1,9 +1,11 @@
-<h1><{$myname}><span style="padding-left:2em"><{$smarty.const._MD_A_D3BLOG_LANG_PERMISSION_MANAGER}></span></h1>
-<h2 class="head"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}> : <{$category_name}></h2>
+<h3><{$myname}> : <{$smarty.const._MD_A_D3BLOG_LANG_PERMISSION_MANAGER}></h3>
+<hr />
+<h4><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}> : <{$category_name}></h4>
+
 <form name="groupperms" action="" method="post" style="margin:20px 0px">
 	<{$gticket_hidden}>
 	<input type="hidden" name="cid" value="<{$cid}>" />
-	<table class="outer" border="1" style="border-collapse:collapse;empty-cells:show">
+	<table class="outer">
 		<thead>
 			<tr>
 				<th><{$smarty.const._MD_A_D3BLOG_LANG_GROUP_NAME}></th>

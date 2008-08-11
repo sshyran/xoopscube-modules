@@ -1,28 +1,40 @@
-<h2 class="head"><{$smarty.const._MD_A_D3BLOG_H2_IMPORTFROM}></h2>
-<h3 class="head"><{$smarty.const._MD_A_D3BLOG_H3_IMPORTDATABASE}></h3>
+<h3><{$smarty.const._MD_A_D3BLOG_H2_IMPORTFROM}></h3>
+<hr />
+
+<h4><{$smarty.const._MD_A_D3BLOG_H3_IMPORTDATABASE}></h4>
 <form name="importfrom" action="" method="post">
 	<{$gticket_hidden}>
 	<label for="import_mid"><{$smarty.const._MD_A_D3BLOG_LABEL_SELECTMODULE}></label>
-	<select name="import_mid" id="import_mid"><{html_options options=$import_from_options}></select>
-	<br />
+    <br /><br />
+	<p>
+    <select name="import_mid" id="import_mid"><{html_options options=$import_from_options}></select>
 	<input type="submit" name="do_import" value="<{$smarty.const._MD_A_D3BLOG_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_D3BLOG_CONFIRM_DOIMPORT}>')" />
-	<br />
-	<p><{$smarty.const._MD_A_D3BLOG_HELP_IMPORTFROM}></p>
+	</p>
 </form>
-<h3 class="head"><{$smarty.const._MD_A_D3BLOG_H3_IMPORTCOM}></h3>
+
+<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_IMPORTFROM}></div>
+
+<hr />
+
+<h4><{$smarty.const._MD_A_D3BLOG_H3_IMPORTCOM}></h4>
 <form name="importfrom" action="" method="post">
 	<{$gticket_hidden}>
 	<label for="comimport_mid"><{$smarty.const._MD_A_D3BLOG_LABEL_SELECTMODULE}></label>
-	<select name="comimport_mid" id="comimport_mid"><{html_options options=$comimport_from_options}></select>
-	<br />
+    <br /><br />
+	<p>
+    <select name="comimport_mid" id="comimport_mid"><{html_options options=$comimport_from_options}></select>
 	<input type="submit" name="do_comimport" value="<{$smarty.const._MD_A_D3BLOG_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_D3BLOG_CONFIRM_DOCOMIMPORT}>')" />
-	<br />
-	<p><{$smarty.const._MD_A_D3BLOG_HELP_COMIMPORT}></p>
+	</p>
 </form>
-<h3 class="head"><{$smarty.const._MD_A_D3BLOG_H3_SYNCHRONIZE}></h3>
+
+<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_COMIMPORT}></div>
+
+<hr />
+
+<h4><{$smarty.const._MD_A_D3BLOG_H3_SYNCHRONIZE}></h4>
 <form name="importfrom" action="" method="post">
 	<{$gticket_hidden}>
 	<input type="submit" name="do_synchronize" value="<{$smarty.const._MD_A_D3BLOG_BTN_DOSYNCHRONIZE}>" onclick="return confirm('<{$smarty.const._MD_A_D3BLOG_CONFIRM_DOSYNCHRONIZE}>')" />
 	<br />
-	<p><{$smarty.const._MD_A_D3BLOG_HELP_SYNCHRONIZE}></p>
 </form>
+<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_SYNCHRONIZE}></div>

@@ -33,7 +33,7 @@ define('_AM_ERRORTOPICNAME', 'カテゴリ名が記入されていません。');
 
 // Added by SUIN
 
-define('_AM_DISP_CONTENUE','[全ての記事を表示]');
+define('_AM_DISP_CONTENUE','全ての記事を表示');
 define('_AM_PUB_ARTICLES','掲載中のニュース記事');
 define('_AM_WAITING_ARTICLES','承認待ちのニュース記事');
 define('_AM_ARTICLE_ADMIN','ニュース記事の管理');

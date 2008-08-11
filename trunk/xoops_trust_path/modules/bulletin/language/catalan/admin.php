@@ -74,7 +74,7 @@ define("_AM_TOPIC_DISABLE","Amagar icona de la categoria");
 define("_AM_TOPIC_LEFT","Mostrar icona de la categoria a l'esquerra");
 define("_AM_TOPIC_RIGHT","Mostrar icona de la categoria a la dreta");
 define("_AM_OPTIONSETTINGS","Opcions");
-define("_AM_DISP_CONTENUE","[Mostrar totes les notícies]");
+define("_AM_DISP_CONTENUE","Mostrar totes les notícies");
 define("_AM_PUB_ARTICLES","Notícies publicades");
 define("_AM_WAITING_ARTICLES","Notícies pendents d'aprovació");
 define("_AM_ARTICLE_ADMIN","Gestor de notícies");

@@ -1,10 +1,12 @@
 <{strip}>
 <{if $submissions}>
-<p>
-  <strong><{$smarty.const._AM_WAITING_ARTICLES}></strong>
-  &nbsp;&nbsp;<a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=newsubmission"><{$smarty.const._AM_DISP_CONTENUE}></a>
-</p>
-<table class="outer" cellpadding="4" cellspacing="1" width="100%">
+<h3><{$smarty.const._AM_WAITING_ARTICLES}></h3>
+<hr />
+<ul class="toptab">
+  <li class="add"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=newsubmission"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
+</ul>
+<br />
+<table class="outer" width="100%">
   <tr align="center">
     <th width="40"><{$smarty.const._AM_STORYID}></th>
     <th><{$smarty.const._AM_TITLE}></th>
@@ -26,20 +28,23 @@
       <{/if}>
       <td><{$i.created}></td>
       <td><{$i.expired}></td>
-         <td><a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
-      &nbsp;<a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;op=delete&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/delete.gif" alt="<{$smarty.const._DELETE}>" /></a></td>
+         <td><a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/edit.png" alt="<{$smarty.const._EDIT}>" /></a>
+      &nbsp;<a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;op=delete&amp;storyid=<{$i.storyid}>"><img src="<{$mydirurl}>/images/delete.png" alt="<{$smarty.const._DELETE}>" /></a></td>
     </tr>
   <{/foreach}>
 </table>
 <{/if}>
 
 <{if $autostories}>
-<p>
-  <strong><{$smarty.const._AM_AUTOARTICLES}></strong>
-  &nbsp;&nbsp;<a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=autostory"><{$smarty.const._AM_DISP_CONTENUE}></a>
-</p>
 
-<table class="outer" cellpadding="4" cellspacing="1" width="100%">
+<h3><{$smarty.const._AM_AUTOARTICLES}></h3>
+<hr />
+<ul class="toptab">
+  <li class="view"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=autostory"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
+</ul>
+<br />
+
+<table class="outer" width="100%">
   <tr align="center">
     <th width="40"><{$smarty.const._AM_STORYID}></th>
     <th><{$smarty.const._AM_TITLE}></th>
@@ -70,12 +75,15 @@
 </table>
 <{/if}>
 
-<p>
-  <strong><{$smarty.const._AM_PUB_ARTICLES}></strong>
-  &nbsp;&nbsp;<a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=laststory"><{$smarty.const._AM_DISP_CONTENUE}></a>
-</p>
 
-<table class="outer" cellpadding="4" cellspacing="1" width="100%">
+<h3><{$smarty.const._AM_PUB_ARTICLES}></h3>
+<hr />
+<ul class="toptab">
+  <li class="view"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=laststory"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
+</ul>
+<br />
+
+<table class="outer" width="100%">
   <tr align="center">
     <th width="40"><{$smarty.const._AM_STORYID}></th>
     <th><{$smarty.const._AM_TITLE}></th>
@@ -104,12 +112,16 @@
 </table>
 
 <{if $expired}>
-<p>
-  <strong><{$smarty.const._AM_EXPARTS}></strong>
-  &nbsp;&nbsp;<a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=expstory"><{$smarty.const._AM_DISP_CONTENUE}></a>
-</p>
 
-<table class="outer" cellpadding="4" cellspacing="1" width="100%">
+<h3><{$smarty.const._AM_EXPARTS}></h3>
+<hr />
+<ul class="toptab">
+  <li class="view"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=expstory"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
+</ul>
+<br />
+
+
+<table class="outer" width="100%">
   <tr align="center">
     <th width="40"><{$smarty.const._AM_STORYID}></th>
     <th><{$smarty.const._AM_TITLE}></th>
@@ -137,6 +149,5 @@
   <{/foreach}>
 </table>
 <{/if}>
-<{include file="$template_path/bulletin_footer.html"}>
 
 <{/strip}>

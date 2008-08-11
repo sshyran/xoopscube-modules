@@ -1,4 +1,6 @@
-<h2><{$smarty.const._MD_DBCSS_H2EXPORT}></h2>
+<h3><{$smarty.const._MD_DBCSS_H2EXPORT}></h3>
+
+<hr />
 <form name="cssexportform" id="cssexportform" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
 <{$gticket_hidden}>
 <table class="outer">
@@ -59,22 +61,21 @@
 		</th>
 	</tr>
 	<tr>
-		<th colspan="9" style="text-align:center;">
+		<td colspan="9" class="foot">
 			<label for="tplsets"><{$smarty.const._MD_DBCSS_LABEL_EXPORT_DIR}></label>:
 			<input type="submit" name="submit_exportdir" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
-		</th>
-	</tr>
-	<tr>
-		<td colspan="9" class="head">
-			<{$smarty.const._MD_DBCSS_EXPORTDESC}>
-
 		</td>
 	</tr>
+	
 	</form>
 </table>
 </form>
+<div class="tips">
+<{$smarty.const._MD_DBCSS_EXPORTDESC}>
+</div>
+<br />
 
-<h2><{$smarty.const._MD_DBCSS_H2INPORT}></h2>
+<h3><{$smarty.const._MD_DBCSS_H2INPORT}></h3>
 <form name="cssfileinport" id="cssfileinport" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post" enctype="multipart/form-data">
 <{$gticket_hidden}>
 <table class="outer">
@@ -92,7 +93,7 @@
 		</th>
 	</tr>
 	<tr>
-		<th colspan="9" style="text-align:center;">
+		<th colspan="9" class="foot">
 			<{$smarty.const._MD_DBCSS_LABEL_CSS_DIR}>
 			: <{$css_path}>
 			<{if !$upload_dir}>
@@ -105,15 +106,14 @@
 			<{/if}>
 		</th>
 	</tr>
-	<tr>
-		<td colspan="9" class="head">
-			<{$smarty.const._MD_DBCSS_INPORTDESC}>
-		</td>
-	</tr>
 </table>
 </form>
+<div class="tips">
+			<{$smarty.const._MD_DBCSS_INPORTDESC}>
+</div>
+<br />
 
-<h2><{$smarty.const._MD_DBCSS_H2DOWNLOAD}></h2>
+<h3><{$smarty.const._MD_DBCSS_H2DOWNLOAD}></h3>
 <form name="cssfiledownload" id="cssfiledownload" action="<{$mod_url}>/admin/index.php?page=download" method="post">
 <{$gticket_hidden}>
 <table class="outer">

@@ -16,7 +16,7 @@ $db =& Database::getInstance();
 $myts =& MyTextSanitizer::getInstance() ;
 
 // THIS PAGE CAN BE CALLED ONLY FROM DBCSS
-if( $xoopsModule->getVar('dirname') != $mydirname ) die( 'this page can be called only from '.$mydirname ) ;
+if( $xoopsModule->getVar('dirname') != $mydirname ) //die( 'this page can be called only from '.$mydirname ) ;
 
 // PERMISSION ERROR
 $module_handler =& xoops_gethandler( 'module' ) ;

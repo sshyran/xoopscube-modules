@@ -74,7 +74,7 @@ define("_AM_TOPIC_DISABLE","Ocultar ícone de categoria");
 define("_AM_TOPIC_LEFT","Exibir ícone de categoria à esquerda");
 define("_AM_TOPIC_RIGHT","Exibir ícone de categoria à direita");
 define("_AM_OPTIONSETTINGS","Opções");
-define("_AM_DISP_CONTENUE","[Exibir todas as notícias]");
+define("_AM_DISP_CONTENUE","Exibir todas as notícias");
 define("_AM_PUB_ARTICLES","Notícias publicadas");
 define("_AM_WAITING_ARTICLES","Notícias pendentes de aprovação");
 define("_AM_ARTICLE_ADMIN","Gerenciador de notícias");

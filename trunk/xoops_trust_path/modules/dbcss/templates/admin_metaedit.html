@@ -1,4 +1,10 @@
-<h2><{$smarty.const._MD_DBCSS_METAEDITTITLE}>: <{$module_name}></h2>
+<h3><{$smarty.const._MD_DBCSS_METAEDITTITLE}>: <{$module_name}></h3>
+<hr />
+<br  />
+<div class="tips">
+<{$smarty.const._MD_DBCSS_METAEDITDESC}><br />
+<{$smarty.const._MD_DBCSS_METAEDITBLOCKDESC}>
+</div>
 <form name="metaeditform" id="metaeditform" action="<{$mod_url}>/admin/index.php?page=<{$page}>&amp;lid=<{$meta_lid}>" method="post">
 	<{$gticket_hidden}>
 	<input type="hidden" name="meta_lid" value="<{$meta_lid}>" />
@@ -61,8 +67,8 @@
 		<{/if}>
 
 		<tr valign="top" align="left">
-			<td class="head"></td>
-			<td class="even">
+			
+			<td colspan="2" class="foot">
 				<input type="submit" class="formButton" name="metaeditform_post"  id="metaeditform_post" value="<{$smarty.const._MD_DBCSS_BTN_SUBMITEDITING}>" />
 				<input type="submit" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_DBCSS_MSG_CONFIRMDELETECONTENT}>')" />
 				
@@ -71,5 +77,3 @@
 		</tr>
 	</table>
 </form>
-<{$smarty.const._MD_DBCSS_METAEDITDESC}><br />
-<{$smarty.const._MD_DBCSS_METAEDITBLOCKDESC}>

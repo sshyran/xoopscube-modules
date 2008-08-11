@@ -1,7 +1,12 @@
-<h2><{$smarty.const._MD_DBCSS_H2SCRIPTLINK}></h2>
+<h3><{$smarty.const._MD_DBCSS_H2SCRIPTLINK}></h3>
+<hr />
 <form name="scriptlinkform" id="scriptlinkform" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
 <{$gticket_hidden}>
-[<a href="<{$mod_url}>/admin/index.php?page=scriptedit&amp;lid=0"><{$smarty.const._MD_DBCSS_NEW}></a>]
+
+<ul class="toptab">
+  <li class="add"><a href="<{$mod_url}>/admin/index.php?page=scriptedit&amp;lid=0"><{$smarty.const._MD_DBCSS_NEW}></a></li>
+</ul>
+
 <table class="outer">
 	<tr>
 		<th style="text-align:center;">
@@ -44,31 +49,21 @@
 				</td>
 			<{/if}>
 			<td nowrap="nowrap" style="text-align:center;">
-				<a href="<{$mod_url}>/admin/index.php?page=scriptedit&amp;lid=<{$scriptlist.lid}>"><{$smarty.const._EDIT}></a> |
+				<a href="<{$mod_url}>/admin/index.php?page=scriptedit&amp;lid=<{$scriptlist.lid}>"><img src="<{$xoops_url}>/images/page_edit.png" alt="<{$smarty.const._EDIT}>" /><{$smarty.const._EDIT}></a> |
 				<input type="checkbox" name="action_selects[<{$scriptlist.lid}>]" id="col_action_<{$scriptlist.lid}>" value="1" />
 			</td>
 		</tr>
 	<{/foreach}>
 	<tr>
-		<td colspan="9" align="center" class="head">
-			<input type="submit" name="scriptlink_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
-		</td>
-	</tr>
-	<tr>
-		<th colspan="9" style="text-align:right;">
+		<th colspan="9" class="head" style="text-align:right;">
 			<{$smarty.const._MD_DBCSS_LABEL_CONTENTSRIGHTCHECKED}>
 			<input type="submit" name="delete" value="<{$smarty.const._MD_DBCSS_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_DBCSS_CONFIRM_DELETE}>');" />
 		</th>
 	</tr>
-		<td colspan="9" class="head">
-			<{$smarty.const._MD_DBCSS_SCRIPTEDITBLOCKDESC}>
-			<{if $script_data_cashe}>
-				<{if !$cache_dir || !$writable}>
-					<br />
-					<font color='#FF0000'><b><{$smarty.const._MD_DBCSS_METAEDITNOCACHE_DIR}></b></font>
-				<{/if}>
-			<{/if}>
-				
+	<tr>
+		<td colspan="9" align="center" class="foot">
+			<input type="submit" name="scriptlink_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
 		</td>
+	</tr>
 </table>
 </form>

@@ -101,7 +101,11 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
         include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';
         if (!isset($xoopsOption['nocommon']) && !defined('_LEGACY_PREVENT_EXEC_COMMON_')) {
             include XOOPS_ROOT_PATH.'/include/common.php';
-        }
+		
+		$tplsadmin_autoupdate_mydirnames = array( 'bulletin' , 'd3blog', , 'd3downloads' , 'd3forum' , 'd3pipes' , 'pico' , 'xsns', 'webphoto' ) ;
+		include XOOPS_TRUST_PATH."/libs/altsys/include/autoupdate_from_d3module.inc.php" ;
+        
+		}
 		include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;
     }
 }

@@ -1,6 +1,7 @@
 <form name="approvalmanager" id="approvalmanager" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
 <{$gticket_hidden}>
-<h2><{$smarty.const._MD_D3DOWNLOADS_H2APROVALLIST}> ( <{$unaproval_sum}> )</h2>
+<h3><{$smarty.const._MD_D3DOWNLOADS_H2APROVALLIST}> ( <{$unaproval_sum}> )</h3>
+<hr />
 <table class="outer">
 	<tr>
 		<th style="text-align:center;">
@@ -92,7 +93,7 @@
 		</tr>
 	<{/foreach}>
 	<tr>
-		<th colspan="11" style="text-align:right;">
+		<th colspan="11" class="foot" style="text-align:right;">
 			<{$smarty.const._MD_D3DOWNLOADS_LABEL_FILECHECKED}>
 			<input type="submit" name="modfile_delete" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_DELETE}>');" />
 		</th>

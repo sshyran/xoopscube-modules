@@ -1,10 +1,16 @@
-<h2><{$smarty.const._MD_DBCSS_SCRIPTEDITTITLE}>: 
+<h3><{$smarty.const._MD_DBCSS_SCRIPTEDITTITLE}>: 
 <{if $scriptdata.lid}>
 	<{$scriptdata.name}>
 <{else}>
 	<{$smarty.const._MD_DBCSS_NEW}>
 <{/if}>
-</h2>
+</h3>
+<hr />
+<br />
+<div class="tips">
+<{$smarty.const._MD_DBCSS_SCRIPTEDITBLOCKDESC}>
+</div>
+
 <form name="scripteditform" id="scripteditform" action="<{$mod_url}>/admin/index.php?page=<{$page}>&amp;lid=<{$scriptdata.lid}>" method="post" onsubmit="return xoopsFormValidate_contentform();">
 	<{$gticket_hidden}>
 	<input type="hidden" name="lid" value="<{$scriptdata.lid}>" />
@@ -44,8 +50,8 @@
 		<{/if}>
 
 		<tr valign="top" align="left">
-			<td class="head"></td>
-			<td class="even">
+		
+			<td colspan="2" class="foot">
 				<input type="submit" class="formButton" name="scripteditform_post"  id="scripteditform_post" value="<{$smarty.const._MD_DBCSS_BTN_SUBMITEDITING}>" />
 
 				<input type="submit" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_DBCSS_MSG_CONFIRMDELETECONTENT}>')" />
@@ -57,7 +63,8 @@
 		</tr>
 	</table>
 </form>
-<{$smarty.const._MD_DBCSS_SCRIPTEDITBLOCKDESC}>
+
+
 
 <!-- Start Form Vaidation JavaScript //-->
 <script type="text/javascript">

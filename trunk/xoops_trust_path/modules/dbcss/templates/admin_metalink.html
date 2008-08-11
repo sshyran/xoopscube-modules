@@ -1,4 +1,10 @@
-<h2><{$smarty.const._MD_DBCSS_H2METALINK}></h2>
+<h3><{$smarty.const._MD_DBCSS_H2METALINK}></h3>
+<hr />
+<br />
+<div class="tips">
+<{$smarty.const._MD_DBCSS_METAEDITBLOCKDESC}>
+</div>
+
 <form name="metalinkform" id="metalinkform" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
 <{$gticket_hidden}>
 <table class="outer">
@@ -43,7 +49,7 @@
 			<{/if}>
 			</td>
 			<td nowrap="nowrap" style="text-align:center;">
-				<a href="<{$mod_url}>/admin/index.php?page=metaedit&amp;lid=<{$modulelist.mid}>"><{$smarty.const._EDIT}></a>
+				<a href="<{$mod_url}>/admin/index.php?page=metaedit&amp;lid=<{$modulelist.mid}>"><img src="<{$xoops_url}>/images/page_edit.png" alt="<{$smarty.const._EDIT}>" /></a>
 				<{if $modulelist.metadata}>
 					 | 
 					<input type="checkbox" name="action_selects[<{$modulelist.mid}>]" id="col_action_<{$modulelist.mid}>" value="1" />
@@ -62,16 +68,17 @@
 			<input type="submit" name="delete" value="<{$smarty.const._MD_DBCSS_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_DBCSS_CONFIRM_DELETE}>');" />
 		</th>
 	</tr>
-		<td colspan="9" class="head">
-			<{$smarty.const._MD_DBCSS_METAEDITBLOCKDESC}>
+
+</table>
+</form>
+
+
+<br />
 			<{if $meta_data_cashe}>
 				<{if !$cache_dir || !$writable}>
 					<br />
 					<font color='#FF0000'><b><{$smarty.const._MD_DBCSS_METAEDITNOCACHE_DIR}></b></font>
 				<{/if}>
 			<{/if}>
-		</td>
-</table>
-</form>
-
+            
 <div align="right"><{$modulelist_pagenav}></div><br />

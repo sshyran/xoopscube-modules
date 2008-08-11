@@ -1,4 +1,5 @@
-<h2><{$smarty.const._MD_D3DOWNLOADS_CATEGORYEDITTITLE}></h2>
+<h3><{$smarty.const._MD_D3DOWNLOADS_CATEGORYEDITTITLE}></h3>
+<hr />
 <{if $iserror}>
 	<h4><{$error_message}></h4>
 <{/if}>
@@ -55,13 +56,17 @@
 				<textarea name="submit_message" id="submit_message" cols="60" rows="10"><{$categorydata.submit_message}></textarea>
 			</td>
 		</tr>
-	</table>
-	<div align="right">
+        <tbody><td colspan="2" class="foot">
+        
 		<input type="submit" name="category_update" value="<{$smarty.const._SUBMIT}>" />
-	</div>
-
+	</td>
+    </tbody>
+	</table>
+    
+<hr />
 <{if $categorydata.pid eq 0}>
-	<h2><{$smarty.const._MD_D3DOWNLOADS_H2USERACCESS}></h2>
+<h4><{$smarty.const._MD_D3DOWNLOADS_H2USERACCESS}></h4>
+    
 	<table class="outer">
 		<tr>
 			<th>
@@ -101,10 +106,14 @@
 			</th>
 		</tr>
 			<{$group_trs}>
-	</table>
-	<div align="right">
-		<input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>" />
-	</div>
+	
+    <tbody>
+    <td colspan="9" class="foot">		
+    <input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>" />
+    </td>
+    </tbody>
+    </table>
+
 
 	<table class="outer">
 		<tr>
@@ -142,10 +151,14 @@
 		</tr>
 		<{$user_trs}>
 		<{$newuser_trs}>
+        
+        <tbody>
+        <td colspan="10" class="foot">
+        		<input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>" />
+        </td>
+        </tbody>
 	</table>
-	<div align="right">
-		<input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>" />
-	</div>
+    
 <{/if}>
 	<br />
 	<table class="outer">
@@ -158,12 +171,19 @@
 		</tr>
 	</table>
 </form>
+
+<br />
+
+<div class="tips">
 <{if $categorydata.pid eq 0}>
 	<{$smarty.const._MD_D3DOWNLOADS_HELP_USERACCESS}><br />
 <{else}>
 	<{$smarty.const._MD_D3DOWNLOADS_HELP_USERACCESS_PID}><br />
 <{/if}>
 	<{$smarty.const._MD_D3DOWNLOADS_HELP_CATEGORY_DEL}>
+
+</div>
+
 <!-- Start Form Vaidation JavaScript //-->
 <script type="text/javascript">
 <!--//

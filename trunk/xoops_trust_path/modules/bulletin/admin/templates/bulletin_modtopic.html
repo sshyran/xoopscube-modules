@@ -1,5 +1,4 @@
 <{strip}>
-
 <form method="post" action="index.php?mode=admin">
   <table class="outer" cellspacing="1" width="100%">
     <tbody>
@@ -26,13 +25,12 @@
             <option value="<{$i.image}>" <{$i.option}>><{$i.image}></option>
           <{/foreach}>
           </select><br />
-          <img src="<{$xoops_url}>/images/blank.gif" name="topicimage" id="topicimage" alt="" vspace="4" /><br />
+          <img src="<{$xoops_url}>/images/blank.png" name="topicimage" id="topicimage" alt="" vspace="4" /><br />
           <{$imagelocation}>
         </td>
       </tr>
       <tr>
-        <td class="head"></td>
-        <td class="even">
+        <td colspan="2" class="foot">
           <input type="hidden" name="op" value="modTopicS" />
           <input type="hidden" name="topic_id" value="<{$topic_id}>" />
           <input type="button" value="<{$smarty.const._DELETE}>" onclick="location='index.php?mode=admin&amp;topic_pid=<{$topic_pid}>&amp;topic_id=<{$topic_id}>&amp;op=delTopic'" />
@@ -44,6 +42,5 @@
   </table>
 </form>
 
-<{include file="$template_path/bulletin_footer.html"}>
 
 <{/strip}>

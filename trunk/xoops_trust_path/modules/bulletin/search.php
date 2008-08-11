@@ -41,7 +41,7 @@ function bulletin_search_base( $mydirname , $queryarray , $andor , $limit , $off
 	
 	
  	while($myrow = $xoopsDB->fetchArray($result)){
-		$ret[$i]['image'] = 'images/forum.gif';
+		$ret[$i]['image'] = 'images/forum.png';
 		$ret[$i]['link']  = 'index.php?page=article&amp;storyid='.$myrow['storyid'];
 		$ret[$i]['title'] = $myrow['title'];
 		$ret[$i]['time']  = $myrow['published'];

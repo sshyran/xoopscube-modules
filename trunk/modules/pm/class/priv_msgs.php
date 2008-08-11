@@ -11,7 +11,7 @@ class PmPriv_msgsObject extends XoopsSimpleObject
 	function PmPriv_msgsObject()
 	{
 		$this->initVar('msg_id', XOBJ_DTYPE_INT, '', true);
-		$this->initVar('msg_image', XOBJ_DTYPE_STRING, 'icon1.gif', false, 100);
+		$this->initVar('msg_image', XOBJ_DTYPE_STRING, 'icon1.png', false, 100);
 		$this->initVar('subject', XOBJ_DTYPE_STRING, '', true, 255);
 		$this->initVar('from_userid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('to_userid', XOBJ_DTYPE_INT, '0', true);

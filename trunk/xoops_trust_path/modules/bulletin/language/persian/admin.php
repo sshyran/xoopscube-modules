@@ -33,7 +33,7 @@ define("_AM_ERRORTOPICNAME","نام شاخه نوشته نشده است.");
 
 // Added by SUIN
 
-define("_AM_DISP_CONTENUE","[نمایش همه خبر ها]");
+define("_AM_DISP_CONTENUE","نمایش همه خبر ها");
 define("_AM_PUB_ARTICLES","اخبار منتشر شده");
 define("_AM_WAITING_ARTICLES","اخبار منتظر برای تایید");
 define("_AM_ARTICLE_ADMIN","مدیریت اخبار");

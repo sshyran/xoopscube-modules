@@ -165,7 +165,7 @@ $modversion['config'][$i]['title']       = $constpref.'_CONFIG8';
 $modversion['config'][$i]['description'] = $constpref.'_CONFIG8_D';
 $modversion['config'][$i]['formtype']    = 'textbox';
 $modversion['config'][$i]['valuetype']   = 'text';
-$modversion['config'][$i]['default']     = XOOPS_URL.'/images/logo.gif';
+$modversion['config'][$i]['default']     = XOOPS_URL.'/images/logo.png';
 $i++;
 $modversion['config'][$i]['name']        = 'titile_as_sitename';
 $modversion['config'][$i]['title']       = $constpref.'_CONFIG9';

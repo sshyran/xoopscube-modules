@@ -3,16 +3,19 @@
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 echo '<h3>'.$xoopsModule->getVar('name').'</h3>' ;
-echo '<div class="tips"><p>
-<h6>Module Description</h6>
-
+echo '
+<h4>Module Description</h4>
+<div class="tips">
 <p>D3downloads is a Duplicatable V3 (D3) module to manage your downloads.</p>
 <p>
 D3downloads is also based on MyDownloads+ (by Marijuana).<br /> This version is released with significant improvements</p>
-
+</div>
 <br />
-<h6>Module Options</h6>
 
+<hr />
+<h4 class="admintitle">Module Options</h4>
+
+<div class="tips">
 <p>
 - Set View and Post privileges by category<br />
 - File upload feature (available only site administrator)<br />

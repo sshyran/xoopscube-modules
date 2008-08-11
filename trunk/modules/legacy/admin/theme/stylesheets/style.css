@@ -83,7 +83,7 @@ td {
 th {
 	text-align:center;
 	padding:5px 1px;
-	background:#eee url(<{"design/bg_blocktitle.gif"|theme}>) top left repeat-x;
+	background:#eee url(<{"design/bg_blocktitle.png"|theme}>) top left repeat-x;
 }
 th a {
 	font-weight:bold;
@@ -105,10 +105,10 @@ input {
 	border-bottom:1px solid #DDD;
 	border-left:1px solid #999;
 	padding:2px;
-	background:url(<{"design/bg_data.gif"|theme}>) top left repeat;
+	background:url(<{"design/bg_data.png"|theme}>) top left repeat;
 }
 input.formButton {
-	background:url(<{"design/bg_data.gif"|theme}>);
+	background:url(<{"design/bg_data.png"|theme}>);
 	border-top:solid 1px #CCC;
 	border-left:solid 1px #DDD;
 	border-right:solid 1px #999;
@@ -145,7 +145,7 @@ table.outer {
 .foot {
 	padding:6px 4px;
 	text-align: center;
-	background:url(<{"design/bg_footer.gif"|theme}>) top left repeat-x;
+	background:url(<{"design/bg_footer.png"|theme}>) top left repeat-x;
 }
 
 .odd {
@@ -203,8 +203,8 @@ tr .even td {
 	vertical-align:top;
 }
 
-#header .topnav span.linkdev { float:left;}
-#header .topnav span.linkdev a, span.linksite a { margin-right:10px;}
+#header .topnav span.linkadmin { float:left;}
+#header .topnav span.linkadmin a, span.linksite a { margin-right:10px;}
 
 /* ====================================================== LeftColumn ===== */
 
@@ -217,7 +217,7 @@ tr .even td {
 	font-weight:bold;
 	border:1px solid #E5E5E5;
 	text-align:left;
-	background:url(<{"design/bg_blocktitle.gif"|theme}>) left top repeat-x;
+	background:url(<{"design/bg_blocktitle.png"|theme}>) left top repeat-x;
 }
 #leftcolumn .head a, #leftcolumn .head a:visited {
 	font-weight:bold;
@@ -228,7 +228,7 @@ tr .even td {
 	text-align:left;		
 	border-top:1px solid #fff;
 	border-bottom:1px solid #D4D4FF;
-	background:url(<{"design/bg_blocktitle2.gif"|theme}>) left top repeat-x;
+	background:url(<{"design/bg_blocktitle2.png"|theme}>) left top repeat-x;
 }
 #leftcolumn .head2 a {
 	font-weight:bold;
@@ -238,13 +238,13 @@ tr .even td {
 	margin:0px;
 	padding:3px 2px;
 	display:none;	
-	background:url(<{"design/bg_blockcontent.gif"|theme}>) left top repeat-x;
+	background:url(<{"design/bg_blockcontent.png"|theme}>) left top repeat-x;
 }
 #leftcolumn .submenu li {
 	margin:0;
 	padding:2px 2px 2px 17px;
 	list-style:none;
-	background:url(<{"design/menulist.gif"|theme}>) center left no-repeat;
+	background:url(<{"design/menulist.png"|theme}>) center left no-repeat;
 }
 
 /* ====================================================== Center Column ===== */
@@ -264,7 +264,7 @@ tr .even td {
 	text-align:center;
 	font-size:0.9em;
 	border-top:1px solid #ddd;
-	background:url(<{"design/bg_footer.gif"|theme}>) top left repeat-x;
+	background:url(<{"design/bg_footer.png"|theme}>) top left repeat-x;
 }
 
 .return_top {
@@ -277,7 +277,7 @@ tr .even td {
 	border-left:1px solid #eee;
 	border-right:1px solid #ddd;
 	border-bottom:1px solid #ccc;
-	background:#f2f2f2 url(<{"icons/page_up.gif"|theme}>) left center no-repeat;
+	background:#f2f2f2 url(<{"icons/page_up.png"|theme}>) left center no-repeat;
 }
 
 /* ====================================================== MenuNavi for noscript ===== */
@@ -315,7 +315,7 @@ ul.submenunavi li {
 	padding:5px 10px;
 	border:1px solid #EEE;
 	border-bottom:1px solid #fff;
-	background:#FBFBFB url(<{"design/bg_blockcontent.gif"|theme}>) 0px -25px repeat-x;
+	background:#FBFBFB url(<{"design/bg_blockcontent.png"|theme}>) 0px -25px repeat-x;
 }
 .adminnavi a:link , .adminnavi a:visited {
 	font-weight:bold;
@@ -347,22 +347,22 @@ ul.toptab li {
 }
 
 ul.toptab li.add {
-background:#f2f2f2 url(<{"icons/add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addBanner {
-background:#f2f2f2 url(<{"icons/time_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/time_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addBannerClientList {
-background:#f2f2f2 url(<{"icons/time_user.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/time_user.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addBannerList {
-background:#f2f2f2 url(<{"icons/timeline.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/timeline.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addBannerExpire {
-background:#f2f2f2 url(<{"icons/time_expire.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/time_expire.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addBlock {
-background:#f2f2f2 url(<{"icons/block_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/block_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addDir {
 background:#f2f2f2 url(<{"icons/folder_add.png"|theme}>) 5px center no-repeat;
@@ -371,34 +371,40 @@ ul.toptab li.addFile {
 background:#f2f2f2 url(<{"icons/page_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addGroup {
-background:#f2f2f2 url(<{"icons/group_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/group_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addImage {
-background:#f2f2f2 url(<{"icons/image_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/image_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addModule {
-background:#f2f2f2 url(<{"icons/module_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/module_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addRank {
-background:#f2f2f2 url(<{"icons/rank_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/rank_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addUser {
-background:#f2f2f2 url(<{"icons/user_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/user_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addSearch {
-background:#f2f2f2 url(<{"icons/search_add.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/search_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addSend {
-background:#f2f2f2 url(<{"icons/send.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/send.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.editFile {
-background:#f2f2f2 url(<{"icons/edit.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/edit.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.editDir {
 background:#f2f2f2 url(<{"icons/folder_edit.png"|theme}>) 5px center no-repeat;
 }
+ul.toptab li.templates {
+background:#f2f2f2 url(<{"icons/templates.png"|theme}>) 5px center no-repeat;
+}
+ul.toptab li.theme {
+background:#f2f2f2 url(<{"icons/theme.png"|theme}>) 5px center no-repeat;
+}
 ul.toptab li.view {
-background:#f2f2f2 url(<{"icons/view.gif"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/view.png"|theme}>) 5px center no-repeat;
 }
 
 
@@ -406,7 +412,7 @@ background:#f2f2f2 url(<{"icons/view.gif"|theme}>) 5px center no-repeat;
 
 	ul.modulenav {  width:100%; font-size:93%; line-height:normal; margin:0; padding:0; list-style:none; }
 	ul.modulenav li { display:inline; margin:0; padding:0;}
-	ul.modulenav a { float:left; background:url(<{"design/bg_blocktitle.gif"|theme}>) repeat left top; margin:0; padding:0 0 0 9px;border-right:1px solid #d4d4ff; border-bottom:1px solid #d4d4ff; text-decoration:none; }
+	ul.modulenav a { float:left; background:url(<{"design/bg_blocktitle.png"|theme}>) repeat left top; margin:0; padding:0 0 0 9px;border-right:1px solid #d4d4ff; border-bottom:1px solid #d4d4ff; text-decoration:none; }
 	ul.modulenav a span { float:left; display:block; padding:8px 10px; font-weight:bold; color:#37415C; }
 	ul.modulenav a span {float:none;}
 	ul.modulenav .current a { background-position:0 45px; border-width:0; }
@@ -425,34 +431,43 @@ background:#f2f2f2 url(<{"icons/view.gif"|theme}>) 5px center no-repeat;
 
 /* ====================================================== top message ===== */
 
-.warning {
+.warning, .resultMsg {
 	color:#770000;
 	font-size:15px;
 	border:1px solid #cc0000;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#ffaaaa url(<{"icons/error.gif"|theme}>) no-repeat 5px 4px;
+	background:#fff8ee url(<{"icons/error.png"|theme}>) no-repeat 5px 4px;
 }
-.confirm {
+.confirm, .confirmMsg {
 	color:#000000;
 	border:1px solid #ff6633;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#fff8ee url(<{"icons/important.gif"|theme}>) no-repeat 5px 4px;
+	background:#fff8ee url(<{"icons/important.png"|theme}>) no-repeat 5px 4px;
 }
 .tips {
 	color:#000000;
 	border:1px solid #00cc00;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#f8fff8 url(<{"icons/idea.gif"|theme}>) no-repeat 5px 4px;
+	background:#f8fff8 url(<{"icons/idea.png"|theme}>) no-repeat 5px 4px;
 }
-.error {
+.error, .errorMsg {
 	color:#000000;
 	border:2px dotted #ff6633;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background: #fff8ee url(<{"icons/error.gif"|theme}>) no-repeat 5px 4px;
+	background: #fff8ee url(<{"icons/error.png"|theme}>) no-repeat 5px 4px;
+}
+
+.resultMsg {
+	color:#000000;
+	font-size:15px;
+	border:1px solid #6B94C5;
+	padding:8px 8px 8px 35px;
+	margin:15px 10px;
+	background:#EEEEFF url(<{"icons/info.png"|theme}>) no-repeat 5px 4px;
 }
 
 /* ====================================================== active ===== */

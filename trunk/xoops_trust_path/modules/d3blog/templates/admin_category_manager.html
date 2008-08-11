@@ -1,6 +1,8 @@
-<h1><{$myname}><span style="padding-left:2em"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_MANAGER}></span></h1>
-<h2 class="head"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_LIST}></h2>
-<table class="outer" summary="Category List" cellpadding="5" border="1" style="border-collapse:collapse;empty-cells:show">
+<h3><{$myname}> <{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_MANAGER}></h3>
+<hr />
+<h4><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_LIST}></h4>
+
+<table class="outer" summary="Category List">
 	<thead>
 		<tr>
 			<th><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}></th>
@@ -22,15 +24,19 @@
 			<span style="display:block;margin:5px;"><img src="<{$xoops_url}>/images/blank.gif" alt="" /></span>
 	<{/if}>
 			</td>
-			<td><a href="<{$mod_url}>/admin/index.php?page=category_manager&amp;cid=<{$cat.cid}>" title="EDIT THIS CATEGORY"><img src="<{$mod_url}>/images/edit.gif" alt="<{$smarty.const._MD_A_D3BLOG_LANG_EDIT}>" /></a></td>
+			<td><a href="<{$mod_url}>/admin/index.php?page=category_manager&amp;cid=<{$cat.cid}>" title="<{$smarty.const._MD_A_D3BLOG_LANG_EDIT}>"><img src="<{$mod_url}>/images/edit.gif" alt="<{$smarty.const._MD_A_D3BLOG_LANG_EDIT}>" /></a></td>
 <{/foreach}>
 	</tbody>
 </table>
 
-<h2 class="head"><{$smarty.const._MD_A_D3BLOG_LANG_REGISTER_ANDOR_EDIT_CATEGORY}></h2>
+<br />
+
 <{$form_error}>
 <form id="categoryform" name="categoryform" action="" method="post">
-<table class="outer" summary="Category edit form" cellpadding="5" border="1" style="border-collapse:collapse;empty-cells:show">
+<table class="outer" summary="Category edit form">
+<tr>
+<th colspan="2"><{$smarty.const._MD_A_D3BLOG_LANG_REGISTER_ANDOR_EDIT_CATEGORY}></th>
+</tr>
 	<tr>
 		<td class="head"><label for="name"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}></label></td>
 		<td class="odd"><input type="text" name="name" id="name" value="<{$form.name_}>" /></td>

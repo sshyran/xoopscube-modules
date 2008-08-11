@@ -1,4 +1,5 @@
 <h3 style='text-align:left;'><{$smarty.const._MD_DBCSS_MYTPLSFORM_EDIT}> : <{$cssfile.tpl_type}>: <{$cssfile.tpl_file}> (<{$cssfile.tpl_tplset}>)</h3>
+
 <form name="diff_form" id="diff_form" action=" method="post">
 	<input type="checkbox" name="display_diff2file" value="1" onclick="if(this.checked){xoopsGetElementById('diff2file').style.display='block'}else{xoopsGetElementById('diff2file').style.display='none'};" id="display_diff2file" checked="checked" />&nbsp;<label for="display_diff2file">diff from file</label>
 	<pre id="diff2file" style="display:block;border:1px solid black;"><{$diff_from_file4disp}></pre>
