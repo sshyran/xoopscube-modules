@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+
+div.xpwiki_wiki a:link {
+	text-decoration: underline;
+}
+
+div.xpwiki_wiki a:visited {
+	text-decoration: underline;
+}
+
+/* pukiwiki.skin.php */
+div.xpwiki_wiki div.navigator {
+	display:none;
+}
+
+div.xpwiki_wiki td.menubar {
+	display:none;
+}
+
+div.xpwiki_wiki div.menubar {
+	display:none;
+}
+
+div.xpwiki_wiki div.attach {
+	display:none;
+}
+
+div.xpwiki_wiki div.toolbar {
+	display:none;
+}
+
+div.xpwiki_wiki div.related {
+	display:none;
+}
+
+div.xpwiki_wiki img.logo {
+	display:none;
+}
+

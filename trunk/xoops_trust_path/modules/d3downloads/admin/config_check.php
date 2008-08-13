@@ -17,7 +17,7 @@ if( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_adm
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 
-echo '<h2>'._MD_D3DOWNLOADS_H2_CONFIG_CHECK.'</h2>';
+echo '<h3>'._MD_D3DOWNLOADS_H2_CONFIG_CHECK.'</h3><hr/><br />';
 echo '<ul>';
 
 // config_check
@@ -31,18 +31,18 @@ echo '<ul style="margin-left:2em">';
 
 // file_uploads
 echo '<li>file_uploads';
-echo ini_get('file_uploads')? '<span style="color:blue;padding-left:1em;">OK</span></li>' : '<span style="color:red;padding-left:1em;">NG</span></li>';
+echo ini_get('file_uploads')? '<span style="color:blue;padding-left:1em;"><img src="'.XOOPS_URL.'/images/accept.png" alt="OK" /></span></li>' : '<span style="color:red;padding-left:1em;">NG</span></li>';
 
 // upload_max_filesize
 $upload_max_filesize = d3download_return_bytes( ini_get( 'upload_max_filesize' ) );
 echo '<li>upload_max_filesize<span style="padding-left:1em">'. number_format( $upload_max_filesize ).' byte</span>';
-echo ( $upload_max_filesize > $maxfilesize )? '<span style="color:blue;padding-left:1em;">OK</span></li>' : '<span style="color:red;padding-left:1em;">NG</span></li>';
+echo ( $upload_max_filesize > $maxfilesize )? '<span style="color:blue;padding-left:1em;"><img src="'.XOOPS_URL.'/images/accept.png" alt="OK" /></span></li>' : '<span style="color:red;padding-left:1em;">NG</span></li>';
 
 // post_max_size
 $post_max_size = d3download_return_bytes( ini_get( 'post_max_size' ) );
 echo '<li>post_max_size<span style="padding-left:1em">';
 echo number_format( $post_max_size ).' byte</span>';
-echo ( $maxfilesize <= $post_max_size ) ? '<span style="color:blue;padding-left:1em;">OK</span></li>':'<span style="color:red;padding-left:1em;">NG</span></li>';
+echo ( $maxfilesize <= $post_max_size ) ? '<span style="color:blue;padding-left:1em;"><img src="'.XOOPS_URL.'/images/accept.png" alt="OK" /></span></li>':'<span style="color:red;padding-left:1em;">NG</span></li>';
 
 // memory_limit
 $memory_limit = ini_get( 'memory_limit' );
@@ -77,7 +77,7 @@ if( ! is_dir( $upload_dir ) ) {
 		echo '<br /><span style="color:red;padding-left:1em;">'._MD_D3DOWNLOADS_UPLOADDIR_NOT_IS_WRITEABLE.'</span>';
 	}
 } else {
-	echo '<span style="color:blue;padding-left:1em;">OK</span></li>';
+	echo '<span style="color:blue;padding-left:1em;"><img src="'.XOOPS_URL.'/images/accept.png" alt="OK" /></span></li>';
 }
 
 echo '</ul>';

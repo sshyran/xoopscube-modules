@@ -95,7 +95,7 @@ define("_MD_D3DOWNLOADS_SQLONUPDATE","Update failed");
 define("_MD_D3DOWNLOADS_H2_CONFIG_CHECK","Upload Environment Check");
 // define("_MD_D3DOWNLOADS_MAXFILESIZE","Max size of file for uploading %s (bytes)");
 // define("_MD_D3DOWNLOADS_MAXFILESIZE","Max size of file for uploading %s (KB)");
-// define("_MD_D3DOWNLOADS_MAXFILESIZE","Upload Size (KB)");
+ define("_MD_D3DOWNLOADS_MAXFILESIZE","Upload Size (KB)");
 define("_MD_D3DOWNLOADS_PHPINI_CHECK","Check php.ini directives");
 define("_MD_D3DOWNLOADS_UPLOADDIR_CHECK","Check upload directory");
 define("_MD_D3DOWNLOADS_UPLOADDIR_CONFIFG","Upload directory");

@@ -7,6 +7,9 @@ xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php';
 echo '<h3>'.$xoopsModule->getVar('name').'</h3>';
 echo '
+<hr />
+<br />
+
 <h4>Module Features</h4>
 <div class="tips">
 <p>
@@ -17,14 +20,14 @@ echo '
 - With no imagemanager implimented, alternatives such as FCKeditor and myalbum imagemanager are supposed.<br />
 - More semantic by an original text sanitizer. More details in include/d3blogTextSanitizer.class.php.<br />
   </p>
-    <br />
 </div>
-	
-<div class="return_top"><a href="#container">RETURN_TOP</a></div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
 <hr />
+<br />
+
 <h4 class="admintitle">Text Sanitizer</h4>
-
-
 <div class="tips">
 <p>
   [code] to be converted to &lt;pre class=&quot;blogCode&quot;&gt;&lt;code&gt;, <br />
@@ -38,13 +41,13 @@ echo '
     &lt;div class=&quot;figure&quot;&gt;&lt;img src=&quot;...&quot; /&gt;&lt;p class=&quot;credit&quot;&gt;..&lt;/p&gt;&lt;p class=&quot;caption&quot;&gt;... &lt;/p&gt;&lt;/div&gt;
 	</p>
 </div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
 <br />
 
-<div class="return_top"><a href="#container">RETURN TOP</a></div>
-<hr />
 <h4 class="admintitle">More Options</h4>
-
-
 <div class="tips">
 <p>
 - Simple comment posting with more semantic comments form.<br />
@@ -60,7 +63,45 @@ echo '
 - FCKeditor set by default.<br />
 - [fig] and [sitefig] tags make figure markups pretty.<br />
 </p>
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Languages</h4>
+<div class="tips">
+<p>You can easily edit and custom your language catalog</p>
+<p>To edit and personalize your language variables<br />
+<a href="index.php?mode=admin&lib=altsys&page=mylangadmin">Click  here</a>!</p>
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Templates</h4>
+<div class="tips">
+<p>You can easily duplicate and custom your Templates</p>
+<br />
+<p>To start editing your module templates<br />
+<a href="index.php?mode=admin&lib=altsys&page=mytplsadmin">Click  here</a>!</p>
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Blocks/Permissions</h4>
+<div class="tips">
+<p>Install the Theme Editor blocks to override selected modules with your stylesheet, scripts and meta tags.</p>
+<p>To install blocks and set permissions<br />
+<a href="index.php?mode=admin&lib=altsys&page=myblocksadmin">Click  here</a>!</p>
 </div>';
+
 xoops_cp_footer();
 
 ?>

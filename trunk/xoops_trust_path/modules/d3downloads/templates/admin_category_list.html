@@ -1,4 +1,10 @@
-<h2><{$smarty.const._MD_D3DOWNLOADS_H2CATEGORYMANAGER}></h2>
+<h3><{$smarty.const._MD_D3DOWNLOADS_H2CATEGORYMANAGER}></h3>
+<hr />
+
+<div class="tips">
+<{$smarty.const._MD_D3DOWNLOADS_HELP_CATEGORY_DEL}>
+</div>
+
 <form name="categorymanager" id="categorymanager" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
 <{$gticket_hidden}>
 
@@ -34,25 +40,24 @@
 				<input type="text" size="3" name="weights[<{$category.cid}>]" id="col_weight_<{$content.id}>" value="<{$category.cat_weight}>" style="text-align:right;" />
 			</td>
 			<td nowrap="nowrap" style="text-align:center;">
-				<a href="<{$mod_url}>/admin/index.php?page=categoryedit&amp;cid=<{$category.cid}>"><{$smarty.const._EDIT}></a> |
+				<a href="<{$mod_url}>/admin/index.php?page=categoryedit&amp;cid=<{$category.cid}>" title="<{$smarty.const._EDIT}>"><img src="<{$xoops_url}>/images/folder_edit.png" alt="<{$smarty.const._EDIT}>" /></a> |
 				<input type="checkbox" name="action_selects[<{$category.cid}>]" id="col_action_<{$category.cid}>" value="1" />
 			</td>
 		</tr>
 	<{/foreach}>
-	<tr>
-		<td colspan="9" align="center" class="head">
-			<input type="submit" name="category_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
-		</td>
-	</tr>
+
 	<tr>
 		<th colspan="9" style="text-align:right;">
 			<{$smarty.const._MD_D3DOWNLOADS_LABEL_CATEGORYCHECKED}>
 			<input type="submit" name="delete" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_CATEGORY_DEL}>');" />
 		</th>
 	</tr>
+
+
+	<tr>
+		<td colspan="9" class="foot">
+			<input type="submit" name="category_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
+		</td>
+	</tr>
 </table>
 </form>
-<br />
-<div class="tips">
-<{$smarty.const._MD_D3DOWNLOADS_HELP_CATEGORY_DEL}>
-</div>

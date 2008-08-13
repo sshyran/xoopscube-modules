@@ -53,8 +53,8 @@ if (!file_exists(KFM_BASE_PATH.'configuration.php')) {
     echo '<em>Missing <code>configuration.php</code>!</em><p>If this is a fresh installation of KFM, then please copy <code>configuration.dist.php</code> to <code>configuration.php</code>, remove the settings you don\'t want to change, and edit the rest to your needs.</p><p>For examples of configuration, please visit http://kfm.verens.com/configuration</p>';
     exit;
 }
-require_once KFM_BASE_PATH.'configuration.dist.php';
-require_once KFM_BASE_PATH.'configuration.php';
+/*require_once KFM_BASE_PATH.'configuration.dist.php';
+*/require_once KFM_BASE_PATH.'configuration.php';
 // {{{ defines
 define('KFM_DB_PREFIX', $kfm_db_prefix);
 // }}}
@@ -97,8 +97,8 @@ if (count($m)) {
 
 // {{{ API - for programmers only
 if (file_exists(KFM_BASE_PATH.'api/config.php')) require KFM_BASE_PATH.'api/config.php';
-if (file_exists(KFM_BASE_PATH.'api/cms_hooks.php')) require KFM_BASE_PATH.'api/cms_hooks.php';
-else require KFM_BASE_PATH.'api/cms_hooks.php.dist';
+/*if (file_exists(KFM_BASE_PATH.'api/cms_hooks.php')) require KFM_BASE_PATH.'api/cms_hooks.php';
+else require KFM_BASE_PATH.'api/cms_hooks.php.dist';*/
 // }}}
 // {{{ variables
 $kfm->defaultSetting('time_format', '%T');

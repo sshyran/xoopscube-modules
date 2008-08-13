@@ -3,7 +3,12 @@
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 echo '<h3>'.$xoopsModule->getVar('name').'</h3>' ;
-echo '<div class="tips">
+echo '
+<hr />
+<br />
+
+<h4 class="admintitle">Module Features</h4>
+<div class="tips">
 <p>The REAL Innovative and Basic forum module for XOOPS.
 I -GIJOE- release this module with convidence though this module might be still buggy.
 
@@ -37,7 +42,45 @@ Enjoy D3 World!
 <p>modified:</p>
 <pre>&lt;{d3forum_comment dirname=d3forum forum_id=<em>(number)</em> itemname=&quot;id&quot; subject=$title}&gt;</pre>
 <p>You can find more exemples of old modules integration in author\'s <a href="http://xoops.peak.ne.jp/md/mydownloads/singlefile.php?lid=103&cid=1">web site</a></p>
-</div>';
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Languages</h4>
+<div class="tips">
+<p>You can easily edit and custom your language catalog</p>
+<p>To edit and personalize your language variables<br />
+<a href="index.php?mode=admin&lib=altsys&page=mylangadmin">Click  here</a>!</p>
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Templates</h4>
+<div class="tips">
+<p>You can easily duplicate and custom your Templates</p>
+<br />
+<p>To start editing your module templates<br />
+<a href="index.php?mode=admin&lib=altsys&page=mytplsadmin">Click  here</a>!</p>
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Blocks/Permissions</h4>
+<div class="tips">
+<p>Install the Theme Editor blocks to override selected modules with your stylesheet, scripts and meta tags.</p>
+<p>To install blocks and set permissions<br />
+<a href="index.php?mode=admin&lib=altsys&page=myblocksadmin">Click  here</a>!</p>
+</div>
+';
 xoops_cp_footer();
 
 ?>

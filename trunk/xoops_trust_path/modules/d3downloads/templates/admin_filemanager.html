@@ -1,13 +1,23 @@
-<h2><{$smarty.const._MD_D3DOWNLOADS_H2FILEMANAGER}> ( <{$total_num}> )</h2>
+<h3><{$smarty.const._MD_D3DOWNLOADS_H2FILEMANAGER}> ( <{$total_num}> )</h3>
+<hr />
+<br />
+
 <form name="filemanager" id="filemanager" action="<{$mod_url}>/admin/index.php?page=<{$page}>" method="post">
 <{$gticket_hidden}>
-<div align="right">
-	<select name="category_select" id="category_select">
+<p><select name="category_select" id="category_select">
 		<option value=""><{$smarty.const._MD_D3DOWNLOADS_LABEL_CATEGORYSELECT}></option>
 		<{html_options options=$categoryselect selected=$select_cid}>
 	</select>
 	<input type="submit" name="submit_select" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
-</div>
+
+</p><br />
+<p>			<{$smarty.const._MD_D3DOWNLOADS_LABEL_PERPAGE}>&nbsp;
+			<select name="perpage" onchange="submit();">
+				<{html_options options=$perpage selected=$select_perpage}>
+			</select>
+</p>
+
+
 <table class="outer">
 	<tr>
 		<th style="text-align:center;">
@@ -73,16 +83,16 @@
 			</td>
 			<td nowrap="nowrap" style="text-align:center;">
 				<{if $download.broken > 0}>
-					<a href="<{$mod_url}>/index.php?page=modfile&amp;cid=<{$download.cid}>&amp;lid=<{$download.lid}>"><font color="#FF0000"><b><{$download.broken}></b></font></a>
+					<a href="<{$mod_url}>/index.php?page=modfile&amp;cid=<{$download.cid}>&amp;lid=<{$download.lid}>"><img src="<{$xoops_url}>/images/link_break.png" alt="<{$download.broken}>" /><font color="#FF0000"><b><{$download.broken}></b></font></a>
 				<{else}>
 					<{$download.broken}>
 				<{/if}>
 			</td>
 			<td nowrap="nowrap" style="text-align:center;">
-				<a href="<{$mod_url}>/index.php?page=modfile&amp;cid=<{$download.cid}>&amp;lid=<{$download.lid}>"><{$smarty.const._EDIT}></a> |
+				<a href="<{$mod_url}>/index.php?page=modfile&amp;cid=<{$download.cid}>&amp;lid=<{$download.lid}>"><img src="<{$xoops_url}>/images/page_edit.png" alt="<{$smarty.const._EDIT}>" /></a> |
 				<input type="checkbox" name="action_selects[<{$download.lid}>]" id="col_action_<{$download.lid}>" value="1" /><br />
 				<{if $download.user_url}>
-					<a href="<{$download.user_url}>" target="_blank"><{$download.postname}></a>
+					<a href="<{$download.user_url}>" target="_blank"><img src="<{$xoops_url}>/images/user.png" alt"<{$download.postname}>" /> <{$download.postname}></a>
 				<{else}>
 					<{$download.postname}>
 				<{/if}>
@@ -91,17 +101,9 @@
 			</td>
 		</tr>
 	<{/foreach}>
-	<tr>
-		<td colspan="11" align="center" class="head">
-			<input type="submit" name="filemanager_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
-		</td>
-	</tr>
+
 	<tr>
 		<th colspan="11" style="text-align:right;">
-			<{$smarty.const._MD_D3DOWNLOADS_LABEL_PERPAGE}>&nbsp;
-			<select name="perpage" onchange="submit();">
-				<{html_options options=$perpage selected=$select_perpage}>
-			</select> | 
 			<{$smarty.const._MD_D3DOWNLOADS_LABEL_FILECHECKED}>
 			<input type="submit" name="delete" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_DELETE}>');" /> 
 			<input type="submit" name="move" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_MOVE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_MOVE}>');" /> 
@@ -110,7 +112,13 @@
 			</select><br />
 		</th>
 	</tr>
-</table>
+
+    <tr>
+		<td colspan="11" class="foot">
+			<input type="submit" name="filemanager_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
+		</td>
+	</tr>
+	</table>
 </form>
 
 <div align="right"><{$pagenav}></div><br />

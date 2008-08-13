@@ -1,7 +1,11 @@
-<h3><{$formtitle}>: <{if $unapproval.title}><{$unapproval.title}><{/if}></h3>
+<h3><{$mydirname}></h3>
+<hr />
+<br />
+
 <{if $iserror}>
 	<h4><{$error_message}></h4>
 <{/if}>
+
 <{if $preview_title || $preview_body}>
 	<dl id="post_preview" class="outer">
 		<{if $preview_title}>
@@ -26,6 +30,11 @@
 		<input type="hidden" name="lid" value="<{$unapproval.lid}>" />
 	<{/if}>
 	<table class="outer">
+    <tr>
+    <th colspan="2"><{$formtitle}>: <{if $unapproval.title}><{$unapproval.title}><{/if}>
+    </th>
+    </tr>
+    
 		<tr valign="top" align="left">
 			<td class="head"><label for="title"><{$smarty.const._MD_D3DOWNLOADS_SUBMIT_TITLE}></label></td>
 			<td class="even">
@@ -128,8 +137,7 @@
 			</td>
 		</tr>
 		<tr valign="top" align="left">
-			<td class="head"></td>
-			<td class="even">
+			<td colspan="2" class="foot">
 				<input type="submit" class="formButton" name="unapproval_post" id="unapproval_post" value="<{$smarty.const._MD_D3DOWNLOADS_APPROVAL}>" />
 				<input type="submit" class="formButton" name="unapproval_preview"  id="unapproval_preview" value="<{$smarty.const._PREVIEW}>" />
 				<{if $unapproval.requestid}>

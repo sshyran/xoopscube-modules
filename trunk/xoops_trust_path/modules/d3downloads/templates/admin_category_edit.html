@@ -1,5 +1,15 @@
 <h3><{$smarty.const._MD_D3DOWNLOADS_CATEGORYEDITTITLE}></h3>
 <hr />
+<br />
+<div class="tips">
+<{if $categorydata.pid eq 0}>
+	<{$smarty.const._MD_D3DOWNLOADS_HELP_USERACCESS}><br />
+<{else}>
+	<{$smarty.const._MD_D3DOWNLOADS_HELP_USERACCESS_PID}><br />
+<{/if}>
+	<{$smarty.const._MD_D3DOWNLOADS_HELP_CATEGORY_DEL}>
+
+</div>
 <{if $iserror}>
 	<h4><{$error_message}></h4>
 <{/if}>
@@ -163,26 +173,18 @@
 	<br />
 	<table class="outer">
 		<tr valign="top" align="center">
-			<td colspan="5" class="even">
+			<th>
 				<input type="submit" class="formButton" name="categoryform_post" id="categoryform_post" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_SUBMITEDITING}>" />
 				<input type="submit" name="categoryform_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3DOWNLOADS_CONFIRM_CATEGORY_DEL}>')" />
 				<input name="back" type="button" value="<{$smarty.const._MD_D3DOWNLOADS_BTN_CANSEL}>" onclick='location.href="<{$mod_url}>/admin/index.php?page=categorymanager"'/>
-			</td>
+			</th>
 		</tr>
 	</table>
 </form>
 
 <br />
 
-<div class="tips">
-<{if $categorydata.pid eq 0}>
-	<{$smarty.const._MD_D3DOWNLOADS_HELP_USERACCESS}><br />
-<{else}>
-	<{$smarty.const._MD_D3DOWNLOADS_HELP_USERACCESS_PID}><br />
-<{/if}>
-	<{$smarty.const._MD_D3DOWNLOADS_HELP_CATEGORY_DEL}>
 
-</div>
 
 <!-- Start Form Vaidation JavaScript //-->
 <script type="text/javascript">
