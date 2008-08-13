@@ -1,6 +1,7 @@
 <{strip}>
+
 <{if $submissions}>
-<h3><{$smarty.const._AM_WAITING_ARTICLES}></h3>
+<h3><{$mydirname}> &raquo;&raquo; <{$smarty.const._AM_WAITING_ARTICLES}></h3>
 <hr />
 <ul class="toptab">
   <li class="add"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=newsubmission"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
@@ -37,7 +38,7 @@
 
 <{if $autostories}>
 
-<h3><{$smarty.const._AM_AUTOARTICLES}></h3>
+<h3><{$mydirname}> &raquo;&raquo; <{$smarty.const._AM_AUTOARTICLES}></h3>
 <hr />
 <ul class="toptab">
   <li class="view"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=autostory"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
@@ -76,7 +77,7 @@
 <{/if}>
 
 
-<h3><{$smarty.const._AM_PUB_ARTICLES}></h3>
+<h3><{$mydirname}> &raquo;&raquo; <{$smarty.const._AM_PUB_ARTICLES}></h3>
 <hr />
 <ul class="toptab">
   <li class="view"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=laststory"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
@@ -113,8 +114,9 @@
 
 <{if $expired}>
 
-<h3><{$smarty.const._AM_EXPARTS}></h3>
+<h3><{$mydirname}> &raquo;&raquo; <{$smarty.const._AM_EXPARTS}></h3>
 <hr />
+
 <ul class="toptab">
   <li class="view"><a href="<{$mydirurl}>/admin/index.php?mode=admin&amp;op=listall&amp;statu=expstory"><{$smarty.const._AM_DISP_CONTENUE}></a></li>
 </ul>

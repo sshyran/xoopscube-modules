@@ -1,6 +1,7 @@
 <h3><{$mod_name}> &raquo;&raquo; <{$smarty.const._MD_PICO_CATEGORY}> &raquo;&raquo; <{$cat_title}></h3>
+<hr />
 <!-- category selection -->
-<form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="margin: 20px 0px">
+<form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="0px">
 	<input type="hidden" name="page" value="contents" />
 	<label for="select_cat_id"><{$smarty.const._MD_A_PICO_LABEL_SELECTCATEGORY}></label>:
 	<select name="cat_id" id="select_cat_id"><{html_options options=$cat_options selected=$cat_id}></select>
@@ -19,10 +20,10 @@
 <{/if}>
 
 <!-- contents form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_CONTENTS}></h2>
-<form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px;">
+<h4><{$smarty.const._MD_A_PICO_H2_CONTENTS}></h4>
+<form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post" style="margin:0px;">
 	<{$gticket_hidden}>
-	<div align="right"><{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}></div>
+	<div class="tips"><{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}></div>
 	<table class="outer">
 		<tr>
 			<th>
@@ -126,8 +127,8 @@
 						<{if $content.created_time > time()}>
 							<strong style="color:#00f;"><{$smarty.const._MD_PICO_WAITINGRELEASE}></strong>
 						<{/if}>
-						<a href="<{$mod_url}>/<{$content.link}>"><{$smarty.const._MD_A_PICO_LABEL_MAINDISP}></a> |
-						<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>"><{$smarty.const._EDIT}></a> |
+						<a href="<{$mod_url}>/<{$content.link}>"><img src="<{$xoops_url}>/images/view.png" alt="<{$smarty.const._MD_A_PICO_LABEL_MAINDISP}>" /></a> |
+						<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>"><img src="<{$xoops_url}>/images/page_edit.png" alt="<{$smarty.const._EDIT}>" /></a> |
 						<input type="checkbox" name="action_selects[<{$content.id}>]" id="col_action_<{$content.id}>" value="1" />
 						<br />
 						<{$content.modifier_uname}> <{$content.modified_time_formatted}>
@@ -136,12 +137,7 @@
 			</tr>
 		<{/foreach}>
 		<tr>
-			<td colspan="9" align="center" class="foot">
-				<input type="submit" name="contents_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
-			</td>
-		</tr>
-		<tr>
-			<th colspan="9" class="foot" style="text-align:right;">
+			<th colspan="9" class="head" style="text-align:right;">
 				<{$smarty.const._MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED}>
 				<input type="submit" name="contents_delete" value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');" />
 				<input type="submit" name="contents_move" value="<{$smarty.const._MD_A_PICO_BTN_MOVE}>" />
@@ -150,6 +146,11 @@
 				<input type="submit" name="contents_export" value="<{$smarty.const._MD_A_PICO_BTN_EXPORT}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_EXPORT}>');"  />
 				<select name="export_mid" id="select_export_mid"><{html_options options=$module_options}></select>
 			</th>
+		</tr>
+        		<tr>
+			<td colspan="9" class="foot">
+				<input type="submit" name="contents_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
+			</td>
 		</tr>
 	</table>
 </form>

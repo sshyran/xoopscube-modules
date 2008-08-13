@@ -2,6 +2,9 @@
 <hr />
 
 <h4><{$smarty.const._MD_A_D3BLOG_H3_IMPORTDATABASE}></h4>
+<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_IMPORTFROM}></div>
+
+
 <form name="importfrom" action="" method="post">
 	<{$gticket_hidden}>
 	<label for="import_mid"><{$smarty.const._MD_A_D3BLOG_LABEL_SELECTMODULE}></label>
@@ -12,11 +15,14 @@
 	</p>
 </form>
 
-<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_IMPORTFROM}></div>
 
+<br />
 <hr />
 
 <h4><{$smarty.const._MD_A_D3BLOG_H3_IMPORTCOM}></h4>
+<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_COMIMPORT}></div>
+
+
 <form name="importfrom" action="" method="post">
 	<{$gticket_hidden}>
 	<label for="comimport_mid"><{$smarty.const._MD_A_D3BLOG_LABEL_SELECTMODULE}></label>
@@ -27,14 +33,15 @@
 	</p>
 </form>
 
-<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_COMIMPORT}></div>
 
+<br />
 <hr />
 
 <h4><{$smarty.const._MD_A_D3BLOG_H3_SYNCHRONIZE}></h4>
+<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_SYNCHRONIZE}></div>
+<br />
 <form name="importfrom" action="" method="post">
 	<{$gticket_hidden}>
 	<input type="submit" name="do_synchronize" value="<{$smarty.const._MD_A_D3BLOG_BTN_DOSYNCHRONIZE}>" onclick="return confirm('<{$smarty.const._MD_A_D3BLOG_CONFIRM_DOSYNCHRONIZE}>')" />
 	<br />
 </form>
-<div class="tips"><{$smarty.const._MD_A_D3BLOG_HELP_SYNCHRONIZE}></div>

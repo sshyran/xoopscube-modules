@@ -59,6 +59,7 @@ require_once XOOPS_ROOT_PATH.'/class/template.php' ;
 $tpl =& new XoopsTpl() ;
 $tpl->assign( array(
 	'adminmenu' => $adminmenu ,
+	'mydirname' => $mydirname ,
 ) ) ;
 $tpl->display( 'db:altsys_inc_mymenu.html' ) ;
 

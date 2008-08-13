@@ -22,10 +22,10 @@ define("_MI_EGUIDE_HEADLINE2_DESC","Newer Posted Event List");
 define("_MI_EGUIDE_CATBLOCK","Event Category");
 define("_MI_EGUIDE_CATBLOCK_DESC","Choose event category");
 
-define("_MI_EGUIDE_EVENTS","Event Management");
-define("_MI_EGUIDE_NOTIFIES","Notify New Registers");
-define("_MI_EGUIDE_CATEGORY","Event Categories");
-define("_MI_EGUIDE_SUMMARY","Reservation Summary");
+define("_MI_EGUIDE_EVENTS","Events");
+define("_MI_EGUIDE_NOTIFIES","Notify Users");
+define("_MI_EGUIDE_CATEGORY","Categories");
+define("_MI_EGUIDE_SUMMARY","Summary");
 define("_MI_EGUIDE_CATEGORY_MARK","Category - ");
 define("_MI_EGUIDE_ABOUT","About eguide");
 

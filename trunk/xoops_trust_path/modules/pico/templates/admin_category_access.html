@@ -1,27 +1,26 @@
-<h3><{$mod_name}></h3>
-<ul class="toptab">
-  <li class="add"><a href="index.php?action=BlockInstallList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a></li>
-  <li class="addBlock"><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></li>
-</ul>
+<h3><{$mod_name}> &raquo;&raquo;  <{$smarty.const._MD_PICO_CATEGORY}> &raquo;&raquo; <{$cat_title}> </h3>
+<hr />
 <!-- category selection -->
-<form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="margin: 20px 0px">
-	<input type="hidden" name="page" value="category_access" />
-	<label for="select_cat_id"><{$smarty.const._MD_A_PICO_LABEL_SELECTCATEGORY}></label>:
+<form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="0px">
+	<input type="hidden" name="page" value="category_access" />	
+    <label for="select_cat_id"><{$smarty.const._MD_A_PICO_LABEL_SELECTCATEGORY}></label>:
 	<select name="cat_id" id="select_cat_id"><{html_options options=$cat_options selected=$cat_id}></select>
 	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
 </form>
-
 <!-- category title -->
-<p>
-	<{$smarty.const._MD_PICO_CATEGORY}>:<{$cat_title}>
-	[<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><{$smarty.const._EDIT}></a>]
-	[<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>]
-	[<a href="<{$mod_url}>/<{$cat_link}>"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>]
-</p>
+<ul class="toptab">
+  <li class="editDir"><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><{$smarty.const._EDIT}></a></li>
+  <li class="addDir"><a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a></li>
+
+  <li class="view"><a href="<{$mod_url}>/<{$cat_link}>"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a></li>
+</ul>
+
 
 <!-- group form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_GROUPPERMS}></h2>
-<form name="groupperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px">
+
+
+<h4><{$smarty.const._MD_A_PICO_H2_GROUPPERMS}></h4>
+<form name="groupperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="0px">
 	<{$gticket_hidden}>
 	<table class="outer">
 		<tr>
@@ -61,11 +60,11 @@
 
 
 <!-- user form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
-<form name="userperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px">
+<h4><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h4>
+<form name="userperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="0px">
 	<{$gticket_hidden}>
-    <p>	<{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
-</p>
+    <div class="tips">	<{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
+</div>
 	<table class="outer">
 
 		<!-- th -->

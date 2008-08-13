@@ -3,8 +3,9 @@
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 echo '<h3>'.$xoopsModule->getVar('name').'</h3>' ;
-echo "<div class=\"tips\">
-<h6>Module ".$xoopsModule->getVar('name')."</h6>
+echo '<hr />
+<br />
+<div class="tips">
 
 <p>This module allows webmaster and webdesigners to manage static and rich content.</p>
 <p>The following features are available by default:</p>
@@ -34,10 +35,14 @@ When you make a new content, files from this folder are displayed in wrap \"sele
 <p>Note  : Remember that you have to previously set XOOPS Cube user/groups permisions!</p>
 </div>
 
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
 <br />
-<h3>HTML Forms</h3>
 
-<div class=\"tips\">
+<h4>HTML Forms</h4>
+
+<div class="tips">
 <h6>Smarty plugin form</h6>
 <p>This module allows webmasters and webdesigners to create html forms using smarty</p>
 <p>plugins processing the forms content.</p>
@@ -81,7 +86,7 @@ When you make a new content, files from this folder are displayed in wrap \"sele
     <p>\"from\" email used to identify the sender of the query mail.</p>
 
 <h6>from_name</h6>
-    <p>name of emial used in \"from\" </p>
+    <p>name of emial used in "from" </p>
 
 <h6>can_post_again</h6>
     <p>1: a blank form will be displayed again after posting the form.<br />
@@ -89,22 +94,22 @@ When you make a new content, files from this folder are displayed in wrap \"sele
 
 <h6>confirm_message</h6>
     <p>Display a message to confirm the form to be sent.<br />
-	HTML tags require a backslash ' \ ' before a double quote \" <br />
+	HTML tags require a backslash " \ " before a double quote \" <br />
 	ie. &lt;a href= \&quot;...\&quot; &gt; &lt; / a&gt;
 	</p>
 
 <h6>finished_message</h6>
     <p>Display a final Message after the query was sent.<br />
 	You can use this option to redirect to another page.<br />
-	HTML tags require a backslash ' \ ' before a double quote \" <br />
+	HTML tags require a backslash " \ " before a double quote \" <br />
 	ie. &lt;a href= \&quot;...\&quot; &gt; &lt; / a&gt;
 	</p>
 
 <h6>cc_field_name</h6>
-    <p>field's \"name\" for sending \"confiming mail\"</p>
+    <p>field\'s "name" for sending "confiming mail"</p>
 
 <h6>cc_mail_subject</h6>
-    <p>Subject for \"confirming mail\"</p>
+    <p>Subject for "confirming mail"</p>
 
 <h6>cc_mail_body_pre</h6>
     <p>The mail body before query contents for the confirming mail.</p>
@@ -112,7 +117,44 @@ When you make a new content, files from this folder are displayed in wrap \"sele
 <h6>cc_mail_body_post</h6>
     <p>The mail body after query contents for the confirming mail.</p>
 
-</div>";
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Languages</h4>
+<div class="tips">
+<p>You can easily edit and custom your language catalog</p>
+<p>To edit and personalize your language variables<br />
+<a href="index.php?mode=admin&lib=altsys&page=mylangadmin">Click  here</a>!</p>
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Templates</h4>
+<div class="tips">
+<p>You can easily duplicate and custom your module Templates</p>
+<br />
+<p>To start editing your module templates<br />
+<a href="index.php?mode=admin&lib=altsys&page=mytplsadmin">Click  here</a>!</p>
+</div>
+
+<br />	
+<div class="return_top"><a href="#container">Return to the Top</a></div>
+<hr />
+<br />
+
+<h4 class="admintitle">Blocks/Permissions</h4>
+<div class="tips">
+<p>To install module blocks and set permissions of user groups<br />
+<a href="index.php?mode=admin&lib=altsys&page=myblocksadmin">Click  here</a>!</p>
+</div>
+';
 
 xoops_cp_footer();
 

@@ -3,7 +3,10 @@
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 echo '<h3>'.$xoopsModule->getVar('name').'</h3>' ;
-echo '<div class="tips">
+echo '
+<hr />
+<br />
+<div class="tips">
 <p>The module Theme Editor features a simple way to edit your theme css, insert a script into a specific module, define header meta tag keywords and description to each module. To apply your changes and, or override default settings, you only need to install Theme Editor blocks with your target module.</p>
 </div>
 

@@ -1,20 +1,33 @@
 <h3><{$mod_name}></h3>
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_IMPORTFROM}></h2>
+<hr />
+
+<h4><{$smarty.const._MD_A_PICO_H2_IMPORTFROM}></h4>
+<div class="tips">
+	<{$smarty.const._MD_A_PICO_HELP_IMPORTFROM}>
+</div>
 <form name="importfrom" action="<{$mod_url}>/admin/index.php?page=import" method="post">
 	<{$gticket_hidden}>
-	<label for="import_mid"><{$smarty.const._MD_A_PICO_LABEL_SELECTMODULE}></label>
-	<select name="import_mid" id="import_mid"><{html_options options=$import_from_options}></select>
-	<br />
+<p>	
+<label for="import_mid"><{$smarty.const._MD_A_PICO_LABEL_SELECTMODULE}></label>
+<br />
+<p><select name="import_mid" id="import_mid"><{html_options options=$import_from_options}></select>
 	<input type="submit" name="do_import" value="<{$smarty.const._MD_A_PICO_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DOIMPORT}>')" />
-	<br />
-	<{$smarty.const._MD_A_PICO_HELP_IMPORTFROM}>
-</form>
+</p>
+<br />
 
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_SYNCALL}></h2>
+</form>
+<hr />
+<h4><{$smarty.const._MD_A_PICO_H2_SYNCALL}></h4>
+    <div class="tips">
+    <{$smarty.const._MD_A_PICO_HELP_SYNCALL}>
+    </div>
 <form name="syncall" action="<{$mod_url}>/admin/index.php?page=import" method="post">
 	<{$gticket_hidden}>
-	<input type="submit" name="do_syncall" value="<{$smarty.const._MD_A_PICO_BTN_DOSYNCALL}>" />
+	<p>
+    <input type="submit" name="do_syncall" value="<{$smarty.const._MD_A_PICO_BTN_DOSYNCALL}>" />
 	<br />
-	<{$smarty.const._MD_A_PICO_HELP_SYNCALL}>
+	</p>
+    <br />
+
 </form>
 
