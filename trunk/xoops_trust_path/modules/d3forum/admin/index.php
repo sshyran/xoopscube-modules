@@ -64,7 +64,6 @@ Enjoy D3 World!
 <h4 class="admintitle">Templates</h4>
 <div class="tips">
 <p>You can easily duplicate and custom your Templates</p>
-<br />
 <p>To start editing your module templates<br />
 <a href="index.php?mode=admin&lib=altsys&page=mytplsadmin">Click  here</a>!</p>
 </div>
@@ -76,7 +75,6 @@ Enjoy D3 World!
 
 <h4 class="admintitle">Blocks/Permissions</h4>
 <div class="tips">
-<p>Install the Theme Editor blocks to override selected modules with your stylesheet, scripts and meta tags.</p>
 <p>To install blocks and set permissions<br />
 <a href="index.php?mode=admin&lib=altsys&page=myblocksadmin">Click  here</a>!</p>
 </div>

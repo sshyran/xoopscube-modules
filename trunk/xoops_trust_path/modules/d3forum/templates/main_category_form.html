@@ -81,6 +81,7 @@
 
 	</table>
 
+
 <p class="d3f_submit"><input type="submit" name="categoryman_post" value="<{$smarty.const._SUBMIT}>" />
 <{if $page == 'categorymanager' && $children_count == 0}>
 <input type="submit" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')" />
@@ -93,7 +94,7 @@
 <!--//
 function xoopsFormValidate_categoryform() {
 	myform = window.document.categoryform;
-	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
+	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE|string_format:$smarty.const._D3FORM_ENTER}>"); myform.title.focus(); return false; }
 	return true;
 }
 //--></script>

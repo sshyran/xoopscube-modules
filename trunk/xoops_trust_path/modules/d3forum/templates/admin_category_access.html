@@ -1,5 +1,5 @@
-<h3><{$mod_name}></h3>
-
+<h3><{$mod_name}>  : <{$smarty.const._MD_D3FORUM_CATEGORY}>:<{$cat_title}></h3>
+<hr />
 <!-- category selection -->
 <form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="margin: 20px 0px">
 	<input type="hidden" name="page" value="category_access" />
@@ -7,17 +7,17 @@
 	<select name="cat_id" id="select_cat_id"><{html_options options=$cat_options selected=$cat_id}></select>
 	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
 </form>
-
 <!-- category title -->
-<p>
-	<{$smarty.const._MD_D3FORUM_CATEGORY}>:<{$cat_title}>
-	[<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><{$smarty.const._EDIT}></a>]
-	[<a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a>]
-	[<a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a>]
-</p>
+<ul class="toptab">
+  <li class="editDir"><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><{$smarty.const._EDIT}></a></li>
+  <li class="addDir"><a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a></li>
+
+  <li class="add"><a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a></li>
+</ul>
+<!-- category title -->
 
 <!-- group form -->
-<h2 class="head"><{$smarty.const._MD_A_D3FORUM_H2_GROUPPERMS}></h2>
+<h4><{$smarty.const._MD_A_D3FORUM_H2_GROUPPERMS}></h4>
 <form name="groupperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px">
 	<{$gticket_hidden}>
 	<table class="outer">
@@ -54,15 +54,25 @@
 				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_7_')>=0){elements[i].checked=this.checked;}}}">
 			</th>
 		</tr>
+        <tfoot>
+        <tr>
+        <td colspan="8" class="foot">
+        <input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>" />
+        </td>
+        </tr>
+        </tfoot>
 		<{$group_trs}>
 	</table>
-	<input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>" />
 </form>
 
 
 <!-- user form -->
-<h2 class="head"><{$smarty.const._MD_A_D3FORUM_H2_USERPERMS}></h2>
-<form name="userperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px">
+<h4><{$smarty.const._MD_A_D3FORUM_H2_USERPERMS}></h4>
+
+<div class="tips">
+	<{$smarty.const._MD_A_D3FORUM_NOTICE_ADDUSERS}>
+</div>
+<form name="userperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post" style="margin:0px">
 	<{$gticket_hidden}>
 	<table class="outer">
 		<tr>
@@ -94,10 +104,17 @@
 				<input type="checkbox" onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&(elements[i].id.indexOf('ucol_7_')>=0||elements[i].id.indexOf('ncol_7_')>=0)){elements[i].checked=this.checked;}}}">
 			</th>
 		</tr>
-		<{$user_trs}>
+        <tfoot>
+      
+      <tr>
+        <td colspan="9" class="foot">
+        <input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>" />
+	</td>
+	</tr>
+	</tfoot>
+    	<{$user_trs}>
 		<{$newuser_trs}>
 	</table>
-	<input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>" />
 	<br />
-	<{$smarty.const._MD_A_D3FORUM_NOTICE_ADDUSERS}>
+
 </form>

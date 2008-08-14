@@ -14,7 +14,7 @@
 		<input type="hidden" name="number_entity" id="number_entity" value="1" />
 		</p>
 	
-		<table cellspacing="1" class="outer d3f_postform">
+		<table class="outer" cellspacing="1" class="d3f_postform">
 			<tr valign="top" align="left">
 				<td class="head"><{$smarty.const._MD_D3FORUM_SUBJECT}></td>
 				<td class="even">
@@ -76,7 +76,7 @@
 		<{$antispam.js_in_validate_function}>
 		return true;
 	}
-	function d3forum_quote_message() {
+	function forum_quote_message() {
 		xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
 	}
 	//-->
