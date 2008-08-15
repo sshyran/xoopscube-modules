@@ -2,7 +2,7 @@
 # import from GIJOE's pico
 # $Id: module_icon.php,v 1.2 2008-02-03 15:28:51 nobu Exp $
 
-define('ICON_TEMPLATE',  'images/eguide_slogo2.png');
+define('ICON_TEMPLATE',  'images/logo.png');
 define('ICON_IMAGE', 'module_icon.png');
 
 $mydirpath = dirname(__FILE__);
