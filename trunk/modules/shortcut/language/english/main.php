@@ -10,10 +10,10 @@ define("_MD_FORM_URL","Linked URI");
 define("_MD_FORM_PSCREF","Parent Link");
 define("_MD_PSCREF_TOP","[Top]");
 define("_MD_FORM_CUTID","Link ID");
-define("_MD_FORM_CUTID_DESC","'Link ID' is a unique string. That is used make short URI for redirect to Linked URI.");
+define("_MD_FORM_CUTID_DESC","'Link ID' is an unique string used to make a short URI to Linked URI.");
 define("_MD_FORM_DESCRIPTION","Description");
 define("_MD_FORM_ORDER","Order");
-define("_MD_FORM_ORDER_DESC","0: Add to last, n: insert n'th order.");
+define("_MD_FORM_ORDER_DESC","0: Add to last, n: insert order.");
 define("_MD_FORM_ACTIVE","Link status");
 define("_MD_FORM_ACTIVE_VALUE","Inactive,Public,Private");
 

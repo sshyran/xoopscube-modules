@@ -6,7 +6,7 @@ $myicon = "images/shortcut_slogo.png";
 if (!file_exists("$mydirpath/$myicon")) $myicon = "module_icon.php";
 
 $modversion['name'] = _MI_SHORTCUT_NAME;
-$modversion['version'] = "0.6";
+$modversion['version'] = "0.7";
 $modversion['description'] = _MI_SHORTCUT_DESC;
 $modversion['credits'] = "Nobuhiro YASUTOMI <br/>http://mysite.ddo.jp/";
 $modversion['author'] = "Nobuhiro Yasutomi";

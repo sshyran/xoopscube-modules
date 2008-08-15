@@ -6,7 +6,7 @@
 define("_MI_SHORTCUT_NAME","ShortCut");
 
 // A brief description of this module
-define("_MI_SHORTCUT_DESC","URL redirects for shorter strings");
+define("_MI_SHORTCUT_DESC","URL redirection with shorter strings");
 
 // Sub menus
 define("_MI_SHORTCUT_REGISTER","Register Shortcut");
@@ -22,7 +22,7 @@ define("_MI_SHORTCUT_BLOCK_MYMENU_DESC", "Personal shortcut in menu");
 // for altsys 
 if (!defined('_MD_A_MYMENU_MYTPLSADMIN')) {
     define('_MD_A_MYMENU_MYTPLSADMIN','Templates');
-    define('_MD_A_MYMENU_MYBLOCKSADMIN','Block/Access');
-    define('_MD_A_MYMENU_MYPREFERENCES','Prefercenes');
+    define('_MD_A_MYMENU_MYBLOCKSADMIN','Blocks');
+    define('_MD_A_MYMENU_MYPREFERENCES','Preferences');
 }
 ?>

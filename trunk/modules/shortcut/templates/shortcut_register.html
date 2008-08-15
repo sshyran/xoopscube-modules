@@ -6,9 +6,11 @@
   </div>
 <{/if}>
 <form method="post">
-  <h2><{if $link.scid}><{$smarty.const._MD_REGISTER_EDIT}><{else}><{$smarty.const._MD_REGISTER_NEW}><{/if}></h2>
+  <h3><{if $link.scid}><{$smarty.const._MD_REGISTER_EDIT}><{else}><{$smarty.const._MD_REGISTER_NEW}><{/if}></h3>
+  <hr /><br />
+  
   <input type="hidden" name="scid" value="<{$link.scid}>" />
-  <table class="outer" cellspacing="1" cellpadding="2">
+  <table class="outer">
     <tr class="even">
       <td class="head"><{$smarty.const._MD_FORM_TITLE}></td>
       <td><input name="title" size="40" maxlength="80" value="<{$link.title|escape}>" /></td>

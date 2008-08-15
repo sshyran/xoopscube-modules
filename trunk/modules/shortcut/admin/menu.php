@@ -1,8 +1,9 @@
 <?php
-$adminmenu[]=array('title' => _MI_SHORTCUT_NAME,
-		    'link' => "admin/index.php");
+
 $adminmenu[]=array('title' => _MI_SHORTCUT_HELP,
 		    'link' => "admin/help.php");
+$adminmenu[]=array('title' => _MI_SHORTCUT_NAME,
+		    'link' => "admin/index.php?op=list");
 
 $adminmenu4altsys[]=
     array('title' => _MD_A_MYMENU_MYTPLSADMIN,

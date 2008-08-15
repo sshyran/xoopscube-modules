@@ -5,7 +5,7 @@ include '../../../include/cp_header.php';
 include_once '../functions.php';
 include_once '../edit_func.php';
 
-$op = isset($_GET['op'])?$_GET['op']:'list';
+$op = isset($_GET['op'])?$_GET['op']:'help';
 
 define('SHORT', $xoopsDB->prefix("shortcut"));
 
@@ -59,8 +59,13 @@ include "mymenu.php";
 
 switch ($op) {
 
+case 'help':
+  header ("Location: help.php");
+  exit;
+  
  case 'list':
-     echo "<h4>"._AM_SHORTCUT_LIST."</h4>\n";
+     echo "<h3>"._AM_SHORTCUT_LIST."</h3>\n
+	 <hr /><br />";
 
      $ents = array('title'=>_AM_SHORTCUT_TITLE,
 		   'weight'=>_AM_SHORTCUT_WEIGHT, 'url'=>_AM_SHORTCUT_URL,
@@ -68,7 +73,7 @@ switch ($op) {
 		   'active'=>_AM_SHORTCUT_ACT,  'refer'=>_AM_SHORTCUT_REF,
 		   );
      $acts = explode(',', _MD_FORM_ACTIVE_VALUE);
-     echo "<table class='outer' cellpadding='4' border='0' cellspacing='1'>\n";
+     echo "<table class='outer'>\n";
      echo "<tr><th>".join('</th><th>', $ents)."</th><th>"._AM_SHORTCUT_OP."</th></tr>\n";
 
      $links = shortcut_links(0, $thispage, _SC_ACTIVE_NONE.","._SC_ACTIVE_PUBLIC.","._SC_ACTIVE_PRIVATE);
