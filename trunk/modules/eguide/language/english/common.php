@@ -8,7 +8,6 @@ define('_MD_EXTENT_DATE','Open Date');
 define('_MD_RESERV_PERSONS','Max no. of Persons');
 define("_MD_INFO_REQUEST","Notify Registered users");
 define("_MD_INFO_COUNT","count %d");
-define("_MD_INFO_NODATA","No DATA");
 
 global $expire_set,$edit_style,$ev_stats,$ev_extents,$rv_stats;
 

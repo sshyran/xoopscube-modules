@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php,v 1.28 2008-02-16 11:39:14 nobu Exp $
+// $Id: main.php,v 1.29 2008-07-20 07:03:06 nobu Exp $
 
 if (defined('_MD_RESERV_FORM')) return;
 
@@ -99,7 +99,7 @@ define("_MD_PRINT_DATE","表示日時");
 define("_MD_SAVECHANGE","変更を保存");
 define("_MD_RESERV_DEL","この予約を削除する");
 define("_MD_DETAIL","詳細");
-define("_MD_RESERV_MSG_H","承認で送るメッセージ");
+define("_MD_RESERV_MSG_H","応答で送るメッセージ");
 define("_MD_ACTIVATE","受付承認");
 define("_MD_REFUSE","受付拒否");
 define("_MD_EXPORT_OUT","Excel形式");
@@ -137,7 +137,7 @@ define('_MD_RESERV_REQ','必須項目');
 define('_MD_RESERV_ADD','追加');
 define('_MD_RESERV_OPTREQ','引数が必要です');
 define('_MD_RESERV_ITEM_DESC','<a href="language/japanese/help.html#form" target="help">追加項目の書式について</a>');
-define('_MD_RESERV_LABEL_DESC','予約人数の指定はフィールド名「%s」で行います');
+define('_MD_RESERV_LABEL_DESC','予約人数の指定は項目名「%s」で行います');
 define('_MD_RESERV_REDIRECT','予約後に遷移する URL');
 define('_MD_RESERV_REDIRECT_DESC','待ち時間を秒数で指定できる (例: "4;http://...")。変数: {X_EID}, {X_SUB}, {X_RVID}');
 define('_MD_APPROVE','掲載承認');

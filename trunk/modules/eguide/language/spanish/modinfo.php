@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php,v 1.3 2008-02-03 15:28:52 nobu Exp $
+// $Id: modinfo.php,v 1.4 2008-07-20 07:03:06 nobu Exp $
 // Module Info
 
 if (defined('_MI_EGUIDE_NAME')) return;
@@ -55,8 +55,8 @@ define("_MI_EGUIDE_ORDERCONF","Has confirm page");
 define("_MI_EGUIDE_ORDERCONF_DESC","Display confirm page when reservation submit");
 define("_MI_EGUIDE_CLOSEBEFORE","Close Time Before (min)");
 define("_MI_EGUIDE_CLOSEBEFORE_DESC","Event entry close time before setting minits.");
-define("_MI_EGUIDE_LAB_PERSONS","Label of persons");
-define("_MI_EGUIDE_LAB_PERSONS_DESC","Extra field label in reservation form for how many persons");
+define("_MI_EGUIDE_LAB_PERSONS","Additional item options");
+define("_MI_EGUIDE_LAB_PERSONS_DESC","Additional item optional settings, like a field label for how many persons. Example: 'label_persons=Persons'. See about eguide page more details.");
 define("_MI_EGUIDE_DATE_FORMAT","Date Foramt");
 define("_MI_EGUIDE_DATE_FORMAT_DESC","Open Event Date(Time) display format. Using PHP date function format.");
 define("_MI_EGUIDE_DATE_FORMAT_DEF","D, d M Y");
@@ -67,7 +67,7 @@ define("_MI_EGUIDE_PERSONS_DESC","Reservation persons in event post form");
 define("_MI_EGUIDE_PLUGINS","Use Other moudle plugins");
 define("_MI_EGUIDE_PLUGINS_DESC","Internal Control accept entry form other modules");
 define("_MI_EGUIDE_COMMENT","Allow Comments");
-define("_MI_EGUIDE_COMMENT_DESC","Allow commnets to event");
+define("_MI_EGUIDE_COMMENT_DESC","Allow comments to event");
 define("_MI_EGUIDE_MARKER","Current entry level mark");
 define("_MI_EGUIDE_MARKER_DESC","The mark mean of how many entry in current. Show mark correspond percentage. (xx,yy mean less than xx% showup yy. And '0,yy' mean out of date mark)");
 define("_MI_EGUIDE_MARKER_DEF","0,[Close]\n50,[Vacant]\n100,[Many]\n101,[Full]\n");

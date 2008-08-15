@@ -1,6 +1,6 @@
 <?php
 // Reservation Entry by Poster
-// $Id: entry.php,v 1.5 2008-02-02 11:12:02 nobu Exp $
+// $Id: entry.php,v 1.8 2008-07-20 12:45:31 nobu Exp $
 
 include 'header.php';
 $_GET['op'] = '';	// only for poster
@@ -34,7 +34,7 @@ if (isset($_POST['eid'])) {
 	$strict = $data['strict'];
 	$persons = $data['persons'];
 	$num = 1;
-	$nlab = $xoopsModuleConfig['label_persons'];
+	$nlab = eguide_form_options('label_persons');
 	if ($nlab && isset($vals[$nlab])) {
 	    $num =  intval($vals[$nlab]);
 	    if ($num<1) $num = 1;
@@ -66,7 +66,7 @@ $data['exid']=$exid;
 $data['isadmin'] = true;
 $data['link'] = true;
 include XOOPS_ROOT_PATH.'/header.php';
-$xoopsOption['template_main'] = 'eguide_entry.html';
+$xoopsOption['template_main'] = EGPREFIX.'_entry.html';
 $xoopsTpl->assign('xoops_module_header', HEADER_CSS);
 edit_eventdata($data);
 $xoopsTpl->assign('event', $data);

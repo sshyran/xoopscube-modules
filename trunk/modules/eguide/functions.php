@@ -1,6 +1,6 @@
 <?php
 // Event Guide common functions
-// $Id: functions.php,v 1.23 2008-02-03 15:28:51 nobu Exp $
+// $Id: functions.php,v 1.26 2008-07-22 15:09:44 nobu Exp $
 
 // exploding addional informations.
 function explodeopts($opts) {
@@ -72,8 +72,8 @@ function edit_eventdata(&$data) {
     case 2: $html = 0;
     case 1: $br = 1;
     }
-    $data['disp_summary'] = str_replace($pat,$str,xss_filter($myts->displayTarea($data['summary'],$html,0,1,1,$br)));
-    $data['disp_body'] = str_replace($pat,$str,xss_filter($myts->displayTarea($data['body'],$html,0,1,1,$br)));
+    $data['disp_summary'] = empty($data['summary'])?'':str_replace($pat,$str,xss_filter($myts->displayTarea($data['summary'],$html,0,1,1,$br)));
+    $data['disp_body'] = empty($data['body'])?'':str_replace($pat,$str,xss_filter($myts->displayTarea($data['body'],$html,0,1,1,$br)));
     $data['title'] = $myts->htmlSpecialChars($data['title']);
     // fill of seat
     if (!empty($data['persons'])) {
@@ -174,9 +174,9 @@ function eventform($data) {
 		    array_shift($opt);
 	    }
 	    if ($type=='hidden') continue;
-	    $size = 60;
-	    $cols = 40;
-	    $rows = 5;
+	    $size = eguide_form_options('size', 60);
+	    $cols = eguide_form_options('cols', 40);
+	    $rows = eguide_form_options('rows', 5);
 	    $opts = "";
 	    $comment = "";
 	    $fname = "opt$field";
@@ -421,8 +421,19 @@ function order_notify($data, $email, $value) {
 
     $xoopsMailer =& getMailer();
     $xoopsMailer->useMail();
-    $tplfile = $data['autoaccept']?"accept.tpl":"order.tpl";
-    $xoopsMailer->setTemplateDir(template_dir($tplfile));
+
+    $tplname = $data['autoaccept']?"accept%s.tpl":"order%s.tpl";
+    $extra = eguide_form_options('reply_extension');
+    $tplfile = sprintf($tplname, ''); // default template name
+    $tmpdir = template_dir($tplfile);
+    if ($extra) {
+	$vals=unserialize_text($value);
+	if (isset($vals[$extra])) {
+	    $extpl = sprintf($tplname, $vals[$extra]);
+	    if (file_exists("$tmpdir$extpl")) $tplfile = $extpl;
+	}
+    }
+    $xoopsMailer->setTemplateDir($tmpdir);
     $xoopsMailer->setTemplate($tplfile);
     if ($xoopsModuleConfig['member_only']) {
 	$uinfo = sprintf("%s: %s (%s)\n", _MD_UNAME,
@@ -485,5 +496,25 @@ if(!function_exists("file_get_contents")) {
 	}
 	return $contents;
     }
+}
+
+function eguide_form_options($name='', $def=false) {
+    static $options;
+    if (!isset($options)) {
+	$options = array();
+	$re = '/^\s*([a-z\d_]+)\s*=(.+)$/';
+	$opts = $GLOBALS['xoopsModuleConfig']['label_persons'];
+	if (preg_match('/^[^\n]*$/', $opts) && !preg_match($re, $opts)) {
+	    $options['label_persons']=trim($opts);
+	} else {
+	    foreach (explode("\n", $opts) as $ln) {
+		if (preg_match('/\s*#/', $ln)) continue;
+		if (preg_match($re, $ln, $d)) {
+		    $options[$d[1]]=trim($d[2]);
+		}
+	    }
+	}
+    }
+    return $name?(empty($options[$name])?$def:$options[$name]):$options;
 }
 ?>

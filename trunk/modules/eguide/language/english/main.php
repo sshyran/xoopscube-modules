@@ -14,7 +14,7 @@ define('_MD_STIME_FMT', 'H:i');
 define("_MD_POSTED_FMT", "j M Y H:i");
 define("_MD_TIME_FMT", "j M Y H:i");
 define("_MD_READMORE","More...");
-define("_MD_EMAIL","EMail Address");
+define("_MD_EMAIL","Email Address");
 define('_MD_UNAME','Username');
 define("_MD_SUBJECT","Confirm");
 define("_MD_NOTIFY_EVENT",  "Notification of new events");
@@ -39,7 +39,7 @@ define("_MD_MAIL_ERR","Mail address format error");
 define("_MD_SEND_ERR","failed to send mail");
 define("_MD_DUP_ERR","We have already reserved a place with your mail address");
 define('_MD_DATE_ERR','The Date is out of range');
-define('_MD_DATEDELETE_ERR','Stop remove the date, there is reservation exists');
+define('_MD_DATEDELETE_ERR','Stop remove the date - reservations exist!');
 define("_MD_DUP_REGISTER","Mail notification was already registered");
 define("_MD_REGISTERED","Mail notification registered");
 
@@ -89,7 +89,7 @@ define('_MD_NEED_UPGRADE','Need to Proceed module Upgrade');
 
 //%%%%%%	File Name receiept.php 	%%%%%
 define("_MD_RESERV_EDIT","Edit Reservations");
-define("_MD_OPERATION","Operation");
+define("_MD_OPERATION","Action");
 define("_MD_STATUS","Status");
 define("_MD_RESERV_RETURN","Return to list");
 define("_MD_RESERV_REC","Reservation Records");
@@ -165,6 +165,7 @@ define('_MD_APPROVE_REQ','Please confirm the event and Approve it.');
 //%%%%%%	File Name sendinfo.php 	%%%%%
 define("_MD_INFO_TITLE","Information Mail to Send");
 define("_MD_INFO_CONDITION","Send to");
+define("_MD_INFO_NODATA","No DATA");
 define("_MD_INFO_SELF","send to self (%s)");
 define("_MD_INFO_DEFAULT","-messages-\n\n\nReserved Event\n    {EVENT_URL}\n");
 define("_MD_INFO_MAILOK","Mail sent");

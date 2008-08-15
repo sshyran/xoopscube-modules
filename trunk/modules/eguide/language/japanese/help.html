@@ -7,10 +7,12 @@
 td,th { padding: 4px; background: #e8e8e8;}
 .head th  { padding: 4px; background: #d0d0d0; }
 .bnf { color: #008000; }
-.note { font-size: 80%; color: #800000; padding: 0.5em;}
 </style>
 </head>
 <body>
+<style>
+.note { font-size: 90%; color: #800000; padding: 0.5em;}
+</style>
   <h1>イベント案内モジュール</h1>
   <ul>
   <li><a href="#summary">概要</a></li>
@@ -187,13 +189,17 @@ td,th { padding: 4px; background: #e8e8e8;}
 	<td>予約処理時に入力値の確認用の画面を表示する</td>
       </tr>
       <tr class="even">
-        <th align="left">人数指定の追加項目</th>
+        <th align="left">追加項目オプション設定</th>
 	<td>指定なし</td>
 	<td>
-	  予約人数を指定を許可する場合の項目の名前を指定する
-	  <p class="note">追加項目のラベル名称で指定する。「参加
-	  人数」とするなら追加項目として、"参加人数,select,1,2,3,4"
-	  のように、必ず数値が選ばれる項目とするとよい</p>
+	  <ul>
+	    <li>label_persons=label (予約人数を指定)</li>
+	    <li>reply_extension=label (応答メールテンプレート拡張用の項目名)</li>
+	    <dt>size=60 (テキスト入力フィールドの規定幅)</dt>
+	    <li>cols=40 (テキストエリアの規定幅)</li>
+	    <li>rows=5 (テキストエリアの規定行)</li>
+	  </ul>
+	  詳細は「<a href="#form_options">追加項目のオプション指定</a>」を参照
 	</td>
       </tr>
       <tr class="odd">
@@ -262,6 +268,33 @@ td,th { padding: 4px; background: #e8e8e8;}
       </tr>
     </table>
   </blockquote>
+
+  <a name="form_options"></a><h3>追加項目のオプション指定</h3>
+  <dl>
+    <dt>label_persons (予約人数を指定)</dt>
+    <dd>一人の予約で複数の人数の予約を許す場合、
+      人数を指定する項目名を指定する。
+      <p class="note">追加項目のラベル名称で指定する。
+	「<tt>label_persons=参加人数</tt>」
+	とするなら追加項目として、"参加人数,select,1,2,3,4"
+	のように、必ず数値が選ばれる項目とするとよい</p>
+      eguide 2.5 以前との互換性のため、値を単独で記載した場合に限り、
+      "label_persons=" の設定として扱う。
+    </dd>
+    <dt>reply_extension (応答メールテンプレート拡張用の項目名)</dt>
+    <dd>
+      指定された項目値で受付応答を行うメールのテンプレートを切り替える。
+      <div class="note">この指定では追加項目のラベル名称で指定する。
+	<p>例えば、モジュール一般設定での指定を「<tt>reply_extension=申込書式</tt>」とするなら、追加項目として、"申込書式,hidden,A" のような項目を作成することで、応答メールのテンプレートをフォーム毎に変更することができる。</p>
+	<p>対応するテンプレートとしては、指定した項目の値 (この例の場合 "A") をメールのテンプレートファイル名の付加したものとなる。したがって、<tt>language/&lt;lang&gt;/mail_template/{accept|order}<b>A</b>.tpl</tt> を用意しておけば応答文としてこれを使う。</p>
+	<p>ファイル名に付加する文字列は、申し込み時に保存される値であるが、エンコーディングが問題となる場合があるので英数字の範囲での指定を推奨する。<br/>なお、指定値を付加したテンプレートファイルが存在しない場合、標準のテンプレートが利用される。</p>
+      </div>
+    </dd>
+    <dt>size (テキスト入力フィールドの規定幅)</dt>
+    <dd>既定値は size=60</dd>
+    <dt>cols, rows (テキストエリアの規定幅/行数)</dt>
+    <dd>既定値は cols=40, rows=5</dd>
+  </dl>
 
   <a name="form"></a><h2>フォームの追加項目</h2>
   <strong>予約処理</strong> における追加項目は、申込時のフォームで入力する
@@ -374,6 +407,17 @@ td,th { padding: 4px; background: #e8e8e8;}
   <a name="changes"></a><h2>変更履歴</h2>
 
 <dl>
+  <dt>2008/07/22 イベント案内モジュール 2.5 リリース</dt>
+  <dd>
+    <ul>
+      <li>追加項目オプション reply_extension によるメールテンプレートの切り替え機能を追加</li>
+      <li>追加項目オプションを規定値に反映</li>
+      <li>一般設定の「人数指定」を「追加項目オプション」に変更</li>
+      <li>カテゴリがない場合、ブロックのカテゴリ選択ボタンを出力しない</li>
+      <li>管理画面用のデータなし表示リソースを追加</li>
+      <li>モジュール複製時の利用テンプレートの誤りを修正</li>
+    </ul>
+  </dd>
   <dt>2008/02/16 イベント案内モジュール 2.42 リリース</dt>
   <dd>
     <ul>
@@ -482,6 +526,6 @@ td,th { padding: 4px; background: #e8e8e8;}
 <hr>
 <address>安富 伸浩 &lt;<a href="mailto:nobuhiro.yasutomi@nifty.ne.jp">nobuhiro.yasutomi@nifty.ne.jp</a>&gt;</address>
 マイサイト ユーザーズ <a href="http://mysite.ddo.jp/">http://mysite.ddo.jp/</a><br/>
-$Id: help.html,v 1.55 2008-02-16 11:39:14 nobu Exp $
+$Id: help.html,v 1.58 2008-07-22 15:09:44 nobu Exp $
 </body>
 </html>

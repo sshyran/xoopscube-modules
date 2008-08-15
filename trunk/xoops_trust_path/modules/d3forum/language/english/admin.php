@@ -35,8 +35,8 @@ define('_MD_A_D3FORUM_HELP_SYNCALLTABLES','Execute it if your forum displays con
 define('_MD_A_D3FORUM_H2_IMPORTFROM','Import');
 define('_MD_A_D3FORUM_H2_COMIMPORTFROM','Import from XOOPS comments');
 define('_MD_A_D3FORUM_LABEL_SELECTMODULE','Select a module');
-define('_MD_A_D3FORUM_BTN_DOIMPORT','Do import');
-define('_MD_A_D3FORUM_CONFIRM_DOIMPORT','Are you OK?');
+define('_MD_A_D3FORUM_BTN_DOIMPORT','Import');
+define('_MD_A_D3FORUM_CONFIRM_DOIMPORT','Are you sure?');
 define('_MD_A_D3FORUM_MSG_IMPORTDONE','Imported successfully');
 define('_MD_A_D3FORUM_MSG_COMIMPORTDONE','XOOPS comments of the module are imported as comment-integration');
 define('_MD_A_D3FORUM_ERR_INVALIDMID','You\'ve specified wrong module to be imported');

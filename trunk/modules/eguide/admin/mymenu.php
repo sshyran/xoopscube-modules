@@ -5,7 +5,7 @@
 // Deny direct access
 if( !defined('XOOPS_ROOT_PATH') ) exit ;
 $mytrustdirname = basename( dirname( dirname( __FILE__ ) ) ) ; // fake hack
-$mydirname = basename( dirname( dirname( __FILE__ ) ) ) ;
+
 // Skip for ORETEKI XOOPS
 if( defined( 'XOOPS_ORETEKI' ) ) return ;
 

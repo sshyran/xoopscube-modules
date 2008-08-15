@@ -1,5 +1,5 @@
 <?php
-# $Id: const.php,v 1.9 2008-02-11 02:55:02 nobu Exp $
+# $Id: const.php,v 1.11 2008-07-20 12:45:31 nobu Exp $
 
 define("_RVSTAT_ORDER",0);
 define("_RVSTAT_RESERVED",1);
@@ -11,7 +11,8 @@ define("STAT_DELETED",4);
 
 include_once(dirname(__FILE__).'/mydirname.php');
 
-global $myprefix, $egdirname;
+global $myprefix, $egdirname, $xoopsDB;
+define('EGPREFIX', $myprefix);
 define('EGTBL', $xoopsDB->prefix($myprefix));
 define('CATBL', $xoopsDB->prefix($myprefix."_category"));
 define('OPTBL', $xoopsDB->prefix($myprefix."_opt"));

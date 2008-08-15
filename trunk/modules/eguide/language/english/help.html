@@ -1,23 +1,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html language="en">
 <head>
-<title>Event Guide module helps</title>
+<title>Event Guide module Help</title>
 <style>
 .outer { background-color: #808080; }
 td,th { padding: 4px; background: #e8e8e8;}
 .head th  { padding: 4px; background: #d0d0d0; }
 .bnf { color: #008000; }
-.note { font-size: 80%; color: #800000; padding: 0.5em;}
 </style>
 </head>
 <body>
+<style>
+.note { font-size: 90%; color: #800000; padding: 0.5em;}
+</style>
   <h1>Event Guide module</h1>
   <ul>
   <li><a href="#summary">Summary</a></li>
   <li><a href="#roleplay">Using Steps</a></li>
   <li><a href="#functions">Functions</a></li>
   <li><a href="#config">Event Configuration</a></li>
-  <li><a href="#form">Additional fileld Formats</a></li>
+  <li><a href="#form">Formats of Additional fields</a></li>
   <li><a href="#changes">Changes</a></li>
   </ul>
 
@@ -25,15 +27,16 @@ td,th { padding: 4px; background: #e8e8e8;}
 
   <a name="summary"></a><h2>Summary</h2>
 
-  Event guide module will display event guidance
+  The module Event Guide will display event guidance
   and reservations for the event.
-  The modules has functions as follows:
+  <br>
+The modules features the following functions:
 <ul>
   <li>Event reservations</li>
   <li>Configurable reservation forms - register id by email address</li>
   <li>Display event automatically in time - change display and allow reservations</li>
   <li>Adminster reservations and get data in CSV format</li>
-  <li>Mail to send to persons who have made reservations</li>
+  <li>Mail persons who have made reservations</li>
   <li>New event notification to registered users</li>
 </ul>
 
@@ -86,7 +89,7 @@ td,th { padding: 4px; background: #e8e8e8;}
       <div class="note">
       Reservations need approval (auto approve disabled), Here to approve.
       <br />
-      All Reservation information to display and Edit, Delete operation
+      All Reservation information to display and Edit, Delete action
       to be chosen from item "more" link.
       NOTE: Be careful to be match form field when you edit information.
       </div>
@@ -100,7 +103,7 @@ td,th { padding: 4px; background: #e8e8e8;}
 
     <ol>
       <li><a href="#config">Event Configuration</a></li>
-      <li>Event operations</li>
+      <li>Event actions</li>
       <li>Notify new event registered users</li>
     </ol>
 
@@ -109,120 +112,161 @@ td,th { padding: 4px; background: #e8e8e8;}
   Event Guide module setup items as follow:
   
   <blockquote>
-    <table border="0" cellspacing="1" cellpadding="4" bgcolor="#808080">
-      <tr class="hd"><th>Item</th><th>value</th><th>description</th></tr>
+    <table class="outer">
+      <tr><th>Item</th><th>value</th><th>description</th></tr>
       <tr class="even">
-	<th align="left">Group of Event Post</th>
-	<td>Group (<u>Regsiter Users</u>)</td>
-	<td>Set a group the owner permited to administration for own evnet.</td>
+	<td class="head">Group allowed to post Events</td>
+	<td>Group (<u>Register Users</u>)</td>
+	<td>Set a group with permissions to publish and manage its own events</td>
       </tr>
       <tr class="odd">
-	<th align="left">Notify mail to Admin</th>
+	<td class="head">Notify site Administrators</td>
 	<td>No/<u>Yes</u>/Always</td>
-	<td>Notification mail to admin when Event registerd or updated.
-	No = No notifcation.
-	Yes = Notify except operation user.
-	Always = Notify with operation user.
-	</td>
+	<td>A notification by email is sent to admin when a  Event is registered or updated.
+	  <br>
+	  No = No notifcation.
+	  <br>
+	  Yes = Notify except user action.
+	  <br>
+	  Always = Notify with user action.	</td>
       </tr>
       <tr class="even">
-	<th align="left">Admin Group for Notification</th>
+	<td  class="head">Admin Group for Notification</td>
 	<td><u>Yes</u>/No</td>
-	<td>The group is received admin notification mail</td>
+	<td>The admin group to send an email notification</td>
       </tr>
       <tr class="odd">
-	<th align="left">Do you need to approve New Event</th>
+	<td class="head">Do you need to approve New Event</td>
 	<td>Yes/<u>No</u></td>
 	<td>Need to approve New Event by site administrator</td>
       </tr>
       <tr class="even">
-	<th align="left">Display additional items in list</th>
+	<td class="head">Display additional items in list</td>
 	<td>field counts (<u>3</u>)</td>
 	<td>Display items entry order additional form</td>
       </tr>
       <tr class="odd">
-	<th align="left">Display list items in a page</th>
+	<td class="head">Display list items in a page</td>
 	<td>line counts (<u>50</u>)</td>
 	<td>How many item lines in a page</td>
       </tr>
       <tr class="even">
-	<th align="left">Display events in top page</th>
+	<td class="head">Display events in top page</td>
 	<td>Event counts (<u>10</u>)</td>
 	<td>Number of listed events in top page</td>
       </tr>
       <tr class="odd">
-	<th align="left">Show Multiple Entry</th>
+	<td class="head">Show Multiple Entry</td>
 	<td><u>Yes</u>/No</td>
 	<td>When event has multiple entry, show each entris. YES - display each entries. NO - Only show recenet entry.</td>
       </tr>
       <tr class="even">
-	<th align="left">User requested notification of new event</th>
+	<td class="head">User requested notification of new event</td>
 	<td><u>Yes</u>/No</td>
 	<td>YES - Enable notification mail, NO - disable.</td>
       </tr>
       <tr class="odd">
-	<th align="left">Event entry need to LOGIN</th>
+	<td class="head">Event entry need to LOGIN</td>
 	<td>Yes/<u>No</u></td>
 	<td>Only login user can be reservation event. (Not use email address)</td>
       </tr>
       <tr class="even">
-	<th align="left">Has confirm page</th>
+	<td class="head">Has confirm page</td>
 	<td><u>Yes</u>/No</td>
-	<td>Display confirm page when reservation submit</td>
+	<td>Display a confirmation page when reservation is submitted</td>
       </tr>
       <tr class="odd">
-	<th align="left">Label of persons</th>
+	<td class="head">Additional item options</td>
 	<td>(none)</td>
-	<td>Extra field label in reservation form for how many persons.</td>
+	<td>Additional item optional settings.
+	  <ul>
+	    <li>label_persons=label (label for multiple person reservation)</li>
+	    <li>reply_extension=label (label for reply mail template extension)</li>
+	    <dt>size=60 (text input default size)</dt>
+	    <li>cols=40 (textarea default columns)</li>
+	    <li>rows=5 (textarea default rows)</li>
+	  </ul>
+	  See "<a href="#form_options">Additional item options</a>" more details.
+	  
+	</td>
       </tr>
       <tr class="even">
-	<th align="left">Close Time Before (min)</th>
+	<td class="head">Close Time Before (min)</td>
 	<td><u>60</u></td>
-	<td>Event entry close time before setting minits.</td>
+	<td>Event entry close time before setting minutes.</td>
       </tr>
       <tr class="odd">
-	<th align="left">Expire Time</th>
+	<td class="head">Expire Time</td>
 	<td><u>1440</u> (was 1day, 24 hours)</td>
-	<td>Event expired on top page when after event start time in minites.</td>
+	<td>Event expired on top page when after event start time in minutes.</td>
       </tr>
       <tr class="even">
-	<th align="left">Persons default value</th>
+	<td class="head">Persons default value</td>
 	<td><u>10</u></td>
 	<td>Reservation persons in event post form</td>
       </tr>
       <tr class="odd">
-	<th align="left">Date Foramt</th>
+	<td class="head">Date Format</td>
 	<td><u>D, d M Y</u></td>
 	<td>Open Event Date(Time) display format. Using PHP date function format.</td>
       </tr>
       <tr class="even">
-	<th align="left">Use Other moudle plugins</th>
+	<td class="head">Use Other moudle plugins</td>
 	<td>Yes/<u>No</u></td>
 	<td>Internal Control accept entry form other modules</td>
       </tr>
       <tr class="odd">
-	<th align="left">Current entry level mark</th>
+	<td class="head">Current entry level mark</td>
 	<td>0,[Close]<br/>50,[Empty]<br/>100,[Many]<br/>101,[Full]<br/></td>
 	<td>The mark mean of how many entry in current. Show mark correspond parcentage. (xx,yy mean less than xx% showup yy. And '0,yy' mean out of date mark)</td>
       </tr>
       <tr class="even">
-	<th align="left">Time Table Labels</th>
+	<td class="head">Time Table Labels</td>
 	<td>(none)</td>
 	<td>Set starting time in Settings collection page. e.g.: 08:00,14:00,16:00</td>
       </tr>
       <tr class="odd">
-	<th align="left">Item List in export reservations</th>
+	<td class="head">Item List in export reservations</td>
 	<td><u>*</u></td>
-	<td>Item `name' or `number' seperated comma(,). Astarisk(*) mean left items. e.g.: 3,4,0,2,*</td>
+	<td>Item `name' or `number' seperated comma(,). Asterisk(*) mean left items. e.g.: 3,4,0,2,*</td>
       </tr>
       <tr class="even">
-	<th align="left">Allow Comments</th>
+	<td class="head">Allow Comments</td>
 	<td><u>Yes</u>/No</td>
-	<td>Allow Comments for event<p>Following sets standard comment function in XOOPS</p></td>
+	<td>Allow Comments for event<p>Following settings of standard comment function in XOOPS</p></td>
       </tr>
 
     </table>
   </blockquote>
+
+  <a name="form_options"></a><h3>Additional item options</h3>
+  <dl>
+    <dt>label_persons (label for multiple person reservation)</dt>
+    <dd>This option setting for a reservation accept multiple persons.
+      Set item name(label) to input how many.
+      <p class="note">For example setting as
+	"<tt>label_persons=Persons</tt>". In additional item like as
+	"Persons,select,1,2,3,4" that make to recommand numeric choice field.
+      </p>
+      Only value setting in this config, Assume set for this "label_persons=" option.
+      This is compatible before eguide 2.5.
+    </dd>
+    <dt>reply_extension (label for reply mail template extension)</dt>
+    <dd>
+      This option using for switch reply mail tamplate.
+      
+
+      <div class="note">This option setting item name(label) for template file name extension.
+	<p>For example, setting in preferences "<tt>reply_extension=OrderForm</tt>", In Additional Items include like "OrderForm,hidden,A" field. This event reservation switch reply mail template file.</p>
+	<p>In this case(the value as "A") using template file name assume <tt>language/&lt;lang&gt;/mail_template/{accept|order}<b>A</b>.tpl</tt> and using it.</p>
+	<p>Additional value for file name, that is store value in reservation. In international using, recommand the value make alpha-numeric only. Because sometime there is encoding problem.<br/>If there is no mail template in additional name, using default mail template.</p>
+      </div>
+    </dd>
+    <dt>size (text input default size)</dt>
+    <dd>Default value as size=60</dd>
+    <dt>cols, rows (textarea default columns/rows)</dt>
+    <dd>Default value as cols=40, rows=5</dd>
+  </dl>
 
   <a name="form"></a><h2>Additional fields Format</h2>
   <strong>In Reservation</strong>
@@ -265,12 +309,12 @@ td,th { padding: 4px; background: #e8e8e8;}
       <tr class="even"><td>#message text</td><td>message text</td></tr>
     </table>
   </form>
-  <h3>Releated reservation forms</h3>
+  <h3>Related reservation forms</h3>
   <dl>
     <dt>Mulitiple persons reservation</dt>
     <dd>
-      You want handle multiple persons reservation on a evnet,
-      you need settings as following:
+      You want handle multiple persons reservation on a event,
+      you need the following settings:
       <ul>
 	<li>Number of persons input field in "Additional items" (example: "<tt>Persons,select,1,2,3,4,5</tt>")</li>
 	<li>Module Preferences "Label of persons" setting the fields label. (set in exmaple "<tt>Persons</tt>")</li>
@@ -288,46 +332,46 @@ td,th { padding: 4px; background: #e8e8e8;}
   <a name="multidate"></a><h2>Handling for multiple open event</h2>
 
   <p>Event Guide handle the content of same event, open two or more times.
-    This settings to "Repeat Open" in event registration form.
+    Set "Repeat Open" in event registration form.
   </p>
 
-  <p>You want more detail settings, you send "Preview" one time.
-    There is expand and edit more detail items.
-  </p>
+  <p>If you need to setup more details, click "Preview" one time.
+    This will expand and allow you to add and extra details.  </p>
 
-  <p>In addition, the event is registered once to do detailed
-    specification and it sets it on "Edit Open Date" page.
-  </p>
+<p>In addition, the event is registered once for detailed
+    specification and set it on "Edit Open Date" page.  </p>
 
-  <h3>Note to multiple open event editing</h3>
+<h3>Note to multiple open event editing</h3>
 
   <ul>
-    <li>When edit mutiple open event,  careful to change the master event date.
-      The open date keeps interval each other.</li>
+    <li>When edit mutiple open event,  be careful  changing the master event date.
+      The open date keeps interval to each other.</li>
     <li>Wen time is omitted by the date specification,
-      specified same time of the starting date.</li>
-  </ul>
+      it's specified a same time of  starting date.</li>
+</ul>
 
   <a name="update"></a><h2>Module Update</h2>
   
   <ul>
-    <li>When Event Guide module update, You need Module update in Module Manager in admin page.</li>
-    <li>Reservation Data format convertion</li>
-    <div class="note">In eguide 2.31 later internal data format changing.
-      If you need read out past reservation data,
-      there is data format convertion program <a href="../../admin/conv230.php">admin/conv230.php</a>. That page to show convertion button if there is need
-      convert data.
-    </div>
+    <li>You can update module from Module Manager in admin panel.</li>
+    <li>Format convertion of Reservation Data</li>
+    <div class="note">In eguide 2.31 and later, the internal data format has changed.
+      If you need to import past reservation data,
+      there is a data format convertion program <a href="../../admin/conv230.php">admin/conv230.php</a>. That page show a convertion button if there is need
+      to data.    </div>
   </ul>
 
-  <a name="duplication"></a><h2>Module duplicate</h2>
+<a name="duplication"></a>
+<h2>Module Duplication</h2>
 
-  <p>eguide 2.4 later module is duplicatable (sorry not yet D3).
-    There is command line utility proguram for duplicate module.
-    "eguide/duplicate.php" is duplicate eguide module how many you want.
-    (This command support only Unix-like system)
-  </p>
-  <p>Example use this:</p>
+  <p>Module Eguide 2.4 and later  is duplicatable (sorry not yet D3).
+    <br>
+    There is command line utility proguram to duplicate the module.
+    <br>
+    "eguide/duplicate.php" allow you to easily duplicate Eguide module how many you want.
+    <br>
+    (This command supports only Unix-like systems)  </p>
+<p>Example use this:</p>
   <pre>
     $ <u>cd modules/eguide</u>
     $ <u>php duplicate.php event ticket class</u>
@@ -339,6 +383,17 @@ td,th { padding: 4px; background: #e8e8e8;}
   <a name="changes"></a><h2>Changes</h2>
 
 <dl>
+  <dt>2008/07/22 eguide 2.5 released</dt>
+  <dd>
+    <ul>
+      <li>Add item options "reply_extension" as switch reply mail template</li>
+      <li>Apply "Additional item options" in defaults</li>
+      <li>Change preferences "Label of persons" to "Additional item options"</li>
+      <li>Not display category select button if there is no categires</li>
+      <li>Add no data language resources for admin page</li>
+      <li>Fix using template set mistake.</li>
+    </ul>
+  </dd>
   <dt>2008/02/16 eguide 2.42 released</dt>
   <dd>
     <ul>
@@ -385,7 +440,7 @@ td,th { padding: 4px; background: #e8e8e8;}
   <dt>2007/03/03 eguide 2.3 released</dt>
   <dd>
     <ul>
-      <li>Add setting notifiy to operation user self.</li>
+      <li>Add setting notifiy to action user self.</li>
       <li>Add update notification to admin with poster</li>
       <li>fix stop admin mail when disable setting in preference</li>
       <li>fix notification mail for register users</li>
@@ -444,6 +499,6 @@ td,th { padding: 4px; background: #e8e8e8;}
 <hr>
 <address>Nobuhiro Yasutomi &lt;<a href="mailto:nobuhiro.yasutomi@nifty.ne.jp">nobuhiro.yasutomi@nifty.ne.jp</a>&gt;</address>
 MySite Users <a href="http://mysite.ddo.jp/">http://mysite.ddo.jp/</a><br/>
-$Id: help.html,v 1.43 2008-02-16 11:39:14 nobu Exp $
+$Id: help.html,v 1.45 2008-07-22 15:09:44 nobu Exp $
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 // Event Guide Module Administration message catalogue
-// $Id: admin.php,v 1.12 2008-02-03 15:28:52 nobu Exp $
+// $Id: admin.php,v 1.13 2008-07-05 06:14:06 nobu Exp $
 define("_AM_DBUPDATED","データベースを更新しました");
 define("_AM_TITLE","表題");
 define("_AM_POSTER","担当者");
@@ -34,6 +34,7 @@ define("_AM_RESERVATION","予約");
 define("_AM_EVENT_DAY","開催日");
 define("_AM_RECEIPT","受付一覧");
 define("_AM_COUNT","件数");
+define('_AM_NODATA','データがありません');
 
 define("_AM_INFO_SEARCH","絞り込み");
 

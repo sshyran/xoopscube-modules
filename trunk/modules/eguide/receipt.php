@@ -1,6 +1,6 @@
 <?php
 // Event Receiption for Poster
-// $Id: receipt.php,v 1.26 2007-07-18 04:53:43 nobu Exp $
+// $Id: receipt.php,v 1.29 2008-07-20 12:45:31 nobu Exp $
 
 include 'header.php';
 require 'perm.php';
@@ -10,7 +10,7 @@ $rvid=param('rvid');
 $eid= param('eid');
 $exid= param('sub');
 $myts =& MyTextSanitizer::getInstance();
-$nlab = $xoopsModuleConfig['label_persons'];
+$nlab = eguide_form_options('label_persons');
 
 if ($rvid) {
     if ($op=='view') $op = 'one';
@@ -262,7 +262,7 @@ case 'edit':
 
 case 'one':
     
-    $xoopsOption['template_main'] = 'eguide_confirm.html';
+    $xoopsOption['template_main'] = EGPREFIX.'_confirm.html';
     $xoopsTpl->assign('lang_title', _MD_RESERV_REC);
     $edit = "<a href='receipt.php?op=edit&rvid=$rvid'>"._EDIT."</a>";
     $del ="<a href='reserv.php?op=cancel&rvid=$rvid&back='>"._MD_RESERV_DEL."</a>";
@@ -281,7 +281,7 @@ case 'one':
     break;
 
 default:
-    $xoopsOption['template_main'] = 'eguide_receipt.html';
+    $xoopsOption['template_main'] = EGPREFIX.'_receipt.html';
 
     $xoopsTpl->assign('lang_title', _MD_RESERVATION);
 
@@ -291,6 +291,8 @@ default:
     $rep[] = $title;
     $pat[] ='{EVENT_URL}';
     $rep[] = EGUIDE_URL."/event.php?eid=$eid".($exid?"&sub=$exid":'');
+    $pat[] ='{REQ_UNAME}';
+    $rep[] = $xoopsUser->getVar('uname');
     $template = file_get_contents(template_dir('confirm.tpl')."/confirm.tpl");
     $mailmsg = htmlspecialchars(str_replace($pat, $rep, $template));
     $max = $xoopsModuleConfig['max_item'];
@@ -361,7 +363,7 @@ default:
 }
 
 if ($print) {
-    $xoopsTpl->display('db:eguide_receipt_print.html');
+    $xoopsTpl->display('db:'.EGPREFIX.'_receipt_print.html');
 } else {
     include(XOOPS_ROOT_PATH."/footer.php");
 }
