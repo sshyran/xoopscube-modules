@@ -17,7 +17,8 @@ $modversion['author'] = "GIJ=CHECKMATE and JIDAIKOBO" ;
 $modversion['help'] = "" ;
 $modversion['license'] = "GPL" ;
 $modversion['official'] = 0 ;
-$modversion['image'] = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
+$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
+
 $modversion['dirname'] = $mydirname ;
 
 // Any tables can't be touched by modulesadmin.
@@ -262,7 +263,7 @@ $modversion['config'][] = array(
 	'description'	=> $constpref.'_CSS_URIDSC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'text' ,
-	'default'		=> '{mod_url}/index.php?page=main_css' ,
+	'default'		=> '{mod_url}/main.css' ,
 	'options'		=> array()
 ) ;
 

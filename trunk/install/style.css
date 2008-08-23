@@ -88,3 +88,28 @@ select option {
 	border-top:1px solid #ccc;
 	padding:10px 0 10px 0;
 }
+
+.confirmInfo {
+	color:#000000;
+	font-size:15px;
+	border:1px solid #6B94C5;
+	padding:8px 8px 8px 35px;
+	margin:15px 10px;
+	background:#EEEEFF url(img/info.png) no-repeat 5px 4px;
+}
+
+.confirmMsg {
+	color:#000000;
+	border:1px solid #ff6633;
+	padding:8px 8px 8px 35px;
+	margin:15px 10px;
+	background:#fff8ee url(img/important.png) no-repeat 5px 4px;
+}
+
+.confirmOk {
+	color:#000000;
+	border:1px solid #00cc00;
+	padding:8px 8px 8px 35px;
+	margin:15px 10px;
+	background:#f8fff8 url(img/yes.png) no-repeat 5px 4px;
+}

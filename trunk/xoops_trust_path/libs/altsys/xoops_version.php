@@ -5,6 +5,7 @@ include_once dirname(__FILE__).'/include/altsys_functions.php' ;
 // language file (modinfo.php)
 altsys_include_language_file( 'modinfo' ) ;
 
+
 $modversion['name'] = _MI_ALTSYS_MODULENAME ;
 $modversion['version'] = '0.59' ;
 $modversion['description'] = _MI_ALTSYS_MODULEDESC ;

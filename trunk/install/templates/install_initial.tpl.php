@@ -18,5 +18,5 @@
       </tr>
 
 </table>
-<p align="center"><?php echo _INSTALL_L13 ?></p>
+<div class="confirmMsg"><?php echo _INSTALL_L13 ?></div>
 </div>

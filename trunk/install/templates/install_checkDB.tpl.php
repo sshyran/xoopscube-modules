@@ -7,6 +7,6 @@
   </td></tr>
 </table>
 <?php if (is_array($this->v('msgs'))) foreach($this->v('msgs') as $msg) { ?>
-<p align="center"><?php echo $msg ?></p>
+<div class="confirmInfo"><?php echo $msg ?></div>
 <?php } ?>
 </div>

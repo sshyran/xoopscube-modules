@@ -8,7 +8,7 @@
  *
  */
     if (!defined('_INSTALL_L128')) {
-        define('_INSTALL_L128', 'Choose language to be used for the installation process');
+        define('_INSTALL_L128', 'Choose the language to be used for the installation process!');
     }
     $langarr = getDirList('./language/');
     foreach ($langarr as $lang) {

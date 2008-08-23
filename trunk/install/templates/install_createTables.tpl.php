@@ -9,5 +9,5 @@
 </tr>
 </table>
 </div>
-<p align="center"><?php $this->e('message')?></p>
+<div class="confirmOk"><?php $this->e('message')?></div>
 

@@ -2,7 +2,7 @@
 
 
 // for XOOPS
-include_once($_SERVER['DOCUMENT_ROOT'].'/xoopscube/mainfile.php');
+include_once '../../../../../mainfile.php';
 
 /**
  * KFM - Kae's File Manager
@@ -149,7 +149,7 @@ $kfm_only_allow_image_upload = 0;
 $kfm_log_level = 0;
 
 // use this array to show the order in which language files will be checked for
-$kfm_preferred_languages = array('en','fr','de','es','pt','nl','ga');
+$kfm_preferred_languages = array('en','cz','de','es','fr','jp','ko','ru');
 
 // themes are located in ./themes/
 // to use a different theme, replace 'default' with the name of the theme's directory.
@@ -187,7 +187,7 @@ $kfm_return_file_id_to_cms = 0;
 
 //Permissions for uploaded files.  This only really needs changing if your
 //host has a weird permissions scheme.
-$kfm_default_upload_permission = '664';
+$kfm_default_upload_permission = '755';
 
 //Listview or icons
 $kfm_listview = 0;
@@ -197,7 +197,7 @@ $kfm_show_files_in_groups_of = 10;
 
 // default directories. Separate with commas. These will be created if they don't already exist.
 // $kfm_default_directories='Documents,Music,Video';
-$kfm_default_directories='';
+$kfm_default_directories='Documents,Music,Video';
 
 // we would like to keep track of installations, to see how many there are, and what versions are in use.
 // if you do not want us to have this information, then set the following variable to '1'.

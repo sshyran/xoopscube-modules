@@ -15,7 +15,7 @@ define("_INSTALL_L9","( On MS platforms, you may receive this error message even
 define("_INSTALL_L10","Plesae press the button below to continue if this is really ok.");
 define("_INSTALL_L11","The server path to your XOOPS Cube root directory: ");
 define("_INSTALL_L12","URL to your XOOPS Cube root directory: ");
-define("_INSTALL_L13","If the above setting is correct, press the button below to continue.");
+define("_INSTALL_L13","If the above settings are correct, press the button below to continue.");
 define("_INSTALL_L14","Next");
 define("_INSTALL_L15","Please open mainfile.php and enter required DB settings data");
 define("_INSTALL_L16","%s is the hostname of your database server.");
@@ -81,21 +81,21 @@ define("_INSTALL_L72","The following directories must be created with the write 
 define("_INSTALL_L73","Invalid Email");
 
 // add by haruki
-define("_INSTALL_L80","introduction");
-define("_INSTALL_L81","check file permissions");
+define("_INSTALL_L80","Introduction");
+define("_INSTALL_L81","Check file permissions");
 define("_INSTALL_L82","Checking file and directory permissions..");
 define("_INSTALL_L83","File %s is NOT writable.");
 define("_INSTALL_L84","File %s is writable.");
 define("_INSTALL_L85","Directory %s is NOT writable.");
 define("_INSTALL_L86","Directory %s is writable.");
 define("_INSTALL_L87","No errors detected.");
-define("_INSTALL_L89","general settings");
+define("_INSTALL_L89","General settings");
 define("_INSTALL_L90","General configuration");
 define("_INSTALL_L91","confirm");
-define("_INSTALL_L92","save settings");
-define("_INSTALL_L93","modify settings");
+define("_INSTALL_L92","Save settings");
+define("_INSTALL_L93","Modify settings");
 define("_INSTALL_L88","Saving configuration data..");
-define("_INSTALL_L94","check path & URL");
+define("_INSTALL_L94","Check path & URL");
 define("_INSTALL_L127","Checking file path & URL settings..");
 define("_INSTALL_L95","Could not detect the physical path to your XOOPS directory.");
 define("_INSTALL_L96","There is a conflict between the detected physical path (%s) and the one you input.");
@@ -104,22 +104,22 @@ define("_INSTALL_L97","<b>Physical path</b> is correct.");
 define("_INSTALL_L99","<b>Physical path</b> must be a directory.");
 define("_INSTALL_L100","<b>Virtual path</b> is a valid URL.");
 define("_INSTALL_L101","<b>Virtual path</b> is not a valid URL.");
-define("_INSTALL_L102","confirm database settings");
-define("_INSTALL_L103","restart from the beginning");
-define("_INSTALL_L104","check database");
-define("_INSTALL_L105","atempt to create database");
+define("_INSTALL_L102","Confirm database settings");
+define("_INSTALL_L103","Restart from the beginning");
+define("_INSTALL_L104","Check database");
+define("_INSTALL_L105","Atempt to create database");
 define("_INSTALL_L106","Could not connect to the database server.");
 define("_INSTALL_L107","Please check the database server and its configuration.");
 define("_INSTALL_L108","Connection to database server is OK.");
 define("_INSTALL_L109","Database %s does not exists.");
 define("_INSTALL_L110","Database %s exists and connectable.");
 define("_INSTALL_L111","Database connection is OK.<br />Press the button below to create database tables.");
-define("_INSTALL_L112","admin user setting");
+define("_INSTALL_L112","Admin user setting");
 define("_INSTALL_L113","Table %s deleted.");
 define("_INSTALL_L114","Failed creating database tables.");
 define("_INSTALL_L115","Database tables created.");
-define("_INSTALL_L116","insert data");
-define("_INSTALL_L117","finish");
+define("_INSTALL_L116","Insert data");
+define("_INSTALL_L117","Finish");
 
 define("_INSTALL_L118","Failed creating table %s.");
 define("_INSTALL_L119","%d entries inserted to table %s.");
@@ -173,7 +173,7 @@ define("_INSTALL_L152","Could not open %s.");
 define("_INSTALL_L153","Could not update %s.");
 define("_INSTALL_L154","%s updated.");
 
-define('_INSTALL_L128', 'Choose language to be used for the installation process');
+define('_INSTALL_L128', 'Choose the language to be used for the installation process!');
 define('_INSTALL_L200', 'Reload');
 define("_INSTALL_L210","The 2nd Step Installation");
 

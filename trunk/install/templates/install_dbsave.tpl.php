@@ -6,5 +6,5 @@
 <?php } ?>
 </td></tr>
 </table>
-<p align="center"><?php $this->e('message')?></p>
+<div class="confirmInfo"><?php $this->e('message') ?></div>
 </div>
