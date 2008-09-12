@@ -397,6 +397,9 @@ background:#f2f2f2 url(<{"icons/edit.png"|theme}>) 5px center no-repeat;
 ul.toptab li.editDir {
 background:#f2f2f2 url(<{"icons/folder_edit.png"|theme}>) 5px center no-repeat;
 }
+ul.toptab li.group {
+background:#f2f2f2 url(<{"icons/group.png"|theme}>) 5px center no-repeat;
+}
 ul.toptab li.import {
 background:#f2f2f2 url(<{"icons/import.png"|theme}>) 5px center no-repeat;
 }
