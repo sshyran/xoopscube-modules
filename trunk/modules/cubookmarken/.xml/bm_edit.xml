@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<cubson-dynaactionform>
+	<form-bean name="BmEditForm" type="XCube_ActionForm">
+		<form-property name="bm_id" type="Int" />
+		<form-property name="bm_title" type="String" />
+		<form-property name="url" type="String" />
+		<form-property name="uid" type="Int" />
+		<form-property name="memo" type="Text" />
+		<form-property name="reg_unixtime" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="bm_id" depends="required">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_BM_ID" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+		</field>
+		<field property="bm_title" depends="required,maxlength">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_BM_TITLE" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_CUBOOKMARKEN_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="url" depends="required,maxlength">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_URL" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_CUBOOKMARKEN_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="uid" depends="required">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_UID" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+		</field>
+		<field property="memo">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_MEMO" />
+		</field>
+		<field property="reg_unixtime">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_REG_UNIXTIME" />
+		</field>
+	</form-validation>
+</cubson-dynaactionform>
