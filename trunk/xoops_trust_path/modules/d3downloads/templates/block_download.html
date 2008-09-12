@@ -8,7 +8,7 @@
 		<td class="d3downloads_single_frame_title" width="80%">
 			<{if ! $block.download.broken_link}>
 				<{$block.download.filelink}><b><{$block.download.title}></b></a><{$block.download.new}><{$block.download.pop}><br />
-				<{if $block.download.gif_image !="download.gif"}>
+				<{if $block.download.gif_image !="download.png"}>
 					<{$block.download.filelink}><img src="<{$block.mod_url}>/images/<{$block.download.gif_image}>" width="110" height="18"></a>
 				<{else}>
 					<{$block.download.filelink}><img src="<{$block.mod_url}>/images/<{$block.download.gif_image}>" width="19" height="19"></a>
@@ -36,8 +36,8 @@
 	</tr>
 	<tr>
 		<td colspan="2" class="d3downloads_even" align="left">
-			<img src="<{$block.mod_url}>/images/counter.gif" border="0" align="absmiddle" alt="<{$block.lang_hits}>" title="<{$block.lang_hits}>" />
-			&nbsp;<{$block.download.hits}>&nbsp;&nbsp;<img src="<{$block.mod_url}>/images/size.gif" border="0" align="absmiddle" alt="<{$block.lang_size}>" title="<{$block.lang_size}>" />&nbsp;<{$block.download.size}>&nbsp;&nbsp;<img src="<{$block.mod_url}>/images/platform.gif" border="0" align="absmiddle" alt="<{$block.lang_platform}>" title="<{$block.lang_platform}>" />&nbsp;<{$block.download.platform}>&nbsp;&nbsp;<img src="<{$block.mod_url}>/images/home.gif" border="0" align="absmiddle" alt="<{$block.lang_homepage}>" title="<{$block.lang_homepage}>"/>&nbsp;<a href="<{$block.download.homepage}>" target="_blank"><{$block.download.homepage}></a>
+			<img src="<{$block.mod_url}>/images/counter.png" border="0" align="absmiddle" alt="<{$block.lang_hits}>" title="<{$block.lang_hits}>" />
+			&nbsp;<{$block.download.hits}>&nbsp;&nbsp;<img src="<{$block.mod_url}>/images/size.png" border="0" align="absmiddle" alt="<{$block.lang_size}>" title="<{$block.lang_size}>" />&nbsp;<{$block.download.size}>&nbsp;&nbsp;<img src="<{$block.mod_url}>/images/platform.png" border="0" align="absmiddle" alt="<{$block.lang_platform}>" title="<{$block.lang_platform}>" />&nbsp;<{$block.download.platform}>&nbsp;&nbsp;<img src="<{$block.mod_url}>/images/home.png" border="0" align="absmiddle" alt="<{$block.lang_homepage}>" title="<{$block.lang_homepage}>"/>&nbsp;<a href="<{$block.download.homepage}>" target="_blank"><{$block.download.homepage}></a>
 		</td>
 	</tr>
 </table>

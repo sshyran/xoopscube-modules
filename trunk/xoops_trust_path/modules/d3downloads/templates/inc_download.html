@@ -8,7 +8,7 @@
 		<td class="d3downloads_single_frame_title" width="80%">
 			<{if ! $down.broken_link}>
 				<{$down.filelink}><b><{$down.title}></b></a><{$down.new}><{$down.pop}><br />
-				<{if $down.gif_image !="download.gif"}>
+				<{if $down.gif_image !="download.png"}>
 					<{$down.filelink}><img src="images/<{$down.gif_image}>" width="110" height="18"></a>
 				<{else}>
 					<{$down.filelink}><img src="images/<{$down.gif_image}>" width="19" height="19"></a>
@@ -39,8 +39,8 @@
 	</tr>
 	<tr>
 		<td colspan="2" class="d3downloads_even" align="left">
-			<img src="images/counter.gif" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_DOWNSUM}>" title="<{$smarty.const._MD_D3DOWNLOADS_DOWNSUM}>" />
-			&nbsp;<{$down.hits}>&nbsp;&nbsp;<img src="images/size.gif" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_SIZE}>" title="<{$smarty.const._MD_D3DOWNLOADS_SIZE}>" />&nbsp;<{$down.size}>&nbsp;&nbsp;<img src="images/platform.gif" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_PLATFORM}>" title="<{$smarty.const._MD_D3DOWNLOADS_PLATFORM}>" />&nbsp;<{$down.platform}>&nbsp;&nbsp;<img src="images/home.gif" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_HOMEPAGE}>" title="<{$smarty.const._MD_D3DOWNLOADS_HOMEPAGE}>"/>&nbsp;<a href="<{$down.homepage}>" target="_blank"><{$down.homepage}></a>
+			<img src="images/counter.png" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_DOWNSUM}>" title="<{$smarty.const._MD_D3DOWNLOADS_DOWNSUM}>" />
+			&nbsp;<{$down.hits}>&nbsp;&nbsp;<img src="images/size.png" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_SIZE}>" title="<{$smarty.const._MD_D3DOWNLOADS_SIZE}>" />&nbsp;<{$down.size}>&nbsp;&nbsp;<img src="images/platform.png" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_PLATFORM}>" title="<{$smarty.const._MD_D3DOWNLOADS_PLATFORM}>" />&nbsp;<{$down.platform}>&nbsp;&nbsp;<img src="images/home.png" border="0" align="absmiddle" alt="<{$smarty.const._MD_D3DOWNLOADS_HOMEPAGE}>" title="<{$smarty.const._MD_D3DOWNLOADS_HOMEPAGE}>"/>&nbsp;<a href="<{$down.homepage}>" target="_blank"><{$down.homepage}></a>
 		</td>
 	</tr>
 	<tr>
