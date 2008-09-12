@@ -5,8 +5,6 @@
  * @subpackage plugins
  */
 
-if (!is_object($smarty)) exit();
-
 /**
  * Include the {@link shared.make_timestamp.php} plugin
  */

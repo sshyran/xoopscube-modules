@@ -21,14 +21,12 @@
  * @link http://smarty.php.net/
  * @author Monte Ohrt <monte at ohrt dot com>
  * @author Andrei Zmievski <andrei@php.net>
- * @version 2.6.19
+ * @version 2.6.20
  * @copyright 2001-2005 New Digital Group, Inc.
  * @package Smarty
  */
 
-/* $Id: Smarty_Compiler.class.php,v 1.3 2008/03/08 09:54:21 nobunobu Exp $ */
-
-if (!class_exists('Smarty')) exit();
+/* $Id: Smarty_Compiler.class.php 2773 2008-08-12 18:17:51Z Uwe.Tews $ */
 
 /**
  * Template compiling class
@@ -306,7 +304,7 @@ class Smarty_Compiler extends Smarty {
                 }
             }
         }
-
+        
         /* Compile the template tags into PHP code. */
         $compiled_tags = array();
         for ($i = 0, $for_max = count($template_tags); $i < $for_max; $i++) {
@@ -351,7 +349,7 @@ class Smarty_Compiler extends Smarty {
             }
         }
         $compiled_content = '';
-
+        
         $tag_guard = '%%%SMARTYOTG' . md5(uniqid(rand(), true)) . '%%%';
         
         /* Interleave the compiled contents and text blocks to get the final result. */
@@ -364,7 +362,7 @@ class Smarty_Compiler extends Smarty {
             $text_blocks[$i] = str_replace('<?', $tag_guard, $text_blocks[$i]);
             $compiled_tags[$i] = str_replace('<?', $tag_guard, $compiled_tags[$i]);
             
-            $compiled_content .= $text_blocks[$i].$compiled_tags[$i];
+            $compiled_content .= $text_blocks[$i] . $compiled_tags[$i];
         }
         $compiled_content .= str_replace('<?', $tag_guard, $text_blocks[$i]);
 
@@ -374,7 +372,7 @@ class Smarty_Compiler extends Smarty {
 
         // recover legit tags
         $compiled_content = str_replace($tag_guard, '<?', $compiled_content); 
-
+        
         // remove \n from the end of the file, if any
         if (strlen($compiled_content) && (substr($compiled_content, -1) == "\n") ) {
             $compiled_content = substr($compiled_content, 0, -1);
@@ -1227,7 +1225,7 @@ class Smarty_Compiler extends Smarty {
             $buffer = isset($attrs['name']) ? $attrs['name'] : "'default'";
             $assign = isset($attrs['assign']) ? $attrs['assign'] : null;
             $append = isset($attrs['append']) ? $attrs['append'] : null;
-
+            
             $output = "<?php ob_start(); ?>";
             $this->_capture_stack[] = array($buffer, $assign, $append);
         } else {
@@ -1365,9 +1363,14 @@ class Smarty_Compiler extends Smarty {
                     /* If last token was a ')', we operate on the parenthesized
                        expression. The start of the expression is on the stack.
                        Otherwise, we operate on the last encountered token. */
-                    if ($tokens[$i-1] == ')')
+                    if ($tokens[$i-1] == ')') {
                         $is_arg_start = array_pop($is_arg_stack);
-                    else
+                        if ($is_arg_start != 0) {
+                            if (preg_match('~^' . $this->_func_regexp . '$~', $tokens[$is_arg_start-1])) {
+                                $is_arg_start--;
+                            } 
+                        } 
+                    } else
                         $is_arg_start = $i-1;
                     /* Construct the argument for 'is' expression, so it knows
                        what to operate on. */
