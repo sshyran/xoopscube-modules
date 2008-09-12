@@ -36,6 +36,7 @@ if( $mydirname == 'altsys' && is_object( @$target_module ) ) {
 	$target_mid = $target_module->getVar( 'mid' ) ;
 	$target_mname = $target_module->getVar( 'name' ) . "&nbsp;" . sprintf( "(%2.2f)" , $target_module->getVar('version') / 100.0 ) ;
 	$target_dirname = $target_module->getVar( 'dirname' ) ;
+	$modinfo = $target_module->getInfo() ;
 	// breadcrumbs
 	$breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;
 	$breadcrumbsObj->appendPath( XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin' , '_MI_ALTSYS_MENU_MYBLOCKSADMIN' ) ;

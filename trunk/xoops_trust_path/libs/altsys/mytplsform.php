@@ -171,6 +171,8 @@ echo "<h3 style='text-align:left;'>"._MD_A_MYTPLSFORM_EDIT." : ".htmlspecialchar
 $basefilepath = tplsadmin_get_basefilepath( $tpl['tpl_module'] , $tpl['tpl_type'] , $tpl['tpl_file'] ) ;
 $diff_from_file4disp = '' ;
 if( file_exists( $basefilepath ) ) {
+	$original_error_level = error_reporting() ;
+	error_reporting( $original_error_level & ~ E_NOTICE & ~ E_WARNING ) ;
 	$diff =& new Text_Diff( file( $basefilepath ) , explode("\n",$tpl['tpl_source']) ) ;
 	$renderer =& new Text_Diff_Renderer_unified();
 	$diff_str = htmlspecialchars( $renderer->render( $diff ) , ENT_QUOTES ) ;
@@ -183,11 +185,14 @@ if( file_exists( $basefilepath ) ) {
 			$diff_from_file4disp .= $line."\n" ;
 		}
 	}
+	error_reporting( $original_error_level ) ;
 }
 
 // diff from DB-default to selected DB template
 $diff_from_default4disp = '' ;
 if( $tpl['tpl_tplset'] != 'default' ) {
+	$original_error_level = error_reporting() ;
+	error_reporting( $original_error_level & ~ E_NOTICE & ~ E_WARNING ) ;
 	list( $default_source ) = $db->fetchRow( $db->query( "SELECT tpl_source FROM ".$db->prefix("tplfile")." NATURAL LEFT JOIN ".$db->prefix("tplsource")." WHERE tpl_tplset='default' AND tpl_file='".addslashes($tpl['tpl_file'])."' AND tpl_module='".addslashes($tpl['tpl_module'])."'" ) ) ;
 	$diff =& new Text_Diff( explode("\n",$default_source) , explode("\n",$tpl['tpl_source']) ) ;
 	$renderer =& new Text_Diff_Renderer_unified();
@@ -201,6 +206,7 @@ if( $tpl['tpl_tplset'] != 'default' ) {
 			$diff_from_default4disp .= $line."\n" ;
 		}
 	}
+	error_reporting( $original_error_level ) ;
 }
 
 
