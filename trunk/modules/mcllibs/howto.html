@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="ja" />
+<title>MCLLibs</title>
+<style type="text/css">
+body {
+  font-size: 13px;
+}
+li {
+  line-height: 130%;
+  padding: 10px;
+}
+div {
+  background-color: #444444;
+  color: #EFEFEF;
+}
+</style>
+</head>
+<body>
+<h2>MCL_TextFilter</h2>
+<p>MCL_TextFilterは、Legacy_TextFilterとメソッド互換のTextFilterですが、置換パターンをデリゲートで取得せずに、MCL_TextFilter自体の持つプリロードによりpluginsディレクトリより置換パターンを取得します。<br />
+モジュールディレクトリのpluginsディレクトリに置換パターンファイルがあればそれを読み込みます。<br />
+（プリロードのpostFilter()でモジュールディレクトリの置換パターンファイルを読み込むので、そのモジュールで表示されるブロックにも適用されてしまいます。）<br />
+MCL_TextFilterは、デリゲートで置換パターンを取得しませんので、巷に出回っているプリロードは反映されません。<br />
+MCL_TextFilterを利用したくない場合は。クラスMcllibs_Preloadを丸ごとコメントにしてください。<br />
+<br />
+置換パターンは、mcllibs/plugins/より読み込みます。プリロードと同じで、ルールに沿ったクラスを記述したファイルを置くだけで読み込まれます。
+</p>
+<ul>
+
+<li>【defaultfilter.class.php】
+<div>
+XCLのデフォルト互換のBBCodeです。
+</div>
+</li>
+
+<li>【ImageTitle.class.php】
+<div>[img title=タイトル]画像ファイル[/img][img align=left title=タイトル]画像ファイル[/img]で、&lt;img&gt;タグのtitleとaltにタイトルを入れられます。</div>
+</li>
+
+<li>【Note.class.php】
+<div>[note=1]で注釈 [foot=1]注釈文[/foot]で注釈文を表示します。=xは数字を合わせます。<br />
+[note]注釈文[/note]では、番号を自動でつけて、文の最後に注釈文を自動で表示します。ニュースなどページ分割されている場合は使えません。
+</div>
+</li>
+
+<li>【phpcode.class.php】
+<div>
+[phpcode]コード[/phpcode]でPHPコードの断片に色付け表示をします。<br />
+[phpsrc]ソース[/phpsrc]でPHPのソースコードに色付け表示をします。<br />
+[phpcode]と[phpsrc]の違いは&lt;?php ?&gt;を含むか含まないかです。&lt;?php ?&gt;を含まない場合は[phpcode]を使用してください。<br />
+[none]文字列[/none]でXCodeの変換などを行いません。[code]などを表記したい場合に使用してください。
+</div>
+</li>
+
+<li>【Wiki.class.php】
+<div>
+[wiki]wiki書式[/wiki]でwiki書式で記述することが出来ます。<br />
+pearのText_Wikiを使用しています。<br />
+＊picoを参考（真似）にしました。
+</div>
+</li>
+
+<li>【Javascript.class.php】
+<div>
+VideoBox,lightbox2,greyboxのBBCodeです。<br />
+Smartyプラグインと一緒に利用します。<br />
+&lt;{mcllibs_videobox}&gt;をテンプレートに書けばvideoboxで使用するJSファイルを読み込みます。<br />
+&lt;{mcllibs_lightbox}&gt;をテンプレートに書けばlightbox2で使用するJSファイルを読み込みます。<br />
+&lt;{mcllibs_greybox}&gt;をテンプレートに書けばgreyboxで使用するJSファイルを読み込みます。<br />
+＊モジュール、ブロック、テーマテンプレートのどこに記述しても利用出来ます。<br />
+＊複数記述しても１回しか出力しないので、モジュールやブロックでバッティングしても問題ありません。<br />
+<br />
+[video url=YouTubeのアドレス]でサムネイル付きのvideoboxリンクを作成します。<br />
+[video url=アドレス title=タイトル width=横幅 height=高さ]リンクテキスト[/video]でvideoboxのリンクを作成します。<br />
+[video url=アドレス title=タイトル]リンクテキスト[/video]でvideoboxのリンクを作成します。<br />
+<br />
+[light url=アドレス title=タイトル option=オプション]リンクテキスト[/light]でlightbox2のリンクを作成します。<br />
+[light url=アドレス title=タイトル]リンクテキスト[/light]でlightbox2のリンクを作成します。<br />
+<br />
+[grey url=アドレス title=タイトル type=タイプ option=オプション]リンクテキスト[/grey]でgreyboxのリンクを作成します。<br />
+[grey url=アドレス title=タイトル type=タイプ]リンクテキスト[/grey]でgreyboxのリンクを作成します。<br />
+</div>
+</li>
+
+<li>【UserMsg.class.php】
+<div>
+[user=ユーザID]テキスト[/user]でユーザIDで指定したユーザのみにテキストが表示されます。<br />
+[user]テキスト[/user]で登録ユーザのみにテキストが表示されます。<br />
+[guest]テキスト[/guest]でゲストのみにテキストが表示されます。
+</div>
+</li>
+
+<li>【youtube.class.php】
+<div>
+[youtube id=YouTubeのID]でYouTubeのビデオが表示されます。<br />
+YouTubeのアドレスを書けば勝手にYouTubeのビデオを表示します。
+</div>
+</li>
+</ul>
+<hr />
+
+<h2>Smartyプラグイン</h2>
+<p>mcllibs/smartyにファイルを置くことで自動で読み込まれます。<br />
+置換パターンは、mcllibs/plugins/より読み込みます。プリロードと同じで、ルールに沿ったクラスを記述したファイルを置くだけで読み込まれます。
+</p>
+<ul>
+
+<li>&lt;{mcllibs_captcha}&gt;
+<div>
+Smartyプラグインを利用し画像認証を手軽に追加出来ます。<br />
+投稿フォームに&lt;{mcllibs_captcha auto=true}>を追加するだけです。<br />
+パラメータ<br />
+width:画像の横幅<br />
+height:画像の高さ<br />
+returl:エラー時にリダイレクとするURL<br />
+posturl:ポストされるURL<br />
+auto:Trueの場合にテキストボックスの描画<br />
+＊ひとつの画面で複数設置は出来ません。
+</div>
+</li>
+
+<li>&lt;{mcllibs_lightbox}&gt;
+<div>
+&lt;{mcllibs_lightbox}&gt;を一行書くだけでlightbox2の必要ファイルを&lt;head&gt;内に記述します。<br />
+＊モジュール、ブロック、テーマテンプレートのどこに記述しても利用出来ます。<br />
+＊複数記述しても１回しか出力しないので、モジュールやブロックでバッティングしても問題ありません。
+</div>
+</li>
+
+<li>&lt;{mcllibs_greybox}&gt;
+<div>
+&lt;{mcllibs_greybox}&gt;を一行書くだけでgreyboxの必要ファイルを&lt;head&gt;内に記述します。<br />
+＊モジュール、ブロック、テーマテンプレートのどこに記述しても利用出来ます。<br />
+＊複数記述しても１回しか出力しないので、モジュールやブロックでバッティングしても問題ありません。
+</div>
+</li>
+
+<li>&lt;{mcllibs_videobox}&gt;
+<div>
+&lt;{mcllibs_videobox}&gt;を一行書くだけでvideoboxの必要ファイルを&lt;head&gt;内に記述します。<br />
+＊モジュール、ブロック、テーマテンプレートのどこに記述しても利用出来ます。<br />
+＊複数記述しても１回しか出力しないので、モジュールやブロックでバッティングしても問題ありません。
+</div>
+</li>
+
+<li>&lt;{mcllibs_hislide}&gt;
+<div>
+&lt;{mcllibs_hislide}&gt;を一行書くだけでhislideの必要ファイルを&lt;head&gt;内に記述します。<br />
+＊モジュール、ブロック、テーマテンプレートのどこに記述しても利用出来ます。<br />
+＊複数記述しても１回しか出力しないので、モジュールやブロックでバッティングしても問題ありません。
+＊cssは固定出力になります。
+</div>
+</li>
+
+<li>&lt;{mcllibs_randimage}&gt;
+<div>
+Smartyプラグインを利用しJPG画像をランダムに読み込み、テンプレート変数へセットします。<br />
+パラメータ<br />
+num:読み込む画像の数<br />
+path:読み込む画像のパス（uploads/が起点です）<br />
+例）&lt;{mcllibs_randimage path=image num=3}&gt;<br />
+&lt;{foreach item=rimg from=$randimages}&gt;<br />
+&lt;a href="&lt;{$xoops_url}&gt;/uploads/image/&lt;{$rimg}&gt;"&gt;&lt;img src="&lt;{$xoops_url}&gt;/uploads/image/thumbs/&lt;{$rimg}&gt;" />&lt;/a&gt;<br />
+&lt;{/foreach}&gt;
+</div>
+</li>
+</ul>
+</body>
+</html>

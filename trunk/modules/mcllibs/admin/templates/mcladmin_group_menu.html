@@ -1,0 +1,6 @@
+<h4><{$smarty.const._AD_MCLLIBS_GROUPLIST}></h4>
+<ul>
+<{foreach item=glist key=id from=$glist}>
+<li><a href="index.php?action=group&amp;cmd=groupview&amp;gid=<{$id}>"><{$glist.name}></a></li>
+<{/foreach}>
+</ul>

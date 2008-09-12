@@ -1,0 +1,42 @@
+<h4>My Admin</h4>
+<{if $perm}>
+<form method="post" action="#">
+<table class="outer">
+<tr>
+<th><{$smarty.const._AD_MCLLIBS_GROUPNAME}></th>
+<th><{$smarty.const._AD_MCLLIBS_MODPERM}></th>
+<th><{$smarty.const._AD_MCLLIBS_BLKPERM}></th>
+</tr>
+<{foreach item=plist key=gid from=$perm}>
+<tr class="<{cycle values="odd,even"}>">
+<td><{$plist.gname}></td>
+<td>
+<input type="checkbox" name="modadmin[<{$gid}>]" id="modadm<{$gid}>" value="1"<{if $plist.mod.module_admin==true}> checked="checked"<{/if}> />
+<label for="modadm<{$gid}>"><{$smarty.const._AD_MCLLIBS_ADMPERM}></label>
+&nbsp;
+<input type="checkbox" name="modread[<{$gid}>]" id="modread<{$gid}>" value="1"<{if $plist.mod.module_read==true}> checked="checked"<{/if}> />
+<label for="modread<{$gid}>"><{$smarty.const._AD_MCLLIBS_ACCPERM}></label>
+</td>
+<td>
+<{if isset($plist.blk)}>
+<{foreach item=blocks key=bid from=$plist.blk}>
+<input type="checkbox" name="blkread[<{$gid}>][<{$bid}>]" id="blk<{$gid}>_<{$bid}>" value="1"<{if $blocks.perm==true}> checked="checked"<{/if}> />
+<label for="blk<{$gid}>_<{$bid}>"><{$blocks.name}></label><br />
+<{/foreach}>
+<{else}>
+No Blocks.
+<{/if}>
+</td>
+</tr>
+<{/foreach}>
+<tr>
+<td colspan="3" class="foot">
+<input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+</td>
+</tr>
+</table>
+<input type="hidden" name="token" value="<{$token}>" />
+</form>
+<{else}>
+Error
+<{/if}>

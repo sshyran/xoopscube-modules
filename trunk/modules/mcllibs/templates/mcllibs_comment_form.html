@@ -1,0 +1,27 @@
+<form name="commentf" method="post" action="<{$xoops_url}>/index.php?moddir=mcllibs">
+<table border="0">
+<tr><th colspan="2" style="text-align: center;"><{$smarty.const._MI_MCLLIBS_COMMENT_ADDNEW}></th></tr>
+<{if !$xoops_isuser}>
+<tr>
+<td class="head"><{$smarty.const._MI_MCLLIBS_COMMENT_NAME}></td>
+<td class="odd"><input type="text" name="com_name" value="" /></td>
+</tr>
+<{/if}>
+<tr>
+<td class="head"><{$smarty.const._MI_MCLLIBS_COMMENT_COMMENT}></td>
+<td class="even"><textarea name="com_txt" cols="<{$comment_cols}>" rows="<{$comment_rows}>"></textarea></td>
+</tr>
+<tr>
+<td colspan="2" class="odd" style="text-align: center;">
+<input type="hidden" name="com_token" value="<{$comment_token}>" />
+<input type="hidden" name="action" value="compost" />
+<{if $comment_captcha}><{mcllibs_captcha auto="true" posturl="$xoops_url/index.php?moddir=mcllibs" returl=$comment_captcha}> &nbsp;&nbsp;<{/if}>
+<{if $comment_postjs}>
+<{mcllibs_postjs posturl="$xoops_url/index.php?moddir=mcllibs" returl=$comment_postjs formname=commentf btncap=$smarty.const._SUBMIT}>
+<{else}>
+<input type="submit" name="subbtn" value="<{$smarty.const._SUBMIT}>" />
+<{/if}>
+</td>
+</tr>
+</table>
+</form>

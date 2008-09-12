@@ -1,0 +1,50 @@
+<h4><{$smarty.const._AD_MCLLIBS_COMMENT}></h4>
+<{if $mcomm}>
+<div><{$smarty.const._AD_MCLLIBS_NOVIEWLIST}></div>
+<table>
+<tr>
+  <th><{$smarty.const._AD_MCLLIBS_COM_DATE}></th>
+  <th><{$smarty.const._AD_MCLLIBS_COM_POSTER}></th>
+  <th><{$smarty.const._AD_MCLLIBS_IPADDRESS}></th>
+  <th><{$smarty.const._AD_MCLLIBS_COMMAND}></th>
+</tr>
+<{foreach item=mobj from=$mcomm}>
+<tr class="<{cycle values="odd,even"}>">
+  <td><{$mobj->get('com_time')|xoops_formattimestamp:'Y-m-d H:i:s'}></td>
+  <td><{$mobj->getShow('com_name')}></td>
+  <td><{$mobj->getShow('com_ip')}></td>
+  <td>
+  <a href="index.php?action=commentVeri&amp;com_modid=<{$mobj->get('com_modid')}>&amp;com_itemid=<{$mobj->get('com_itemid')}>&amp;com_id=<{$mobj->get('com_id')}>"><{$smarty.const._AD_MCLLIBS_VERIFICATION}></a>
+  &middot;
+  <a href="index.php?action=commentDel&amp;com_modid=<{$mobj->get('com_modid')}>&amp;com_itemid=<{$mobj->get('com_itemid')}>&amp;com_id=<{$mobj->get('com_id')}>"><{$smarty.const._DELETE}></a>
+  </td>
+</tr>
+<{/foreach}>
+</table>
+<br />
+<{/if}>
+<br />
+<{if $vcomm}>
+<div><{$smarty.const._AD_MCLLIBS_VIEWLIST}></div>
+<table>
+<tr>
+  <th><{$smarty.const._AD_MCLLIBS_COM_DATE}></th>
+  <th><{$smarty.const._AD_MCLLIBS_COM_POSTER}></th>
+  <th><{$smarty.const._AD_MCLLIBS_IPADDRESS}></th>
+  <th><{$smarty.const._AD_MCLLIBS_COMMAND}></th>
+</tr>
+<{foreach item=mobj from=$vcomm}>
+<tr class="<{cycle values="odd,even"}>">
+  <td><{$mobj->get('com_time')|xoops_formattimestamp:'Y-m-d H:i:s'}></td>
+  <td><{$mobj->getShow('com_name')}></td>
+  <td><{$mobj->getShow('com_ip')}></td>
+  <td>
+  <a href="index.php?action=commentVeri&amp;com_modid=<{$mobj->get('com_modid')}>&amp;com_itemid=<{$mobj->get('com_itemid')}>&amp;com_id=<{$mobj->get('com_id')}>"><{$smarty.const._AD_MCLLIBS_VERIFICATION}></a>
+  &middot;
+  <a href="index.php?action=commentDel&amp;com_modid=<{$mobj->get('com_modid')}>&amp;com_itemid=<{$mobj->get('com_itemid')}>&amp;com_id=<{$mobj->get('com_id')}>"><{$smarty.const._DELETE}></a>
+  </td>
+</tr>
+<{/foreach}>
+</table>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pagenavi}></div>
+<{/if}>

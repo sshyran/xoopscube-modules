@@ -1,0 +1,69 @@
+<script type="text/javascript">
+var ie=document.all?1:0;
+var ns6=document.getElementById&&!document.all?1:0;
+var opera=window.opera?1:0;
+
+var block;
+var image;
+var imgp = "images/navy.gif";
+var imgm = "images/orange.gif";
+function showBlock(subobj,imgobj) {
+  if (ie||ns6||opera) {
+    block=ns6?document.getElementById(subobj).style:document.all(subobj).style;
+    image=ns6?document.getElementById(imgobj):document.all(imgobj);
+    if (block.display=="none") {
+      block.display="";
+      image.src=imgm;
+    } else {
+      block.display="none";
+      image.src=imgp;
+    }
+  }
+}
+</script>
+
+<div class="tips"><{$group}></div>
+<form method="post" action="index.php?action=group&amp;cmd=update">
+<table class="outer">
+<{foreach item=list key=mid from=$plist}>
+<tr class="<{cycle values='odd,even'}>">
+  <td width="33%" nowrap><{$list.mod.name}><input type="hidden" name="mid[]" value="<{$mid}>" /></td>
+  <td width="33%">
+    <label for="lbm<{$mid}>" style="border-bottom:1px solid gray;">
+    <input type="checkbox" name="modadm[<{$mid}>]" id="lbm<{$mid}>" value="1" <{if $list.mod.perm.module_admin==1}>checked="checked" <{/if}>/><{$smarty.const._AD_MCLLIBS_ADMPERM}>
+    <input type="hidden" name="oldmodadm[<{$mid}>]" value="<{$list.mod.perm.module_admin}>" />
+    </label>
+    &nbsp;&nbsp;
+    <label for="lba<{$mid}>" style="border-bottom:1px solid gray;">
+    <input type="checkbox" name="modacc[<{$mid}>]" id="lba<{$mid}>" value="1" <{if $list.mod.perm.module_read==1}>checked="checked" <{/if}>/><{$smarty.const._AD_MCLLIBS_ACCPERM}>
+    <input type="hidden" name="oldmodacc[<{$mid}>]" value="<{$list.mod.perm.module_read}>" />
+    </label>
+  </td>
+<{if $list.block}>
+  <td width="33%">
+    <a href="javascript:void(0)" onclick="showBlock('block_<{$mid}>','img_<{$mid}>')"><img src="images/navy.gif" alt="" id="img_<{$mid}>" /><{$smarty.const._AD_MCLLIBS_BLKPERM}></a>
+    <div id="block_<{$mid}>" style="display:none;">
+    <ul>
+    <{foreach item=blist key=bid from=$list.block}>
+      <li>
+      <input type="hidden" name="bid[<{$bid}>]" value="<{$mid}>" />
+      <label for="lb<{$bid}>" style="border-bottom:1px solid gray;">
+      <input type="checkbox" name="blkacc[<{$bid}>]" id="lb<{$bid}>" value="1" <{if $blist.perm==1}>checked="checked" <{/if}>/>
+      <input type="hidden" name="oldblkacc[<{$bid}>]" value="<{$blist.perm}>" />
+      <{$blist.name}>
+      </label>
+      </li>
+    <{/foreach}>
+    </ul>
+    <div style="margin-left:24px;"><input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>" /></div>
+    </div>
+  </td>
+<{else}>
+  <td colspan="2">&nbsp;</td>
+<{/if}>
+<{/foreach}>
+<tr><td colspan="3" style="padding: 4px;text-align:center;"><input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>" /></td></tr>
+</table>
+<{xoops_input type=hidden name=gid value=$mActionform->get('gid')}>
+<{xoops_token form=$mActionform}>
+</form>

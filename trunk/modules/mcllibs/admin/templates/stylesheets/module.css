@@ -1,0 +1,25 @@
+.blockside {
+	float:left;
+	border:1px solid #333333;
+	padding:1px;
+}
+
+.blockside_separator {
+	float:left;
+}
+
+tr.inactive {
+  background-color: #808080;
+}
+
+tr.active {
+  background-color: #C0C0FF;
+}
+
+td.middle {
+  vertical-align: middle;
+}
+
+td.center {
+  text-align: center;
+}
