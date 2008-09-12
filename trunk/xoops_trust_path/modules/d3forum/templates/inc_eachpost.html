@@ -2,9 +2,9 @@
 <div class="d3f_head">
 <{if $post.poster_avatar}>
 	<{if $post.poster_avatar.height > 80}>
-		<img src="<{$boop_upload_url}>/<{$post.poster_avatar.path}>" height="80" alt="" class="d3f_avatar" />
+		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" height="80" alt="" class="d3f_avatar" />
 	<{else}>
-		<img src="<{$boop_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="" class="d3f_avatar" />
+		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="" class="d3f_avatar" />
 	<{/if}>
 <{/if}>
 	<h2<{if $post.invisible || ! $post.approval }> class="<{if $post.invisible}> invisible<{elseif ! $post.approval}> yetapproval<{/if}>"<{/if}>>
@@ -57,10 +57,10 @@
 </div>
 <!-- poster info -->
 <div class="d3f_info_sub">
-<{if $post.poster_uid != 0}><a href="<{$boop_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{/if}><{$post.poster_uname}><{if $post.poster_uid != 0}></a><{/if}>&nbsp;
+<{if $post.poster_uid != 0}><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{/if}><{$post.poster_uname}><{if $post.poster_uid != 0}></a><{/if}>&nbsp;
 <{if $post.poster_uid != 0}>
 	<{if $post.poster_rank_title}>
-		<img src="<{$boop_upload_url}>/<{$post.poster_rank_image}>" alt="<{$post.poster_rank_title}>"  title="<{$post.poster_rank_title}>" />
+		<img src="<{$xoops_upload_url}>/<{$post.poster_rank_image}>" alt="<{$post.poster_rank_title}>"  title="<{$post.poster_rank_title}>" />
 	<{/if}>
 	<{* <{$smarty.const._MD_D3FORUM_POSTERJOINED}>: <{$post.poster_regdate_formatted}> *}>
 	<{if $post.poster_from}><{$smarty.const._MD_D3FORUM_POSTERFROM}>: <{$post.poster_from}><{/if}>&nbsp;

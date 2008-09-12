@@ -106,7 +106,7 @@ function xoopsFormValidate_forumform() {
 
 <form name="forummanager_export" id="forummanager_export" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>" class="outer head" method="post">
 
-	<select name="export_mid" id="export_mid" onchange="forum_showhide_category_select(this);"><{html_options options=$export_to_module_options}></select>
+	<select name="export_mid" id="export_mid" onchange="d3forum_showhide_category_select(this);"><{html_options options=$export_to_module_options}></select>
 
 	<select name="export_cat_id[0]" id="export_cat_id_0">
 		<option value="0">----</option>
@@ -128,9 +128,9 @@ function xoopsFormValidate_forumform() {
 <script type="text/javascript">
 <!--//
 
-forum_showhide_category_select( xoopsGetElementById("export_cat_id_0") ) ;
+d3forum_showhide_category_select( xoopsGetElementById("export_cat_id_0") ) ;
 
-function forum_showhide_category_select(select)
+function d3forum_showhide_category_select(select)
 {
 	selected_val = select.options[select.selectedIndex].value ;
 	form = select.form ;

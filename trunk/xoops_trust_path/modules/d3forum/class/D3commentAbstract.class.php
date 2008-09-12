@@ -7,6 +7,7 @@ class D3commentAbstract {
 
 var $d3forum_dirname = '' ;
 var $mydirname = '' ;
+var $module = null ;
 var $mytrustdirname = '' ;
 var $mod_config = array() ;
 var $smarty = null ;
@@ -21,9 +22,9 @@ function D3commentAbstract( $d3forum_dirname , $target_dirname , $target_trustdi
 	if( $this->mydirname ) {
 		$module_hanlder =& xoops_gethandler( 'module' ) ;
 		$config_handler =& xoops_gethandler( 'config' ) ;
-		$module =& $module_hanlder->getByDirname( $this->mydirname ) ;
-		if( is_object( $module ) ) {
-			$this->mod_config =& $config_handler->getConfigsByCat( 0 , $module->getVar( 'mid' ) ) ;
+		$this->module =& $module_hanlder->getByDirname( $this->mydirname ) ;
+		if( is_object( $this->module ) ) {
+			$this->mod_config =& $config_handler->getConfigsByCat( 0 , $this->module->getVar( 'mid' ) ) ;
 		}
 	}
 
@@ -183,6 +184,28 @@ function validate_id( $link_id )
 function onUpdate( $mode , $link_id , $forum_id , $topic_id , $post_id = 0 )
 {
 	return true ;
+}
+
+
+// processing xoops notification for 'comment'
+// override it if necessary
+function processCommentNotifications( $mode , $link_id , $forum_id , $topic_id , $post_id )
+{
+	require_once XOOPS_ROOT_PATH . '/include/notification_functions.php' ;
+
+	// non-module integration returns false quickly
+	if( ! is_object( $this->module ) ) return false ;
+
+	$not_module =& $this->module ;
+	$not_modid = $this->module->getVar('mid') ;
+	$not_catinfo =& notificationCommentCategoryInfo( $not_modid ) ;
+	$not_category = $not_catinfo['name'] ;
+	$not_itemid = $link_id ;
+	$not_event = 'comment' ; // 'comment_submit'?
+
+	$comment_tags = array( 'X_COMMENT_URL' => XOOPS_URL.'/modules/'.$this->d3forum_dirname.'/index.php?post_id='.intval($post_id) ) ;
+	$notification_handler =& xoops_gethandler( 'notification' ) ;
+	$notification_handler->triggerEvent( $not_category , $not_itemid , $not_event , $comment_tags , false , $not_modid ) ;
 }
 
 

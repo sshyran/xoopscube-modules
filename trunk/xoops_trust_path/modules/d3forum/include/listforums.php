@@ -36,8 +36,13 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 		'posts_count' => intval( $cat_row['cat_posts_count'] ) ,
 		'last_post_time' => intval( $cat_row['cat_last_post_time'] ) ,
 		'last_post_time_formatted' => formatTimestamp( $cat_row['cat_last_post_time'] , 'm' ) ,
+		'topics_count_in_tree' => intval( $cat_row['cat_topics_count_in_tree'] ) ,
+		'posts_count_in_tree' => intval( $cat_row['cat_posts_count_in_tree'] ) ,
+		'last_post_time_in_tree' => intval( $cat_row['cat_last_post_time_in_tree'] ) ,
+		'last_post_time_in_tree_formatted' => formatTimestamp( $cat_row['cat_last_post_time_in_tree'] , 'm' ) ,
 		'bit_new' => 0 , // TODO
 		'last_post_id' => intval( $cat_row['cat_last_post_id'] ) ,
+		'last_post_id_in_tree' => intval( $cat_row['cat_last_post_id_in_tree'] ) ,
 	) ;
 }
 

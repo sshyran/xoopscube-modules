@@ -29,7 +29,7 @@
 		<li><img src="<{$mod_imageurl}>/folder_edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></a></li>
 	<{/strip}>
 	<{/if}>
-	<{if $boop_isadmin}>
+	<{if $xoops_isadmin}>
 		<li><img src="<{$mod_imageurl}>/lock_edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></li>
 	<{/if}>
 	<li><img src="<{$mod_imageurl}>/feed.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}></a></li>

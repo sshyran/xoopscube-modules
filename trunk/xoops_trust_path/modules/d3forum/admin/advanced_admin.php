@@ -73,13 +73,14 @@ if( ! empty( $_POST['do_syncforums'] ) ) {
 if( ! empty( $_POST['do_synccategories'] ) ) {
 	set_time_limit( 0 ) ;
 
+	// rebuild category's tree
+	d3forum_sync_cattree( $mydirname ) ;
+
 	// sync all categories
-	$result = $db->query( "SELECT cat_id FROM ".$db->prefix($mydirname."_categories") ) ;
+	$result = $db->query( "SELECT cat_id FROM ".$db->prefix($mydirname."_categories")." ORDER BY cat_order_in_tree DESC" ) ;
 	while( list( $cat_id ) = $db->fetchRow( $result ) ) {
 		d3forum_sync_category( $mydirname , $cat_id ) ;
 	}
-	// rebuild category's tree
-	d3forum_sync_cattree( $mydirname ) ;
 
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=advanced_admin" , 3 , _MD_A_D3FORUM_MSG_SYNCTABLESDONE ) ;
 	exit ;

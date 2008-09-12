@@ -173,6 +173,47 @@ function d3forum_common_unhtmlspecialchars( $text )
 }
 
 
+function d3forum_common_simple_request( $params )
+{
+	$myts =& MyTextSanitizer::getInstance() ;
+	$requests = array() ;
+	$whrs = array() ;
+	$queries = array() ;
+	foreach( $params as $key => $type ) {
+		$key_by_dot = explode( '.' , $key , 2 ) ;
+		if( sizeof( $key_by_dot ) == 1 ) {
+			$whr_prefix = '' ;
+		} else {
+			$whr_prefix = $key_by_dot[0].'.' ;
+			$key = $key_by_dot[1] ;
+		}
+
+		switch( $type ) {
+			case 'int' :
+				// 0 means null
+				$val = intval( @$_GET[ $key ] ) ;
+				if( empty( $val ) ) $val = '' ;
+				$requests[ $key ] = $val ;
+				$whrs[] = $val ? "($whr_prefix$key='$val')" : '1' ;
+				$queries[] = "$key=".urlencode($val) ;
+				break ;
+			case 'like' :
+				$val = $myts->stripSlashesGPC( @$_GET[ $key ] ) ;
+				$requests[ $key ] = $val ;
+				$whrs[] = $val ? "($whr_prefix$key LIKE '%".addslashes($val)."%')" : '1' ;
+				$queries[] = "$key=".urlencode($val) ;
+				break ;
+		}
+	}
+
+	return array(
+		'requests' => $requests ,
+		'whr' => implode( ' AND ' , $whrs ) ,
+		'query' => implode( '&' , $queries ) ,
+	) ;
+}
+
+
 function d3forum_common_utf8_encode_recursive( &$data )
 {
 	if( is_array( $data ) ) {

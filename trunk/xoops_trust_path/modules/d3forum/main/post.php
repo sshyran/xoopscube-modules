@@ -334,6 +334,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 
 		'POST_TITLE' => $subject ,
 		'POST_BODY' => $message ,
+		'POST_BODY_NO_TAGS' => strip_tags( $message ) ,
 		'POST_URL' => XOOPS_URL."/modules/$mydirname/index.php?post_id=$post_id" ,
 		'TOPIC_TITLE' => empty( $topic_row ) ? $subject : $topic_row['topic_title'] ,
 		'TOPIC_URL' => XOOPS_URL."/modules/$mydirname/index.php?topic_id=$topic_id" ,
@@ -403,6 +404,9 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 	// call back to the target of comment
 	if( is_object( @$d3com ) && ! empty( $external_link_id ) ) {
 		$d3com->onUpdate( $mode , $external_link_id , $forum_id , $topic_id , $post_id ) ;
+		if( $mode == 'newtopic' || $mode == 'reply' ) {
+			$d3com->processCommentNotifications( $mode , $external_link_id , $forum_id , $topic_id , $post_id ) ;
+		}
 	}
 
 	$redirect_message = $mode == 'edit' ? _MD_D3FORUM_MSG_THANKSEDIT : _MD_D3FORUM_MSG_THANKSPOST ;

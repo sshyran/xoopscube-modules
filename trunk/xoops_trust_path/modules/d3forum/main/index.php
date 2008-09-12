@@ -52,7 +52,7 @@ $xoopsTpl->assign(
 	)
 ) ;
 
-if( $d3forum_output_rss ) {
+if( ! empty( $d3forum_output_rss ) ) {
 	// RSS 2.0
 	if( function_exists( 'mb_http_output' ) ) mb_http_output( 'pass' ) ;
 	if( _CHARSET != 'UTF-8' ) {

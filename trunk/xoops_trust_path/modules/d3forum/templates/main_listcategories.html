@@ -8,7 +8,7 @@
 
 <!-- top controller -->
 <ul class="d3f_ctrl">
-	<{if $boop_isadmin}>
+	<{if $xoops_isadmin}>
 		<li><img src="<{$mod_imageurl}>/add.png" alt="" /> <a href="<{$mod_url}>/index.php?page=makecategory"><{$smarty.const._MD_D3FORUM_LINK_MAKECATEGORY}></a></li>
 	<{/if}>
 	<li><img src="<{$mod_imageurl}>/feed.png" alt="" /> <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_ALLRSS}></a></li>
@@ -31,7 +31,7 @@
 <div class="d3f_wrap">
 <!-- start categories -->
 <{foreach item="category" from=$top_categories}>
-<{if $category.subcategories or $category.forums or $boop_isadmin}>
+<{if $category.subcategories or $category.forums or $xoops_isadmin}>
 <div class="d3f_head">
 <h2><img src="<{$mod_imageurl}>/category_<{$category.bit_new}>.png" alt="" /> <a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"> <{$category.title}></a></h2>
 <!--	<p>
@@ -65,13 +65,13 @@
 <div class="d3f_info_ctrl">
 	<{strip}>
 	<a href="<{$mod_url}>/index.php?cat_ids=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LISTTOPICSINCATEGORY}></a>
-	<{if $boop_isadmin}>
+	<{if $xoops_isadmin}>
 		&nbsp;-&nbsp;<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></a>
 	<{/if}>
 	<{if $category.can_makeforum}>
 		&nbsp;-&nbsp;<a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a>
 	<{/if}>
-	<{if $boop_isadmin}>
+	<{if $xoops_isadmin}>
 		&nbsp;-&nbsp;<a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a>
 	<{/if}>
 	<{/strip}>

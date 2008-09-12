@@ -29,11 +29,11 @@
 	<{/if}>
 	
 	<!-- guest can post or not -->
-	<{if ! $boop_isuser}>
+	<{if ! $xoops_isuser}>
 		<{if $forum.can_post}>
-			<li><img src="<{$mod_imageurl}>/feed.png" alt="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>" />  <{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></li>
+			<li><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></li>
 		<{else}>
-			<li><img src="<{$mod_imageurl}>/feed.png" alt="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>" />  <{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></li>
+			<li><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></li>
 		<{/if}>
 	<{/if}>
 
