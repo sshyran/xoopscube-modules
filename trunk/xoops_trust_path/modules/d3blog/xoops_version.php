@@ -226,6 +226,7 @@ $modversion['config'][$k]['title'] = $constpref.'_PERMED';
 $modversion['config'][$k]['description'] = $constpref.'_PERMED_DSC';
 $modversion['config'][$k]['formtype'] = 'select_multi';
 $modversion['config'][$k]['valuetype'] = 'array';
+
 // for group list
 $member_handler =& xoops_gethandler('member');
 $groupList = $member_handler->getGroupList();

@@ -26,6 +26,9 @@ function d3blog_oninstall_base( $module , $mydirname )
 
     $db =& Database::getInstance() ;
     $mid = $module->getVar('mid') ;
+	
+	
+	
 
     // to keep config setting more stable.
     // xoops config_title is too short, especially for d3-modules.
