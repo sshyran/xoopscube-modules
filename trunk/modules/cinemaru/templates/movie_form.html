@@ -1,0 +1,163 @@
+<{if $edit }>
+<h1><{$smarty.const._MD_CINEMARU_MOVIE_EDIT}></h1>
+<{else}>
+<h1><{$smarty.const._MD_CINEMARU_MOVIE_UPLOAD}></h1>
+<{/if}>
+
+<script type="text/javascript" src="prototype.js"></script>
+<script type="text/javascript">
+function submit_check()
+{
+    var title = $F('title');
+    var desc = $F('desc');
+    
+    var err = "";
+    
+    if (title.length == 0) {
+        err = "<{$smarty.const._MD_CINEMARU_ERROR_NO_TITLE}>\n";
+    }
+    if (1000 < desc.length) {
+        err += "<{$smarty.const._MD_CINEMARU_ERROR_DESC_OVER}>";
+    }
+    if (0 < err.length) {
+        alert(err);
+    } else {
+        document.myform.submit();
+    }
+}
+
+function file_radio_click()
+{
+    var item = $('file_form_div');
+    
+    if ($F('filetype1')) {
+        var f = '<input name="file" id="legacy_xoopsform_email" type="file" size="30" maxlength="200" /><br />	MAX <{$max_file_size}>MB <{$smarty.const._MD_CINEMARU_FLV_ONLY}>';
+        Element.update(item, f)
+    } else if ($F('filetype2')) {
+        var f = 'URL:<input name="file_url" id="legacy_xoopsform_email" type="text" size="60" maxlength="200"  <{if $movie.file_url != "" }>value="<{$movie.file_url|escape:"html"}>"<{/if}> /><br /><{$smarty.const._MD_CINEMARU_URL_DESC}>';
+        Element.update(item, f)
+    }
+}
+
+function image_file_radio_click()
+{
+    var item = $('image_file_form_div');
+    
+    if ($F('imagefiletype1')) {
+        var f = '<input name="file" id="legacy_xoopsform_email" type="file" size="30" maxlength="200" /><br />	MAX <{$max_file_size}>MB <{$smarty.const._MD_CINEMARU_FLV_ONLY}>';
+        Element.update(item, f)
+    } else if ($F('imagefiletype2')) {
+        var f = 'URL:<input name="image_file_url" id="legacy_xoopsform_email" type="text" size="60" maxlength="200" <{if $movie.image_file_url != "" }>value="<{$movie.image_file_url|escape:"html"}>"<{/if}> /><br />';
+        Element.update(item, f)
+    }
+}
+</script>
+
+<{if $error }>
+<div class="errorMsg">
+  <ul>
+<{foreach from=$error item=i}>
+    <li><{$i|escape:"html"}></li>
+<{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<{if $superinsert == 0 && $edit == 0 }>
+  <font color='red'><{$smarty.const._MD_CINEMARU_WAIT_VALID}></font>
+<{/if}>
+<{if $superedit == 0 && $edit }>
+  <font color='red'><{$smarty.const._MD_CINEMARU_WAIT_VALID}></font>
+<{/if}>
+
+<form name="myform" id="myform" action="<{$xoops_url}>/modules/<{$mydirname}>/<{if
+$edit == 1 }>movie_edit_do.php<{else}>movie_do.php<{/if}>" method="post" enctype="multipart/form-data">
+<input type="hidden" name="MAX_FILE_SIZE" value="<{$xoops_module_config.cinemaru_movie_max_size|escape:"html"}>" />
+<table class="outer" width="100%">
+  <tr>
+    <th colspan="2" style="text-align:center;"><{$smarty.const._MD_CINEMARU_MOVIE_UPLOAD}></th>
+    </tr>
+  <tr>
+      <td class="head"><{$smarty.const._MD_CINEMARU_TITLE}></td>
+      <td class="even">
+        <input name="title" id="title"
+value="<{if $movie.title != ''
+}><{$movie.title|escape:"html"}><{else}><{$smarty.request.title|escape:"html"}><{/if}>"
+type="text"
+size="50" maxlength="90" /><br />
+    </td>
+  </tr>
+  <tr>
+      <td class="head">
+      <nobr><{$smarty.const._MD_CINEMARU_MOVIE_FILE}></nobr><br>
+      <input type="radio" name="filetype" id="filetype1" value="1"
+onclick="file_radio_click();" checked><{$smarty.const._MD_CINEMARU_FILE_UPLOAD}><br>
+      <input type="radio" name="filetype" id="filetype2" value="2"
+onclick="file_radio_click();" ><{$smarty.const._MD_CINEMARU_URL}>
+      </td>
+      <td class="even">
+      	<div id="file_form_div">
+        <input name="file" id="legacy_xoopsform_email" type="file" size="30" maxlength="200" /><br />
+	MAX <{$max_file_size}>MB <{$smarty.const._MD_CINEMARU_FLV_ONLY}>
+	</div>
+    </td>
+  </tr>
+  <tr>
+      <td class="head">
+      <nobr><{$smarty.const._MD_CINEMARU_THUMB_FILE}></nobr><br>
+      <input type="radio" name="imagefiletype" id="imagefiletype1" value="1"
+onclick="image_file_radio_click();" checked><{$smarty.const._MD_CINEMARU_IMAGE_FILE_UPLOAD}><br>
+      <input type="radio" name="imagefiletype" id="imagefiletype2" value="2"
+onclick="image_file_radio_click();" ><{$smarty.const._MD_CINEMARU_URL}>
+      </td>
+      <td class="even">
+        <div id="image_file_form_div">
+        <input name="image_file" id="legacy_xoopsform_email" 
+type="file" size="30" maxlength="200" /><br />
+        </div>
+    </td>
+  </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CINEMARU_DESC}></td>
+      <td class="odd">
+<{if $rich_form != '' }>
+      <{$rich_form}>
+<{else}>
+        <textarea name="desc" id="desc" rows="10"
+cols="50"><{if $movie.desc !=
+''}><{$movie.desc|escape:"html"}><{else}><{$smarty.request.desc|escape:"html"}><{/if}></textarea>
+<{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CINEMARU_TAG_LOCK}></td>
+      <td class="odd">
+        <input type="checkbox" name="tag_lock" value="1" <{if
+$movie.tag_lock}>CHECKED<{/if}>><{$smarty.const._MD_CINEMARU_TAG_LOCK_DESC}>
+      </td>
+    </tr>
+    <{*
+  <tr>
+	
+    <td class="head"><nobr><{$smarty.const._MD_CINEMARU_GENRE}></nobr></td>
+    <td class="even">
+    <{foreach from=$genre_list key=k item=i}>
+    <nobr><input name="genre" type="radio" value="<{$k|escape:"html"}>" <{if
+$smarty.request.genre == $k + 1}>CHECKED<{/if}>/><{$i|escape:"html"}></nobr>
+    <{/foreach}>
+    </td>
+  </tr>
+*}>
+  <tr>
+    <td colspan="2" class="foot" style="text-align:center;">
+<{if $edit == 1 }>    
+      <input type="hidden" name="id"
+value="<{$smarty.request.id|escape:"html"}>" />
+<{/if}>
+      <input type="button" value="<{if
+$edit}><{$smarty.const._MD_CINEMARU_UPDATE}><{else}><{$smarty.const._MD_CINEMARU_UPLOAD}><{/if}>" onClick="submit_check();" />
+		    
+    </td>
+  </tr>
+</table>
+</form>

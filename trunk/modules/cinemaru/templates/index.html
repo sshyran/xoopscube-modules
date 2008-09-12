@@ -1,0 +1,118 @@
+
+<{$smarty.const._MD_CINEMARU_TOTAL}>:<{$total}><br>
+
+<{if $groupperm_insertable}>
+  [ <a href="<{$xoops_url}>/modules/<{$mydirname}>/movie_form.php"><{$smarty.const._MD_CINEMARU_SUBMIT}></a> ]
+<{/if}>
+
+<{if $auth_admin}>
+  <{if $smarty.request.vv == 0}>
+  <{if $novalid_exists}>
+  [ <a href="index.php?vv=1"><{$smarty.const._MD_CINEMARU_MOVIE_LIST_NO_VALID_EXISTS}></a> ]
+  <{/if}>
+  <{else}>
+  [ <a href="index.php"><{$smarty.const._MD_CINEMARU_MOVIE_LIST_NORMAL}></a> ]
+  <{/if}>
+<{/if}>
+
+<{if $groupperm_showcomment}>
+  [ <a href="movie_comment_list.php"><{$smarty.const._MD_CINEMARU_COMMENT_LIST}></a> ]
+<{/if}>
+<{if $check_report_list}>
+  [ <a href="movie_report_list.php"><{$smarty.const._MD_CINEMARU_CHECK_REPORT_LIST}></a> ]
+<{/if}>
+
+<table width='100%' class='odd' cellspacing='1' cellpadding='4'>
+  <tr>
+    <td>
+    
+<{foreach from=$page_list item=i key=k}>
+  <{if strcmp($i, '--') == 0 }>
+  <{$k}> |
+  <{else}>
+    <a href='<{$xoops_url}>/modules/<{$mydirname}>/index.php?offset=<{$i}><{if
+$smarty.request.tag}>&tag=<{$smarty.request.tag}><{/if}><{if
+$smarty.request.vv}>&vv=<{$smarty.request.vv}><{/if}><{if
+$smarty.request.sort}>&sort=<{$smarty.request.sort}><{/if}>'><{$k}></a> |
+  <{/if}>
+<{/foreach}>
+
+    </td>
+    <td align='right'>
+
+<form action="index.php" name="myform" id="myform">
+<{if $smarty.request.tag}>
+<input type="hidden" name="tag" value="<{$smarty.request.tag}>">
+<{/if}>
+<{if $smarty.request.vv}>
+<input type="hidden" name="vv" value="<{$smarty.request.vv}>">
+<{/if}>
+
+<select name="sort" id ="sort" onchange="document.myform.submit();">
+<option value="0" <{if $smarty.request.sort == 0}>SELECTED<{/if}>>---
+<option value="1" <{if $smarty.request.sort == 1}>SELECTED<{/if}>><{$smarty.const._MD_CINEMARU_SORT_NEW}>
+<option value="2" <{if $smarty.request.sort == 2}>SELECTED<{/if}>><{$smarty.const._MD_CINEMARU_SORT_OLD}>
+<option value="3" <{if $smarty.request.sort == 3}>SELECTED<{/if}>><{$smarty.const._MD_CINEMARU_SORT_HIGH_HIT}>
+<option value="4" <{if $smarty.request.sort == 4}>SELECTED<{/if}>><{$smarty.const._MD_CINEMARU_SORT_LOW_HIT}>
+</select>
+<input type="submit" value="<{$smarty.const._MD_CINEMARU_SORT}>">
+</form>
+
+    </td>
+    <td align='right'>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?list=1<{if
+$smarty.request.offset}>&offset=<{$smarty.request.offset}><{/if}><{if
+$smarty.request.tag}>&tag=<{$smarty.request.tag}><{/if}><{if
+$smarty.request.vv}>&vv=<{$smarty.request.vv}><{/if}><{if
+$smarty.request.sort}>&sort=<{$smarty.request.sort}><{/if}>"
+alt="<{$smarty.const._MD_CINEMARU_LIST}>">
+<img src="<{$xoops_url}>/modules/<{$mydirname}>/images/list.png"
+alt="<{$smarty.const._MD_CINEMARU_LIST}>"></a>&nbsp;
+
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?thumb=1<{if
+$smarty.request.offset}>&offset=<{$smarty.request.offset}><{/if}><{if
+$smarty.request.tag}>&tag=<{$smarty.request.tag}><{/if}><{if
+$smarty.request.vv}>&vv=<{$smarty.request.vv}><{/if}><{if
+$smarty.request.sort}>&sort=<{$smarty.request.sort}><{/if}>"><img
+src="<{$xoops_url}>/modules/<{$mydirname}>/images/thumb.png"
+alt="<{$smarty.const._MD_CINEMARU_THUMB}>"></a>&nbsp;
+
+<{if $need_prev_link }>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?offset=<{$prev}><{if
+$smarty.request.tag}>&tag=<{$smarty.request.tag}><{/if}><{if
+$smarty.request.vv}>&vv=<{$smarty.request.vv}><{/if}><{if
+$smarty.request.sort}>&vv=<{$smarty.request.sort}><{/if}>"><{$smarty.const._MD_CINEMARU_PREV}>
+</a> 
+<{else}>
+<{$smarty.const._MD_CINEMARU_PREV}>
+<{/if}>
+<{if $need_next_link }>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?offset=<{$next}><{if
+$smarty.request.tag}>&tag=<{$smarty.request.tag}><{/if}><{if
+$smarty.request.vv}>&vv=<{$smarty.request.vv}><{/if}><{if
+$smarty.request.sort}>&vv=<{$smarty.request.sort}><{/if}>"><{$smarty.const._MD_CINEMARU_NEXT}>
+</a> 
+<{else}>
+<{$smarty.const._MD_CINEMARU_NEXT}>
+<{/if}>
+
+    </td>
+  </tr>
+</table>
+
+<{if $thumb }>
+  <{include file="db:`$mydirname`_thumb.html"}>
+<{else}>
+  <{include file="db:`$mydirname`_list.html"}>
+<{/if}>
+&nbsp; 
+
+<div align="right">
+<small>
+  Powered by 
+  <a href="http://cinemaru.net/">Cinemaru Project</a>
+</small>
+</div>
+
+<{include file='db:system_notification_select.html'}>
+
