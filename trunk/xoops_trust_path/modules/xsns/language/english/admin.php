@@ -24,11 +24,11 @@ define('_AM_XSNS_TITLE_FILE_CONFIG', 'File Manager');
 define('_AM_XSNS_TITLE_ACCESS_LOG', 'Access logs');
 
 define('_AM_XSNS_CATEGORY1', 'Medium Categories ');
-define('_AM_XSNS_CATEGORY2', 'Small Categories ');
+define('_AM_XSNS_CATEGORY2', 'Sub-Categories ');
 define('_AM_XSNS_CATEGORY_NAME', 'Category Name');
 define('_AM_XSNS_CATEGORY_ORDER', 'The order of display');
 define('_AM_XSNS_CATEGORY_LIST', 'View');
-define('_AM_XSNS_CATEGORY_OPERATION', 'Operation');
+define('_AM_XSNS_CATEGORY_OPERATION', 'Actions');
 define('_AM_XSNS_CATEGORY_EDIT', 'Edit');
 define('_AM_XSNS_CATEGORY_DEL', 'Delete');
 define('_AM_XSNS_CATEGORY_ADD', 'Add');

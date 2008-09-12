@@ -12,7 +12,8 @@ function dispatch()
 	$image_list = $this->context->getAttribute('image_list');
 	$pager = $this->context->getAttribute('pager');
 	
-	echo "<h4><p style='text-align:center;'>"._AM_XSNS_TITLE_IMAGE_CONFIG."</p></h4>";
+	echo "<h3>"._AM_XSNS_TITLE_IMAGE_CONFIG."</h3>";
+	echo "<hr /><br />";
 	
 	if(count($image_list) > 0){
 		
@@ -26,17 +27,9 @@ function dispatch()
 		);
 		$header_count = count($header_list);
 		
-		echo "<div style='width:90%; margin-left:auto; margin-right:auto;'>";
-		echo "<table class='outer' style='width:100%; text-align:center;'>";
+		echo "<table class='outer'>";
 		echo "<form action='index.php' method='post'>".
 			 "<input type='hidden' name='".XSNS_ACTION_ARG."' value='image_del_exec'>";
-		
-		echo "<colgroup style='width:90px;'></colgroup>".
-			 "<colgroup style='width:150px;'></colgroup>".
-			 "<colgroup style='width:120px;'></colgroup>".
-			 "<colgroup style='text-align:left;'></colgroup>".
-			 "<colgroup style='width:40px;'></colgroup>".
-			 "<colgroup style='width:40px;'></colgroup>";
 		
 		$pager_html = $this->getPageSelector($pager, $header_count);
 		
@@ -70,7 +63,6 @@ function dispatch()
 		
 		echo "</form>";
 		echo "</table>";
-		echo "</div>";
 	}
 	else{
 	
