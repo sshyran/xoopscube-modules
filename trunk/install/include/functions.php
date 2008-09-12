@@ -160,7 +160,7 @@ function b_back($option = null)
     if(!isset($option) || !is_array($option)) return '';
     $content = '';
     if(isset($option[0]) && $option[0] != ''){
-        $content .= '<input type="button" value="'._INSTALL_L42.'"'.
+        $content .= '<input  type="image" src="img/back.png" class="back" value="'._INSTALL_L42.'"'.
                     ' onclick="location=\'index.php?op='.htmlspecialchars($option[0]).'\'" />';
 					
     }else{
