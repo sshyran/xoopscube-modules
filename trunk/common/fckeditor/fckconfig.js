@@ -98,10 +98,10 @@ FCKConfig.TemplateReplaceCheckbox = true ;
 FCKConfig.ToolbarLocation = 'In' ;
 
 FCKConfig.ToolbarSets["Default"] = [
-	['FitWindow','-','Source','-','Templates'],
+	['FitWindow','-','Source','-','Templates','flvPlayer'],
 	['Cut','Copy','Paste','PasteText','PasteWord','-','Print'],
 	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField','-','Image','Flash','Table','Rule','Smiley','SpecialChar','-','Link','Unlink','Anchor'],
+	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField','-','Image','Flash','googlemaps','Table','Rule','Smiley','SpecialChar','-','Link','Unlink','Anchor'],
 	'/',
 	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
 	['OrderedList','UnorderedList','-','Outdent','Indent'],
@@ -316,3 +316,6 @@ FCKConfig.BackgroundBlockerOpacity = 0.50 ;
 
 FCKConfig.MsWebBrowserControlCompat = false ;
 FCKConfig.Plugins.Add('kfm');
+FCKConfig.Plugins.Add( 'flvPlayer','en') ;
+FCKConfig.Plugins.Add( 'googlemaps', 'en,fr,de,it,es') ;
+FCKConfig.GoogleMaps_Key = 'ABQIAAAAlXu5Pw6DFAUgqM2wQn01gxT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSy5hTGQdsosYD3dz6faZHVrO-02A' ;
