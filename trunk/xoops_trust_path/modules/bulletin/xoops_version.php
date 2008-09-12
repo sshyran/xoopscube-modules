@@ -249,7 +249,7 @@ $modversion['config'][$i]['title']       = $constpref.'_CONFIG19';
 $modversion['config'][$i]['description'] = $constpref.'_CONFIG19_D';
 $modversion['config'][$i]['formtype']    = 'yesno';
 $modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = 0;
+$modversion['config'][$i]['default']     = 1;
 
 $modversion['config'][] = array(
 	'name'			=> 'comment_dirname' ,
