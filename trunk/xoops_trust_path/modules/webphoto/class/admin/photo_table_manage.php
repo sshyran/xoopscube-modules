@@ -1,10 +1,16 @@
 <?php
-// $Id: photo_table_manage.php,v 1.2 2008/07/05 12:54:16 ohwada Exp $
+// $Id: photo_table_manage.php,v 1.4 2008/08/25 20:49:44 ohwada Exp $
 
 //=========================================================
 // webphoto module
 // 2008-04-02 K.OHWADA
 //=========================================================
+
+//---------------------------------------------------------
+// change log
+// 2008-08-241 K.OHWADA
+// NOT use webphoto_photo_build webphoto_photo_delete
+//---------------------------------------------------------
 
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 
@@ -29,10 +35,6 @@ function webphoto_admin_photo_table_manage( $dirname , $trust_dirname )
 
 	$this->set_manage_list_column_array(
 		array( 'photo_title', 'photo_uid' ) );
-
-	$this->_build_class   =& webphoto_photo_build::getInstance( $dirname );
-	$this->_delete_class  =& webphoto_photo_delete::getInstance( $dirname );
-
 }
 
 function &getInstance( $dirname , $trust_dirname )
@@ -55,20 +57,6 @@ function main()
 //=========================================================
 // override for caller
 //=========================================================
-function _build_row_add()
-{
-	$row = $this->_build_row_by_post();
-	$row['photo_search'] = $this->_build_class->build_search( $row );
-	return $row;
-}
-
-function _build_row_edit()
-{
-	$row = $this->_build_row_by_post();
-	$row['photo_search'] = $this->_build_class->build_search( $row );
-	return $row;
-}
-
 function _build_row_by_post()
 {
 	$row = array(
@@ -208,17 +196,6 @@ function _print_form( $row )
 	echo $this->build_manage_submit();
 
 	echo "</table></form>\n";
-}
-
-//---------------------------------------------------------
-// delete
-//---------------------------------------------------------
-function manage_delete()
-{
-	$this->_delete_class->delete_photo( $this->get_post_id() );
-
-	redirect_header( $this->_THIS_FCT_URL, $this->_MANAGE_TIME_SUCCESS, 'Deleted' );
-	exit();
 }
 
 // --- class end ---

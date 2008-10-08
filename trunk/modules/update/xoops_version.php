@@ -2,6 +2,8 @@
 # XoopsUpdate - Client Module
 # $Id: xoops_version.php,v 1.26 2008-02-25 15:42:46 nobu Exp $
 
+$myicon = "module_icon.php";
+
 $modversion =
       array('name' => _MI_UPDATE_NAME,
 	    'version' => 0.90,
@@ -11,7 +13,7 @@ $modversion =
 	    'help' => 'help.html',
 	    'license' => "GPL",
 	    'official' => 0,
-	    'image' => "updateclient.png",
+	    'image' => $myicon,
 	    'dirname' => basename(dirname(__FILE__)));
 
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";

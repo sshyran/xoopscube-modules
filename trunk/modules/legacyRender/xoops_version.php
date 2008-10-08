@@ -50,7 +50,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_DESCRIPTION_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"XOOPS is a dynamic Object Oriented based open source portal script written in PHP."
+		"default"=>"XOOPS Cube Legacy is a dynamic Object Oriented based open source portal script written in PHP."
 	);
 
 $modversion['config'][]=array (
@@ -88,7 +88,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_COPYRIGHT_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"Copyright &copy; 2001-2006"
+		"default"=>"Copyright &copy; 2001-2008"
 	);
 
 $modversion['config'][]=array (
@@ -97,7 +97,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_FOOTER_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"Powered by XOOPS Cube 2.1&copy; 2001-2006 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
+		"default"=>"Powered by <a href=\"http://xoopscube.org/\" target=\"_blank\">XOOPS Cube</a> 2.1&copy; 2001-2008 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
 	);
 
 $modversion['config'][]=array (

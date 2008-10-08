@@ -490,3 +490,8 @@ background:#f2f2f2 url(<{"icons/view.png"|theme}>) 5px center no-repeat;
 .inactive {
 		color:#333333; 
 }
+/* ====================================================== Ranking ===== */
+
+.user_module_error {
+	color:#ff0000;
+}

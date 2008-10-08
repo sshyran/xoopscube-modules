@@ -1,5 +1,5 @@
 <?php
-// $Id: utility.php,v 1.3 2008/07/05 12:54:16 ohwada Exp $
+// $Id: utility.php,v 1.5 2008/08/26 16:36:47 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -8,6 +8,10 @@
 
 //---------------------------------------------------------
 // change log
+// 2008-08-24 K.OHWADA
+// changed write_file()
+// 2008-08-01 K.OHWADA
+// added get_files_in_dir()
 // 2008-07-01 K.OHWADA
 // changed parse_ext()
 // added build_error_msg()
@@ -161,15 +165,15 @@ function format_filesize( $size, $precision=2 )
 {
 	$format = '%.'. intval($precision) .'f';
 	$bytes  = array('B','KB','MB','GB','TB');
-	foreach ($bytes as $val) 
+	foreach ( $bytes as $unit ) 
 	{
-		if ($size > 1024) {
+		if ( $size > 1000 ) {
 			$size = $size / 1024;
 		} else {
 			break;
 		}
 	}
-	$str = sprintf( $format, $size ).' '.$val;
+	$str = sprintf( $format, $size ).' '.$unit;
 	return $str;
 }
 
@@ -213,10 +217,17 @@ function unlink_file( $file )
 	return false;
 }
 
-function copy_file( $src, $dst )
+function copy_file( $src, $dst, $flag_chmod=false )
 {
 	if ( $this->check_file( $src ) ) {
-		return copy( $src, $dst );
+		$ret = copy( $src, $dst );
+
+// the user can delete this file which apache made.
+		if ( $ret && $flag_chmod ) {
+			chmod( $dst, 0777 );
+		}
+
+		return $ret;
 	}
 	return false;
 }
@@ -247,14 +258,77 @@ function read_file( $file, $mode='r' )
 	return $date;
 }
 
-function write_file( $file, $data, $mode='w' )
+function write_file( $file, $data, $mode='w', $flag_chmod=false )
 {
 	$fp = fopen( $file , $mode ) ;
 	if ( !$fp ) { return false ; }
 
-	$ret = fwrite( $fp , $data ) ;
+	$byte = fwrite( $fp , $data ) ;
 	fclose( $fp ) ;
-	return $ret;
+
+// the user can delete this file which apache made.
+	if (( $byte > 0 )&& $flag_chmod ) {
+		chmod( $file, 0777 );
+	}
+
+	return $byte;
+}
+
+//---------------------------------------------------------
+// dir
+//---------------------------------------------------------
+function get_files_in_dir( $path, $ext=null, $flag_dir=false, $flag_sort=false, $id_as_key=false  )
+{
+	$arr   = array();
+	$false = false;
+
+	$path = $this->strip_slash_from_tail( $path );
+
+// check is dir
+	if ( !is_dir($path) ) {
+		return false;
+	}
+
+	$dh = opendir($path);
+	if ( !$dh ) {
+		return false;
+	}
+
+	$pattern = "/\.". preg_quote($ext) ."$/";
+
+	while ( false !== ($file = readdir( $dh )) ) 
+	{
+		$path_file = $path .'/'. $file;
+
+// check is file
+		if ( is_dir($path_file) || !is_file($path_file) ) {
+			continue;
+		}
+
+// check ext
+		if ( $ext && !preg_match($pattern, $file) ) {
+			continue;
+		}
+
+		$file_out = $file;
+		if ( $flag_dir ) {
+			$file_out = $dirname .'/'. $file;
+		}
+		if ( $id_as_key ) {
+			$arr[ $file ] = $file_out;
+		} else {
+			$arr[] = $file_out;
+		}
+	}
+
+	closedir( $dh );
+
+	if ( $flag_sort ) {
+		asort($arr);
+		reset($arr);
+	}
+
+	return $arr;
 }
 
 //---------------------------------------------------------

@@ -3,7 +3,7 @@
 <!-- User Menu -->
 <{if $mydirname}><{include file="db:`$mydirname`_inc_mypage_menu.html"}><{/if}>
 
-<table style="margin:0; padding:0;"><tr><td>
+<table class="outer"><tr><td>
 
 <{if $info_list|@count > 0}>
 
@@ -36,113 +36,113 @@
 <tr><th colspan="2"><{$smarty.const._MD_XSNS_MYPAGE_PROFILE|sprintf:"`$user_info.name`"}></th></tr>
 
 <{if $user_info.avatarurl != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_AVATAR}></td>
+<tr>
+<td class="head"><{$smarty.const._US_AVATAR}></td>
 <td class="even"><{$user_info.avatarurl}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.name != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_USERNAME}></td>
-<td class="even"><{$user_info.name}></td>
+<tr>
+<td class="head"><{$smarty.const._US_USERNAME}></td>
+<td class="odd"><{$user_info.name}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.realname != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_REALNAME}></td>
+<tr>
+<td class="head"><{$smarty.const._US_REALNAME}></td>
 <td class="even"><{$user_info.realname}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.rank != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_RANK}></td>
-<td class="even"><{$user_info.rank}>&nbsp;<{$user_info.ranktitle}>&nbsp;(<{$smarty.const._US_POSTS}>:<{$user_info.posts}>)</td>
+<tr>
+<td class="head"><{$smarty.const._US_RANK}></td>
+<td class="odd"><{$user_info.rank}>&nbsp;<{$user_info.ranktitle}>&nbsp;(<{$smarty.const._US_POSTS}>:<{$user_info.posts}>)</td>
 </tr>
 <{/if}>
 
 <{if $user_info.websiteurl != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_WEBSITE}></td>
+<tr>
+<td class="head"><{$smarty.const._US_WEBSITE}></td>
 <td class="even"><{$user_info.websiteurl}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.email != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_EMAIL}></td>
+<tr>
+<td class="head"><{$smarty.const._US_EMAIL}></td>
 <td class="even"><{$user_info.email}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.pmlink != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_PM}></td>
+<tr>
+<td class="head"><{$smarty.const._US_PM}></td>
 <td class="even"><{$user_info.pmlink}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.icq != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_ICQ}></td>
+<tr>
+<td class="head"><{$smarty.const._US_ICQ}></td>
 <td class="even"><{$user_info.icq}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.aim != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_AIM}></td>
+<tr>
+<td class="head"><{$smarty.const._US_AIM}></td>
 <td class="even"><{$user_info.aim}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.yim != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_YIM}></td>
+<tr>
+<td class="head"><{$smarty.const._US_YIM}></td>
 <td class="even"><{$user_info.yim}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.msnm != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_MSNM}></td>
+<tr>
+<td class="head"><{$smarty.const._US_MSNM}></td>
 <td class="even"><{$user_info.msnm}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.location != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_LOCATION}></td>
+<tr>
+<td class="head"><{$smarty.const._US_LOCATION}></td>
 <td class="even"><{$user_info.location}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.occupation != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_OCCUPATION}></td>
+<tr>
+<td class="head"><{$smarty.const._US_OCCUPATION}></td>
 <td class="even"><{$user_info.occupation}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.interest != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_INTEREST}></td>
+<tr>
+<td class="head"><{$smarty.const._US_INTEREST}></td>
 <td class="even"><{$user_info.interest}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.signature != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_SIGNATURE}></td>
+<tr>
+<td class="head"><{$smarty.const._US_SIGNATURE}></td>
 <td class="even"><{$user_info.signature}></td>
 </tr>
 <{/if}>
 
 <{if $user_info.extrainfo != NULL}>
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._US_EXTRAINFO}></td>
+<tr>
+<td class="head"><{$smarty.const._US_EXTRAINFO}></td>
 <td class="even"><{$user_info.extrainfo}></td>
 </tr>
 <{/if}>

@@ -35,6 +35,7 @@ define('_MD_D3PIPES_N4J_WRITEPOSIX','POSIX正規表現を記入');
 define('_MD_D3PIPES_N4J_CID','カテゴリーID');
 define('_MD_D3PIPES_N4J_MAXENTRIES','最大件数');
 define('_MD_D3PIPES_N4J_EACHENTRIES','各パイプからの取得数');
+define('_MD_D3PIPES_N4J_EXTRAOPTIONS','追加オプション');
 define('_MD_D3PIPES_N4J_ENTRIESFROMCLIP','切抜きから次へ渡す最低エントリ数');
 define('_MD_D3PIPES_N4J_CLIPLIFETIME','切抜きの保存日数(空欄なら一般設定値)');
 define('_MD_D3PIPES_N4J_WITHDESCRIPTION','詳細情報も取得');

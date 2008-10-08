@@ -1,5 +1,9 @@
 <?php
 
+
+// Appended by Xoops Language Checker -GIJOE- in 2008-09-10 10:57:46
+define('_MD_D3PIPES_N4J_EXTRAOPTIONS','Extra options');
+
 define('_MD_D3PIPES_H2_INDEX','صفحه اصلی');
 define('_MD_D3PIPES_H2_LATESTHEADLINES','آخرین ورودی ها');
 define('_MD_D3PIPES_H2_EACHPIPE','لیست ورودی های این لوله');

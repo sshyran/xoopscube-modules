@@ -8,7 +8,8 @@ function dispatch()
 	
 	include $mytrustdirpath.'/mymenu.php';
 	
-	echo "<h4><p style='text-align:center;'>"._AM_XSNS_TITLE_ACCESS_LOG."</p></h4>";
+	echo "<h3>"._AM_XSNS_TITLE_ACCESS_LOG."</h3>"
+	."<hr />";
 	
 	$access_log = $this->context->getAttribute('access_log');
 	

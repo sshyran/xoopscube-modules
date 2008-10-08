@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php,v 1.2 2008/07/05 12:54:16 ohwada Exp $
+// $Id: admin.php,v 1.5 2008/08/25 19:28:06 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -95,7 +95,7 @@ define( "_AM_WEBPHOTO_PIPEFORIMAGES" , "画像処理プログラム" ) ;
 //define( "_AM_WEBPHOTO_DIRECTORYFORPHOTOS" , "メイン画像ディレクトリ" ) ;
 //define( "_AM_WEBPHOTO_DIRECTORYFORTHUMBS" , "サムネイルディレクトリ" ) ;
 
-define( "_AM_WEBPHOTO_ERR_LASTCHAR" , "エラー: 最後の文字は'/'でなければなりません" ) ;
+define( "_AM_WEBPHOTO_ERR_LASTCHAR" , "エラー: 最後の文字の'/'は必要ありません" ) ;
 define( "_AM_WEBPHOTO_ERR_FIRSTCHAR" , "エラー: 最初の文字は'/'でなければなりません" ) ;
 define( "_AM_WEBPHOTO_ERR_PERMISSION" , "エラー: まずこのディレクトリをつくって下さい。その上で、書込可能に設定して下さい。Unixではchmod 777、Windowsでは読み取り専用属性を外します" ) ;
 define( "_AM_WEBPHOTO_ERR_NOTDIRECTORY" , "エラー: 指定されたディレクトリがありません." ) ;
@@ -107,8 +107,10 @@ define( "_AM_WEBPHOTO_GD2SUCCESS" , "成功しました!<br />おそらく、このサーバのPH
 
 define( "_AM_WEBPHOTO_H4_PHOTOLINK" , "メイン画像とサムネイルのリンクチェック" ) ;
 define( "_AM_WEBPHOTO_NOWCHECKING" , "チェック中 ." ) ;
-define( "_AM_WEBPHOTO_FMT_PHOTONOTREADABLE" , "メイン画像 (%s) が読めません." ) ;
-define( "_AM_WEBPHOTO_FMT_THUMBNOTREADABLE" , "サムネイル画像 (%s) が読めません." ) ;
+
+//define( "_AM_WEBPHOTO_FMT_PHOTONOTREADABLE" , "メイン画像 (%s) が読めません." ) ;
+//define( "_AM_WEBPHOTO_FMT_THUMBNOTREADABLE" , "サムネイル画像 (%s) が読めません." ) ;
+
 define( "_AM_WEBPHOTO_FMT_NUMBEROFDEADPHOTOS" , "画像のないレコードが %s 個ありました。" ) ;
 define( "_AM_WEBPHOTO_FMT_NUMBEROFDEADTHUMBS" , "サムネイルが %s 個未作成です" ) ;
 define( "_AM_WEBPHOTO_FMT_NUMBEROFREMOVEDTMPS" , "テンポラリを %s 個削除しました" ) ;
@@ -251,6 +253,9 @@ define( "_AM_WEBPHOTO_GPERM_TELLAFRIEND" , "友人に知らせる" ) ;
 // add for webphoto
 define( "_AM_WEBPHOTO_GPERM_TAGEDIT" , "タグ編集可（承認不要）" ) ;
 
+// v0.30
+define( "_AM_WEBPHOTO_GPERM_MAIL" , "メール投稿可（承認不要）" ) ;
+define( "_AM_WEBPHOTO_GPERM_FILE" , "ファイル投稿可（承認不要）" ) ;
 
 //=========================================================
 // add for webphoto
@@ -349,11 +354,47 @@ define("_AM_WEBPHOTO_IMPORT_COMMENT_YES" , "コメントをコピーする" ) ;
 // v0.20
 //---------------------------------------------------------
 define("_AM_WEBPHOTO_PATHINFO_LINK" , "Pathinfo が動くかどうかのチェック" ) ;
-define("_AM_WEBPHOTO_PATHINFO_DSC" , "（このリンク先が正常に表示されなければ、Pathinfo が動かないものと諦めてください）" ) ;
+define("_AM_WEBPHOTO_PATHINFO_DSC" , "このリンク先が正常に表示されなければ、Pathinfo が動かないものと諦めてください<br/>「一般設定」にて pathinfo を使用しないモードに変更できます" ) ;
 define("_AM_WEBPHOTO_PATHINFO_SUCCESS" , "成功しました!<br />おそらく、このサーバでは、Pathinfo が使用できます" ) ;
 define("_AM_WEBPHOTO_CAP_REDO_EXIF" , "Exif の取得" ) ;
 define("_AM_WEBPHOTO_RADIO_REDO_EXIF_TRY" , "設定されていないときに取得" ) ;
 define("_AM_WEBPHOTO_RADIO_REDO_EXIF_ALWAYS" , "常に取得する" ) ;
+
+//---------------------------------------------------------
+// v0.30
+//---------------------------------------------------------
+// checkconfigs
+define("_AM_WEBPHOTO_DIRECTORYFOR_FILE" ,    "FTP ファイル ディレクトリ" ) ;
+define("_AM_WEBPHOTO_WARN_GEUST_CAN_READ" ,  "このディレクトリはゲストも読むことが出来ます" ) ;
+define("_AM_WEBPHOTO_WARN_RECOMMEND_PATH" ,  "ドキュメント・ルート以外に設定することをお勧めします" ) ;
+define("_AM_WEBPHOTO_MULTIBYTE_LINK" , "文字コード変換が動くかどうかのチェック" ) ;
+define("_AM_WEBPHOTO_MULTIBYTE_DSC" , "（このリンク先が正常に表示されなければ、文字コード変換が動かないようです）" ) ;
+define("_AM_WEBPHOTO_MULTIBYTE_SUCCESS" , "この文が文字化けせずに表示されていますか？" ) ;
+
+// maillog manager
+define("_AM_WEBPHOTO_SHOW_LIST" ,  "一覧表示" ) ;
+define("_AM_WEBPHOTO_MAILLOG_STATUS_REJECT" ,  "拒否されたメール" ) ;
+define("_AM_WEBPHOTO_MAILLOG_STATUS_PARTIAL" , "一部の添付ファイルが拒否されたメール" ) ;
+define("_AM_WEBPHOTO_MAILLOG_STATUS_SUBMIT" ,  "投稿されたメール" ) ;
+define("_AM_WEBPHOTO_BUTTON_SUBMIT_MAIL" ,  "このメールを投稿する" ) ;
+define("_AM_WEBPHOTO_ERR_MAILLOG_NO_ATTACH" ,  "添付ファイルが選択されていない" ) ;
+
+// mimetype
+define("_AM_WEBPHOTO_MIME_ADD_NEW" ,  "MIME タイプを追加する" ) ;
+
+//---------------------------------------------------------
+// v0.40
+//---------------------------------------------------------
+// index
+define("_AM_WEBPHOTO_MUST_UPDATE" , "アップデートが必要です" ) ;
+define("_AM_WEBPHOTO_TITLE_BIN" , "コマンドの管理" ) ;
+define("_AM_WEBPHOTO_TEST_BIN" , "コマンドのテスト実行" ) ;
+
+// redothumbs
+define("_AM_WEBPHOTO_ERR_GET_IMAGE_SIZE", "image size が取得できない" ) ;
+
+// checktables
+define("_AM_WEBPHOTO_FMT_NOT_READABLE" , "%s (%s) が読めません." ) ;
 
 // === define end ===
 }

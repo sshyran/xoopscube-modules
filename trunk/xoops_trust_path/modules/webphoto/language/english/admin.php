@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php,v 1.3 2008/07/09 08:58:31 ohwada Exp $
+// $Id: admin.php,v 1.5 2008/08/25 19:28:06 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -107,8 +107,10 @@ define( "_AM_WEBPHOTO_GD2SUCCESS" , "Success!<br />Perhaps, you can use GD2 (tru
 
 define( "_AM_WEBPHOTO_H4_PHOTOLINK" , "Photos & Thumbs Link Check" ) ;
 define( "_AM_WEBPHOTO_NOWCHECKING" , "Now, checking ." ) ;
-define( "_AM_WEBPHOTO_FMT_PHOTONOTREADABLE" , "a main photo (%s) is not readable." ) ;
-define( "_AM_WEBPHOTO_FMT_THUMBNOTREADABLE" , "a thumbnail (%s) is not readable." ) ;
+
+//define( "_AM_WEBPHOTO_FMT_PHOTONOTREADABLE" , "a main photo (%s) is not readable." ) ;
+//define( "_AM_WEBPHOTO_FMT_THUMBNOTREADABLE" , "a thumbnail (%s) is not readable." ) ;
+
 define( "_AM_WEBPHOTO_FMT_NUMBEROFDEADPHOTOS" , "%s dead photo files have been found." ) ;
 define( "_AM_WEBPHOTO_FMT_NUMBEROFDEADTHUMBS" , "%s thumbnails should be rebuilt." ) ;
 define( "_AM_WEBPHOTO_FMT_NUMBEROFREMOVEDTMPS" , "%s garbage files have been removed." ) ;
@@ -251,6 +253,9 @@ define( "_AM_WEBPHOTO_GPERM_TELLAFRIEND" , "Tell a friend" ) ;
 // add for webphoto
 define( "_AM_WEBPHOTO_GPERM_TAGEDIT" , "Edit Tag" ) ;
 
+// v0.30
+define( "_AM_WEBPHOTO_GPERM_MAIL" , "Post by Mail" ) ;
+define( "_AM_WEBPHOTO_GPERM_FILE" , "Post by FTP" ) ;
 
 //=========================================================
 // add for webphoto
@@ -354,6 +359,42 @@ define("_AM_WEBPHOTO_PATHINFO_SUCCESS" , "Success!<br />Perhaps, you can use 'Pa
 define("_AM_WEBPHOTO_CAP_REDO_EXIF" , "Get Exif" ) ;
 define("_AM_WEBPHOTO_RADIO_REDO_EXIF_TRY" , "Get when not set" ) ;
 define("_AM_WEBPHOTO_RADIO_REDO_EXIF_ALWAYS" , "Get always" ) ;
+
+//---------------------------------------------------------
+// v0.30
+//---------------------------------------------------------
+// checkconfigs
+define("_AM_WEBPHOTO_DIRECTORYFOR_FILE" , "Directory for FTP File" ) ;
+define("_AM_WEBPHOTO_WARN_GEUST_CAN_READ" ,  "Anoymous user can read file in this directory" ) ;
+define("_AM_WEBPHOTO_WARN_RECOMMEND_PATH" ,  "Recommend to set it except under the document root" ) ;
+define("_AM_WEBPHOTO_MULTIBYTE_LINK" , "Check that 'Charset Convert' is working correctly in your server)" ) ;
+define("_AM_WEBPHOTO_MULTIBYTE_DSC" , "If the page linked to from here doesn't display correctly, you should not use 'Charset Convert' " ) ;
+define("_AM_WEBPHOTO_MULTIBYTE_SUCCESS" , "Can you read this sentence correctly, wihout character garble ? " ) ;
+
+// maillog manager
+define("_AM_WEBPHOTO_SHOW_LIST" ,  "Show list" ) ;
+define("_AM_WEBPHOTO_MAILLOG_STATUS_REJECT" ,  "Rejected mail" ) ;
+define("_AM_WEBPHOTO_MAILLOG_STATUS_PARTIAL" , "Mail which reject some of attached files" ) ;
+define("_AM_WEBPHOTO_MAILLOG_STATUS_SUBMIT" ,  "Submitted mail" ) ;
+define("_AM_WEBPHOTO_BUTTON_SUBMIT_MAIL" ,  "SUBMIT MAIL" ) ;
+define("_AM_WEBPHOTO_ERR_MAILLOG_NO_ATTACH" ,  "You must select the attached files" ) ;
+
+// mimetype
+define("_AM_WEBPHOTO_MIME_ADD_NEW" ,  "Add New MIME Type" ) ;
+
+//---------------------------------------------------------
+// v0.40
+//---------------------------------------------------------
+// index
+define("_AM_WEBPHOTO_MUST_UPDATE" , "You MUST update" ) ;
+define("_AM_WEBPHOTO_TITLE_BIN" , "Command Management" ) ;
+define("_AM_WEBPHOTO_TEST_BIN" ,  "Test Execute" ) ;
+
+// redothumbs
+define("_AM_WEBPHOTO_ERR_GET_IMAGE_SIZE", "cannot get image size" ) ;
+
+// checktables
+define("_AM_WEBPHOTO_FMT_NOT_READABLE" , "%s (%s) is not readable." ) ;
 
 // === define end ===
 }

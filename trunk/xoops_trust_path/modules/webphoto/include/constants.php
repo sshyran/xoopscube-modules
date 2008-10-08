@@ -1,5 +1,5 @@
 <?php
-// $Id: constants.php,v 1.3 2008/07/07 23:34:23 ohwada Exp $
+// $Id: constants.php,v 1.5 2008/08/25 19:28:06 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -8,6 +8,10 @@
 
 //---------------------------------------------------------
 // change log
+// 2008-08-24 K.OHWADA
+// added _C_WEBPHOTO_MAX_ITEM_FILE_ID
+// 2008-08-01 K.OHWADA
+// added _B_WEBPHOTO_GPERM_MAIL
 // 2008-07-01 K.OHWADA
 // added _C_WEBPHOTO_VIDEO_THUMB_PREFIX
 //---------------------------------------------------------
@@ -40,10 +44,17 @@ define("_B_WEBPHOTO_GPERM_RATEVOTE",         512 ) ;
 define("_B_WEBPHOTO_GPERM_TELLAFRIEND",     1024 ) ;
 define("_B_WEBPHOTO_GPERM_TAGEDIT",         2048 ) ;
 
+// v0.30
+define("_B_WEBPHOTO_GPERM_MAIL",            4096 ) ;
+define("_B_WEBPHOTO_GPERM_FILE",            8192 ) ;
+
 define("_C_WEBPHOTO_GPERM_NAME", "webphoto" ) ;
 
 // constants
 define("_C_WEBPHOTO_IMAGE_EXTS" , "jpg|jpeg|gif|png" ) ;
+define("_C_WEBPHOTO_VIDEO_FLASH_EXT"  , "flv" ) ;
+define("_C_WEBPHOTO_VIDEO_DOCOMO_EXT" , "3gp" ) ;
+
 define("_C_WEBPHOTO_CFG_OPT_PERPAGE" , "10|20|50|100" ) ;
 
 define("_C_WEBPHOTO_CAT_MAIN_WIDTH_DEFAULT" ,  120 ) ;
@@ -53,6 +64,22 @@ define("_C_WEBPHOTO_CAT_SUB_HEIGHT_DEFAULT" ,  50 ) ;
 
 define("_C_WEBPHOTO_MAX_PHOTO_TEXT" , 10 ) ;
 define("_C_WEBPHOTO_MAX_CAT_TEXT" ,   5 ) ;
+
+// v0.30
+define("_C_WEBPHOTO_MAX_USER_TEXT" ,  5 ) ;
+
+// v0.40
+define("_C_WEBPHOTO_MAX_ITEM_FILE_ID" , 10 ) ;
+define("_C_WEBPHOTO_MAX_ITEM_TEXT"    , 10 ) ;
+
+define("_C_WEBPHOTO_ITEM_KIND_IMAGE" , 1 ) ;
+define("_C_WEBPHOTO_ITEM_KIND_VIDEO" , 2 ) ;
+
+define("_C_WEBPHOTO_FILE_KIND_CONT"          , 1 ) ;
+define("_C_WEBPHOTO_FILE_KIND_THUMB"         , 2 ) ;
+define("_C_WEBPHOTO_FILE_KIND_MIDDLE"        , 3 ) ;
+define("_C_WEBPHOTO_FILE_KIND_VIDEO_FLASH"   , 4 ) ;
+define("_C_WEBPHOTO_FILE_KIND_VIDEO_DOCOMO"  , 5 ) ;
 
 define("_C_WEBPHOTO_PIPEID_GD" ,      0 ) ;
 define("_C_WEBPHOTO_PIPEID_IMAGICK" , 1 ) ;
@@ -64,6 +91,9 @@ define("_C_WEBPHOTO_IMAGE_COPIED" ,     2 ) ;
 define("_C_WEBPHOTO_IMAGE_SKIPPED" ,    3 ) ;
 define("_C_WEBPHOTO_IMAGE_ICON" ,       4 ) ;
 define("_C_WEBPHOTO_IMAGE_RESIZE" ,     5 ) ;
+
+define("_C_WEBPHOTO_VIDEO_THUMB_SINGLE"  , 0 ) ;
+define("_C_WEBPHOTO_VIDEO_THUMB_PLURAL"  , 1 ) ;
 
 define("_C_WEBPHOTO_VIDEO_FAILED" ,  -1 ) ;
 define("_C_WEBPHOTO_VIDEO_CREATED" ,  1 ) ;
@@ -92,6 +122,19 @@ define("_C_WEBPHOTO_STATUS_WAITING" ,  0 ) ;
 define("_C_WEBPHOTO_STATUS_APPROVED" , 1 ) ;
 define("_C_WEBPHOTO_STATUS_UPDATED" ,  2 ) ;
 
+define("_C_WEBPHOTO_RETRIEVE_CODE_ACCESS_TIME"  , -1 ) ;
+define("_C_WEBPHOTO_RETRIEVE_CODE_NOT_RETRIEVE" , -2 ) ;
+define("_C_WEBPHOTO_RETRIEVE_CODE_NO_NEW"       , -3 ) ;
+
+define("_C_WEBPHOTO_MAILLOG_STATUS_REJECT" ,  0 ) ;
+define("_C_WEBPHOTO_MAILLOG_STATUS_PARTIAL" , 1 ) ;
+define("_C_WEBPHOTO_MAILLOG_STATUS_SUBMIT" ,  2 ) ;
+
+define("_C_WEBPHOTO_MSG_LEVEL_NON" ,    0 ) ;
+define("_C_WEBPHOTO_MSG_LEVEL_ALL" ,    1 ) ;
+define("_C_WEBPHOTO_MSG_LEVEL_USER" ,   2 ) ;
+define("_C_WEBPHOTO_MSG_LEVEL_ADMIN" ,  3 ) ;
+
 define("_C_WEBPHOTO_NO" ,  0 ) ;
 define("_C_WEBPHOTO_YES" , 1 ) ;
 
@@ -106,6 +149,8 @@ define("_C_WEBPHOTO_PERM_ALLOW_ALL" , "*" ) ;
 define("_C_WEBPHOTO_PERM_DENOY_ALL" , "x" ) ;
 define("_C_WEBPHOTO_PERM_SEPARATOR" , "&" ) ;
 
+define("_C_WEBPHOTO_GMAP_ZOOM" , "12" ) ;
+
 // error code
 define("_C_WEBPHOTO_ERR_NO_PERM",         -101 ) ;
 define("_C_WEBPHOTO_ERR_NO_RECORD",       -102 ) ;
@@ -119,6 +164,19 @@ define("_C_WEBPHOTO_ERR_NO_IMAGE",        -109 ) ;
 define("_C_WEBPHOTO_ERR_NO_TITLE",        -110 ) ;
 define("_C_WEBPHOTO_ERR_CHECK_DIR",       -111 ) ;
 define("_C_WEBPHOTO_ERR_NOT_ALLOWED_EXT", -112 ) ;
+
+// v0.30
+define("_C_WEBPHOTO_ERR_EMPTY_FILE",      -113 ) ;
+define("_C_WEBPHOTO_ERR_EMPTY_CAT",       -114 ) ;
+define("_C_WEBPHOTO_ERR_INVALID_CAT",     -115 ) ;
+define("_C_WEBPHOTO_ERR_NO_CAT_RECORD",   -116 ) ;
+define("_C_WEBPHOTO_ERR_EXT",             -117 ) ;
+define("_C_WEBPHOTO_ERR_FILE_SIZE",       -118 ) ;
+define("_C_WEBPHOTO_ERR_CREATE_PHOTO",    -119 ) ;
+define("_C_WEBPHOTO_ERR_CREATE_THUMB",    -120 ) ;
+
+// v0.40
+define("_C_WEBPHOTO_ERR_GET_IMAGE_SIZE",  -121 ) ;
 
 // for Japanese
 define("_C_WEBPHOTO_JPAPANESE" , "japanese|japaneseutf|ja_utf8" ) ;

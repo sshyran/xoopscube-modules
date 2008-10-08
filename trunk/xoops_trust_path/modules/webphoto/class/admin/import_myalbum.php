@@ -1,5 +1,5 @@
 <?php
-// $Id: import_myalbum.php,v 1.2 2008/07/05 12:54:16 ohwada Exp $
+// $Id: import_myalbum.php,v 1.4 2008/08/25 21:17:23 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -8,6 +8,8 @@
 
 //---------------------------------------------------------
 // change log
+// 2008-08-24 K.OHWADA
+// photo_handler -> item_handler
 // 2008-07-01 K.OHWADA
 // xoops_error() -> build_error_msg()
 //---------------------------------------------------------
@@ -29,8 +31,6 @@ class webphoto_admin_import_myalbum extends webphoto_import
 function webphoto_admin_import_myalbum( $dirname , $trust_dirname )
 {
 	$this->webphoto_import( $dirname , $trust_dirname );
-
-//	$this->init_for_import();
 
 	$this->_form_class =& webphoto_admin_import_form::getInstance( $dirname , $trust_dirname );
 }
@@ -82,6 +82,12 @@ function main()
 			}
 			break;
 
+		case "confirm_truncate":
+			if ( $this->check_token() ) {
+				$this->_form_truncate( 'truncate' );
+			}
+			break;
+
 		case "truncate":
 			if ( $this->check_token() ) {
 				$this->_truncate();
@@ -121,7 +127,7 @@ This program overwrite MySQL tables. <br />
 <?php
 
 	$this->_form_sel_myalbum();
-	$this->_form_truncate();
+	$this->_form_truncate( 'confirm_truncate' );
 
 }
 
@@ -220,25 +226,14 @@ function _import_photo()
 	foreach ($myalbum_rows as $myalbum_row)
 	{
 		$lid   = $myalbum_row['lid'];
-		$ext   = $myalbum_row['ext'];
 		$title = $myalbum_row['title'];
 		$cid   = $myalbum_row['cid'];
 
 		echo $lid.' : '.$this->sanitize($title);
 
-// copy photo
-		$photo_thumb_info = $this->copy_photo_from_myalbum( $lid, $lid, $ext );
-		echo " <br />\n";
+		$this->add_photo_from_myalbum( $lid, $cid, $myalbum_row );
 
-// new row
-		$row = $this->create_photo_row_from_myalbum( $lid, $cid, $myalbum_row );
-		if ( is_array($photo_thumb_info) ) {
-			$row = array_merge( $row, $photo_thumb_info );
-		}
-		$row['photo_search'] = $this->build_photo_search( $row );
-
-		$this->_photo_handler->insert( $row );
-
+		echo "<br />\n";
 	}
 
 	if ( $total > $next ) {
@@ -309,8 +304,11 @@ function _truncate()
 	echo "<h4>Truncate category table</h4>";
 	$this->_cat_handler->truncate_table();
 
-	echo "<h4>Truncate photo table</h4>";
-	$this->_photo_handler->truncate_table();
+	echo "<h4>Truncate item table</h4>";
+	$this->_item_handler->truncate_table();
+
+	echo "<h4>Truncate file table</h4>";
+	$this->_file_handler->truncate_table();
 
 	echo "<h4>Truncate vote table</h4>";
 	$this->_vote_handler->truncate_table();
@@ -384,15 +382,18 @@ function _form_sel_myalbum()
 	$this->_form_class->print_form_sel_myalbum( $title, $options );
 }
 
-function _form_truncate()
+function _form_truncate( $op )
 {
 	$title  = 'STEP 0 : initalize';
-	$op     = 'truncate';
 	$submit = 'GO STEP 0';
 
 	echo "<h4>".$title."</h4>\n";
 	echo "Truncate tables.<br />\n";
-	echo "If you want to redo <br />\n";
+	echo "If you want to redo <br /><br />\n";
+	if ( $op == 'truncate' ) {
+		echo $this->highlight( "Are you sure ?" )."<br />\n";
+	}
+
 	$this->_print_form_next($title, $op, $submit);
 }
 

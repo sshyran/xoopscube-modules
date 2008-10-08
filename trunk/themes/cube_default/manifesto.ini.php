@@ -2,10 +2,10 @@
 /**
 
 [Manifesto]
-Name="Cube Default 2.1.5"
+Name="Cube Default 2.2"
 Depends=Legacy_RenderSystem,legacy
 Url="http://xoopscube.sourceforge.net/"
-Version="2.1.5"
+Version="2.2"
 
 [Theme]
 RenderSystem=Legacy_RenderSystem

@@ -14,7 +14,7 @@ $modversion['description'] = constant($constpref.'_DESC') ;
 $modversion['version'] = 1.61 ;
 $modversion['credits'] = "PEAK Corp.";
 $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(http://www.peak.ne.jp/)" ;
-$modversion['help'] = "" ;
+$modversion['help'] = "help.html" ;
 $modversion['license'] = "GPL" ;
 $modversion['official'] = 0 ;
 $modversion['image'] = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;

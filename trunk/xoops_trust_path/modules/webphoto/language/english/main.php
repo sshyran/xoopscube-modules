@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php,v 1.3 2008/07/05 12:54:16 ohwada Exp $
+// $Id: main.php,v 1.11 2008/09/04 10:39:45 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -27,8 +27,8 @@ define("_WEBPHOTO_ICON_LASTUPDATE","Last Update");
 define("_WEBPHOTO_ICON_HITS","Hits");
 define("_WEBPHOTO_ICON_COMMENTS","Comments");
 
-define("_WEBPHOTO_SORT_IDA","Record Number (Smaller to Bigger)");
-define("_WEBPHOTO_SORT_IDD","Record Number (Smaller is latter)");
+define("_WEBPHOTO_SORT_IDA","Record Number (Smaller ID to Bigger)");
+define("_WEBPHOTO_SORT_IDD","Record Number (Bigger ID to Smaller)");
 define("_WEBPHOTO_SORT_HITSA","Popularity (Least to Most Hits)");
 define("_WEBPHOTO_SORT_HITSD","Popularity (Most to Least Hits)");
 define("_WEBPHOTO_SORT_TITLEA","Title (A to Z)");
@@ -87,7 +87,7 @@ define("_WEBPHOTO_ERR_MUSTADDCATFIRST","Sorry, there are no categories to add to
 define("_WEBPHOTO_ERR_NOIMAGESPECIFIED","No photo was uploaded");
 define("_WEBPHOTO_ERR_FILE","Photos are too big or there is a problem with the configuration");
 define("_WEBPHOTO_ERR_FILEREAD","Photos are not readable.");
-define("_WEBPHOTO_ERR_TITLE","You need to enter a TITLE");
+define("_WEBPHOTO_ERR_TITLE","You must enter 'Title' ");
 
 
 //---------------------------------------------------------
@@ -682,8 +682,8 @@ http://desktop.google.com/plugins/i/mediarssslideshow.html
 // others
 //---------------------------------------------------------
 define("_WEBPHOTO_RANDOM_MORE","More Photos at random");
-define("_WEBPHOTO_USAGE_PHOTO","Popup the big photo, wehen click the thumbnail image");
-define("_WEBPHOTO_USAGE_TITLE","Move to the photo page, wehen click the photo title");
+define("_WEBPHOTO_USAGE_PHOTO","Popup the big photo, when click the thumbnail image");
+define("_WEBPHOTO_USAGE_TITLE","Move to the photo page, when click the photo title");
 define("_WEBPHOTO_DATE_NOT_SET","Not set Photo Date");
 define("_WEBPHOTO_PLACE_NOT_SET","Not Set Photo Place");
 define("_WEBPHOTO_GOTO_ADMIN", "Goto Admin Control");
@@ -716,6 +716,214 @@ define("_WEBPHOTO_ICON_VIDEO", "Video");
 define("_WEBPHOTO_HOUR", "hour");
 define("_WEBPHOTO_MINUTE", "min");
 define("_WEBPHOTO_SECOND", "sec");
+
+//---------------------------------------------------------
+// v0.30
+//---------------------------------------------------------
+// user table
+define("_WEBPHOTO_USER_TABLE" , "User Aux Table" ) ;
+define("_WEBPHOTO_USER_ID" ,          "User Aux ID" ) ;
+define("_WEBPHOTO_USER_TIME_CREATE" , "Create Time" ) ;
+define("_WEBPHOTO_USER_TIME_UPDATE" , "Update Time" ) ;
+define("_WEBPHOTO_USER_UID" , "Uesr ID" ) ;
+define("_WEBPHOTO_USER_CAT_ID" , "Category ID" ) ;
+define("_WEBPHOTO_USER_EMAIL" , "Email Address" ) ;
+define("_WEBPHOTO_USER_TEXT1" ,  "text1" ) ;
+define("_WEBPHOTO_USER_TEXT2" ,  "text2" ) ;
+define("_WEBPHOTO_USER_TEXT3" ,  "text3" ) ;
+define("_WEBPHOTO_USER_TEXT4" ,  "text4" ) ;
+define("_WEBPHOTO_USER_TEXT5" ,  "text5" ) ;
+
+// maillog
+define("_WEBPHOTO_MAILLOG_TABLE" , "Maillog Table" ) ;
+define("_WEBPHOTO_MAILLOG_ID" ,          "Maillog ID" ) ;
+define("_WEBPHOTO_MAILLOG_TIME_CREATE" , "Create Time" ) ;
+define("_WEBPHOTO_MAILLOG_TIME_UPDATE" , "Update Time" ) ;
+define("_WEBPHOTO_MAILLOG_PHOTO_IDS" , "Photo IDs" ) ;
+define("_WEBPHOTO_MAILLOG_STATUS" , "Status" ) ;
+define("_WEBPHOTO_MAILLOG_FROM" , "Mail From Address" ) ;
+define("_WEBPHOTO_MAILLOG_SUBJECT" , "Subject" ) ;
+define("_WEBPHOTO_MAILLOG_BODY" ,  "Body" ) ;
+define("_WEBPHOTO_MAILLOG_FILE" ,  "File Name" ) ;
+define("_WEBPHOTO_MAILLOG_ATTACH" ,  "Attach Files" ) ;
+define("_WEBPHOTO_MAILLOG_COMMENT" ,  "Comment" ) ;
+
+// mail register
+define("_WEBPHOTO_TITLE_MAIL_REGISTER" ,  "Mail Address Register" ) ;
+define("_WEBPHOTO_MAIL_HELP" ,  "Please refer 'Help' for usage" ) ;
+define("_WEBPHOTO_CAT_USER" ,  "User Name" ) ;
+define("_WEBPHOTO_BUTTON_REGISTER" ,  "REGISTER" ) ;
+define("_WEBPHOTO_NOMATCH_USER","There are no user");
+define("_WEBPHOTO_ERR_MAIL_EMPTY","You must enter 'Mail Address' ");
+define("_WEBPHOTO_ERR_MAIL_ILLEGAL","Illegal format of mail address");
+
+// mail retrieve
+define("_WEBPHOTO_TITLE_MAIL_RETRIEVE" ,  "Mail Retrieve" ) ;
+define("_WEBPHOTO_DSC_MAIL_RETRIEVE" ,  "Retrieve mails from the mail server" ) ;
+define("_WEBPHOTO_BUTTON_RETRIEVE" ,  "RETRIEVE" ) ;
+define("_WEBPHOTO_SUBTITLE_MAIL_ACCESS" ,  "Accessing the mail server" ) ;
+define("_WEBPHOTO_SUBTITLE_MAIL_PARSE" ,  "Parsing the received mails" ) ;
+define("_WEBPHOTO_SUBTITLE_MAIL_PHOTO" ,  "Submiting the photos attached to mails" ) ;
+define("_WEBPHOTO_TEXT_MAIL_ACCESS_TIME" ,  "In access limitation" ) ;
+define("_WEBPHOTO_TEXT_MAIL_RETRY"  ,  "Access 1 minute later" ) ;
+define("_WEBPHOTO_TEXT_MAIL_NOT_RETRIEVE" ,  "Cannot retrieve mail.<br />Probably temporary communication failure.<br />Please retry after a while" ) ;
+define("_WEBPHOTO_TEXT_MAIL_NO_NEW" ,  "There no new mail" ) ;
+define("_WEBPHOTO_TEXT_MAIL_RETRIEVED_FMT" ,  "Retrieved %s mails" ) ;
+define("_WEBPHOTO_TEXT_MAIL_NO_VALID" ,  "There no valid mail" ) ;
+define("_WEBPHOTO_TEXT_MAIL_SUBMITED_FMT" ,  "Submited %s photos" ) ;
+define("_WEBPHOTO_GOTO_INDEX" ,  "Goto the module top page" ) ;
+
+// i.php
+define("_WEBPHOTO_TITLE_MAIL_POST" ,  "Post by Mail" ) ;
+
+// file
+define("_WEBPHOTO_TITLE_FILE" , "Add Photo from File" ) ;
+define("_WEBPHOTO_CAP_FILE_SELECT", "Select File");
+define("_WEBPHOTO_ERR_EMPTY_FILE" , "You must select the file" ) ;
+define("_WEBPHOTO_ERR_EMPTY_CAT" , "You must select the category" ) ;
+define("_WEBPHOTO_ERR_INVALID_CAT" , "Invalid category" ) ;
+define("_WEBPHOTO_ERR_CREATE_PHOTO" , "Cannot create photo" ) ;
+define("_WEBPHOTO_ERR_CREATE_THUMB" , "Cannot create thumb image" ) ;
+
+// help
+define("_WEBPHOTO_HELP_MUST_LOGIN","Please login, if you want to read more detail");
+define("_WEBPHOTO_HELP_NOT_PERM", "You have no permission. Please contact the webmaster");
+
+define("_WEBPHOTO_HELP_MOBILE_TITLE", "Mobile Phone");
+define("_WEBPHOTO_HELP_MOBILE_DSC", "You can look the photo and video in the mobile phone<br/>the size of screen is about 240x320 ");
+define("_WEBPHOTO_HELP_MOBILE_TEXT_FMT", '
+<b>Access URL</b><br />
+<a href="{MODULE_URL}/i.php" target="_blank">{MODULE_URL}/i.php</a>');
+
+define("_WEBPHOTO_HELP_MAIL_TITLE", "Mobile Mail");
+define("_WEBPHOTO_HELP_MAIL_DSC", "You can post the photo and video by email from the mobile phone");
+define("_WEBPHOTO_HELP_MAIL_GUEST", "This is sample. You can look the REAL mail address, if you have the permission.");
+
+define("_WEBPHOTO_HELP_FILE_TITLE", "Post by FTP");
+define("_WEBPHOTO_HELP_FILE_DSC", "You can post the big size photo and video, when you upload the file by FTP");
+define("_WEBPHOTO_HELP_FILE_TEXT_FMT", '
+<b>Post photo</b><br />
+(1) Upload the file in FTP server<br />
+(2) Click <a href="{MODULE_URL}/index.php?fct=submit_file" target="_blank">Add Photo from File</a><br />
+(3) Select the uploaded file and post' );
+
+// mail check
+// for Japanese
+define("_WEBPHOTO_MAIL_DENY_TITLE_PREG", "" ) ;
+define("_WEBPHOTO_MAIL_AD_WORD_1", "" ) ;
+define("_WEBPHOTO_MAIL_AD_WORD_2", "" ) ;
+
+//---------------------------------------------------------
+// v0.40
+//---------------------------------------------------------
+// item table
+define("_WEBPHOTO_ITEM_TABLE" , "Item Table" ) ;
+define("_WEBPHOTO_ITEM_ID" , "Item ID" ) ;
+define("_WEBPHOTO_ITEM_TIME_CREATE" , "Create Time" ) ;
+define("_WEBPHOTO_ITEM_TIME_UPDATE" , "Update Time" ) ;
+define("_WEBPHOTO_ITEM_CAT_ID" ,  "Category ID" ) ;
+define("_WEBPHOTO_ITEM_GICON_ID" , "GoogleMap Icon ID" ) ;
+define("_WEBPHOTO_ITEM_UID" ,   "User ID" ) ;
+define("_WEBPHOTO_ITEM_KIND" , "File Kind" ) ;
+define("_WEBPHOTO_ITEM_EXT" ,  "File Extention" ) ;
+define("_WEBPHOTO_ITEM_DATETIME" ,  "Photo Datetime" ) ;
+define("_WEBPHOTO_ITEM_TITLE" , "Photo Title" ) ;
+define("_WEBPHOTO_ITEM_PLACE" , "Place" ) ;
+define("_WEBPHOTO_ITEM_EQUIPMENT" , "Equipment" ) ;
+define("_WEBPHOTO_ITEM_GMAP_LATITUDE" ,  "GoogleMap Latitude" ) ;
+define("_WEBPHOTO_ITEM_GMAP_LONGITUDE" , "GoogleMap Longitude" ) ;
+define("_WEBPHOTO_ITEM_GMAP_ZOOM" ,      "GoogleMap Zoom" ) ;
+define("_WEBPHOTO_ITEM_GMAP_TYPE" ,      "GoogleMap Type" ) ;
+define("_WEBPHOTO_ITEM_PERM_READ" , "Read Permission" ) ;
+define("_WEBPHOTO_ITEM_STATUS" ,   "Status" ) ;
+define("_WEBPHOTO_ITEM_HITS" ,     "Hits" ) ;
+define("_WEBPHOTO_ITEM_RATING" ,   "Rating" ) ;
+define("_WEBPHOTO_ITEM_VOTES" ,    "Votes" ) ;
+define("_WEBPHOTO_ITEM_DESCRIPTION" ,  "Photo Description" ) ;
+define("_WEBPHOTO_ITEM_EXIF" , "Exif Information" ) ;
+define("_WEBPHOTO_ITEM_SEARCH" ,  "Search" ) ;
+define("_WEBPHOTO_ITEM_COMMENTS" , "Comments" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_1" ,  "File ID: Content" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_2" ,  "File ID: Thumbnail" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_3" ,  "File ID: MIddle" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_4" ,  "File ID: Flash Video" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_5" ,  "File ID: Docomo Video" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_6" ,  "file6" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_7" ,  "file7" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_8" ,  "file8" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_9" ,  "file9" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_10" , "file10" ) ;
+define("_WEBPHOTO_ITEM_TEXT_1" ,  "text1" ) ;
+define("_WEBPHOTO_ITEM_TEXT_2" ,  "text2" ) ;
+define("_WEBPHOTO_ITEM_TEXT_3" ,  "text3" ) ;
+define("_WEBPHOTO_ITEM_TEXT_4" ,  "text4" ) ;
+define("_WEBPHOTO_ITEM_TEXT_5" ,  "text5" ) ;
+define("_WEBPHOTO_ITEM_TEXT_6" ,  "text6" ) ;
+define("_WEBPHOTO_ITEM_TEXT_7" ,  "text7" ) ;
+define("_WEBPHOTO_ITEM_TEXT_8" ,  "text8" ) ;
+define("_WEBPHOTO_ITEM_TEXT_9" ,  "text9" ) ;
+define("_WEBPHOTO_ITEM_TEXT_10" , "text10" ) ;
+
+// file table
+define("_WEBPHOTO_FILE_TABLE" , "File Table" ) ;
+define("_WEBPHOTO_FILE_ID" , "File ID" ) ;
+define("_WEBPHOTO_FILE_TIME_CREATE" , "Create Time" ) ;
+define("_WEBPHOTO_FILE_TIME_UPDATE" , "Update Time" ) ;
+define("_WEBPHOTO_FILE_ITEM_ID" ,  "Item ID" ) ;
+define("_WEBPHOTO_FILE_KIND" , "File Kind" ) ;
+define("_WEBPHOTO_FILE_URL" ,    "URL" ) ;
+define("_WEBPHOTO_FILE_PATH" ,   "File Path" ) ;
+define("_WEBPHOTO_FILE_NAME" ,   "File Name" ) ;
+define("_WEBPHOTO_FILE_EXT" ,    "File Extention" ) ;
+define("_WEBPHOTO_FILE_MIME" ,   "MIME type" ) ;
+define("_WEBPHOTO_FILE_MEDIUM" , "Medium Type" ) ;
+define("_WEBPHOTO_FILE_SIZE" ,   "File Size" ) ;
+define("_WEBPHOTO_FILE_WIDTH" ,  "Image Width" ) ;
+define("_WEBPHOTO_FILE_HEIGHT" , "Image Height" ) ;
+define("_WEBPHOTO_FILE_DURATION" , "Video Duration Time" ) ;
+
+// file kind ( for admin checktables )
+define("_WEBPHOTO_FILE_KIND_1" ,  "Content" ) ;
+define("_WEBPHOTO_FILE_KIND_2" ,  "Thumbnail" ) ;
+define("_WEBPHOTO_FILE_KIND_3" ,  "MIddle" ) ;
+define("_WEBPHOTO_FILE_KIND_4" ,  "Flash Video" ) ;
+define("_WEBPHOTO_FILE_KIND_5" ,  "Docomo Video" ) ;
+define("_WEBPHOTO_FILE_KIND_6" ,  "file6" ) ;
+define("_WEBPHOTO_FILE_KIND_7" ,  "file7" ) ;
+define("_WEBPHOTO_FILE_KIND_8" ,  "file8" ) ;
+define("_WEBPHOTO_FILE_KIND_9" ,  "file9" ) ;
+define("_WEBPHOTO_FILE_KIND_10" , "file10" ) ;
+
+// index
+define("_WEBPHOTO_MOBILE_MAILTO" , "Send URL to the mobile phone" ) ;
+
+// i.php
+define("_WEBPHOTO_TITLE_MAIL_JUDGE" ,  "Judge the mobile carrier" ) ;
+define("_WEBPHOTO_MAIL_MODEL", "Mobile Carrier" ) ;
+define("_WEBPHOTO_MAIL_BROWSER", "WEB Browser" ) ;
+define("_WEBPHOTO_MAIL_NOT_JUDGE", "Cannot judge the mobile carrier" ) ;
+define("_WEBPHOTO_MAIL_TO_WEBMASTER", "Mail to webmaster" ) ;
+
+// help
+define("_WEBPHOTO_HELP_MAIL_POST_FMT", '
+<b>Prepare</b><br />
+Register your mail address of mobile phone<br />
+<a href="{MODULE_URL}/index.php?fct=mail_register" target="_blank">Register Mail Addrtess</a><br /><br />
+<b>Post photo</b><br />
+Send mail to the fllowing address with attaching photo file.<br />
+<a href="mailto:{MAIL_ADDR}">{MAIL_ADDR}</a> {MAIL_GUEST} <br /><br />
+<b>Rotation for photo</b><br />
+You can turn the photo right or left, since you enter the end of "Subject" as following<br />
+ R@ : turn right <br />
+ L@ : turn left <br /><br />' );
+define("_WEBPHOTO_HELP_MAIL_SUBTITLE_RETRIEVE", "<b>Retrive mail and submit photo</b><br />" );
+define("_WEBPHOTO_HELP_MAIL_RETRIEVE_FMT", '
+Click <a href="{MODULE_URL}/i.php?op=post" target="_blank">Post by Mail</a>, after few seconds sent mail.<br />
+Webphoto retrive the mail which you sent, submit and show the attached photo<br />' );
+define("_WEBPHOTO_HELP_MAIL_RETRIEVE_TEXT", "Webphoto retrive the mail which you sent, submit and show the attached photo<br />" );
+define("_WEBPHOTO_HELP_MAIL_RETRIEVE_AUTO_FMT", '
+The mail is submitted automatically %s seconds later, when you send mail.<br />
+Please click <a href="{MODULE_URL}/i.php?op=post" target="_blank">Post by Mail</a>, if not submitted.<br />' );
 
 // === define end ===
 }

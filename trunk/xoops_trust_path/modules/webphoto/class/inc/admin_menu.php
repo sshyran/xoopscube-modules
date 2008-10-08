@@ -1,10 +1,18 @@
 <?php
-// $Id: admin_menu.php,v 1.1.1.1 2008/06/21 12:22:26 ohwada Exp $
+// $Id: admin_menu.php,v 1.3 2008/08/25 19:28:05 ohwada Exp $
 
 //=========================================================
 // webphoto module
 // 2008-04-02 K.OHWADA
 //=========================================================
+
+//---------------------------------------------------------
+// change log
+// 2008-08-24 K.OHWADA
+// added item_table_manage
+// 2008-08-01 K.OHWADA
+// added maillog_manager
+//---------------------------------------------------------
 
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 
@@ -56,36 +64,49 @@ function define_menu()
 	$menu[6]['fct']   = 'giconmanager';
 	$menu[7]['title'] = 'MIMETYPES' ;
 	$menu[7]['fct']   = 'mimetypes';
+	$menu[8]['title'] = 'MAILLOG_MANAGER' ;
+	$menu[8]['fct']   = 'maillog_manager';
 
-	$menu[8]['title'] = 'BATCH' ;
-	$menu[8]['fct']   = 'batch';
-	$menu[9]['title'] = 'IMPORT' ;
-	$menu[9]['fct']   = 'import';
-	$menu[10]['title'] = 'EXPORT' ;
-	$menu[10]['fct']   = 'export';
+	$menu[9]['title'] = 'BATCH' ;
+	$menu[9]['fct']   = 'batch';
+	$menu[10]['title'] = 'IMPORT' ;
+	$menu[10]['fct']   = 'import';
+	$menu[11]['title'] = 'EXPORT' ;
+	$menu[11]['fct']   = 'export';
 
 // added for webphoto
-	$menu[11]['title'] = 'IMPORT_MYALBUM' ;
-	$menu[11]['fct']   = 'import_myalbum';
-	$menu[12]['title'] = 'CHECKTABLES' ;
-	$menu[12]['fct']   = 'checktables';
+	$menu[12]['title'] = 'IMPORT_MYALBUM' ;
+	$menu[12]['fct']   = 'import_myalbum';
+	$menu[13]['title'] = 'CHECKTABLES' ;
+	$menu[13]['fct']   = 'checktables';
 
-	$menu[13]['title'] = 'PHOTO_TABLE_MANAGE' ;
-	$menu[13]['fct']   = 'photo_table_manage';
-	$menu[14]['title'] = 'CAT_TABLE_MANAGE' ;
-	$menu[14]['fct']   = 'cat_table_manage';
-	$menu[15]['title'] = 'VOTE_TABLE_MANAGE' ;
-	$menu[15]['fct']   = 'vote_table_manage';
-	$menu[16]['title'] = 'GICON_TABLE_MANAGE' ;
-	$menu[16]['fct']   = 'gicon_table_manage';
-	$menu[17]['title'] = 'MIME_TABLE_MANAGE' ;
-	$menu[17]['fct']   = 'mime_table_manage';
-	$menu[18]['title'] = 'TAG_TABLE_MANAGE' ;
-	$menu[18]['fct']   = 'tag_table_manage';
-	$menu[19]['title'] = 'P2T_TABLE_MANAGE' ;
-	$menu[19]['fct']   = 'p2t_table_manage';
-	$menu[20]['title'] = 'SYNO_TABLE_MANAGE' ;
-	$menu[20]['fct']   = 'syno_table_manage';
+	$menu[14]['title'] = 'ITEM_TABLE_MANAGE' ;
+	$menu[14]['fct']   = 'item_table_manage';
+	$menu[15]['title'] = 'FILE_TABLE_MANAGE' ;
+	$menu[15]['fct']   = 'file_table_manage';
+	$menu[16]['title'] = 'CAT_TABLE_MANAGE' ;
+	$menu[16]['fct']   = 'cat_table_manage';
+	$menu[17]['title'] = 'VOTE_TABLE_MANAGE' ;
+	$menu[17]['fct']   = 'vote_table_manage';
+	$menu[18]['title'] = 'GICON_TABLE_MANAGE' ;
+	$menu[18]['fct']   = 'gicon_table_manage';
+	$menu[19]['title'] = 'MIME_TABLE_MANAGE' ;
+	$menu[19]['fct']   = 'mime_table_manage';
+	$menu[20]['title'] = 'TAG_TABLE_MANAGE' ;
+	$menu[20]['fct']   = 'tag_table_manage';
+	$menu[21]['title'] = 'P2T_TABLE_MANAGE' ;
+	$menu[21]['fct']   = 'p2t_table_manage';
+	$menu[22]['title'] = 'SYNO_TABLE_MANAGE' ;
+	$menu[22]['fct']   = 'syno_table_manage';
+	$menu[23]['title'] = 'USER_TABLE_MANAGE' ;
+	$menu[23]['fct']   = 'user_table_manage';
+	$menu[24]['title'] = 'MAILLOG_TABLE_MANAGE' ;
+	$menu[24]['fct']   = 'maillog_table_manage';
+	$menu[25]['title'] = 'PHOTO_TABLE_MANAGE' ;
+	$menu[25]['fct']   = 'photo_table_manage';
+
+	$menu[26]['title'] = 'UPDATE' ;
+	$menu[26]['fct']   = 'update';
 
 	return $menu;
 }
@@ -122,7 +143,11 @@ function _init( $dirname )
 
 function _constant( $name )
 {
-	return constant( $this->_constant_name( $name ) );
+	$const_name = $this->_constant_name( $name );
+	if ( defined($const_name) ) {
+		return constant( $this->_constant_name( $name ) );
+	}
+	return $const_name;
 }
 
 function _constant_name( $name )

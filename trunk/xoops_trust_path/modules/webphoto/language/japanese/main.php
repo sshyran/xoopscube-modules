@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php,v 1.3 2008/07/05 12:54:16 ohwada Exp $
+// $Id: main.php,v 1.10 2008/09/04 10:28:29 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -7,7 +7,7 @@
 //=========================================================
 
 // === define begin ===
-if( !defined("_MB_WEBPHOTO_LANGLOADED") ) 
+if( !defined("_MB_WEBPHOTO_LANG_LOADED") ) 
 {
 
 define("_MB_WEBPHOTO_LANG_LOADED" , 1 ) ;
@@ -716,6 +716,213 @@ define("_WEBPHOTO_ICON_VIDEO", "動画");
 define("_WEBPHOTO_HOUR", "時間");
 define("_WEBPHOTO_MINUTE", "分");
 define("_WEBPHOTO_SECOND", "秒");
+
+//---------------------------------------------------------
+// v0.30
+//---------------------------------------------------------
+// user table
+define("_WEBPHOTO_USER_TABLE" , "ユーザ補助テーブル" ) ;
+define("_WEBPHOTO_USER_ID" ,          "ユーザ補助ID" ) ;
+define("_WEBPHOTO_USER_TIME_CREATE" , "作成日時" ) ;
+define("_WEBPHOTO_USER_TIME_UPDATE" , "更新日時" ) ;
+define("_WEBPHOTO_USER_UID" , "ユーザ番号" ) ;
+define("_WEBPHOTO_USER_CAT_ID" , "カテゴリ番号" ) ;
+define("_WEBPHOTO_USER_EMAIL" , "メールアドレス" ) ;
+define("_WEBPHOTO_USER_TEXT1" ,  "text1" ) ;
+define("_WEBPHOTO_USER_TEXT2" ,  "text2" ) ;
+define("_WEBPHOTO_USER_TEXT3" ,  "text3" ) ;
+define("_WEBPHOTO_USER_TEXT4" ,  "text4" ) ;
+define("_WEBPHOTO_USER_TEXT5" ,  "text5" ) ;
+
+// maillog
+define("_WEBPHOTO_MAILLOG_TABLE" , "メールログ・テーブル" ) ;
+define("_WEBPHOTO_MAILLOG_ID" ,          "メールログID" ) ;
+define("_WEBPHOTO_MAILLOG_TIME_CREATE" , "作成日時" ) ;
+define("_WEBPHOTO_MAILLOG_TIME_UPDATE" , "更新日時" ) ;
+define("_WEBPHOTO_MAILLOG_PHOTO_IDS" , "写真番号" ) ;
+define("_WEBPHOTO_MAILLOG_STATUS" , "状態" ) ;
+define("_WEBPHOTO_MAILLOG_FROM" , "送信者メールアドレス" ) ;
+define("_WEBPHOTO_MAILLOG_SUBJECT" , "題名" ) ;
+define("_WEBPHOTO_MAILLOG_BODY" ,  "本文" ) ;
+define("_WEBPHOTO_MAILLOG_FILE" ,  "ファイル名" ) ;
+define("_WEBPHOTO_MAILLOG_ATTACH" ,  "添付ファイル" ) ;
+define("_WEBPHOTO_MAILLOG_COMMENT" ,  "コメント" ) ;
+
+// mail register
+define("_WEBPHOTO_TITLE_MAIL_REGISTER" ,  "メルアド登録" ) ;
+define("_WEBPHOTO_MAIL_HELP" ,  "使い方はヘルプをご覧ください" ) ;
+define("_WEBPHOTO_CAT_USER" ,  "ユーザ名" ) ;
+define("_WEBPHOTO_BUTTON_REGISTER" ,  "登録" ) ;
+define("_WEBPHOTO_NOMATCH_USER","該当するユーザがいない");
+define("_WEBPHOTO_ERR_MAIL_EMPTY","メールアドレスが必要です");
+define("_WEBPHOTO_ERR_MAIL_ILLEGAL","メールアドレスの形式がおかしい");
+
+// mail retrieve
+define("_WEBPHOTO_TITLE_MAIL_RETRIEVE" ,  "メール受信" ) ;
+define("_WEBPHOTO_DSC_MAIL_RETRIEVE" ,  "メールサーバーからメールを受信する" ) ;
+define("_WEBPHOTO_BUTTON_RETRIEVE" ,  "メール受信" ) ;
+define("_WEBPHOTO_SUBTITLE_MAIL_ACCESS" ,  "メールサーバーにアクセスする" ) ;
+define("_WEBPHOTO_SUBTITLE_MAIL_PARSE" ,  "受信したメールを解読します" ) ;
+define("_WEBPHOTO_SUBTITLE_MAIL_PHOTO" ,  "メールに添付された写真を登録します" ) ;
+define("_WEBPHOTO_TEXT_MAIL_ACCESS_TIME" ,  "アクセス制限中です" ) ;
+define("_WEBPHOTO_TEXT_MAIL_RETRY"  ,  "１分後にアクセスしてください" ) ;
+define("_WEBPHOTO_TEXT_MAIL_NOT_RETRIEVE" ,  "メールを受信できなかった。<br />一時的な通信障害と思われます。<br />しばらく時間をあけてから、試みてください。" ) ;
+define("_WEBPHOTO_TEXT_MAIL_NO_NEW" ,  "新着メールはありません" ) ;
+define("_WEBPHOTO_TEXT_MAIL_RETRIEVED_FMT" ,  "%s 件のメールを受信しました" ) ;
+define("_WEBPHOTO_TEXT_MAIL_NO_VALID" ,  "有効なメールはありません" ) ;
+define("_WEBPHOTO_TEXT_MAIL_SUBMITED_FMT" ,  "%s 件の写真を登録しました" ) ;
+define("_WEBPHOTO_GOTO_INDEX" ,  "モジュールのトップページへ" ) ;
+
+// i.php
+define("_WEBPHOTO_TITLE_MAIL_POST" ,  "メールから投稿する" ) ;
+
+// file
+define("_WEBPHOTO_TITLE_SUBMIT_FILE" , "ファイルからの画像追加" ) ;
+define("_WEBPHOTO_CAP_FILE_SELECT", "ファイルの選択");
+define("_WEBPHOTO_ERR_EMPTY_FILE" , "ファイルを指定してください" ) ;
+define("_WEBPHOTO_ERR_EMPTY_CAT" , "カテゴリを指定してください" ) ;
+define("_WEBPHOTO_ERR_INVALID_CAT" , "無効なカテゴリです" ) ;
+define("_WEBPHOTO_ERR_CREATE_PHOTO" , "画像を登録できなかった" ) ;
+define("_WEBPHOTO_ERR_CREATE_THUMB" , "サムネイルを登録できなかった" ) ;
+
+// help
+define("_WEBPHOTO_HELP_MUST_LOGIN","詳しい説明を読むには、ログインしてください");
+define("_WEBPHOTO_HELP_NOT_PERM", "貴方には許可されていません。管理者までお問い合わせください。");
+
+define("_WEBPHOTO_HELP_MOBILE_TITLE", "携帯電話");
+define("_WEBPHOTO_HELP_MOBILE_DSC", "携帯電話にて、写真や動画を表示することができます<br/>240×320 程度の画面サイズです");
+define("_WEBPHOTO_HELP_MOBILE_TEXT_FMT", '
+<b>アクセスURL</b><br />
+<a href="{MODULE_URL}/i.php" target="_blank">{MODULE_URL}/i.php</a>');
+
+define("_WEBPHOTO_HELP_MAIL_TITLE", "携帯メールによる投稿");
+define("_WEBPHOTO_HELP_MAIL_DSC", "携帯電話からメールを送信して、写真や動画を投稿することができます");
+define("_WEBPHOTO_HELP_MAIL_GUEST", "これは見本です。権限がないと、正しいメールアドレスは表示されません");
+
+define("_WEBPHOTO_HELP_FILE_TITLE", "FTP による投稿");
+define("_WEBPHOTO_HELP_FILE_DSC", "FTP によりファイルをアップロードすることで、ファイル容量の大きな写真や動画を投稿することができます");
+define("_WEBPHOTO_HELP_FILE_TEXT_FMT", '
+<b>投稿方法</b><br />
+(1) 指定された FTP サーバーにファイルをアップロードする<br />
+(2) <a href="{MODULE_URL}/index.php?fct=submit_file" target="_blank">「ファイルからの画像追加」</a> をクリックする<br />
+(3) アップロードしたファイルを指定して投稿する' );
+
+// mail check
+// for Japanese
+define("_WEBPHOTO_MAIL_DENY_TITLE_PREG", "/((未|末)\s?承\s?(諾|認)\s?広\s?告|相互リンク|18禁|サイトのご紹介)/i" ) ;
+define("_WEBPHOTO_MAIL_AD_WORD_1", "会員登録は無料  充実した出品アイテムなら MSN オークション" ) ;
+define("_WEBPHOTO_MAIL_AD_WORD_2", "友達と24時間ホットライン「MSN メッセンジャー」、今すぐダウンロード！" ) ;
+
+//---------------------------------------------------------
+// v0.40
+//---------------------------------------------------------
+// item table
+define("_WEBPHOTO_ITEM_TABLE" , "アイテム・テーブル" ) ;
+define("_WEBPHOTO_ITEM_ID" , "アイテムID" ) ;
+define("_WEBPHOTO_ITEM_TIME_CREATE" , "作成日時" ) ;
+define("_WEBPHOTO_ITEM_TIME_UPDATE" , "更新日時" ) ;
+define("_WEBPHOTO_ITEM_CAT_ID" ,  "カテゴリ番号" ) ;
+define("_WEBPHOTO_ITEM_GICON_ID" , "GoogleMap アイコン番号" ) ;
+define("_WEBPHOTO_ITEM_UID" ,   "ユーザ番号" ) ;
+define("_WEBPHOTO_ITEM_KIND" , "種別" ) ;
+define("_WEBPHOTO_ITEM_EXT" ,  "拡張子" ) ;
+define("_WEBPHOTO_ITEM_DATETIME" ,  "撮影日時" ) ;
+define("_WEBPHOTO_ITEM_TITLE" , "写真タイトル" ) ;
+define("_WEBPHOTO_ITEM_PLACE" , "撮影場所" ) ;
+define("_WEBPHOTO_ITEM_EQUIPMENT" , "撮影機材" ) ;
+define("_WEBPHOTO_ITEM_GMAP_LATITUDE" ,  "GoogleMap 緯度" ) ;
+define("_WEBPHOTO_ITEM_GMAP_LONGITUDE" , "GoogleMap 経度" ) ;
+define("_WEBPHOTO_ITEM_GMAP_ZOOM" ,      "GoogleMap ズーム" ) ;
+define("_WEBPHOTO_ITEM_GMAP_TYPE" ,      "GoogleMap タイプ" ) ;
+define("_WEBPHOTO_ITEM_PERM_READ" , "閲覧権限" ) ;
+define("_WEBPHOTO_ITEM_STATUS" ,   "状態" ) ;
+define("_WEBPHOTO_ITEM_HITS" ,     "ヒット数" ) ;
+define("_WEBPHOTO_ITEM_RATING" ,   "評価" ) ;
+define("_WEBPHOTO_ITEM_VOTES" ,    "投票数" ) ;
+define("_WEBPHOTO_ITEM_DESCRIPTION" ,  "写真説明文" ) ;
+define("_WEBPHOTO_ITEM_EXIF" , "Exif 情報" ) ;
+define("_WEBPHOTO_ITEM_SEARCH" ,  "検索文" ) ;
+define("_WEBPHOTO_ITEM_COMMENTS" , "コメント数" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_1" ,  "ファイル番号：コンテンツ" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_2" ,  "ファイル番号：サムネイル" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_3" ,  "ファイル番号：ミドル" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_4" ,  "ファイル番号：Flash ビデオ" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_5" ,  "ファイル番号：ドコモ ビデオ" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_6" ,  "file6" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_7" ,  "file7" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_8" ,  "file8" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_9" ,  "file9" ) ;
+define("_WEBPHOTO_ITEM_FILE_ID_10" , "file10" ) ;
+define("_WEBPHOTO_ITEM_TEXT_1" ,  "text1" ) ;
+define("_WEBPHOTO_ITEM_TEXT_2" ,  "text2" ) ;
+define("_WEBPHOTO_ITEM_TEXT_3" ,  "text3" ) ;
+define("_WEBPHOTO_ITEM_TEXT_4" ,  "text4" ) ;
+define("_WEBPHOTO_ITEM_TEXT_5" ,  "text5" ) ;
+define("_WEBPHOTO_ITEM_TEXT_6" ,  "text6" ) ;
+define("_WEBPHOTO_ITEM_TEXT_7" ,  "text7" ) ;
+define("_WEBPHOTO_ITEM_TEXT_8" ,  "text8" ) ;
+define("_WEBPHOTO_ITEM_TEXT_9" ,  "text9" ) ;
+define("_WEBPHOTO_ITEM_TEXT_10" , "text10" ) ;
+
+// file table
+define("_WEBPHOTO_FILE_TABLE" , "ファイル・テーブル" ) ;
+define("_WEBPHOTO_FILE_ID" , "ファイルID" ) ;
+define("_WEBPHOTO_FILE_TIME_CREATE" , "作成日時" ) ;
+define("_WEBPHOTO_FILE_TIME_UPDATE" , "更新日時" ) ;
+define("_WEBPHOTO_FILE_ITEM_ID" ,  "アイテム番号" ) ;
+define("_WEBPHOTO_FILE_KIND" , "種別" ) ;
+define("_WEBPHOTO_FILE_URL" ,    "URL" ) ;
+define("_WEBPHOTO_FILE_PATH" ,   "パス" ) ;
+define("_WEBPHOTO_FILE_NAME" ,   "ファイル名" ) ;
+define("_WEBPHOTO_FILE_EXT" ,    "拡張子" ) ;
+define("_WEBPHOTO_FILE_MIME" ,   "MIMEタイプ" ) ;
+define("_WEBPHOTO_FILE_MEDIUM" , "メディアタイプ" ) ;
+define("_WEBPHOTO_FILE_SIZE" ,   "ファイルサイズ" ) ;
+define("_WEBPHOTO_FILE_WIDTH" ,  "画像横幅" ) ;
+define("_WEBPHOTO_FILE_HEIGHT" , "画像高さ" ) ;
+define("_WEBPHOTO_FILE_DURATION" , "ビデオ再生時間" ) ;
+
+// file kind ( for admin checktables )
+define("_WEBPHOTO_FILE_KIND_1" ,  "コンテンツ" ) ;
+define("_WEBPHOTO_FILE_KIND_2" ,  "サムネイル" ) ;
+define("_WEBPHOTO_FILE_KIND_3" ,  "ミドル" ) ;
+define("_WEBPHOTO_FILE_KIND_4" ,  "Flash ビデオ" ) ;
+define("_WEBPHOTO_FILE_KIND_5" ,  "ドコモ ビデオ" ) ;
+define("_WEBPHOTO_FILE_KIND_6" ,  "file6" ) ;
+define("_WEBPHOTO_FILE_KIND_7" ,  "file7" ) ;
+define("_WEBPHOTO_FILE_KIND_8" ,  "file8" ) ;
+define("_WEBPHOTO_FILE_KIND_9" ,  "file9" ) ;
+define("_WEBPHOTO_FILE_KIND_10" , "file10" ) ;
+
+// index
+define("_WEBPHOTO_MOBILE_MAILTO" , "携帯電話にURLを送信する" ) ;
+
+// i.php
+define("_WEBPHOTO_TITLE_MAIL_JUDGE" ,  "携帯電話機の機種を判定する" ) ;
+define("_WEBPHOTO_MAIL_MODEL", "機種" ) ;
+define("_WEBPHOTO_MAIL_BROWSER", "WEBブラウザ" ) ;
+define("_WEBPHOTO_MAIL_NOT_JUDGE", "機種が判定できない" ) ;
+define("_WEBPHOTO_MAIL_TO_WEBMASTER", "サイト管理者に連絡する" ) ;
+
+// help
+define("_WEBPHOTO_HELP_MAIL_POST_FMT", '
+<b>準備</b><br />
+携帯電話のメールアドレスを登録してください<br />
+<a href="{MODULE_URL}/index.php?fct=mail_register" target="_blank">「メールアドレス登録」</a><br /><br />
+<b>投稿方法</b><br />
+下記のメールアドレスにメールを送信する<br />
+<a href="mailto:{MAIL_ADDR}">{MAIL_ADDR}</a> {MAIL_GUEST} <br /><br />
+<b>写真の回転</b><br />
+題名 (Subject) の末尾に下記のように記入することで、写真が回転します。<br />
+ R@ : 右回転 <br />
+ L@ : 左回転 <br /><br />' );
+define("_WEBPHOTO_HELP_MAIL_SUBTITLE_RETRIEVE", "<b>メールの受信と、写真の登録</b><br />" );
+define("_WEBPHOTO_HELP_MAIL_RETRIEVE_FMT", '
+メールを送信してから、数秒後に <a href="{MODULE_URL}/i.php?op=post" target="_blank">「メールから投稿する」</a> をクリックしてください。<br />' );
+define("_WEBPHOTO_HELP_MAIL_RETRIEVE_TEXT", "あなたが送信したメールを取り込んで、写真や動画を掲載します。<br />" );
+define("_WEBPHOTO_HELP_MAIL_RETRIEVE_AUTO_FMT", '
+メールを送信すると、 %s 秒後に自動的に登録されます。<br />
+登録されない場合は、<a href="{MODULE_URL}/i.php?op=post" target="_blank">「メールから投稿する」</a> をクリックしてください。<br />' );
 
 // === define end ===
 }

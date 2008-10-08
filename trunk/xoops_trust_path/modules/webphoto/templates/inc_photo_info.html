@@ -42,7 +42,7 @@
 <{* user *}>
 <{if $photo.uid > 0}>
   <a href="<{$xoops_url}>/userinfo.php?uid=<{$photo.uid}>">
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/submitter.png" alt="<{$lang_submitter}>" title="<{$lang_submitter}>" border="0" />
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/submitter.png" width="16" height="16" alt="<{$lang_submitter}>" title="<{$lang_submitter}>" border="0" />
   </a>
 
   <{if $use_pathinfo }>
@@ -51,12 +51,12 @@
     <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=user&amp;p=<{$photo.uid}>">
   <{/if}>
 
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/myphotos.png" alt="<{$photo.info_morephotos}>" title="<{$photo.info_morephotos}>" border="0" /> 
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/myphotos.png" width="16" height="16" alt="<{$photo.info_morephotos}>" title="<{$photo.info_morephotos}>" border="0" /> 
   <{$photo.uname_s}></a>
 
 <{* guest *}>
 <{else}>
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/submitter.png" alt="<{$lang_submitter}>" title="<{$lang_submitter}>" /> 
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/submitter.png" width="16" height="16" alt="<{$lang_submitter}>" title="<{$lang_submitter}>" /> 
   <{$photo.uname_s}>
 <{/if}>
 &nbsp; &nbsp; 
@@ -69,7 +69,7 @@
     <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=date&amp;p=<{$photo.datetime_urlencode}>">
   <{/if}>
 
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/datetime.png" alt="<{$lang_photo_datetime}>" title="<{$lang_photo_datetime}>" />
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/datetime.png" width="16" height="16" alt="<{$lang_photo_datetime}>" title="<{$lang_photo_datetime}>" />
   <{$photo.datetime_disp}>
   </a> 
 <{/if}>
@@ -82,7 +82,7 @@
     <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=place&amp;p=<{$photo.place_urlencode}>">
   <{/if}>
 
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/place.png" alt="<{$lang_photo_place}>" title="<{$lang_photo_place}>" />
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/place.png" width="16" height="16" alt="<{$lang_photo_place}>" title="<{$lang_photo_place}>" />
   <{$photo.place_s}>
   </a>
 <{/if}>
@@ -95,14 +95,14 @@
     <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=search&amp;p=<{$photo.equipment_urlencode}>">
   <{/if}>
 
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/equipment.png" alt="<{$lang_photo_equipment}>" title="<{$lang_photo_equipment}>" />
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/equipment.png" width="16" height="16" alt="<{$lang_photo_equipment}>" title="<{$lang_photo_equipment}>" />
   <{$photo.equipment_s}>
   </a> 
 <{/if}>
 
 <{* VIDEO *}>
 <{if $photo.is_video }>
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/video.png" alt="<{$lang_icon_video}>" title="<{$lang_icon_video}>" /> 
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/video.png" width="16" height="16" alt="<{$lang_icon_video}>" title="<{$lang_icon_video}>" /> 
 <{/if}>
 
 <{* DURATION *}>
@@ -115,7 +115,7 @@
 <{* 3RD LINE OF INFORMATION *}>
 
 <{* TAG *}>
-<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/tags.png" alt="<{$lang_tags}>" title="<{$lang_tags}>" border="0" /> 
+<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/tags.png" width="16" height="16" alt="<{$lang_tags}>" title="<{$lang_tags}>" border="0" /> 
 <{foreach name=webphoto_tags item=tag from=$photo.tags}>
   <{if $use_pathinfo }>
     <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php/tag/<{$tag.urlencoded}>/">
@@ -138,17 +138,17 @@
     <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=category&amp;p=<{$photo.cat_id}>">
   <{/if}>
 
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/category.png" alt="<{$lang_category}>" title="<{$lang_category}>" border="0" />
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/category.png" width="16" height="16" alt="<{$lang_category}>" title="<{$lang_category}>" border="0" />
   <{$photo.cat_title_s}></a> &nbsp; &nbsp;
 <{/if}>
 
 <{* LAST UPDATED *}>
-<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/lastupdate.png" alt="<{$lang_icon_lastupdate}>" title="<{$lang_icon_lastupdate}>" />:
+<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/lastupdate.png" width="16" height="16" alt="<{$lang_icon_lastupdate}>" title="<{$lang_icon_lastupdate}>" />:
 <{$photo.time_update_m}> &nbsp; &nbsp;
 
 <{* SIZE *}>
 <{if $photo.cont_size_disp != '' }>
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/size.png" alt="<{$lang_photo_cont_size}>" title="<{$lang_photo_cont_size}>" />
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/size.png" width="16" height="16" alt="<{$lang_photo_cont_size}>" title="<{$lang_photo_cont_size}>" />
   <{$photo.cont_size_disp}> 
 <{/if}>
 
@@ -157,11 +157,11 @@
 <{* 4TH LINE OF INFORMATION *}>
 
 <{* HIT COUNTS *}>
-<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/hits.png" alt="<{$lang_icon_hits}>" title="<{$lang_icon_hits}>" />
+<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/hits.png" width="16" height="16" alt="<{$lang_icon_hits}>" title="<{$lang_icon_hits}>" />
 <{$photo.hits}> &nbsp; 
 
 <{* COMMENT COUNTS *}>
-<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/comments.png" alt="<{$lang_icon_comments}>" title="<{$lang_icon_comments}>" />
+<img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/comments.png" width="16" height="16" alt="<{$lang_icon_comments}>" title="<{$lang_icon_comments}>" />
 <{$photo.comments}> &nbsp; &nbsp;
 
 <{* RANK & RATING *}>
@@ -190,7 +190,7 @@
     <a target="_top" href="mailto:?<{$photo.taf_mailto}>">
   <{/if}>
   
-  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/tellafriend.png" alt="<{$lang_tellafriend}>" title="<{$lang_tellafriend}>" />
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/tellafriend.png" width="24" height="16" alt="<{$lang_tellafriend}>" title="<{$lang_tellafriend}>" />
   <{$lang_tellafriend}></a>
 <{/if}>
 

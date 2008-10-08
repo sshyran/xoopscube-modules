@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php,v 1.2 2008/07/05 12:54:16 ohwada Exp $
+// $Id: modinfo.php,v 1.5 2008/09/04 00:46:47 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -79,7 +79,9 @@ define( $constpref."CFG_DESCADDPOSTS" , "常識的には0か1です。負の値�
 define( $constpref."CFG_CATONSUBMENU" , "サブメニューへのトップカテゴリーの登録" ) ;
 define( $constpref."CFG_NAMEORUNAME" , "投稿者名の表示" ) ;
 define( $constpref."CFG_DESCNAMEORUNAME" , "ログイン名かハンドル名か選択して下さい" ) ;
-define( $constpref."CFG_VIEWCATTYPE" , "一覧表示の表示タイプ" ) ;
+
+//define( $constpref."CFG_VIEWCATTYPE" , "一覧表示の表示タイプ" ) ;
+define( $constpref."CFG_VIEWTYPE" , "一覧表示の表示タイプ" ) ;
 
 //define( $constpref."CFG_COLSOFTABLEVIEW" , "テーブル表示時のカラム数" ) ;
 define( $constpref."CFG_COLSOFTABLE" , "テーブル表示時のカラム数" ) ;
@@ -160,7 +162,9 @@ define($constpref."OPT_SORT_RATINGD","評価 (高→低)");
 define($constpref."OPT_SORT_RANDOM","ランダム");
 
 define($constpref."CFG_GICONSPATH" , "Google アイコンファイルの保存先ディレクトリ" ) ;
-define($constpref."CFG_TMPPATH" ,   "一時ファイルの保存先ディレクトリ" ) ;
+
+//define($constpref."CFG_TMPPATH" ,   "一時ファイルの保存先ディレクトリ" ) ;
+
 define($constpref."CFG_MIDDLE_WIDTH" ,  "シングルビューでの画像の幅" ) ;
 define($constpref."CFG_MIDDLE_HEIGHT" , "シングルビューでの画像の高さ" ) ;
 define($constpref."CFG_THUMB_WIDTH" ,  "サムネイル画像の幅" ) ;
@@ -214,6 +218,45 @@ define( $constpref."CFG_USE_FFMPEG"  , "ffmpeg を使用する" ) ;
 define( $constpref."CFG_FFMPEGPATH"  , "ffmpeg の実行パス" ) ;
 define( $constpref."CFG_DESCFFMPEGPATH" , "ffmpeg の存在するディレクトリをフルパスで指定します、空白でうまく行くことが多いでしょう。<br />「ffmpeg を使用する」の「はい」を選択した時のみ意味を持ちます" ) ;
 define($constpref."CFG_USE_PATHINFO","pathinfo を使用する");
+
+//---------------------------------------------------------
+// v0.30
+//---------------------------------------------------------
+define($constpref."CFG_TMPDIR" ,   "一時ファイルの保存先ディレクトリ" ) ;
+define($constpref."CFG_TMPDIR_DSC" , "フルパスを指定（最後の'/'は不要）<br />ドキュメント・ルート以外に設定することをお勧めします");
+define($constpref."CFG_MAIL_HOST"  , "メール サーバー ホスト名" ) ;
+define($constpref."CFG_MAIL_USER"  , "メール ユーザーID" ) ;
+define($constpref."CFG_MAIL_PASS"  , "メール パスワード" ) ;
+define($constpref."CFG_MAIL_ADDR"  , "投稿先 メールアドレス" ) ;
+define($constpref."CFG_MAIL_CHARSET"  , "メールの文字コード" ) ;
+define($constpref."CFG_MAIL_CHARSET_DSC" , "'|' で区切って入力して下さい。<br />文字コードによるチェックを行わない時には、ここを空欄にします" ) ;
+define($constpref."CFG_MAIL_CHARSET_LIST","ISO-2022-JP|JIS|Shift_JIS|EUC-JP|UTF-8");
+define($constpref."CFG_FILE_DIR"  , "FTP ファイルの保存先ディレクトリ" ) ;
+define($constpref."CFG_FILE_DIR_DSC" , "フルパスを指定（最後の'/'は不要）<br />ドキュメント・ルート以外に設定することをお勧めします" ) ;
+define($constpref."CFG_FILE_SIZE"  , "FTP 最大ファイル容量 (byte)" ) ;
+define($constpref."CFG_FILE_DESC"  , "FTP ヘルプ説明文");
+define($constpref."CFG_FILE_DESC_DSC"  , "「ファイル投稿」の権限がある場合に、ヘルプに表示されます");
+define($constpref."CFG_FILE_DESC_TEXT"  , "
+<b>FTP サーバー</b><br />
+FTP サーバー ホスト名: xxx<br />
+FTP ユーザーID: xxx<br />
+FTP パスワード: xxx<br />" ) ;
+
+define($constpref."ADMENU_MAILLOG_MANAGER","メールログ管理");
+define($constpref."ADMENU_MAILLOG_TABLE_MANAGE","メールログ・テーブル管理");
+define($constpref."ADMENU_USER_TABLE_MANAGE","ユーザ補助テーブル管理");
+
+//---------------------------------------------------------
+// v0.40
+//---------------------------------------------------------
+define($constpref."CFG_BIN_PASS" , "コマンドのパスワード" ) ;
+define($constpref."CFG_COM_DIRNAME",  "コメント統合するd3forumのdirname");
+define($constpref."CFG_COM_FORUM_ID", "コメント統合するフォーラムの番号");
+define($constpref."CFG_COM_VIEW",     "コメント統合の表示方法");
+
+define($constpref."ADMENU_UPDATE", "アップデート");
+define($constpref."ADMENU_ITEM_TABLE_MANAGE", "アイテム・テーブル管理");
+define($constpref."ADMENU_FILE_TABLE_MANAGE", "ファイル・テーブル管理");
 
 }
 // === define begin ===

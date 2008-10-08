@@ -11,6 +11,7 @@
 
 if(!defined('XOOPS_ROOT_PATH')) exit ;
 $mydirname = basename(dirname( __FILE__ )) ;
+$mydirpath = basename( dirname( dirname( __FILE__ ) ) ) ;
 
 $modversion['name'] = $mydirname;
 $modversion['version'] = '0.70';
@@ -20,17 +21,8 @@ $modversion['author'] = 'http://www.nobunobu.com/';
 $modversion['help'] = 'index.html';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;
-if (class_exists('XCube_Root')) {//ToDo: Detection of HD more elegant way
-  $root =& XCube_Root::getSingleton();
-  $controllerClass = strtolower(get_class($root->mController));
-  if ( $controllerClass === 'hdlegacy_controller' ) { 
-    $modversion['image'] = 'images/cubeUtilsHD.png';
-  } else {
-    $modversion['image'] = 'images/cubeUtils.png';
-  }
-} else {
-  $modversion['image'] = 'images/cubeUtils.png';
-}
+$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
+
 $modversion['dirname'] = $mydirname;
 
 $modversion['cube_style'] = true;

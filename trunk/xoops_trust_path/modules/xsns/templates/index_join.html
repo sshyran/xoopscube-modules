@@ -3,38 +3,38 @@
 
 <{$form_commu_join}>
 
-<table class="outer commuJoin">
+<table class="outer">
 <tr><th colspan="2">[<{$commu.name}>] <{$smarty.const._MD_XSNS_TITLE_INDEX_JOIN}></th></tr>
 
 <{if $commu.is_public}>
 
-<tr class="foot">
-<td colspan="2" class="submitFrame">
+<tr>
+<td colspan="2" class="foot">
 <p><{$smarty.const._MD_XSNS_INDEX_JOIN_DESC}></p>
 <p>
-<input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_INDEX_JOIN}>">&nbsp;&nbsp;
 <input type="button" class="submit" value="<{$smarty.const._MD_XSNS_BTN_INDEX_JOIN_NO}>" onclick="javascript:history.go(-1);">
+&nbsp;&nbsp;<input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_INDEX_JOIN}>">
 </p>
 </td>
 </tr>
 
 <{else}>
 
-<tr class="head">
-<td colspan="2">
+<tr>
+<td colspan="2" class="head">
 <div class="msgFrame"><{$smarty.const._MD_XSNS_INDEX_JOIN_DESC_AUTH}></div>
 </td>
 </tr>
 
-<tr class="even">
-<td class="itemTitle bg0"><{$smarty.const._MD_XSNS_INDEX_JOIN_MESSAGE}></td>
-<td class="itemValue"><textarea name="message" cols="60" rows="5"></textarea></td>
+<tr>
+<td class="head"><{$smarty.const._MD_XSNS_INDEX_JOIN_MESSAGE}></td>
+<td class="odd"><textarea name="message" cols="60" rows="5"></textarea></td>
 </tr>
 
-<tr class="foot">
-<td colspan="2" class="submitFrame">
-<input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_INDEX_JOIN_REQUEST}>">&nbsp;&nbsp;
+<tr>
+<td colspan="2" class="foot">
 <input type="button" class="submit" value="<{$smarty.const._MD_XSNS_BTN_CANCEL}>" onclick="javascript:history.go(-1);">
+&nbsp;&nbsp;<input type="submit" class="submit" value="<{$smarty.const._MD_XSNS_BTN_INDEX_JOIN_REQUEST}>">
 </td>
 </tr>
 

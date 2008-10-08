@@ -35,6 +35,7 @@ define('_MD_D3PIPES_N4J_WRITEPOSIX','Input regex by POSIX format');
 define('_MD_D3PIPES_N4J_CID','Category ID');
 define('_MD_D3PIPES_N4J_MAXENTRIES','Max entries');
 define('_MD_D3PIPES_N4J_EACHENTRIES','Entries a pipe');
+define('_MD_D3PIPES_N4J_EXTRAOPTIONS','Extra options');
 define('_MD_D3PIPES_N4J_ENTRIESFROMCLIP','Entries from clippings');
 define('_MD_D3PIPES_N4J_CLIPLIFETIME','Lifetime of clippings (use preferences if blank)');
 define('_MD_D3PIPES_N4J_WITHDESCRIPTION','Get description also');

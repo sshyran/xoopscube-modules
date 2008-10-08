@@ -47,10 +47,10 @@ function dispatch()
 				"<td><input type='text' name='title".$pid."' size='30' value='".$cat_p['name']."'></td>".
 				"<td><input type='text' name='order".$pid."' size='10' value='".$cat_p['sort_order']."'></td>".
 
-				"<td align='center'><input type='image' name='edit' src='".XOOPS_URL."/images/page_edit.png' value='"._AM_XSNS_CATEGORY_EDIT."' style='border:none' /> ".
-				"<input type='image' name='delete' src='".XOOPS_URL."/images/link_break.png' value='"._AM_XSNS_CATEGORY_DEL."' onclick=\"javascript:return confirm('"._AM_XSNS_CATEGORY_DEL_CONFIRM."');\" style='border:none' /></td>".
+				"<td align='center'><input type='image' name='edit' src='".XOOPS_URL."/images/icons/page_edit.png' value='"._AM_XSNS_CATEGORY_EDIT."' style='border:none' /> ".
+				"<input type='image' name='delete' src='".XOOPS_URL."/images/icons/delete.png' value='"._AM_XSNS_CATEGORY_DEL."' onclick=\"javascript:return confirm('"._AM_XSNS_CATEGORY_DEL_CONFIRM."');\" style='border:none' /></td>".
 
-								"<td align='center'><a href='index.php?".XSNS_ACTION_ARG."=category#".$pid."'><img src='".XOOPS_URL."/images/view.png' alt='"._AM_XSNS_CATEGORY_LIST."' /</a></td>".
+								"<td align='center'><a href='index.php?".XSNS_ACTION_ARG."=category#".$pid."'><img src='".XOOPS_URL."/images/icons/view.png' alt='"._AM_XSNS_CATEGORY_LIST."' /</a></td>".
 
 			 "</tr>";
 		echo "</form>";

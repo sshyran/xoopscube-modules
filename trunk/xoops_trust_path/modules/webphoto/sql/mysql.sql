@@ -1,13 +1,123 @@
-# $Id: mysql.sql,v 1.5 2008/07/11 20:28:02 ohwada Exp $
+# $Id: mysql.sql,v 1.8 2008/09/09 13:37:07 ohwada Exp $
 
 # =========================================================
 # webphoto module
 # 2008-04-02 K.OHWADA
 # =========================================================
 
+# =========================================================
 # change log
+# 2008-09-09 K.OHWADA
+# BUG: redeclare photo table
+# 2008-08-24 K.OHWADA
+# added item table, file table
+# 2008-08-01 K.OHWADA
+# added user table, maillog table
 # 2008-07-01 K.OHWADA
 # added mime_ffmpeg
+# =========================================================
+
+#
+# Table structure for table `item`
+#
+
+CREATE TABLE item (
+  item_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  item_time_create INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  item_time_update INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  item_cat_id   INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_gicon_id INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_uid      INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_kind     TINYINT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_ext       VARCHAR(255) NOT NULL DEFAULT '',
+  item_datetime  DATETIME NOT NULL,
+  item_title     VARCHAR(255) NOT NULL DEFAULT '',
+  item_place     VARCHAR(255) NOT NULL DEFAULT '',
+  item_equipment VARCHAR(255) NOT NULL DEFAULT '',
+  item_gmap_latitude  DOUBLE(10,8) NOT NULL DEFAULT '0',
+  item_gmap_longitude DOUBLE(11,8) NOT NULL DEFAULT '0',
+  item_gmap_zoom      TINYINT(2) NOT NULL DEFAULT '0',
+  item_gmap_type      TINYINT(2) NOT NULL DEFAULT '0',
+  item_status TINYINT(2) NOT NULL DEFAULT '0',
+  item_hits   INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_rating DOUBLE(6,4) NOT NULL DEFAULT '0.0000',
+  item_votes    INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_comments INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_perm_read VARCHAR(255) NOT NULL DEFAULT '',
+  item_file_id_1  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_2  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_3  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_4  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_5  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_6  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_7  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_8  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_9  INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_file_id_10 INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  item_text_1  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_2  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_3  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_4  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_5  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_6  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_7  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_8  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_9  VARCHAR(255) NOT NULL DEFAULT '',
+  item_text_10 VARCHAR(255) NOT NULL DEFAULT '',
+  item_description TEXT NOT NULL,
+  item_exif   TEXT NOT NULL,
+  item_search TEXT NOT NULL,
+  PRIMARY KEY (item_id),
+  KEY (item_time_update),
+  KEY (item_cat_id),
+  KEY (item_gicon_id),
+  KEY (item_uid),
+  KEY (item_file_id_1),
+  KEY (item_file_id_2),
+  KEY (item_file_id_3),
+  KEY (item_file_id_4),
+  KEY (item_file_id_5),
+  KEY (item_file_id_6),
+  KEY (item_file_id_7),
+  KEY (item_file_id_8),
+  KEY (item_file_id_9),
+  KEY (item_file_id_10),
+  KEY (item_status),
+  KEY (item_hits),
+  KEY (item_rating),
+  KEY (item_datetime),
+  KEY (item_title(40)),
+  KEY (item_place(40)),
+  KEY (item_equipment(40)),
+  KEY (item_search(40)),
+  KEY (item_gmap_latitude, item_gmap_longitude, item_gmap_zoom)
+) TYPE=MyISAM;
+
+#
+# Table structure for table `file`
+#
+
+CREATE TABLE file (
+  file_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  file_time_create INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  file_time_update INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  file_item_id INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  file_kind    TINYINT(11) UNSIGNED NOT NULL DEFAULT '0',
+  file_url     VARCHAR(255) NOT NULL DEFAULT '',
+  file_path    VARCHAR(255) NOT NULL DEFAULT '',
+  file_name    VARCHAR(255) NOT NULL DEFAULT '',
+  file_ext     VARCHAR(10) NOT NULL DEFAULT '',
+  file_mime    VARCHAR(255) NOT NULL DEFAULT '',
+  file_medium  VARCHAR(255) NOT NULL DEFAULT '',
+  file_size     INT(5) NOT NULL DEFAULT '0',
+  file_width    INT(5) NOT NULL DEFAULT '0',
+  file_height   INT(5) NOT NULL DEFAULT '0',
+  file_duration INT(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (file_id),
+  KEY (file_time_update),
+  KEY (file_item_id),
+  KEY (file_kind)
+) TYPE=MyISAM;
 
 #
 # Table structure for table `photo`
@@ -244,6 +354,49 @@ CREATE TABLE syno (
  syno_key   VARCHAR(255) NOT NULL default '',
  syno_value VARCHAR(255) NOT NULL default '',
  PRIMARY KEY (syno_id)
+) TYPE=MyISAM;
+
+#
+# Table structure for table `user`
+#
+
+CREATE TABLE user (
+ user_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+ user_time_create INT(10) UNSIGNED NOT NULL DEFAULT '0',
+ user_time_update INT(10) UNSIGNED NOT NULL DEFAULT '0',
+ user_uid INT(5) UNSIGNED NOT NULL DEFAULT 0,
+ user_cat_id INT(5) UNSIGNED NOT NULL DEFAULT 0,
+ user_email VARCHAR(255) NOT NULL default '',
+ user_text1 VARCHAR(255) NOT NULL DEFAULT '',
+ user_text2 VARCHAR(255) NOT NULL DEFAULT '',
+ user_text3 VARCHAR(255) NOT NULL DEFAULT '',
+ user_text4 VARCHAR(255) NOT NULL DEFAULT '',
+ user_text5 VARCHAR(255) NOT NULL DEFAULT '', 
+ PRIMARY KEY (user_id),
+ KEY (user_uid),
+ KEY (user_cat_id),
+ KEY (user_email(40))
+) TYPE=MyISAM;
+
+#
+# Table structure for table `maillog`
+#
+
+CREATE TABLE maillog (
+ maillog_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+ maillog_time_create INT(10) UNSIGNED NOT NULL DEFAULT '0',
+ maillog_time_update INT(10) UNSIGNED NOT NULL DEFAULT '0',
+ maillog_photo_ids   VARCHAR(255) NOT NULL default '',
+ maillog_status  TINYINT(2) NOT NULL DEFAULT '0',
+ maillog_from    VARCHAR(255) NOT NULL default '',
+ maillog_subject VARCHAR(255) NOT NULL default '',
+ maillog_body    VARCHAR(255) NOT NULL default '',
+ maillog_file    VARCHAR(255) NOT NULL default '',
+ maillog_attach  TEXT NOT NULL,
+ maillog_comment TEXT NOT NULL,
+ PRIMARY KEY (maillog_id),
+ KEY (maillog_status),
+ KEY (maillog_from(40))
 ) TYPE=MyISAM;
 
 #

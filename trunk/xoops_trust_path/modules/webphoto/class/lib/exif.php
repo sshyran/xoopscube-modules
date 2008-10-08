@@ -1,15 +1,26 @@
 <?php
-// $Id: exif.php,v 1.2 2008/06/22 05:26:00 ohwada Exp $
+// $Id: exif.php,v 1.6 2008/08/25 19:28:05 ohwada Exp $
 
 //=========================================================
 // webphoto module
 // 2008-04-02 K.OHWADA
 //=========================================================
 
+//---------------------------------------------------------
+// change log
+// 2008-08-24 K.OHWADA
+// parse_gps() -> parse_gps_docomo()
+// 2008-08-01 K.OHWADA
+// docomo gps
+// 2008-07-16 K.OHWADA
+// use DateTimeOriginal
+//---------------------------------------------------------
+
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 
 //=========================================================
 // class webphoto_lib_exif
+// http://park2.wakwak.com/~tsuruzoh/Computer/Digicams/exif.html
 //=========================================================
 class webphoto_lib_exif
 {
@@ -51,27 +62,59 @@ function read_file( $filename )
 		return false;
 	}
 
+	list( $datetime, $datetime_gnu )   = $this->parse_datetime( $exif );
+	list( $maker, $model, $equipment ) = $this->parse_model( $exif );
+	list( $gps_docomo, $lat, $lon )   = $this->parse_gps_docomo( $exif );
+	$all_data = $this->parse_all_data( $exif );
+
+	$arr = array(
+		'datetime'     => $datetime,
+		'maker'        => $maker,
+		'model'        => $model,
+		'datetime_gnu' => $datetime_gnu,
+		'equipment'    => $equipment,
+		'latitude'     => $lat,
+		'longitude'    => $lon,
+		'gps_docomo'   => $gps_docomo,
+		'all_data'     => $all_data,
+	);
+	return $arr;
+}
+
+function parse_datetime( $exif )
+{
 	$datetime     = '';
 	$datetime_gnu = '';
-	if ( isset( $exif['IFD0']['DateTime'] ) ) {
-		$datetime = $exif['IFD0']['DateTime'];
 
+	if ( isset( $exif['EXIF']['DateTimeOriginal'] ) && $exif['EXIF']['DateTimeOriginal'] ) {
+		$datetime = $exif['EXIF']['DateTimeOriginal'];
+	} elseif ( isset( $exif['IFD0']['DateTime'] ) ) {
+		$datetime = $exif['IFD0']['DateTime'];
+	}
+
+	if ( $datetime ) {
 // yyyy:mm:dd -> yyy-mm-dd
 // http://www.gnu.org/software/tar/manual/html_node/General-date-syntax.html
 		$datetime_gnu = preg_replace('/(\d{4}):(\d{2}):(\d{2})(.*)/', '$1-$2-$3$4', $datetime );
 	}
+	
+	return array($datetime, $datetime_gnu);
+}
 
-	$maker = '';
+function parse_model( $exif )
+{
+	$maker     = '';
+	$model     = '';
+	$equipment = '';
+
 	if ( isset(  $exif['IFD0']['Make'] ) ) {
 		$maker = $exif['IFD0']['Make'];
 	}
 
-	$model = '';
 	if ( isset(  $exif['IFD0']['Model'] ) ) {
 		$model = $exif['IFD0']['Model'];
 	}
 
-	$equipment = '';
 	if ( $maker && $model ) {
 		if ( strpos( $model, $maker ) === false ) {
 			$equipment = $maker.' '.$model;
@@ -84,26 +127,39 @@ function read_file( $filename )
 		$equipment = $model;
 	}
 
+	return array($maker, $model, $equipment);
+}
+
+function parse_all_data( $exif )
+{
 // set all data when has IFD0
-	$str = '';
 	if ( isset( $exif['IFD0'] ) ) {
-		foreach ($exif as $key => $section) {
-			foreach ($section as $name => $val) {
-				$str .= $key .'.'. $name .': ';
-				$str .= $this->str_replace_control_code( $val ) ."\n";
+		return $this->parse_array( $exif );
+	}
+	return '' ;
+}
+
+function parse_array( $arr, $parent=null, $ret=null )
+{
+	$str = $ret;
+	foreach ( $arr as $k => $v ) 
+	{
+		if ( is_array($v) ) {
+			if ( $parent ) {
+				$new_parent = $parent . '.' .$k ;
+			} else {
+				$new_parent = $k ;
 			}
+			$str .= $this->parse_array( $v, $new_parent, $ret );
+		} else {
+			if ( $parent ) {
+				$str .= $parent . '.';
+			}
+			$str .= $k .': ';
+			$str .= $this->str_replace_control_code( $v ) ."\n";
 		}
 	}
-
-	$arr = array(
-		'datetime'     => $datetime,
-		'maker'        => $maker,
-		'model'        => $model,
-		'datetime_gnu' => $datetime_gnu,
-		'equipment'    => $equipment,
-		'all_data'     => $str,
-	);
-	return $arr;
+	return $str;
 }
 
 function print_info( $filename )
@@ -114,11 +170,64 @@ function print_info( $filename )
 
 	$exif = exif_read_data( $filename, 0, true );
 
-	foreach ($exif as $key => $section) {
-		foreach ($section as $name => $val) {
-			echo "$key.$name: $val<br />\n";
+	echo $this->parse_array( $exif );
+}
+
+//---------------------------------------------------------
+// GPSLatitudeRef: N
+// GPSLatitude.0: 35/1
+// GPSLatitude.1: 00/1
+// GPSLatitude.2: 35600/1000
+// GPSLongitudeRef: E
+// GPSLongitude.0: 135/1
+// GPSLongitude.1: 41/1
+// GPSLongitude.2: 35600/1000
+//---------------------------------------------------------
+function parse_gps_docomo( $exif )
+{
+	$gps      = null;
+	$lat      = null;
+	$lon      = null;
+	$lat_sign = +1;
+	$lon_sign = +1;
+
+	if ( isset( $exif['GPS'] ) ) {
+		$gps = $exif['GPS'];
+		if ( isset( $gps['GPSLatitudeRef'] ) ) {
+			if ( $gps['GPSLatitudeRef'] == 'S' ) {
+				$lat_sign = -1;
+			}
+		}
+		if ( isset( $gps['GPSLongitudeRef'] ) ) {
+			if ( $gps['GPSLongitudeRef'] == 'W' ) {
+				$lon_sign = -1;
+			}
+		}
+		if ( isset( $gps['GPSLatitude'] ) ) {
+			$lat = $this->parse_gps_docomo_array( $lat_sign, $gps['GPSLatitude'] );
+		}
+		if ( isset( $gps['GPSLongitude'] ) ) {
+			$lon = $this->parse_gps_docomo_array( $lon_sign, $gps['GPSLongitude'] );
 		}
 	}
+
+	return array( $gps, $lat, $lon );
+}
+
+function parse_gps_docomo_array( $sign, $arr )
+{
+	$fig = 0;
+	if ( isset( $arr[0] ) ) {
+		$fig += floatval( $arr[0] );
+	}
+	if ( isset( $arr[1] ) ) {
+		$fig += floatval( $arr[1] ) / 60 ;
+	}
+	if ( isset( $arr[2] ) ) {
+		$fig += floatval( $arr[2] ) / 3600000 ;
+	}
+	$fig = $sign * $fig;
+	return $fig;
 }
 
 //---------------------------------------------------------

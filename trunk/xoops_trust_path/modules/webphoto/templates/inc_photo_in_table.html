@@ -1,6 +1,7 @@
-<{* $Id: inc_photo_in_table.html,v 1.2 2008/07/05 12:54:16 ohwada Exp $ *}>
+<{* $Id: inc_photo_in_table.html,v 1.5 2008/08/25 19:28:06 ohwada Exp $ *}>
 
 <{* IMAGE PART *}>
+<div class="webphoto_table_image">
 
 <{* NORMAL IMAGES with popbox  *}>
 <{if $photo.is_normal_image && $use_popbox_js }>
@@ -43,9 +44,8 @@
   </a>
 
 <{/if}>
-<br />
+</div>
 
-<div >
 <{* EDIT ICON *}>
 <{if $photo.can_edit}>
   <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=edit&amp;photo_id=<{$photo.photo_id}>">
@@ -114,8 +114,8 @@
 <{/if}>
 
 <{* DURATION *}>
-<{if $photo.cont_duration > 0 }>
-  <{$photo.cont_duration}> <{$lang_second}> <br />
+<{if $photo.cont_duration_disp > 0 }>
+  <{$photo.cont_duration_disp}><br />
 <{/if}>
 
 </div>

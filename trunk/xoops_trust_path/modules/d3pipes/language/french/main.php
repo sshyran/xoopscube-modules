@@ -1,5 +1,9 @@
 <?php
 
+
+// Appended by Xoops Language Checker -GIJOE- in 2008-09-10 10:57:46
+define('_MD_D3PIPES_N4J_EXTRAOPTIONS','Extra options');
+
 define('_MD_D3PIPES_H2_INDEX','Index');
 define('_MD_D3PIPES_H2_LATESTHEADLINES','Les dernières entrées');
 define('_MD_D3PIPES_H2_EACHPIPE','Liste les entrées du flux');

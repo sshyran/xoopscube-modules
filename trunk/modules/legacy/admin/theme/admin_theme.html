@@ -53,8 +53,8 @@ function ccToggle(id)
 <span class="linkadmin">
 <img src="<{"icons/tool.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" title="XOOPS Cube General Settings">Settings</a> 
 <img src="<{"icons/module.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleList" title="Module Management">Modules</a> 
-<img src="<{"icons/blocks.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=myblocksadmin" title="Blocks Management">Blocks</a> 
-<img src="<{"icons/theme.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/themeditor/admin/index.php" title="Theme Management">Theme</a> 
+<img src="<{"icons/blocks.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" title="Blocks Management">Blocks</a> 
+<img src="<{"icons/theme.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList" title="Theme Management">Theme</a> 
 <img src="<{"icons/group.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/user/admin/index.php" title="User Management">Users</a> 
 <img src="<{"icons/comments.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList" title="Comments Management">Comments</a>
 
@@ -93,7 +93,23 @@ function ccToggle(id)
           <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
         <{/if}>
       <{/foreach}>
-	</ul>
+      
+      <{if $currentModule->mXoopsModule->getInfo('blocks')}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></li>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></li>
+          <{/if}>
+          
+          <{if $currentModule->mXoopsModule->getInfo('templates')}>
+          <li><a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$currentModule->mXoopsModule->getShow('dirname')}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a></li>
+          <{/if}>
+          
+        <{if $currentModule->mXoopsModule->hasNeedUpdate()}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>&nbsp;<img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a></li>
+        <{else}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}></a></li>
+        <{/if}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a></li>
+    </ul>
   <{/if}>
   </div>
 </noscript>
@@ -106,8 +122,8 @@ function ccToggle(id)
 </table>
 </div>
 
-<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>&copy; 2001-2008 <a href="http://xoopscube.org/" target="_blank">The XOOPS Cube Project<br />
-</a>Help Us to Improve XOOPS Cube - Report All Bugs to: <a href="http://sourceforge.net/tracker/?group_id=159211"> Project Bug Tracker <img src="<{"icons/bug.png"|theme}>" alt="Bug report" /></a></div>
+<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>&copy; 2001-2008 <a href="http://sourceforge.net/projects/xoopscube/" target="_blank" alt="XOOPS Cube Project">The XOOPS Cube Project<br />
+</a>Help Us to Improve <a href="http://xoopscube.org/" target="_blank">XOOPS Cube</a> - Report All Bugs to: <a href="http://sourceforge.net/tracker/?group_id=159211"> Project Bug Tracker <img src="<{"icons/bug.png"|theme}>" alt="Bug report" /></a></div>
 
 </div>
 </body>

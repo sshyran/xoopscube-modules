@@ -32,6 +32,9 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 		AVATAR_SORT_KEY_AVATAR_WEIGHT => 'avatar_weight',
 		AVATAR_SORT_KEY_AVATAR_TYPE => 'avatar_type'
 	);
+
+	var $mKeyword = "";
+	var $mOptionField = "";
 	
 	function getDefaultSortKey()
 	{
@@ -42,14 +45,43 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 	{
 		parent::fetch();
 	
-		if (isset($_REQUEST['avatar_display'])) {
-			$this->mNavi->addExtra('avatar_display', xoops_getrequest('avatar_display'));
-			$this->_mCriteria->add(new Criteria('avatar_display', array(XOBJ_DTYPE_BOOL, xoops_getrequest('avatar_display'))));
+		$root =& XCube_Root::getSingleton();
+		$avatar_display = $root->mContext->mRequest->getRequest('avatar_display');
+		$avatar_type = $root->mContext->mRequest->getRequest('avatar_type');
+		$option_field = $root->mContext->mRequest->getRequest('option_field');
+		$search = $root->mContext->mRequest->getRequest('search');
+
+		if (isset($avatar_display)) {
+			$this->mNavi->addExtra('avatar_display', $avatar_display);
+			$this->_mCriteria->add(new Criteria('avatar_display', array(XOBJ_DTYPE_BOOL, $avatar_display)));
 		}
 	
-		if (isset($_REQUEST['avatar_type'])) {
-			$this->mNavi->addExtra('avatar_type', xoops_getrequest('avatar_type'));
-			$this->_mCriteria->add(new Criteria('avatar_type', array(XOBJ_DTYPE_STRING, xoops_getrequest('avatar_type'))));
+		if (isset($avatar_type)) {
+			$this->mNavi->addExtra('avatar_type', $avatar_type);
+			$this->_mCriteria->add(new Criteria('avatar_type', array(XOBJ_DTYPE_STRING, $avatar_type)));
+		}
+
+		if (isset($option_field)) {
+			$this->mNavi->addExtra('option_field', $option_field);
+			$this->mOptionField = $option_field;
+			if ( $this->mOptionField == "system" ) {
+			//only system avatar
+			$this->_mCriteria->add(new Criteria('avatar_type', 'S'));
+			}
+			elseif ( $this->mOptionField == "custom" ) {
+			//only custom avatar
+			$this->_mCriteria->add(new Criteria('avatar_type', 'C'));
+			}
+			else {
+			//all
+			}
+		}
+
+		//
+		if (!empty($search)) {
+			$this->mKeyword = $search;
+			$this->mNavi->addExtra('search', $this->mKeyword);
+			$this->_mCriteria->add(new Criteria('avatar_name', '%' . $this->mKeyword . '%', 'LIKE'));
 		}
 		
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());

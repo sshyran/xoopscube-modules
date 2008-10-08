@@ -60,6 +60,9 @@ ul#communityLink li a.russian {padding-left:30px; background:url(images/flag_rus
 ul#communityLink li a.taiwan {padding-left:30px; background:url(images/flag_taiwan.png) center left no-repeat;}
 
 
+ul#mainmenu li a.menuSub
+{padding-left:15px;}
+
 #usermenu a.highlight 
 	{
 	color:#DFDFDF;

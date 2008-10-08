@@ -28,7 +28,7 @@ define('TEMPLATEAUTOUPDATE_TARGET_DIRNAME', "");
 // [JA]
 // ターゲットの TPLSET 。無指定のとき、現在のテンプレートセットを使いますが、 default のときは無視します。 default を明示した場合のみ書き換えます。
 //
-define('TEMPLATEAUTOUPDATE_TARGET_TPLSET', "");
+define('TEMPLATEAUTOUPDATE_TARGET_TPLSET', "default");
 
 class TemplateAutoUpdate extends XCube_ActionFilter
 {

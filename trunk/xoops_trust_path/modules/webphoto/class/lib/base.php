@@ -1,5 +1,5 @@
 <?php
-// $Id: base.php,v 1.3 2008/07/11 20:19:19 ohwada Exp $
+// $Id: base.php,v 1.7 2008/09/04 00:46:47 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -8,6 +8,10 @@
 
 //---------------------------------------------------------
 // change log
+// 2008-09-01 K.OHWADA
+// added build_set_msg()
+// 2008-08-01 K.OHWADA
+// added set_msg_array() check_token_and_redirect()
 // 2008-07-01 K.OHWADA
 // added build_error_msg()
 //---------------------------------------------------------
@@ -24,16 +28,22 @@ class webphoto_lib_base extends webphoto_lib_error
 	var $_xoops_class;
 
 // xoops param
-	var $_xoops_language;
-	var $_xoops_sitename;
-	var $_xoops_uid    = 0 ;
-	var $_xoops_uname  = null ;
-	var $_xoops_groups = null ;
+	var $_xoops_language  = null ;
+	var $_xoops_sitename  = null ;
+	var $_xoops_adminmail = null ;
+	var $_xoops_anonymous = null ;
+	var $_xoops_uname     = null ;
+	var $_xoops_groups    = null ;
+	var $_xoops_uid       = 0 ;
 	var $_is_module_admin = false;
 	var $_is_login_user   = false;
 
 	var $_token_error_flag = false;
 	var $_token_errors     = null;
+
+	var $_msg_array       = array();
+	var $_msg_level_array = array() ;
+	var $_msg_level       = 0 ;
 
 	var $_DIRNAME       = null;
 	var $_TRUST_DIRNAME = null;
@@ -209,9 +219,9 @@ function rename_file( $old, $new )
 	return $this->_utility_class->rename_file( $old, $new );
 }
 
-function copy_file( $src, $dst )
+function copy_file( $src, $dst, $flag=false )
 {
-	return $this->_utility_class->copy_file( $src, $dst );
+	return $this->_utility_class->copy_file( $src, $dst, $flag );
 }
 
 function unlink_file( $file )
@@ -269,6 +279,122 @@ function str_replace_return_code( $str, $replace=' ' )
 }
 
 //---------------------------------------------------------
+// msg
+//---------------------------------------------------------
+function has_msg_array()
+{
+	if ( count($this->_msg_array) ) {
+		return true;
+	}
+	return false;
+}
+
+function clear_msg_array()
+{
+	$this->_msg_array = array();
+}
+
+function get_msg_array()
+{
+	return $this->_msg_array;
+}
+
+function get_format_msg_array( $flag_sanitize=true, $flag_highlight=true, $flag_br=true )
+{
+	$val = '';
+	foreach (  $this->_msg_array as $msg )
+	{
+		if ( $flag_sanitize ) {
+			$msg = $this->sanitize($msg);
+		}
+		$val .= $msg ;
+		if ( $flag_br ) {
+			$val .= "<br />\n";
+		}
+	}
+
+	if ( $flag_highlight ) {
+		$val = $this->highlight($val);
+	}
+	return $val;
+}
+
+function set_msg_array( $msg )
+{
+// array type
+	if ( is_array($msg) ) {
+		foreach ( $msg as $m ) {
+			$this->_msg_array[] = $m;
+		}
+
+// string type
+	} else {
+		$arr = explode("\n", $msg);
+		foreach ( $arr as $m ) {
+			$this->_msg_array[] = $m;
+		}
+	}
+}
+
+function build_set_msg( $msg, $flag_highlight=false, $flag_br=false )
+{
+	$this->set_msg_array(
+		$this->build_msg( $msg, $flag_highlight, $flag_br ) );
+}
+
+function set_msg_level( $val )
+{
+	$this->_msg_level = intval( $val );
+}
+
+function build_msg_level( $level, $msg, $flag_highlight=false, $flag_br=false )
+{
+	if (( $this->_msg_level > 0 )&&( $this->_msg_level >= $level )) {
+		return $this->build_msg( $msg, $flag_highlight, $flag_br );
+	}
+	return null;
+}
+
+function build_msg( $msg, $flag_highlight=false, $flag_br=false )
+{
+	if ( $flag_highlight ) {
+		$msg = $this->highlight( $msg );
+	}
+	if ( $flag_br ) {
+		$msg .= "<br />\n";
+	}
+	return $msg ;
+}
+
+//---------------------------------------------------------
+// head
+//---------------------------------------------------------
+function build_html_head( $title=null, $charset=null )
+{
+	if ( empty($charset) ) {
+		$charset = _CHARSET;
+	}
+
+	$text  = '<html><head>'."\n";
+	$text .= '<meta http-equiv="Content-Type" content="text/html; charset='. $this->sanitize( $charset ) .'" />'."\n";
+	$text .= '<title>'. $this->sanitize( $title ) .'</title>'."\n";
+	$text .= '</head>'."\n";
+	return $text;
+}
+
+function build_html_body_begin()
+{
+	$text = '<body>'."\n";
+	return $text;
+}
+
+function build_html_body_end()
+{
+	$text = '</body></html>'."\n";
+	return $text;
+}
+
+//---------------------------------------------------------
 // token
 //---------------------------------------------------------
 function get_token_name()
@@ -313,13 +439,28 @@ function check_token_with_print_error()
 	return $ret;
 }
 
+function check_token_and_redirect( $url, $time=5 )
+{
+	if ( ! $this->check_token() )  {
+		$msg = 'Token Error';
+		if ( $this->_is_module_admin ) {
+			$msg .= '<br />'.$this->get_token_errors();
+		}
+		redirect_header( $url, $time , $msg );
+		exit();
+	}
+	return true;
+}
+
 //---------------------------------------------------------
 // xoops param
 //---------------------------------------------------------
 function _init_xoops_param()
 {
-	$this->_xoops_language = $this->_xoops_class->get_config_by_name( 'language' );
-	$this->_xoops_sitename = $this->_xoops_class->get_config_by_name( 'sitename' );
+	$this->_xoops_language  = $this->_xoops_class->get_config_by_name( 'language' );
+	$this->_xoops_sitename  = $this->_xoops_class->get_config_by_name( 'sitename' );
+	$this->_xoops_adminmail = $this->_xoops_class->get_config_by_name( 'adminmail' );
+	$this->_xoops_anonymous = $this->_xoops_class->get_config_by_name( 'anonymous' );
 
 	$this->_MODULE_ID         = $this->_xoops_class->get_my_module_id();
 	$this->_MODULE_NAME       = $this->_xoops_class->get_my_module_name( 'n' );

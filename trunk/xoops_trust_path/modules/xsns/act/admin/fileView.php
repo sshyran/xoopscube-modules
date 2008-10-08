@@ -12,7 +12,8 @@ function dispatch()
 	$file_list = $this->context->getAttribute('file_list');
 	$pager = $this->context->getAttribute('pager');
 	
-	echo "<h4><p style='text-align:center;'>"._AM_XSNS_TITLE_FILE_CONFIG."</p></h4>";
+	echo "<h3>"._AM_XSNS_TITLE_FILE_CONFIG."</h3>"
+	."<hr />";
 	
 	if(count($file_list) > 0){
 		

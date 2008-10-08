@@ -6,6 +6,7 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
+$mydirpath = basename( dirname( dirname( __FILE__ ) ) ) ;
 
 //
 // Define a basic manifesto.
@@ -18,7 +19,7 @@ $modversion['credits'] = "";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image'] = "images/cubookmarken.png";
+$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
 $modversion['dirname'] = "cubookmarken";
 
 $modversion['cube_style'] = true;
