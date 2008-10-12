@@ -35,6 +35,8 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 
 	var $mKeyword = "";
 	var $mOptionField = "";
+	var $mOptionField2 = "";
+	var $mOptionField3 = "";
 	
 	function getDefaultSortKey()
 	{
@@ -49,6 +51,8 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 		$avatar_display = $root->mContext->mRequest->getRequest('avatar_display');
 		$avatar_type = $root->mContext->mRequest->getRequest('avatar_type');
 		$option_field = $root->mContext->mRequest->getRequest('option_field');
+		$option_field2 = $root->mContext->mRequest->getRequest('option_field2');
+		$option_field3 = $root->mContext->mRequest->getRequest('option_field3');
 		$search = $root->mContext->mRequest->getRequest('search');
 
 		if (isset($avatar_display)) {
@@ -71,6 +75,37 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 			elseif ( $this->mOptionField == "custom" ) {
 			//only custom avatar
 			$this->_mCriteria->add(new Criteria('avatar_type', 'C'));
+			}
+			else {
+			//all
+			}
+		}
+
+		if (isset($option_field2)) {
+			$this->mNavi->addExtra('option_field2', $option_field2);
+			$this->mOptionField2 = $option_field2;
+			if ( $this->mOptionField2 == "visible" ) {
+			$this->_mCriteria->add(new Criteria('avatar_display', 1));
+			}
+			elseif ( $this->mOptionField2 == "invisible" ) {
+			$this->_mCriteria->add(new Criteria('avatar_display', 0));
+			}
+			else {
+			//all
+			}
+		}
+
+		if (isset($option_field3)) {
+			$this->mNavi->addExtra('option_field3', $option_field3);
+			$this->mOptionField3 = $option_field3;
+			if ( $this->mOptionField3 == "gif" ) {
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/gif'));
+			}
+			elseif ( $this->mOptionField3 == "png" ) {
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/png'));
+			}
+			elseif ( $this->mOptionField3 == "jpeg" ) {
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/jpeg'));
 			}
 			else {
 			//all

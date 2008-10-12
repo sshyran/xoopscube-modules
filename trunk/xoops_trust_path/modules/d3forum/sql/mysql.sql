@@ -17,6 +17,7 @@ CREATE TABLE category_access (
 ) TYPE=MyISAM;
 
 
+
 CREATE TABLE forum_access (
   forum_id int(6) unsigned NOT NULL default 0,
   uid mediumint(8) default NULL,
@@ -33,6 +34,8 @@ CREATE TABLE forum_access (
   KEY (groupid),
   KEY (can_post)
 ) TYPE=MyISAM;
+
+
 
 
 CREATE TABLE categories (
@@ -196,3 +199,8 @@ CREATE TABLE post_histories (
   PRIMARY KEY (history_id),
   KEY (post_id)
 ) TYPE=MyISAM;
+
+
+
+
+

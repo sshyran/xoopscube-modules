@@ -1,17 +1,20 @@
 <{$breadcrumb}>
 <br />
-<div id="myshop-logo">
-	<img src="<{$smarty.const.MYSHOP_IMAGES_URL}>myshop.png" alt="<{$xoops_sitename}> : Shop" border="0"  />
-</div>
 
-<{if $welcome_msg != ''}>
-		<div id="myshop_welcome"><{$welcome_msg}></div>
-<{/if}>
+<{* Display category or module advertisement *}>
 
-<{if $mod_pref.advertisement != ''}><div id="myshop_publicite"><{$mod_pref.advertisement}></div><{/if}>
+	<{if $category.cat_advertisement != ''}>
+		<div id="myshop_publicite-category"><{$category.cat_advertisement}></div>
+
+	<{elseif $mod_pref.advertisement != ''}>
+	<div id="myshop_publicite"><{$mod_pref.advertisement}></div>
+	<{/if}>
+
 <br />
+
 <{if count($products) > 0 }>
-	<div class="featured-blocks-titles"><h2><img src="<{$smarty.const.MYSHOP_IMAGES_URL}>box.png" alt="<{$smarty.const._MYSHOP_RECOMMENDED}>" border="0" /><{$smarty.const._MYSHOP_RECOMMENDED}></h2></div>
+	<div class="featured-blocks-titles">
+    <h2><{$smarty.const._MYSHOP_RECOMMENDED}></h2></div>
 	<table border="0" class="myshop_productindex">
 	<{foreach item=product from=$products}>
 	<tr>

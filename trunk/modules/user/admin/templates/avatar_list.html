@@ -44,6 +44,19 @@
     <option value="system" <{if $filterForm->mOptionField == 'system'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_AVATAR_TYPE_S}></option>
     <option value="custom" <{if $filterForm->mOptionField == 'custom'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}></option>
   </select>
+  <{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}> : 
+  <select name="option_field2">
+    <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+    <option value="visible" <{if $filterForm->mOptionField2 == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
+    <option value="invisible" <{if $filterForm->mOptionField2 == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
+  </select>
+  <{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}> : 
+  <select name="option_field3">
+    <option value="all" <{if $filterForm->mOptionField3 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+    <option value="gif" <{if $filterForm->mOptionField3 == 'gif'}>selected="selected"<{/if}>>image/gif</option>
+    <option value="png" <{if $filterForm->mOptionField3 == 'png'}>selected="selected"<{/if}>>image/png</option>
+    <option value="jpeg" <{if $filterForm->mOptionField3 == 'jpeg'}>selected="selected"<{/if}>>image/jpeg</option>
+  </select>
   <{$smarty.const._VIEW}> : 
   <select name="perpage">
     <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>

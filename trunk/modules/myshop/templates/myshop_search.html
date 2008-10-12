@@ -1,9 +1,14 @@
 <{$breadcrumb}>
 <br />
-<{if $global_advert != ''}>
-	<div id="myshop_publicite"><{$global_advert}></div>
-	<br />
-<{/if}>
+
+<{* Display module advertisement *}>
+
+	<{if $mod_pref.advertisement != ''}>
+	<div id="myshop_publicite"><{$mod_pref.advertisement}></div>
+	<{/if}>
+
+<br />
+
 <{if $search_results}>
 	<h2><{$smarty.const._MYSHOP_SEARCHRESULTS}></h2>
 	<br />

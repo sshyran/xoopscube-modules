@@ -22,17 +22,17 @@
 <{if $category.isadminormod}>
 <!-- category controller -->
 <ul class="d3f_ctrl">
-	<li><img src="<{$mod_imageurl}>/add.png" alt="<{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}>" /> <a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
+	<li><img src="<{$xoops_url}>/images/icons/folder_add.png" alt="<{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}>" /> <a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
 	<{if $boop_isadmin}>
 	<{strip}>
-		<li><img src="<{$mod_imageurl}>/folder_link.png" alt="<{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}>" /> <a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
-		<li><img src="<{$mod_imageurl}>/folder_edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></a></li>
+		<li><img src="<{$xoops_url}>/images/icons/folder_link.png" alt="<{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}>" /> <a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
+		<li><img src="<{$xoops_url}>/images/icons/folder_edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></a></li>
 	<{/strip}>
 	<{/if}>
 	<{if $xoops_isadmin}>
-		<li><img src="<{$mod_imageurl}>/lock_edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></li>
+		<li><img src="<{$xoops_url}>/images/icons/lock_edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></li>
 	<{/if}>
-	<li><img src="<{$mod_imageurl}>/feed.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}></a></li>
+	<li><img src="<{$xoops_url}>/images/icons/feed.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}></a></li>
 </ul>
 <{/if}>
 
@@ -40,7 +40,7 @@
 <h2 class="d3f_head"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h2>
 <ul class="d3f_subcategories">
 <{foreach item=subcategory from=$subcategories}>
-	<li><img src="<{$mod_imageurl}>/category_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" /> <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>"<{if $subcategory.desc}> title="<{$subcategory.desc}>"<{/if}>><{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$subcategory.topics_count}>, <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$subcategory.posts_count}>)</li>
+	<li><img src="<{$xoops_url}>/images/icons/folder_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" /> <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>"<{if $subcategory.desc}> title="<{$subcategory.desc}>"<{/if}>><{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$subcategory.topics_count}>, <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$subcategory.posts_count}>)</li>
 <{/foreach}>
 </ul>
 <{/if}>
@@ -61,10 +61,10 @@
 <{foreach item=forum from=$forums}>
 <tr class="<{cycle values="even,odd"}>">
 <{strip}>
-	<td class="d3f_mainicon"><img src="<{$mod_imageurl}>/forum_<{$forum.bit_new}>.png" alt="<{$forum.title}>" /></td>
+	<td class="d3f_mainicon"><img src="<{$xoops_url}>/images/icons/comments_<{$forum.bit_new}>.png" alt="<{$forum.title}>" /></td>
 	<td><dl>
 	<dt><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
-	&nbsp;<{if $forum.isadminormod}> <a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><img src="<{$mod_imageurl}>/pencil.png" alt="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>" /></a><{/if}></dt>
+	&nbsp;<{if $forum.isadminormod}> <a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><img src="<{$xoops_url}>/images/icons/edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>" /></a><{/if}></dt>
 		<dd><{$forum.desc}></dd>
 		<dd class="d3f_td_topicinfo">
 			<{include file="db:`$mydirname`_inc_moderators.html" target=$forum}>
@@ -77,7 +77,7 @@
 	</dl></td>
 	<td><{$forum.topics_count}></td>
 	<td><{$forum.posts_count}></td>
-	<td class="d3f_posters"><{if $forum.last_post_time}><{$forum.last_post_time_formatted}><br /><{$forum.last_post_uname}> <a href="<{$mod_url}>/index.php?post_id=<{$forum.last_post_id}>"><img src="<{$mod_imageurl}>/posticon<{$forum.last_post_icon}>.png" alt="<{$forum.last_post_subject}>" title="<{$forum.last_post_subject}>" /></a><{/if}></td>
+	<td class="d3f_posters"><{if $forum.last_post_time}><{$forum.last_post_time_formatted}><br /><{$forum.last_post_uname}> <a href="<{$mod_url}>/index.php?post_id=<{$forum.last_post_id}>"><img src="<{$xoops_url}>/images/icons/posticon<{$forum.last_post_icon}>.png" alt="<{$forum.last_post_subject}>" title="<{$forum.last_post_subject}>" /></a><{/if}></td>
 <{/strip}>
 </tr>
 <{/foreach}>
@@ -86,10 +86,10 @@
 
 <div class="d3f_iconexps">
 <ul class="d3f_iconexp">
-	<li><img src="<{$mod_imageurl}>/forum_1.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
+	<li><img src="<{$xoops_url}>/images/icons/comments_1.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
 </ul>
 <ul class="d3f_iconexp">
-	<li><img src="<{$mod_imageurl}>/forum_0.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
+	<li><img src="<{$xoops_url}>/images/icons/comments_0.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
 </ul>
 </div>
 <{/if}>

@@ -135,6 +135,40 @@ class Legacy_AdminLangPlusPreload extends XCube_ActionFilter
 	if (!defined('_AD_LEGACY_LANG_COMMENT_TOTAL')) {
 	define('_AD_LEGACY_LANG_COMMENT_TOTAL', "Total of Comments");
 	}
+	if (!defined('_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL')) {
+	define('_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL', "Total of active Block(s)");
+	}
+	if (!defined('_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL')) {
+	define('_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL', "Total of Inactive Block(s)");
+	}
+	if (!defined('_AD_LEGACY_LANG_BLOCK_MYTIPS')) {
+	define('_AD_LEGACY_LANG_BLOCK_MYTIPS', "Please write down your tips here!<br />( Customize _AD_LEGACY_LANG_BLOCK_MYTIPS !)");
+	}
+	if (!defined('_AD_LEGACY_LANG_BLOCK_MYTIPS2')) {
+	define('_AD_LEGACY_LANG_BLOCK_MYTIPS2', "Please write down your tips here!<br />( Customize _AD_LEGACY_LANG_BLOCK_MYTIPS2 !)");
+	}
+	if (!defined('_AD_LEGACY_LANG_BLOCK_UPDATECONF')) {
+	define('_AD_LEGACY_LANG_BLOCK_UPDATECONF', "Confirm block update");
+	}
+	if (!defined('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_BLOCK')) {
+	define('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_BLOCK', "Are you sure you want to update it?");
+	}
+	//
+	if (!defined('_AD_LEGACY_LANG_MOD_MYTIPS')) {
+	define('_AD_LEGACY_LANG_MOD_MYTIPS', "Please write down your tips here!<br />( Customize _AD_LEGACY_LANG_MOD_MYTIPS !)");
+	}
+	if (!defined('_AD_LEGACY_LANG_COMMENT_MYTIPS')) {
+	define('_AD_LEGACY_LANG_COMMENT_MYTIPS', "Please write down your tips here!<br />( Customize _AD_LEGACY_LANG_COMMENT_MYTIPS !)");
+	}
+	if (!defined('_AD_LEGACY_LANG_COMMENT_UPDATECONF')) {
+	define('_AD_LEGACY_LANG_COMMENT_UPDATECONF', "Confirm comment update");
+	}
+	if (!defined('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_COMMENT')) {
+	define('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_COMMENT', "Are you sure you want to update it?");
+	}
+	if (!defined('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_MODULE')) {
+	define('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_MODULE', "Are you sure you want to update it?");
+	}
 
 	}
 	

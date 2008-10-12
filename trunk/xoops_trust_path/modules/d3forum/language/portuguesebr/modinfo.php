@@ -81,7 +81,7 @@ define($constpref.'_IMAGES_DIRDSC','o trajeto relativo deve ser ajustado no dire
 define($constpref.'_ANONYMOUS_NAME','Nome para Convidados');
 define($constpref.'_ANONYMOUS_NAMEDSC','');
 define($constpref.'_ICON_MEANINGS','Significado dos ícones');
-define($constpref.'_ICON_MEANINGSDSC','Definição de ALTs dos ícones. Cada alts deve ser separado pelo pipe(|). O primeiro alt corresponde "posticon0.gif", dentro do diretório /images.');
+define($constpref.'_ICON_MEANINGSDSC','Definição de ALTs dos ícones. Cada alts deve ser separado pelo pipe(|). O primeiro alt corresponde "posticon0.png", dentro do diretório /images.');
 define($constpref.'_ICON_MEANINGSDEF','none|normal|triste|feliz|baixo|alto|relatar|perguntar');
 define($constpref.'_GUESTVOTE_IVL','Voto dos visitantes');//
 define($constpref.'_GUESTVOTE_IVLDSC','Colocando 0(zero), impossibilita dos visitantes votarem. Qualquer outro numero significa o tempo (em segundos) para poderem votar de novo na mensagem, com o mesmo IP.'); //

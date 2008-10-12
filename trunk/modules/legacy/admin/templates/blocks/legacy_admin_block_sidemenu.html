@@ -14,7 +14,10 @@
             <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
           <{/if}>
         <{/foreach}>
-        
+          <{if $module->mXoopsModule->getInfo('hasComments')}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$module->mXoopsModule->getShow('mid')}>&amp;sort=-8"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a></li>
+<{/if}>
+
           <{if $module->mXoopsModule->getInfo('blocks')}>
           <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$module->mXoopsModule->getShow('dirname')}>"><img src="<{"icons/blocks.png"|theme}>" alt="<{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}>" />&nbsp;<{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></li>
           <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$module->mXoopsModule->getShow('dirname')}>"><img src="<{"icons/block_add.png"|theme}>" alt="<{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>" />&nbsp;<{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></li>

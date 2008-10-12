@@ -1,6 +1,11 @@
 <?php
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
+// Legacy 2.2 UNMG-D3 by Gigamaster
+define("_MD_A_MYMENU_MYTPLSADMIN", " Templates");
+define("_MD_A_MYMENU_MYBLOCKSADMIN", "Blocks");
+define("_MD_A_MYMENU_MYPREFERENCES", "Preferences");
+
 define("_LCX_ADM_CONFIG",	" Configuration ");
 define("_LCX_ADM_GENCONF",	"General Configuration");
 define("_LCX_ADM_LOGCONF", 	"Advanced Configuration");

@@ -93,7 +93,10 @@ function ccToggle(id)
           <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
         <{/if}>
       <{/foreach}>
-      
+           <{if $currentModule->mXoopsModule->getInfo('hasComments')}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$currentModule->mXoopsModule->getShow('mid')}>&amp;sort=-8"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a></li>
+     <{/if}>
+
       <{if $currentModule->mXoopsModule->getInfo('blocks')}>
           <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></li>
           <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></li>

@@ -6,9 +6,6 @@
 if( !defined('XOOPS_ROOT_PATH') ) exit ;
 $mytrustdirname = basename( dirname( dirname( __FILE__ ) ) ) ; // fake hack
 
-// Skip for ORETEKI XOOPS
-if( defined( 'XOOPS_ORETEKI' ) ) return ;
-
 global $xoopsModule ;
 if( ! is_object( $xoopsModule ) ) die( '$xoopsModule is not set' )  ;
 
@@ -20,12 +17,14 @@ require_once( $langmanpath ) ;
 $langman =& D3LanguageManager::getInstance() ;
 $langman->read( 'modinfo.php' , $mydirname , $mytrustdirname ) ;
 
+	
 include dirname(__FILE__).'/menu.php' ;
 
-$adminmenu = array_merge( $adminmenu , $adminmenu4altsys ) ;
+$mydirname = basename( dirname( dirname( __FILE__ ) ) ) ;
 
 $mymenu_uri = empty( $mymenu_fake_uri ) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri ;
 $mymenu_link = substr( strstr( $mymenu_uri , '/admin/' ) , 1 ) ;
+	
 
 
 // highlight
@@ -62,4 +61,5 @@ $tpl->assign( array(
 	'adminmenu' => $adminmenu ,
 ) ) ;
 $tpl->display( 'db:altsys_inc_mymenu.html' ) ;
+
 ?>

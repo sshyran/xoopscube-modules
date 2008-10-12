@@ -21,10 +21,10 @@
  */
 
 /**
- * Various parameters for the module
+ * Module parameters
  */
 
-// Location of attached files (url and physical path on your disk)
+// Location of attached files, url and physical path
 if(!defined("MYSHOP_ATTACHED_FILES_URL")) {
 	// Define here the place where files attached to products are saved
 	define("MYSHOP_ATTACHED_FILES_URL", XOOPS_UPLOAD_URL);		// WITHOUT Trailing slash
@@ -59,7 +59,7 @@ if(!defined("MYSHOP_ATTACHED_FILES_URL")) {
 	define("MYSHOP_CSV_SEP", '|');
 
 	// Paypal log's path (must be writable)
-	define("MYSHOP_PAYPAL_LOG_PATH", XOOPS_UPLOAD_PATH.'/logpaypal_myshop.php');
+	define("MYSHOP_PAYPAL_LOG_PATH", XOOPS_TRUST_PATH.'/cache/logpaypal_myshop.php');
 
 	// Do you want to show the list of main categories on the category page when user is on category.php (without specifying a category to see)
 	define("MYSHOP_SHOW_MAIN_CATEGORIES", true);

@@ -6,30 +6,30 @@
 <div class="pico_controllers">
 
 	<!-- link to menu -->
-	<a href="<{$mod_url}>/index.php?page=menu">[<{$smarty.const._MD_PICO_MENU}>]</a>
+	<a href="<{$mod_url}>/index.php?page=menu"><img src="<{$xoops_url}>/images/icons/sitemap.png" alt="<{$smarty.const._MD_PICO_MENU}>" title="<{$smarty.const._MD_PICO_MENU}>" /></a>
 	
 	<{if $category.isadminormod}>
-	<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>]</a>
+	<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><img src="<{$xoops_url}>/images/icons/folder_edit.png" alt="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>" title="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>" /></a>
 	<{/if}>
 	
 	<{* <{if $xoops_isadmin}>
-		<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>]</a>
+		<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>"><img src="<{$xoops_url}>/images/icons/permission.png" alt="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>" title="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>" /></a>
 	<{/if}>
 	
 	<{if $xoops_isadmin}>
-		<a href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>]</a>
+		<a href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>"><img src="<{$xoops_url}>/images/icons/pages.png" alt="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>" title="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>" /></a>
 	<{/if}> *}>
 	
 	<{if $category.can_makesubcategory}>
-	<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>]</a>
+	<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>"><img src="<{$xoops_url}>/images/icons/folder_add.png" alt="<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>" title="<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>" /></a>
 	<{/if}>
 	
 	<{if $category.can_post}>
-	<a href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>]</a>
+	<a href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>"><img src="<{$xoops_url}>/images/icons/page_edit.png" alt="<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>" title="<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>" /></a>
 	<{/if}>
 
 	<!-- link to RSS -->
-	<a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">[RSS]</a>
+	<a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>"><img src="<{$xoops_url}>/images/icons/feed.png" alt="RSS" title="RSS" /></a>
 	
 </div>
 
@@ -37,7 +37,7 @@
 
 <h1><{$category.title}></h1>
 <{if $category.isadminormod}>
-	<p>
+	<p class="info">
 	<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>:<{$category.redundants.contents_total}>
 	<{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}>:<{$category.redundants.subcategories_total}>
 	</p>
@@ -51,7 +51,7 @@
 <{foreach from=$subcategories item="subcategory"}>
 	<dl class="pico_subcategory">
 		<dt>
-			<a href="<{$mod_url}>/<{$subcategory.link}>"><{$subcategory.title}></a>
+			<a href="<{$mod_url}>/<{$subcategory.link}>"><img src="<{$xoops_url}>/images/icons/folder.png" alt="<{$subcategory.title}>" title="<{$subcategory.title}>" />&nbsp;<{$subcategory.title}></a>
 			<{if $category.isadminormod}>
 				<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>:<{$subcategory.redundants.contents_total}>
 				<{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}>:<{$subcategory.redundants.subcategories_total}>
@@ -80,7 +80,7 @@
 	<{/if}>
 	</a>
 	<{if $category.can_edit}>
-		<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mc<{$category.id}>"><img src="<{$mod_imageurl}>/icon_edit.gif" alt="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>" /></a>
+		<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mc<{$category.id}>"><img src="<{$xoops_url}>/images/icons/edit.png" alt="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>" /></a>
 	<{/if}>
 	</li>
 <{/foreach}>

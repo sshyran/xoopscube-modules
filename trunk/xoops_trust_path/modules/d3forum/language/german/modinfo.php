@@ -170,7 +170,7 @@ define($constpref.'_ANONYMOUS_NAMEDSC','');
 ////define($constpref.'_ICON_MEANINGS','Meanings of icons');
 define('_MI_D3FORUM_ICON_MEANINGS','Bedeutung von Icons');
 define('_MI_D3FORUM_ICON_MEANINGS','Bedeutung von Icons');
-////define($constpref.'_ICON_MEANINGSDSC','Specify ALTs of icons. each alts should be separated by pipe(|). The first alt corresponds "posticon0.gif".');
+////define($constpref.'_ICON_MEANINGSDSC','Specify ALTs of icons. each alts should be separated by pipe(|). The first alt corresponds "posticon0.png".');
 define('_MI_D3FORUM_ICON_MEANINGSDSC','Legt den ALT-Wert für Icons fest. Jeder Eintrag muss durch | getrennt werden.');
 define('_MI_D3FORUM_ICON_MEANINGSDSC','Legt den ALT-Wert für Icons fest. Jeder Eintrag muss durch | getrennt werden.');
 ////define($constpref.'_ICON_MEANINGSDEF','none|normal|unhappy|happy|lower it|raise it|report|question');

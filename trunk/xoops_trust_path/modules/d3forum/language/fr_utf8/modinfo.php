@@ -68,7 +68,7 @@ define($constpref.'_BODY_EDITORDSC','L\'éditeur WYSIWYG sera activé uniquement
 define($constpref.'_ANONYMOUS_NAME','Nom de l\'Anonyme');
 define($constpref.'_ANONYMOUS_NAMEDSC','Nom utilisé pour un message poste de manière anonyme.');
 define($constpref.'_ICON_MEANINGS','Les sens des icônes');
-define($constpref.'_ICON_MEANINGSDSC','Spécifier les ALT des icônes. Chaque ALT devrait être séparé par (|). Le premier ALT correspond à "posticon0.gif".');
+define($constpref.'_ICON_MEANINGSDSC','Spécifier les ALT des icônes. Chaque ALT devrait être séparé par (|). Le premier ALT correspond à "posticon0.png".');
 define($constpref.'_ICON_MEANINGSDEF','aucun|normal|mécontent|heureux|augmenter|baisser|rapport|question');
 define($constpref.'_GUESTVOTE_IVL','Vote des invités');
 define($constpref.'_GUESTVOTE_IVLDSC','Ajoutez 0, pour neutraliser le vote des utilisateurs invités. Ou ajoutez une valeur en secondes pour permettre un deuxième vote du même IP.');

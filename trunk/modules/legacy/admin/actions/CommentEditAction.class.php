@@ -12,6 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
 require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentAdminEditForm.class.php";
+require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
 class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 {
@@ -114,15 +115,11 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 		
 		$comment_config = $module->getInfo('comments');
 		
-		if (!isset($comment_config['callbackFile'])) {
-			return false;
-		}
-			
 		//
 		// Load call-back file
 		//
 		$file = XOOPS_MODULE_PATH . "/" . $module->get('dirname') . "/" . $comment_config['callbackFile'];
-		if (!is_file($file)) {
+		if (!file_exists($file) || !isset($comment_config['callbackFile']) || empty($comment_config['callbackFile'])) {
 			return false;
 		}
 		
@@ -144,6 +141,17 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 		if (function_exists($function)) {
 			call_user_func($function, $comment);
 		}
+		//we need to update also!
+		$function = $comment_config['callback']['update'];
+		
+		if (function_exists($function)) {
+			$comment_handler = xoops_gethandler('comment');
+    			$criteria = new CriteriaCompo(new Criteria('com_modid', $comment->getVar('com_modid')));
+			$criteria->add(new Criteria('com_itemid', $comment->getVar('com_itemid')));
+			$criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
+			$comment_count = $comment_handler->getCount($criteria);
+			call_user_func_array($function, array($comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')));
+		}
 		
 		$handler =& xoops_gethandler('member');
 
@@ -155,26 +163,35 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 		if (is_object($user)) {
 			$handler->updateUserByField($user, 'posts', $user->get('posts') + 1);
 		}
+
+		//notification
+		// RMV-NOTIFY
+        		// trigger notification event if necessary
+            	$notify_event = 'comment';
+            	$not_modid = $comment->getVar('com_modid');
+            	include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
+            	$not_catinfo =& notificationCommentCategoryInfo($not_modid);
+            	$not_category = $not_catinfo['name'];
+            	$not_itemid = $comment->getVar('com_itemid');
+            	$not_event = $notify_event;
+            	$comment_tags = array();
+                	$module_handler =& xoops_gethandler('module');
+                	$not_module =& $module_handler->get($not_modid);
+                	$com_config =& $not_module->getInfo('comments');
+                	$comment_url = $com_config['pageName'] . '?';
+		//Umm....not use com_exparams(--;;Fix Me!)	
+                	//$extra_params = $comment->getVar('com_exparams');
+                	//$comment_url .= $extra_params;
+                	$comment_url .= $com_config['itemName'];
+            	$comment_tags['X_COMMENT_URL'] = XOOPS_URL . '/modules/' . $not_module->getVar('dirname') . '/' .$comment_url . '=' . $comment->getVar('com_itemid').'&amp;com_id='.$comment->getVar('com_id').'&amp;com_rootid='.$comment->getVar('com_rootid').'#comment'.$comment->getVar('com_id');
+            	$notification_handler =& xoops_gethandler('notification');
+            	$notification_handler->triggerEvent ($not_category, $not_itemid, $not_event, $comment_tags, false, $not_modid);
+
 	}
 	
 	function doUpdate($comment)
 	{
-		//
-		// Adjust user's post count.
-		//
-		if ($comment->get('com_uid') > 0) {
-			$handler =& xoops_gethandler('member');
 
-			//
-			// TODO We should adjust the following lines and handler's design.
-			// We think we should not use getUser() and updateUserByField in XCube 2.1.
-			//
-			$user =& $handler->getUser($comment->get('com_uid'));
-			if (is_object($user)) {
-				$handler->updateUserByField($user, 'posts', $user->get('posts') + 1);
-			}
-		}
-		
 		//
 		// call back
 		//
@@ -187,14 +204,12 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 		$function = $comment_config['callback']['update'];
 		
 		if (function_exists($function)) {
-			$criteria =& new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
-			$criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
+			$comment_handler = xoops_gethandler('comment');
+    			$criteria = new CriteriaCompo(new Criteria('com_modid', $comment->getVar('com_modid')));
+			$criteria->add(new Criteria('com_itemid', $comment->getVar('com_itemid')));
 			$criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
-			
-			$handler =& xoops_gethandler('comment');
-			$commentCount = $handler->getCount($criteria);
-			
-			call_user_func($function, array($comment->get('com_itemid'), $commentCount, $comment->get('com_id')));
+			$comment_count = $comment_handler->getCount($criteria);
+			call_user_func_array($function, array($comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')));
 		}
 	}
 }

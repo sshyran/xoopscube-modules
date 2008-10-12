@@ -20,9 +20,18 @@ div.pico_menu div.level5 { margin-left: 40px; }
 
 em.pico_notice { font-weight: bold; font-style: normal; color: #FF0000; }
 
-
-div.pico_controllers_in_menu { float: right; position: relative; top : -1.5em;}
-
+div.pico_controllers{
+	width				:100%;
+	border-bottom		:1px #d7d7ff solid;
+/*	color				:;*/
+	background-color	:#fafaff;
+	margin				:5px 0;
+	padding				:2px;
+	line-height			:150%;
+	clear				:both;
+}
+/*div.pico_controllers_in_menu { float: right; position: relative; top : -1.5em;}
+*/
 div.bottom_of_content_body { clear: right; }
 
 ul.pico_list_contents li { list-style: none outside; }

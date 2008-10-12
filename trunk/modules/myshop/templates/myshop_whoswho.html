@@ -1,7 +1,14 @@
 <{$breadcrumb}>
 <br />
-	<{if $mod_pref.advertisement != ''}><div id="myshop_publicite"><{$mod_pref.advertisement}></div><{/if}>
+
+<{* Display category or module advertisement *}>
+
+	<{if $mod_pref.advertisement != ''}>
+	<div id="myshop_publicite"><{$mod_pref.advertisement}></div>
+	<{/if}>
+
 <br />
+
 <h2><img src="<{$smarty.const.MYSHOP_IMAGES_URL}>box.png" alt="" border="0" /><{$smarty.const._MI_MYSHOP_SMNAME5}></h2>
 <div class="myshop_alphabet"><{foreach item=letter from=$alphabet}><a href="#<{$letter}>"><{$letter}></a> <{/foreach}></div>
 

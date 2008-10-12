@@ -68,7 +68,7 @@ define($constpref.'_BODY_EDITORDSC','WYSIWYG editor will be enabled under only f
 define($constpref.'_ANONYMOUS_NAME','Anonymous Name');
 define($constpref.'_ANONYMOUS_NAMEDSC','');
 define($constpref.'_ICON_MEANINGS','Meanings of icons');
-define($constpref.'_ICON_MEANINGSDSC','Specify ALTs of icons. each alts should be separated by pipe(|). The first alt corresponds "posticon0.gif".');
+define($constpref.'_ICON_MEANINGSDSC','Specify ALTs of icons. each alts should be separated by pipe(|). The first alt corresponds "posticon0.png".');
 define($constpref.'_ICON_MEANINGSDEF','none|normal|unhappy|happy|lower it|raise it|report|question');
 define($constpref.'_GUESTVOTE_IVL','Vote from guests');
 define($constpref.'_GUESTVOTE_IVLDSC','Set this 0, to disable voting from guest. The other this number means time(sec.) to allow second post from the same IP.');

@@ -75,7 +75,7 @@
 <{foreach from=$results item=post}>
 <tr>
 	<td class="even d3f_topictitle"><a href="<{$mod_url}>/index.php?forum_id=<{$post.forum_id}>"><{$post.forum_title}></a></td>
-	<td class="odd d3f_topictitle"><a href="<{$mod_url}>/index.php?post_id=<{$post.post_id}>"><img src="<{$mod_imageurl}>/posticon<{$post.icon}>.gif" /><{$post.subject}></a> <{$post.body_length|string_format:$smarty.const._MD_D3FORUM_FMT_BYTE}></td>
+	<td class="odd d3f_topictitle"><a href="<{$mod_url}>/index.php?post_id=<{$post.post_id}>"><img src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.png" /><{$post.subject}></a> <{$post.body_length|string_format:$smarty.const._MD_D3FORUM_FMT_BYTE}></td>
 	<td class="even"><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{$post.poster_uname}></a></td>
 	<td class="odd"><{if $mod_config.use_vote}><{$post.votes_avg|string_format:"%.2f"}>/<{$post.votes_count}><{else}><{$post.topic_views}><{/if}></td>
 	<td class="even"><{$post.post_time_formatted}></td>

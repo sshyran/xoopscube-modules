@@ -9,7 +9,7 @@
  */
 
 $modversion['name'] = _MI_LEGACY_NAME;
-$modversion['version'] = 1.05;	// 2.1.5 RC
+$modversion['version'] = 1.06;
 $modversion['description'] = _MI_LEGACY_NAME_DESC;
 $modversion['author'] = "";
 $modversion['credits'] = "XOOPS Cube Project";

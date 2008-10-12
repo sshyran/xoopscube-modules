@@ -59,8 +59,7 @@
 			<br />
 			<{include file="db:myshop_categories_list.html" categories=$motherCategories}>
 		<{/if}>
-		<br />		
-		<h2><{$smarty.const._MYSHOP_SORRY_NO_PRODUCT}></h2>
+			
 	<{/if}>
 <{else}>	<{* We are on a child category so we display its products *}>
 	<{if count($subCategories) > 0}>

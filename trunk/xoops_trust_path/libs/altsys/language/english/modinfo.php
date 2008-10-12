@@ -3,6 +3,11 @@
 define( '_MI_ALTSYS_MODULENAME' , 'Common' ) ;
 define( '_MI_ALTSYS_MODULEDESC' , 'Managing system easily' ) ;
 
+// Legacy 2.2 UNMG-D3 by Gigamaster
+define("_MD_A_MYMENU_MYTPLSADMIN", " Templates");
+define("_MI_LEGACY_MENU_BLOCKLIST", "Block Management");
+define("_MI_LEGACY_MENU_BLOCKINSTALL", "Blocks Installation");
+
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Custom Blocks' ) ;
 define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , '(new)' ) ;

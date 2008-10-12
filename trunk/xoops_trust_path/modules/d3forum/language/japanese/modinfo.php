@@ -68,7 +68,7 @@ define($constpref.'_BODY_EDITORDSC','WYSIWYGエディタは、HTMLタグを許可するフォー
 define($constpref.'_ANONYMOUS_NAME','ゲストユーザのデフォルト名');
 define($constpref.'_ANONYMOUS_NAMEDSC','ゲスト用投稿フォームに最初に入力されている名前です。「匿名さん、お腹いっぱい」等');
 define($constpref.'_ICON_MEANINGS','投稿（アイコン）の意味づけ');
-define($constpref.'_ICON_MEANINGSDSC','投稿に性格を持たせるための選択肢です。パイプ(|)で区切ってください。最初が0で次が1と番号が割り当てられ、posticon(数字).gifがアイコンとして用いられます');
+define($constpref.'_ICON_MEANINGSDSC','投稿に性格を持たせるための選択肢です。パイプ(|)で区切ってください。最初が0で次が1と番号が割り当てられ、posticon(数字).pngがアイコンとして用いられます');
 define($constpref.'_ICON_MEANINGSDEF','なし|通常|不満|満足|下げ|上げ|報告|質問');
 define($constpref.'_GUESTVOTE_IVL','投稿へのゲスト投票');
 define($constpref.'_GUESTVOTE_IVLDSC','ある投稿(post)へのゲストによる投票を禁止する場合は0を、投票を許可する場合は、同一IPからの再投票を禁止する秒数を指定します。');

@@ -9,9 +9,9 @@
 <!-- top controller -->
 <ul class="d3f_ctrl">
 	<{if $xoops_isadmin}>
-		<li><img src="<{$mod_imageurl}>/add.png" alt="" /> <a href="<{$mod_url}>/index.php?page=makecategory"><{$smarty.const._MD_D3FORUM_LINK_MAKECATEGORY}></a></li>
+		<li><img src="<{$xoops_url}>/images/icons/folder_add.png" alt="" /> <a href="<{$mod_url}>/index.php?page=makecategory"><{$smarty.const._MD_D3FORUM_LINK_MAKECATEGORY}></a></li>
 	<{/if}>
-	<li><img src="<{$mod_imageurl}>/feed.png" alt="" /> <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_ALLRSS}></a></li>
+	<li><img src="<{$xoops_url}>/images/icons/feed.png" alt="" /> <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_ALLRSS}></a></li>
 </ul>
 
 <dl class="d3f_bbsinfo">
@@ -33,7 +33,7 @@
 <{foreach item="category" from=$top_categories}>
 <{if $category.subcategories or $category.forums or $xoops_isadmin}>
 <div class="d3f_head">
-<h2><img src="<{$mod_imageurl}>/category_<{$category.bit_new}>.png" alt="" /> <a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"> <{$category.title}></a></h2>
+<h2><img src="<{$xoops_url}>/images/icons/folder_<{$category.bit_new}>.png" alt="" /> <a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"> <{$category.title}></a></h2>
 <!--	<p>
 	<{include file="db:`$mydirname`_inc_moderators.html" target=$category}>
 	<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$category.topics_count}> <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$category.posts_count}> 
@@ -46,7 +46,7 @@
 <h3 class="d3f_head_h3"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h3>
 <ul class="d3f_subcategories">
 <{foreach item="subcategory" from=$category.subcategories}>
-	<li><img src="<{$mod_imageurl}>/category_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" /> <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>"><{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$subcategory.topics_count}>, <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$subcategory.posts_count}>)</li>
+	<li><img src="<{$xoops_url}>/images/icons/folder_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" /> <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>"><{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$subcategory.topics_count}>, <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$subcategory.posts_count}>)</li>
 <{/foreach}>
 </ul>
 <{/if}>
@@ -55,7 +55,7 @@
 <h3 class="d3f_head_h3"><{$smarty.const._MD_D3FORUM_FORUM}></h3>
 <ul class="d3f_listforums">
 <{foreach item=forum from=$category.forums}>
-	<li><img src="<{$mod_imageurl}>/forum_<{$forum.bit_new}>.png" alt="<{$forum.title}>" /> <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a> 
+	<li><img src="<{$xoops_url}>/images/icons/comments_<{$forum.bit_new}>.png" alt="<{$forum.title}>" /> <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a> 
 	<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$forum.topics_count}> <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$forum.posts_count}>
 	<{if $forum.last_post_time}><{$smarty.const._MD_D3FORUM_LASTPOST}>: <{$forum.last_post_time_formatted}><{/if}></li>
 <{/foreach}>
@@ -84,10 +84,10 @@
 <!-- icon explanation -->
 <div class="d3f_iconexps">
 <ul class="d3f_iconexp">
-	<li><img src="<{$mod_imageurl}>/forum_1.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
+	<li><img src="<{$xoops_url}>/images/icons/comments_1.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
 </ul>
 <ul class="d3f_iconexp">
-	<li><img src="<{$mod_imageurl}>/forum_0.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
+	<li><img src="<{$xoops_url}>/images/icons/comments_0.png" alt="" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
 </ul>
 </div>
 

@@ -8,7 +8,7 @@
 	<{/if}>
 <{/if}>
 	<h2<{if $post.invisible || ! $post.approval }> class="<{if $post.invisible}> invisible<{elseif ! $post.approval}> yetapproval<{/if}>"<{/if}>>
-	<a id="post_id<{$post.id}>" name="post_id<{$post.id}>"><img src="<{$mod_imageurl}>/posticon<{$post.icon}>.png" alt="<{$icon_meanings[$post.icon]}>" /></a>
+	<a id="post_id<{$post.id}>" name="post_id<{$post.id}>"><img src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.png" alt="<{$icon_meanings[$post.icon]}>" /></a>
 	<{if $caller == 'listposts'}>
 		<a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" name="post_path<{$post.unique_path}>"><{$post.subject}></a>
 	<{else}>
@@ -85,7 +85,7 @@
 <!-- post foot control -->
 <div class="d3f_info_ctrl">
 <{if $forum.isadminormod}>
-	<a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" class="cutpaste"><img src="<{$mod_imageurl}>/adminicon_cutpaste.png" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a> |
+	<a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" class="cutpaste"><img src="<{$xoops_url}>/images/icons/adminicon_cutpaste.png" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a> |
 <{/if}>
 
 <{if ! $post.approval && $forum.isadminormod}>

@@ -1,9 +1,16 @@
 <{$breadcrumb}>
 <br />
-<{if $global_advert != ''}>
-	<div align='center'><{$global_advert}></div>
-	<br />
-<{/if}>
+
+<{* Display category or module advertisement *}>
+
+	<{if $category.cat_advertisement != ''}>
+		<div id="myshop_publicite-category"><{$category.cat_advertisement}></div>
+
+	<{elseif $mod_pref.advertisement != ''}>
+	<div id="myshop_publicite"><{$mod_pref.advertisement}></div>
+	<{/if}>
+
+<br />
 <h2><{$smarty.const._MYSHOP_RATETHISPRODUCT}></h2>
 <br />
 <table border="0" cellpadding="1" cellspacing="0" width="80%" align="center">
