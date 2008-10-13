@@ -80,11 +80,11 @@
       <td class="legacy_list_select"><input type="checkbox" name="isactive[<{$module->getShow('mid')}>]" value="1" <{if $module->get('isactive')}>checked="checked"<{/if}> /></td>
       <td class="legacy_list_control">
         <{if $module->get('isactive') == 1 }>
-          <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+          <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>"><img src="<{"icons/module_edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
         <{/if}>
         <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
         <{if $module->get('isactive') == 0 }>
-          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/uninstall.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
+          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/module_remove.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
         <{/if}>
         <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
       </td>

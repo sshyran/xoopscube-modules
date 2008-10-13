@@ -22,7 +22,7 @@ $adminmenu[30]['keywords']=_MI_LEGACY_KEYWORD_MODULEINSTALL;
 $adminmenu[30]['link']="admin/index.php?action=InstallList";
 $adminmenu[30]['show']=true;
 
-/*$adminmenu[40]['title']=_MI_LEGACY_MENU_BLOCKLIST;
+$adminmenu[40]['title']=_MI_LEGACY_MENU_BLOCKLIST;
 $adminmenu[40]['keywords']=_MI_LEGACY_KEYWORD_BLOCKLIST;
 $adminmenu[40]['link']="admin/index.php?action=BlockList";
 $adminmenu[40]['show']=true;
@@ -31,7 +31,7 @@ $adminmenu[50]['title']=_MI_LEGACY_MENU_BLOCKINSTALL;
 $adminmenu[50]['keywords']=_MI_LEGACY_KEYWORD_BLOCKINSTALL;
 $adminmenu[50]['link']="admin/index.php?action=BlockInstallList";
 $adminmenu[50]['show']=true;
-*/
+
 $adminmenu[60]['title']=_MI_LEGACY_MENU_CREATE_SMILES;
 $adminmenu[60]['link']="admin/index.php?action=SmilesEdit";
 $adminmenu[60]['keywords']=_MI_LEGACY_KEYWORD_CREATE_SMILES;

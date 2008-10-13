@@ -181,11 +181,11 @@
         <td class="legacy_list_select"><input type="checkbox" name="uninstall[<{$obj->get('bid')}>]" value="1" /></td>
         <td class="legacy_list_control">
           <{if $obj->get('block_type') == 'C'}>
-            <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+            <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
           <{else}>
-            <a href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+            <a href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
           <{/if}>
-          <a href="./index.php?action=BlockUninstall&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/uninstall.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
+          <a href="./index.php?action=BlockUninstall&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_remove.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
         </td>
       </tr>
     <{/foreach}>
