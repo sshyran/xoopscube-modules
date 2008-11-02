@@ -1,5 +1,5 @@
 <?php
-// $Id: xoopsmailer.php,v 1.4 2008/07/11 18:10:22 minahito Exp $
+// $Id: xoopsmailer.php,v 1.5 2008/08/28 14:22:16 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -28,6 +28,8 @@
 // URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
+
+if (!defined("XOOPS_ROOT_PATH")) exit();
 
 if (isset($GLOBALS['xoopsConfig']['language']) && file_exists(XOOPS_ROOT_PATH.'/language/'.$GLOBALS['xoopsConfig']['language'].'/mail.php')) {
 	include_once XOOPS_ROOT_PATH.'/language/'.$GLOBALS['xoopsConfig']['language'].'/mail.php';
