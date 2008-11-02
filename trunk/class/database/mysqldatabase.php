@@ -1,5 +1,5 @@
 <?php
-// $Id: mysqldatabase.php,v 1.1 2007/05/15 02:35:15 minahito Exp $
+// $Id: mysqldatabase.php,v 1.2 2008/09/20 16:04:40 mumincacao Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -237,9 +237,12 @@ class XoopsMySQLDatabase extends XoopsDatabase
 	{
 		if ( !empty($limit) ) {
 			if (empty($start)) {
-				$start = 0;
+                $sql .= ' LIMIT ' . intval($limit);
 			}
-			$sql = $sql. ' LIMIT '.(int)$start.', '.(int)$limit;
+            else
+            {
+                $sql = $sql. ' LIMIT '.(int)$start.', '.(int)$limit;
+            }
 		}
 		$result = mysql_query($sql, $this->conn);
 		if ( $result ) {
