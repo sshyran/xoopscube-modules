@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<cubson-dynaactionform>
+	<form-bean name="TagEditForm" type="XCube_ActionForm">
+		<form-property name="tag_id" type="Int" />
+		<form-property name="tag_name" type="String" />
+		<form-property name="bm_id" type="Int" />
+		<form-property name="uid" type="Int" />
+		<form-property name="reg_unixtime" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="tag_id" depends="required">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_TAG_ID" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+		</field>
+		<field property="tag_name" depends="required,maxlength">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_TAG_NAME" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_CUBOOKMARKEN_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="64" />
+		</field>
+		<field property="bm_id" depends="required">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_BM_ID" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+		</field>
+		<field property="uid" depends="required">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_UID" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+		</field>
+		<field property="reg_unixtime" depends="required">
+			<arg0 key="const._MD_CUBOOKMARKEN_LANG_REG_UNIXTIME" />
+			<msg name="required" key="const._MD_CUBOOKMARKEN_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</cubson-dynaactionform>

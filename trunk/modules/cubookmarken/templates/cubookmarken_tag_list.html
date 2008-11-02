@@ -1,0 +1,90 @@
+<div class="bookmark">
+
+	<!-- Cubookmarken Menu -->
+  <{if $allow_useredit=="true"}>
+	<ul class="toptab">
+		<li><a href="./index.php"><{$smarty.const._MD_CUBOOKMARKEN_LANG_BOOKMARK}></a></li>
+		<li><a href="./index.php?action=BmTopics"><{$smarty.const._MD_CUBOOKMARKEN_LANG_POPBOOKMARK}></a></li>
+	<{if $xoops_userid}>
+	  <li><a href="./index.php?action=BmList&amp;uid=<{$xoops_userid}>">My <{$smarty.const._MD_CUBOOKMARKEN_LANG_BOOKMARK}></a></li>
+	  <li><a href="index.php?action=BmEdit"><{$smarty.const._MD_CUBOOKMARKEN_LANG_ADD_A_NEW_BM}></a></li>
+	<{/if}>
+	</ul>
+	<br class="clear" />
+	<{/if}>
+
+<!-- Google CSE Search Box Begins  -->
+<!-- Use of this code assumes agreement with the Google Custom Search Terms of Service. -->
+<!-- The terms of service are available at http://www.google.com/coop/docs/cse/tos.html -->
+<p>
+<form id="cref" action="http://www.google.com/cse">
+  <input type="hidden" name="cref" value="<{$xoops_url}>/modules/cubookmarken/rss.php?action=BmCse" />
+  <input type="text" name="q" size="40" />
+  <input type="submit" name="sa" value="Search" />
+</form>
+</p>
+<!-- Google CSE Search Box Ends -->
+
+	<!-- Tag Cloud -->
+	<div class="tagCloudColumn">
+	<h3><{$smarty.const._MD_CUBOOKMARKEN_LANG_TAG_CLOUD}></h3>
+	<{$tagCloud}>
+	</div>
+
+	<!-- Main -->
+	<h1>
+		<{if $myCubookmarken == 'true'}>
+			<{$objects[0]->getShow('uid')|xoops_user:"uname"}>'s <{$smarty.const._MD_CUBOOKMARKEN_LANG_BOOKMARK}>
+		<{else}>
+			<{$smarty.const._MD_CUBOOKMARKEN_LANG_BOOKMARK}><{$smarty.const._LIST}>
+		<{/if}>
+		&nbsp; Tag: 
+		<{foreach from=$requestTag item=tag}>
+			<{$tag}> &nbsp;
+		<{/foreach}>
+		&nbsp;<a href="./rss.php?action=TagRss<{if $myCubookmarken == 'true' and $objects[0]}>&amp;uid=<{$objects[0]->getShow('uid')}><{/if}><{foreach from=$requestTag item=tag2}>&amp;tag_name=<{$tag2|escape:"url"}><{/foreach}>"><img src="./images/icon_rss20.gif" alt="RSS" /></a>
+	</h1>
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+	<hr />
+		<ul class="bookmarkList">
+	  <{foreach item=obj from=$objects}>
+		  <li>
+	      <a href="<{$obj->mBm->getShow('url')}>" target="_blank"><img src="images/icon_home_s.gif" alt="URL" /></a>
+	    	<strong><a href="./index.php?action=BmView&amp;bm_id=<{$obj->getShow('bm_id')}>"><{$obj->mBm->getShow('bm_title')}></a></strong>
+				&nbsp;(<{$obj->mBm->get('reg_unixtime')|xoops_date_format:"%Y.%m.%d"}>
+				<{if $myCubookmarken != 'true'}>
+				&nbsp; by <a href="./index.php?action=TagList&amp;tag_name=<{$obj->getShow('tag_name')|escape:"url"}>&amp;uid=<{$obj->getShow('uid')}>"><{$obj->getShow('uid')|xoops_user:"uname"}></a>
+				<{/if}>)
+				<{$obj->mBm->bm_count}>users
+	    	<{if $obj->getShow('uid') == $xoops_userid}>
+					<a href="./index.php?action=BmEdit&amp;bm_id=<{$obj->getShow('bm_id')}>"><img src="images/icon_edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
+		      <a href="./index.php?action=BmDelete&amp;bm_id=<{$obj->getShow('bm_id')}>"><img src="images/icon_delete.gif" alt="<{$smarty.const._DELETE}>" /></a>
+		    <{/if}>
+		    <br />
+		    <span class="tagList">
+				<{foreach item=tag from=$obj->mBm->mTag}>
+					[<a href="./index.php?action=TagList&amp;tag_name=<{$tag->getShow('tag_name')|escape:"url"}>"><{$tag->getShow('tag_name')}></a>]
+				<{/foreach}>
+				</span>
+	      <br /><{$obj->mBm->getShow('memo')}>
+	  <{/foreach}>
+	</ul>
+	<hr />
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+	<hr />
+
+<!-- Google CSE Search Box Begins  -->
+<!-- Use of this code assumes agreement with the Google Custom Search Terms of Service. -->
+<!-- The terms of service are available at http://www.google.com/coop/docs/cse/tos.html -->
+<p>
+<form id="cref" action="http://www.google.com/cse">
+  <input type="hidden" name="cref" value="<{$xoops_url}>/modules/cubookmarken/rss.php?action=BmCse" />
+  <input type="text" name="q" size="40" />
+  <input type="submit" name="sa" value="Search" />
+</form>
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cref"></script>
+</p>
+<!-- Google CSE Search Box Ends -->
+
+	<a href="./index.php?action=TagReplace&amp;tag_name=<{$requestTag[0]|escape:"url"}>"><{$smarty.const._MD_CUBOOKMARKEN_LANG_TAG}> &quot;<{$requestTag[0]}>&quot; <{$smarty.const._MD_CUBOOKMARKEN_LANG_REPLACE}></a>
+</div>

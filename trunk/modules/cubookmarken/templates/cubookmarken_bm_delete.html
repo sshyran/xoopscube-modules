@@ -1,0 +1,41 @@
+<div class="confirm"><{$smarty.const._MD_CUBOOKMARKEN_MESSAGE_CONFIRM_DELETE}></div>
+
+<form action="./index.php?action=BmDelete" method="POST">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=bm_id value=$actionForm->get('bm_id')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._MD_CUBOOKMARKEN_LANG_BM_DELETE}></th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CUBOOKMARKEN_LANG_BM_ID}></th>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('bm_id')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CUBOOKMARKEN_LANG_BM_TITLE}></th>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('bm_title')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CUBOOKMARKEN_LANG_URL}></th>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('url')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CUBOOKMARKEN_LANG_UID}></th>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('uid')|xoops_user:"uname"}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CUBOOKMARKEN_LANG_MEMO}></th>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('memo')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CUBOOKMARKEN_LANG_REG_UNIXTIME}></th>
+      <td class="<{cycle values="odd,even"}>"><{$object->get('reg_unixtime')|xoops_formattimestamp:l}></td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input type="submit" class="formButton" value="<{$smarty.const._DELETE}>"/>
+        <input type="submit" class="formButton" value="<{$smarty.const._MD_CUBOOKMARKEN_LANG_CANCEL}>" name="_form_control_cancel"/>
+      </td>
+    </tr>
+  </table>
+</form>

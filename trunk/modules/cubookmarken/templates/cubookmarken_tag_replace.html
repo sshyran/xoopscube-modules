@@ -1,0 +1,52 @@
+<div class="bookmark">
+<{if $actionForm->hasError()}>
+  <div class="error">
+    <ul>
+      <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+<form action="index.php?action=TagReplace" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=old_tag_name value=$actionForm->get('tag_name')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._MD_CUBOOKMARKEN_LANG_TAG_EDIT}></th>
+
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_CUBOOKMARKEN_LANG_TAG_NAME}><{$smarty.const._MD_CUBOOKMARKEN_LANG_REPLACE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{$object->getShow('tag_name')}> ---&gt; <{xoops_input type=text name=tag_name value=$actionForm->get('tag_name') size=15 maxlength=64}>
+        <{$smarty.const._MD_CUBOOKMARKEN_LANG_REPLACE_NOTE}>
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>"/>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<h3><{$smarty.const._MD_CUBOOKMARKEN_LANG_REPLACE}><{$smarty.const._MD_CUBOOKMARKEN_LANG_TARGET}><{$smarty.const._MD_CUBOOKMARKEN_LANG_BOOKMARK}></h3>
+	<ul class="bookmarkList">
+	  <{foreach item=tag from=$tags}>
+		  <li>
+	      <a href="<{$tag->mBm->getShow('url')}>"><img src="images/icon_home_s.gif" alt="URL" /></a>
+	    	<strong><a href="./index.php?action=BmView&amp;bm_id=<{$tag->getShow('bm_id')}>"><{$tag->mBm->getShow('bm_title')}></a></strong>
+				&nbsp;(<{$tag->mBm->get('reg_unixtime')|xoops_date_format:"%Y.%m.%d"}>
+				<{if $myCubookmarken != 'true'}>
+				&nbsp; by <a href="./index.php?action=TagList&amp;tag_name=<{$tag->getShow('tag_name')|escape:"url"}>&amp;uid=<{$tag->getShow('uid')}>"><{$tag->getShow('uid')|xoops_user:"uname"}></a>
+				<{/if}>)
+				<{$tag->mBm->bm_count}>users
+	    	<{if $tag->getShow('uid') == $xoops_userid}>
+					<a href="./index.php?action=BmEdit&amp;bm_id=<{$tag->getShow('bm_id')}>"><img src="images/icon_edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
+		      <a href="./index.php?action=BmDelete&amp;bm_id=<{$tag->getShow('bm_id')}>"><img src="images/icon_delete.gif" alt="<{$smarty.const._DELETE}>" /></a>
+		    <{/if}>
+	      <br /><{$tag->mBm->getShow('memo')}>
+	  <{/foreach}>
+	</ul>
+</div>

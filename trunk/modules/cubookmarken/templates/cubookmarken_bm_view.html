@@ -1,0 +1,81 @@
+<div class="bookmark">
+
+	<!-- Cubookmarken Menu -->
+	<{if $allow_useredit=="true"}>
+	<ul class="toptab">
+	  <li><a href="./index.php?action=BmList"><{$smarty.const._MD_CUBOOKMARKEN_LANG_BOOKMARK}></a></li>
+	  <li><a href="./index.php?action=BmTopics"><{$smarty.const._MD_CUBOOKMARKEN_LANG_POPBOOKMARK}></a></li>
+	<{if $xoops_userid}>
+	  <li><a href="./index.php?action=BmList&amp;uid=<{$xoops_userid}>">My <{$smarty.const._MD_CUBOOKMARKEN_LANG_BOOKMARK}></a></li>
+	  <li><a href="index.php?action=BmEdit"><{$smarty.const._MD_CUBOOKMARKEN_LANG_ADD_A_NEW_BM}></a></li>
+	  <li><a href="./rss.php?action=BmExport"><{$smarty.const._MD_CUBOOKMARKEN_LANG_EXPORT}></a></li>
+	  <li><a href="javascript:window.location='<{$xoops_url}>/modules/cubookmarken/index.php?action=BmEdit&ret=1&bm_title='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href);" onclick="return false;">bookmarklet</a> (<a href="#bookmarklet">?</a>)</li>
+	<{/if}>
+	</ul>
+	<br class="clear" />
+	<{/if}>
+
+	<!-- Main -->
+	<div class="item">
+		<div class="itemHead">
+			<h3 class="itemTitle"><a href="<{$object->getShow('url')}>" target="_blank"><{$object->getShow('bm_title')}></a></h3>
+		</div>
+		<div class="itemInfo">
+	  	<{if $object->getShow('uid') == $xoops_userid}>
+				<a href="./index.php?action=BmEdit&amp;bm_id=<{$object->getShow('bm_id')}>"><img src="images/icon_edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
+	      <a href="./index.php?action=BmDelete&amp;bm_id=<{$object->getShow('bm_id')}>"><img src="images/icon_delete.gif" alt="<{$smarty.const._DELETE}>" /></a>
+	    <{/if}>
+			<span class="itemPostDate">
+				<{$object->get('reg_unixtime')|xoops_formattimestamp:l}> &nbsp;
+			</span>
+			<span class="itemStats">
+				by: <a href="./index.php?action=BmList&amp;uid=<{$object->getShow('uid')}>"><{$object->getShow('uid')|xoops_user:"uname"}></a>
+			</span>
+			<br />
+	    <span class="tagList">
+			<{foreach item=tag from=$object->mTag}>
+				[<a href="./index.php?action=TagList&amp;tag_name=<{$tag->getShow('tag_name')|escape:"url"}>"><{$tag->getShow('tag_name')}></a>]
+			<{/foreach}>
+			</span>
+		</div>
+		<div class="itemBody">
+
+			<{$object->getShow('memo')}>
+		</div>
+		<div class="itemFoot">
+			<span class="itemStats">
+				<a href="<{$object->getShow('url')}>" target="_blank"><{$object->getShow('url')}></a>
+			</span>
+		</div>
+	</div>
+
+	<{if $allow_useredit=="true"}>
+	<h3><{$smarty.const._MD_CUBOOKMARKEN_LANG_OTHER_BM}></h3>
+	<div class="item">
+		<{foreach item="bookmark" from="$bookmarkers"}>
+			<div class="itemInfo">
+		  	<{if $bookmark->getShow('uid') == $xoops_userid}>
+					<a href="./index.php?action=BmEdit&amp;bm_id=<{$bookmark->getShow('bm_id')}>"><img src="images/icon_edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
+		      <a href="./index.php?action=BmDelete&amp;bm_id=<{$bookmark->getShow('bm_id')}>"><img src="images/icon_delete.gif" alt="<{$smarty.const._DELETE}>" /></a>
+		    <{/if}>
+				<span class="itemPostDate">
+					<{$bookmark->get('reg_unixtime')|xoops_formattimestamp:l}> &nbsp;
+				</span>
+				<span class="itemStats">
+					by: <a href="./index.php?action=BmList&amp;uid=<{$bookmark->getShow('uid')}>"><{$bookmark->getShow('uid')|xoops_user:"uname"}></a>
+				</span>
+				<br />
+		    <span class="tagList">
+				<{foreach item=tag2 from=$bookmark->mTag}>
+					[<a href="./index.php?action=TagList&amp;tag_name=<{$tag2->getShow('tag_name')|escape:"url"}>"><{$tag2->getShow('tag_name')}></a>]
+				<{/foreach}>
+				</span>
+			</div>
+			<div class="itemBody">
+				<{$bookmark->getShow('memo')}>
+			</div>
+		<{/foreach}>
+	</div>
+	<{/if}>
+
+</div>
