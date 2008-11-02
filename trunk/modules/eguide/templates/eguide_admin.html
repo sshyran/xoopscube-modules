@@ -105,21 +105,13 @@ Calendar._TT["WK"] = "";
 <tr><td>
 <h3><{$smarty.const._MD_TITLE}></h3>
 <input type="text" name="title" id="title" value="<{$title}>" size="60" maxlength="80" />
-</td>
-    <{if $input_category}>
-        <td>
-        <h3><{$smarty.const._MD_EVENT_CATEGORY}></h3>
-        <{$input_category}>
-        </td>
-    <{/if}>
-</tr>
+</td><{if $input_category}><td>
+<h3><{$smarty.const._MD_EVENT_CATEGORY}></h3>
+<{$input_category}></td><{/if}></tr>
 </table>
-
-
 <h3><{$smarty.const._MD_EVENT_DATE}></h3>
 <{$input_edate}>
 <br/>
-
 <fieldset>
 <p><b><{$smarty.const._MD_EVENT_EXPIRE}></b> <{$input_expire}></p>
 <p><b><{$smarty.const._MD_CLOSEBEFORE}></b> <input type="text" name="before" id="before" size="7" value="<{$before}>"/> <span class="evinfo"><{$smarty.const._MD_CLOSEBEFORE_DESC}></span></p>
@@ -136,11 +128,8 @@ Calendar._TT["WK"] = "";
 </p>
 <{/if}>
 </fieldset>
-
 <h3><{$smarty.const._MD_INTROTEXT}></h3>
 <{$summary_textarea}>
-
-
 <h3><{$smarty.const._MD_EXTEXT}></h3>
 <textarea name="body" wrap="virtual" cols="60" rows="10"><{$body}></textarea>
 
@@ -148,7 +137,6 @@ Calendar._TT["WK"] = "";
 <{$input_style}>
 
 <h3><{$smarty.const._MD_RESERV_SETTING}></h3>
-
 <div><input type="checkbox" name="reservation" value="1"<{if $reservation}> checked<{/if}>/> <{$smarty.const._MD_RESERV_DESC}></div>
 <div>
   <input type="checkbox" name="strict" value="1"<{if $strict}> checked<{/if}>/> <{$smarty.const._MD_RESERV_STOPFULL}>
@@ -156,7 +144,6 @@ Calendar._TT["WK"] = "";
 </div>
 <div><input type="checkbox" name="notify" value="1"<{if $notify}> checked<{/if}>/> <{$smarty.const._MD_RESERV_NOTIFYPOSTER}></div>
 <div><b><{$smarty.const._MD_RESERV_PERSONS}></b> <input type="text" name="persons" value="<{$persons}>" size="3" /> <{$smarty.const._MD_RESERV_UNIT}></div>
-
 <h3><{$smarty.const._MD_RESERV_ITEM}></h3>
 <textarea name="optfield" wrap="virtual" cols="60" rows="5"><{$optfield}></textarea>
 <div id="itemhelper" style="display:none;">
@@ -183,7 +170,6 @@ Calendar._TT["WK"] = "";
 <{if $input_status}>
 <p><{$input_status}></p>
 <{/if}>
-
 <p>
 <input type="submit" name="preview" value="<{$smarty.const._MD_PREVIEW}>" />
 <input type="submit" name="save" value="<{$smarty.const._MD_SAVE}>" />

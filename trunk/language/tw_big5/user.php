@@ -1,5 +1,5 @@
 <?php
-// $Id: user.php,v 1.1 2008/03/09 02:27:24 minahito Exp $
+// $Id: user.php,v 1.2 2008/08/30 08:52:31 minahito Exp $
 //%%%%%%		File Name user.php 		%%%%%
 define('_US_NOTREGISTERED','尚未註冊嗎? 請按<a href=register.php>這裡</a>註冊.');
 define('_US_LOSTPASSWORD','忘記密碼?');
@@ -87,7 +87,7 @@ define('_US_PM','私人傳訊');
 define('_US_ICQ','ICQ 號碼');
 define('_US_AIM','AIM 帳號');
 define('_US_YIM','雅虎 YIM 傳訊帳號');
-define('_US_MSNM','微軟 MSN 帳號');
+define('_US_MSNM','Windows Live ID 帳號');
 define('_US_LOCATION','來自');
 define('_US_OCCUPATION','職業');
 define('_US_INTEREST','興趣');

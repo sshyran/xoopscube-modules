@@ -313,7 +313,7 @@ $modversion['config'][] = array(
 	'description'	=> $constpref.'_CSS_URIDSC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'text' ,
-	'default'		=> '{mod_url}/index.php?page=main_css' ,
+	'default'		=> '{mod_url}/main.css' ,
 	'options'		=> array()
 ) ;
 

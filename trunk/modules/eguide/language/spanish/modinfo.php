@@ -67,7 +67,7 @@ define("_MI_EGUIDE_PERSONS_DESC","Reservation persons in event post form");
 define("_MI_EGUIDE_PLUGINS","Use Other moudle plugins");
 define("_MI_EGUIDE_PLUGINS_DESC","Internal Control accept entry form other modules");
 define("_MI_EGUIDE_COMMENT","Allow Comments");
-define("_MI_EGUIDE_COMMENT_DESC","Allow comments to event");
+define("_MI_EGUIDE_COMMENT_DESC","Allow commnets to event");
 define("_MI_EGUIDE_MARKER","Current entry level mark");
 define("_MI_EGUIDE_MARKER_DESC","The mark mean of how many entry in current. Show mark correspond percentage. (xx,yy mean less than xx% showup yy. And '0,yy' mean out of date mark)");
 define("_MI_EGUIDE_MARKER_DEF","0,[Close]\n50,[Vacant]\n100,[Many]\n101,[Full]\n");

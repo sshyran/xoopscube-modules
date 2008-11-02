@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: BlockEditForm.class.php,v 1.3 2008/03/08 07:22:36 minahito Exp $
+ * @version $Id: BlockEditForm.class.php,v 1.5 2008/10/26 04:21:37 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
@@ -108,12 +108,16 @@ class Legacy_BlockEditForm extends XCube_ActionForm
 		
 		$i = 0;
 		foreach ($obj->mBmodule as $module) {
-			$this->set('bmodule', $i++, $module->get('module_id'));
+			if (is_object($module)) {
+				$this->set('bmodule', $i++, $module->get('module_id'));
+			}
 		}
 
 		$i = 0;
 		foreach ($obj->mGroup as $group) {
-			$this->set('groupid', $i++, $group->get('groupid'));
+			if (is_object($group)) {
+				$this->set('groupid', $i++, $group->get('groupid'));
+			}
 		}
 	}
 

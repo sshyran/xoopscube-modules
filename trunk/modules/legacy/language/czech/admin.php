@@ -5,6 +5,7 @@ define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "Nelze nainstalovat blok šablo
 define('_AD_LEGACY_ERROR_BMODULE', "Musíte vybrat jeden nebo více modulù jako cílové, v kterıch bude blok zobrazen.");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "Nelze odinstalovat aktivní modul. Danı modul musíte nejprve deaktivovat.");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "Nelze smazat blok šablony : {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "Nelze vloit konfiguraci '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "Blok '{0}' nelze nainstalovat.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "Nelze nainstalovat '{0}' šablonu.");
@@ -13,6 +14,7 @@ define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', "Nelze nastavit oprávn
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', "Could not set link with all module at '{0}' block");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', "Nelze nastavit práva pro ètení.");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', "Nelze nastavit systémová administrátorská oprávnìní.");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Could not set unique key at '{0}'.");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', "Nelze smazat informace o modulu z databáze.");
 define('_AD_LEGACY_ERROR_DROP_TABLE', "Nelze odstranit tabulku {0}");
 define('_AD_LEGACY_ERROR_EXTENSION', "Pøípona nahrávaného souboru nesouhlasí s povolenımi v seznamu.");
@@ -232,6 +234,7 @@ define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', "Informace o modulu byly 
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', "Odstranìna tabulka {0}.");
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', "Konfigurace {0} byla pøidána.");
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', "Instalace modulu '{0}' probìhla úspìšnì.");
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "Set UNIQUE KEY to '{0}' has been successful.");
 define('_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED', "Šablona '{0}' byla nainstalována.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', "Odinstalace bloku '{0}' probìhla úspìšnì.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', "Odinstalace modulu '{0}' probìhla úspìšnì.");
@@ -242,6 +245,7 @@ define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', "I kdy blok odinstalujete, jeho konfi
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', "I kdy uivatelskı blok odinstalujete, jeho konfigurace není odstranìna. Blok je jednoduše skryt. Mùete ho reinstalovat nebo smazat z databáze v <a href=\"index.php?action=BlockInstallList\">'Instalaci blokù'</a>.");
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE', "Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Do keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.");
 define('_AD_LEGACY_TIPS_INSTALL_BLOCK', "Web si mùete pøizpùsobit instalací oblíbenıch blokù. Pøi instalaci si mùete kadı blok pøizpùsobit.");
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "Vyberte vzhled Vašeho webu kliknutím na tlaèítko 'Vybrat'.<br/> Nechte uivatele, a si sami vyberou svùj oblíbenı vzhled.  Vytvoøte blok se vzhledy a zvolte, které jsou na vıbìr. Pro více detailù si pøeètìte nápovìdu.");
 define('_MD_AM_ADMINML', "Email administrátora");
 define('_MD_AM_ADMNOTSET', "Administrátorskı email nebyl nastaven.");

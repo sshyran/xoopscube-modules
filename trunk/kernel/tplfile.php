@@ -1,5 +1,5 @@
 <?php
-// $Id: tplfile.php,v 1.1 2007/05/15 02:34:37 minahito Exp $
+// $Id: tplfile.php,v 1.2 2008/08/26 16:02:54 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -134,7 +134,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             ${$k} = $v;
         }
         if ($tplfile->isNew()) {
-            $tpl_id = $this->db->genId('tpltpl_file_id_seq');
+            $tpl_id = $this->db->genId('tplfile_tpl_id_seq');
             $sql = sprintf("INSERT INTO %s (tpl_id, tpl_module, tpl_refid, tpl_tplset, tpl_file, tpl_desc, tpl_lastmodified, tpl_lastimported, tpl_type) VALUES (%u, %s, %u, %s, %s, %s, %u, %u, %s)", $this->db->prefix('tplfile'), $tpl_id, $this->db->quoteString($tpl_module), $tpl_refid, $this->db->quoteString($tpl_tplset), $this->db->quoteString($tpl_file), $this->db->quoteString($tpl_desc), $tpl_lastmodified, $tpl_lastimported, $this->db->quoteString($tpl_type));
             if (!$result = $this->db->query($sql)) {
                 return false;

@@ -87,7 +87,7 @@ define('_US_PM','PM');
 define('_US_ICQ','ICQ');
 define('_US_AIM','AIM');
 define('_US_YIM','YIM');
-define('_US_MSNM','MSNM');
+define('_US_MSNM','Windows Live ID');
 define('_US_LOCATION','Откуда');
 define('_US_OCCUPATION','Род занятий');
 define('_US_INTEREST','Интересы');

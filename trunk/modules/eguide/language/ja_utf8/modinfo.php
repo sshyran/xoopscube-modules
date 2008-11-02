@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php,v 1.19 2008-07-20 07:03:06 nobu Exp $
+// $Id: modinfo.php,v 1.20 2008-10-19 07:44:48 nobu Exp $
 // Module Info
 
 if (defined('_MI_EGUIDE_NAME')) return;
@@ -58,7 +58,7 @@ define("_MI_EGUIDE_CLOSEBEFORE_DESC","申込受付を開始時間の何分前に
 define("_MI_EGUIDE_PERSONS","予約人数の初期値");
 define("_MI_EGUIDE_PERSONS_DESC","イベントを作成するフォームの申し込み人数の既定値を指定する");
 define("_MI_EGUIDE_LAB_PERSONS","追加項目オプション指定");
-define("_MI_EGUIDE_LAB_PERSONS_DESC","追加項目での予約人数を指定など付加的な設定を行う。例: 'label_persons=参加人数'。詳細は「eguideについて」を参照のこと。");
+define("_MI_EGUIDE_LAB_PERSONS_DESC","追加項目での予約人数を指定など付加的な設定を行う。例: 'label_persons=参加人数'。<a href=\"help.php#form_options\">詳細は「eguideについて」を参照のこと</a>");
 define("_MI_EGUIDE_DATE_FORMAT","日付表示の形式");
 define("_MI_EGUIDE_DATE_FORMAT_DESC","イベントの開催日(時)を表示する形式を PHP の date 関数形式で指定する");
 define("_MI_EGUIDE_DATE_FORMAT_DEF","Y-m-d (D)");

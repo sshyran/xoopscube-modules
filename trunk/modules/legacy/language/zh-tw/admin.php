@@ -6,6 +6,7 @@ define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', '無法安裝區塊樣板 \'{0
 define('_AD_LEGACY_ERROR_BMODULE', '您必須指定一或多個模組作為要顯示區塊的目標模組');
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', '無法移除啟用中的模組，要移除之前請先停用模組。');
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', '無法刪除區塊樣板：{0}');
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', '無法加入設定 \'{0}\'');
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', '無法安裝 \'{0}\' 區塊。');
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', '無法安裝 \'{0}\' 樣板。');
@@ -14,6 +15,7 @@ define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', '無法設定 \'{0}\' 
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', '無法設定在 \'{0}\' 區塊設定與所有模組的連結');
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', '無法設定讀取權限。');
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', '無法設定系統管理者權限。');
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Could not set unique key at '{0}'.");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', '無法從 XOOPS 資料庫刪除模組資訊。');
 define('_AD_LEGACY_ERROR_DROP_TABLE', '無法移除資料表 {0}');
 define('_AD_LEGACY_ERROR_EXTENSION', '上傳的檔案副檔名不符合允許格式的任何一個項目。');
@@ -233,6 +235,7 @@ define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', 'Delete module informatio
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', 'Drop table {0}.');
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', 'Config {0} added.');
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', 'Installation of \'{0}\' module has been successful.');
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "Set UNIQUE KEY to '{0}' has been successful.");
 define('_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED', 'Template \'{0}\' has been installed.');
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', 'Uninstallation of \'{0}\' block has been successful.');
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', 'Uninstallation of \'{0}\' module has been successful.');
@@ -243,6 +246,7 @@ define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', 'Even if you uninstall a block, the co
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', 'Even if you uninstall the custom block, the configuration of the block isn\'t deleted. The block is simply removed from view. You can re-install or delete it from the database from the <a href=\"index.php?action=BlockInstallList\">\'install block\' page</a>.');
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE', 'Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Do keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.');
 define('_AD_LEGACY_TIPS_INSTALL_BLOCK', 'You can customize your site by installing your favorite blocks. You can edit each block\'s options when you install the block.');
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', 'Choose the look of your site by clicking the \'select\' button next to your favourite theme.<br/> Let your users choose their own favourite look and feel for your site.  Check the boxes to add a theme to the theme selection block. For more details, read the help.');
 define('_MD_AM_ADMINML', '管理員電子郵件');
 define('_MD_AM_ADMNOTSET', '管理員的郵件位址沒有設.');

@@ -12,12 +12,11 @@ $kfm_db_host     = XOOPS_DB_HOST; //'localhost';
 $kfm_db_name     = XOOPS_DB_NAME; //'kfm';
 $kfm_db_username = XOOPS_DB_USER; //'username';
 $kfm_db_password = XOOPS_DB_PASS; //'password';
-
 $kfm_userfiles_address = XOOPS_UPLOAD_PATH.'/fckeditor';
 
 
 	}
 	else {
-		$root->mController->executeRedirect(XOOPS_URL, 1, "Access Denided!");
+		$root->mController->executeRedirect(XOOPS_URL, 1, "Access Denied!");
     	}	
 ?>

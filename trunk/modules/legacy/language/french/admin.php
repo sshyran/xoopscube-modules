@@ -6,6 +6,7 @@ define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "Le systèeme ne peut pas insta
 define('_AD_LEGACY_ERROR_BMODULE', "Vous devez spécifier un ou plusieurs modules pour afficher le bloc.");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "Ce module ne peut être supprimé directement ! Désactivez le module.");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "Suppression impossible des templates du bloc¡¡: {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "Impossible de configuration '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "Impossible d'installer le bloc '{0}'.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "Impossible d'installer le template '{0}'.");
@@ -14,6 +15,7 @@ define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', "Impossible d'activer 
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', "Impossible d'activer le lien avec les modules sur le bloc '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', "Impossible d'activer les droits de lecture.");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', "Impossible d'activer les droit(s) d'administration(s) du système.");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Could not set unique key at '{0}'.");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', "Impossible de désinstaller l'information du module de la base de données.");
 define('_AD_LEGACY_ERROR_DROP_TABLE', "Impossible de supprimer la table {0}");
 define('_AD_LEGACY_ERROR_EXTENSION', "Le fichier ne correspond pas à la liste des extensions autorisées.");
@@ -233,6 +235,7 @@ define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', "Effacer l'information du
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', "Supprimé Table {0}.");
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', "Ajouté configuration {0} .");
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', "Le module '{0}' a été installé avec succès.");
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "Set UNIQUE KEY to '{0}' has been successful.");
 define('_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED', "Le Template '{0}' a été installé avec succès.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', "Uninstallation of '{0}' block has been successful.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', "Le module '{0}' a été désinstallé avec succès.");
@@ -243,6 +246,7 @@ define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', "Lorsque vous désinstallez un bloc, la
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', "Si vous désinstallez un bloc personnalisé, la configuration du bloc n'est pas effacé. Le bloc est simplement retiré de la page. Vous pouvez le réinstaller ou l'effacer de la base de données depuis la page <a href=\"index.php?action=BlockInstallList\">'installer un bloc'</a>.");
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE', "Veuillez choisir le dossier ou le type de stockage de données pour vos images. <b>Ceci ne peut pas être changé par la suite.</b><br/>L'utilisation de la base de données (données type BLOB) n'est pas conseillé pour de futures copies de sauvegarde.");
 define('_AD_LEGACY_TIPS_INSTALL_BLOCK', "Vous pouvez personnaliser votre site en installant vos blocs favoris. Vous pouvez éditer les options de chaque bloc lors de son installation.");
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "Choisissez l'apparence de votre site en cliquant sur le bouton 'Sélectionné' à droite de votre theme favori.<br/> Pour permettre à vos utilisateurs de choisir leur theme favori sur votre site, sélectionnez les cases à cocher des themes. Pour plus de détails, consultez l'aide.");
 define('_MD_AM_ADMINML', "Addresse email de l'admistrateur");
 define('_MD_AM_ADMNOTSET', "L'addresse email de l'admistrateur n'est pas définie.");

@@ -1,11 +1,12 @@
 <?php
-// $Id: admin.php,v 1.1 2008/03/09 02:27:26 minahito Exp $
+// $Id: admin.php,v 1.2 2008/10/13 00:36:12 minahito Exp $
 define('_AD_LEGACY_ERROR_ACTION_SEARCH_NORESULT', "¬dµL±z¿é¤JªºÃöÁä¦r¡C");
 define('_AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN', "½Ð¨Ï¥Î¨ä¥LÃöÁä¦r¸Õ¬Ý¬Ý¡C");
 define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "µLªk¦w¸Ë°Ï¶ô¼Ëª©¡G '{0}'");
 define('_AD_LEGACY_ERROR_BMODULE', "±z¥²¶·©ú½T»¡©ú¤@­Ó©Î¦h­Ó¥Ø¼Ð¼Ò²Õ©ÒÅã¥Üªº°Ï¶ô");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "µLªk¤Ï¦w¸Ë¦¹¼Ò²Õ¡A­n¤Ï¦w¸Ë¡A¥²¶·¥ý°±¥Î¸Ó¼Ò²Õ«á¡A¤~¯à¤Ï¦w¸Ë¡C");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "µLªk§R°£°Ï¶ô¼Ëª©¡G {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "µLªk·s¼W³]©w¶µ¥Ø¡G '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "µLªk¦w¸Ë '{0}' °Ï¶ô¡C");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "µLªk¦w¸Ë '{0}' ¼ËªO¡C");
@@ -14,6 +15,7 @@ define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', "µLªk³]¸m '{0}' ªº°Ï¶ô
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', "µLªk³]¸m©Ò¦³¼Ò²Õªº '{0}' °Ï¶ô³sµ²¡C");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', "µLªk³]¸mÅª¨úÅv­­¡C");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', "µLªk³]¸m¨t²ÎºÞ²zÅv­­¡C");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Could not set unique key at '{0}'.");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', "µLªk±qXOOPS¸ê®Æ®w§R°£¼Ò²Õ¸ê°T¡C");
 define('_AD_LEGACY_ERROR_DROP_TABLE', "µLªk§R°£ {0} ¸ê®Æªí¡C");
 define('_AD_LEGACY_ERROR_EXTENSION', "¤W¶Çªº°ÆÀÉ¦W®æ¦¡¦WºÙ»P¦Cªí¤¹³\ªº¤£¬Û²Å¡C");
@@ -233,6 +235,7 @@ define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', "±q XOOPSCube ¸ê®Æ®w§R°£¼
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', "§R°£ {0} ¸ê®Æªí");
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', "{0} ³]©w¤w¥[¤J");
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', " '{0}' ¼Ò²Õ¦w¸Ë¤w§¹¦¨");
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "Set UNIQUE KEY to '{0}' has been successful.");
 define('_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED', " '{0}' ¼ËªO¦w¸Ë¤w§¹¦¨");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', "'{0}' °Ï¶ô¤Ï¦w¸Ë§¹¦¨");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', " '{0}' ¼Ò²Õ¤Ï¦w¸Ë§¹¦¨");
@@ -243,6 +246,7 @@ define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', "§Y¨Ï±z¤Ï¦w¸Ë°Ï¶ô¡A°Ï¶ô³]©w¨Ã¤£·|²¾°£¡
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', "§Y¨Ï±z¤Ï¦w¸Ë³o­Ó¦Û©w°Ï¶ô¡A°Ï¶ô³]©w¤]¤£·|³Q§R°£¡A°Ï¶ô¥u·|¤£Åã¥Ü¡A±zÀH®É¥i¥H¦A¦¸±q <a href=\"index.php?action=BlockInstallList\">'¦w¸Ë°Ï¶ô' ­¶­±</a>¨Ó¦w¸Ë©Î²¾°£");
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE', "½Ð¿ï¾Ü¥HÀÉ®×¼Ò¦¡©Î¸ê®Æ®w¼Ò¦¡Àx¦s±zªº¹Ï§ÎÀÉ¡A<strong>¿ï©w«áªº³]©w±NµLªkÅÜ§ó¡A</strong><br/>½Ð°O±o¦pªG±z¿ï¾ÜÀx¦s¦b¸ê®Æ®w¨ú¥NÀx¦s¦¨ÀÉ®×¡A¹Ï§ÎÀÉ±N·|¥H BLOB ¸ê®Æ®æ¦¡Àx¦s¦b¸ê®Æ®w¡A³Æ¥÷®É½Ðª`·N¡C");
 define('_AD_LEGACY_TIPS_INSTALL_BLOCK', "³z¹L¦w¸Ë±z·Q­nªº°Ï¶ô¡A±z¥i¥H«È»s¤Æ±z¦Û¤vªººô¯¸¡A·í±z¦w¸Ë°Ï¶ô¥Û±z¥i¥H½s¿è¦U¶µªþ¥[¶µ¥Ø¡C");
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "«ö¤U '¿ï¾Ü' Áä¨Ó¿ï¾Ü±z³ßÅwªº§G´º¨ÓÅÜ¤Æ±zºô¯¸ªº¥~Æ[¡C<br/>±z¤]¥i¥HÅý±zªº¨Ï¥ÎªÌ¦Û¦æ¿ï¾Üºô¯¸¥~Æ[¡A¥u­n¦b¿ï¾Ü®Ø¥´¤Ä§Y¥i¥X²{¦b§G´º¿ï¾Ü¦Cªí¤¤¡C");
 define('_MD_AM_ADMINML', "ºÞ²z­û mail");
 define('_MD_AM_ADMNOTSET', "ºÞ²z­û mail ©|¥¼³]¸m");

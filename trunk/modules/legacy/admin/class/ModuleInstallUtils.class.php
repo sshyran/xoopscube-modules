@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: ModuleInstallUtils.class.php,v 1.9 2007/09/08 01:36:08 minahito Exp $
+ * @version $Id: ModuleInstallUtils.class.php,v 1.11 2008/10/26 04:07:23 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
@@ -583,7 +583,7 @@ class Legacy_ModuleInstallUtils
         			}
 				} else {
 				    $root =& XCube_Root::getSingleton();
-                    $groups = $root->mContext->mXoopsUser->getGroups();
+                    $groups = $root->mContext->mXoopsUser->getGroups(true);
                     foreach ($groups as $mygroup) {
         				$bperm->setVar('gperm_groupid', $mygroup);
         				$bperm->setNew();

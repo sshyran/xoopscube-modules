@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: Legacy_PublicControllerStrategy.class.php,v 1.4 2008/03/14 16:18:45 minahito Exp $
+ * @version $Id: Legacy_PublicControllerStrategy.class.php,v 1.6 2008/09/25 15:11:58 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
@@ -40,7 +40,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 			//
 
 			// $mid = preg_match("/index\.php$/i", xoops_getenv('PHP_SELF')) ? -1 : 0;
-			$pathArray = parse_url(xoops_getenv('REQUEST_URI'));
+			$pathArray = parse_url(isset($_SERVER['PATH_INFO']) ? substr($_SERVER['PHP_SELF'],0,- strlen($_SERVER['PATH_INFO'])) : $_SERVER['PHP_SELF']);
 			$mid = preg_match("#(/index\.php|/)$#i", @$pathArray['path']) ? -1 : 0;
 		}
 

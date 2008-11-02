@@ -13,7 +13,7 @@ td,th { padding: 4px; background: #e8e8e8;}
 <style>
 .note { font-size: 90%; color: #800000; padding: 0.5em;}
 </style>
-  <h1>イベント案内モジュール</h1>
+  <h4>イベント案内モジュール</h4>
   <ul>
   <li><a href="#summary">概要</a></li>
   <li><a href="#roleplay">概略手順</a></li>
@@ -27,7 +27,7 @@ td,th { padding: 4px; background: #e8e8e8;}
 
   <hr>
 
-  <a name="summary"></a><h2>概要</h2>
+  <a name="summary"></a><h5>概要</h5>
 
   イベント案内モジュールは、催し物などの案内を掲載するとともに
   フォームによる受付を行うためのモジュールである。
@@ -41,7 +41,7 @@ td,th { padding: 4px; background: #e8e8e8;}
   <li>新規掲載イベントのメール通知機能</li>
 </ul>
 
-  <a name="roleplay"></a><h2>概略手順</h2>
+  <a name="roleplay"></a><h5>概略手順</h5>
 
   <ol>
     <li>モジュールの導入</li>
@@ -63,7 +63,7 @@ td,th { padding: 4px; background: #e8e8e8;}
   </ol>
 
 
-  <a name="functions"></a><h2>機能一覧</h2>
+  <a name="functions"></a><h5>機能一覧</h5>
 
   <h3>イベント掲載機能</h3>
 
@@ -123,7 +123,7 @@ td,th { padding: 4px; background: #e8e8e8;}
       <li>新規登録のメール通知 - メール通知希望者の一覧と削除</li>
     </ol>
 
-  <a name="config"></a><h2>モジュール設定</h2>
+  <a name="config"></a><h5>モジュール設定</h5>
 
   イベント案内モジュールの一般設定項目は次の通り
   
@@ -192,10 +192,12 @@ td,th { padding: 4px; background: #e8e8e8;}
         <th align="left">追加項目オプション設定</th>
 	<td>指定なし</td>
 	<td>
+	  オプション一覧
 	  <ul>
-	    <li>label_persons=label (予約人数を指定)</li>
-	    <li>reply_extension=label (応答メールテンプレート拡張用の項目名)</li>
-	    <dt>size=60 (テキスト入力フィールドの規定幅)</dt>
+	    <li>label_persons=項目名 (予約人数を指定)</li>
+	    <li>reply_extension=項目名 (応答メールテンプレート拡張用の項目名)</li>
+	    <li>export_charset=UTF-8 (CSV 出力時の文字コード)</li>
+	    <li>size=60 (テキスト入力フィールドの規定幅)</li>
 	    <li>cols=40 (テキストエリアの規定幅)</li>
 	    <li>rows=5 (テキストエリアの規定行)</li>
 	  </ul>
@@ -270,6 +272,7 @@ td,th { padding: 4px; background: #e8e8e8;}
   </blockquote>
 
   <a name="form_options"></a><h3>追加項目のオプション指定</h3>
+  <p>追加項目のオプション指定では、<tt>オプション名=設定値</tt> の形式でモジュールの初期設定値を変更する。</p>
   <dl>
     <dt>label_persons (予約人数を指定)</dt>
     <dd>一人の予約で複数の人数の予約を許す場合、
@@ -290,13 +293,17 @@ td,th { padding: 4px; background: #e8e8e8;}
 	<p>ファイル名に付加する文字列は、申し込み時に保存される値であるが、エンコーディングが問題となる場合があるので英数字の範囲での指定を推奨する。<br/>なお、指定値を付加したテンプレートファイルが存在しない場合、標準のテンプレートが利用される。</p>
       </div>
     </dd>
+    <dt>export_charset (CSV 出力時の文字コード)</dt>
+    <dd>既定値は export_charset=UTF-8 (※言語リソースの設定に従う)
+      <p class="note">旧版の MS-Excel を利用している場合、Shift_JIS などと設定するとよい。</p>
+    </dd>
     <dt>size (テキスト入力フィールドの規定幅)</dt>
     <dd>既定値は size=60</dd>
     <dt>cols, rows (テキストエリアの規定幅/行数)</dt>
     <dd>既定値は cols=40, rows=5</dd>
   </dl>
 
-  <a name="form"></a><h2>フォームの追加項目</h2>
+  <a name="form"></a><h5>フォームの追加項目</h5>
   <strong>予約処理</strong> における追加項目は、申込時のフォームで入力する
   項目を指定できる。指定の書式は次通り。
   <blockquote class="bnf">
@@ -357,7 +364,7 @@ td,th { padding: 4px; background: #e8e8e8;}
     </dd>
   </dl>
 
-  <a name="multidate"></a><h2>複数掲載日の取扱い</h2>
+  <a name="multidate"></a><h5>複数掲載日の取扱い</h5>
 
   <p>イベント案内 2.0 から、同一イベント内容に対して、複数の時間
   枠を指定することが可能になった。この設定には、登録フォームの
@@ -376,7 +383,7 @@ td,th { padding: 4px; background: #e8e8e8;}
     <li>日時指定で時刻を省略すると開催日の指定時刻が設定される</li>
   </ul>
 
-  <a name="update"></a><h2>モジュールの更新</h2>
+  <a name="update"></a><h5>モジュールの更新</h5>
   
   <ul>
     <li>モジュールのアップロード後、モジュール管理よりアップデートを行う</li>
@@ -388,7 +395,7 @@ td,th { padding: 4px; background: #e8e8e8;}
     </div>
   </ul>
 
-  <a name="duplication"></a><h2>モジュールの複製</h2>
+  <a name="duplication"></a><h5>モジュールの複製</h5>
 
   <p>eguide 2.4 以降ではモジュールの複製ができる。(残念ながらまだ D3 ではない)
     複製は、コマンドラインの補助プログラムを使って行う。
@@ -404,9 +411,21 @@ td,th { padding: 4px; background: #e8e8e8;}
     Duplicate: class
   </pre>
 
-  <a name="changes"></a><h2>変更履歴</h2>
+  <a name="changes"></a><h5>変更履歴</h5>
 
 <dl>
+  <dt>2008/10/19 イベント案内モジュール 2.51 リリース</dt>
+  <dd>
+    <ul>
+      <li>{RVID} タグを日本語以外のメールテンプレート (accept.tpl) に追加</li>
+      <li>CSV出力時の文字コード指定オプション (export_charset) を追加</li>
+      <li>altsys 0.6 対応への対応</li>
+      <li>Gigamaster 氏の管理画面の改良を取り込む</li>
+      <li>カテゴリの画像項目が保存されない障害を修正 (thx Gigamaster)</li>
+      <li>管理画面のイベント受付一括設定の障害を修正 (thx Gigamaster)</li>
+      <li>カテゴリの説明を smarty 変数に割り当てる</li>
+    </ul>
+  </dd>
   <dt>2008/07/22 イベント案内モジュール 2.5 リリース</dt>
   <dd>
     <ul>
@@ -526,6 +545,6 @@ td,th { padding: 4px; background: #e8e8e8;}
 <hr>
 <address>安富 伸浩 &lt;<a href="mailto:nobuhiro.yasutomi@nifty.ne.jp">nobuhiro.yasutomi@nifty.ne.jp</a>&gt;</address>
 マイサイト ユーザーズ <a href="http://mysite.ddo.jp/">http://mysite.ddo.jp/</a><br/>
-$Id: help.html,v 1.58 2008-07-22 15:09:44 nobu Exp $
+$Id: help.html,v 1.62 2008-10-19 14:40:34 nobu Exp $
 </body>
 </html>

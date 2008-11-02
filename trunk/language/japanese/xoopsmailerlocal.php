@@ -1,5 +1,5 @@
 <?php
-// $Id: xoopsmailerlocal.php,v 1.3 2008/03/08 15:34:26 minahito Exp $
+// $Id: xoopsmailerlocal.php,v 1.4 2008/07/05 07:45:33 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -126,7 +126,7 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
         if(empty($addr[1])) {
             $formatted = $addr[0];
         } else {
-            $formatted = $this->EncodeHeader($addr[1], 'text', true) . " <" . 
+            $formatted = $this->EncodeHeader($addr[1], 'text') . " <" . 
                          $addr[0] . ">";
         }
         return $formatted;
@@ -188,29 +188,5 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
             return $encoded;
         }
     }
-	
-	// add this function
-	// remove Content-Type if mail func_overload
-	// mb_send_mail() ecncode wrong if php version 5 (#1729813)
-	function CreateHeader()
-	{
-		$result = parent::CreateHeader();
-		if (!empty($this->needs_encode)) {
-			$result = preg_replace("/Content-Type:(.+)/", '', $result);
-		}
-		
-		return $result;
-	}
-	
-	// add this function
-	// no encoding if mail func_overload (#1729813)
-	function CreateBody()
-	{
-		if (!empty($this->needs_encode)) {
-			return $this->Body;
-		}
-		
-		return parent::CreateBody();
-	}
 }
 ?>

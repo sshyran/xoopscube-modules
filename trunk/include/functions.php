@@ -1,5 +1,5 @@
 <?php
-// $Id: functions.php,v 1.5 2008/03/14 15:53:29 gusagi Exp $
+// $Id: functions.php,v 1.6 2008/10/03 03:23:27 mumincacao Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -428,7 +428,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
                     $connector = '?';
                 }
                 else {
-                    $connector = '?';
+                    $connector = '&amp;';
                 }
                 if (strstr($url, '#')) {
                     $urlArray = explode( '#', $url );

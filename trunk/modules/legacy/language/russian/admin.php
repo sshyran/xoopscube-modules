@@ -6,6 +6,7 @@ define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "Не могу установить шаблон бло
 define('_AD_LEGACY_ERROR_BMODULE', "Вы должны выбрать один или больше модулей в качестве целевых для отображения блока.");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "Вы не можете деинсталлировать активный модуль. Для деинсталляции выключите модуль.");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "Не могу удалить шаблоны блока: {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "Не могу вставить конфигурационную переменную '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "Не могу добавить блок '{0}'.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "Не могу установить шаблон '{0}'.");
@@ -14,6 +15,7 @@ define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', "Не могу выставить пра
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', "Не могу установить связь со всеми модулями для блоа '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', "Не могу установить права для чтения.");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', "Не могу установить административные привилегии.");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Could not set unique key at '{0}'.");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', "Не могу удалить информацию о модуле из базы XOOPS.");
 define('_AD_LEGACY_ERROR_DROP_TABLE', "Не могу удалить таблицу {0}");
 define('_AD_LEGACY_ERROR_EXTENSION', "Расширение загруженного файла не соответствует разрешенному списку расширений файлов.");
@@ -233,6 +235,7 @@ define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', "Удалить информацию о мод
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', "Удалить таблицу {0}.");
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', "Параметр {0} добавлен.");
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', "Установка модуля '{0}' завершена успешно.");
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "Set UNIQUE KEY to '{0}' has been successful.");
 define('_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED', "Шаблон '{0}' был успешно установлен.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', "Деинсталляция блока '{0}' завершена успешно.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', "Деинсталляция модуля '{0}' завершена успешно.");
@@ -243,6 +246,7 @@ define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', "Даже если вы деинсталлируете блок, ег
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', "Даже если вы денисталлируете блок пользователя, его параметры не будут утеряны. Блок просто перестанет отображаться на сайте. Вы сможете заново добавить его на сайт или удалить из базы <a href=\"index.php?action=BlockInstallList\">на странице 'установка блоков'</a>.");
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE', "Выберите где вы будете хранить файлы Ваших изображений. На диске или в БД. <strong>Эти параметры не могут быть изменены впоследствии.</strong><br/>Учитывайте, что если Вы выберете БД в качестве хранилища информации файлы будут храниться в виде BLOB данных, что не вполне может удовлетворять нуждам резервирования данных.");
 define('_AD_LEGACY_TIPS_INSTALL_BLOCK', "Вы можете настроить внешний вид вашего сайта добавив необходимые Вам блоки. В процессе установки блока Вы можете отредактировать его параметры.");
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "Выберите внешний вид вашего сайта кликнув на кнопку 'выбрать' рядом с Вашей темой оформления.<br/> Позвольте Вашим пользователям выбирать оформление сайта по их желанию. Отметьте темы оформления, которые Вы хотели бы, чтобы были доступны пользователям для выбора. Обратитесь к документации за дополнительной информацией.");
 define('_MD_AM_ADMINML', "Email администратора");
 define('_MD_AM_ADMNOTSET', "Email администратора не установлен.");

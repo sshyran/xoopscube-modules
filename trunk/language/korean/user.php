@@ -1,33 +1,4 @@
 <?php
-// $Id: user.php,v 1.1 2007/05/24 06:49:40 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  ------------------------------------------------------------------------ //
-//                XOOPS Korean (translated by wanikoo[ wani@wanisys.net ])	   //
-//                       <http://www.wanisys.net/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
 
 //%%%%%%		File Name user.php 		%%%%%
 define('_US_NOTREGISTERED','지금 바로 <a href="register.php">등록</a>하세요!');
@@ -116,7 +87,7 @@ define('_US_PM','PM쪽지');
 define('_US_ICQ','ICQ');
 define('_US_AIM','AIM');
 define('_US_YIM','YIM');
-define('_US_MSNM','MSNM');
+define('_US_MSNM','Windows Live ID');
 define('_US_LOCATION','주소');
 define('_US_OCCUPATION','직업');
 define('_US_INTEREST','취미');

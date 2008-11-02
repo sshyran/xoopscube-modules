@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: Legacy_Controller.class.php,v 1.17 2008/06/22 11:34:17 minahito Exp $
+ * @version $Id: Legacy_Controller.class.php,v 1.21 2008/09/25 15:11:59 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
@@ -378,9 +378,14 @@ class Legacy_Controller extends XCube_Controller
 	function _parseUrl()
 	{
 		$ret = array();
-		$rootPathInfo = parse_url(XOOPS_URL); 
+		$rootPathInfo = @parse_url(XOOPS_URL); 
 		$rootPath = (isset($rootPathInfo['path']) ? $rootPathInfo['path'] : '') . '/';
-		$requestPathInfo = parse_url($_SERVER['REQUEST_URI']);
+		$requestPathInfo = @parse_url(isset($_SERVER['PATH_INFO']) ? substr($_SERVER['PHP_SELF'],0,- strlen($_SERVER['PATH_INFO'])) : $_SERVER['PHP_SELF']);
+		
+		if ($requestPathInfo === false) {
+			die();
+		}
+		
 		$requestPath = isset($requestPathInfo['path']) ? urldecode($requestPathInfo['path']) : '';
 		$subPath=substr($requestPath,strlen($rootPath));
 		$subPath = trim($subPath, '/');

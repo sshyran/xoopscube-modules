@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: MiscSslloginAction.class.php,v 1.4 2008/04/08 05:38:00 nobunobu Exp $
+ * @version $Id: MiscSslloginAction.class.php,v 1.5 2008/09/25 15:12:07 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 

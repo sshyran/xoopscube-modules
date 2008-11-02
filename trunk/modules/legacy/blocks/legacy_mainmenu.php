@@ -2,9 +2,9 @@
 /**
  *
  * @package XOOPS2
- * @version $Id: legacy_mainmenu.php,v 1.2 2007/06/24 14:58:45 nobunobu Exp $
+ * @version $Id: legacy_mainmenu.php,v 1.3 2008/09/25 15:12:12 kilica Exp $
  * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 //  ------------------------------------------------------------------------ //

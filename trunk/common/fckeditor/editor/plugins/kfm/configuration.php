@@ -1,8 +1,6 @@
 <?php
 
 
-// for XOOPS
-include_once '../../../../../mainfile.php';
 
 /**
  * KFM - Kae's File Manager

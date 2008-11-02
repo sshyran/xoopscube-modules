@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: Legacy_AdminControllerStrategy.class.php,v 1.3 2007/06/24 14:58:52 nobunobu Exp $
+ * @version $Id: Legacy_AdminControllerStrategy.class.php,v 1.5 2008/09/25 15:11:56 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
@@ -157,6 +157,8 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 			
 			if ($dirname == 'legacy') {
 				return $principal->isInRole('Site.Administrator');
+			} elseif ( defined('_LEGACY_ALLOW_ACCESS_FROM_ANY_ADMINS_') ) {
+				return $this->mController->mRoot->mContext->mXoopsUser->isAdmin(0);
 			}
 			
 			return $principal->isInRole("Module.${dirname}.Admin");

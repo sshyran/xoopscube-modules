@@ -1,3 +1,141 @@
+<<<<<<< .mine
+<?php
+
+if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'd3forum' ;
+$constpref = '_MI_' . strtoupper( $mydirname ) ;
+
+if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
+
+define( $constpref.'_LOADED' , 1 ) ;
+
+// The name of this module
+define($constpref."_NAME","е╒ейб╝ещер");
+
+// A brief description of this module
+define($constpref."_DESC","XOOPSе╒ейб╝ещерете╕ехб╝еы");
+
+// Names of blocks for this module (Not all module has blocks)
+define($constpref."_BNAME_LIST_TOPICS","е╚е╘е├еп░ь═ў");
+define($constpref."_BDESC_LIST_TOPICS","╚╞═╤е╓еэе├епбгб╓╩╘╜╕б╫д╟══б╣д╩╡б╟╜дЄ╗¤д┐д╗дыд│д╚дмд╟днд▐д╣");
+define($constpref."_BNAME_LIST_POSTS","┼ъ╣╞░ь═ў");
+define($constpref."_BNAME_LIST_FORUMS","е╒ейб╝ещер░ь═ў");
+
+// admin menu
+define($constpref.'_ADMENU_CATEGORYACCESS','еле╞е┤еъб╝╕в╕┬└▀─ъ');
+define($constpref.'_ADMENU_FORUMACCESS','е╒ейб╝ещер╕в╕┬└▀─ъ');
+define($constpref.'_ADMENU_ADVANCEDADMIN','еве╔е╨еєе╣┤╔═¤');
+define($constpref.'_ADMENU_POSTHISTORIES','┼ъ╣╞╩╘╜╕/║я╜№═·╬Є');
+define($constpref.'_ADMENU_MYLANGADMIN' , '╕└╕ь─ъ┐Ї┤╔═¤' ) ;
+define($constpref.'_ADMENU_MYTPLSADMIN' , 'е╞еєе╫еьб╝е╚┤╔═¤' ) ;
+define($constpref.'_ADMENU_MYBLOCKSADMIN' , 'е╓еэе├еп┤╔═¤/евепе╗е╣╕в╕┬' ) ;
+define($constpref.'_ADMENU_MYPREFERENCES' , '░ь╚╠└▀─ъ' ) ;
+
+// configurations
+define($constpref.'_TOP_MESSAGE','е╒ейб╝ещере╚е├е╫д╬есе├е╗б╝е╕');
+define($constpref.'_TOP_MESSAGEDEFAULT','<h1 class="d3f_title">е╒ейб╝ещере╚е├е╫</h1><p class="d3f_welcome">╢╜╠гд╬двдые╒ейб╝ещерд╪д╝д╥д┤╗▓▓├дпд└д╡дд</p>');
+define($constpref.'_SHOW_BREADCRUMBS','е╤еєдпд║дЄ╔╜╝ид╣ды');
+define($constpref.'_DEFAULT_OPTIONS','┼ъ╣╞еке╫е╖ечеєд╬е╟е╒ейеые╚├═');
+define($constpref.'_DEFAULT_OPTIONSDSC','┐╖╡ме╚е╘е├епдф╩╓┐од╬╜щ┤№╛ї┬╓д╟═н╕·д╚д╩д├д╞дддыеке╫е╖ечеєдЄелеєе▐(,)д╟╢ш└┌д├д╞╞■╬╧д╖д▐д╣бг<br />едеєе╣е╚б╝еы─╛╕хд╧ smiley,xcode,br,number_entity д╚д╩д├д╞ддд▐д╣бг<br />д╜д╬┬╛бв special_entity html attachsig u2t_marked ┼∙дм╗╪─ъ▓─╟╜д╟д╣');
+define($constpref.'_ALLOW_HTML','┼ъ╣╞╦▄╩╕╞тд╬HTMLдЄ╡Ў▓─д╣ды');
+define($constpref.'_ALLOW_HTMLDSC','┼ъ╣╞╦▄╩╕д╬HTML╞├╝ь╩╕╗·дЄ╡Ў▓─д╖д▐д╣бг╔╘╞├─ъ┬┐┐Їд╦╡Ў▓─д╣дыд╚бвScript Insertion └╚╝х└нд╦д─д╩дмдъд▐д╣');
+define($constpref.'_ALLOW_TEXTIMG','┼ъ╣╞╦▄╩╕╞тд╬│░╔Ї▓ш┴№дЄ╡Ў▓─д╣ды');
+define($constpref.'_ALLOW_TEXTIMGDSC','┼ъ╣╞╦▄╩╕д╦[img]е┐е░д╟│░╔Їе╡еде╚д╬▓ш┴№дЄ╔╜╝ид╡д╗дыд╚бвд│д╬е╡еде╚д╬╦м╠ф╝╘д╬IPдфUser-AgentдЄ╚┤длдьдыд│д╚д╦д─д╩дмдъд▐д╣');
+define($constpref.'_ALLOW_SIG','╜Ё╠╛╔╒═┐дЄ╡Ў▓─д╣ды');
+define($constpref.'_ALLOW_SIGDSC','┼ъ╣╞╦▄╩╕д╬▓╝╔Їд╦╜Ё╠╛дмд─д▒дщдьдыдшджд╦д╩дъд▐д╣');
+define($constpref.'_ALLOW_SIGIMG','╜Ё╠╛╞тд╬│░╔Ї▓ш┴№дЄ╡Ў▓─д╣ды');
+define($constpref.'_ALLOW_SIGIMGDSC','╜Ё╠╛д╦[img]е┐е░д╟│░╔Їе╡еде╚д╬▓ш┴№дЄ╔╜╝ид╡д╗дыд╚бвд│д╬е╡еде╚д╬╦м╠ф╝╘д╬IPдфUser-AgentдЄ╚┤длдьдыд│д╚д╦д─д╩дмдъд▐д╣');
+define($constpref.'_USE_VOTE','┼ъ╔╝╡б╟╜дЄ═°═╤д╣ды');
+define($constpref.'_USE_SOLVED','▓Є╖ш║╤╡б╟╜дЄ═°═╤д╣ды');
+define($constpref.'_ALLOW_MARK','├э╠▄е╚е╘е├еп╡б╟╜дЄ═°═╤д╣ды');
+define($constpref.'_ALLOW_HIDEUID','ецб╝е╢дм╠╛┴░дЄ▒гд╖д╞┼ъ╣╞д╣дыд│д╚дЄ╡Ў▓─д╣ды');
+define($constpref.'_POSTS_PER_TOPIC','е╚е╘е├еп╞т║╟┬ч┼ъ╣╞┐Ї');
+define($constpref.'_POSTS_PER_TOPICDSC','┼ъ╣╞┐Їдмд│д╬┐Їд╦┼■├гд╖д┐е╚е╘е├епд╧╝л╞░┼кд╦еэе├епд╡дьд▐д╣');
+define($constpref.'_HOT_THRESHOLD','┐═╡де╚е╘е├еп┼ъ╣╞┐Ї');
+define($constpref.'_HOT_THRESHOLDDSC','б╓└╣дъ╛хдмд├д╞дддыб╫е╣еье├е╔длд╔дждлдЄ╚╜├╟д╣ды┤Ё╜рд╚д╩ды┼ъ╣╞┐Їд╟д╣');
+define($constpref.'_TOPICS_PER_PAGE','е╚е╘е├еп░ь═ўд╟д╬╔╜╝ие╚е╘е├еп┐Ї');
+define($constpref.'_TOPICS_PER_PAGEDSC','');
+define($constpref.'_VIEWALLBREAK','е╚е╘е├еп░ь═ўд╟д╬е┌б╝е╕╩м│ф├▒░╠');
+define($constpref.'_VIEWALLBREAKDSC','');
+define($constpref.'_SELFEDITLIMIT','╝л╕╩╩╘╜╕е┐едереъе▀е├е╚(╔├)');
+define($constpref.'_SELFEDITLIMITDSC','░ь╚╠ецб╝е╢дм╝л╩мд╬┼ъ╣╞дЄ╩╘╜╕д╣ды╛ь╣чбв┼ъ╣╞д╖д╞длдщ▓┐╔├д▐д╟╞т═╞д╬╩╤╣╣дЄ╡Ў▓─д╣дыдлбг░ь╚╠ецб╝е╢д╦дшды╝л╕╩╩╘╜╕дЄ╢╪╗▀д╣ды╛ь╣чд╧0дЄ╗╪─ъ');
+define($constpref.'_SELFDELLIMIT','╝л╕╩║я╜№е┐едереъе▀е├е╚(╔├)');
+define($constpref.'_SELFDELLIMITDSC','░ь╚╠ецб╝е╢дм╝л╩мд╬┼ъ╣╞дЄ║я╜№д╣ды╛ь╣чбв┼ъ╣╞д╖д╞длдщ▓┐╔├д▐д╟║я╜№дЄ╡Ў▓─д╣дыдлбгд┐д└д╖бв░ь╚╠ецб╝е╢д╧бвд╜д╬▓╝д╦еье╣е▌еєе╣д╬д─ддд╞д╖д▐д├д┐┼ъ╣╞д╧║я╜№д╟днд▐д╗дєбг░ь╚╠ецб╝е╢д╦дшды╝л╕╩║я╜№дЄ╢╪╗▀д╣ды╛ь╣чд╧0дЄ╗╪─ъ');
+define($constpref.'_CSS_URI','ете╕ехб╝еы═╤CSSд╬URI');
+define($constpref.'_CSS_URIDSC','д│д╬ете╕ехб╝еы└ь═╤д╬CSSе╒ебедеыд╬URIдЄ┴ъ┬╨е╤е╣д▐д┐д╧└ф┬╨е╤е╣д╟╗╪─ъд╖д▐д╣бге╟е╒ейеые╚д╧ {mod_url}/index.php?page=main_css д╟д╣бг');
+define($constpref.'_IMAGES_DIR','едесб╝е╕е╒ебедеые╟егеьепе╚еъ');
+define($constpref.'_IMAGES_DIRDSC','д│д╬ете╕ехб╝еы═╤д╬едесб╝е╕дм│╩╟╝д╡дьд┐е╟егеьепе╚еъдЄете╕ехб╝еые╟егеьепе╚еъдлдщд╬┴ъ┬╨е╤е╣д╟╗╪─ъд╖д▐д╣бге╟е╒ейеые╚д╧imagesд╟д╣бг');
+define($constpref.'_BODY_EDITOR','╦▄╩╕╩╘╜╕еие╟еге┐');
+define($constpref.'_BODY_EDITORDSC','WYSIWYGеие╟еге┐д╧бвHTMLе┐е░дЄ╡Ў▓─д╣дые╒ейб╝ещерд╟д╬д▀═н╕·д╦д╩дъд▐д╣бгHTMLе┐е░дЄ╡Ў▓─д╖д╩дде╒ейб╝ещерд╟д╧╠╡╛Є╖яд╟xoopsdhtmlд╚д╩дъд▐д╣бг');
+define($constpref.'_ANONYMOUS_NAME','е▓е╣е╚ецб╝е╢д╬е╟е╒ейеые╚╠╛');
+define($constpref.'_ANONYMOUS_NAMEDSC','е▓е╣е╚═╤┼ъ╣╞е╒ейб╝ерд╦║╟╜щд╦╞■╬╧д╡дьд╞ддды╠╛┴░д╟д╣бгб╓╞┐╠╛д╡дєбвдк╩вддд├д╤ддб╫┼∙');
+define($constpref.'_ICON_MEANINGS','┼ъ╣╞б╩еведе│еєб╦д╬░╒╠гд┼д▒');
+define($constpref.'_ICON_MEANINGSDSC','┼ъ╣╞д╦└н│╩дЄ╗¤д┐д╗дыд┐дсд╬┴к┬Є╗шд╟д╣бге╤еде╫(|)д╟╢ш└┌д├д╞дпд└д╡ддбг║╟╜щдм0д╟╝бдм1д╚╚╓╣цдм│фдъ┼Ўд╞дщдьбвposticon(┐Ї╗·).gifдмеведе│еєд╚д╖д╞═╤дддщдьд▐д╣');
+define($constpref.'_ICON_MEANINGSDEF','д╩д╖|─╠╛я|╔╘╦■|╦■┬н|▓╝д▓|╛хд▓|╩є╣Ё|╝┴╠ф');
+define($constpref.'_GUESTVOTE_IVL','┼ъ╣╞д╪д╬е▓е╣е╚┼ъ╔╝');
+define($constpref.'_GUESTVOTE_IVLDSC','двды┼ъ╣╞(post)д╪д╬е▓е╣е╚д╦дшды┼ъ╔╝дЄ╢╪╗▀д╣ды╛ь╣чд╧0дЄбв┼ъ╔╝дЄ╡Ў▓─д╣ды╛ь╣чд╧бв╞▒░ьIPдлдщд╬║╞┼ъ╔╝дЄ╢╪╗▀д╣ды╔├┐ЇдЄ╗╪─ъд╖д▐д╣бг');
+define($constpref.'_ANTISPAM_GROUPS','SPAM┼ъ╣╞е┴езе├епдЄ╣╘дже░еыб╝е╫');
+define($constpref.'_ANTISPAM_GROUPSDSC','─╠╛яд╧┴┤д╞╠д┴к┬Єд╟д╣бгSPAM┼ъ╣╞е┴езе├епдЄ╣╘джд┘дне░еыб╝е╫дмдвды╛ь╣чд╬д▀┴к┬Єд╖д╞дпд└д╡ддбг');
+define($constpref.'_ANTISPAM_CLASS','SPAM┼ъ╣╞е┴езе├еп═╤епеще╣');
+define($constpref.'_ANTISPAM_CLASSDSC','е╟е╒ейеые╚д╧ default д╟д╣бге▓е╣е╚д╦д─ддд╞дтSPAM┼ъ╣╞е┴езе├епдЄ╣╘дяд╩дд╛ь╣чд╧д│д│дЄ╢ї═єд╦д╖д▐д╣бг');
+
+
+// Notify Categories
+define($constpref.'_NOTCAT_TOPIC', '╔╜╝и├цд╬е╚е╘е├еп'); 
+define($constpref.'_NOTCAT_TOPICDSC', '╔╜╝и├цд╬е╚е╘е├епд╦┬╨д╣ды─╠├╬еке╫е╖ечеє');
+define($constpref.'_NOTCAT_FORUM', '╔╜╝и├цд╬е╒ейб╝ещер'); 
+define($constpref.'_NOTCAT_FORUMDSC', '╔╜╝и├цд╬е╒ейб╝ещерд╦┬╨д╣ды─╠├╬еке╫е╖ечеє');
+define($constpref.'_NOTCAT_CAT', '╔╜╝и├цд╬еле╞е┤еъ');
+define($constpref.'_NOTCAT_CATDSC', '╔╜╝и├цд╬еле╞е┤еъд╦┬╨д╣ды─╠├╬еке╫е╖ечеє');
+define($constpref.'_NOTCAT_GLOBAL', 'ете╕ехб╝еы┴┤┬╬');
+define($constpref.'_NOTCAT_GLOBALDSC', 'е╒ейб╝ещерете╕ехб╝еы┴┤┬╬д╦дкд▒ды─╠├╬еке╫е╖ечеє');
+
+// Each Notifications
+define($constpref.'_NOTIFY_TOPIC_NEWPOST', 'е╚е╘е├еп╞т┼ъ╣╞');
+define($constpref.'_NOTIFY_TOPIC_NEWPOSTCAP', 'д│д╬е╚е╘е├епд╦┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_TOPIC_NEWPOSTSBJ', '[{X_SITENAME}] {X_MODULE}:{TOPIC_TITLE} е╚е╘е├еп╞т┼ъ╣╞ {POST_TITLE}');
+
+define($constpref.'_NOTIFY_FORUM_NEWPOST', 'е╒ейб╝ещер╞т┼ъ╣╞');
+define($constpref.'_NOTIFY_FORUM_NEWPOSTCAP', 'д│д╬е╒ейб╝ещерд╦┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_FORUM_NEWPOSTSBJ', '[{X_SITENAME}] {X_MODULE}:{FORUM_TITLE} е╒ейб╝ещер╞т┼ъ╣╞ {POST_TITLE}');
+
+define($constpref.'_NOTIFY_FORUM_NEWTOPIC', 'е╒ейб╝ещер╞т┐╖е╚е╘е├еп');
+define($constpref.'_NOTIFY_FORUM_NEWTOPICCAP', 'д│д╬е╒ейб╝ещерд╦дкддд╞┐╖╡ме╚е╘е├епдм╬йд╞дщдьд┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_FORUM_NEWTOPICSBJ', '[{X_SITENAME}] {X_MODULE}:{FORUM_TITLE} е╒ейб╝ещер╞т┐╖е╚е╘е├еп {TOPIC_TITLE}');
+
+define($constpref.'_NOTIFY_CAT_NEWPOST', 'еле╞е┤еъ╞т┼ъ╣╞');
+define($constpref.'_NOTIFY_CAT_NEWPOSTCAP', 'д│д╬еле╞е┤еъд╦┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_CAT_NEWPOSTSBJ', '[{X_SITENAME}] {X_MODULE}:{CAT_TITLE} еле╞е┤еъ╞т┼ъ╣╞ {POST_TITLE}');
+
+define($constpref.'_NOTIFY_CAT_NEWTOPIC', 'еле╞е┤еъ╞т┐╖е╚е╘е├еп');
+define($constpref.'_NOTIFY_CAT_NEWTOPICCAP', 'д│д╬еле╞е┤еъд╦дкддд╞┐╖╡ме╚е╘е├епдм╬йд╞дщдьд┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_CAT_NEWTOPICSBJ', '[{X_SITENAME}] {X_MODULE}:{CAT_TITLE} еле╞е┤еъ╞т┐╖е╚е╘е├еп {TOPIC_TITLE}');
+
+define($constpref.'_NOTIFY_CAT_NEWFORUM', 'еле╞е┤еъ╞т┐╖е╒ейб╝ещер');
+define($constpref.'_NOTIFY_CAT_NEWFORUMCAP', 'д│д╬еле╞е┤еъд╦дкддд╞┐╖е╒ейб╝ещердм╬йд╞дщдьд┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_CAT_NEWFORUMSBJ', '[{X_SITENAME}] {X_MODULE}:{CAT_TITLE} еле╞е┤еъ╞т┐╖е╒ейб╝ещер {FORUM_TITLE}');
+
+define($constpref.'_NOTIFY_GLOBAL_NEWPOST', '┐╖┼ъ╣╞┴┤┬╬');
+define($constpref.'_NOTIFY_GLOBAL_NEWPOSTCAP', 'д│д╬ете╕ехб╝еы┴┤┬╬д╬ддд║дьдлд╦┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_GLOBAL_NEWPOSTSBJ', '[{X_SITENAME}] {X_MODULE}: ┼ъ╣╞ {POST_TITLE}');
+
+define($constpref.'_NOTIFY_GLOBAL_NEWTOPIC', '┐╖е╚е╘е├еп┴┤┬╬');
+define($constpref.'_NOTIFY_GLOBAL_NEWTOPICCAP', 'д│д╬ете╕ехб╝еы┴┤┬╬д╬ддд║дьдлд╦┐╖╡ме╚е╘е├епдм╬йд╞дщдьд┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_GLOBAL_NEWTOPICSBJ', '[{X_SITENAME}] {X_MODULE}: ┐╖е╚е╘е├еп {TOPIC_TITLE}');
+
+define($constpref.'_NOTIFY_GLOBAL_NEWFORUM', '┐╖е╒ейб╝ещер┴┤┬╬');
+define($constpref.'_NOTIFY_GLOBAL_NEWFORUMCAP', 'д│д╬ете╕ехб╝еы┴┤┬╬д╬ддд║дьдлд╦┐╖е╒ейб╝ещердм╬йд╞дщдьд┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_NOTIFY_GLOBAL_NEWFORUMSBJ', '[{X_SITENAME}] {X_MODULE}: ┐╖е╒ейб╝ещер {FORUM_TITLE}');
+
+define($constpref.'_NOTIFY_GLOBAL_NEWPOSTFULL', '┼ъ╣╞┴┤╩╕');
+define($constpref.'_NOTIFY_GLOBAL_NEWPOSTFULLCAP', '┼ъ╣╞┴┤╩╕дЄ─╠├╬д╖д▐д╣бгб╩┬╨╛▌д╧ете╕ехб╝еы┴┤┬╬б╦');
+define($constpref.'_NOTIFY_GLOBAL_NEWPOSTFULLSBJ', '[{X_SITENAME}] {POST_TITLE}');
+define($constpref.'_NOTIFY_GLOBAL_WAITING', '╛╡╟з┬╘д┴');
+define($constpref.'_NOTIFY_GLOBAL_WAITINGCAP', '╛╡╟здЄ═╫д╣ды┼ъ╣╞бж╩╘╜╕дм╣╘дядьд┐╛ь╣чд╦─╠├╬д╖д▐д╣бг┤╔═¤╝╘└ь═╤');
+define($constpref.'_NOTIFY_GLOBAL_WAITINGSBJ', '[{X_SITENAME}] {X_MODULE}: ╛╡╟з┬╘д┴ {POST_TITLE}');
+
+}
+
+=======
 <?php
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'd3forum' ;
@@ -134,4 +272,5 @@ define($constpref.'_NOTIFY_GLOBAL_WAITINGSBJ', '[{X_SITENAME}] {X_MODULE}: ╛╡╟з┬
 
 }
 
+>>>>>>> .r74
 ?>

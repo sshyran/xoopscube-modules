@@ -12,6 +12,7 @@
 define('KFM_BASE_PATH', dirname(__FILE__).'/');
 
 // {{{ load classes and helper functions
+require KFM_BASE_PATH.'../../../../../mainfile.php';
 require KFM_BASE_PATH.'includes/lang.php';
 require KFM_BASE_PATH.'includes/db.php';
 require KFM_BASE_PATH.'includes/object.class.php';

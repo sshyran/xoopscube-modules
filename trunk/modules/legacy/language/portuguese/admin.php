@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: admin.php,v 1.1 2008/03/09 02:32:40 xoopserver Exp $
+// $Id: admin.php,v 1.2 2008/10/13 00:32:36 minahito Exp $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
@@ -16,6 +16,7 @@ define("_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL","Não foi possível instalar mode
 define("_AD_LEGACY_ERROR_BMODULE","É necessário especificar um ou mais módulos em que o bloco será mostrado");
 define("_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE","Atenção: NÃO é possível desinstalar um módulo ativo: DESATIVE-O ANTES.");
 define("_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES","Não foi possível remover o modelo do bloco {0}.");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
 define("_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG","Não foi possível inserir a configuração '{0}'");
 define("_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK","Não foi possível instalar o bloco '{0}'.");
 define("_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE","Não foi possível instalar o modelo '{0}'.");
@@ -24,6 +25,7 @@ define("_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION","Não foi possível defin
 define("_AD_LEGACY_ERROR_COULD_NOT_SET_LINK","Não foi possível definir link with all module at '{0}' block");
 define("_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION","Não foi possível definir as permissões de leitura.");
 define("_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION","Não foi possível definir as permissões da administração do sistema.");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Could not set unique key at '{0}'.");
 define("_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB","Não foi possível remover module information from XOOPS database.");
 define("_AD_LEGACY_ERROR_DROP_TABLE","Não foi possível remover a tabela {0}");
 define("_AD_LEGACY_ERROR_EXTENSION","Lamento, o arquivo enviado possui uma extensão bloqueada pelo portal.");
@@ -243,6 +245,7 @@ define("_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB","Remover informações sobre
 define("_AD_LEGACY_MESSAGE_DROP_TABLE","Remoção da tabela: {0}");
 define("_AD_LEGACY_MESSAGE_INSERT_CONFIG","Inclusão da configuração: {0}");
 define("_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL","O módulo '{0}' foi instalado corretamente.");
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "Set UNIQUE KEY to '{0}' has been successful.");
 define("_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED","O modelo '{0}' foi instalado...");
 define("_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL","O bloco '{0}' foi desinstalado corretamente...");
 define("_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL","O módulo '{0}' foi desinstalado corretamente.");
@@ -365,5 +368,6 @@ define("_MD_AM_YES","Sim");
 define("_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK","<a href='index.php?action=BlockInstallList'>Install new blocks</a>, and set your site just the way you want it!<br/>If you want to have a block with free content that is not part of a module, simply <a href='index.php?action=CustomBlockEdit'>create a custom block</a> and write your message in it.");
 define("_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL","Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <a href=\"index.php?action=BlockInstallList\">'install block' page</a>.");
 define("_AD_LEGACY_TIPS_IMGCAT_STORETYPE","Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Do keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.");
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define("_AD_LEGACY_TIPS_THEME_ADMIN","Choose the look of your site by clicking the 'select' button next to your favourite theme.<br/> Let your users choose their own favourite look and feel for your site. Check the boxes to add a theme to the theme selection block. For more details, read the help.");
 ?>

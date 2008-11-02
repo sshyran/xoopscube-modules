@@ -1,5 +1,5 @@
 <?php
-// $Id: groupperm.php,v 1.4 2007/07/20 04:59:34 nobunobu Exp $
+// $Id: groupperm.php,v 1.5 2008/10/26 03:40:08 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -32,6 +32,10 @@
 if (!defined('XOOPS_ROOT_PATH')) {
 	exit();
 }
+
+define("GROUPPERM_VAL_MODREAD",   "module_read");
+define("GROUPPERM_VAL_MODADMIN",  "module_admin");
+define("GROUPPERM_VAL_BLOCKREAD", "block_read");
 
 /**
  * 
@@ -67,6 +71,51 @@ class XoopsGroupPerm extends XoopsObject
         $this->initVar('gperm_itemid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('gperm_modid', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('gperm_name', XOBJ_DTYPE_OTHER, null, false);
+    }
+    
+    function cleanVars()
+    {
+    	if (!parent::cleanVars()) {
+    		return false;
+    	}
+    	
+    	// The following validation code doesn't have this class,
+    	// because the validation code accesses handlers.
+    	// But, this follows traditional architecture of XOOPS2.
+    	
+    	$gHandler = xoops_gethandler('group');
+    	$group =& $gHandler->get($this->get('gperm_groupid'));
+    	if (!is_object($group)) {
+    		return false;
+    	}
+
+    	$mHandler = xoops_gethandler('module');
+    	
+    	if ($this->get('gperm_modid') != 1) {
+			$module =& $mHandler->get($this->get('gperm_modid'));
+			if (!is_object($module)) {
+				return false;
+			}
+    	}
+    	
+    	if ($this->get('gperm_name') == GROUPPERM_VAL_MODREAD
+    	    || $this->get('gperm_name') == GROUPPERM_VAL_MODADMIN)
+    	{
+    		$mHandler = xoops_gethandler('module');
+    		$module =& $mHandler->get($this->get('gperm_itemid'));
+    		if (!is_object($module)) {
+    			return false;
+	    	}
+    	}
+    	else if ($this->get('gperm_name') == GROUPPERM_VAL_BLOCKREAD) {
+    		$bHandler = xoops_gethandler('block');
+    		$block =& $mHandler->get($this->get('gperm_itemid'));
+    		if (!is_object($block)) {
+    			return false;
+	    	}
+    	}
+    	
+    	return true;
     }
 }
 
@@ -141,6 +190,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         if (!$perm->cleanVars()) {
             return false;
         }
+        
         foreach ($perm->cleanVars as $k => $v) {
             ${$k} = $v;
         }
@@ -159,7 +209,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         $perm->assignVar('gperm_id', $gperm_id);
         return true;
     }
-
+    
     /**
      * Delete a {@link XoopsGroupPerm} 
      * 

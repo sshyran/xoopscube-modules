@@ -46,7 +46,11 @@
 <h3 class="d3f_head_h3"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h3>
 <ul class="d3f_subcategories">
 <{foreach item="subcategory" from=$category.subcategories}>
+<<<<<<< .mine
+	<li><a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>"><img src="<{$xoops_url}>/images/icons/folder_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" /> <{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>, <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)</li>
+=======
 	<li><img src="<{$xoops_url}>/images/icons/folder_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" /> <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>"><{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$subcategory.topics_count}>, <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$subcategory.posts_count}>)</li>
+>>>>>>> .r74
 <{/foreach}>
 </ul>
 <{/if}>

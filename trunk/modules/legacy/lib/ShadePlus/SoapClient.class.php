@@ -1,9 +1,9 @@
 <?php
 /**
  * @package ShadePlus
- * @version $Id: SoapClient.class.php,v 1.2 2007/06/24 14:58:53 nobunobu Exp $
+ * @version $Id: SoapClient.class.php,v 1.3 2008/10/12 04:31:22 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/>
- * @license http://xoopscube.sourceforge.net/bsd_licenses.txt Modified BSD license
+ * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
  *
  */
 

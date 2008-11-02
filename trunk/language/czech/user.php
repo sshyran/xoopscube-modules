@@ -1,5 +1,5 @@
 <?php
-// $Id: user.php,v 1.1 2008/07/05 08:25:21 minahito Exp $
+// $Id: user.php,v 1.2 2008/08/30 08:52:33 minahito Exp $
 //%%%%%%		File Name user.php 		%%%%%
 define('_US_NOTREGISTERED','Nejste registrovaným uživatelem?  Zaregistrujte se <a href="register.php">zde</a>.');
 define('_US_LOSTPASSWORD','Ztratili jste své heslo?');
@@ -87,7 +87,7 @@ define('_US_PM','PM');
 define('_US_ICQ','ICQ');
 define('_US_AIM','AIM');
 define('_US_YIM','YIM');
-define('_US_MSNM','MSNM');
+define('_US_MSNM','Windows Live ID');
 define('_US_LOCATION','Mìsto');
 define('_US_OCCUPATION','Zamìstnání');
 define('_US_INTEREST','Zájmy');

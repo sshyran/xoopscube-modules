@@ -11,7 +11,7 @@ define( $constpref.'_LOADED' , 1 ) ;
 define($constpref."_NAME","pico");
 
 // A brief description of this module
-define($constpref."_DESC","a module for staic contents");
+define($constpref."_DESC","This module can manage static content using a familiar WYSIWYG editor");
 
 // admin menus
 define( $constpref.'_ADMENU_CONTENTSADMIN' , 'Content' ) ;

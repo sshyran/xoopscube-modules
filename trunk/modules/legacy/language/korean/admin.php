@@ -1,33 +1,4 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS Cube - PHP Content Management System                      //
-//                    Copyright (c) 2006 XOOPSCube.org                           //
-//                       <http://www.xoopscube.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  ------------------------------------------------------------------------ //
-//                XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])       //
-//                       < http://www.wanisys.net/ >                             //
-//                       < http://www.xoops.ne.kr/xoopscube/ >                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
 
 define('_AD_LEGACY_ERROR_ACTION_SEARCH_NORESULT', "입력하신 키워드로는 검색결과를 얻을 수 없었습니다.");
 define('_AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN', "키워드를 변경하여 다시 검색해보시기 바랍니다.");
@@ -35,6 +6,7 @@ define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "블록 템플릿 '{0}' 의 인스톨에
 define('_AD_LEGACY_ERROR_BMODULE', "표시대상 모듈을 하나이상 지정해 주세요!");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "활성화 상태의 모듈은 언인스톨(제거)하실 수 없습니다. 언인스톨(제거)하시려면 먼저 해당 모듈을 비활성화처리 해주시기 바랍니다.");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "블록 템플릿의 삭제에 실패하였습니다: {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "중복된 데이타의 삭제에 실패하였습니다 : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "설정값 '{0}' 의 삽입에 실패하였습니다.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "블록 '{0}' 의 인스톨에 실패하였습니다.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "템플릿 '{0}' 의 설치에 실패하였습니다.");
@@ -43,6 +15,7 @@ define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', "'{0}' 블록의 액세스권
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', "'{0}' 블록에 대한 각 모듈과의 링크설정에 실패하였습니다.");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', "액세스권한 설정에 실패하였습니다.");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', "시스템관리권한 설정에 실패하였습니다.");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "'{0}'테이블에 UNIQUE KEY를 설정하는 작업에 실패하였습니다.");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', "데이타베이스에서 모듈정보를 삭제하는 작업에 실패하였습니다.");
 define('_AD_LEGACY_ERROR_DROP_TABLE', "테이블 {0} 의 Drop 에 실패하였습니다.");
 define('_AD_LEGACY_ERROR_EXTENSION', "허가된 파일형식이 아닙니다.");
@@ -150,7 +123,7 @@ define('_AD_LEGACY_LANG_IMAGECATEGORY_EDIT', "이미지 카테고리 편집");
 define('_AD_LEGACY_LANG_IMAGECATEGORY_LIST', "이미지 카테고리 리스트");
 define('_AD_LEGACY_LANG_IMAGECATEGORY_NEW', "이미지 카테고리 신규추가");
 define('_AD_LEGACY_LANG_IMGCAT_DISPLAY', "표시");
-define('_AD_LEGACY_LANG_IMGCAT_ID', "카테고리 ID");
+define('_AD_LEGACY_LANG_IMGCAT_ID', "CID");
 define('_AD_LEGACY_LANG_IMGCAT_MAXHEIGHT', "최대높이(px)");
 define('_AD_LEGACY_LANG_IMGCAT_MAXSIZE', "최대용량(byte)");
 define('_AD_LEGACY_LANG_IMGCAT_MAXWIDTH', "최대폭(px)");
@@ -264,6 +237,7 @@ define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', "모듈정보를 데이타베이스�
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', "테이블 {0} 을 Drop처리하였습니다.");
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', "Config {0} 을 추가하였습니다.");
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', "'{0}' 모듈의 설치에 성공하였습니다.");
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "'{0}'의 UNIQUE KEY설정작업에 성공하였습니다.");
 define('_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED', "템플릿 '{0}' 을 설치하였습니다.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', "'{0}' 블록의 언인스톨에 성공하였습니다.");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', "'{0}' 모듈의 언인스톨에 성공하였습니다.");
@@ -274,6 +248,7 @@ define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', "Q:블록을 언인스톨하면?<br />블록을 제
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', "Q:커스텀 블록을 언인스톨하면?<br />커스텀 블록을 제거(언인스톨)하셔도 실제적으로 삭제되지는 않습니다. 현재의 설정정보를 그대로 유지한 채로 단지 비표시처리되어 미설치블록리스트로 이동되어지게 됩니다. 따라서 미설치블록리스트에서 해당 블록을 찾아 언제든지 삭제 혹은 재인스톨하셔서 사용하실 수 있습니다.");
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE', "이미지파일의 저장방식에는 파일시스템에 저장하는 방법과 데이타베이스에 저장하는 방법이 있습니다. 원하시는 방법을 선택해 주세요!(주의: 향후 변경 불가능)<br/>데이타베이스에 저장시에는 BLOB 포맷이 이용되어집니다.");
 define('_AD_LEGACY_TIPS_INSTALL_BLOCK', "블록을 인스톨하셔서 사이트를 멋지게 꾸며 보시기 바랍니다.<br />환영메세지 등 원하는 콘텐츠를 표시하시고 싶으실 경우엔 <a href=\"index.php?action=CustomBlockEdit\">커스텀 블록</a>을 이용하시면 됩니다.");
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "이것은 Phased Upgrade Mode입니다.최신버전으로 만들기위해 몇번의 업그레이드작업이 필요할 수도 있습니다.단계적으로 업그레이드를 진행함으로써 모듈을 성공적으로 업그레이드하실 수 있습니다.");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "선택 버튼을 클릭하셔서 원하는 디자인으로 사이트 테마를 변경해 보시기 바랍니다.<br/>사용자들이 자유롭게 테마를 변경할 수 있게 테마선택블록을 표시하실수도 있습니다. 자세한 사항은 Help를 참고하세요!");
 define('_MD_AM_ADMINML', "관리자 메일주소");
 define('_MD_AM_ADMNOTSET', "관리자 메일이 설정되지 않았습니다.");

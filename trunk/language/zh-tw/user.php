@@ -87,7 +87,7 @@ define('_US_PM', '私人傳訊');
 define('_US_ICQ', 'ICQ 號碼');
 define('_US_AIM', 'SKYPE 帳號');
 define('_US_YIM', 'YAHOO 即時通帳號');
-define('_US_MSNM', '微軟 MSN 帳號');
+define('_US_MSNM', 'Windows Live ID 帳號');
 define('_US_LOCATION', '來自');
 define('_US_OCCUPATION', '職業');
 define('_US_INTEREST', '興趣');

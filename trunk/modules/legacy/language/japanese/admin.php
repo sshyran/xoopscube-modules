@@ -6,14 +6,16 @@ define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "¥Ö¥í¥Ã¥¯¥Æ¥ó¥×¥ì¡¼¥È '{0}' ¤Î
 define('_AD_LEGACY_ERROR_BMODULE', "É½¼¨Àè¤Î¥â¥¸¥å¡¼¥ë¤ò£±¤Ä°Ê¾å»ØÄê¤·¤Æ¤¯¤À¤µ¤¤");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "¥¢¥¯¥Æ¥£¥Ö¤Ê¥â¥¸¥å¡¼¥ë¤ò¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤³¤È¤Ï¤Ç¤­¤Þ¤»¤ó¡£¥¢¥ó¥¤¥ó¥¹¥È¡¼¤¹¤ë¤Ë¤Ï¡¢¥â¥¸¥å¡¼¥ë¤Î¥¢¥¯¥Æ¥£¥Ö¡¦¥¹¥Æ¡¼¥¿¥¹¤ò¥ª¥Õ¤Ë¤·¤Æ¤¯¤À¤µ¤¤¡£");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "¥Ö¥í¥Ã¥¯¥Æ¥ó¥×¥ì¡¼¥È¤òºï½ü¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿ : {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "½ÅÊ£¤·¤¿¥Ç¡¼¥¿¤òºï½ü¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£ : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "¥³¥ó¥Õ¥£¥° {0} ¤ò¥¤¥ó¥µ¡¼¥È¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "¥Ö¥í¥Ã¥¯ {0} ¤ò¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
-define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "Could not install template");
+define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "¥Æ¥ó¥×¥ì¡¼¥È¤ò¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_ADMIN_PERMISSION', "´ÉÍý¸¢¸Â¤òÀßÄê¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', "{0}¥Ö¥í¥Ã¥¯¤Î¥¢¥¯¥»¥¹¸¢¸Â¤òÀßÄê¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', "{0}¥Ö¥í¥Ã¥¯¤Ë¤ª¤¤¤Æ¡¢¥â¥¸¥å¡¼¥ë¤È¤Î¥ê¥ó¥¯¤òÀßÄê¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', "¥¢¥¯¥»¥¹¸¢¸Â¤òÀßÄê¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', "¥·¥¹¥Æ¥à´ÉÍý¸¢¸Â¤òÀßÄê¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "{0}¥Æ¡¼¥Ö¥ë¤Ë UNIQUE KEY ¤òÀßÄê¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', "¥â¥¸¥å¡¼¥ë¾ðÊó¤ò¥Ç¡¼¥¿¥Ù¡¼¥¹¤«¤éºï½ü¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_DROP_TABLE', "¥Æ¡¼¥Ö¥ë {0} ¤ò¥É¥í¥Ã¥×¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿");
 define('_AD_LEGACY_ERROR_EXTENSION', "µö²Ä¤µ¤ì¤¿¥Õ¥¡¥¤¥ë·Á¼°¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó");
@@ -233,6 +235,7 @@ define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', "¥â¥¸¥å¡¼¥ë¾ðÊó¤ò¥Ç¡¼¥¿¥Ù
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', "¥Æ¡¼¥Ö¥ë {0} ¤ò¥É¥í¥Ã¥×¤·¤Þ¤·¤¿");
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', "¥³¥ó¥Õ¥£¥° {0} ¤òÄÉ²Ã¤·¤Þ¤·¤¿");
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', "{0} ¥â¥¸¥å¡¼¥ë¤Î¥¤¥ó¥¹¥È¡¼¥ë¤ËÀ®¸ù¤·¤Þ¤·¤¿");
+define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "{0} ¤Î UNIQUE KEY ÀßÄê¤ËÀ®¸ù¤·¤Þ¤·¤¿");
 define('_AD_LEGACY_MESSAGE_TEMPLATE_INSTALLED', "¥Æ¥ó¥×¥ì¡¼¥È {0} ¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Þ¤·¤¿");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', "{0} ¥Ö¥í¥Ã¥¯¤Î¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤ËÀ®¸ù¤·¤Þ¤·¤¿");
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', "{0} ¥â¥¸¥å¡¼¥ë¤Î¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤ËÀ®¸ù¤·¤Þ¤·¤¿");
@@ -243,6 +246,7 @@ define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', "£Ñ¡§¥Ö¥í¥Ã¥¯¤ò¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤È¡
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', "£Ñ¡§¥«¥¹¥¿¥à¥Ö¥í¥Ã¥¯¤ò¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤È¡©<br/>£Á¡§ºï½ü¤µ¤ì¤º¤Ë¡¢¤¹¤Ù¤Æ¤ÎÀßÄê¤òµ­Ï¿¤·¤¿¤Þ¤Þ¡¢Ì¤¥¤¥ó¥¹¥È¡¼¥ë¥Ö¥í¥Ã¥¯¥ê¥¹¥È¤Ø°ÜÆ°¤·¤Þ¤¹¡£Ì¤¥¤¥ó¥¹¥È¡¼¥ë¥ê¥¹¥È¤«¤éºï½ü¤Ç¤­¤ë¤Û¤«¡¢ºÆ¥¤¥ó¥¹¥È¡¼¥ëÁàºî¤Ç´ÊÃ±¤ËÉü³è¤µ¤»¤ë¤³¤È¤¬¤Ç¤­¤Þ¤¹¡£");
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE', "¥¤¥á¡¼¥¸¡¦¥Õ¥¡¥¤¥ë¤ÎÊÝÂ¸Àè¤Ë¡¢¥Õ¥¡¥¤¥ë¥·¥¹¥Æ¥à¤â¤·¤¯¤Ï¥Ç¡¼¥¿¥Ù¡¼¥¹¤òÁªÂò¤Ç¤­¤Þ¤¹¡£¤³¤ÎÀßÄê¤Ï¸å¤«¤éÊÑ¹¹¤Ç¤­¤Þ¤»¤ó¡£<br />¥Ç¡¼¥¿¥Ù¡¼¥¹¤Ø¤ÎÊÝÂ¸¤ÏBLOB¤È¤¤¤¦¥Ð¥Ã¥¯¥¢¥Ã¥×¤ä¥ê¥¹¥È¥¢¤ËÉÔ¸þ¤­¤Ê¥Õ¥©¡¼¥Þ¥Ã¥È¤¬ÍÑ¤¤¤é¤ì¤ë¤³¤È¤ËÃí°Õ¤·¤Þ¤·¤ç¤¦¡£");
 define('_AD_LEGACY_TIPS_INSTALL_BLOCK', "¥Ö¥í¥Ã¥¯¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¥µ¥¤¥È¤ò¥«¥¹¥¿¥Þ¥¤¥º¤·¤Þ¤·¤ç¤¦¡£¥¤¥ó¥¹¥È¡¼¥ë»þ¤ËÉ½¼¨¥ª¥×¥·¥ç¥ó¤Ê¤É¤òÄ´À°¤Ç¤­¤Þ¤¹¡£<br/>¥¦¥§¥ë¥«¥à¥á¥Ã¥»¡¼¥¸¤Ê¤É¡¢Ê¸¾Ï¤òÉ½¼¨¤·¤¿¤¤¾ì¹ç¤Ï¡¢<a href=\"index.php?action=CustomBlockEdit\">¥«¥¹¥¿¥à¥Ö¥í¥Ã¥¯¤òÄÉ²Ã</a>¤·¤Þ¤·¤ç¤¦¡£");
+define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', "¤³¤ì¤Ï Phased Upgrade Mode ¤Ç¤¹¡£ºÇ¿·ÈÇ¤Ë¤¹¤ë¤¿¤á¤Ë¤Ï²¿²ó¤«¥¢¥Ã¥×¥°¥ì¡¼¥É¤ò¤¹¤ëÉ¬Í×¤¬¤¢¤ë¤«¤â¤·¤ì¤Þ¤»¤ó¡£½çÈÖ¤Ë¥¢¥Ã¥×¥°¥ì¡¼¥É¤¹¤ë¤³¤È¤Ç¥â¥¸¥å¡¼¥ë¤òÀµ¾ï¤Ë¥¢¥Ã¥×¥°¥ì¡¼¥É¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤¹¡£");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "ÁªÂò¥Ü¥¿¥ó¤ò²¡¤·¤Æ¡¢¤³¤Î¥µ¥¤¥È¤Î³°´Ñ¤ò¤ª¹¥¤ß¤Î¥Æ¡¼¥Þ¤ËÊÑ¹¹¤·¤Þ¤·¤ç¤¦¡£<br/>¥æ¡¼¥¶¡¼¤Ë¥Æ¡¼¥Þ¤òÁªÂò¤µ¤»¤¿¤¤¤Ç¤¹¤«¡©¡¡¥Á¥§¥Ã¥¯¥Ü¥Ã¥¯¥¹¤Ë¥Á¥§¥Ã¥¯¤òÆþ¤ì¤Æ¡¢¡Ö¥Æ¡¼¥ÞÁªÂò¥Ö¥í¥Ã¥¯¡×¤Ë¥ê¥¹¥È¥¢¥Ã¥×¤·¤Æ¤¯¤À¤µ¤¤¡£¾Ü¤·¤¯¤Ï¥Ø¥ë¥×¤ò¤´Í÷¤¯¤À¤µ¤¤¡£");
 define('_MD_AM_ADMINML', "´ÉÍý¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹");
 define('_MD_AM_ADMNOTSET', "´ÉÍý¼Ô¤Î¥á¡¼¥ë¥¢¥É¥ì¥¹¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£");

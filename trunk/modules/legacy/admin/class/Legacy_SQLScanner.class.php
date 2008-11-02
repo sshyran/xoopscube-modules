@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: Legacy_SQLScanner.class.php,v 1.2 2007/06/25 04:05:23 nobunobu Exp $
+ * @version $Id: Legacy_SQLScanner.class.php,v 1.3 2008/09/25 15:12:41 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 

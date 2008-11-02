@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: ModuleInstaller.class.php,v 1.2 2007/06/25 04:05:23 nobunobu Exp $
+ * @version $Id: ModuleInstaller.class.php,v 1.4 2008/10/26 04:00:40 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
@@ -138,7 +138,7 @@ class Legacy_ModuleInstaller
                 // Add a permission which administrators can read.
                 //
                 $root =& XCube_Root::getSingleton();
-                $groups = $root->mContext->mXoopsUser->getGroups();
+                $groups = $root->mContext->mXoopsUser->getGroups(true);
                 foreach($groups as $mygroup) {
                     $readPerm =& $this->_createPermission($mygroup);
                     $readPerm->setVar('gperm_name', 'module_read');

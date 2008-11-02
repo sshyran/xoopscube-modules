@@ -315,7 +315,13 @@ FCKConfig.BackgroundBlockerColor = '#ffffff' ;
 FCKConfig.BackgroundBlockerOpacity = 0.50 ;
 
 FCKConfig.MsWebBrowserControlCompat = false ;
+<<<<<<< .mine
+FCKConfig.Plugins.Add('kfm');
+FCKConfig.Plugins.Add( 'googlemaps', 'de,en,es,fr,it,jp') ;
+FCKConfig.GoogleMaps_Key = 'ABQIAAAAlXu5Pw6DFAUgqM2wQn01gxT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSy5hTGQdsosYD3dz6faZHVrO-02A' ;
+=======
 FCKConfig.Plugins.Add('kfm');
 //FCKConfig.Plugins.Add( 'flvPlayer','en') ;
 FCKConfig.Plugins.Add( 'googlemaps', 'de,en,es,fr,it,jp') ;
 FCKConfig.GoogleMaps_Key = 'ABQIAAAAlXu5Pw6DFAUgqM2wQn01gxT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSy5hTGQdsosYD3dz6faZHVrO-02A' ;
+>>>>>>> .r74

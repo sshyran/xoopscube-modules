@@ -1,5 +1,5 @@
 <?php
-// $Id: user.php,v 1.1 2007/05/15 02:34:43 minahito Exp $
+// $Id: user.php,v 1.2 2008/08/27 16:20:51 minahito Exp $
 //%%%%%%		File Name user.php 		%%%%%
 define('_US_NOTREGISTERED','Not registered?  Click <a href="register.php">here</a>.');
 define('_US_LOSTPASSWORD','Lost your Password?');
@@ -87,7 +87,7 @@ define('_US_PM','PM');
 define('_US_ICQ','ICQ');
 define('_US_AIM','AIM');
 define('_US_YIM','YIM');
-define('_US_MSNM','MSNM');
+define('_US_MSNM','Windows Live ID');
 define('_US_LOCATION','Location');
 define('_US_OCCUPATION','Occupation');
 define('_US_INTEREST','Interest');

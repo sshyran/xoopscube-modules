@@ -2,9 +2,9 @@
 /**
  *
  * @package Legacy
- * @version $Id: CommentEditAction.class.php,v 1.4 2007/09/09 10:29:02 minahito Exp $
+ * @version $Id: CommentEditAction.class.php,v 1.7 2008/09/25 15:11:52 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
@@ -12,7 +12,11 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
 require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentAdminEditForm.class.php";
+<<<<<<< .mine
+require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
+=======
 require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
+>>>>>>> .r74
 
 class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 {
@@ -49,6 +53,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 		if ($this->mObject->get('com_status') == 1) {
 			$this->mActionForm =& new Legacy_PendingCommentAdminEditForm();
 			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doApprove"));
+			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
 		}
 		else {
 			$this->mActionForm =& new Legacy_ApprovalCommentAdminEditForm();
