@@ -2,9 +2,9 @@
 /**
  *
  * @package XCube
- * @version $Id: XCube_Theme.class.php,v 1.3 2008/03/08 15:55:56 minahito Exp $
+ * @version $Id: XCube_Theme.class.php,v 1.4 2008/10/12 04:30:27 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/>
- * @license http://xoopscube.sourceforge.net/bsd_licenses.txt Modified BSD license
+ * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
  *
  */
 

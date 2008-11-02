@@ -2,9 +2,9 @@
 /**
  *
  * @package XCube
- * @version $Id: XCube_RenderCache.class.php,v 1.2 2007/06/24 07:26:21 nobunobu Exp $
+ * @version $Id: XCube_RenderCache.class.php,v 1.3 2008/10/12 04:30:27 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/>
- * @license http://xoopscube.sourceforge.net/bsd_licenses.txt Modified BSD license
+ * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
  *
  */
 
