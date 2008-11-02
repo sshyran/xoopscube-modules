@@ -1,5 +1,5 @@
 <?php
-// $Id: xoopsmultimailer.php,v 1.3 2007/07/05 06:44:50 nobunobu Exp $
+// $Id: xoopsmultimailer.php,v 1.4 2008/09/21 06:45:39 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
@@ -37,7 +37,7 @@
  * @author    Jochen B—¬nagel <jb@buennagel.com>
  * @copyright copyright (c) 2000-2003 The XOOPS Project (http://www.xoops.org)
  *
- * @version   $Revision: 1.3 $ - $Date: 2007/07/05 06:44:50 $
+ * @version   $Revision: 1.4 $ - $Date: 2008/09/21 06:45:39 $
  */
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
@@ -63,7 +63,7 @@ require_once(XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php');
  *
  * @author    Jochen Buennagel  <job@buennagel.com>
  * @copyright (c) 2000-2003 The Xoops Project - www.xoops.org
- * @version   $Revision: 1.3 $ - changed by $Author: nobunobu $ on $Date: 2007/07/05 06:44:50 $
+ * @version   $Revision: 1.4 $ - changed by $Author: minahito $ on $Date: 2008/09/21 06:45:39 $
  */
 class XoopsMultiMailer extends PHPMailer {
 
@@ -202,6 +202,27 @@ class XoopsMultiMailer extends PHPMailer {
             return parent::Send();
         }
         return false;
+    }
+
+    /**
+     * Sets the language for all class error messages.  Returns false
+     * if it cannot load the language file.  The default language type
+     * is English.
+     * @param string $lang_type Type of language (e.g. Portuguese: "br")
+     * @param string $lang_path Path to the language file directory
+     * @access public
+     * @return bool
+     */
+    function SetLanguage($lang_type, $lang_path = 'language/') {
+        // Patch for XOOPS Cube Legacy 2008/09/21
+        $ext = substr($lang_path, -1, 1);
+        if ($ext != '/' && file_exists($lang_path)) {
+            include($lang_path);
+            $this->language = $PHPMAILER_LANG;
+            return true;
+        }
+        
+        return parent::SetLanguage($lang_type, $lang_path);
     }
 }
 ?>

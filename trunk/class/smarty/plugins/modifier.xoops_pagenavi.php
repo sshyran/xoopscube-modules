@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: modifier.xoops_pagenavi.php 467 2008-06-09 03:48:09Z hodaka $
+ * @version $Id: modifier.xoops_pagenavi.php,v 1.1.2.1 2008/09/21 21:10:35 xoopserver Exp $
  * @author hodaka <hodaka@kuri3.net>
  * Smarty plugin
  * -----------------------------------------------------------------

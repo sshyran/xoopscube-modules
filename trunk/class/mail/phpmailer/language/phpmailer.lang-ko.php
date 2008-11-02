@@ -18,5 +18,6 @@ $PHPMAILER_LANG["connect_host"] = 'SMTP 에러: SMTP 서버에 접속할 수가 없습니다.'
 $PHPMAILER_LANG["file_access"] = '파일 액세스 실패: ';
 $PHPMAILER_LANG["file_open"] = '파일 에러: 파일을 열수가 없습니다: ';
 $PHPMAILER_LANG["encoding"] = '알수없는 인코딩방식입니다: ';
+$PHPMAILER_LANG["signing"] = 'Signing Error: ';
 
 ?>

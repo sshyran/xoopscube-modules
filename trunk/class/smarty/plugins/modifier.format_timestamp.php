@@ -1,7 +1,7 @@
 <?php
 
 /*
- * $Id: modifier.format_timestamp.php 290 2008-02-25 03:07:10Z hodaka $
+ * $Id: modifier.format_timestamp.php,v 1.1.2.1 2008/09/21 21:10:35 xoopserver Exp $
  * Smarty plugin
  * -------------------------------------------------------------
  * Type:     modifier
