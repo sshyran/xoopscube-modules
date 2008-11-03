@@ -17,7 +17,7 @@
 var cid = <{if $smarty.get.fct == "preferences" && $smarty.get.mod > 0}><{$smarty.get.mod}><{else}><{$currentModule->mXoopsModule->get('mid')}><{/if}>;
 function ccToggle(id)
 {
-	var el = xoopsGetElementById('c'+id).style;
+	el = xoopsGetElementById('c'+id).style;
 	if (el.display == 'block') {
 		el.display = 'none';
 		xoopsGetElementById('t'+id).className = 'head';
@@ -25,133 +25,14 @@ function ccToggle(id)
 	} else {
 		el.display = 'block';
 		xoopsGetElementById('t'+id).className = 'head2';
-		xoopsGetElementById('i'+id).src = '<{"design/orange.gif"|theme}>';
+		xoopsGetElementById('i'+id).src = '<{"design/min.png"|theme}>';
 	}
 }
 // ]]> -->
 </script>
 
-<script type="text/javascript">
-<!-- <![CDATA[
-function ccOpenAll()
-{
-       var divs = document.getElementsByTagName('div');
-       for (var i=0;i<divs.length;i++) {
-	if (divs[i].className == 'head') {
-	var divid = divs[i].id; 
-	var divcid = divid.replace(/t/i, 'c');
-	var cidel = xoopsGetElementById(divcid); 
-	if ( cidel.className == 'submenu' ) {
-		cidel.style.display = 'block';
-		divs[i].className = 'head2';
-		var imgid = divid.replace(/t/i, 'i');
-		xoopsGetElementById(imgid).src = '<{"design/orange.gif"|theme}>';	
-	}
-	}
-	}
-}
-
-
-function ccCloseAll()
-{
-       var divs = document.getElementsByTagName('div');
-       for (var i=0;i<divs.length;i++) {
-	if (divs[i].className == 'head2') {
-	var divid = divs[i].id; 
-	var divcid = divid.replace(/t/i, 'c');
-	var cidel = xoopsGetElementById(divcid); 
-	if ( cidel.className == 'submenu' ) {
-		cidel.style.display = 'none';
-		divs[i].className = 'head';
-		var imgid = divid.replace(/t/i, 'i');
-		xoopsGetElementById(imgid).src = '<{"design/navy.gif"|theme}>';	
-	}
-	}
-	}
-}
-
-function ccOpenCid()
-{
-	ccCloseAll();
-	ccToggle(cid);
-}
-
-// ]]> -->
-</script>
-<script type="text/javascript">
-<!-- <![CDATA[
-   var startwidth = '0px';
-
-       function setEffectCookie(name, value, expiredays)
-    {
-	var todayDate = new Date();
-	todayDate.setDate( todayDate.getDate() + expiredays );
-	document.cookie = name + "=" + escape( value ) + "; expires=" + todayDate.toGMTString() + "; path=/;"
-      }
-
-      function getEffectCookie(name)
-     {
-	var nameOfCookie = name + "=";
-	var x = 0;
-	while ( x <= document.cookie.length )
-	{
-		var y = (x+nameOfCookie.length);
-		if ( document.cookie.substring( x, y ) == nameOfCookie )
-		{
-			if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
-			endOfCookie = document.cookie.length;
-			return unescape( document.cookie.substring( y, endOfCookie ) );
-		}
-		x = document.cookie.indexOf( " ", x ) + 1;
-		if ( x == 0 )
-		break;
-	}
-	return "";
-      }
-
-   function toggleEffect(target, resizetarget, toggleimg) {
-    var targetstyle = xoopsGetElementById(target).style;
-    var elestyle = xoopsGetElementById(resizetarget).style;
-    var imgele = xoopsGetElementById(toggleimg);
-
-    if (elestyle.display == "block") {
-        elestyle.display = "none";
-          startwidth = targetstyle.width;
-        targetstyle.width = '20px';
-         imgele.src = '<{"design/restore.gif"|theme}>';
-         imgele.alt = 'Click me if you want to restore this left-column';
-         imgele.title = 'Click me if you want to restore this left-column';
-	setEffectCookie( 'effect', 'yes', 1 );
-	xoopsGetElementById('toggleall').style.display = "none";
-      }
-      else {
-        elestyle.display = "block";
-        targetstyle.width = startwidth;
-         imgele.src = '<{"design/minimize.gif"|theme}>';
-         imgele.alt = 'Click me if you want to minimize this left-column';
-         imgele.title = 'Click me if you want to minimize this left-column';
-	setEffectCookie( 'effect', 'no', 1 );
-	xoopsGetElementById('toggleall').style.display = "";
-      }
-   }
-
-   function onloadEffect(target, resizetarget, toggleimg) {
-	if ( getEffectCookie("effect") == "yes" ){
-        xoopsGetElementById(resizetarget).style.display = "none";
-          startwidth = xoopsGetElementById(target).style.width;
-        xoopsGetElementById(target).style.width = '20px';
-         xoopsGetElementById(toggleimg).src = '<{"design/restore.gif"|theme}>';
-         xoopsGetElementById(toggleimg).alt = 'Click me if you want to restore this left-column';
-         xoopsGetElementById(toggleimg).title = 'Click me if you want to restore this left-column';
-	xoopsGetElementById('toggleall').style.display = "none";
-      }
-     }	
-
-// ]]> -->
-</script>
 </head>
-<body onload="ccToggle(cid);onloadEffect('leftcolumn', 'minimizelc', 'lcimage');">
-
+<body onload="ccToggle(cid);">
 
 <div id="container">
 
@@ -192,15 +73,6 @@ function ccOpenCid()
 <table cellspacing="0">
 <tr>
 <td id="leftcolumn">
-   <span id="toggleall">
-   <a href="javascript:void(0)" onclick="ccOpenAll()")"><img src="<{"design/openall.gif"|theme}>" alt="Click me if you want to open all sidemenu!"  title="Click me if you want to open all sidemenu!" /></a>&nbsp;
-   <a href="javascript:void(0)" onclick="ccCloseAll()")"><img src="<{"design/closeall.gif"|theme}>" alt="Click me if you want to close all sidemenu!" title="Click me if you want to close all sidemenu!"/></a>&nbsp;
-   <a href="javascript:void(0)" onclick="ccOpenCid()")"><img src="<{"design/refresh.gif"|theme}>" alt="Click me if you want to open only the sidemenu of current module!" title="Click me if you want to open only the sidemenu of current module!"/></a>&nbsp;
-   <a href="#contentBottom"><img src="<{"design/bottom.gif"|theme}>" alt="Go to Bottom" title="Go to Bottom"/></a>&nbsp;
-   <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><img src="<{"design/help.gif"|theme}>" alt="Help" title="Help"/></a>&nbsp;
-   </span>
-   <a href="javascript:void(0)" onclick="toggleEffect('leftcolumn', 'minimizelc', 'lcimage')"><img id="lcimage" src="<{"design/minimize.gif"|theme}>" alt="Click me if you want to minimize this left-column" title="Click me if you want to minimize this left-column" /></a>
-  <div id="minimizelc" style="display: block;">
   <{$xoops_lblocks.sidemenu.content}>
 
   <{foreach name=lblock item=block from=$xoops_lblocks}>
@@ -208,7 +80,6 @@ function ccOpenCid()
   <{$block.content}>
   <{/if}>
   <{/foreach}>
-   </div>
 </td>
 <td id="centercolumn">
 
@@ -245,8 +116,8 @@ function ccOpenCid()
   </div>
 </noscript>
 
-  <div id="contentBody"><{$xoops_contents}></div>
-  <div id="contentBottom" class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<div id="contentBody"><{$xoops_contents}></div>
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
   
 </td>
 </tr>
