@@ -68,7 +68,7 @@ define($constpref.'_BODY_EDITORDSC','Un editor WYSIWYG solo podrá ser usado en l
 define($constpref.'_ANONYMOUS_NAME','Nombre para los usuarios anónimos');
 define($constpref.'_ANONYMOUS_NAMEDSC','Nombre que aparecerá cuando un mensaje sea enviado por un usuario no registrado (si tal cosa está admitida');
 define($constpref.'_ICON_MEANINGS','Significado de los iconos');
-define($constpref.'_ICON_MEANINGSDSC','Especifique los que mostrará "ALTs" para los iconos. Cada texto debe estar separado del siguiente por el símbolo(|). El primero corresponde a "mensajeicon0.png".');
+define($constpref.'_ICON_MEANINGSDSC','Especifique los que mostrará "ALTs" para los iconos. Cada texto debe estar separado del siguiente por el símbolo(|). El primero corresponde a "mensajeicon0.gif".');
 define($constpref.'_ICON_MEANINGSDEF','ninguno|normal|triste|feliz|abajo|arriba|exclamación|interrogación');
 define($constpref.'_GUESTVOTE_IVL','Votos de usuarios anónimos');
 define($constpref.'_GUESTVOTE_IVLDSC','Establezca el valor en 0 para no permitir los votos de usuarios anónimos. El otro número hace referencia al tiempo, en segundos, para permitir un segundo mensaje desde la misma IP.');

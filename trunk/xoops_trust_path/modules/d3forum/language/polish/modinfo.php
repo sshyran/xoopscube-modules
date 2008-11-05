@@ -83,7 +83,7 @@ define($constpref.'_IMAGES_DIRDSC','¦cie¿ka relatywna, powinna byæ w katalogu mo
 define($constpref.'_ANONYMOUS_NAME','Nazwa dla anonima');
 define($constpref.'_ANONYMOUS_NAMEDSC','');
 define($constpref.'_ICON_MEANINGS','Znaczenie ikon');
-define($constpref.'_ICON_MEANINGSDSC','Okre¶l znaczniki ALT dla ikon. Oddzielaj pionow± kresk± (|). pierwsza ikona to "posticon0.png".');
+define($constpref.'_ICON_MEANINGSDSC','Okre¶l znaczniki ALT dla ikon. Oddzielaj pionow± kresk± (|). pierwsza ikona to "posticon0.gif".');
 define($constpref.'_ICON_MEANINGSDEF','none|normal|unhappy|happy|raise it|lower it|report|question');
 define($constpref.'_GUESTVOTE_IVL','Pozwól niezarejestrowanym g³osowaæ');
 define($constpref.'_GUESTVOTE_IVLDSC','Ustaw warto¶æ na 0 (zero) aby wy³±czyæ mo¿liwo¶æ g³osowania dla niezarejestrowanych. Inna warto¶æ bêdzie oznacza³a czas (w sekundach) oczekiwania na ponown± mo¿liwo¶æ g³osowania z tego samego IP.');

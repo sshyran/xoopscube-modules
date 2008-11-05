@@ -22,13 +22,8 @@
 <{if $category.isadminormod}>
 <!-- category controller -->
 <ul class="d3f_ctrl">
-<<<<<<< .mine
 	<li><img src="<{$xoops_url}>/images/icons/folder_add.png" alt="<{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}>" /> <a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
 	<{if $xoops_isadmin}>
-=======
-	<li><img src="<{$xoops_url}>/images/icons/folder_add.png" alt="<{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}>" /> <a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
-	<{if $boop_isadmin}>
->>>>>>> .r74
 	<{strip}>
 		<li><img src="<{$xoops_url}>/images/icons/folder_link.png" alt="<{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}>" /> <a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
 		<li><img src="<{$xoops_url}>/images/icons/folder_edit.png" alt="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" /> <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></a></li>
@@ -45,11 +40,7 @@
 <h2 class="d3f_head"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h2>
 <ul class="d3f_subcategories">
 <{foreach item=subcategory from=$subcategories}>
-<<<<<<< .mine
 	<li><a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>"<{if $subcategory.desc}> title="<{$subcategory.desc}>"<{/if}>><img src="<{$xoops_url}>/images/icons/folder_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" width="16" height="16" /> <{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>, <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)</li>
-=======
-	<li><img src="<{$xoops_url}>/images/icons/folder_<{$subcategory.bit_new}>.png" alt="<{$subcategory.title}>" /> <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>"<{if $subcategory.desc}> title="<{$subcategory.desc}>"<{/if}>><{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$subcategory.topics_count}>, <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$subcategory.posts_count}>)</li>
->>>>>>> .r74
 <{/foreach}>
 </ul>
 <{/if}>
