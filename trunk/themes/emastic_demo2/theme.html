@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS Cube" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+
+
+<!-- CSS FRAMEWORK : Emastic -->
+<link href="<{$xoops_url}>/common/css/emastic/style.css" rel="stylesheet" type="text/css"/>
+
+
+<!-- CSS FRAMEWORK : Emastic : Theme Style -->
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+
+
+ <!--[if IE]>
+ <link rel="stylesheet" href="<{$xoops_url}>/common/css/emastic/ie-min.css" type="text/css" media="screen, projection">
+ <![endif]-->
+ 
+ 
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
+
+</head>
+
+<body>
+
+<div class="main gridlines">
+
+<div class="sto">
+<h1><{$xoops_sitename}> : CSS Framework : Emastic</h1>
+</div>
+  
+<br class="clear" />
+  
+            <div class="dl20">
+            <h3>Block Left</h3>
+            
+            <br />
+            
+            <!-- Start left blocks loop -->
+            <{foreach item=block from=$xoops_lblocks}>
+            <div class="blockTitle"><{$block.title}></div>
+            <div class="blockContent"><{$block.content}></div>
+            <{/foreach}>
+            <!-- End left blocks loop -->
+            
+            
+            </div>
+            <div class="ml20 fluid">
+            <h3>Content (fluid)</h3>
+            
+            <br />
+            
+            <div id="content"><{$xoops_contents}></div>
+            
+            </div>
+  
+<br class="clear" />
+  
+            <div class="dl40">
+            <h3>Block Center Left</h3>
+            
+            <br />
+            
+            <!-- Start center-left blocks loop -->
+            <{foreach item=block from=$xoops_clblocks}>
+            <div class="blockTitle"><{$block.title}></div>
+            <div class="blockContent"><{$block.content}></div>
+            <{/foreach}>
+            <!-- End center-left blocks loop -->
+            
+            </div>
+            
+            <div class="ml40 fluid">
+            <h3>Block Center Right</h3>
+            
+            <br />
+            
+            <!-- Start center-right blocks loop -->
+            <{foreach item=block from=$xoops_crblocks}>
+            <div class="blockTitle"><{$block.title}></div>
+            <div class="blockContent"><{$block.content}></div>
+            <{/foreach}>
+            <!-- End center-right blocks loop -->
+            
+            </div>
+  
+<br class="clear" />
+  
+            <div class="dl30">
+            <h3>Custom Block (fixe)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu.
+             Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla.</p>
+            </div>
+            
+            <div class="ml30 fluid">
+            <h3>Banner or Adds (fluid)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu. 
+            Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla. 
+            Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque. Aliquam gravida tempus nibh.</p>
+            </div>
+ 
+<br class="clear" />
+  
+ 
+            <div class="dr30">
+            <h3>Custom Block (fixe)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu. 
+            Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla. 
+            Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque. </p>
+            </div>
+            
+            <div class="mr30 fluid">
+            <h3>Custom Block (fluid)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu. 
+            Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla. 
+            Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque.Aenean eleifend facilisis nisi. Aliquam erat volutpat. 
+            Fusce ac nisl. Donec malesuada. Suspendisse ut est eget odio congue pellentesque.</p>
+            </div>
+  
+<br class="clear" />
+  
+            <div class="dr45">
+            <h3>Custom Block (fixe)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu.
+             Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla. 
+             Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque. Aliquam gravida tempus nibh. Aenean eleifend facilisis nisi. 
+             Aliquam erat volutpat. Fusce ac nisl. Donec malesuada. Suspendisse ut est eget odio congue pellentesque.</p>
+            </div>
+            
+            <div class="mr45 fluid">
+            <h3>Custom Block (fluid)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu. 
+            Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla. 
+            Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque. Aliquam gravida tempus nibh. 
+            Aenean eleifend facilisis nisi. Aliquam erat volutpat. Fusce ac nisl. Donec malesuada. Suspendisse ut est eget odio congue pellentesque.</p>
+            </div>
+  
+<br class="clear" />
+  
+            <div class="dr20">
+            <h3>Custom Block (fixe)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu. 
+            Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla. 
+            Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque. Aliquam gravida tempus nibh. </p>
+            </div>
+            
+            <div class="dl20">
+            <h3>Custom Block (fixe)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu.
+             Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla. 
+             Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque. Aliquam gravida tempus nibh. Aenean eleifend facilisis nisi.</p>
+            </div>
+            
+            <div class="ml20 fluid mr20">
+            <h3>Custom Block (fluid)</h3>
+            
+            <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu.
+             Nullam sollicitudin convallis velit. Vestibulum magna lacus, adipiscing vitae, sagittis in, porttitor non, nulla.
+             Nulla purus eros, placerat at, rutrum ac, tincidunt quis, neque. Aliquam gravida tempus nibh. Aenean eleifend facilisis nisi. 
+             Aliquam erat volutpat. Fusce ac nisl. Donec malesuada. Suspendisse ut est eget odio congue pellentesque. Morbi varius condimentum erat.
+             Aliquam erat volutpat. Fusce ac nisl. Donec malesuada. Suspendisse ut est eget odio congue pellentesque. Morbi varius condimentum erat. 
+             Aliquam erat volutpat. Fusce ac nisl. Donec malesuada. Suspendisse ut est eget odio congue pellentesque.</p>
+            </div>
+  
+  
+<br class="clear" />
+  
+            <div class="hp">
+            <p><{$xoops_footer}></p>
+            </div>
+  
+</div>
+
+</body>
+</html>

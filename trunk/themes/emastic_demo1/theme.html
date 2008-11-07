@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS Cube" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+
+
+<!-- CSS FRAMEWORK : Emastic -->
+<link href="<{$xoops_url}>/common/css/emastic/style.css" rel="stylesheet" type="text/css"/>
+
+
+<!-- CSS FRAMEWORK : Emastic : Theme Style -->
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+
+
+ <!--[if IE]>
+ <link rel="stylesheet" href="<{$xoops_url}>/common/css/emastic/ie-min.css" type="text/css" media="screen, projection">
+ <![endif]-->
+
+ 
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
+
+</head>
+
+<body>
+
+<div class="main gridlines">
+
+<div class="hp"><h1><{$xoops_sitename}> : CSS Framework : Emastic</h1></div>
+
+<br class="clear" />
+
+                    <div class="dl40">
+                    <div class="hp">
+                    <h3>Module Content and Center Blocks.</h3>
+                    
+                    <p><a href="<{$xoops_url}>"><img  src="<{$xoops_url}>(images/logo.jpg" alt="<{$xoops_sitename}>" /></a>
+                    Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante. 
+                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum arcu. 
+                    Nullam sollicitudin convallis velit.</p>
+                    
+                    <br />
+                    
+                    <div id="content"><{$xoops_contents}></div>
+                    
+                    <br />
+                    
+                    <!-- Start center-center blocks loop -->
+                    <{foreach item=block from=$xoops_ccblocks}>
+                    <div class="blockTitle"><{$block.title}></div>
+                    <div class="blockContent"><{$block.content}></div>
+                    <{/foreach}>
+                    <!-- End center-center blocks loop -->
+                    
+                    </div>
+
+<br class="clear" />
+
+                    <div class="dl20">
+                    <h3>Block Center Left</h3>
+                    
+                    <!-- Start center-left blocks loop -->
+                    <{foreach item=block from=$xoops_clblocks}>
+                    <div class="blockTitle"><{$block.title}></div>
+                    <div class="blockContent"><{$block.content}></div>
+                    <{/foreach}>
+                    <!-- End center-left blocks loop -->
+                    
+                    </div>
+                    
+                    <div class="dl20">
+                    <h3>Block Center Righ</h3>
+                    
+                    <!-- Start center-right blocks loop -->
+                    <{foreach item=block from=$xoops_crblocks}>
+                    <div class="blockTitle"><{$block.title}></div>
+                    <div class="blockContent"><{$block.content}></div>
+                    <{/foreach}>
+                    <!-- End center-right blocks loop -->
+                    
+                    </div>
+
+<br class="clear" />
+
+                    <div class="dl10">
+                    <h3>Lorem 1</h3>
+                    
+                    <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante.</p>
+                    </div>
+                    
+                    <div class="dl10">
+                    <h3>Lorem 2</h3>
+                    
+                    <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante.</p>
+                    </div>
+                    
+                    <div class="dl10">
+                    <h3>Lorem 3</h3>
+                    
+                    <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante.</p>
+                    </div>
+                    
+                    <div class="dl10">
+                    <h3>Lorem 4</h3>
+                    
+                    <p>Mauris fermentum feugiat justo. Quisque urna dolor, sollicitudin id, congue sed, euismod a, ante.</p>
+                    </div>
+                    
+                    </div>
+
+                    <div class="dl30">
+                    <div class="dl20">
+                    <h3>Block Left</h3>
+                    
+                    <br />
+                    
+                    <!-- Start left blocks loop -->
+                    <{foreach item=block from=$xoops_lblocks}>
+                    <div class="blockTitle"><{$block.title}></div>
+                    <div class="blockContent"><{$block.content}></div>
+                    <{/foreach}>
+                    <!-- End left blocks loop -->
+                    
+                    
+                    </div>
+
+                    <div class="dl10">
+                    <h3>Block Rights</h3>
+                    
+                    <br />
+                    
+                    <!-- Start right blocks loop -->
+                    <{foreach item=block from=$xoops_rblocks}>
+                    <div class="blockTitle"><{$block.title}></div>
+                    <div class="blockContent"><{$block.content}></div>
+                    <{/foreach}>
+                    <!-- End right blocks loop -->
+                    
+                    </div>
+                    </div>
+
+<br class="clear" />
+
+                    <div class="hp"><{$xoops_footer}></div>
+
+</div>
+
+</body>
+</html>
