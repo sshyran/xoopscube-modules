@@ -1,0 +1,13 @@
+//  ------------------------------------------------------------------------ //
+//                     XOOPS Cube/XOOPS JP Default Theme Hack Ver5.5               //
+//                 Just enjoy! Internet for everyone!!                           //
+//                  wanikoo < http://www.wanisys.net/ >                      //
+//  ------------------------------------------------------------------------ //
+//                 Based on XOOPS Cube/XOOPS JP Default Theme                     //
+//                 ---JavaScript Author--                                         //
+//         - prototype.js ( Sam Stephenson http://www.prototypejs.org/ )           //
+//         - rico.js ( Sabre Airline Solutions http://openrico.org/rico/ )      //
+//	   - Scriptaculous ( Thomas Fuchs http://script.aculo.us )		//
+//	   - Prototype Window ( bastien Gruhier, http://prototype-window.xilinus.com ) //
+//  ------------------------------------------------------------------------ //
+

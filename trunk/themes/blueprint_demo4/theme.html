@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS Cube" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+
+
+<!-- CSS FRAMEWORK : Blueprint -->
+<link href="<{$xoops_url}>/common/css/blueprint/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
+
+
+<!-- CSS FRAMEWORK : Blueprint : Print -->
+<link href="<{$xoops_url}>/common/css/blueprint/print.css" rel="stylesheet" type="text/css" />
+
+
+<!-- CSS FRAMEWORK : Blueprint : Theme Style -->
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+
+
+<!--[if IE]><link rel="stylesheet" href="<{$xoops_url}>/common/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+ 
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
+
+</head>
+
+<body>
+
+<div class="container showgrid">
+		<h1><{$xoops_sitename}> : Blueprint : Forms</h1>
+
+<hr>
+
+<div class="span-12">
+<p>Left-Block</p>
+<br />
+<!-- XCL blocks left -->
+<{foreach item=block from=$xoops_lblocks}>
+<div class="blockTitle"><{$block.title}></div>
+<div class="blockContent"><{$block.content}></div>
+<{/foreach}>
+<!-- XCL blocks left end -->
+</div>
+
+<div class="span-12 last">
+<p>Right-Block</p>
+<br />
+<!-- XCL blocks right -->
+<{foreach item=block from=$xoops_rblocks}>
+<div class="blockTitle"><{$block.title}></div>
+<div class="blockContent"><{$block.content}></div>
+<{/foreach}>
+<!-- XCL blocks right end --></div>
+
+<hr />
+
+<div class="span-24 last">
+<p>Module Content</p>
+<br />
+<div id="content"><{$xoops_contents}></div>
+</div>
+
+<hr />
+    
+    <div class="span-12">
+    
+      <form id="dummy" action="" method="post">
+
+      	<fieldset>
+      		<legend>Simple sample form</legend>
+
+      		<p><label for="dummy0">Text input (title)</label><br>
+      		  <input type="text" class="title" name="dummy0" id="dummy0" value="Field with class .title"></p>
+        
+          <p><label for="dummy1">Another field</label><br>
+      		  <input type="text" class="text" id="dummy1" name="dummy1" value="Field with class .text"></p>
+
+      	  <p><label for="dummy2">Textarea</label><br>
+      	    <textarea name="dummy2" id="dummy2" rows="5" cols="20"></textarea></p>
+
+      		<p><input type="submit" value="Submit">
+      		  <input type="reset" value="Reset"></p>
+
+      	</fieldset>
+      </form>
+    
+    </div>
+    <div class="span-12 last">
+    
+      <div class="error">
+        This is a &lt;div&gt; with the class <strong>.error</strong>. <a href="#">Link</a>.
+      </div>
+      <div class="notice">
+        This is a &lt;div&gt; with the class <strong>.notice</strong>. <a href="#">Link</a>.
+      </div>		
+      <div class="success">
+        This is a &lt;div&gt; with the class <strong>.success</strong>. <a href="#">Link</a>.
+      </div>    
+      
+      <fieldset>
+        <legend>Select, checkboxes, lists</legend>
+
+    		<p><label for="dummy3">Select field</label><br>
+    		  <select id="dummy3" name="dummy3">
+    			  <option value="1">Ottawa</option>
+    			  <option value="2">Calgary</option>
+    			  <option value="3">Moosejaw</option>
+    		  </select></p>
+
+    		<p><label for="dummy4">Select with groups</label><br>
+    		  <select id="dummy4" name="dummy4">
+    			  <option>Favorite pet</option>
+    			  <optgroup label="mammals">
+    			    <option>dog</option>
+    			    <option>cat</option>
+    			    <option>rabbit</option>
+    			    <option>horse</option>
+    			  </optgroup>
+    			  <optgroup label="reptiles">
+    			    <option>iguana</option>
+    			    <option>snake</option>
+    			  </optgroup>
+    		  </select></p>
+    		  
+    		  <p><label>Radio buttons</label><br>
+    		    <input type="radio" name="example"> Radio one<br>
+    		    <input type="radio" name="example"> Radio two<br>
+    		    <input type="radio" name="example"> Radio three<br></p>
+          
+    		  <p><label>Checkboxes</label><br>
+    		    <input type="checkbox"> Check one<br>
+    		    <input type="checkbox"> Check two<br>
+    		    <input type="checkbox"> Check three<br></p>
+        
+      </fieldset>
+    
+    </div>
+    <hr>
+
+    <p><a href="http://validator.w3.org/check?uri=referer">
+    <img src="valid.png" alt="Valid HTML 4.01 Strict" height="31" width="88" class="top"></a></p>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator"  content="XOOPS Cube" />
+<link rel="shortcut icon" href="<{$xoops_url}>/favicon.ico" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/xoops.css" />
+<{* If you change standard Legacy theme structure removing style*.css from the theme directory, you have to remove the following; *}>
+<{if $xoops_themecss != ""}>
+  <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+<{/if}>
+<script type="text/javascript" src="<{$xoops_url}>/common/js/
+prototype.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/js/
+scriptaculous.js"></script>
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
+
+<script type="text/javascript">
+<!--
+window.onload = function()
+{
+
+  Sortable.create("ldropzone",
+     {dropOnEmpty:true,handle:'handle',containment:["ldropzone","ccdropzone","cldropzone","crdropzone","rdropzone"],constraint:false, onChange:function(){ saveBlockPosition('ldropzone', Sortable.serialize('ldropzone')) }});
+  Sortable.create("ccdropzone",
+     {dropOnEmpty:true,handle:'handle',containment:["ldropzone","ccdropzone","cldropzone","crdropzone","rdropzone"],constraint:false, onChange:function(){ saveBlockPosition('ccdropzone', Sortable.serialize('ccdropzone')) }});
+  Sortable.create("cldropzone",
+     {dropOnEmpty:true,handle:'handle',containment:["ldropzone","ccdropzone","cldropzone","crdropzone","rdropzone"],constraint:false, onChange:function(){ saveBlockPosition('cldropzone', Sortable.serialize('cldropzone')) }});
+  Sortable.create("crdropzone",
+     {dropOnEmpty:true,handle:'handle',containment:["ldropzone","ccdropzone","cldropzone","crdropzone","rdropzone"],constraint:false, onChange:function(){ saveBlockPosition('crdropzone', Sortable.serialize('crdropzone')) }});
+  Sortable.create("rdropzone",
+     {dropOnEmpty:true,handle:'handle',containment:["ldropzone","ccdropzone","cldropzone","crdropzone","rdropzone"],constraint:false, onChange:function(){ saveBlockPosition('rdropzone', Sortable.serialize('rdropzone')) }});
+
+}
+// -->
+</script>
+
+<script type="text/javascript">
+<!--
+    var bp_cookie_value = new Array();
+
+  function saveBlockPosition(bdropzone, svalue) 
+  {
+
+	var re = new RegExp(bdropzone, 'ig');
+	svalue = svalue.replace(re,'');
+	svalue = svalue.replace(/\[\]\=/ig,'');
+
+	if ( bdropzone == 'ldropzone' ) {
+	bp_cookie_value['ldropzone'] =  'ldropzone:'+svalue;
+	}
+	else if ( bdropzone == 'ccdropzone' ) {
+	bp_cookie_value['ccdropzone'] =  'ccdropzone:'+svalue;
+	}
+	else if ( bdropzone == 'cldropzone' ) {
+	bp_cookie_value['cldropzone'] =  'cldropzone:'+svalue;
+	}
+	else if ( bdropzone == 'crdropzone' ) {
+	bp_cookie_value['crdropzone'] =  'crdropzone:'+svalue;
+	}
+	else if ( bdropzone == 'rdropzone' ) {
+	bp_cookie_value['rdropzone'] =  'rdropzone:'+svalue;
+	}
+
+	var bp_cookie_dirname = '<{$xoops_dirname}>';
+	if (!bp_cookie_dirname) bp_cookie_dirname = 'NotModule'; 
+
+	var current_bp_cookie = getBlockPositionCookie( '<{$groupsprefix}>'+'dd6theme' );
+	var bp_cookie_check_type = 3; //no cookie, no old value exists
+
+	if (current_bp_cookie) {
+	var current_bp_cookie_array = new Array();
+	var bp_cookie_temp = new Array();
+	current_bp_cookie_array = current_bp_cookie.split('|');
+	for (i = 0; i < current_bp_cookie_array.length; i++) {
+	bp_cookie_temp[i] = current_bp_cookie_array[i].split(',');
+		if ( bp_cookie_temp[i][0] == bp_cookie_dirname ) {
+		var old_bp_cookie = bp_cookie_temp[i];
+		var atari = i;
+		bp_cookie_check_type = 1; //cookie, old value exists
+		var old_bp_cookie_array = new Array();
+		for ( j=1; j< old_bp_cookie.length; j++ ) {
+		old_bp_cookie_array[j] = old_bp_cookie[j].split(':');
+		if ( !bp_cookie_value[old_bp_cookie_array[j][0]] ) {
+		bp_cookie_value[old_bp_cookie_array[j][0]] = old_bp_cookie_array[j][0]+':'+old_bp_cookie_array[j][1];
+		}//if
+		}//for
+		break; 
+		}//if dirname
+	}//for
+	if (bp_cookie_check_type != 1) {
+	bp_cookie_check_type = 2; //cookie, no old value exists
+	}
+	}//if current_bp_cookie
+
+	var bp_cookie_svalue = '';
+	bp_cookie_svalue += bp_cookie_dirname+',';
+	if ( bp_cookie_value['ldropzone'] ) bp_cookie_svalue += bp_cookie_value['ldropzone']+',';
+	if ( bp_cookie_value['ccdropzone'] ) bp_cookie_svalue += bp_cookie_value['ccdropzone']+',';
+	if ( bp_cookie_value['cldropzone'] ) bp_cookie_svalue += bp_cookie_value['cldropzone']+',';
+	if ( bp_cookie_value['crdropzone'] ) bp_cookie_svalue += bp_cookie_value['crdropzone']+',';
+	if ( bp_cookie_value['rdropzone'] ) bp_cookie_svalue += bp_cookie_value['rdropzone'];
+
+
+	if (bp_cookie_check_type == 1) {
+	current_bp_cookie_array[atari] = bp_cookie_svalue;
+	new_bp_cookie_value = current_bp_cookie_array.join('|');
+	}
+	else if (bp_cookie_check_type == 2) {
+	current_bp_cookie_array[current_bp_cookie_array.length] = bp_cookie_svalue;
+	new_bp_cookie_value = current_bp_cookie_array.join('|');
+	}
+	else {
+	new_bp_cookie_value = bp_cookie_svalue;
+	} 
+
+	setBlockPositionCookie ( '<{$groupsprefix}>'+'dd6theme', new_bp_cookie_value, 1 );
+
+  }
+
+ function setBlockPositionCookie(name, value, expiredays)
+ {
+	var todayDate = new Date();
+	todayDate.setDate( todayDate.getDate() + expiredays );
+	document.cookie = name + "=" + escape( value ) + "; expires=" + todayDate.toGMTString() + "; path=/;"
+ }
+
+ function getBlockPositionCookie(name)
+ {
+	var nameOfCookie = name + "=";
+	var x = 0;
+	while ( x <= document.cookie.length )
+	{
+		var y = (x+nameOfCookie.length);
+		if ( document.cookie.substring( x, y ) == nameOfCookie )
+		{
+			if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+			endOfCookie = document.cookie.length;
+			return unescape( document.cookie.substring( y, endOfCookie ) );
+		}
+		x = document.cookie.indexOf( " ", x ) + 1;
+		if ( x == 0 )
+		break;
+	}
+	return "";
+      }
+
+// -->
+</script>
+
+  <style type="text/css" media="screen">
+  ul.sortablelist {
+    margin:0px;
+    padding:0px;
+    list-style:none;
+  }
+  li.sortablelist2 {
+    margin:0px;
+    padding:0px;
+    list-style:none;
+  }
+  span.handle {
+    background-color: #E8A400;
+    color:white;
+    cursor: move;
+  }
+  </style>
+
+</head>
+<body>
+<div class="outline">
+<table cellspacing="0">
+<tr>
+<td class="headerlogo"><a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.gif" width="200" height="100"  alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a></td>
+<td class="headerbanner"><{$xoops_banner}></td>
+</tr>
+</table>
+<div class="headerbar">Welcome <{if $xoops_isuser}><{$xoops_uname}><{else}>Guest<{/if}>&nbsp;</div>
+
+<table cellspacing="0">
+<tr>
+<td id="leftcolumn" class="leftcolumn">
+<!-- XCL blocks left -->
+	<ul id="ldropzone" class="sortablelist">
+
+<{if $lblocks6cookie[0] == 'nocookie' }>
+<{foreach name=lblockloop item=block from=$xoops_lblocks}>
+	<li id="ldropzone_<{$block.id}>" class="sortablelist2">
+<div class="leftblockTitle">
+<{$block.title}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div class="leftblockContent">
+<{$block.content}>
+</div>
+	</li>
+<{/foreach}>
+<!-- cookie-->
+<{elseif $lblocks6cookie[0] != 'nocookie' && $lblocks6cookie[0] }>
+<{foreach item=blockid from=$lblocks6cookie}>
+<!-- compare start-->
+<{foreach item=block from=$xoops_lblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagelblockid" value=$block.id}>
+<{assign var="pagelblocktitle" value=$block.title}>
+<{assign var="pagelblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_ccblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagelblockid" value=$block.id}>
+<{assign var="pagelblocktitle" value=$block.title}>
+<{assign var="pagelblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_clblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagelblockid" value=$block.id}>
+<{assign var="pagelblocktitle" value=$block.title}>
+<{assign var="pagelblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_crblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagelblockid" value=$block.id}>
+<{assign var="pagelblocktitle" value=$block.title}>
+<{assign var="pagelblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_rblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagelblockid" value=$block.id}>
+<{assign var="pagelblocktitle" value=$block.title}>
+<{assign var="pagelblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<!-- compare end-->
+<li id="ldropzone_<{$pagelblockid}>" class="sortablelist2">
+<div class="leftblockTitle">
+<{$pagelblocktitle}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div class="leftblockContent">
+<{$pagelblockcontent}>
+</div>
+</li>
+<{/foreach}>
+<!--cookie-->
+<{/if}>
+<img src="<{$xoops_imageurl}>images/blank.gif" width="1" height="10" alt="" />
+	</ul>
+<img src="<{$xoops_imageurl}>images/blank.gif" width="1" height="10" alt="" />
+<!-- XCL blocks left end -->
+</td>
+
+<td id="centercolumn" class="centercolumn">
+<table cellspacing="0">
+<tr>
+<td id="centerCcolumn" colspan="2">
+	<ul id="ccdropzone" class="sortablelist">
+
+<{if $ccblocks6cookie[0] == 'nocookie'}>
+<{foreach name=ccblockloop item=block from=$xoops_ccblocks}>
+	<li id="ccdropzone_<{$block.id}>" class="sortablelist2">
+<div class="centeroutline">
+<div class="centerCblockTitle"><{$block.title}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div  class="centerCblockContent"><{$block.content}></div>
+</div>
+	</li>
+<{/foreach}>
+<!-- no cookie-->
+<{elseif $ccblocks6cookie[0] != 'nocookie' && $ccblocks6cookie[0]}>
+<{foreach item=blockid from=$ccblocks6cookie}>
+<!-- compare start-->
+<{foreach item=block from=$xoops_lblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageccblockid" value=$block.id}>
+<{assign var="pageccblocktitle" value=$block.title}>
+<{assign var="pageccblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_ccblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageccblockid" value=$block.id}>
+<{assign var="pageccblocktitle" value=$block.title}>
+<{assign var="pageccblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_clblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageccblockid" value=$block.id}>
+<{assign var="pageccblocktitle" value=$block.title}>
+<{assign var="pageccblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_crblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageccblockid" value=$block.id}>
+<{assign var="pageccblocktitle" value=$block.title}>
+<{assign var="pageccblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_rblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageccblockid" value=$block.id}>
+<{assign var="pageccblocktitle" value=$block.title}>
+<{assign var="pageccblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<!-- compare end-->
+<li id="ccdropzone_<{$pageccblockid}>" class="sortablelist2">
+<div class="centeroutline">
+<div class="centerCblockTitle"><{$pageccblocktitle}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div  class="centerCblockContent"><{$pageccblockcontent}></div>
+</div>
+</li>
+<{/foreach}>
+<!-- cookie -->
+<{/if}>
+<img src="<{$xoops_imageurl}>images/blank.gif" alt="" />
+</ul>
+<img src="<{$xoops_imageurl}>images/blank.gif" alt="" />
+
+</td>
+</tr>
+<tr>
+<td class="centerLcolumn">
+	<ul id="cldropzone" class="sortablelist">
+
+<{if $clblocks6cookie[0] == 'nocookie' }>
+<{foreach name=clblockloop item=block from=$xoops_clblocks}>
+	<li id="cldropzone_<{$block.id}>" class="sortablelist2">
+<div class="centeroutline">
+<div class="centerLblockTitle"><{$block.title}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div class="centerLblockContent"><{$block.content}></div>
+</div>
+	</li>
+<{/foreach}>
+<!-- no cookie-->
+<{elseif $clblocks6cookie[0] != 'nocookie' && $clblocks6cookie[0]}>
+<{foreach item=blockid from=$clblocks6cookie}>
+<!-- compare start-->
+<{foreach item=block from=$xoops_lblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageclblockid" value=$block.id}>
+<{assign var="pageclblocktitle" value=$block.title}>
+<{assign var="pageclblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_ccblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageclblockid" value=$block.id}>
+<{assign var="pageclblocktitle" value=$block.title}>
+<{assign var="pageclblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_clblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageclblockid" value=$block.id}>
+<{assign var="pageclblocktitle" value=$block.title}>
+<{assign var="pageclblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_crblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageclblockid" value=$block.id}>
+<{assign var="pageclblocktitle" value=$block.title}>
+<{assign var="pageclblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_rblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pageclblockid" value=$block.id}>
+<{assign var="pageclblocktitle" value=$block.title}>
+<{assign var="pageclblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<!-- compare end-->
+<li id="cldropzone_<{$pageclblockid}>" class="sortablelist2">
+<div class="centeroutline">
+<div class="centerLblockTitle"><{$pageclblocktitle}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div class="centerLblockContent"><{$pageclblockcontent}></div>
+</div>
+</li>
+<{/foreach}>
+<!-- cookie -->
+<{/if}>
+<img src="<{$xoops_imageurl}>images/blank.gif" alt="" />
+	</ul>
+<img src="<{$xoops_imageurl}>images/blank.gif" alt="" />
+</td>
+<td class="centerRcolumn">
+	<ul id="crdropzone" class="sortablelist">
+
+<{if $crblocks6cookie[0] == 'nocookie' }>
+<{foreach name=crblockloop item=block from=$xoops_crblocks}>
+	<li id="crdropzone_<{$block.id}>" class="sortablelist2">
+<div class="centeroutline">
+<div class="centerRblockTitle"><{$block.title}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div  class="centerRblockContent"><{$block.content}></div>
+</div>
+	</li>
+<{/foreach}>
+<!-- no cookie-->
+<{elseif $crblocks6cookie[0] != 'nocookie' && $crblocks6cookie[0]}>
+<{foreach item=blockid from=$crblocks6cookie}>
+<!-- compare start-->
+<{foreach item=block from=$xoops_lblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagecrblockid" value=$block.id}>
+<{assign var="pagecrblocktitle" value=$block.title}>
+<{assign var="pagecrblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_ccblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagecrblockid" value=$block.id}>
+<{assign var="pagecrblocktitle" value=$block.title}>
+<{assign var="pagecrblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_clblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagecrblockid" value=$block.id}>
+<{assign var="pagecrblocktitle" value=$block.title}>
+<{assign var="pagecrblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_crblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagecrblockid" value=$block.id}>
+<{assign var="pagecrblocktitle" value=$block.title}>
+<{assign var="pagecrblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_rblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagecrblockid" value=$block.id}>
+<{assign var="pagecrblocktitle" value=$block.title}>
+<{assign var="pagecrblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<!-- compare end-->
+<li id="crdropzone_<{$pagecrblockid}>" class="sortablelist2">
+<div class="centeroutline">
+<div class="centerRblockTitle"><{$pagecrblocktitle}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div  class="centerRblockContent"><{$pagecrblockcontent}></div>
+</div>
+</li>
+<{/foreach}>
+<!-- cookie -->
+<{/if}>
+<img src="<{$xoops_imageurl}>images/blank.gif" alt="" />
+	</ul>
+<img src="<{$xoops_imageurl}>images/blank.gif" alt="" />
+</td>
+</tr>
+</table>
+<div class="content"><{$xoops_contents}></div>
+</td>
+
+<td id="rightcolumn" class="rightcolumn">
+	<ul id="rdropzone" class="sortablelist">
+
+<{if $rblocks6cookie[0] == 'nocookie' }>
+<{foreach name=rblockloop item=block from=$xoops_rblocks}>
+	<li id="rdropzone_<{$block.id}>" class="sortablelist2">
+<div class="rightblockTitle"><{$block.title}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div class="rightblockContent"><{$block.content}></div>
+	</li>
+<{/foreach}>
+<!-- no cookie-->
+<{elseif $rblocks6cookie[0] != 'nocookie' && $rblocks6cookie[0]}>
+<{foreach item=blockid from=$rblocks6cookie}>
+<!-- compare start-->
+<{foreach item=block from=$xoops_lblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagerblockid" value=$block.id}>
+<{assign var="pagerblocktitle" value=$block.title}>
+<{assign var="pagerblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_ccblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagerblockid" value=$block.id}>
+<{assign var="pagerblocktitle" value=$block.title}>
+<{assign var="pagerblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_clblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagerblockid" value=$block.id}>
+<{assign var="pagerblocktitle" value=$block.title}>
+<{assign var="pagerblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_crblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagerblockid" value=$block.id}>
+<{assign var="pagerblocktitle" value=$block.title}>
+<{assign var="pagerblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<{foreach item=block from=$xoops_rblocks}>
+<{if $blockid == $block.id}>
+<{assign var="pagerblockid" value=$block.id}>
+<{assign var="pagerblocktitle" value=$block.title}>
+<{assign var="pagerblockcontent" value=$block.content}>
+<{/if}>
+<{/foreach}>
+<!-- compare end-->
+<li id="rdropzone_<{$pagerblockid}>" class="sortablelist2">
+<div class="rightblockTitle"><{$pagerblocktitle}>
+<span class="handle"><img src="<{$xoops_imageurl}>drag.gif" alt="" /></span>
+</div>
+<div class="rightblockContent"><{$pagerblockcontent}></div>
+</li>
+<{/foreach}>
+<!-- cookie -->
+<{/if}>
+<img src="<{$xoops_imageurl}>images/blank.gif" width="1" height="10" alt="" />
+	</ul>
+<img src="<{$xoops_imageurl}>images/blank.gif" width="1" height="10" alt="" />
+</td>
+</tr>
+</table>
+
+<div class="footerbar">
+<a href="http://xoopscube.sourceforge.net/"><img src="<{$xoops_imageurl}>images/poweredby.gif"  width="287" height="10" alt="XOOPS Cube PROJECT" title="XOOPS Cube PROJECT"  /></a><br />
+<{if $xoops_footer != 'Powered by XOOPS Cube 2.1&copy; 2001-2008  <a href="http://xoopscube.sourceforge.net/" target="_blank">XOOPS Cube Project</a>'}><{$xoops_footer}><{/if}>
+</div>
+
+</div>
+</body>
+</html>

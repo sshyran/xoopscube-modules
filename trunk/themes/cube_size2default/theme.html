@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator"  content="XOOPS Cube" />
+<link rel="shortcut icon" href="<{$xoops_url}>/favicon.ico" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/xoops.css" />
+<{* If you change standard Legacy theme structure removing style*.css from the theme directory, you have to remove the following; *}>
+<{if $xoops_themecss != ""}>
+  <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+<{/if}>
+<script type="text/javascript" src="<{$xoops_url}>/common/js/
+prototype.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/js/
+scriptaculous.js"></script>
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
+
+<script type="text/javascript">
+<!--
+   var effectDone = new Array();
+   function toggleEffect(resizetarget, toggleimg, idnum) {
+      if ( !effectDone[idnum] ) {
+         startEffect(resizetarget);
+         effectDone[idnum] = true;
+         $(toggleimg).src = '<{$xoops_imageurl}>restore.gif';
+         $(toggleimg).alt = 'Click me if you want to restore this block';
+      }
+      else {
+         resetEffect(resizetarget);
+         effectDone[idnum] = false;
+         $(toggleimg).src = '<{$xoops_imageurl}>minimize.gif';
+         $(toggleimg).alt = 'Click me if you want to minimize this block';
+      }
+   }
+
+   function startEffect(resizetarget) {
+	Effect.BlindUp(resizetarget);
+   }
+
+
+   function resetEffect(resizetarget) {
+	Effect.BlindDown(resizetarget);
+   }
+// -->
+</script>
+
+
+</head>
+<body>
+<div class="outline">
+<table cellspacing="0">
+<tr>
+<td class="headerlogo"><a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.gif" width="200" height="100"  alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a></td>
+<td class="headerbanner"><{$xoops_banner}></td>
+</tr>
+</table>
+<div class="headerbar">Welcome <{if $xoops_isuser}><{$xoops_uname}><{else}>Guest<{/if}>&nbsp;</div>
+
+<table cellspacing="0">
+<tr>
+<{if $xoops_showlblock == 1}>
+<td id="leftcolumn" class="leftcolumn">
+<!-- XCL blocks left -->
+<{foreach name=lblockloop item=block from=$xoops_lblocks}>
+<div class="leftblockTitle">
+<{$block.title}>
+<a href="javascript:toggleEffect('resizelblock<{$smarty.foreach.lblockloop.iteration}>', 'lsizeimage<{$smarty.foreach.lblockloop.iteration}>', <{$smarty.foreach.lblockloop.iteration}>)"><img id="lsizeimage<{$smarty.foreach.lblockloop.iteration}>" src="<{$xoops_imageurl}>minimize.gif" alt="Click me if you want to minimize this block" /></a>
+</div>
+<div id="resizelblock<{$smarty.foreach.lblockloop.iteration}>" class="leftblockContent">
+<{$block.content}>
+</div>
+<{/foreach}>
+<!-- XCL blocks left end -->
+</td>
+<{/if}>
+
+<td id="centercolumn" class="centercolumn">
+<{if $xoops_showcblock == 1}>
+<table cellspacing="0">
+<tr>
+<td id="centerCcolumn" colspan="2">
+<{foreach name=ccblockloop item=block from=$xoops_ccblocks}>
+<div class="centeroutline">
+<div class="centerCblockTitle"><{$block.title}>
+<a href="javascript:toggleEffect('resizeccblock<{$smarty.foreach.ccblockloop.iteration}>', 'ccsizeimage<{$smarty.foreach.ccblockloop.iteration}>', <{$smarty.foreach.lblockloop.iteration+$smarty.foreach.ccblockloop.iteration}>)"><img id="ccsizeimage<{$smarty.foreach.ccblockloop.iteration}>" src="<{$xoops_imageurl}>minimize.gif" alt="Click me if you want to minimize this block" /></a>
+</div>
+<div  id="resizeccblock<{$smarty.foreach.ccblockloop.iteration}>" class="centerCblockContent"><{$block.content}></div>
+</div>
+<{/foreach}>
+</td>
+</tr>
+<tr>
+<td class="centerLcolumn">
+<{foreach name=clblockloop item=block from=$xoops_clblocks}>
+<div class="centeroutline">
+<div class="centerLblockTitle"><{$block.title}>
+<a href="javascript:toggleEffect('resizeclblock<{$smarty.foreach.clblockloop.iteration}>', 'clsizeimage<{$smarty.foreach.clblockloop.iteration}>', <{$smarty.foreach.lblockloop.iteration+$smarty.foreach.ccblockloop.iteration+$smarty.foreach.clblockloop.iteration}>)"><img id="clsizeimage<{$smarty.foreach.clblockloop.iteration}>" src="<{$xoops_imageurl}>minimize.gif" alt="Click me if you want to minimize this block" /></a>
+</div>
+<div  id="resizeclblock<{$smarty.foreach.clblockloop.iteration}>" class="centerLblockContent"><{$block.content}></div>
+</div>
+<{/foreach}>
+</td>
+<td class="centerRcolumn">
+<{foreach name=crblockloop item=block from=$xoops_crblocks}>
+<div class="centeroutline">
+<div class="centerRblockTitle"><{$block.title}>
+<a href="javascript:toggleEffect('resizecrblock<{$smarty.foreach.crblockloop.iteration}>', 'crsizeimage<{$smarty.foreach.crblockloop.iteration}>', <{$smarty.foreach.lblockloop.iteration+$smarty.foreach.ccblockloop.iteration+$smarty.foreach.clblockloop.iteration+$smarty.foreach.crblockloop.iteration}>)"><img id="crsizeimage<{$smarty.foreach.crblockloop.iteration}>" src="<{$xoops_imageurl}>minimize.gif" alt="Click me if you want to minimize this block" /></a>
+</div>
+<div  id="resizecrblock<{$smarty.foreach.crblockloop.iteration}>" class="centerRblockContent"><{$block.content}></div>
+</div>
+<{/foreach}>
+</td>
+</tr>
+</table>
+<{/if}>
+<div class="content"><{$xoops_contents}></div>
+</td>
+
+<{if $xoops_showrblock == 1}>
+<td id="rightcolumn" class="rightcolumn">
+<{foreach name=rblockloop item=block from=$xoops_rblocks}>
+<div class="rightblockTitle"><{$block.title}>
+<a href="javascript:toggleEffect('resizerblock<{$smarty.foreach.rblockloop.iteration}>', 'rsizeimage<{$smarty.foreach.rblockloop.iteration}>', <{$smarty.foreach.lblockloop.iteration+$smarty.foreach.ccblockloop.iteration+$smarty.foreach.clblockloop.iteration+$smarty.foreach.crblockloop.iteration+$smarty.foreach.rblockloop.iteration}>)"><img id="rsizeimage<{$smarty.foreach.rblockloop.iteration}>" src="<{$xoops_imageurl}>minimize.gif" alt="Click me if you want to minimize this block" /></a>
+</div>
+<div  id="resizerblock<{$smarty.foreach.rblockloop.iteration}>" class="rightblockContent"><{$block.content}></div>
+<{/foreach}>
+</td>
+<{/if}>
+</tr>
+</table>
+
+<div class="footerbar">
+<a href="http://xoopscube.sourceforge.net/"><img src="<{$xoops_imageurl}>images/poweredby.gif"  width="287" height="10" alt="XOOPS Cube PROJECT" title="XOOPS Cube PROJECT"  /></a><br />
+<{if $xoops_footer != 'Powered by XOOPS Cube 2.1&copy; 2001-2008  <a href="http://xoopscube.sourceforge.net/" target="_blank">XOOPS Cube Project</a>'}><{$xoops_footer}><{/if}>
+</div>
+
+</div>
+</body>
+</html>
