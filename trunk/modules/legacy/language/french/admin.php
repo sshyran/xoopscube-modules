@@ -222,6 +222,7 @@ define('_AD_LEGACY_LANG_TITLE', "Titre");
 define('_AD_LEGACY_LANG_TOPPAGE', "Toppage");
 define('_AD_LEGACY_LANG_UNINSTALL', "Désinstaller");
 define('_AD_LEGACY_LANG_UPDATE', "Mise à jour");
+define('_AD_LEGACY_LANG_UPGRADE', "Mise à jour");
 define('_AD_LEGACY_LANG_VERSION', "Version");
 define('_AD_LEGACY_LANG_VISIBLE', "Visible");
 define('_AD_LEGACY_LANG_WEIGHT', "Ordre");

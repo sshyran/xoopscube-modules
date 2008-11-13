@@ -7,7 +7,7 @@ $content =
 <p>After login, a list of modules that can be installed will be displayed.<br>Select the modules that you would like to be installed and then click the "Install" button.</p>
 <p>Specified modules will be installed automatically, after which the top page of XOOPS Cube will be displayed and you are ready to go!</p>
 <img src="img/xcl_d3.png" width="200" height="230" alt="Package D3 Modules" align="left" style="margin-right:10px" />
-<h3 align="right">XOOPS Cube Legacy D3 Modules</h3>
+<h3 align="center">XOOPS Cube Legacy D3 Modules</h3>
 <br />
 <p><u><b>Manual</b></u>
 <br />You can find help documentation from each module administration interface.

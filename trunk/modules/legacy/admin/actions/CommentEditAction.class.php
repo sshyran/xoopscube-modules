@@ -12,11 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
 require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentAdminEditForm.class.php";
-<<<<<<< .mine
 require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
-=======
 require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
->>>>>>> .r74
 
 class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 {

@@ -15,7 +15,9 @@ $content .= "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
 <p>Ao clicar no botão [Prosseguir], aparecerá uma tela de entrada (<i>login</i>). Nela, escreva o codinome e senha escolhidos na etapa anterior e então clique no botão [Entrar].</p>
 <p>Uma lista com os módulos disponíveis para instalação será mostrada. Escolha aqueles que você irá utilizar e clique no botão [Instalar].</p>
 <p>E pronto, você será redirecionado para a tela inicial do seu portal em XOOPS Cube.</p>
-
+<img src='img/xcl_d3.png' width='200' height='230' alt='Package D3 Modules' align='left' style='margin-right:10px' />
+<h3 align='center'>XOOPS Cube Legacy D3 Modules</h3>
+<br />
 <u><b>Manuais</b></u>
 <ul>
 

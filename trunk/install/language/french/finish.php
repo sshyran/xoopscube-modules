@@ -10,6 +10,14 @@ Utilisez le compte administrateur créé dans la 1ère étape de l'installation.</p>
 Sélectionnez les modules complémentaires et cliquez sur le bouton <b>[ Installer ]</b>.</p>
 <p>Les modules spécifiés seront installés automatiquement et s'affichera ensuite<br>
 la page d'accueil de votre XOOPS Cube prêt à l'emploi!</p>
-<p>Visitez le site de support officiel <a href='http://www.xoopscube.org/' target='_blank'>XOOPS Cube</a> pour plus d'informations.</p>
+<img src='img/xcl_d3.png' width='200' height='230' alt='Package D3 Modules' align='left' style='margin-right:10px' />
+<h3 align='center'>XOOPS Cube Legacy D3 Modules</h3>
+<br />
+<p><u><b>Manual</b></u>
+<br />You can find help documentation from each module administration interface.
+<br />
+<br />
+<u><b>Support</b></u>
+<br />Visit <a href='http://xoopscube.org/' target='_blank'>XOOPS Cube Project</a> for more support.</p>
 ";
 ?>

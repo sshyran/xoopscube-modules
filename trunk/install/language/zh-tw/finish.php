@@ -7,6 +7,9 @@
 $content .=
 "<u><b>您的網站已經建置完成</b></u>
 <p>請按 <a href='../index.php'>這裡</a> 到網站首頁.</p>
+<img src='img/xcl_d3.png' width='200' height='230' alt='Package D3 Modules' align='left' style='margin-right:10px' />
+<h3 align='center'>XOOPS Cube Legacy D3 Modules</h3>
+<br />
 <u><b>如果有使用上的問題可至XOOPS支援站</b></u><p>請按<a href='http://xoopscube.org/' target='_blank'>XOOPS Cube</a>或<a href='http://tw.xoops.org/' target='_blank'>tw.xoops.org-繁體中文支援站</a></p>
 ";
 ?>
