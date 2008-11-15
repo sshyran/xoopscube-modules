@@ -25,7 +25,7 @@ function ccToggle(id)
 	} else {
 		el.display = 'block';
 		xoopsGetElementById('t'+id).className = 'head2';
-		xoopsGetElementById('i'+id).src = '<{"design/orange.gif"|theme}>';
+		xoopsGetElementById('i'+id).src = '<{"design/min.png"|theme}>';
 	}
 }
 // ]]> -->
@@ -45,7 +45,7 @@ function ccOpenAll()
 		cidel.style.display = 'block';
 		divs[i].className = 'head2';
 		var imgid = divid.replace(/t/i, 'i');
-		xoopsGetElementById(imgid).src = '<{"design/orange.gif"|theme}>';	
+		xoopsGetElementById(imgid).src = '<{"design/min.png"|theme}>';	
 	}
 	}
 	}
@@ -64,7 +64,7 @@ function ccCloseAll()
 		cidel.style.display = 'none';
 		divs[i].className = 'head';
 		var imgid = divid.replace(/t/i, 'i');
-		xoopsGetElementById(imgid).src = '<{"design/navy.gif"|theme}>';	
+		xoopsGetElementById(imgid).src = '<{"design/max.png"|theme}>';	
 	}
 	}
 	}
