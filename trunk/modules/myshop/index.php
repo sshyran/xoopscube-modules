@@ -37,7 +37,7 @@ $registry = new myshop_registryfile();
 
 // Template options
 $xoopsTpl->assign('nostock_msg', myshop_utils::getModuleOption('nostock_msg'));
-$xoopsTpl->assign('mod_pref', $mod_pref);	// Préférences du module
+$xoopsTpl->assign('mod_pref', $mod_pref);
 $xoopsTpl->assign('welcome_msg', nl2br($registry->getfile(MYSHOP_TEXTFILE1)));
 
 

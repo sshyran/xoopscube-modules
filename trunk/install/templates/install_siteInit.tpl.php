@@ -1,9 +1,9 @@
 <div style="width:500px;margin:0 auto; text-align:center;">
 
-<div class="confirmInfo"><?php echo _INSTALL_L36?></div>
+<div class="confirmInfo" style="text-align:center"><?php echo _INSTALL_L36?></div>
 <br />
-<div style="width:220px; float:left;margin-left:10px;text-align:left;">
-<img src="img/xcl_d3.png" width="200" height="230" alt="XOOPS Cube Legacy D3 Modules" /></div>
+<div style="width:250px; float:left;margin-left:10px;text-align:left;">
+<img src="img/xc_legacy.jpg" width="232" height="222" alt="XOOPS Cube Legacy" /></div>
 <div style="width:230px;float:left;margin-left:10px;text-align:left;">
 <?php echo _INSTALL_L37?><br />
 <input type="text" class="adminame" name="adminname" />

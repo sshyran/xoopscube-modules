@@ -20,20 +20,19 @@
  * ****************************************************************************
  */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');
-}
-$mydirpath = basename( dirname( dirname( __FILE__ ) ) ) ;
+if (!defined('XOOPS_ROOT_PATH')) exit();
+
 
 $modversion['name'] = _MI_MYSHOP_NAME;
 $modversion['version'] = 1.7;
 $modversion['description'] = _MI_MYSHOP_DESC;
 $modversion['author'] = "Myshop is originally based on Bookshop module by Instant Zero";
-$modversion['credits'] = "Author Herve Thouzard. Update by Nuno Luciano";
+$modversion['credits'] = "Author Herve Thouzard. Review by Nuno Luciano";
 $modversion['help'] = '';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;
-$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
+$modversion['image']       = 'module_icon.php' ;
+
 $modversion['dirname'] = 'myshop';
 
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';

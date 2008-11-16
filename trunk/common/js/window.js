@@ -1329,15 +1329,21 @@ var Windows = {
   
   // Closes all windows
   closeAll: function() {  
-    this.windows.each( function(w) {Windows.close(w.getId())} );
+    //this.windows.each( function(w) {Windows.close(w.getId())} );
+    this.windows.each( function(w) {if (w.options.className != 'trashcan') {Windows.close(w.getId())} } );
   },
   
+   // restore all windows
+  restoreAll: function() {  
+    this.windows.each( function(w) {if (w.options.className != 'trashcan') {w.show()} } );
+  },
+
   closeAllModalWindows: function() {
     WindowUtilities.enableScreen();     
     this.modalWindows.each( function(win) {if (win) win.close()});    
   },
 
-   // Minimizes a window with its id
+  // Minimizes a window with its id
   minimize: function(id, event) {
     var win = this.getWindow(id)
     if (win && win.visible)
@@ -1373,7 +1379,6 @@ var Windows = {
     if (event)
     Event.stop(event);
   },
-
 
   // show a window with its id
   showwin: function(id) {

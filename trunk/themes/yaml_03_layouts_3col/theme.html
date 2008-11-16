@@ -82,12 +82,12 @@ window.onload=function(){ AddFillerLink("col1_content","col2_content","col3_cont
 					<h4>#col1</h4>
 					<p>First Float Column</p>
                    <br />
-                    <!-- Start left blocks loop -->
+                    <!-- XCL blocks left -->
                     <{foreach item=block from=$xoops_lblocks}>
                     <div class="blockTitle"><{$block.title}></div>
                     <div class="blockContent"><{$block.content}></div>
                     <{/foreach}>
-                    <!-- End left blocks loop -->
+                    <!-- XCL blocks left end -->
 
 				</div>
 			</div>
@@ -98,12 +98,12 @@ window.onload=function(){ AddFillerLink("col1_content","col2_content","col3_cont
 					<h4>#col2</h4>
 					<p>Second Float Column</p>
                     <br />
-                    <!-- Start center-center blocks loop -->
+                    <!-- XCL blocks center-center -->
                     <{foreach item=block from=$xoops_ccblocks}>
                     <div class="blockTitle"><{$block.title}></div>
                     <div class="blockContent"><{$block.content}></div>
                     <{/foreach}>
-                    <!-- End center-center blocks loop -->
+                    <!-- XCL blocks center-center end -->
 				</div>
 			</div>
 			<!-- end: #col2 -->
@@ -113,12 +113,12 @@ window.onload=function(){ AddFillerLink("col1_content","col2_content","col3_cont
 					<h4>#col3</h4>
 					<p>Static Column</p>
                     <br />
-                        <!-- Start right blocks loop -->
+                        <!-- XCL blocks right -->
                         <{foreach item=block from=$xoops_rblocks}>
                         <div class="blockTitle"><{$block.title}></div>
                         <div class="blockContent"><{$block.content}></div>
                         <{/foreach}>
-                        <!-- End right blocks loop -->
+                        <!-- XCL blocks right end -->
 				</div>
 				<!-- IE Column Clearing -->
 				<div id="ie_clearing">&nbsp;</div>

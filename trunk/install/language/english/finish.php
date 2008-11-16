@@ -14,6 +14,6 @@ $content =
 <br />
 <br />
 <u><b>Support</b></u>
-<br />Visit <a href="http://xoopscube.sourceforge.net/" target="_blank">XOOPS Cube Project</a> for more support.</p>
+<br />Visit <a href="http://xoopscube.org/" target="_blank">XOOPS Cube Project</a> for more support.</p>
 ';
 ?>

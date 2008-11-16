@@ -6,7 +6,7 @@
 include (dirname(__FILE__)."/mydirname.php");
 
 $exname = ($myprefix=='eguide'?'':"|$egdirname");
-$myicon = "images/{$myprefix}_slogo2.png";
+$myicon = "images/module_icon.png";
 if (!file_exists("$mydirpath/$myicon")) $myicon = "module_icon.php";
 
 $modversion['name'] = _MI_EGUIDE_NAME.$exname;

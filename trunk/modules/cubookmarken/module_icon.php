@@ -16,7 +16,7 @@ header("Cache-Control: public, max-age=$icon_cache_limit");
 header("Last-Modified: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit));
 header("Content-type: image/png");
 
-if( file_exists( $mydirpath.'/images/eguide_slogo2.png' ) ) {
+if( file_exists( $mydirpath.'/images/logo.png' ) ) {
 	$use_custom_icon = true ;
 	$icon_fullpath = $mydirpath.'/'.ICON_TEMPLATE;
 } else {

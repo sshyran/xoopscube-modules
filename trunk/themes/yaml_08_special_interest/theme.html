@@ -80,12 +80,12 @@ window.onload=function(){ AddFillerLink("col1_content","col2_content","col3_cont
 					<h2>Column  #col1</h2>
 <br />
 
-<!-- Start left blocks loop -->
+<!-- XCL blocks left -->
 <{foreach item=block from=$xoops_lblocks}>
 <div class="blockTitle"><{$block.title}></div>
 <div class="blockContent"><{$block.content}></div>
 <{/foreach}>
-<!-- End left blocks loop -->
+<!-- XCL blocks left end -->
 
                     
 				</div>
@@ -98,12 +98,12 @@ window.onload=function(){ AddFillerLink("col1_content","col2_content","col3_cont
  
  <br />
  
-<!-- Start right blocks loop -->
+<!-- XCL blocks right -->
 <{foreach item=block from=$xoops_rblocks}>
 <div class="blockTitle"><{$block.title}></div>
 <div class="blockContent"><{$block.content}></div>
 <{/foreach}>
-<!-- End right blocks loop -->
+<!-- XCL blocks right end -->
 
 				</div>
 			</div>
@@ -120,12 +120,12 @@ window.onload=function(){ AddFillerLink("col1_content","col2_content","col3_cont
 <div id="content"><{$xoops_contents}></div>
 <br />
 <br />
-<!-- Start center-center blocks loop -->
+<!-- XCL blocks center-center -->
 <{foreach item=block from=$xoops_ccblocks}>
 <div class="blockTitle"><{$block.title}></div>
 <div class="blockContent"><{$block.content}></div>
 <{/foreach}>
-<!-- End center-center blocks loop -->
+<!-- XCL blocks center-center end -->
 
 
 

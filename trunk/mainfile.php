@@ -1,5 +1,5 @@
 <?php
-// $Id: mainfile.php,v 1.1 2007/05/15 02:34:30 minahito Exp $
+// $Id: mainfile.dist.php,v 1.2 2007/09/22 06:43:42 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

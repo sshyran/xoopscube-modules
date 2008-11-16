@@ -78,20 +78,20 @@
 					<h3>Lorem ipsum ... </h3>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
                     <br />
-            <!-- Start left blocks loop -->
+            <!-- XCL blocks left -->
 <{foreach item=block from=$xoops_lblocks}>
 <div class="blockTitle"><{$block.title}></div>
 <div class="blockContent"><{$block.content}></div>
 <{/foreach}>
-<!-- End left blocks loop -->
+<!-- XCL blocks left end -->
 <br />
 <br />
-<!-- Start right blocks loop -->
+<!-- XCL blocks right -->
 <{foreach item=block from=$xoops_rblocks}>
 <div class="blockTitle"><{$block.title}></div>
 <div class="blockContent"><{$block.content}></div>
 <{/foreach}>
-<!-- End right blocks loop -->
+<!-- XCL blocks right end -->
 				</div>
 			</div>
 			<!-- end: #col1 -->
@@ -110,12 +110,12 @@
                             <div id="content"><{$xoops_contents}></div>
                             <br />
                             <br />
-                            <!-- Start center-center blocks loop -->
+                            <!-- XCL blocks center-center -->
 <{foreach item=block from=$xoops_ccblocks}>
 <div class="blockTitle"><{$block.title}></div>
 <div class="blockContent"><{$block.content}></div>
 <{/foreach}>
-<!-- End center-center blocks loop -->
+<!-- XCL blocks center-center end -->
 				</div>
 				<div id="ie_clearing">&nbsp;</div>
 				<!-- End: IE Column Clearing -->

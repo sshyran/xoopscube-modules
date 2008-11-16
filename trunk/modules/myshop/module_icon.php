@@ -16,7 +16,7 @@ header("Cache-Control: public, max-age=$icon_cache_limit");
 header("Last-Modified: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit));
 header("Content-type: image/png");
 
-if( file_exists( $mydirpath.'/images/eguide_slogo2.png' ) ) {
+if( file_exists( $mydirpath.'/images/logo.png' ) ) {
 	$use_custom_icon = true ;
 	$icon_fullpath = $mydirpath.'/'.ICON_TEMPLATE;
 } else {
@@ -29,7 +29,7 @@ if( ! $use_custom_icon && function_exists( 'imagecreatefrompng' ) && function_ex
 
 //	$color = imagecolorallocate( $im , 0 , 0 , 0 ) ; // black
 
-	$color = imagecolorallocate( $im , 255 , 255 , 255 ) ; // black
+	$color = imagecolorallocate( $im , 255 , 255 , 255 ) ; // white
 	$px = ( 127 - 6 * strlen( $mydirname ) ) / 2 ;
 	imagestring( $im , 2 , $px , 5 , $mydirname , $color ) ;
 	imagepng( $im ) ;
