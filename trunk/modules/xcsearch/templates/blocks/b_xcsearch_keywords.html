@@ -1,0 +1,34 @@
+<div style="text-align:left;padding:3px;">
+
+<{if $block.cxs}>
+  <form name="keywordsranking" style="margin:0;">
+    <select name="cxs" id="cxs" onChange="ranking( '<{$block.mydirname}>',<{$block.num}>,<{$block.len}> )">
+      <option value="0">-- ALL --</option>
+      <{foreach item=cx from=$block.cxs}>
+        <option value="<{$cx.cxid}>"><{$cx.cxtitle}></option>
+      <{/foreach}>
+    </select><br />
+    <select name="ym" id="ym" onChange="ranking( '<{$block.mydirname}>',<{$block.num}>,<{$block.len}> )">
+      <option value="0">-- ALL --</option>
+      <{foreach item=ym from=$block.ym}>
+        <option value="<{$ym}>"><{$ym}></option>
+      <{/foreach}>
+    </select>
+  </form>
+<{/if}>
+
+<div id="xcserch_keywords_block">
+  <{foreach item=kw from=$block.kw key=count}>
+    <div style="clear:both;">
+      <div style="float:left;">
+        <b><{$count+1}></b> 
+        <a href="<{$xoops_url}>/modules/<{$block.mydirname}>/?cx=<{$block.cxs[0].cxvalue}>&amp;q=<{$kw.keyword_enc}>&amp;cof=FORID%3A11&amp;ie=<{$smarty.const._CHARSET}>&amp;oe=<{$smarty.const._CHARSET}>" title="<{$kw.keyword}>"><{* FORID:11 *}>
+          <{$kw.keyword_s}>
+        </a>
+      </div>
+      <div style="text-align:right;color:#00a;"><{$kw.count}></div>
+    </div>
+  <{/foreach}>
+</div>
+
+</div>
