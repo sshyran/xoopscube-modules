@@ -1,0 +1,61 @@
+<{if $actionForm->hasError()}>
+  <div class="error">
+    <ul>
+      <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+<form action="index.php?action=GrEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=gr_id value=$actionForm->get('gr_id')}>
+  <table class="outer">
+    <tr>
+    <{if $actionForm->get('gr_id')}>
+      <th colspan="2"><{$smarty.const._MD_XCAT_LANG_GR_EDIT}></th>
+  <{else}>
+      <th colspan="2"><{$smarty.const._MD_XCAT_LANG_ADD_A_NEW_GR}></th>
+  <{/if}>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_XCAT_LANG_GR_TITLE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=gr_title value=$actionForm->get('gr_title') size=15 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_XCAT_LANG_LEVEL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=level value=$actionForm->get('level')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_XCAT_LANG_PERMIT_TYPE}></td>
+      <td class="<{cycle values="odd,even"}>">
+      	<{$smarty.const._MD_XCAT_DESC_PERMIT_TYPE}>
+      	<table id="permitOptions">
+      	<tr>
+	      	<th><{$smarty.const._MD_XCAT_LANG_ACTIONS_KEY}></th>
+	      	<th><{$smarty.const._MD_XCAT_LANG_ACTIONS_TITLE}></th>
+	      	<th><{$smarty.const._MD_XCAT_LANG_ACTIONS_DEFAULT}></th>
+      	</tr>
+      	<{foreach from=$actions item=opt name=opt}>
+     		<{assign var=iter1 value=$smarty.foreach.opt.iteration-1}>
+      	<tr>
+	        <td><{xoops_input type=text name=actions_key[$iter1] value=$opt.key}></td>
+	        <td><{xoops_input type=text name=actions_title[$iter1] value=$opt.title}></td>
+	        <td><input type="checkbox" name="actions_default[<{$iter1}>]" value="1" id="legacy_xoopsform_actions_default[<{$iter1}>]" <{if $opt.default==1}>checked="checked" <{/if}>></td>
+	      </tr>
+        <{/foreach}>
+        </table>
+        <input type="button" value="<{$smarty.const._MD_XCAT_LANG_ADD_A_NEW_ACTION}>" onClick="addActionKeyForm()">
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>"/>
+      </td>
+    </tr>
+  </table>
+</form>

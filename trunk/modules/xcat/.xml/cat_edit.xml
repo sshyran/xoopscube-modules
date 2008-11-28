@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<cubson-dynaactionform>
+	<form-bean name="CatEditForm" type="XCube_ActionForm">
+		<form-property name="cat_id" type="Int" />
+		<form-property name="cat_title" type="String" />
+		<form-property name="gr_id" type="Int" />
+		<form-property name="p_id" type="Int" />
+		<form-property name="cat_desc" type="Text" />
+		<form-property name="weight" type="Int" />
+		<form-property name="options" type="Text" />
+	</form-bean>
+	<form-validation>
+		<field property="cat_id" depends="required">
+			<arg0 key="const._MD_XCAT_LANG_CAT_ID" />
+			<msg name="required" key="const._MD_XCAT_ERROR_REQUIRED" />
+		</field>
+		<field property="cat_title" depends="required,maxlength">
+			<arg0 key="const._MD_XCAT_LANG_CAT_TITLE" />
+			<msg name="required" key="const._MD_XCAT_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_XCAT_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="gr_id" depends="required">
+			<arg0 key="const._MD_XCAT_LANG_GR_ID" />
+			<msg name="required" key="const._MD_XCAT_ERROR_REQUIRED" />
+		</field>
+		<field property="p_id" depends="required">
+			<arg0 key="const._MD_XCAT_LANG_P_ID" />
+			<msg name="required" key="const._MD_XCAT_ERROR_REQUIRED" />
+		</field>
+		<field property="cat_desc" depends="required">
+			<arg0 key="const._MD_XCAT_LANG_CAT_DESC" />
+			<msg name="required" key="const._MD_XCAT_ERROR_REQUIRED" />
+		</field>
+		<field property="weight" depends="required">
+			<arg0 key="const._MD_XCAT_LANG_WEIGHT" />
+			<msg name="required" key="const._MD_XCAT_ERROR_REQUIRED" />
+		</field>
+		<field property="options" depends="required">
+			<arg0 key="const._MD_XCAT_LANG_OPTIONS" />
+			<msg name="required" key="const._MD_XCAT_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</cubson-dynaactionform>

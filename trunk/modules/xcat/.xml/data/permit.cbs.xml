@@ -1,0 +1,13 @@
+ï»ÀÞ?xml version="1.0" encoding="utf-8"?>
+<cubson-mapping>
+  <class table="permit">
+    <id name="permit_id" type="XOBJ_DTYPE_INT" column="permit_id">
+      <generator type="increment" />
+    </id>
+    <property name="cat_id" type="XOBJ_DTYPE_INT" column="cat_id" not-null="true" default="0" />
+    <property name="uid" type="XOBJ_DTYPE_INT" column="uid" not-null="true" default="0" />
+    <property name="groupid" type="XOBJ_DTYPE_INT" column="groupid" not-null="true" default="0" />
+    <property name="permissions" type="XOBJ_DTYPE_TEXT" column="permissions" not-null="true" />
+    <many-to-one name="mCat" column="cat_id" class="Entity.cat" />
+  </class>
+</cubson-mapping>

@@ -1,0 +1,13 @@
+<h1><{$smarty.const._MD_XCAT_LANG_CAT}><{$smarty.const._LIST}></h1>
+<ul>
+<li><a href="./index.php?action=GrEdit"><{$smarty.const._MD_XCAT_LANG_ADD_A_NEW_GR}></a></li>
+</ul>
+<div class="xcat">
+	<{foreach item=obj from=$objects}>
+		<div class="xcat_group">
+			<h2><{$smarty.const._MD_XCAT_LANG_GR}> : <{$obj->mGr->getShow('gr_title')}></h2>
+			[<a href="./index.php?action=GrView&amp;gr_id=<{$obj->mGr->getShow('gr_id')}>"><{$smarty.const._VIEW}></a>] [<a href="./index.php?action=CatEdit&amp;gr_id=<{$obj->mGr->getShow('gr_id')}>"><{$smarty.const._MD_XCAT_LANG_ADD_A_NEW_CAT}></a>]
+			<{xcat_tree tree=$obj->mTree control=true}>
+		</div>
+	<{/foreach}>
+</div>

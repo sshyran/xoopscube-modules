@@ -1,0 +1,24 @@
+<div class="xcat">
+	<div class="grDetail">
+	<h1><{$smarty.const._MD_XCAT_LANG_GR_TITLE}> : <{$object->getShow('gr_title')}><a href="index.php?action=GrEdit&gr_id=<{$object->getShow('gr_id')}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></h1>
+	<ul>
+	  <li><a href="index.php?action=CatEdit&gr_id=<{$object->getShow('gr_id')}>"><{$smarty.const._MD_XCAT_LANG_ADD_A_NEW_CAT}></a></li>
+	</ul>
+	<dl>
+	  <dt><{$smarty.const._MD_XCAT_LANG_LEVEL}></dt>
+	  <dd><{if $object->getShow('level')==0}><{$smarty.const._MD_XCAT_LANG_UNLIMITED}><{else}><{$object->getShow('level')}><{/if}></dd>
+	</dl>
+	  <h3><{$smarty.const._MD_XCAT_LANG_PERMIT_TYPE}></h3>
+	  <table>
+	  	<tr><th><{$smarty.const._MD_XCAT_LANG_ACTIONS_KEY}></th><th><{$smarty.const._MD_XCAT_LANG_ACTIONS_TITLE}></th><th><{$smarty.const._MD_XCAT_LANG_ACTIONS_DEFAULT}></th></tr>
+	  <{foreach item=action key=oKey from=$actionsArr.title}>
+	  	<tr><td><{$action}></td><td><{$oKey}></td><td><{if $actionsArr.default[$oKey]==1}>OK<{else}>NO<{/if}></td></tr>
+	  <{/foreach}>
+	</table>
+	</div>
+	
+	<div class="catTree">
+		<h2><{$smarty.const._MD_XCAT_LANG_CAT}></h2>
+		<{xcat_tree tree=$childrenTree url="./index.php?action=CatView&amp;cat_id="}>
+	</div>
+</div>
