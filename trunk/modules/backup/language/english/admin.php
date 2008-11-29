@@ -70,6 +70,6 @@ define ("_AM_MYXBACKUP_GO_RESTORE_NOTE",	"Start to restore (unable to cancel ope
 define ("_AM_MYXBACKUP_RESTORE_DONE",		"Restore done. Delete SQL files.");
 
 //	Clean Up
-define ("_AM_MYXBACKUP_CAUTIONTODEL",		"<span style=\"color:#ff0000;\">Neccesary tables may be listed up in the case of DUPLICATABLE modules.<br />DO NOT DELETE any tables if you are not confident.<br />You should BACK-UP before this operation.</span>");
+define ("_AM_MYXBACKUP_CAUTIONTODEL",		"<span style=\"color:#ff0000;\">Necessary tables may be listed up in the case of DUPLICATABLE modules.<br />DO NOT DELETE any tables if you are not confident.<br />You should BACK-UP before this operation.</span>");
 define ("_AM_MYXBACKUP_TAKERISK",		"TAKE MY OWN RISK");
 ?>
