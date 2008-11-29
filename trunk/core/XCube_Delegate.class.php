@@ -2,7 +2,7 @@
 /**
  *
  * @package XCube
- * @version $Id: XCube_Delegate.class.php,v 1.8 2008/10/12 04:30:27 minahito Exp $
+ * @version $Id: XCube_Delegate.class.php,v 1.9 2008/11/16 10:05:55 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/>
  * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
  *
@@ -323,7 +323,7 @@ class XCube_Delegate
 						break;
 
 					case "string":
-						if (!empty($args[$i]) && is_string($args[$i])) {
+						if (!empty($args[$i]) && !is_string($args[$i])) {
 							return false;
 						}
 						break;

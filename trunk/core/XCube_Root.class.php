@@ -2,7 +2,7 @@
 /**
  *
  * @package XCube
- * @version $Id: XCube_Root.class.php,v 1.9 2008/10/12 04:30:27 minahito Exp $
+ * @version $Id: XCube_Root.class.php,v 1.10 2008/11/20 16:05:57 minahito Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/>
  * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
  *
@@ -142,7 +142,7 @@ class XCube_Root
 	function loadSiteConfig()
 	{
 		if (func_num_args() == 0) {
-			die("FETAL: usage error: site setting config.");
+			die("FETAL: open error: site setting config.");
 		}
 
 		$file = func_get_arg(0);

@@ -1,9 +1,9 @@
 <?php
 /**
  * @package Legacy
- * @version $Id: version.php,v 1.20 2008/11/02 14:47:10 minahito Exp $
+ * @version $Id: version.php,v 1.21 2008/11/16 10:31:30 minahito Exp $
  */
 
-define("XOOPS_VERSION", "XOOPS Cube Legacy 2.1.6 RC 3");
+define("XOOPS_VERSION", "XOOPS Cube Legacy 2.1.6");
 
 ?>
