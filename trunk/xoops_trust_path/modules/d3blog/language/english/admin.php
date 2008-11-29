@@ -60,7 +60,7 @@ define ( '_MD_A_D3BLOG_MESSAGE_YOU_MUST_PREPARE_CSS_DIRECTORY','Invalid operatio
 define ( '_MD_A_D3BLOG_MESSAGE_CSS_FILES_SUCCESSFULLY_WRITTEN','CSS files have been successfully written.' );
 
 // <--- ERROR PROPERTY --->
-define ( '_MD_A_D3BLOG_ERROR_WRONG_PID','You choiced a wrong parent category (or DB corapsed).' );
+define ( '_MD_A_D3BLOG_ERROR_WRONG_PID','You choose a wrong parent category (or DB collapse).' );
 define ( '_MD_A_D3BLOG_ERROR_NAME_REQUIRED','Category name is required.' );
 define ( '_MD_A_D3BLOG_ERROR_NAME_SIZEOVER','A category name length is longer than %s.' );
 define ( '_MD_A_D3BLOG_ERROR_WRONG_IMGURL','Image url\'s format is illegal.' );
@@ -76,7 +76,7 @@ define ( '_MD_A_D3BLOG_FORMAT_CSS_DIRECTORY','CSS directory is %s.' );
 // <--- PERMDESC PROPERTY --->
 define ( '_MD_A_D3BLOG_PERMDESC_CAN_VIEW_BLOG','Can view' );
 define ( '_MD_A_D3BLOG_PERMDESC_CAN_EDIT_BLOG','Can edit' );
-define ( '_MD_A_D3BLOG_PERMDESC_CAN_APPROVE_BLOG_SELF','Autoapprove' );
+define ( '_MD_A_D3BLOG_PERMDESC_CAN_APPROVE_BLOG_SELF','Auto-approve' );
 define ( '_MD_A_D3BLOG_PERMDESC_ALLOW_HTML','HTML allowed' );
 define ( '_MD_A_D3BLOG_PERMDESC_EDITOR','Editor' );
 

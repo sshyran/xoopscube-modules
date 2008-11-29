@@ -1,0 +1,61 @@
+<div class="miniamazonItem">
+  <div class="head maHead">
+	<div class="maTitle">
+		<a href="<{$myurl}>/index.php?lid=<{$item.lid}>"><{$item.title}></a>
+	</div>
+	<div class="regdate"><{$item.regdate}></div>
+	<div class="maOthers">
+		<{$lang_cat}>&nbsp;<a href="<{$myurl}>/index.php?cid=<{$item.cid}>"><{$item.ctitle}></a> / 
+		<{$item.ProductGroup}> / 
+		<{if $item.Creator}><{$item.Creator}> / <{/if}>
+		<{$item.Manufacturer}>
+		<{if $item.uid==0}>
+			 / <{$item.uname}>
+		<{else}>
+			 / <a href="<{$xoopsurl}>/userinfo.php?uid=<{$item.uid}>"><{$item.uname}></a>
+		<{/if}>
+		 / <a href="<{$myurl}>/index.php?lid=<{$item.lid}>"><{$lang_detail}></a>&nbsp;[<{$item.clicks}>]
+		<!-- d3forum comment integration -->
+		<{if $comment_dirname && $comment_forum_id && $comment_allow}>
+		 / <img src="<{$myurl}>/images/comment.png" /><{$lang_comment}>&nbsp;<{d3forum_comment_topicscount dirname=$comment_dirname forum_id=$comment_forum_id  link_id=$item.lid}>&nbsp;(<{d3forum_comment_postscount dirname=$comment_dirname forum_id=$comment_forum_id  link_id=$item.lid}>)
+		<{/if}>
+	</div>
+  </div>
+
+	<table border="0"><tr><td class="maLeftItem">
+		<a href="<{$myurl}>/index.php?lid=<{$item.lid}>">
+		<{if $item.MediumImage}>
+			<{if $item.IsAdult && !$ma_age}>
+				<img src="<{$myurl}>/images/warning40.gif" alt="<{$item.title}>" />
+			<{else}>
+				<img src="<{$item.MediumImage}>" alt="<{$item.title}>" />
+			<{/if}>
+		<{else}>
+			<img src="<{$myurl}>/images/noimage40.gif" alt="<{$item.title}>" />
+		<{/if}>
+		</a>
+	</td><td class="maRightItem">
+		<{if $item.IsAdult && !$ma_age}>
+			<{$lang_warning}>
+			<form action="<{$myurl}>/index.php?lid=<{$item.lid}>" method="post">
+			<input type="submit" name="over18" value="<{$smarty.const._YES}>">
+			<input type="submit" name="under18" value="<{$smarty.const._NO}>">
+			</form>
+		<{else}>
+			<{$item.description}>
+		<{/if}>
+		
+		<div class="maEdit">
+		<form action="<{$myurl}>/index.php?act=edit&amp;lid=<{$item.lid}>" method="post">
+		<{if $item.editperm || $deleteperm}>
+			<input type="submit" value="<{$smarty.const._EDIT}>">
+		<{/if}>
+		<{if $deleteperm}>
+			<input type="submit" name="conf_delete" value="<{$smarty.const._DELETE}>">
+		<{/if}>
+		</form>
+		</div>
+	</td></tr></table>
+
+</div>
+

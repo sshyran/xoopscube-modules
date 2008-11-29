@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<cubson-dynaactionform>
+	<form-bean name="EnqEditForm" type="XCube_ActionForm">
+		<form-property name="enq_id" type="Int" />
+		<form-property name="title" type="String" />
+		<form-property name="cat_id" type="Int" />
+		<form-property name="uid" type="Int" />
+		<form-property name="type" type="Int" />
+		<form-property name="pub_unixtime" type="Int" />
+		<form-property name="end_unixtime" type="Int" />
+		<form-property name="choices" type="Text" />
+		<form-property name="description" type="Text" />
+		<form-property name="option" type="Text" />
+		<form-property name="reg_unixtime" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="enq_id" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_ENQ_ID" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="title" depends="required,maxlength">
+			<arg0 key="const._MD_BIZPOLL_LANG_TITLE" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_BIZPOLL_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="cat_id" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_CAT_ID" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="uid" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_UID" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="type" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_TYPE" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="pub_unixtime" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_PUB_UNIXTIME" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="end_unixtime" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_END_UNIXTIME" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="choices" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_CHOICES" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="description" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_DESCRIPTION" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="option" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_OPTION" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+		<field property="reg_unixtime" depends="required">
+			<arg0 key="const._MD_BIZPOLL_LANG_REG_UNIXTIME" />
+			<msg name="required" key="const._MD_BIZPOLL_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</cubson-dynaactionform>

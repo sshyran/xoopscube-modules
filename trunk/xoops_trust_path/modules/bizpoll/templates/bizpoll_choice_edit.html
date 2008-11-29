@@ -1,0 +1,49 @@
+<{if $actionForm->hasError()}>
+  <ul class="error">
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+<{/if}>
+<form action="index.php?action=ChoiceEdit" method="post">
+  <table class="outer" summary="">
+    <caption>
+      <{if $actionForm->get('choice_id')}>
+        <{$smarty.const._MD_BIZPOLL_LANG_CHOICE_EDIT}>
+      <{else}>
+        <{$smarty.const._MD_BIZPOLL_LANG_ADD_A_NEW_CHOICE}>
+      <{/if}>
+   </caption>
+   <tbody>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_CHOICE_TITLE}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_input type=text name=title value=$actionForm->get('title') size=50 maxlength=255}>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_WEIGHT}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_input type=text name=weight value=$actionForm->get('weight')}>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_DESCRIPTION}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_textarea type=text name=description value=$actionForm->get('description')}>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="foot" colspan="2">
+          <{xoops_token form=$actionForm}>
+          <{xoops_input type=hidden name=choice_id value=$actionForm->get('choice_id')}>
+          <{xoops_input type=hidden name=enq_id value=$actionForm->get('enq_id')}>
+          <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+          <input type="submit" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel" />
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</form>

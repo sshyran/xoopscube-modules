@@ -1,0 +1,100 @@
+<h3><{$mod_name}> - <{$menu_name}></h3>
+
+
+<{if $categories}>
+  <table class="outer">
+	<th colspan="5" class="head"><{$smarty.const._MD_A_COUPONS_CAT_LIST}></th>
+    <tr>
+		<th><{$smarty.const._MD_A_COUPONS_CAT_NAME}></th>
+		<th><{$smarty.const._MD_A_COUPONS_CAT_ORDER}></th>
+		<th><{$smarty.const._MD_A_COUPONS_CAT_ITEMNUM}></th>
+		<th><{$smarty.const._MD_A_COUPONS_CAT_IMAGE}></th>
+		<th></th>
+	</tr>
+	<{foreach item=cat from=$categories}>
+	  <tr class="<{cycle values='odd,even'}>">
+	  	<td><{$cat.prefix}><{$cat.title}></td>
+	  	<td><{$cat.corder}></td>
+	  	<td><{$cat.itemnum}></td>
+	  	<td><{if $cat.imgurl}><img src="<{$xoops_url}>/<{$imgpath}>/<{$cat.imgurl}>" /><{/if}></td>
+	  	<td><a href="<{$myurl}>/admin/index.php?page=categories&amp;cid=<{$cat.cid}>" title="<{$smarty.const._EDIT}>"><img src="<{$xoops_url}>/images/icons/edit.png" alt="<{$smarty.const._EDIT}>" /></a></td>
+	  </tr>
+	<{/foreach}>
+  </table>
+<{/if}>
+
+
+<div class="head"></div>
+<form id="categoryform" name="categoryform" action="<{$myurl}>/admin/index.php?page=categories" method="post" style="margin:0;" onsubmit='return submitCheck();'>
+  <table class="outer">
+  <{if $editcat}>
+	<th colspan="2" class="even active">
+    <{else}>
+    <th class="outer">
+    <{/if}>
+    <{$smarty.const._MD_A_COUPONS_CAT_NEWEDIT}>
+    </th>
+    <tr>
+		<td class="head"><{$smarty.const._MD_A_COUPONS_CAT_NAME}></td>
+		<td class="odd"><input type="text" name="title" id="title" size="50" value="<{$editcat.title}>" /></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_A_COUPONS_CAT_PARENT}></td>
+		<td class="odd">
+		<{$pidselector}>
+		</td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_A_COUPONS_CAT_ORDER}></td>
+		<td class="odd"><input type="text" name="corder" id="corder" value="<{if $editcat.corder}><{$editcat.corder}><{else}>0<{/if}>" /></td>
+	</tr>
+	<tr>
+		<td class="head"><{$smarty.const._MD_A_COUPONS_CAT_IMAGE}></td>
+		<td class="odd">
+			<select name="imgurl" id="imgurl" onchange='showImgSelected("categoryimage", "imgurl", "", "", "<{$xoops_url}>/<{$imgpath}>")'>
+				<option value="">----</option>
+				<{foreach item=imgfile from=$imgfiles}>
+					<option value="<{$imgfile}>" <{if $editcat.imgurl==$imgfile}>selected="SELECTED"<{/if}> ><{$imgfile}></option>
+				<{/foreach}>
+			</select>
+			<span style="display:block;margin:5px;">
+			  <{if $editcat.imgurl}>
+			    <img src="<{$xoops_url}>/<{$imgpath}>/<{$editcat.imgurl}>" name="categoryimage" id="categoryimage" alt="" />
+			  <{else}>
+			    <img src="<{$xoops_url}>/images/blank.gif" name="categoryimage" id="categoryimage" alt="" />
+			  <{/if}>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="foot">&nbsp;</td>
+		<td class="foot">
+			<input type="submit" name="edit" id="edit" value="<{$smarty.const._SUBMIT}>" />
+			<{if $editcat}>
+			  <input type="button" value="<{$smarty.const._DELETE}>" onclick='if(document.categoryform.cid.value!=0)if(confirm("<{$smarty.const._MD_A_COUPONS_CAT_DEL_MSG}>")){document.categoryform.delcat.value="1"; submit();}' />
+			<{/if}>
+			<input type="hidden" name="cid" value="<{if $editcat.cid}><{$editcat.cid}><{else}>0<{/if}>" id="cid" />
+			<{$gticket}>
+		</td>
+	</tr>
+  </table>
+  <input type="hidden" name="delcat" value="" />
+</form>
+
+
+<script type='text/javascript'>
+<!--//
+function submitCheck() {
+  //PARENT CATEGRY check
+  var cid = document.getElementById('cid');
+  if( cid.value > 0 ){
+    var pid = document.getElementById('pid');
+    if( cid.value == pid.value ){
+      alert( "<{$smarty.const._MD_CID_EQUAL_PID}>" );
+      return false ;
+    }
+  }
+  return true ;
+}
+//-->
+</script>

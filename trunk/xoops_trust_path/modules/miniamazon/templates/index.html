@@ -1,0 +1,29 @@
+<div id="miniamazonContent">
+
+<{include file="db:`$mydirname`_header.html"}>
+
+
+<{include file="db:`$mydirname`_categories.html"}>
+
+<hr />
+<form name='cid_select' action='<{$myurl}>/index.php' method='GET' style='margin:0px;text-align:center;'>
+    <select name='cid' onchange='submit();'>
+      <option value=''><{$lang_catsel}></option>
+      <{$category_options}>
+    </select> &nbsp; &nbsp;
+    <{$alltotal}> &nbsp; &nbsp;
+	<{* input type="hidden" name="act" value="viewcat" *}>
+</form>
+
+
+<{if $navidisp}><{$navi}><{/if}>
+
+<{foreach from=$items item=item}>
+  <{include file="db:`$mydirname`_list_item.html"}>
+<{/foreach}>
+
+<{if $navidisp}><{$navi}><{/if}>
+
+<{include file="db:`$mydirname`_footer.html"}>
+
+</div>

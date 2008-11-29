@@ -1,0 +1,23 @@
+<div class="bizpoll">
+<ul class="toptab">
+  <li><a href="index.php?action=PollEdit"><{$smarty.const._MD_BIZPOLL_LANG_ADD_A_NEW_POLL}></a></li>
+</ul>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+  <{foreach item=obj from=$objects}>
+      <{$obj->getShow('poll_id')}>
+      <{$obj->getShow('enq_id')}>
+      <{$obj->getShow('uid')}>
+      <{$obj->getShow('name')}>
+      <{$obj->getShow('choice_id')}>
+      <{$obj->getShow('ip')}>
+      <{$obj->getShow('comment')}>
+      <{$obj->get('reg_unixtime')|xoops_formattimestamp:l}>
+      
+        <a href="./index.php?action=PollView&amp;poll_id=<{$obj->getShow('poll_id')}>"><{$smarty.const._VIEW}></a>
+        <a href="./index.php?action=PollEdit&amp;poll_id=<{$obj->getShow('poll_id')}>"><{$smarty.const._EDIT}></a>
+        <a href="./index.php?action=PollDelete&amp;poll_id=<{$obj->getShow('poll_id')}>"><{$smarty.const._DELETE}></a>
+      
+  <{/foreach}>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+</div>

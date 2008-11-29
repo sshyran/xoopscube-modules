@@ -1,0 +1,21 @@
+<div id="malogo">
+	<a href="<{$myurl}>/"><img src="<{$myurl}>/images/malogo.gif" alt="" /></a>
+</div>
+
+<{if $postperm}>
+  <div style="text-align:right;">
+	|&nbsp;<a href="<{$myurl}>/index.php?act=submit"><{$lang_regi}></a>&nbsp;|
+  </div>
+<{/if}>
+
+<div id="maBreadcrumbs">
+	<a href="<{$xoops_url}>/">SiteTop</a>
+	<{foreach from=$xoops_breadcrumbs item="crumb"}>
+		&nbsp;<img src="<{$myurl}>/images/a_red.gif" />&nbsp;
+		<{if $crumb.url}>
+			<a href="<{$crumb.url}>"><{$crumb.name}></a>
+		<{else}>
+			<{$crumb.name}>
+		<{/if}>
+	<{/foreach}>
+</div>

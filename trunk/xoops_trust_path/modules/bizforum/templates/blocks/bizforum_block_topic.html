@@ -1,0 +1,6 @@
+<ul>
+  <{foreach item=obj from=$block}>
+  	<li><a href="<{$xoops_url}>/modules/<{$dirname}>/index.php?action=PostList&amp;topic_id=<{$obj->getShow('topic_id')}>"><{$obj->getShow('topic_title')|truncate:100:"..."}></a> (<{$obj->mPostCount}>) <{$obj->getShow('last_unixtime')|date_format:"%Y.%m.%d"}>
+		</li>
+  <{/foreach}>
+</ul>

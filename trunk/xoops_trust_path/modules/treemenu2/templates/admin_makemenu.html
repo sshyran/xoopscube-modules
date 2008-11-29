@@ -1,0 +1,220 @@
+<style type='text/css'>
+  input.move { width:20px; height:20px; border:0; font-size:0px; line-height:200px; color:#fff; cursor: pointer; }
+  input.left { background: url(../images/minus.gif) no-repeat; }
+  input.right { background: url(../images/plus.gif) no-repeat; }
+  input.up { background: url(../images/up.gif) no-repeat 0 0; }
+  input.down { background: url(../images/down.gif) no-repeat 0 0; }
+  input.bup { background: url(../images/bup.gif) no-repeat 0 0; }
+  input.bdown { background: url(../images/bdown.gif) no-repeat 0 0; }
+
+div.handle {
+  background-color: #E8A400;
+  color:white;
+  font-weight:bold;
+  <{if ($jsfiles == 1 && $ieopera == 0) }>cursor: move;<{/if}>
+  padding: 2px;
+  vertical-align: middle;
+}
+ul#treemenu_admin li {
+  list-style: none outside;
+  margin: 10px 0px;
+  padding:0px;
+  min-width:600px;
+  border:1px solid #E8A400;
+  background-color: #FFF4D8;
+  clear: both;
+}
+#blocksort { margin:20px; cursor:pointer; }
+#treemenu_admin table { margin:0; }
+</style>
+
+
+
+<form name="MainForm" action="<{$selfurl}>" method="POST">
+<input type="hidden" name="deleteid" value="" />
+<input type="hidden" name="deletebid" value="" />
+<h3><{$modulename}></h3>
+<span style="color:red;" id="notcorrect"><{$notcorrect}>&nbsp;</span>
+
+
+
+
+<ul id="treemenu_admin">
+
+
+<div id="jsonoffdesc"><{$smarty.const._MA_TREEMENU_JAVASCRIPT_OFF}></div>
+
+<input type="submit" name="blocksort" id="blocksort" value="<{$smarty.const._MA_TREEMENU_UPDATE}>" />
+
+<{foreach from=$menus2 item=menub}>
+<{foreach from=$menub item=menu  name=i}>
+
+<{if $menu.hiera == 0}>
+<li id="index_<{$menu.blockid}>">
+<div class="handle" style="height:24px;">
+  <div style="float:left"><{$smarty.const._MA_TREEMENU_BLOCKID}>&nbsp;:&nbsp;<{$menu.blockid}>&nbsp;-&gt;&nbsp;</div>
+  <div style="float:left">
+    <input type="text" name="block_sort[<{$menu.blockid}>]" value="<{$menu.blockid}>" size="3" style="text-align:center;" id="block_sort_<{$menu.blockid}>" onChange="sortCheck()" />
+  </div>
+  <div style="text-align:right;width:200px;float:right;">
+    <input type="button" name="delete" value="<{$smarty.const._MA_TREEMENU_BLOCK_DELETE}>" onclick="if(<{$menu.del_bconfirm}>){document.MainForm.deletebid.value='<{$menu.blockid}>'; submit();}" >
+  </div>
+</div>
+<table cellspacing="1" class="outer" style="width:100%;">
+  <tr class="head">
+    <td nowrap><{$smarty.const._MA_TREEMENU_MENU_ID}></td>
+    <td colspan="2"><{$smarty.const._MA_TREEMENU_MOVE}></td>
+    <td nowrap><{$smarty.const._MA_TREEMENU_ORDER}></td>
+    <{* td nowrap><{$smarty.const._MA_TREEMENU_MENU_HIERA}></td *}>
+    <td nowrap style="width:12%;"><{$smarty.const._MA_TREEMENU_MENU_FLOW}></td>
+    <{* td nowrap><{$smarty.const._MA_TREEMENU_MENU_ERR}></td *}>
+    <td style="width:50%;"><{$smarty.const._MA_TREEMENU_MENU_TITLE}></td>
+    <td colspan="2" style="width:15%;"><{$smarty.const._MA_TREEMENU_ACTION}></td>
+	<{if ($jsfiles == 1 && $ieopera == 1) || $jsfiles == 0}><td><{$smarty.const._MA_TREEMENU_MOVE}></td>
+	<{else}><noscript><td><{$smarty.const._MA_TREEMENU_MOVE}></td></noscript>
+	<{/if}>
+  </tr>
+<{/if}>
+
+  <tr class="<{if $menu.blockid is div by 2}>odd<{else}>even<{/if}>" class="handle">
+    <td><{$menu.subid}></td>
+    <td nowrap>
+	  <input type="submit" name="up" value="<{$menu.subid}>" class="up move" title="<{$smarty.const._MA_TREEMENU_UP}>" />
+	  <input type="submit" name="down" value="<{$menu.subid}>" class="down move" title="<{$smarty.const._MA_TREEMENU_DOWN}>" />
+	</td>
+	<td nowrap>
+	  <input type="submit" name="left" value="<{$menu.subid}>" class="left move" title="<{$smarty.const._MA_TREEMENU_MINUS}>" />
+	  <input type="submit" name="right" value="<{$menu.subid}>" class="right move" title="<{$smarty.const._MA_TREEMENU_PLUS}>" />
+	</td>
+    <td><{$menu.sortnum}></td>
+    <{* td><{$menu.hiera}></td *}>
+    <td><{$menu.flow}></td>
+    <{* td><{$menu.flag}></td *}>
+    <td nowrap style="padding:0;<{if $menu.flag==1}>background:pink;<{/if}>">
+		<table border="0" cellspacing="1" style="margin:0; border:0;"><tr>
+		<{if $menu.hiera > 0}>
+			<td style="width:<{$menu.indent}>px; background:#999; padding:0; height:30px; border:0;color:#FFF;font-size:0.9em;">
+			<{$menu.hiera}><{if $menu.flag== 1 }><span style="color:red;font-size:1.4em;">X</span><{/if}>
+			</td>
+		<{/if}>
+		<td style="<{if $menu.flag==1}>background:pink;<{/if}> border:0;">
+		<a href="<{$menu.url}>" target="_blank" ><{$menu.title}></a>
+		</td>
+		</tr></table>
+	</td>
+    <td nowrap>
+	  <a href="?act=edit&amp;subid=<{$menu.subid}>"><{$smarty.const._EDIT}></a>
+	  <a href="?act=addurl&amp;subid=<{$menu.subid}>"><{$smarty.const._MA_TREEMENU_ADDURL}></a>
+	  <{if $menu.addurl > 0}><span style="color:red;">*</span><{/if}>
+	</td>
+	<td norap>
+      <input type="button" name="delete" value="<{$smarty.const._DELETE}>"  onclick="if(<{$menu.del_confirm}>){document.MainForm.deleteid.value='<{$menu.subid}>'; submit();}" >
+    </td>
+	<{if ($jsfiles == 1 && $ieopera == 1) || $jsfiles == 0 }>
+	<td nowrap>
+	  <{if $menu.hiera == 0}>
+	  <input type="submit" name="bup" value="<{$menu.blockid}>" class="bup move" title="<{$smarty.const._MA_TREEMENU_BLOCK_UP}>" />
+	  <input type="submit" name="bdown" value="<{$menu.blockid}>" class="bdown move" title="<{$smarty.const._MA_TREEMENU_BLOCK_DOWN}>" />
+	  <{/if}>
+	</td>
+	<{else}>
+	<noscript><td nowrap>
+	  <{if $menu.hiera == 0}>
+	  <input type="submit" name="bup" value="<{$menu.blockid}>" class="bup move" title="<{$smarty.const._MA_TREEMENU_BLOCK_UP}>" />
+	  <input type="submit" name="bdown" value="<{$menu.blockid}>" class="bdown move" title="<{$smarty.const._MA_TREEMENU_BLOCK_DOWN}>" />
+	  <{/if}>
+	</td></noscript>
+	<{/if}>
+  </tr>
+
+	<{if $smarty.foreach.i.last }>
+	</table></li>
+	<{/if}>
+
+<{/foreach}>
+<{/foreach}>
+
+</ul><{* END id=treemenu_admin *}>
+
+
+<{$gticket}>
+</form>
+
+
+
+<p><strong><{$smarty.const._MA_TREEMENU_INSERT_TITLE}></strong></p>
+<form name="MainForm2" action="<{$selfurl}>" method="POST">
+<table cellspacing="1" class="outer">
+  <tr>
+    <td class="head"><{$smarty.const._MA_TREEMENU_MENU_TITLE}></td>
+    <td class="even">
+      <input type="text" name="title" size="60">
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MA_TREEMENU_MENU_URL}></td>
+    <td class="odd">
+      <input type="text" name="url" size="60" value="<{$smarty.const.XOOPS_URL}>/">
+    </td>
+  </tr>
+  <tr>
+  <tr>
+    <td class="head"><{$smarty.const._MA_TREEMENU_MENU_ACCESS}></td>
+    <td class="even">
+      <{foreach from=$grouplist item=group}>
+        <input type="checkbox" name="grp[<{$group.id}>]" value="1" checked="checked"><{$group.name}>&nbsp;
+      <{/foreach}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head">&nbsp;</td>
+    <td class="odd">
+      <input type="submit" name="insert" value="<{$smarty.const._ADD}>">
+    </td>
+  </tr>
+</table>
+<{$gticket}>
+</form>
+
+
+
+<{if ($jsfiles == 1 && $ieopera == 0) }>
+<script type="text/javascript" src="<{$xoops_url}>/common/lib/prototype.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/lib/scriptaculous.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+
+Sortable.create(
+	'treemenu_admin', 
+	{
+		constraint: false,
+		handle: 'handle',
+		onUpdate: function( ele ) {
+			var weight_counter = 1 ;
+			Sortable.sequence( ele ).each(
+				function( num ) {
+					$('block_sort_'+num).value = weight_counter ;
+					weight_counter += 1 ;
+				}
+			) ;
+		sortCheck();
+		}
+	}
+);
+
+function sortCheck(){
+	var c = 0;
+	for( i=1; i<=<{if $menu.blockid!=""}><{$menu.blockid}><{else}>0<{/if}>; i++ ){
+		if( $('block_sort_'+i).value != i ) c++ ; 
+	}
+	$('blocksort').style.background = ( c > 0 ) ? "#F00" : "#FFF" ;
+}
+
+function treemenu_init(){
+	$('jsonoffdesc').innerHTML = "<{$smarty.const._MA_TREEMENU_JAVASCRIPT_ON}>" ;
+}
+
+setTimeout( 'treemenu_init()' , 3000 );
+// ]]>
+</script>
+<{/if}>

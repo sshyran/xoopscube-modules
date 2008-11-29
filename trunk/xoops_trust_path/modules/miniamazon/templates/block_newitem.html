@@ -1,0 +1,25 @@
+<table width='100%' cellspacing='0' cellpadding='0' border='0'>
+  <tr>
+    <{foreach item=item key=count from=$block.items}>
+      <td align='center' style='margin:0px;padding:5px 0px;width:<{$block.width}>%;'>
+        <a href="<{$block.mod_url}>/index.php?lid=<{$item.lid}>"><{$item.title}></a><br />
+        <a href="<{$block.mod_url}>/index.php?lid=<{$item.lid}>">
+		  <{if $item.MediumImage}>
+		    <{if $item.IsAdult && !$block.ma_age}>
+		      <img src="<{$block.mod_url}>/images/warning40.gif" alt="<{$item.title}>" title="<{$item.title}>" />
+		    <{else}>
+		      <img src="<{$item.MediumImage}>" height="50" alt="<{$item.title}>" title="<{$item.title}>" />
+		    <{/if}>
+		  <{else}>
+		    <img src="<{$block.mod_url}>/images/noimage40.gif" alt="<{$item.title}>" title="<{$item.title}>" />
+		  <{/if}>
+		</a>
+		<br />(<{$item.regdate}>)
+      </td>
+      <{if $count is div by $block.cols }>
+        </tr>
+        <tr>
+      <{/if}>
+    <{/foreach}>
+  </tr>
+</table>

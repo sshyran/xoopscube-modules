@@ -1,0 +1,7 @@
+<ul>
+  <{foreach item=d from=$block.datas}>
+    <li><a href="<{$myurl}>/index.php?did=<{$d.did}>"><{$d.data[$field]}></a> 
+    <{if $catTitleArr}><{if $d.cat_id!=0}>[<{$catTitleArr[$d.cat_id]}>]<{/if}><{/if}> 
+    (<{"Y/n/j G:i"|date:$d.regidate}>)</li>
+  <{/foreach}>
+</ul>

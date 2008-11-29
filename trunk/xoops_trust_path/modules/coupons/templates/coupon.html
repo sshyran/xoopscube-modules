@@ -1,0 +1,108 @@
+<table class="outer" width="100%" cellspacing="0">
+  <tr>
+    <td class="head">
+      <div style="float:left;">
+        <a href="<{$myurl}>/index.php?lid=<{$coupon.lid}>" style="font-size:120%;"><{$coupon.title}></a>
+      </div>
+      <div style="text-align:right;font-weight:normal;width:204px;float:right;">
+        <{$smarty.const._MD_LASTUPDATEC}> : <{$coupon.regidate}>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="even">
+      <div style="text-align:left;">
+        <b><{$smarty.const._MD_CATEGORY}> : </b>
+        <a href="<{$myurl}>/index.php?cid=<{$coupon.cid}>"><{$allcat[$coupon.cid]}></a>
+      </div>
+
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="odd">
+
+        <div style="text-align:right;float:right;padding:4px 4px 4px 12px;">
+          <a href="<{$myurl}>/index.php?page=print&amp;lid=<{$coupon.lid}>">
+            <img src="<{$myurl}>/images/icon_print.gif" style="vertical-align:middle;" />
+          </a>&nbsp;
+          <a href="<{$myurl}>/index.php?page=mobile&amp;lid=<{$coupon.lid}>" target="_blank">
+          <{if $qrcode_size}>
+            <img src="http://chart.apis.google.com/chart?chs=<{$qrcode_size}>x<{$qrcode_size}>&cht=qr&chl=<{$coupon.qr_url}>" style="vertical-align:middle;" />
+          <{elseif $qrcode}>
+            <img src="<{$xoops_url}>/common/qrcode/qrcode_image.php?d=<{$coupon.qr_url}>&e=M&s=2&v=0&t=P&rgb=000000&inst=<{$xoops_url|rawurlencode}>" style="vertical-align:middle;" />
+          <{/if}>
+          </a>
+        </div>
+
+      <div style="text-align: justify">
+        <{if $coupon.description}>
+          <b><{$smarty.const._MD_DESCRIPTIONC}> : </b>
+          <{$coupon.description}><br />
+        <{/if}>
+        <{foreach item=addfield from=$coupon.addfields key=count}>
+          <{if $addfield.title || $addfield.desc}>
+            <b><{$addfield.title}> :</b> <{$addfield.desc}><br />
+          <{/if}>
+        <{/foreach}>
+      </div>
+    </td>
+  </tr>
+
+  <{if !$qrcode && !$qrcode_size}>
+  <tr>
+    <td class="odd" style="text-align:right;">
+      <a href="<{$myurl}>/index.php?page=mobile&amp;lid=<{$coupon.lid}>" target="_blank">
+        Mobile : <{$myurl}>/index.php?page=mobile&amp;lid=<{$coupon.lid}>
+      </a>
+    </td>
+  </tr>
+  <{/if}>
+
+  <{if $coupon.embed_url}>
+  <tr>
+    <td class="odd" style="text-align:right;">
+      <a href="<{$coupon.embed_url}>"><{$smarty.const._MD_EMBED_MODULE}></a>
+    </td>
+  </tr>
+  <{/if}>
+
+  <tr>
+    <td class="even">
+      <{$smarty.const._MD_LIMITTIME}>  <{$coupon.endtime}>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="foot" style="text-align:right;font-weight:normal;">
+      <{$smarty.const._MD_HITS}> <{$coupon.hits}> | 
+      <{$smarty.const._MD_SUBMITTER}> 
+        <{if $coupon.uid gt 0 }>
+          <a href="<{$myurl}>/index.php?uid=<{$coupon.uid}>"><{$coupon.uname}></a>
+          <a href="<{$xoops_url}>/userinfo.php?uid=<{$coupon.uid}>"><img src="<{$myurl}>/images/information.png" style="vertical-align:text-top" /></a>
+        <{else}>
+          <{$coupon.uname}>
+        <{/if}>
+        | <a href="<{$myurl}>/index.php?lid=<{$coupon.lid}>">
+        <{if $comment_dirname && $comment_forum_id }>
+          <!-- d3forum comment integration -->
+          <{*
+          <{$smarty.const._MD_COMMENT_INTEGRATION}>(<{d3forum_comment_postscount dirname=$comment_dirname forum_id=$comment_forum_id link_id=$coupon.lid}>)
+          *}>
+        <{else}>
+          <{$smarty.const._MD_DETAIL}>
+        <{/if}>
+        </a>
+      <{if $coupon.editlink}>
+        | <a href="<{$myurl}>/index.php?page=edit&amp;lid=<{$coupon.lid}>"><img src="<{$myurl}>/images/page_edit.gif" style="vertical-align:text-top" /><{$smarty.const._MD_MODIFY}></a>
+      <{/if}>
+    </td>
+  </tr>
+</table>
+
+
+
+<br style="clear:both;" />

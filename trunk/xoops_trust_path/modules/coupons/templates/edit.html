@@ -1,0 +1,293 @@
+<{include file="db:`$mydirname`_header.html"}>
+
+<{include file="db:`$mydirname`_perm.html"}>
+
+
+
+<form action="" name="postform" method="post" onsubmit='return submitCheck();' >
+
+<table border="1" style="padding:6px;border-collapse:collapse;empty-cells:show; border-color:#999;margin-bottom:16px;">
+  <tr> 
+    <th nowrap="nowrap" colspan="2"> 
+      <{$smarty.const._MD_SUBMITCOUPON}>
+    </th>
+  </tr>
+  <tr> 
+    <td class="head" nowrap="nowrap"> 
+      <{$smarty.const._MD_COUPONTITLE}>
+    </td>
+    <td class="even"> 
+      <input type="text" name="title" size="50" maxlength="255" value="<{$coupon.title}>" />
+    </td>
+  </tr>
+
+
+  <tr> 
+    <td class="head" nowrap="nowrap"> 
+      <{$smarty.const._MD_CATEGORY}>
+    </td>
+    <td class="odd" id="category">
+      <div id="categ"><{$category_selbox}></div>
+      <div id="categadd"></div>
+    </td>
+  </tr>
+
+
+  <tr> 
+    <td class="head" nowrap="nowrap"> 
+      <{$smarty.const._MD_STARTDATE}>
+    </td>
+    <td class="odd"> 
+      <input type="text" name="startdate" id="startdate" size="50" maxlength="255" value="<{$date_format|date:$coupon.starttime_STP}>" />&nbsp;&nbsp;<{$datetype_f}>
+      <select name="starthour">
+        <{section name="shour" start="0" step="1" loop="24" }>
+          <option value="<{$smarty.section.shour.index}>" 
+            <{if $smarty.section.shour.index=='G'|date:$coupon.starttime_STP}>SELECTED="SELECTED"<{/if}>
+           ><{$smarty.section.shour.index}></option>
+        <{/section}>
+      </select>&nbsp;:&nbsp;
+      <select name="startmin">
+        <{section name="smin" start="0" step="1" loop="60" }>
+          <option value="<{$smarty.section.smin.index}>" 
+            <{if $smarty.section.smin.index=='i'|date:$coupon.starttime_STP}>SELECTED="SELECTED"<{/if}>
+           ><{$smarty.section.smin.index}></option>
+        <{/section}>
+      </select>&nbsp;:&nbsp;
+      <select name="startsec">
+        <{section name="ssec" start="0" step="1" loop="60" }>
+          <option value="<{$smarty.section.ssec.index}>" 
+            <{if $smarty.section.ssec.index=='s'|date:$coupon.starttime_STP}>SELECTED="SELECTED"<{/if}>
+           ><{$smarty.section.ssec.index}></option>
+        <{/section}>
+      </select>
+      <br />
+      <div id="startCal"></div>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" nowrap="nowrap"> 
+      <{$smarty.const._MD_ENDDATE}>
+    </td>
+    <td class="even"> 
+      <input type="text" name="enddate" id="enddate" size="50" maxlength="255" value="<{$date_format|date:$coupon.endtime_STP}>" />&nbsp;&nbsp;
+      <select name="endhour">
+        <{section name="ehour" start="0" step="1" loop="24" }>
+          <option value="<{$smarty.section.ehour.index}>" 
+            <{if $smarty.section.ehour.index=='G'|date:$coupon.endtime_STP}>SELECTED="SELECTED"<{/if}>
+           ><{$smarty.section.ehour.index}></option>
+        <{/section}>
+      </select>&nbsp;:&nbsp;
+      <select name="endmin">
+        <{section name="emin" start="0" step="1" loop="60" }>
+          <option value="<{$smarty.section.emin.index}>" 
+            <{if $smarty.section.emin.index=='i'|date:$coupon.endtime_STP}>SELECTED="SELECTED"<{/if}>
+           ><{$smarty.section.emin.index}></option>
+        <{/section}>
+      </select>&nbsp;:&nbsp;
+      <select name="endsec">
+        <{section name="esec" start="0" step="1" loop="60" }>
+          <option value="<{$smarty.section.esec.index}>" 
+            <{if $smarty.section.esec.index=='s'|date:$coupon.endtime_STP}>SELECTED="SELECTED"<{/if}>
+           ><{$smarty.section.esec.index}></option>
+        <{/section}>
+      </select>
+
+      <br />
+      <div id="endCal"></div>
+    </td>
+  </tr>
+
+  <tr> 
+    <td class="head" nowrap="nowrap"> 
+      <{$smarty.const._MD_DESCRIPTIONC}>
+      <div style="padding-left:12px;font-weight:normal;">
+        <input type="checkbox" onClick="onoff('desc_bbcode_buttons_pre')" id="desc_bbcode_buttons_preONOFF"><{$smarty.const._MD_TOOLS}><br />
+        <input type="checkbox" onClick="onoff('desc_bbcode_buttons_post')" id="desc_bbcode_buttons_postONOFF"><{$smarty.const._MD_SMILIES}>
+      </div>
+    </td>
+    <td class="even" >
+      <{xoopsdhtmltarea name="desc" cols="60" rows="7" value=$coupon.description pre_style="display:none;" post_style="display:none;"}>
+    </td>
+  </tr>
+
+  <{if $addfield}>
+  <tr> 
+    <td class="head" nowrap="nowrap"> 
+      <{$smarty.const._MD_ADDFILED}>
+      <div style="padding-left:12px;font-weight:normal;">
+        <a href="javascript:void(0)" onclick="addHTML('fld','fldadd');"><{$smarty.const._MD_ADD}></a>
+      </div>
+    </td>
+    <td class="odd" id="category">
+      <{foreach item=addfield from=$coupon.addfields key=count}>
+        <{if $count==0}>
+          <div id="fld" style="float:left;"><input type="text" name="fieldtitle[]" id='addfiled11' value="<{$addfield.title}>" />
+            <input type="text" name="fielddesc[]" size="50" maxlength="255" value="<{$addfield.desc}>"  id='addfiled12' /></div>
+            <div>&nbsp;<a href="javascript:void(0)" onclick="clearValue(['addfiled11','addfiled12']);">CLEAR</a></div>
+        <{else}>
+          <div id="fldadd<{$count}>" style="clear:both;"><input type="text" name="fieldtitle[]"  value="<{$addfield.title}>" />
+            <input type="text" name="fielddesc[]" size="50" maxlength="255" value="<{$addfield.desc}>"  />
+              &nbsp;<a href='javascript:void(0)' onclick='delThis("fldadd<{$count}>");'>DELETE</a>
+          </div>
+        <{/if}>
+      <{/foreach}>
+      <div id="fldadd" style="clear:both;"></div>
+    </td>
+  </tr>
+  <{/if}>
+
+
+
+  <tr>
+    <td class="head" valign="top">
+      <{$smarty.const._MD_SUBMITTER}>
+    </td>
+    <td class="even" >
+        <{$coupon.uname}>
+    </td>
+  </tr>
+
+
+
+  <tr>
+    <td class="head" valign="top">
+      <{$smarty.const._MD_LASTUPDATEC}>
+    </td>
+    <td class="even" >
+      <{$coupon.regidate}>&nbsp;
+      <input type="checkbox" name="age" value="1" checked="checked"><{$smarty.const._MD_NEW_DATE}></input>
+      <{if $isadmin}>
+        <br />
+          <input type="checkbox" name="modage" value="1"><{$smarty.const._MD_MOD_DATE}></input> 
+          <{$dateselector}>
+          <br />YYYY/MM/DD hh:mm:ss
+      <{/if}>
+    </td>
+  </tr>
+
+  <tr class="foot">
+    <td></td>
+    <td>
+      <{if $xoops_isuser}>
+        <input type="submit" name="edit" class="button" value="<{$smarty.const._SUBMIT}>" />
+      <{else}>
+        <input type="hidden" name="CP" value="YES" />
+        <input type="submit" name="submit" class="button" value="<{$smarty.const._SUBMIT}>" onclick="postform.CP.value='';" />
+      <{/if}>
+      <{if $delperm}>
+        <input type="button" value="<{$smarty.const._DELETE}>" onclick='if(confirm("<{$smarty.const._MD_COUPON_DEL_MSG}>")){document.postform.dellink.value="1";submit();}' />
+      <{/if}>
+      &nbsp;<input type="button" value="<{$smarty.const._CANCEL}>" onclick="javascript:history.go(-1)" />
+    </td>
+  </tr>
+</table>
+
+<{$gticket}>
+<input type="hidden" name="dellink" value="" />
+<input type="hidden" name="lid" value="<{$coupon.lid}>" />
+</form>
+
+<{include file="db:`$mydirname`_footer.html"}>
+
+
+<script type='text/javascript'>
+<!--//
+function clearValue( arr ){
+  for(i=0; i<arr.length; i++){
+    document.getElementById( arr[i] ).value = '' ;
+  }
+}
+
+function submitCheck() {
+  myform = window.document.postform;
+  //TITLE check
+  if( myform.title.value == "" ){
+    alert("<{$smarty.const._MD_COUPONTITLE}><{$smarty.const._MD_SUBMIT_ALERT}>");
+    myform.title.focus();
+    return false;
+  }
+  //CATEGRY check
+  <{if $categoryselector==0}>
+    if( myform.cid.selectedIndex==0 ){
+      alert("<{$smarty.const._MD_CATEGORY}><{$smarty.const._MD_SUBMIT_ALERT}>");
+      return false;
+    }
+  <{else}>
+    var cidselect = document.getElementById('cid');
+    var selectcount = 0 ;
+    for(i=0;i<cidselect.length;i++) {
+      if(cidselect.options[i].selected) {
+        selectcount++;
+      }
+    }
+    if( selectcount==0 ){
+      alert("<{$smarty.const._MD_CATEGORY}><{$smarty.const._MD_SUBMIT_ALERT}>");
+      return false;
+    }
+  <{/if}>
+  //DATE check
+  var startdate = myform.startdate.value ;
+  var enddate = myform.enddate.value ;
+  if( !startdate || !enddate ) {
+    alert("<{$smarty.const._MD_STARTDATE}> or <{$smarty.const._MD_ENDDATE}> <{$smarty.const._MD_SUBMIT_ALERT}>");
+    return false ;
+  }
+  startdate = startdate.replace(/\./g,'-');
+  startdate = startdate.replace(/\//g,'-');
+  startdate = startdate.replace(/,/g,'-');
+  document.getElementById('startdate').value = startdate ;
+  startdate = startdate.split("-");
+  startdate = parseInt(startdate[0]*10000)+parseInt(startdate[1]*100)+parseInt(startdate[2]);
+  enddate = enddate.replace(/\./g,'-');
+  enddate = enddate.replace(/\//g,'-');
+  enddate = enddate.replace(/,/g,'-');
+  document.getElementById('enddate').value = enddate ;
+  enddate = enddate.split("-");
+  enddate = parseInt(enddate[0]*10000)+parseInt(enddate[1]*100)+parseInt(enddate[2]);
+  if( startdate > enddate  ){
+    alert("<{$smarty.const._MD_START_END_ALERT}>");
+    return false;
+  }
+  var today = new Date();
+  var year = today.getYear();
+  if(year < 2000) year += 1900;
+  var mon = today.getMonth() + 1;
+  var date = today.getDate();
+  today = year*10000+mon*100+parseInt(date) ;
+  if( enddate < today ){
+    alert("<{$smarty.const._MD_START_END_ALERT}>");
+    return false;
+  }
+  return true;
+}
+
+
+
+
+YAHOO.namespace("startend.calendar");
+
+YAHOO.startend.calendar.init = function() {
+
+	function handleSelect(type,args,obj) {
+		var dates = args[0]; 
+		var date = dates[0];
+		var year = date[0], month = date[1], day = date[2];
+
+		var objid = (obj.id=='scal') ? "startdate" : "enddate" ;
+		<{if $datetype==1}>var f_date = year +'-'+ month +'-'+ day;<{/if}>
+		<{if $datetype==2}>var f_date = month +'-'+ day +'-'+ year;<{/if}>
+		<{if $datetype==3}>var f_date = day +'-'+ month +'-'+ year;<{/if}>
+		document.getElementById(objid).value = f_date ;
+	}
+
+	YAHOO.startend.calendar.scal = new YAHOO.widget.Calendar("scal","startCal",{pagedate:"<{'m/Y'|date:$coupon.starttime_STP}>",selected:"<{'m/d/Y'|date:$coupon.starttime_STP}>"});
+	YAHOO.startend.calendar.scal.selectEvent.subscribe(handleSelect, YAHOO.startend.calendar.scal, true);
+	YAHOO.startend.calendar.scal.render();
+	YAHOO.startend.calendar.ecal = new YAHOO.widget.Calendar("ecal","endCal",{pagedate:"<{'m/Y'|date:$coupon.endtime_STP}>",selected:"<{'m/d/Y'|date:$coupon.endtime_STP}>"});
+	YAHOO.startend.calendar.ecal.selectEvent.subscribe(handleSelect, YAHOO.startend.calendar.ecal, true);
+	YAHOO.startend.calendar.ecal.render();
+}
+
+YAHOO.util.Event.onDOMReady(YAHOO.startend.calendar.init);
+//-->
+</script>

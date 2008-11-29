@@ -1,0 +1,57 @@
+<div class="bizforum">
+	<h1><{$smarty.const._MD_BIZFORUM_LANG_TOPIC}><{$smarty.const._LIST}></h1>
+	<{if $flgShowRSS==1}>
+		<a href="./rss.php?action=PostRss"><img src="images/icon_rss20.gif" alt="RSS" /></a>
+	<{/if}>
+	<ul class="toptab">
+	  <li><a href="index.php?action=TopicEdit"><{$smarty.const._MD_BIZFORUM_LANG_ADD_A_NEW_TOPIC}></a></li>
+	</ul>
+
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+	<table class="outer">
+	  <thead>
+	    <tr>
+	      <th>
+	        <{$smarty.const._MD_BIZFORUM_LANG_TOPIC_TITLE}>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_TOPIC_TITLE}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_TOPIC_TITLE}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      </th>
+	      <th>
+	        <{$smarty.const._MD_BIZFORUM_LANG_CAT_NAME}>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_CAT_ID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_CAT_ID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      </th>
+	      <th>
+	        <{$smarty.const._MD_BIZFORUM_LANG_REG}>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_REG_UNIXTIME}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_REG_UNIXTIME}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      </th>
+	      <th>
+	        <{$smarty.const._MD_BIZFORUM_LANG_LAST_POST}>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_LAST_UNIXTIME}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.BIZFORUM_TOPIC_SORT_KEY_LAST_UNIXTIME}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      </th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <{foreach item=obj from=$objects}>
+	    	<{assign var=catId value=$obj->getShow('cat_id')}>
+	      <tr class="<{cycle values='odd,even'}>">
+	        <td><a href="./index.php?action=PostList&amp;topic_id=<{$obj->getShow('topic_id')}>"><{$obj->getShow('topic_title')}> ( <{$obj->mPostCount}> )</a></td>
+	        <td><{$catTitleList[$catId]}></td>
+	        <td>
+		        <{$obj->get('reg_unixtime')|xoops_formattimestamp:l}><br />
+		        <{if $obj->getShow('uid')>0}><{$obj->getShow('uid')|xoops_user:"uname"}><{else}><{$obj->getShow('guest_name')}><{/if}>
+	        </td>
+	        <td>
+	        	<{if $obj->mLastPost}>
+			        <{$obj->mLastPost->get('reg_unixtime')|xoops_formattimestamp:l}><br />
+			        <{if $obj->mLastPost->getShow('uid')>0}><{$obj->mLastPost->getShow('uid')|xoops_user:"uname"}><{else}><{$obj->mLastPost->getShow('guest_name')}><{/if}>
+			      <{/if}>
+	        </td>
+	      </tr>
+	    <{/foreach}>
+	  </tbody>
+	</table>
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+</div>

@@ -1,0 +1,63 @@
+<style type="text/css">
+<!--
+<{math assign="col_p" equation="100/xx-3" xx=$tm_sitemap_col}>
+.tm_block { width:<{$col_p|intval}>%; float:left; margin:0; padding:10px; }
+<{foreach from=$hiera item=hie}>
+  <{* 12 = 1 hierarchy base padding *}>
+  <{if $hie == 0}>
+    <{math assign="paddingpx" equation="x*12+37" x=$hie}>
+.tm_block div.tm<{$hie}> { margin-left:<{$paddingpx}>px; text-indent:-37px; }
+  <{else}>
+    <{math assign="paddingpx" equation="x*12+25" x=$hie}>
+.tm_block div.tm<{$hie}> { margin-left:<{$paddingpx}>px; text-indent:-25px; }
+  <{/if}>
+<{/foreach}>
+a.tm_sitemap_title { display:block; margin:10px auto 40px auto; text-align:center;  }
+-->
+</style>
+
+<div id="tm_sitemap">
+
+<a href="<{$selfurl}>" class="tm_sitemap_title">
+<img src="./images/title.gif" />
+</a>
+
+<{foreach from=$list item=block key=count}>
+  <div class="tm_block">
+  <{foreach from=$block item=menu}>
+    <div class="tm<{$menu.depth}>">
+	
+	<{if $menu.depth > 1}>
+		<img src="./images/sub2.gif" />
+	<{else}>
+		<{if $menu.home == 1 }>
+		    <img src="./images/blue_m<{$menu.depth}>.gif" />
+		<{elseif $menu.home == 2 }>
+		    <img src="./images/green_m<{$menu.depth}>.gif" />
+		<{else}>
+		    <img src="./images/red_m<{$menu.depth}>.gif" />
+		<{/if}>
+	<{/if}>
+
+    <a href="<{$menu.url}>" <{if $menu.target == 1 }>title="<{$popup}>" target="_blank"<{/if}>><{$menu.title}>
+	<{if $menu.target == 1 }>
+      <img src="./images/popup.gif" alt="POPUP" title="<{$popup}>" />
+	<{/if}>
+	</a>
+	</div>
+  <{/foreach}>
+  </div>
+  <{if $count is div by $tm_sitemap_col }>
+    <br style="clear:both;" /><br />
+  <{/if}>
+<{/foreach}>
+
+<br style="clear:both;" /><br />
+
+<div style="text-align:center; color:#999; margin:20px;">
+TREE MENU 2&nbsp;
+<a href="http://www.seedA.jp/" target="_blank"><img src="./images/star1.gif" /></a>&nbsp;
+<a href="http://never-ever.info/" target="_blank"><img src="./images/star2.gif" /></a>
+</div>
+
+</div>

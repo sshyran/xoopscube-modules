@@ -1,0 +1,83 @@
+<div id="miniamazonContent">
+
+<{include file="db:`$mydirname`_header.html"}>
+
+<{if $warning && !$ma_age}>
+	<div class="warning"><{$item.title}><br /><br /><{$warning}></div>
+<{else}>
+
+
+
+<{$item_nav}>
+
+<div class="miniamazonItem">
+  <div class="head maHead">
+	<div class="maTitle">
+		<a href="<{$item.DetailPageURL}>" title="<{$lang_toamazon}>" target="_blank"><{$item.title}></a>
+	</div>
+	<div class="regdate"><{$item.regdate}></div>
+	<div class="maOthers">
+		<{$item.ProductGroup}> /
+		<{if $item.Creator}><{$item.Creator}> / <{/if}>
+		 <{$item.Manufacturer}>
+		<{if $item.uid==0}>
+			 / <{$item.uname}>
+		<{else}>
+			 / <a href="<{$xoopsurl}>/userinfo.php?uid=<{$item.uid}>"><{$item.uname}></a>
+		<{/if}>
+		 / <{$lang_clicks}>&nbsp;<{$item.clicks}>
+		<!-- d3forum comment integration -->
+		<{if $comment_dirname && $comment_forum_id && $comment_allow}>
+		 / <img src="<{$myurl}>/images/comment.png" /><{$lang_comment}>&nbsp;<{d3forum_comment_topicscount dirname=$comment_dirname forum_id=$comment_forum_id  link_id=$item.lid}>&nbsp;(<{d3forum_comment_postscount dirname=$comment_dirname forum_id=$comment_forum_id  link_id=$item.lid}>)
+		<{/if}>
+	</div>
+  </div>
+	
+	<table border="0"><tr><td class="imaLeftItem">
+		<a href="<{$item.DetailPageURL}>" title="<{$lang_toamazon}>" target="_blank">
+		<{if $item.MediumImage}>
+			<img src="<{$item.MediumImage}>" alt="<{$item.title}>" />
+		<{else}>
+			<img src="<{$myurl}>/images/noimage90.gif" alt="<{$item.title}>" />
+		<{/if}>
+		</a>
+	</td><td class="imaRightItem">
+		<{$item.description}>
+		
+		<div class="maEdit">
+		<form action="<{$myurl}>/index.php?act=edit&amp;lid=<{$item.lid}>" method="post">
+		<{if $item.editperm || $deleteperm}>
+			<input type="submit" value="<{$smarty.const._EDIT}>">
+		<{/if}>
+		<{if $deleteperm}>
+			<input type="submit" name="conf_delete" value="<{$smarty.const._DELETE}>">
+		<{/if}>
+		</form>
+		</div>
+	</td></tr></table>
+	
+	
+	
+
+</div>
+
+<!-- d3forum comment integration  /" itemname=$item.lid-->
+<{if $comment_dirname && $comment_forum_id && $comment_allow}>
+	<{d3forum_comment dirname=$comment_dirname forum_id=$comment_forum_id  id=$item.lid subject=$item.title class="maD3commentContent" mytrustdirname="miniamazon"}>
+<{/if}>
+
+<{/if}><{* END if warning *}>
+
+<div id="omakaselink">
+<script type="text/javascript">
+<!--
+amazon_ad_tag = "<{$aid}>";  amazon_ad_width = "468";  amazon_ad_height = "60";
+//-->
+</script>
+<script type="text/javascript" src="http://www.assoc-amazon.jp/s/ads.js"></script>
+</div>
+
+
+<{include file="db:`$mydirname`_footer.html"}>
+
+</div>

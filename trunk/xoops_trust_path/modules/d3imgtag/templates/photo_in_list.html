@@ -1,0 +1,85 @@
+<tr>
+  <td>
+	<{strip}>
+    	<table width="100%" border="0" cellspacing="5" id="none">
+       		<tr>
+            	<td width="3%" rowspan="5" align="left">
+                	<a href='<{$mod_url}>/index.php?page=photo&lid=<{$photo.lid}>' target="_self" /><img src="<{$mod_url}>/index.php?page=image&id=<{$photo.lid}>&sz=0" alt="<{$photo.title}>" bolder="0" /></a>                     </td>
+          		<td width="20%" align="left">
+                	<{if $photo.can_edit}>
+                    	<a href='<{$mod_url}>/index.php?page=editphoto&lid=<{$photo.lid}>'><img src='<{$mod_url}>/images/img_edit.png' border='0' alt='<{$lang_editthisphoto}>' title='<{$lang_editthisphoto}>' /></a>
+                    <{/if}>
+                    &nbsp
+                    <{if $photo.is_newphoto}>
+                    	<img src='<{$mod_url}>/images/img_new.png' border='0' alt='<{$lang_new}>' title='<{$lang_new}>' align="absmiddle"/>&nbsp;
+   					<{/if}>
+                    <{if $photo.is_updatedphoto}>
+                    	<img src='<{$mod_url}>/images/update.gif' border='0' alt='<{$lang_updated}>' title='<{$lang_updated}>' align="absmiddle"/>
+   					<{/if}>
+                    <{if $photo.is_popularphoto}>
+                    	<img src='<{$mod_url}>/images/img_pop.png' border='0' alt='<{$lang_popular}>' title='<{$lang_popular}>' align="absmiddle"/>
+   					<{/if}>
+      			</td>
+      			<td width="77%" align="left">
+      				<{if $photo.cat_title}>
+        				<a href='<{$mod_url}>/index.php?page=viewcat&cid=<{$photo.cid}>'><img src='<{$mod_url}>/images/folder.png' width='16' height='16' alt='<{$lang_category}>' title='<{$lang_category}>' border='0' align="absmiddle" /><{$photo.cat_title}></a>
+            		<{/if}>      
+            	</td>
+          </tr>
+          <tr>
+                <td align="left">
+                    <b><{$photo.title}></b>
+                </td>
+                <td align="left">
+                	<img src='<{$mod_url}>/images/img_time.png' width='16' height='16' alt='<{$lang_lastupdatec}>' title='<{$lang_lastupdatec}>' align="absmiddle"/><{$photo.datetime}>
+                </td>
+            </tr>
+            <tr>
+              <td align="left">
+                   	  <{if $photo.submitter > 0 }>
+                      	<a href='<{$xoops_url}>/userinfo.php?uid=<{$photo.submitter}>'><img src='<{$mod_url}>/images/submitter.png' width='16' height='16' alt='<{$lang_submitter}>' title='<{$lang_submitter}>' border='0' align="absmiddle" /></a> <{$photo.submitter_name}> <a href='<{$mod_url}>/index.php?page=viewcat&uid=<{$photo.submitter}>'><img src='<{$mod_url}>/images/img_more.png' width='16' height='16' alt='<{$photo.info_morephotos}>' title='<{$photo.info_morephotos}>' border='0' align="absmiddle" /></a>
+                      <{else}>
+                      	<img src='<{$mod_url}>/images/submitter.png' width='16' height='16' alt='<{$lang_submitter}>' title='<{$lang_submitter}>' align="absmiddle" /> <{$photo.submitter_name}>
+                      <{/if}>
+              </td>
+              <td align="left">
+                	<img src='<{$mod_url}>/images/img_hits.png' width='16' height='16' alt='<{$lang_hitsc}>' title='<{$lang_hitsc}>' align="absmiddle" /><{$photo.hits}>&nbsp;&nbsp;<img src='<{$mod_url}>/images/img_comment.png' width='16' height='16' alt='<{$lang_commentsc}>' title='<{$lang_commentsc}>' align="absmiddle" /><{$photo.comments}><{if $d3imgtag_extendedinfo}>&nbsp;&nbsp;<img src="<{$mod_url}>/images/img_size.png" width='16' height='16' alt='<{$lang_filesize}>' title='<{$lang_filesize}>' align="absmiddle" /> <{$photo.size}>&nbsp;&nbsp;<img src="<{$mod_url}>/images/img_res.png" width='16' height='16' alt='<{$lang_fileres}>' title='<{$lang_fileres}>' align="absmiddle" /> <{$photo.res_x}> X <{$photo.res_y}><{/if}>
+              </td>
+            </tr>
+            <tr>
+              <td align="left">
+                <{if $canratevote}>
+                  	<a href='<{$mod_url}>/index.php?page=ratephoto&lid=<{$photo.lid}>'><img src='<{$mod_url}>/images/vote.png' alt='<{$lang_ratethisphoto}>' title='<{$lang_ratethisphoto}>' border='0' align="absmiddle" /><{$lang_ratethisphoto}></a>
+                <{/if}>
+                </td>
+              <td align="left">
+               	  <{if $canrateview}>
+   					  <{if $photo.rating > 0}>
+                      	<img src='<{$mod_url}>/images/vote<{$photo.rank}>.png' alt='<{$photo.rating}>' title='<{$photo.rating}>' border='0' align="absmiddle" /><{$photo.info_votes}>
+   					  <{else}>
+                      	<img src='<{$mod_url}>/images/vote_none.png' alt='<{$photo.info_votes}>' title='<{$photo.info_votes}>' border='0' align="absmiddle" /><{$photo.info_votes}>
+   					   <{/if}>
+   				  <{/if}>
+               </td>
+            </tr>
+            <tr>
+              <td align="left">&nbsp;</td>
+              <td align="left">&nbsp;</td>
+            </tr>
+            <tr>
+              <td colspan="3" align="left">
+                <{if $photo.description}>
+                      <table border='0' cellpadding='0' cellspacing='0' width='100%' class='outer'>
+                        <tr>
+                          <td class='odd'>
+                            <{$photo.description}>
+                          </td>
+                        </tr>
+                      </table>
+                    <{/if}>
+               </td>
+            </tr>
+      </table>
+<{/strip}>
+</td>
+</tr>

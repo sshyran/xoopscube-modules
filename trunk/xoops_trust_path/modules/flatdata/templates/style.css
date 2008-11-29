@@ -1,0 +1,11 @@
+#fdtable tr.fdeven { background: #efefef; }
+#fdtable tr.fdodd:hover { background: #fdf; }
+#fdtable tr.fdeven:hover { background: #fdf; }
+#fdtable td { padding:3px; }
+#category_tree .xcat_tree { padding:6px; margin:12px 0 ; }
+
+/* width changes according to the number of cols */
+#category_tree .catL1 { float:left; margin:0 0 6px 0; padding:0; width:33%; }
+/* when NEXT is set, this is necessary 
+   if NEXT option is not set , comment-out this line */
+#category_tree .catL2 li { float:left; list-style-type:none; margin:0; padding:0; white-space:nowrap; }

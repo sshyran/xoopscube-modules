@@ -1,0 +1,11 @@
+<table cellspacing="0"><tr><td id="mainmenu">
+
+<!-- div id="<{$mydirname}>" -->
+
+<{foreach from=$block.list item=menu  key=count}>
+<a href="<{$menu.url}>" class="<{if $count==0}>menuTop<{elseif $menu.depth==0}>menuMain<{else}>menuSub<{/if}> menu<{$menu.depth}><{if $menu.hereblk}> hereblock<{/if}><{if $menu.here}> here<{/if}>"<{if $menu.target}> title="Popup!" target="_blank"<{/if}>><{$menu.title}><{if $menu.target}>&nbsp;<img src="<{$xoops_url}>/modules/<{$mydirname}>/images/popup.gif" /><{/if}></a>
+<{/foreach}>
+
+<!-- /div -->
+
+</td></tr></table>

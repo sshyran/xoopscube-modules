@@ -1,0 +1,84 @@
+<{include file="db:`$mydirname`_header.html"}>
+
+<div style="margin:3px 3px 16px 3px;">
+
+<div style="text-align:center;"><{$page_navi}></div>
+
+<table border="1" style="padding:6px;border-collapse:collapse;empty-cells:show; border-color:#999;">
+
+	<tr> 
+		<th nowrap="nowrap" colspan="2"> ID : <{$data.did}></th>
+	</tr>
+
+	<{if $catTitleArr}>
+		<tr> 
+			<td class="head" nowrap="nowrap">
+				<{$smarty.const._MD_FD_CATEGORY}>
+			</td>
+			<td class="<{cycle values='odd,even'}>">
+				<{foreach from=$xoops_breadcrumbs item="crumb" key=count name=cat}>
+					<{if !($smarty.foreach.cat.first || $smarty.foreach.cat.last)}>
+						<{if $count gt 1 }> <img src="<{$myurl}>/images/a.gif" /> <{/if}>
+						<{if $crumb.url}>
+							<a href="<{$crumb.url}>"><{$crumb.name}></a>
+						<{else}>
+							<{$crumb.name}>
+						<{/if}>
+					<{/if}>
+				<{/foreach}>
+				<{if $data.cat_id==0}>
+					<a href="<{$myurl}>/index.php?page=categ&amp;cat_id=0"><{$smarty.const._MD_FD_NONE}></a>
+				<{/if}>
+			</td>
+		</tr>
+	<{/if}>
+
+	<{foreach item=f from=$fields key=count name=i}>
+		<tr>
+			<td class="head" nowrap="nowrap">
+				<{$f.fname}><{if $f.visible==1}>&nbsp;*<{/if}>
+			</td>
+			<td class="<{cycle values='odd,even'}>" id="field<{$f.fid}>">
+				<{$data.data[$f.fid]}>
+			</td>
+		</tr>
+	<{/foreach}>
+
+	<tr>
+		<td class="head" valign="top"><{$smarty.const._MD_HITS}></td>
+		<td class="<{cycle values='odd,even'}>"><{$data.hits}></td>
+	</tr>
+
+	<tr>
+		<td class="head" valign="top"><{$smarty.const._MD_SUBMITTER}></td>
+		<td class="<{cycle values='odd,even'}>">
+			<{if $data.uid > 0}><a href="<{$myurl}>/index.php?uid=<{$data.uid}>"><{/if}>
+			<{$data.uname}>
+			<{if $data.uid > 0}>
+				</a>&nbsp;
+				<a href="<{$xoops_url}>/userinfo.php?uid=<{$data.uid}>">
+				<img src="<{$myurl}>/images/info.png" style="vertical-align:middle;" />
+				</a>
+			<{/if}>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="head" valign="top"><{$smarty.const._MD_REGIDATE}></td>
+		<td class="<{cycle values='odd,even'}>"><{"Y/n/j G:i"|date:$data.regidate}></td>
+	</tr>
+
+	<{if $isadmin || ($editperm && $uid==$data.uid)}>
+	<tr class="foot">
+		<td>&nbsp;</td>
+		<td><a href="<{$myurl}>/index.php?page=edit&amp;did=<{$data.did}>"><{$smarty.const._EDIT}></a></td>
+	</tr>
+	<{/if}>
+
+
+</table>
+* : <{$smarty.const._MD_VISIBLE_IN_LIST}>
+
+</div>
+
+<{include file="db:`$mydirname`_footer.html"}>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GoogleCustomizations>
+    <CustomSearchEngine>
+        <Title><{$xoops_sitename}></Title>
+        <Description>A Google Custom Search Engine that only includes Boomkark sites</Description>
+        <Context>
+           <BackgroundLabels>
+             <Label name="bookmark" mode="FILTER" />
+          </BackgroundLabels>
+
+        </Context>
+        <LookAndFeel nonprofit="true">
+           <!-- In the spirit of solar, this search engine has a yellow background with orange titles -->
+           <Colors url="#FF6600" background="#FFFFFF" border="#6BBF6F" title="#3B5F9F" text="#000000" visited="#663399" light="#FF0077"/>
+        </LookAndFeel>
+    </CustomSearchEngine>
+
+   <!-- You need not include files to add annotations. Adding them inline as shown here will work as well -->
+   <Annotations>
+     <Annotation about="<{$xoops_url}>/modules/<{$dirname}>/*">
+       <Label name="bookmark"/>
+     </Annotation>
+<{foreach item=site from=$objects}>
+     <Annotation about="<{$site->get('url')|replace:"&":"&amp;"}>">
+       <Label name="bookmark"/>
+     </Annotation>
+<{/foreach}>
+   </Annotations>
+
+</GoogleCustomizations>

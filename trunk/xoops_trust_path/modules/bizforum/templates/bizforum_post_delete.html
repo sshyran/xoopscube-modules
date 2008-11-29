@@ -1,0 +1,48 @@
+<h3><{$smarty.const._MD_BIZFORUM_LANG_POST_DELETE}></h3>
+
+<div class="confirm"><{$smarty.const._MD_BIZFORUM_MESSAGE_CONFIRM_DELETE}></div>
+
+<form action="./index.php?action=PostDelete" method="post">
+  <table class="outer">
+    <tbody>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZFORUM_LANG_POST_ID}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('post_id')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZFORUM_LANG_UID}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('uid')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZFORUM_LANG_GUEST_NAME}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('guest_name')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZFORUM_LANG_P_ID}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('p_id')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZFORUM_LANG_TOPIC_ID}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('topic_id')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZFORUM_LANG_BODYTEXT}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('bodytext')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZFORUM_LANG_REG_UNIXTIME}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->get('reg_unixtime')|xoops_formattimestamp:l}></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="foot" colspan="2">
+          <{xoops_token form=$actionForm}>
+          <{xoops_input type=hidden name=post_id value=$actionForm->get('post_id')}>
+          <input type="submit" class="formButton" value="<{$smarty.const._DELETE}>"/>
+          <input type="submit" class="formButton" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel"/>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</form>

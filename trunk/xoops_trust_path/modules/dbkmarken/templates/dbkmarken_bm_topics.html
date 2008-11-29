@@ -1,0 +1,47 @@
+<div class="bookmark">
+
+	<!-- Dbkmarken Menu -->
+  <{if $allow_useredit=="true"}>
+	<ul class="toptab">
+	  <li><a href="./index.php?action=BmList"><{$smarty.const._MD_DBKMARKEN_LANG_BOOKMARK}></a></li>
+  <li><a href="./index.php?action=BmTopics"><{$smarty.const._MD_DBKMARKEN_LANG_POPBOOKMARK}></a></li>
+	<{if $xoops_userid}>
+	  <li><a href="./index.php?action=BmList&amp;uid=<{$xoops_userid}>">My <{$smarty.const._MD_DBKMARKEN_LANG_BOOKMARK}></a></li>
+	  <li><a href="index.php?action=BmEdit"><{$smarty.const._MD_DBKMARKEN_LANG_ADD_A_NEW_BM}></a></li>
+	<{/if}>
+	</ul>
+	<br class="clear" />
+	<{/if}>
+
+	<!-- Tag Cloud -->
+	<div class="tagCloudColumn">
+	<h3><{$smarty.const._MD_DBKMARKEN_LANG_TAG_CLOUD}></h3>
+	<{$tagCloud}>
+	</div>
+
+	<!-- Main -->
+	<h1>
+		<{$smarty.const._MD_DBKMARKEN_LANG_POPBOOKMARK}><{$smarty.const._LIST}>
+	</h1>
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+	<hr />
+	<ul class="bookmarkList">
+	<{foreach item=obj from=$objects}>
+	  <li>
+	    <a href="<{$obj->getShow('url')}>"><img src="images/icon_home_s.gif" alt="URL" /></a>
+	  	<strong><a href="./index.php?action=BmView&amp;bm_id=<{$obj->getShow('bm_id')}>"><{$obj->getShow('bm_title')}></a></strong>
+			<{$obj->bm_count}>users
+	    <br />
+	    <span class="tagList">
+			<{foreach item=tag from=$obj->mTag}>
+				[<a href="./index.php?action=TagList&amp;tag_name=<{$tag->getShow('tag_name')|escape:"url"}>"><{$tag->getShow('tag_name')}></a>]
+			<{/foreach}>
+			</span>
+	  </li>
+	<{/foreach}>
+	</ul>
+	<hr />
+	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+	<ul>
+</div>

@@ -1,0 +1,47 @@
+<div id="<{$mydirname}>_sitemap">
+
+
+<{foreach from=$block item=blk key=count}>
+  <div class="<{$mydirname}>_sm_block">
+  <{foreach from=$blk item=menu key=bcnt name=i}>
+    <{if $bcnt == 1 }><div id="<{$mydirname}>_sub<{$count}>" style="display:block;"><{/if}>
+
+    <div class="tm<{$menu.depth}><{if $menu.here}> here<{/if}>">
+
+	<{if $menu.depth > 1}>
+		<img src="<{$xoops_url}>/modules/<{$mydirname}>/images/sub2.gif" />
+	<{else}>
+		<{if $menu.home == 1 }>
+		    <img src="<{$xoops_url}>/modules/<{$mydirname}>/images/blue_m<{$menu.depth}>.gif" />
+		<{elseif $menu.home == 2 }>
+		    <img src="<{$xoops_url}>/modules/<{$mydirname}>/images/green_m<{$menu.depth}>.gif" />
+		<{else}>
+		    <img src="<{$xoops_url}>/modules/<{$mydirname}>/images/red_m<{$menu.depth}>.gif" />
+		<{/if}>
+	<{/if}>
+
+    <a href="<{$menu.url}>"<{if $menu.target == 1 }> title="Popup!" target="_blank"<{/if}><{* class="<{if $menu.hereblk}>hereblock<{/if}> <{if $menu.here}>here<{/if}>" *}>><{$menu.title}>
+	<{if $menu.target == 1 }>
+      <img src="<{$xoops_url}>/modules/<{$mydirname}>/images/popup.gif" />
+	<{/if}>
+	</a>
+	<{if $bcnt == 0 && $blk[1] }>
+	  &nbsp;<a id="<{$mydirname}>_sm_block<{$count}>"><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/cls.gif" onClick="<{$mydirname}>openClose(<{$count}>);" /></a>
+	<{/if}>
+
+    </div>
+
+	<{if $bcnt > 0 && $smarty.foreach.i.last }></div>
+	  <{if $menu.hereblk==0 && $open==0}>
+		<script type="text/javascript"><!--
+		<{$mydirname}>Close(<{$count}>);
+		//--></script>
+	  <{/if}>
+	<{/if}>
+  <{/foreach}>
+  </div>
+<{/foreach}>
+
+
+</div>
+

@@ -1,0 +1,100 @@
+<div class="bizpoll">
+<{if $actionForm->hasError()}>
+  <ul class="error">
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+<{/if}>
+<form action="index.php?action=EnqEdit" method="post">
+  <table class="outer" summary="">
+    <caption>
+      <{if $actionForm->get('enq_id')}>
+        <{$smarty.const._MD_BIZPOLL_LANG_ENQ_EDIT}>
+      <{else}>
+        <{$smarty.const._MD_BIZPOLL_LANG_ADD_A_NEW_ENQ}>
+      <{/if}>
+   </caption>
+   <tbody>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_TITLE}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_input type=text name=title value=$actionForm->get('title') size=50 maxlength=255}>
+        </td>
+      </tr>
+      <{if $useCat==true}>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_CAT_ID}></th>
+        <td class="<{cycle values="odd,even"}>">
+        	<select name="cat_id">
+          <{xcatsvc_catselect tree=$catArr selectedValue=$object->get('cat_id')}>
+          </select>
+        </td>
+      </tr>
+      <{else}>
+          <{xoops_input type=hidden name=cat_id value=0}>
+      <{/if}>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_TYPE}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <label><input type="radio" name="type" id="legacy_xoopsform_type_0" value="0"<{if $actionForm->get('type')==0}> checked="checked"<{/if}>> <{$smarty.const._MD_BIZPOLL_LANG_RADIO}></label><br />
+          <label><input type="radio" name="type" id="legacy_xoopsform_type_1" value="1"<{if $actionForm->get('type')==1}> checked="checked"<{/if}>> <{$smarty.const._MD_BIZPOLL_LANG_CHECKBOX}></label>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_SHOW_RESULT}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <label><input type="radio" name="opt_show_result" id="legacy_xoopsform_opt_show_result_0" value="0"<{if $actionForm->get('opt_show_result')==0}> checked="checked"<{/if}>> <{$smarty.const._MD_BIZPOLL_LANG_SHOW_RESULT_BEFORE}></label><br />
+          <label><input type="radio" name="opt_show_result" id="legacy_xoopsform_opt_show_result_1" value="1"<{if $actionForm->get('opt_show_result')==1}> checked="checked"<{/if}>> <{$smarty.const._MD_BIZPOLL_LANG_SHOW_RESULT_AFTER}></label><br />
+          <label><input type="radio" name="opt_show_result" id="legacy_xoopsform_opt_show_result_2" value="2"<{if $actionForm->get('opt_show_result')==2}> checked="checked"<{/if}>> <{$smarty.const._MD_BIZPOLL_LANG_HIDE_RESULT}></label>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_ADD_CHOICE}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <label><input type="radio" name="opt_add_choice" id="legacy_xoopsform_opt_add_choice_1" value="1"<{if $actionForm->get('opt_add_choice')==1}> checked="checked"<{/if}>> <{$smarty.const._MD_BIZPOLL_LANG_ADD_CHOICE_YES}></label><br />
+          <label><input type="radio" name="opt_add_choice" id="legacy_xoopsform_opt_add_choice_0" value="0"<{if $actionForm->get('opt_add_choice')==0}> checked="checked"<{/if}>> <{$smarty.const._MD_BIZPOLL_LANG_ADD_CHOICE_NO}></label>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_PUB_UNIXTIME}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_input type=text name=pub_date value=$actionForm->get('pub_date') class="datePick"}>
+	        <{html_select_time prefix=pub_ time=$actionForm->get('pub_unixtime') display_seconds=false minute_interval=30}>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_END_UNIXTIME}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_input type=text name=end_date value=$actionForm->get('end_date') class="datePick"}>
+	        <{html_select_time prefix=end_ time=$actionForm->get('end_unixtime') display_seconds=false minute_interval=30}>
+	        <p>
+        	<input type="button" name="displayEndDatetime" id="displayEndDatetime" value="<{$smarty.const._MD_BIZPOLL_LANG_DISPLAY_END_DATETIME}>" />
+        	<input type="button" name="removeEndDatetime" id="removeEndDatetime" value="<{$smarty.const._MD_BIZPOLL_LANG_REMOVE_END_DATETIME}>" />
+        	</p>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_BIZPOLL_LANG_DESCRIPTION}></th>
+        <td class="<{cycle values="odd,even"}>">
+        	<{if $useEditor=="fckeditor"}>
+          <{xoops_textarea type=text name=description value=$actionForm->get('description')}>
+        	<script>fckeditor_exec();</script>
+          <{else}>
+          <{xoops_dhtmltarea type=text name=description value=$actionForm->get('description')}>
+          <{/if}>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="foot" colspan="2">
+          <{xoops_token form=$actionForm}>
+          <{xoops_input type=hidden name=enq_id value=$actionForm->get('enq_id')}>
+          <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</form>
+</div>

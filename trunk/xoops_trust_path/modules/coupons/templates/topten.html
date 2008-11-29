@@ -1,0 +1,32 @@
+<{include file="db:`$mydirname`_header.html"}>
+
+
+
+<table class="outer">
+  <tr>
+    <th colspan="6"><{$smarty.const._MD_HITS}> <{$smarty.const._MD_TOPTEN}> <{$limit}> <{if $category}>(<{$category}>)<{/if}></th>
+  </tr>
+  <tr>
+    <td class="head" width='7%'><{$smarty.const._MD_RANK}></td>
+    <td class="head" width='28%'><{$smarty.const._MD_COUPONTITLE}></td>
+    <td class="head" width='28%'><{$smarty.const._MD_LIMITTIME}></td>
+    <td class="head" width='8%' align='center'><{$smarty.const._MD_HITS}></td>
+  </tr>
+
+  <!-- Start loop -->
+  <{foreach item=cp from=$coupons key=count}>
+    <tr>
+      <td class="even"><{$count+1}></td>
+      <td class="odd"><a href='<{$myurl}>/index.php?lid=<{$cp.lid}>'><{$cp.title}></a></td>
+      <td class="odd" align='center'><{$cp.endtime}></td>
+      <td class="odd" align='center'><{$cp.hits}></td>
+    </tr>
+  <{/foreach}>
+  <!-- End loop-->
+
+</table>
+<br />
+
+
+
+<{include file="db:`$mydirname`_footer.html"}>
