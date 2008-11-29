@@ -1,0 +1,50 @@
+<?php
+if (!defined('XOOPS_ROOT_PATH')) die();
+
+class Message_Preload extends XCube_ActionFilter
+{
+  public function postFilter()
+  {
+    if ($this->mRoot->mContext->mUser->isInRole('Site.RegisteredUser')) {
+      require_once XOOPS_MODULE_PATH.'/message/service/Service.class.php';
+      $service = new Message_Service();
+      $service->prepare();
+      
+      $this->mRoot->mServiceManager->addService('privateMessage', $service);
+      
+      $this->mRoot->mDelegateManager->add('Legacypage.Viewpmsg.Access', 'Message_Preload::accessToReadpmsg');
+      $this->mRoot->mDelegateManager->add('Legacypage.Readpmsg.Access', 'Message_Preload::accessToReadpmsg');
+      $this->mRoot->mDelegateManager->add('Legacypage.Pmlite.Access', 'Message_Preload::accessToReadpmsg');
+    }
+    $this->mRoot->mDelegateManager->add('User_ActionFrame.CreateAction', 'Message_Preload::_createAction', XCUBE_DELEGATE_PRIORITY_FIRST);
+    $this->mRoot->mDelegateManager->add('Legacy.Event.GetHandler', 'Message_Preload::makeHandler');
+  }
+  
+  public static function _createAction(&$actionFrame)
+  {
+    if (is_object($actionFrame->mAction)) {
+      return;
+    }
+
+    switch (ucfirst($actionFrame->mActionName)) {
+      case 'UserInfo':
+        require XOOPS_MODULE_PATH.'/message/actions/userinfoAction.class.php';
+        $actionFrame->mAction = new UserinfoAction();
+        break;
+    }
+  }
+  
+  public static function accessToReadpmsg()
+  {
+    $root = XCube_Root::getSingleton();
+    $root->mController->executeForward(XOOPS_MODULE_URL.'/message/');
+  }
+  
+  public static function makeHandler(&$handler, $name, $optional)
+  {
+    if ( $name == 'privmessage' ) {
+      $handler = xoops_getmodulehandler('inbox', 'message', $optional);
+    }
+  }
+}
+?>
