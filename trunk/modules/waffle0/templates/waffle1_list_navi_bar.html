@@ -1,0 +1,87 @@
+
+<table width='100%' class='odd' cellspacing='1' cellpadding='4'>
+  <tr>
+    <td>
+    <{foreach from=$num_of_pages key=key item=item}>
+      <{if $item == $curr_page}>
+        <{$item}> | 
+      <{else}>
+        <{strip}>
+	  <a href="<{$index_php}>?t_m=ddcommon_list&t_dd=<{$table_name}>
+	  <{if $t_limit }>
+	  &t_limit=<{$t_limit}>
+	  <{/if}>
+	  <{if 0 < $t_limit}>
+	  &t_offset=<{math equation="x * (y - 1)" x=$t_limit y=$item}>
+	  <{else}>
+	  &t_offset=<{math equation="x * (y - 1)" x=10 y=$item}>
+	  <{/if}>
+	  <{if $t_order }>
+	  &t_order=<{$t_order}>
+	  <{/if}>
+	  <{if $t_order_r }>
+	  &t_order_r=<{$t_order_r}>
+	  <{/if}>"><{$item}></a> |
+	  <{/strip}>
+      <{/if}>
+    <{/foreach}>
+    
+    </td><td align='right'><nobr>[
+<{if $t_offset == 0 }>
+Á°¤Î<{$t_limit}>·ï
+<{elseif $t_offset - $t_limit < 0 }>
+<{strip}>
+<a href="<{$index_php}>?t_m=ddcommon_list&t_dd=<{$table_name}>
+<{if 0 < $t_limit }>
+  &t_limit=<{$t_limit}>
+<{else}>
+  &t_limit=10
+<{/if}>
+  &t_offset=0
+<{if $t_order }>
+  &t_order=<{$t_order}>
+<{/if}>
+<{if $t_order_r }>
+  &t_order_r=<{$t_order_r}>
+<{/if}>">Á°¤Î<{$t_limit}>·ï</a>
+<{/strip}>
+<{else}>
+<a href="<{$index_php}>?t_m=ddcommon_list&t_dd=<{$table_name}>
+<{strip}>
+<{if 0 < $t_limit }>
+  &t_limit=<{$t_limit}>
+<{else}>
+  &t_limit=10
+<{/if}>
+&t_offset=<{math equation="x - y" x=$t_offset y=$t_limit}>
+<{if $t_order }>
+  &t_order=<{$t_order}>
+<{/if}>
+<{if $t_order_r }>
+  &t_order_r=<{$t_order_r}>
+<{/if}>">Á°¤Î<{$t_limit}>·ï</a>
+<{/strip}>
+<{/if}>
+    |
+<{if $maxlength <= $t_offset + $listlength }>
+¼¡¤Î<{$t_limit}>·ï
+<{else}>
+<{strip}>
+<a href="<{$index_php}>?t_m=ddcommon_list&t_dd=<{$table_name}>
+<{if 0 < $t_limit }>
+  &t_limit=<{$t_limit}>
+<{else}>
+  &t_limit=10
+<{/if}>
+&t_offset=<{math equation="x + y" x=$t_offset y=$t_limit}>
+<{if $t_order }>
+  &t_order=<{$t_order}>
+<{/if}>
+<{if $t_order_r }>
+  &t_order_r=<{$t_order_r}>
+<{/if}>">¼¡¤Î<{$t_limit}>·ï</a>
+<{/strip}>
+<{/if}>
+  ]</nobr></td>
+  </tr>
+</table>

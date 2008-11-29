@@ -1,0 +1,14 @@
+<{include file=$view_one_template}>
+
+<{if $no_data != 1 }>
+<br>
+<{if $grant_update == 1 }>
+[ <a href="index.php?t_m=ddcommon_update&id=<{$id}>&t_dd=<{$table_name}>"><{$md_update}></a> ]
+<{/if}>
+<{if $grant_delete == 1 }>
+[ <a href="index.php?t_m=ddcommon_delete&id=<{$id}>&t_dd=<{$table_name}>"><{$md_delete}></a> ]
+<{/if}>
+<BR>
+<{/if}>
+<BR>
+<a href="<{$index_php}>?t_m=ddcommon_list&t_dd=<{$table_name}>"><{$md_back}></a>

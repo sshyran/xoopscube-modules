@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:content="http://purl.org/rss/1.0/modules/content/"
+ xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+ xmlns:admin="http://webns.net/mvcb/"
+>
+<channel rdf:about="<{$rss_top_url}>">
+<title><{$rss_title}></title>
+<link><{$rss_top_url}></link>
+<description><{$rss_summary}></description>
+<dc:language>ja</dc:language>
+<admin:generatorAgent rdf:resource="<{$xoops_url}>" />
+<items>
+ <rdf:Seq>
+<{foreach from=$items key=key item=item }>
+  <rdf:li rdf:resource="<{$item.url_encoded}>" />
+<{/foreach}>
+   </rdf:Seq>
+</items>
+</channel>
+
+<{foreach from=$items key=key item=item}>
+<item rdf:about="<{$xoops_url}>">
+<title><{$item.title}></title>
+<link><{$item.url_encoded}></link>
+<description><{$item.body}></description>
+<dc:date><{$item.date|date_format:"%Y-%m-%dT%H:%M:%S"}><{$item.time_zone_sign}><{$server_tz|string_format:"%02d"}>:00</dc:date>
+<content:encoded><![CDATA[
+<{$item.body_encoded}>
+]]></content:encoded>
+</item>
+<{/foreach}>
+
+</rdf:RDF>
+

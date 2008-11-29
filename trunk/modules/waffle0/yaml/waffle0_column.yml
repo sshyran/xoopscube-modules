@@ -1,0 +1,159 @@
+#
+name:         waffle0_column
+desc:         カラム情報テーブル
+columns:
+  - name:       id
+    desc:       カラムID
+    type:       integer
+    primary_key: yes
+    serial:     yes
+    listview:   yes
+  - name:       table_id
+    desc:       テーブルID
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       name
+    desc:       名前
+    type:       string
+    not_null:   yes
+    maxlength:  63
+    size:       40
+    listview:   yes
+    uniq:       yes	
+  - name:       desc
+    desc:       名前
+    type:       string
+    not_null:   yes
+    maxlength:  63
+    size:       40
+    listview:   yes
+  - name:       type
+    desc:       型
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       valid
+    desc:       有効
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       uniq
+    desc:       ユニーク
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       not_null
+    desc:       not_null
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       default
+    desc:       デフォルト値
+    type:       string
+    not_null:   yes
+    maxlength:  1024
+    size:       40
+  - name:       order
+    desc:       表示順
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       primary_key
+    desc:       プライマリキー
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       fixed
+    desc:       固定
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       serial
+    desc:       シリアル値
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       detailview
+    desc:       詳細画面に表示する
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       insertview
+    desc:       追加画面に表示する
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       updateview
+    desc:       更新画面に表示する
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       listview
+    desc:       リスト画面に表示する
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       updatable
+    desc:       更新可
+    type:       integer
+    not_null:   yes
+    listview:   yes
+  - name:       search
+    desc:       検索指定
+    type:       integer
+    not_null:   yes
+  - name:       maxlength
+    desc:       最大文字数
+    type:       integer
+    not_null:   no
+    listview:   yes
+  - name:       size
+    desc:       入力フィールド文字数
+    type:       integer
+    not_null:   no
+    listview:   yes
+  - name:       rows
+    desc:       行数
+    type:       integer
+    not_null:   no
+  - name:       cols
+    desc:       桁数
+    type:       integer
+    not_null:   no
+  - name:       rel_table
+    desc:       rel_table
+    type:       string
+    not_null:   no
+  - name:       rel_column
+    desc:       rel_column
+    type:       string
+    not_null:   no
+  - name:       rel_v_column
+    desc:       rel_v_column
+    type:       string
+    not_null:   no
+  - name:       rel_where
+    desc:       rel_where
+    type:       string
+    not_null:   no
+  - name:       rel_type
+    desc:       rel_type
+    type:       string
+    not_null:   no
+  - name:       reg_time
+    desc:       登録日時
+    type:       epoctime
+    not_null:   no
+    listview:   yes
+  - name:       mod_time
+    desc:       更新日時
+    type:       epoctime
+    not_null:   no
+  - name:       reg_user_id
+    desc:       登録ユーザID
+    type:       integer
+    not_null:   yes
+  - name:       mod_user_id
+    desc:       更新ユーザID
+    type:       integer

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="0.92">
+    <channel>
+        <title><{$rss_title}></title>
+        <link><{$rss_top_url}></link>
+        <description><{$rss_summary}></description>
+        <lastBuildDate><{$gmdate}> GMT</lastBuildDate>
+        <docs>http://backend.userland.com/rss092</docs>
+	<{*
+        <managingEditor></managingEditor>
+        <webMaster></webMaster>
+	*}>
+        <language>ja</language>
+	
+<{foreach from=$items key=key item=item}>
+        <item>
+	    <title><{$item.title}></title>
+	    <description><{$item.body}></description>
+            <link><{$item.url|escape:"html"}></link>
+        </item>
+<{/foreach}>
+    </channel>
+</rss>

@@ -1,0 +1,98 @@
+#
+name:         waffle0_table
+desc:         テーブル情報テーブル
+columns:
+  - name:     id
+    desc:     テーブルID
+    type:     integer
+    primary_key: yes
+    serial:   yes
+    listview: yes
+  - name:       name
+    desc:       名前
+    type:       string
+    not_null:   yes
+    maxlength:  63
+    size:       40
+    listview: yes
+    uniq:       yes
+  - name:       summary
+    desc:       概要
+    type:       textarea
+    not_null:   yes
+    maxlength:  1024
+  - name:       valid
+    desc:       有効
+    type:       integer
+    not_null:   yes
+    listview: yes
+  - name:       order
+    type:       integer
+    not_null:   yes
+    listview: yes
+  - name:       validable
+    type:       integer
+    not_null:   yes
+    listview: yes
+  - name:       rss
+    type:       integer
+    not_null:   yes
+    listview: yes
+    default:    0
+  - name:       rss_top_url
+    desc:       RSSのトップURL
+    type:       string
+    not_null:   yes
+    maxlength:  254
+    size:       40
+    listview: yes
+  - name:       rss_title
+    desc:       RSSのタイトル
+    type:       string
+    not_null:   yes
+    maxlength:  254
+    size:       40
+    listview: yes
+  - name:       rss_summary
+    desc:       RSSの概要
+    type:       textarea
+    not_null:   yes
+    maxlength:  254
+    size:       40
+    listview: yes
+  - name:       rss_url_column
+    desc:       RSSのURLのカラム
+    type:       string
+    not_null:   yes
+    maxlength:  254
+    size:       40
+    listview: yes
+  - name:       rss_title_column
+    desc:       RSSのタイトルのカラム
+    type:       string
+    not_null:   yes
+    maxlength:  254
+    size:       40
+    listview: yes
+  - name:       rss_body_column
+    desc:       RSSの本文のカラム
+    type:       string
+    not_null:   yes
+    maxlength:  254
+    listview: yes
+  - name:       reg_time
+    desc:       登録日時
+    type:       epoctime
+    not_null:   no
+    listview:   yes
+  - name:       mod_time
+    desc:       更新日時
+    type:       epoctime
+    not_null:   no
+  - name:       reg_user_id
+    desc:       登録ユーザID
+    type:       integer
+    not_null:   yes
+  - name:       mod_user_id
+    desc:       更新ユーザID
+    type:       integer
