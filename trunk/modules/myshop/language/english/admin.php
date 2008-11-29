@@ -143,7 +143,7 @@ define("_AM_MYSHOP_DISCOUNT_QUANTITY_INCLUDED", "products (included)");
 define("_AM_MYSHOP_DISCOUNT_DEGRESSIV", "Degressiv");
 define("_AM_MYSHOP_DISCOUNT_AMOUNT_PERCENT", "Amount or percentage discount on the price");
 define("_AM_MYSHOP_DISCOUNT_PERCENT", "Percent");
-define("_AM_MYSHOP_DISCOUNT_ON", "Sur");
+define("_AM_MYSHOP_DISCOUNT_ON", "On");
 define("_AM_MYSHOP_DISCOUNT_THE_PRODUCT", "The product");
 define("_AM_MYSHOP_DISCOUNT_THE_CART", "The cart");
 define("_AM_MYSHOP_DISCOUNT_IN_WHICH_CASE", "In which case ?");

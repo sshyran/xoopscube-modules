@@ -14,11 +14,11 @@ define("_MI_MYSHOP_BNAME4","Best Sellers");
 define("_MI_MYSHOP_BNAME5","Best Rated Products");
 define("_MI_MYSHOP_BNAME6","Random Product");
 define("_MI_MYSHOP_BNAME7","Products on promotion");
-define("_MI_MYSHOP_BNAME8","Cart");
+define("_MI_MYSHOP_BNAME8","Shopping Cart");
 define("_MI_MYSHOP_BNAME9","Recommended products");
 
 // Sub menu titles
-define("_MI_MYSHOP_SMNAME1","Cart");
+define("_MI_MYSHOP_SMNAME1","Shopping Cart");
 define("_MI_MYSHOP_SMNAME2","Index");
 define("_MI_MYSHOP_SMNAME3","Categories");
 define("_MI_MYSHOP_SMNAME4","Categories map");

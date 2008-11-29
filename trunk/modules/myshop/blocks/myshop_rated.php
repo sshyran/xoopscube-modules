@@ -17,7 +17,6 @@ function b_myshop_rated_show($options)
 		unset($products['lastTitle']);
 	}
 	if(count($products) > 0) {
-		$url = MYSHOP_URL.'include/myshop.css';
 		$block['nostock_msg'] = myshop_utils::getModuleOption('nostock_msg');
 		$block['block_products'] = $products;
 		return $block;

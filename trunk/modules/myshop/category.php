@@ -43,7 +43,9 @@ if( (is_object($category) && $category->getVar('cat_pid') == 0) || $cat_cid == 0
 	$xoopsTpl->assign('case', 1);
 
 	$tblChildsO = $tblChilds = array();
-	$tblChilds[] = $cat_cid;
+	if($cat_cid != 0) {
+		$tblChilds[] = $cat_cid;
+	}
 	if($cat_cid > 0) {
 		$tblChildsO = $mytree->getAllChild($cat_cid);
 		foreach($tblChildsO as $item) {
@@ -149,8 +151,9 @@ if( (is_object($category) && $category->getVar('cat_pid') == 0) || $cat_cid == 0
 			$xoopsTpl->assign('chunk'.$chunk4, $products);
 		}
 	}
-} else {	
-	// Display products of category
+}
+
+if( is_object($category) && $cat_cid > 0 ) { // Display products of category
 	$xoopsTpl->assign('case', 2);
 	$xoopsTpl->assign('category', $category->toArray());
 	if(MYSHOP_SHOW_SUB_CATEGORIES) {

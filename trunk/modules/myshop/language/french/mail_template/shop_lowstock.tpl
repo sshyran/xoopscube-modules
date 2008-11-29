@@ -5,7 +5,7 @@ Cet email vous informe que le produit suivant a atteint son stock d'alerte : {PR
 Quantité actuelle en stock : {ACTUAL_QUANTITY}
 Quantité d'alerte : {ALERT_QUANTITY}
 
-Vous pouvez voir le livre à cette adresse : 
+Vous pouvez voir le produit à cette adresse :
 {PUBLIC_URL}
 
 Et vous pouvez l'éditer à cette autre adresse (une fois connecté) : 

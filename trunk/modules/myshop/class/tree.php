@@ -259,11 +259,14 @@ class Myshop_XoopsObjectTree {
 	 * @param   integer $key             ID of the object to display as the root of select options
 	 * @return array	key = object ID, value = $fieldName
 	 */
-	function makeTreeAsArray($fieldName, $prefix='-', $key = 0)
+	function makeTreeAsArray($fieldName, $prefix='-', $key = 0, $empty = null)
     {
     	$ret = array();
+    	if($empty != null) {
+    		$ret[0] = $empty;
+    	}
         $this->_recursiveMakeTreeAsArray($fieldName, $key, $ret, $prefix);
-        return $ret;    	
+        return $ret;
     }
 }
 ?>

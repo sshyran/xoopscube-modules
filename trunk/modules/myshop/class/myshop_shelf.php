@@ -24,9 +24,6 @@ if (!defined('XOOPS_ROOT_PATH')) {
 	die("XOOPS root path not defined");
 }
 
-/**
- * Facade pour les produits
- */
 class myshop_shelf
 {
 	private $handlers;
@@ -157,8 +154,11 @@ class myshop_shelf
 				break;
 
 			case 'mostsold':
+				$tempProductsIds = array();
 				$tempProductsIds = $this->handlers->h_myshop_caddy->getMostSoldProducts($start, $limit, $category, $withQuantity);
-				$products = $this->handlers->h_myshop_products->getProductsFromIDs(array_keys($tempProductsIds));
+				if(count($tempProductsIds) > 0) {
+					$products = $this->handlers->h_myshop_products->getProductsFromIDs(array_keys($tempProductsIds));
+				}
 				break;
 
 			case 'mostviewed':

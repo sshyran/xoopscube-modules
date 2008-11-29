@@ -11,7 +11,7 @@ if (!class_exists('Myshop_XoopsPersistableObjectHandler')) {
 
 class myshop_related extends Myshop_Object
 {
-	function myshop_related()
+	function __construct()
 	{
 		$this->initVar('related_id',XOBJ_DTYPE_INT,null,false);
 		$this->initVar('related_product_id',XOBJ_DTYPE_INT,null,false);

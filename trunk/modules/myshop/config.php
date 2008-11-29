@@ -56,7 +56,7 @@ if(!defined("MYSHOP_ATTACHED_FILES_URL")) {
 	// CSV URL (the folder must be writable)
 	define("MYSHOP_CSV_URL", XOOPS_UPLOAD_URL);
 	// CSV Separator
-	define("MYSHOP_CSV_SEP", '|');
+	define("MYSHOP_CSV_SEP", ';');
 
 	// Paypal log's path (must be writable)
 	define("MYSHOP_PAYPAL_LOG_PATH", XOOPS_TRUST_PATH.'/cache/logpaypal_myshop.php');

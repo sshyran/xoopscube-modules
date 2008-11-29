@@ -94,21 +94,6 @@ class myshop_utils
 	}
 
 	/**
-	 * Is Xoops 2.2.x ?
-	 *
-	 * @return boolean need to say it ?
-	 */
-	function isX22()
-	{
-		$x22 = false;
-		$xv = str_replace('XOOPS ','',XOOPS_VERSION);
-		if(substr($xv,2,1) == '2') {
-			$x22 = true;
-		}
-		return $x22;
-	}
-
-	/**
 	 * Is Xoops 2.3.x ?
 	 *
 	 * @return boolean need to say it ?
@@ -123,7 +108,6 @@ class myshop_utils
 		return $x23;
 	}
 
-
 	/**
 	 * Retreive an editor according to the module's option "form_options"
 	 *
@@ -134,85 +118,62 @@ class myshop_utils
 	 * @param string $height Editor's height
 	 * @return object The editor to use
  	 */
-		
 	function &getWysiwygForm($caption, $name, $value = '', $width = '100%', $height = '400px', $supplemental='')
 	{
 		$editor = false;
-		$x22 = self::isX22() || self::isX23();
 		$editor_configs=array();
 		$editor_configs['name'] =$name;
 		$editor_configs['value'] = $value;
 		$editor_configs['rows'] = 35;
 		$editor_configs['cols'] = 60;
-		$editor_configs['width'] = $width;
-		$editor_configs['height'] = $height;
+		$editor_configs['width'] = '100%';
+		$editor_configs['height'] = '400px';
 
-		$editor_option = self::getModuleOption('bl_form_options');
+		$editor_option = strtolower(self::getModuleOption('bl_form_options'));
 
-		switch(strtolower($editor_option)) {
-/*			case 'spaw':
-				if(!$x22) {
-					if (is_readable(XOOPS_ROOT_PATH . '/class/spaw/formspaw.php'))	{
-						require_once(XOOPS_ROOT_PATH . '/class/spaw/formspaw.php');
-						$editor = new XoopsFormSpaw($caption, $name, $value);
-					}
-				} else {
-					$editor = new XoopsFormEditor($caption, 'spaw', $editor_configs);
-				}
-				break;*/
+		if(self::isX23()) {
+			$editor = new XoopsFormEditor($caption, $editor_option, $editor_configs);
+   			return $editor;
+		}
 
-			case 'fck':
-				if(!$x22) {
-					if ( is_readable(XOOPS_ROOT_PATH . '/class/xoopseditor/formfckeditor.php'))	{
-						require_once(XOOPS_ROOT_PATH . '/class/xoopseditor/formfckeditor.php');
-						$editor = new XoopsFormFckeditor($caption, $name, $value);
-					}
-				} else {
-					$editor = new XoopsFormEditor($caption, 'fckeditor', $editor_configs);
-
+		// Only for Xoops 2.0.x
+		switch($editor_option) {
+			case 'fckeditor':
+				if ( is_readable(XOOPS_ROOT_PATH . '/class/fckeditor/formfckeditor.php'))	{
+					require_once(XOOPS_ROOT_PATH . '/class/fckeditor/formfckeditor.php');
+					$editor = new XoopsFormFckeditor($caption, $name, $value);
 				}
 				break;
 
-/*			case 'htmlarea':
-				if(!$x22) {
-					if ( is_readable(XOOPS_ROOT_PATH . '/class/htmlarea/formhtmlarea.php'))	{
-						require_once(XOOPS_ROOT_PATH . '/class/htmlarea/formhtmlarea.php');
-						$editor = new XoopsFormHtmlarea($caption, $name, $value);
-					}
-				} else {
-					$editor = new XoopsFormEditor($caption, 'htmlarea', $editor_configs);
-				}
-				break;*/
-
-			case 'dhtml':
-				if(!$x22) {
-					$editor = new XoopsFormDhtmlTextArea($caption, $name, $value, 10, 50, $supplemental);
-				} else {
-					$editor = new XoopsFormEditor($caption, 'dhtmltextarea', $editor_configs);
+			case 'htmlarea':
+				if ( is_readable(XOOPS_ROOT_PATH . '/class/htmlarea/formhtmlarea.php'))	{
+					require_once(XOOPS_ROOT_PATH . '/class/htmlarea/formhtmlarea.php');
+					$editor = new XoopsFormHtmlarea($caption, $name, $value);
 				}
 				break;
 
-/*			case 'textarea':
+			case 'dhtmltextarea':
+				$editor = new XoopsFormDhtmlTextArea($caption, $name, $value, 10, 50, $supplemental);
+				break;
+
+			case 'textarea':
 				$editor = new XoopsFormTextArea($caption, $name, $value);
 				break;
 
 			case 'tinyeditor':
+			case 'tinymce':
 				if ( is_readable(XOOPS_ROOT_PATH.'/class/xoopseditor/tinyeditor/formtinyeditortextarea.php')) {
 					require_once XOOPS_ROOT_PATH.'/class/xoopseditor/tinyeditor/formtinyeditortextarea.php';
-					$editor = new XoopsFormTinyeditorTextArea(array('caption'=> $caption, 'name'=>$name, 'value'=>$value, 'width'=>$width, 'height'=>$height));
+					$editor = new XoopsFormTinyeditorTextArea(array('caption'=> $caption, 'name'=>$name, 'value'=>$value, 'width'=>'100%', 'height'=>'400px'));
 				}
 				break;
 
-    		case 'koivi':
-				if(!$x22) {
-					if ( is_readable(XOOPS_ROOT_PATH . '/class/wysiwyg/formwysiwygtextarea.php')) {
-						require_once(XOOPS_ROOT_PATH . '/class/wysiwyg/formwysiwygtextarea.php');
-						$editor = new XoopsFormWysiwygTextArea($caption, $name, $value, '100%', '250px', '');
-					}
-				} else {
-					$editor = new XoopsFormEditor($caption, 'koivi', $editor_configs);
+			case 'koivi':
+				if ( is_readable(XOOPS_ROOT_PATH . '/class/wysiwyg/formwysiwygtextarea.php')) {
+					require_once(XOOPS_ROOT_PATH . '/class/wysiwyg/formwysiwygtextarea.php');
+					$editor = new XoopsFormWysiwygTextArea($caption, $name, $value, $width, $height, '');
 				}
-				break;*/
+				break;
 			}
 			return $editor;
 	}
@@ -537,7 +498,7 @@ class myshop_utils
 	}
 
 	/**
-	 * Convert a Mysql date to readable format
+	 * Convert a Mysql date to human readable format
 	 *
 	 * @param string $date The date to convert
 	 * @return string The date in a human form
@@ -563,7 +524,7 @@ class myshop_utils
 	}
 
 	/**
-	 * Convert Mysql dateTime to readable date format
+	 * Convert Mysql dateTime to human readable date format
 	 */
 	function sqlDateTimeToFrench($dateTime)
 	{
@@ -588,7 +549,7 @@ class myshop_utils
 	 */
 	function needsAsterisk()
 	{
-		if(self::isX22() || self::isX23()) {
+		if(self::isX23()) {
 			return false;
 		}
 		if(strpos(strtolower(XOOPS_VERSION), 'impresscms') !== false) {

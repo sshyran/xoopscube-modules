@@ -24,10 +24,10 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 
 $modversion['name'] = _MI_MYSHOP_NAME;
-$modversion['version'] = 1.7;
+$modversion['version'] = 1.71;
 $modversion['description'] = _MI_MYSHOP_DESC;
 $modversion['author'] = "Myshop is originally based on Bookshop module by Instant Zero";
-$modversion['credits'] = "Author Herve Thouzard. Review by Nuno Luciano";
+$modversion['credits'] = "Author Herve Thouzard. Don Curioso. Review by Nuno Luciano";
 $modversion['help'] = '';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;
@@ -180,12 +180,12 @@ $cptm++;
 $modversion['sub'][$cptm]['name'] = _MI_MYSHOP_SMNAME3;
 $modversion['sub'][$cptm]['url'] = 'category.php';
 $cptm++;
-/*$modversion['sub'][$cptm]['name'] = _MI_MYSHOP_SMNAME4;
+$modversion['sub'][$cptm]['name'] = _MI_MYSHOP_SMNAME4;
 $modversion['sub'][$cptm]['url'] = 'categories-map.php';
 $cptm++;
 $modversion['sub'][$cptm]['name'] = _MI_MYSHOP_SMNAME5;
 $modversion['sub'][$cptm]['url'] = 'whoswho.php';
-$cptm++;*/
+$cptm++;
 $modversion['sub'][$cptm]['name'] = _MI_MYSHOP_SMNAME6;
 $modversion['sub'][$cptm]['url'] = 'all-products.php';
 $cptm++;
@@ -390,7 +390,7 @@ $modversion['config'][$cpto]['options'] = array(
 $modversion['config'][$cpto]['default'] = 'EUR';
 
 /**
- * Paypal development
+ * Paypal mode development
  */
 $cpto++;
 $modversion['config'][$cpto]['name'] = 'paypal_test';
@@ -489,7 +489,6 @@ $modversion['config'][$cpto]['valuetype'] = 'text';
 $modversion['config'][$cpto]['options'] = array(
 											_MI_MYSHOP_FORM_DHTML=>'dhtml',
 											//_MI_MYSHOP_FORM_COMPACT=>'textarea',
-											//_MI_MYSHOP_FORM_SPAW=>'spaw',
 											//_MI_MYSHOP_FORM_HTMLAREA=>'htmlarea',
 											//_MI_MYSHOP_FORM_KOIVI=>'koivi',
 											_MI_MYSHOP_FORM_FCK=>'fck',

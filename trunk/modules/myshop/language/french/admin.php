@@ -1,28 +1,4 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                      MYSHOP - MODULE FOR XOOPS 2                		 	 //
-//                  Copyright (c) 2007, 2008 Instant Zero                    //
-//                     <http://www.instant-zero.com/>                        //
-// ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
 
 define("_AM_MYSHOP_GO_TO_MODULE","Aller au module");
 define("_AM_MYSHOP_PREFERENCES","Préférences");
@@ -41,6 +17,7 @@ define("_AM_MYSHOP_CONF_DELITEM","Voulez vous vraiment supprimer cet élément ?")
 define("_AM_MYSHOP_LIST","Liste");
 define("_AM_MYSHOP_ID","Id");
 define("_AM_MYSHOP_RATE","Taux");
+define("_AM_MYSHOP_MAINTAIN", "Maintenir les tables et le cache");
 
 define("_AM_MYSHOP_ADD_VAT","Ajouter une TVA");
 define("_AM_MYSHOP_EDIT_VAT","Editer une TVA");
@@ -48,12 +25,14 @@ define("_AM_MYSHOP_EDIT_VAT","Editer une TVA");
 define("_AM_MYSHOP_ADD_CATEG","Ajouter une catégorie");
 define("_AM_MYSHOP_EDIT_CATEG","Editer une catégorie");
 
-define("_AM_MYSHOP_ADD_STORE","Ajouter un vendeur");
-define("_AM_MYSHOP_EDIT_STORE","Editer un vendeur");
+define("_AM_MYSHOP_ADD_STORE","Ajouter une Vitrine");
+define("_AM_MYSHOP_EDIT_STORE","Editer une Vitrine");
+
+define("_AM_MYSHOP_ADD_FILE","Ajouter un fichier");
+define("_AM_MYSHOP_EDIT_FILE","Editer un fichier");
 
 define("_AM_MYSHOP_ADD_MANUFACTURER","Ajouter un fabricant");
 define("_AM_MYSHOP_EDIT_MANUFACTURER","Editer un fabricant");
-
 
 define("_AM_MYSHOP_ADD_PRODUCT","Ajouter un produit (tous les champs ne sont pas obligatoires)");
 define("_AM_MYSHOP_EDIT_PRODUCT","Editer un produit (tous les champs ne sont pas obligatoires)");
@@ -69,13 +48,18 @@ define("_AM_MYSHOP_ERROR_5","Erreur, impossible de supprimer ce fabricant car  i
 define("_AM_MYSHOP_ERROR_6","Erreur, impossible de supprimer ce vendeur, il est utilisé par un ou plusieurs produits");
 define("_AM_MYSHOP_ERROR_7","Erreur, impossible de créer le fichier d'export");
 define("_AM_MYSHOP_ERROR_8","Erreur, veuillez créer au moins une catégorie avant de créer un produit");
+define("_AM_MYSHOP_ERROR_9","Erreur, veuillez créer au moins une TVA avant de créer un produit");
+define("_AM_MYSHOP_ERROR_10","Erreur, catégorie introuvable");
+define("_AM_MYSHOP_ERROR_11","Erreur, format d'export inconnu");
 define("_AM_MYSHOP_NOT_FOUND", "Erreur, élément introuvable");
+define("_AM_MYSHOP_CONF_DEL_CATEG", "Voulez-vous vraiment supprimer cette catégorie et ses sous-catégories ?<br />%s");
 
 define("_AM_MYSHOP_MODIFY", "Modifier");
 define("_AM_MYSHOP_ADD", "Ajouter");
 
 define("_AM_MYSHOP_PARENT_CATEG", "Catégorie mère");
 define("_AM_MYSHOP_CURRENT_PICTURE", "Image courante");
+define("_AM_MYSHOP_CURRENT_FILE", "Fichier courant");
 define("_AM_MYSHOP_PICTURE", "Image");
 define("_AM_MYSHOP_DESCRIPTION", "Description");
 
@@ -120,4 +104,64 @@ define('_AM_MYSHOP_CONF_VALIDATE', "Confirmez vous la validation de cette comman
 define('_AM_MYSHOP_LAST_ORDERS', "Dernières commandes");
 define('_AM_MYSHOP_LAST_VOTES', "Derniers votes");
 define('_AM_MYSHOP_NOTE', "Note");
+
+define('_AM_MYSHOP_RECOMMEND_IT', "Le recommander");
+define('_AM_MYSHOP_DONOTRECOMMEND_IT', "Arrêter de le recommander");
+define('_AM_MYSHOP_RECOMMENDED', "Recommandé");
+define('_AM_MYSHOP_RECOMM_TEXT', "Texte à afficher sur la page<br />des produits recommandés");
+define('_AM_MYSHOP_META_KEYWORDS', "Meta keywords");
+define('_AM_MYSHOP_META_DESCRIPTION', "Meta description");
+define('_AM_MYSHOP_META_PAGETITLE', "Titre de la page");
+
+// Added in March & April 2008
+define('_AM_MYSHOP_FILENAME', "Fichier");
+define('_AM_MYSHOP_VISIBLE_FILENAME', "Nom de fichier visible de l'utilisateur");
+define('_AM_MYSHOP_OFFLINEPAY_TEXT', "Texte à afficher à l'utilisateur lorsqu'il a décidé de ne pas payer en ligne ?");
+define('_AM_MYSHOP_FOOTER', "Texte à afficher en pied de page de la catégorie");
+
+define('_AM_MYSHOP_RESTRICT_TEXT', "Texte à afficher lorsque le passage des commandes est restreint aux utilisateurs enregistrés");
+// Pour les réductions
+define("_AM_MYSHOP_DISCOUNT_INFORMATION", "Informations sur la réduction");
+define("_AM_MYSHOP_DISCOUNT_TITLE", "Titre de la réduction (utilisé en interne)");
+define("_AM_MYSHOP_DISCOUNT_DESCRIPTION", "Description de la réduction (pour les clients)");
+define("_AM_MYSHOP_DISCOUNT_PERIOD", "Pour la période");
+define("_AM_MYSHOP_DISCOUNT_PERFROM", "Du");
+define("_AM_MYSHOP_DISCOUNT_PERTO", "au");
+define("_AM_MYSHOP_DISCOUNT_CATEGORY", "Si la catégorie est");
+define("_AM_MYSHOP_DISCOUNT_WHOWHAT", "A qui ou selon quoi appliquer la réduction");
+define("_AM_MYSHOP_DISCOUNT_XOOPS_GROUP", "Si le Groupe Xoops est");
+define("_AM_MYSHOP_DISCOUNT_MANUFACTURER", "Fabricant");
+define("_AM_MYSHOP_DISCOUNT_VENDOR", "Vendeur");
+define("_AM_MYSHOP_DISCOUNT_PRODUCT", "Produit");
+define("_AM_MYSHOP_DISCOUNT_REDUCTION_PRICE", "Réduction sur le prix du produit ou le montant de la commande");
+define("_AM_MYSHOP_DISCOUNT_REDUCTION_TYPE", "Appliquer une réduction");
+define("_AM_MYSHOP_DISCOUNT_QUANTITY_FROM", "De");
+define("_AM_MYSHOP_DISCOUNT_QUANTITY_TO", "à");
+define("_AM_MYSHOP_DISCOUNT_QUANTITY_INCLUDED", "produits (inclus)");
+define("_AM_MYSHOP_DISCOUNT_DEGRESSIV", "Dégressive");
+define("_AM_MYSHOP_DISCOUNT_AMOUNT_PERCENT", "D'un montant ou pourcentage");
+define("_AM_MYSHOP_DISCOUNT_PERCENT", "Pourcent");
+define("_AM_MYSHOP_DISCOUNT_ON", "Sur");
+define("_AM_MYSHOP_DISCOUNT_THE_PRODUCT", "Le produit");
+define("_AM_MYSHOP_DISCOUNT_THE_CART", "Le panier");
+define("_AM_MYSHOP_DISCOUNT_IN_WHICH_CASE", "Dans quel cas ?");
+define("_AM_MYSHOP_DISCOUNT_ALL_CASES", "Dans tous les cas");
+define("_AM_MYSHOP_DISCOUNT_FIRST_PURCHASE", "Si c'est le premier achat du client sur le site");
+define("_AM_MYSHOP_DISCOUNT_NEVER_BOUGHT", "Si le produit n'a jamais été acheté");
+define("_AM_MYSHOP_DISCOUNT_QUANTITY_IS", "Si la quantité de produit est");
+define("_AM_MYSHOP_DISCOUNT_SHIPPING_REDUCTIONS", "Réductions sur les frais de port");
+define("_AM_MYSHOP_DISCOUNT_SHIPPINGS_ARE", "Les frais de port sont");
+define("_AM_MYSHOP_DISCOUNT_FULL_PAY", "A payer intégralement");
+define("_AM_MYSHOP_DISCOUNT_SHIPPING_FREE", "Totalement gratuits");
+define("_AM_MYSHOP_DISCOUNT_ORDER_OVER", "si le client commande plus de");
+define("_AM_MYSHOP_DISCOUNT_REDUCED_FOR", "Les frais de port sont réduits de");
+define("_AM_MYSHOP_DISCOUNT_REDUCED_IF", "si le montant de la commande est > à");
+
+define("_AM_MYSHOP_DISCOUNT_HELP1", "Il n'est pas nécessaire de spécifier<br />la catégorie et/ou le vendeur si<br />vous spécifiez un produit");
+define("_AM_MYSHOP_DISCOUNT_HELP2", "Si vous spécifiez un groupe Xoops alors la réduction ne s'appliquera que pour eux.");
+define("_AM_MYSHOP_DISCOUNT_HELP3", "Si vous spécifiez une catégorie alors la réduction ne s'appliquera qu'aux produits de cette catégorie.");
+define("_AM_MYSHOP_DISCOUNT_HELP4", "Si vous spécifiez un vendeur, seuls les produits de ce vendeur profiteront de cette réduction.");
+define("_AM_MYSHOP_DISCOUNT_HELP5", "Si vous spécifiez un vendeur ET une catégorie, seuls les produits de ce vendeur et de cette catégorie profiteront de cette réduction.");
+define("_AM_MYSHOP_DISCOUNT_HELP6", "Si vous spécifiez un produit, seul ce produit bénéficiera de la réduction.");
 ?>
+

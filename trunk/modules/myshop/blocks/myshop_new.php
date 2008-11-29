@@ -7,20 +7,21 @@ function b_myshop_new_show($options)
 	// '10|0';	// Display 10 products from all categories or specify category id
 	global $xoopsConfig, $xoopsTpl;
 	include XOOPS_ROOT_PATH.'/modules/myshop/include/common.php';
-	$block = $products = array();
+//	$block = $products = array();
 	$start = 0;
 	$limit = $options[0];
 	$categoryId = $options[1];
-	
-//	$myshop_shelf_parameters->resetDefaultValues()->setProductsType('product_online')->setStart($start)->setLimit($limit)->setSort('product_submitted')->setOrder('DESC')->setCategory($categoryId);
-	$myshop_shelf_parameters->resetDefaultValues()->setProductsType('recent')->setStart($start)->setLimit($limit)->setSort('product_submitted DESC, product_title')->setOrder('ASC')->setCategory($categoryId);
+	$thisMonthOnly = intval($options[2]);	
+
+	$myshop_shelf_parameters->resetDefaultValues()->setProductsType('recent')->setStart($start)->setLimit($limit)->setSort('product_submitted DESC, product_title')->setCategory($categoryId)->setThisMonthOnly($thisMonthOnly);
 
 	$products = $myshop_shelf->getProducts($myshop_shelf_parameters);
 	if(isset($products['lastTitle'])) {
 		unset($products['lastTitle']);
 	}
 	if(count($products) > 0) {
-		$url = MYSHOP_URL.'include/myshop.css';
+//		$url = MYSHOP_URL.'include/myshop.css';
+		$block = array();
 		$block['nostock_msg'] = myshop_utils::getModuleOption('nostock_msg');
 		$block['block_products'] = $products;
 //		$xoopsTpl->assign("xoops_module_header", "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />");

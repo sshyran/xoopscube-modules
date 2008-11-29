@@ -312,7 +312,7 @@ class myshop_reductions
 		$discountsCount = 0;
 		$this->cart = isset($_SESSION[MyshopMyshop_caddyHandler::CADDY_NAME]) ? $_SESSION[MyshopMyshop_caddyHandler::CADDY_NAME] : array();
 		$cartCount = count($this->cart);
-		if( $cartCount < 0 ) {
+		if( $cartCount == 0 ) {
 			$emptyCart = true;
 			return true;
 		}
@@ -602,7 +602,7 @@ class myshop_reductions
 		$vatAmount = $totalVAT;
 		$commandAmountTTC = $totalHT + $totalVAT + $totalShipping;
 		$cartForTemplate = $this->cartForTemplate;
-		$emptyCart = false;
+	//	$emptyCart = false;
 		return true;
 	}
 }

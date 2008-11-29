@@ -14,7 +14,7 @@ Ext.onReady(function(){
 
     var myData = [
 <{foreach item=product from=$products}>
-        ['<a href="<{$product.product_url_rewrited}>" title="<{$product.product_href_title}>"><{$product.product_title}></a> <{$product.product_recommended_picture}>','<{$product.product_category.cat_title}>'<{if $mod_pref.use_price}>,'<{if $product.product_discount_price_ttc != ''}><{$product.product_discount_price_ttc}><{else}><{$product.product_price_ttc}><{/if}><{/if}>','<{if $product.product_stock > 0 }><a href="<{$smarty.const.MYSHOP_URL}>caddy.php?op=addproduct&product_id=<{$product.product_id}>" title="<{$smarty.const._MYSHOP_ADD_TO_CART}>"><img src="<{$smarty.const.MYSHOP_IMAGES_URL}>cartadd.gif" alt="<{$smarty.const._MYSHOP_ADD_TO_CART}>" border="0" /></a><{else}><{$mod_pref.nostock_msg}><{/if}>'] <{if $product.product_count != count($products)}>,<{/if}>
+        ['<{$product.product_recommended_picture}><a href="<{$product.product_url_rewrited}>" title="<{$product.product_href_title}>"><{$product.product_title}></a>','<{$product.product_category.cat_title}>'<{if $mod_pref.use_price}>,'<{if $product.product_discount_price_ttc != ''}><{$product.product_discount_price_ttc}><{else}><{$product.product_price_ttc}><{/if}><{/if}>','<{if $product.product_stock > 0 }><a href="<{$smarty.const.MYSHOP_URL}>caddy.php?op=addproduct&product_id=<{$product.product_id}>" title="<{$smarty.const._MYSHOP_ADD_TO_CART}>"><img src="<{$smarty.const.MYSHOP_IMAGES_URL}>cartadd.gif" alt="<{$smarty.const._MYSHOP_ADD_TO_CART}>" border="0" /></a><{else}><{$mod_pref.nostock_msg}><{/if}>'] <{if $product.product_count != count($products)}>,<{/if}>
 <{/foreach}>        
     ];
 

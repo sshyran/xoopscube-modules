@@ -146,7 +146,7 @@ class MyshopMyshop_discountsHandler extends Myshop_XoopsPersistableObjectHandler
 	 *
 	 * @return array
 	 */
-	function getRulesOnEachBook()
+	function getRulesOnEachProduct()
 	{
 		static $buffer = array();
 		if(is_array($buffer) && count($buffer) > 0) {

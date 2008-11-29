@@ -27,14 +27,14 @@ class MyshopMyshop_vatHandler extends Myshop_XoopsPersistableObjectHandler
 	}
 
 	/**
-	 * Return All TAX
+	 * Return All FEE
 	 *
-	 * @param integer $start Position de départ
-	 * @param integer $limit Nombre total d'enregistrements à renvoyer
-	 * @param string $order Champ sur lequel faire le tri
-	 * @param string $order Ordre du tri
-	 * @param boolean $idaskey Indique si le tableau renvoyé doit avoir pour clé l'identifiant unique de l'enregistrement
-	 * @return array tableau d'objets de type TVA
+	 * @param integer $start
+	 * @param integer $limit
+	 * @param string $order
+	 * @param string $order
+	 * @param boolean $idaskey
+	 * @return array
 	 */
 	function getAllVats($start = 0, $limit = 0, $sort = 'vat_id', $order='ASC', $idaskey = true)
 	{

@@ -1,12 +1,12 @@
 Bonjour {X_UNAME},
 
-Un nouveau produit, "{BOOK_NAME}" a été ajouté sur {X_SITENAME}.
+Un nouveau produit, "{PRODUCT_NAME}" a été ajouté sur {X_SITENAME}.
 
 Voilà le sommaire du produit :
-{BOOK_SUMMARY}
+{PRODUCT_SUMMARY}
 
 Vous pouvez voir ce produit à cette adresse :
-{BOOK_URL}
+{PRODUCT_URL}
 
 -----------
 

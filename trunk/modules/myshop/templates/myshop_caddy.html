@@ -36,10 +36,12 @@
         <{$product.product_title}>
         <{if $product.reduction != ''}><sup style="color: #FF0000;"><{$product.number}></sup>
         <{/if}>
-        </a> 				
+        </a> &nbsp;
+<{if $product.manufacturersJoinList != ''}><{$smarty.const._MYSHOP_BY}> <{$product.manufacturersJoinList}><{/if}></div>
+				
 		</td>
 		<td align="right"><{$product.unitBasePriceFormated}></td>
-        <td align="right"><{if $product.reduction != ''}><{$product.discountedPriceFormated}><{else}>--<{/if}></td>
+        <td align="right"><{$product.discountedPriceFormated}></td>
 		<td align="center">
         <input type="text" name="qty_<{$product.number}>" id="qty_<{$product.number}>" value="<{$product.product_qty}>" size="3" />
         </td>

@@ -48,6 +48,10 @@ if(!is_dir(MYSHOP_CACHE_PATH)) {
 	file_put_contents(MYSHOP_CACHE_PATH.'/index.html', '<script>history.go(-1);</script>');
 }
 
+/*if(!is_writable(MYSHOP_CACHE_PATH)) {
+	exit("Your cache folder, ".MYSHOP_CACHE_PATH." is not writable !");
+}*/
+
 $destname = '';
 define("MYSHOP_ADMIN", true);
 

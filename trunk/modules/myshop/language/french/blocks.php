@@ -28,6 +28,7 @@ define("_MB_MYSHOP_DISP","Afficher");
 define("_MB_MYSHOP_LINKS","Liens");
 define("_MB_MYSHOP_CHARS","Taille du titre");
 define("_MB_MYSHOP_LENGTH"," caractères");
+define("_MB_MYSHOP_MAX_ITEMS","Nombre maximum d'éléments à afficher (0 = pas de limite)");
 define("_MB_MYSHOP_PRODUCTS_CNT","Nombre de produits à afficher");
 define("_MB_MYSHOP_SORT_ORDER","Ordre de tri");
 define("_MB_MYSHOP_SORT_1","Titre");
@@ -37,4 +38,5 @@ define("_MB_MYSHOP_ALL_CATEGORIES","* Toutes les catégories *");
 define("_MB_MYSHOP_TYPE_BLOCK","Type de bloc");
 define("_MB_MYSHOP_TYPE_BLOCK1","Liste classique des catégories");
 define("_MB_MYSHOP_TYPE_BLOCK2","Liste des catégories en accord avec la page en cours");
+define("_MB_MYSHOP_THIS_MONTH","Uniquement les produits du mois en cours ?");
 ?>

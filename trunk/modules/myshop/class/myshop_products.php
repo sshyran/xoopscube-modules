@@ -387,7 +387,7 @@ class MyshopMyshop_productsHandler extends Myshop_XoopsPersistableObjectHandler
 		if(myshop_utils::getModuleOption('nostock_display') == 0) {	
 			$criteria->add(new Criteria('product_stock', 0, '>'));
 		}
-		if(is_array($category)) {
+		if(is_array($category) && count($category) >0) {
 			$criteria->add(new Criteria('product_cid', '('.implode(',',$category).')', 'IN'));
 		} elseif($category != 0) {
 			$criteria->add(new Criteria('product_cid', intval($category), '='));
@@ -422,7 +422,7 @@ class MyshopMyshop_productsHandler extends Myshop_XoopsPersistableObjectHandler
 		if(myshop_utils::getModuleOption('nostock_display') == 0) {	
 			$criteria->add(new Criteria('product_stock', 0, '>'));
 		}
-		if(is_array($category)) {
+		if(is_array($category) && count($category) >0) {
 			$criteria->add(new Criteria('product_cid', '('.implode(',',$category).')', 'IN'));
 		} elseif($category != 0) {
 			$criteria->add(new Criteria('product_cid', intval($category), '='));
@@ -511,7 +511,7 @@ class MyshopMyshop_productsHandler extends Myshop_XoopsPersistableObjectHandler
 		if(myshop_utils::getModuleOption('nostock_display') == 0) {	
 			$criteria->add(new Criteria('product_stock', 0, '>'));
 		}
-		if(is_array($category)) {
+		if(is_array($category) && count($category) > 0) {
 			$criteria->add(new Criteria('product_cid', '('.implode(',',$category).')', 'IN'));
 		} elseif($category > 0 ) {
 			$criteria->add(new Criteria('product_cid', intval($category), '='));
@@ -541,7 +541,7 @@ class MyshopMyshop_productsHandler extends Myshop_XoopsPersistableObjectHandler
 	 * @param integer	$excludedProduct	
 	 * @return integer
 	 */
-	function getRecentProductsCount($category=0, $excludedProduct = 0)
+	function getRecentProductsCount($category = 0, $excludedProduct = 0)
 	{
 		$criteria = new CriteriaCompo();
 		$criteria->add(new Criteria('product_online', 1, '='));
@@ -702,7 +702,7 @@ class MyshopMyshop_productsHandler extends Myshop_XoopsPersistableObjectHandler
 	 * @param string $sort	
 	 * @param string $order	
 	 * @param boolean $thisMonthOnly	
-	 * @return array )
+	 * @return array
 	 */
 	function getRandomProducts($start=0, $limit=0, $category=0, $sort = 'RAND()', $order = 'ASC', $thisMonthOnly = false)
 	{

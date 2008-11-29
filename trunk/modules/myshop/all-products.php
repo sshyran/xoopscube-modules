@@ -47,16 +47,7 @@ $header  = "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />";
 $header .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url2\" />";
 $header .= "<script type=\"text/javascript\" src=\"$url4\"></script>";
 $header .= "<script type=\"text/javascript\" src=\"$url5\"></script>";
-				$header .= '<script type="text/javascript" src="'.XOOPS_URL.'/common/fckeditor/fckeditor.js"></script>
-		<script type="text/javascript">
-		<!--
-			function fckeditor_exec() {
-				var oFCKeditor = new FCKeditor( "'.$editor_configs['name'].'" , "100%" , "500" , "Default" );		
-				oFCKeditor.BasePath = "'.XOOPS_URL.'/common/fckeditor/";
-				oFCKeditor.ReplaceTextarea();
-			}
-		// -->
-		</script>';
+
 $xoopsTpl->assign("xoops_module_header", $header);
 
 if (file_exists( MYSHOP_PATH.'language/'.$xoopsConfig['language'].'/modinfo.php')) {

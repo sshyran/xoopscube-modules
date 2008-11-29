@@ -83,7 +83,7 @@ class MyshopMyshop_caddyHandler extends Myshop_XoopsPersistableObjectHandler
 	function getMostSoldProducts($start = 0, $limit = 0, $product_cid = 0, $withQuantity=false)
 	{
 		$ret = array();
-		if(is_array($product_cid)) {
+		if(is_array($product_cid) && count($product_cid) > 0) {
 			$sql = 'SELECT c.caddy_product_id, sum( c.caddy_qte ) AS mv FROM '.$this->table.' c, '.$this->db->prefix('myshop_products').' b WHERE (c.caddy_product_id = b.product_id) AND b.product_cid IN ('.implode(',', $product_cid).') GROUP BY c.caddy_product_id ORDER BY mv DESC';
 		} elseif($product_cid > 0) {
 			$sql = 'SELECT c.caddy_product_id, sum( c.caddy_qte ) AS mv FROM '.$this->table.' c, '.$this->db->prefix('myshop_products').' b WHERE (c.caddy_product_id = b.product_id) AND b.product_cid = '.intval($product_cid).' GROUP BY c.caddy_product_id ORDER BY mv DESC';
