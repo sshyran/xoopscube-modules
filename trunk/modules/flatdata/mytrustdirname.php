@@ -1,0 +1,5 @@
+<?php
+
+$mytrustdirname = 'flatdata';
+
+?>
