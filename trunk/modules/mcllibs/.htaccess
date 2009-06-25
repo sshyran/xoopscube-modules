@@ -1,5 +1,0 @@
-order deny,allow
-deny from all
-<FilesMatch "\.(gif|jpg|png)$|captcha.php|index.php|css.php">
-Allow from all
-</FilesMatch>

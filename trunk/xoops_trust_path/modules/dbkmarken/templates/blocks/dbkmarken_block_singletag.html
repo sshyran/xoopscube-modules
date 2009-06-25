@@ -1,9 +1,0 @@
-<ul>
-  <{foreach item=obj from=$block}>
-  	<li><a href="<{$obj->getShow('url')}>" target="_blank"><img src="<{$xoops_url}>/modules/<{$dirname}>/images/icon_home_s.gif" alt="URL" /></a> <a href="<{$xoops_url}>/modules/<{$dirname}>/index.php?action=BmView&amp;bm_id=<{$obj->getShow('bm_id')}>"><{$obj->getShow('bm_title')|truncate:100:"..."}></a>(<{$obj->getShow('uid')|xoops_user:"uname"}>, <{$obj->getShow('reg_unixtime')|date_format:"%Y.%m.%d"}>)<br />
-			<{foreach item=tag from=$obj->mTag}>
-				[<a href="<{$xoops_url}>/modules/<{$dirname}>/index.php?action=TagList&amp;tag_name=<{$tag->getShow('tag_name')|urlencode}>"><{$tag->getShow('tag_name')}></a>]
-			<{/foreach}>
-		</li>
-  <{/foreach}>
-</ul>
