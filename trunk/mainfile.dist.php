@@ -36,7 +36,7 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
     // XOOPS Trusted Path
     // This is option. If you need this path, input value. The trusted path
     // should be a safety directory which web browsers can't access directly.
-    define('XOOPS_TRUST_PATH', XOOPS_ROOT_PATH.'/xoops_trust_path');
+    define('XOOPS_TRUST_PATH', '');
 
     // XOOPS Virtual Path (URL)
     // Virtual path to your main XOOPS directory WITHOUT trailing slash
@@ -61,7 +61,7 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
 
     // Database Username
     // Your database user account on the host
-    define('XOOPS_DB_USER', 'root');
+    define('XOOPS_DB_USER', '');
 
     // Database Password
     // Password for your database user account
@@ -69,7 +69,7 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
 
     // Database Name
     // The name of database on the host. The installer will attempt to create the database if not exist
-    define('XOOPS_DB_NAME', 'unmg');
+    define('XOOPS_DB_NAME', '');
 
     // Use persistent connection? (Yes=1 No=0)
     // Default is 'No'. Choose 'No' if you are unsure.
@@ -97,16 +97,10 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
     //    But $xoopsOption['nocommon'] is deprecated.
     //
     if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {
-	include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;
         include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';
         if (!isset($xoopsOption['nocommon']) && !defined('_LEGACY_PREVENT_EXEC_COMMON_')) {
             include XOOPS_ROOT_PATH.'/include/common.php';
-		
-		$tplsadmin_autoupdate_mydirnames = array( 'bulletin' , 'd3blog', 'd3downloads' , 'd3forum' , 'd3pipes' , 'pico' , 'xsns', 'webphoto' ) ;
-		include XOOPS_TRUST_PATH."/libs/altsys/include/autoupdate_from_d3module.inc.php" ;
-        
-		}
-		include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;
+        }
     }
 }
 ?>
