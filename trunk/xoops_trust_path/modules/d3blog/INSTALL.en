@@ -1,0 +1,235 @@
+/* $Id: INSTALL.en 620 2009-08-29 01:21:28Z hodaka $ */
+
+== INSTALL ==
+
+1. Packed
+    |
+    +-- extra	here are plugins
+    |   (xmobile and piCal in html)
+    |   (d3pipes in xoops_trust_path)
+    |   *** 4 smarty plugin files
+    +-- html
+    |   (smarty plugins which HD d3blog relocates into the trust side libs dir)
+  |
+    +-- xoops_trust_path
+
+2. Make a directory for XOOPS_TRUST_PATH.
+
+    1) Edit mainfile.php and define XOOPS_TRUST_PATH dir.
+    2) You are supposed to get accustomed to D3 type module.
+
+3. Install altsys module(v0.55 over).
+
+4. Upload files to a server.
+
+    1) Rename module dir name as you like.
+    2) Copy modules as much as you need.
+    3) Edit root/mytrustdirname.php if you want to change a trust-side dir name.
+    4) No problem with plural trust-side dirs.
+    5) Upload the 4 smarty plugins up to:
+       public root/class/smarty/plugins dir for X2.0.x
+       trust root/libs/smarty/plugins dir for XCL2.1.x
+    6) Rename the file trust/include/default/preferences.default.php to preferences.inc.php if you need to change the default value.
+
+5. [d]Edit your theme.html and assign a smarty variable, $xoops_block_header, in the meta header.[/d]
+
+    - Deprecated.
+
+6. Install a module as usual.
+
+
+== UPGRADE ==
+
+１．v1.00 => v1.01
+    1) Delete all the d3blog files in both root-side and trust-side before uploading.
+
+    2) Update a module.
+
+    3) See if "trackback spam check" are OK'ed in the preferences.
+
+    4) Re-construct "permission management" table so as they were fully changed to be more simple. See HOWTO 1-3)Privilege.
+
+    5) Templates are required to update.
+        +--------------------------------------------------------------+
+        | $currentUser.perm_name.xxxx => $currentUser.user_perm.xxxx   |
+        +--------------------------------------------------------------+
+        Related templates: inc_entry.html, main_submit.html
+
+    6) Also required to update so as Smarty plugins were renamed.
+        +--------------------------------------------------+
+        | mb_truncate => xoops_mb_truncate                 |
+        +--------------------------------------------------+
+        Related templates: admin_approval_manager.html, main_details.html, main_submit.html
+
+    7) Again, main_submit.html is reqired to update.
+        Add this on the shoulder of trackback url textarea.
+        +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | <input type="checkbox" name="autodiscovery" id="autodiscovery" value="1"<{if $form.autodiscovery_}> checked="checked"<{/if}> /><label for="autodiscovery"><{$smarty.const._MD_D3BLOG_LANG_AUTODISCOVER}></label> |
+        +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+    8) Modify names of included files which were renamed.
+        renamed templates are:	main_header.html => inc_header.html, main_entry_html => inc_entry.html, main_comment_form.html => inc_comment.html
+        templates to be modified:	main_archives.html, main_comment_edit.html, main_details.html, main_index.html, main_submit.html
+
+    9) Modify multibytes regex for spam check if youb use multibyte language.
+        Replace the pattern like this (for Japanese):
+        +---------------------------------+
+        | [一-龠]+|[ぁ-ん]+|[ァ-ヴー]+    |
+        +---------------------------------+
+
+== HOWTO ==
+
+1. Do these right after installing.
+
+    1) prefenrences
+
+    2) Create at least a category by category manager.
+
+    3) Privilege
+        Even a system administrator does not have any privileges if you don't give.
+        "Editor" is almighty. No other but he/she can edit others'.
+        Remember not to give html privileges to guests.
+        Can't manage by category. Install another modules if you need.
+
+    4) Block/Module access control and language constants
+        Module access privilege is required.
+        All the blocks are clonable. Utilize a block type if you need to give each own html.
+
+    5) CSS manager
+        1) off dynamic css
+            Change privileges of root/css directory property to 777, of files 666.
+            Write down after editing css templates by CSS manager.
+            Last, change privilege of directory 755, files 644.
+            Rename .htaccess.dist to .htaccess.
+            NOTICE:
+            - if any other module name, don't forget to write down block css files.
+
+        2) on dynamic css
+            Use dynamic css only while testing or adjusting styles.
+
+    6) Templates
+        Also can edit css templates.
+
+    Now you are ready to start.
+
+2. Import from weblog-1.42, weblogD3, xeblog
+
+    Import manager can import:
+    - module table data, category, entry and trackback
+    - xoops comments and notifications
+    - comment views and trackback counter
+
+    Notice:
+    - Category, entry and trackback tables of an exporting module are kept alive.
+    - Comments and notifications are moved to the new module after 2) and 3).
+
+3. Approval manager
+
+    You can view and edit whole un-approved entries or trackbacks data.
+    Event notification or approval module are highly recommended to check their arrival.
+
+4. Update ping and Traclback ping
+
+    1) Update ping
+        Edit update ping servers of preferences, at most 4 or 5 are recommended.
+        We doesn't send by default unless you check "update ping" option.
+
+    2) Sending a trackback ping
+        Edit "trackback urls" when posting or editing an entry. Each must be seperated by break.
+        We never send the trackback again once it was accepted. Delete the old trackback if you need to send again.
+        Can autodiscover a trackback url. Just post a url.
+
+    3) Receiving a trackback ping
+        Must give privilege to view to guests.
+        Set trackback arroval check in prefenrenes if you like.
+
+    4) Againt trackback SPAMs
+        These are managed in preferences.
+
+        First, we reject a trackback with no tile or blog name.
+        - Banned words. Each must be seperated by break.
+        - DNSBL check
+            We reject if registered as black.
+        - SURBL check
+            We check urls in an excerpt and reject if registered as black.
+        - Character unicode pattern and required number of letters
+            Only valid if you choose XOOPS_MULITI_BYTES.
+            We reject if trackback doesn't contain neccessary total letters in a title, a blog name and an excerpt.
+            Just ready for Japanese hiragana, katakana and kanji by default.
+        - Regex pattern check
+        - References check
+            We reject if his/her blog entry doesn't refer to my url.
+
+    5) Trackback ticket
+        Notice:
+        - requires javascripts to be enabled.
+        - vaild for 1 day.
+        - can't re-use.
+        - invalid element of enmbedded trackback url which disables a GET request of "__mode=rss".
+
+        * not recommended 'cause outbreak trackback rules in general. :-
+        * This is the last resort.
+
+5. Entry by entry permission control
+
+    Choose default groups in preferences.
+    They must have viewable privilege.
+
+    Even if they have no entry by entry permission, they can read a title or an excerpt if "CAN READ A TITLE AND AN EXCERPT" checked.
+
+    NOTICE:
+        Don't remember to fix default groups manually if you turn this on later.
+
+6. Plugins
+
+    Plugin files are under "extra" folder.
+    Some are required to rename if you renamed the module.
+
+    +----------------------------------------------------------------------+------------------+
+    | module name  | plugins                                               |    remarks       |
+    +--------------+-------------------------------------------------------+------------------+
+    | xmobile      | extra/html/modules/xmobile/plugins/d3blog.php         | must rename      |
+    +--------------+-------------------------------------------------------+------------------+
+    | piCal        | extra/html/modules/piCal/plugins/monthly/d3blog-date  | upload ones      |
+    |			         |                                          d3blog-entry |   you need       |
+    |              |                                                       |                  |
+    +--------------+-------------------------------------------------------+------------------+
+    | d3pipes      | extra/xoops_trsut_path/modules/d3pipes/joints/		     | In d3pipes if    |
+    |              |                block/D3pipesBlockD3bloglist.class.php |    Hodajuku dist.|
+    +--------------+-------------------------------------------------------+------------------+
+
+    These are under trust-side d3blog:
+    +--------------+-------------------------------------------------------+------------------+
+    | d3forum      | xoops_trust_path/modules/d3blog/class/                | comment integ-   |
+    |              |                		d3blogD3commentEntry.class.php     |           ration |
+    +--------------+-------------------------------------------------------+------------------+
+    | search       | xoops_trust_path/modules/d3blog/include/              |                  |
+    |              |                                    search.inc.php     |                  |
+    +--------------+-------------------------------------------------------+------------------+
+    | whatsnew     | xoops_trust_path/modules/d3blog/include/              |                  |
+    |              |                                    data.inc.php       |                  |
+    +--------------+-------------------------------------------------------+------------------+
+
+7. D3forum comment integration (needs d3forum-0.83 or more)
+    Choose the d3forum module and give the forum id in the preferences admin.
+    Enables to fetch comment url automatically.
+     - edit the corresponding forum:
+        +-----------------------------------------------------------------+
+        | directory_name::d3blogD3commentEntry::trust_side_directory_name |
+        +-----------------------------------------------------------------+
+
+8. Wysiwyg editor
+
+    Can choose FCKeditor if they have "html" privilege.
+
+    Get libraries from Package_hd for XCL2.1 at http://hodajuku.sourceforge.net/, and upload them up to html/common/fckeditor directory.
+
+9. Image uploader
+
+    D3blog doesn't have any uploader.
+    Image manager or image manager integration of myAlbum-P are recommended.
+
+10. Discussion
+
+    Hodaka Labo - d3blog support site
+    http://labo.hodaka.org

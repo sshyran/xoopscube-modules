@@ -1,0 +1,203 @@
+[CHANGES]
+- v1.05
+  Will not validate posted contents if wysiwyg editor chosen.
+  Changed the d3comment forum directory name setting.
+- v1.04.3
+  Enabled preferences settings to be kept safe on a versionup. Just rename the file trust/include/preferences.default.php to preferences.inc.php.
+  Relocated all the smarty plugins into the extra dir.
+- v1.04.2
+  Added X-CODE and X-QUOTE to the quicktag.
+- v1.04.1
+  Changed configuring the com agent.
+  Rearranged a file tree.
+- v1.04
+  Implimented entity referencing function by quicktag.js.
+- v1.03.4
+  Implimented quicktag, the 3rd wysiwyg editor.
+  Implimented a smarty plugin which assigns a blog entries count variable.
+- v1.03.3
+  Modified the Smarty xoopsdhtmltarea plugin.
+- v1.03.2
+  Fixed the CategoryEditForm constructor bug and the smarty is-User flag typo.
+- v1.03.1
+  Fixed to Escape the character of a d3comment title.
+- v1.03
+  User and category filters are enabled in the latest entries block and D3pipesBlockD3bloglist. =>must update a module and check block options.
+    Replaced a feed description from an excerpt to a whole body.
+- v1.02.8
+  Modified parameters for d3comment plugins.
+  Changed the link urls from the archives block.
+- v1.02.7
+  Fixed the actionform value of the new entry object.
+  Modified the including conditions of js files.
+- v1.02.6
+  Fixed the double definition of the calendar language file.
+  Fixed the timezone offset of the calendar block.
+  Fixed a notification bug.
+  Disabled for a guest to give an editor and html_allow privileges.
+- v1.02.5
+  Embedded a blogger filter in multi bloggers use.
+  Some smarty plugins are dropped or renamed.
+- v1.02.4
+  Embedded own d3comment count function.
+  Enabled a semantic markup of xoops page navigation by xoops_pagenavi plugin.
+  [body] tag was added.
+- v1.02.3
+  Escaped from a site-wide wiki textarea rendering of permitted groups.
+  Embedded a hidden default value of dohtml, doxcode and dobr preferences.
+  Some bug fixes.
+- v1.02.2
+  Added a d3comment plugin file which is required to upload.
+  D3comment was renewed corresponding to the new d3comment class(needs a 0.83 or more versioned d3forum).
+- v1.02.1
+  Comment integration switch  was added.
+- v1.02
+  [fig] and [sitefig] tags can markup figures layout with a title, a caption, a credit and etc.
+  Enabled xoops code optional.
+  Added "all" value of permission-by-entry group which covers automatically new added groups.
+  Justified GNL/GPL.
+  Modified multibyte regex patterns.
+  Improved English language files.
+- v1.01
+  Instanciated module class, which fixes troubles when two more trustdir d3blogs exist.
+  Privileges on view/edit/approve were improved to be more simple, an editor is almighty.
+  No more PEAR libraries used.
+  - Modified to send trackback ping and update ping seperately not to be timeout.
+  - Trackback send/receive was modified, also some spam check options are added.
+  - Enabled autodiscovery of trackback url.
+  Moved private preferences to preferences.inc.php.
+  Smarty plugins in trust/libs/smartyplugins directory in HD distribusyon.
+  Some templates are renamed to inc_*.html.
+  Oninstall.php alters table structure of xoops config, eg. to wider length of conf_title.
+  $xoops_block_header was deprecated.
+  Gave blocks a "disable_renderer" option for xugj_block plug-in.
+  All blocks are enabled to clone.
+  Some notice-level error were suppressed. :-)
+- v1.00RC3
+  Fixed typos in determining the script page name, thanks to GIJOE.
+  Category image filename available at the tpl, so is a category list block.
+  Entries with no permission-by-entry are disabled to be visible.
+  Raw value assigned to wysiwyg editor.
+  Fixed the bug that dirname class was not created in category.class.php.
+  Improved rss date format as the rfc2822 std.
+  Category tree changed to be rendered by blocks_category_list.php, thanks to shige-p.
+  A valid check improved in a d3comment plugin.
+  Improved an excerpt in an approval manager to be assigned as a strip-tagged string, thanks to gusagi.
+  Fixed to mb_convert trackback post data, thanks to gusagi.
+  A ping back notification improved to send by PM.
+  Fixed to assign an anonymous comment permission to tpl in case XCL2.1.
+  Fixed a character encoding set in the spam check.
+  Fixed a published date retrieving of the archive block.
+  Fixed xmobile plugin.
+- v1.00RC2
+  A link added to the site name of trackback ping in the approval manager list.
+  FIxed d3pipes plugin.
+  Fixed sub menu generating when inactive or not current.
+  ReadMore clause added to the latest entries block if an excerpt shown.(Must update template) thanx to gusagi.
+- v1.00RC
+  INSTALL.ja added.
+  Stopped to get contents by rss mode.
+  Fixed trackback id when getting rss mode request.
+  Fixed Private Flag importable as Approved.
+  PiCal plugins added.
+  Multibytes language SPAM check enabled.
+  Altsys language manager fully adopted.
+  Modified ping list request and response.
+  An entry title added on prev/next entry links.(tpl updating needed)
+  Fixed not to assign avatar img if user has no avatar in bloggers block.
+  xoops_pagetitle assigned to Tpl.
+- v0.9.9.5
+  Trackback link id was fixed.
+  Current user definition in Xmobile plugin was fixed.
+  Redundancy in category list block fixed.
+  Fixed to accept url with trackback key.
+  Bloggers list block added.
+  Bloggers' and category's feeder enabled.
+  Fixed comment form to be unshown when comment unavailable.
+  Fixed styles applied to a category block.
+  Fixed approval waiting data assigned to tpl.
+  Fixed to read a language file 'admin.php' on XC2.0.
+  Handles a seperator like a paragraph with margin-top.
+  Fixed xmobile permission check.
+- v0.9.9.4
+  Added language manager.
+  Fixed text sanitizer for XCL-2.1.
+  Fixed feed titles of rss and atom.
+  Fixed a title missing in rdf.php.
+  Fixed submit.html.
+  Fixed XOOPS_CONF_METAFOOTER in XCL2.1.
+- v0.9.9.3
+  Fixed a typo in atom.xml.
+  Fixed a block function name definition.
+  Fixed global variable declaration in blocks.php.
+  Discrement user's posts only if an increment configuration(hidden in config.inc.php) is set yes.
+  Regex pattern of Japanese letters is no more editable. Edit config.inc.php if you needs.
+  Fixed importing permitted groups from weblog(D3) and xeblog.
+  Shortened CFG item name and description definition.(Must update module)
+  Fixed ja_utf-8 language files.
+  Fixed the latest entries block.
+  common/fckeditor libraries are no more packed, they are available at hodajuku distribution.
+- v0.9.9.2
+  ja_utf8 language files available.
+  FCKeditor enabled, limitted to a html permitted user(thanx to ryuji).
+  Fixed default groups of Entry-by permission was collapsed.
+  Stripped tages in a content element of ato.xml.
+  Suppressed some notice or warning error about referrence variables.
+- v0.9.9.1
+  To upgrade from an older version, update a module and xml templates.
+  Feed tpls were renamed from html to XML.
+  D3pipes requires 'content' tag element not 'summary' to show atom details. Modify the main_atom.xml.
+  Fixed many faults of entry-by permission system.
+  Fixed the bug that a css file's lastmodified date was not to given to the tpls.
+  User's timeoffset more strictly checked in blocks.
+- v0.9.9
+  Release candidate for v1.0.
+  Entry-by permission control enabling, module updating needs to alter a table structure 'd3blog_entry'.
+- v0.9.8.2
+  The col length of mobile textarea obeys to xmobile preferences.
+  Fixed a typo in class/entry.class.php
+  Fixed to delete a notification subscription when the related entry was deleted.
+- v0.9.8.1
+  Double escaping on a module name and a page subtitle was fixed.
+- v0.9.8
+  Xmobile plugin implimented.
+  Fixed W3C violation in a comment form.
+  Whole the entry info assigned to calandar block.
+  Changed to check CSS files' write privileges only if they are default files.
+  Fixed block function no. to start from 1 again.
+- v0.9.7
+  Sanitized thoroughly.
+  Block function number must start from 1.
+- v0.9.6
+  CSS templates enabled directly readable from db.
+  Fixed the bug not show the archive block to guest.
+  Added to assign a 'isSubmit' variable to template when submit.php is current.
+  Enabled to assign Module url and others to css files.
+  Added variables, mod_url and so, to assign to templates.
+  Added files write privileges check in css manager, also .htaccess file available.
+  Some other bug fixes on d3comment plugin file.
+- v0.9.5
+  D3forum comment integration pluin file added.
+  Disabled files but css files in the css directory.
+  Fixed an original text sanitizer can't do rightly base64_decode.
+  Fixed css files comparison checking in a css_manager.
+  Fixed no avatar was shown.
+  Wrong selector names in blocks fixed.
+  Xeblog table data enabled to be imported by an import manager.
+  Fixed unapproved trackbacks are shown to users with no permission.
+  Trackback filter enabled to work.
+- v0.9.4
+  Enabled to synchronize with d3pipes.
+- v0.9.3
+  Css files are enabled to create from template.
+  RSS feeder template typo fixed.
+  d3blogTextSanitizer bugs fixed.
+  Myblog.php was revived.
+  Typo in block_category_list.html fixed.
+- v0.9.2
+  Fixed an initial creation of a category table.(Rev.57)
+  Conditional comments in style sheet is applied if IE is lower than 7.(Rev.55)
+- v0.9.1
+  Fixed a wrong module image of a global search results.(Rev.53)
+  Obsolute files removed.(Rev.52)
+  English language files added.(Rev.50)

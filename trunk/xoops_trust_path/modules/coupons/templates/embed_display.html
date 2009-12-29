@@ -1,0 +1,24 @@
+<{foreach item=coupon from=$coupons key=count name=i}>
+
+  <div style="border:1px solid #999;clear:both;overflow:auto;margin:3px 0;padding:4px;">
+    <div style="text-align:right;float:right;padding:0 0 0 12px;">
+      <a href="<{$myurl}>/index.php?page=print&amp;lid=<{$coupon.lid}>">
+        <img src="<{$myurl}>/images/icon_print.gif" style="vertical-align:middle;" />
+      </a>&nbsp;
+      <a href="<{$myurl}>/index.php?page=mobile&amp;lid=<{$coupon.lid}>" target="_blank">
+      <{if $qrcode_size}>
+        <img src="http://chart.apis.google.com/chart?chs=<{$qrcode_size}>x<{$qrcode_size}>&cht=qr&chl=<{$coupon.qr_url}>&chld=L|4" style="vertical-align:middle;" />
+      <{elseif $qrcode}>
+        <img src="<{$xoops_url}>/common/qrcode/qrcode_image.php?d=<{$coupon.qr_url}>&e=M&s=2&v=0&t=P&rgb=000000&inst=<{$xoops_url|rawurlencode}>" style="vertical-align:middle;" />
+      <{else}>
+        Mobile
+      <{/if}>
+      </a>
+    </div>
+    [COUPON]<br />
+    <b><{$coupon.title}></b><br /><br />
+    <{$smarty.const._MD_LIMITTIME}><br />
+    <{$coupon.endtime}>
+  </div>
+
+<{/foreach}>

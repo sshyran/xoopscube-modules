@@ -1,0 +1,19 @@
+<{include file="db:`$mydirname`_inc_header.html"}>
+<{*<h3 class="weblogCategory"><{$cat_url|regex_replace:"@(.*)&(nbsp|#160);\:&(nbsp|#160);$@":"\$1"|replace:"&nbsp;:&nbsp;":"&nbsp;>&nbsp;"}></h3>*}>
+<{*------ Experimental breadcrumbs goes here ------*}>
+<div id="d3blogCommonNavi">
+<ul class="d3blogCatNavi">
+	<li class="first"><a href="<{$mod_url}>/index.php" title="<{$smarty.const._MD_D3BLOG_LANG_READ_ENTRY_OF_CATEGORY|replace:'%s':$smarty.const._MD_D3BLOG_LANG_MAIN}>"><{$smarty.const._MD_D3BLOG_LANG_D3BLOG_MAIN}></a></li>
+<{foreach item=bread from=$category_breadcrumbs name=breadloop}>
+	<li>&raquo;&nbsp;<a href="<{$bread.url}>" title="<{$smarty.const._MD_D3BLOG_LANG_READ_ENTRY_OF_CATEGORY|replace:'%s':$bread.name}>"><{$bread.name}></a></li>
+<{/foreach}>
+</ul>
+</div>
+<{foreach item=entry from=$entries}>
+<{$entry.embeddedRDF}>
+<{include file="db:`$mydirname`_inc_entry.html" entry=$entry}>
+<{/foreach}>
+<{if $page_navigater}>
+<{$page_navigater|xoops_pagenavi_markup}>
+<{/if}>
+<div class="clearall"><{include file='db:system_notification_select.html'}></div>

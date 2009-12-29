@@ -1,0 +1,71 @@
+<div class="adminnavi"><{$myname}> &raquo;&raquo; <{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_MANAGER}></div>
+
+<h4><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_LIST}></h4>
+
+<table class="outer" summary="Category List">
+	<thead>
+		<tr>
+			<th><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}></th>
+			<th><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_PARENT}></th>
+			<th><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_WEIGHT}></th>
+			<th><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_IMAGE}></th>
+			<th></th>
+	</thead>
+	<tbody>
+<{foreach item=cat from=$categories key=cid}>
+		<tr class="<{cycle values="odd,even"}>">
+			<td><{$cat.name}></td>
+			<td><{$categories[$cat.pid].name|default:"-----"}></td>
+			<td><{$cat.weight}></td>
+			<td><{$cat.imgurl}>
+	<{if $cat.imgurl}>
+			<span style="display:block;margin:5px;"><img src="<{$imagepath}>/<{$cat.imgurl}>" alt="<{$cat.imgurl}>" title="<{$cat.imgurl}>" /></span>
+	<{else}>
+			<span style="display:block;margin:5px;"><img src="<{$xoops_url}>/images/blank.gif" alt="" /></span>
+	<{/if}>
+			</td>
+			<td><a href="<{$mod_url}>/admin/index.php?page=category_manager&amp;cid=<{$cat.cid}>" title="<{$smarty.const._MD_A_D3BLOG_LANG_EDIT}>"><img src="<{$mod_url}>/images/edit.png" alt="<{$smarty.const._MD_A_D3BLOG_LANG_EDIT}>" /></a></td>
+<{/foreach}>
+	</tbody>
+</table>
+
+<br />
+
+<{$form_error}>
+<form id="categoryform" name="categoryform" action="" method="post">
+<table class="outer" summary="Category edit form">
+<tr>
+<th colspan="2"><{$smarty.const._MD_A_D3BLOG_LANG_REGISTER_ANDOR_EDIT_CATEGORY}></th>
+</tr>
+	<tr>
+		<td class="head"><label for="name"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_NAME}></label></td>
+		<td class="odd"><input type="text" name="name" id="name" value="<{$form.name_}>" /></td>
+	<tr>
+		<td class="head"><label for="parent"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_PARENT}></label></td>
+		<td class="odd"><select name="pid" id="parent">
+				<option value="0">-----</option>
+<{foreach item=leaf from=$categories}>
+				<option value="<{$leaf.cid}>"<{if $form.pid_ == $leaf.cid}> selected="selected"<{/if}>><{$leaf.prefix}><{$leaf.name}></option>
+<{/foreach}>
+		</select></td>
+	<tr>
+		<td class="head"><label for="weight"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_WEIGHT}></label></td>
+		<td class="odd"><input type="text" name="weight" id="weight" value="<{$form.weight_}>" /></td>
+	<tr>
+		<td class="head"><label for="imgurl"><{$smarty.const._MD_A_D3BLOG_LANG_CATEGORY_IMAGE}></label></td>
+		<td class="odd"><select size="1" name="imgurl" id="imgurl" onchange='showImgSelected("categoryimage", "imgurl", "<{$imagebasename}>", "", "<{$imagedirname}>")'>
+          		<option value=""></option>
+	<{foreach item=img from=$images}>
+          		<option value="<{$img}>"<{if $form.imgurl_ == $img}> selected="selected"<{/if}>><{$img}></option>
+	<{/foreach}>
+          	</select>
+			<span style="display:block;margin:5px;"><img src="<{$xoops_url}>/images/blank.gif" name="categoryimage" id="categoryimage" alt="" /></span>
+		</td>
+	<tr>
+		<td class="foot" colspan="2"><label for="edit"><input type="submit" name="edit" id="edit" value="<{$smarty.const._SUBMIT}>" /></label>
+			<label for="delete"><input type="submit" name="delete" id="delete" value="<{$smarty.const._DELETE}>" /></label>
+			<input type="hidden" name="cid" value="<{$form.cid_}>" />
+			<{$gticket_hidden}>
+		</td>
+</table>
+</form>

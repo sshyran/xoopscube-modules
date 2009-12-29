@@ -1,0 +1,25 @@
+<{if $block.type eq 2}>
+<table cellspacing="1" class="outer" summary="<{$block.lang_comments_summary}>">
+  <tr>
+    <th><{$block.lang_comtitle}></th>
+    <th><{$block.lang_comuname}></th>
+    <th><{$block.lang_entrytitle}></th>
+    <th><{$block.lang_posted}></th>
+  </tr>
+  <{foreach item=comment from=$block.comments}>
+  <tr class="<{cycle values="odd,even"}>" valign="middle">
+    <td><a href="<{$comment.entry_url}>"><{$comment.com_title}></a></td>
+    <td><{if $comment.profile_uri}><a href="<{$comment.profile_uri}>"><{$comment.com_uname}></a><{else}><{$comment.com_uname}><{/if}></td>
+    <td align="center"><a href="<{$comment.entry_url}>"><{$comment.entry_title}></a></td>
+    <td align="right"><{$comment.date}></td>
+  </tr>
+  <{/foreach}>
+</table>
+<{else}>
+<ul class="<{$block.mydirname}>BlockComments">
+  <{foreach item=comment from=$block.comments}>
+	<li><a href="<{$comment.entry_url}>"><{$comment.com_title}></a><{*<{$comment.date|xugj_date:"":"new!":"new"}>*}>
+	<span><{if $comment.profile_uri}><a href="<{$comment.profile_uri}>"><{$comment.com_uname}></a><{else}><{$comment.com_uname}><{/if}>(<{$comment.date}>)</span></li>
+  <{/foreach}>
+</ul>
+<{/if}>

@@ -1,0 +1,97 @@
+<{php}>
+  $font_color_by_cid = array(
+    1 => '#000000' ,
+    2 => '' ,
+    3 => '' ,
+  );
+  $font_coupon_color_by_cid = array(
+    1 => '#000000' ,
+    2 => '' ,
+    3 => '' ,
+  );
+  $bg_color_by_cid = array(
+    1 => '#FFFFFF' ,
+    2 => '' ,
+    3 => '' ,
+  );
+  $this->assign( 'color' , $font_color_by_cid );
+  $this->assign( 'cp' , $font_coupon_color_by_cid );//coupon font color
+  $this->assign( 'bgcolor' , $bg_color_by_cid );
+<{/php}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="Coupons modules on XOOPS/XOOPS Cube" />
+<title><{$xoops_sitename}> - <{$module_name}> -  <{$coupon.title}></title>
+</head>
+
+<body style="
+	color:<{if $color[$coupon.cid]}><{$color[$coupon.cid]}><{else}>#666<{/if}>;
+	background:<{if $mobileitems[$coupon.cid].bg}>url('<{$myurl}>/images/m/bg_<{$coupon.cid}>.<{$mobileitems[$coupon.cid].bg}>')<{elseif $bgcolor[$coupon.cid]}><{$bgcolor[$coupon.cid]}><{else}>#FFF<{/if}>;
+">
+
+<a href="<{$xoops_url}>/"><{$xoops_sitename}></a>
+ &raquo; 
+<a href="<{$myurl}>/"><{$module_name}></a>
+ &raquo; 
+<a href="<{$myurl}>/index.php?cid=<{$coupon.cid}>"><{$category}></a>
+ &raquo; 
+<a href="<{$myurl}>/index.php?lid=<{$coupon.lid}>"><{$coupon.title}></a>
+<br /><br />
+
+
+
+<div style="position:relative;
+  text-align:center; 
+  color:<{if $cp[$coupon.cid]}><{$cp[$coupon.cid]}><{else}>#FFF<{/if}>;
+  width:<{$width}>;height:<{$height}>;">
+  <img src="<{if $mobileitems[$coupon.cid].title}>
+      <{$myurl}>/images/p/title_<{$coupon.cid}>.<{$mobileitems[$coupon.cid].title}>
+    <{else}>
+      <{$myurl}>/images/p/title_d.jpg
+    <{/if}>" />
+  <div style="position:absolute; top:<{$topposition}>px; left:0; width:<{$width}>;">
+    <div style="font-size:120%;font-weight:bold;margin-bottom:6px;"><{$coupon.title}></div>
+    <div style="border-top:1px dashed #FFF;margin:8px auto; padding:4px; width:70%;">
+      <{$smarty.const._MD_LIMITTIME}> : <{$coupon.endtime}>
+    </div>
+  </div>
+</div>
+
+
+
+<div style="margin:20px;">
+	<{$coupon.description}><br />
+	<{foreach item=af from=$coupon.addfields}>
+	  <{if $af.title || $af.desc}>
+	    <b><{$af.title}> :</b> <{$af.desc}><br />
+	  <{/if}>
+	<{/foreach}>
+	<br /><br />
+
+
+	<{$smarty.const._MD_COUPON_MSG}>
+	<br /><br />
+
+	<a href="<{$myurl}>/index.php?lid=<{$coupon.lid}>">
+	  <{$myurl}>/index.php?lid=<{$coupon.lid}>
+	</a>
+	<br /><br />
+	
+	<a href="javascript:void(0)" onClick="window.print();">
+	  <img src="<{$myurl}>/images/icon_print.gif" style="vertical-align:middle;border:0;" />
+	  <{$smarty.const._MD_COUPON_PRINT}>
+	</a>
+</div>
+
+</body>
+</html>

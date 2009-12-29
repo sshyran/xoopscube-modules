@@ -1,0 +1,81 @@
+<div class="adminnavi"><{$mod_name}> &raquo;&raquo; <{$menu_name}> </div>
+
+<{if $totalapprovals>0}>
+	<div class="confirmMsg"><{$totalapprovals}></div>
+<{/if}>
+
+
+<{if $totalapprovals == 0}>
+<div class="resultMsg"><{$smarty.const._MD_NOAPPROVAL}></div>
+
+<{else}>
+  <table class='outer'>
+    <tr>
+      <th>LID</th>
+      <th><{$smarty.const._MD_COUPONTITLE}></th>
+      <th><{$smarty.const._MD_SUBMITTER}></th>
+      <th><{$smarty.const._MD_REGIST}><{$smarty.const._MD_DATE}></th>
+      <th><{$smarty.const._MD_STATUS}></th>
+      <th><{$smarty.const._MD_CONFIRM}></th>
+      <th><{$smarty.const._MD_APPROVAL}></th>
+      <th><{$smarty.const._MD_DELETE}></th>
+    </tr>
+    <{foreach item=cp from=$coupons}>
+      <tr class="<{cycle values='odd,even'}>">
+        <td><{$cp.lid}></td>
+        <td>
+          <{$cp.title}>
+          <a href="<{$myurl}>/index.php?lid=<{$cp.lid}>" target="_blank">
+            <img src="<{$myurl}>/images/pop_win.gif" />
+          </a>
+        </td>
+        <td>
+          <{if $cp.uid gt 0}>
+            <{$cp.uname}>
+          <{else}>
+            GUEST
+          <{/if}>
+        </td>
+        <td><{$cp.regidate}></td>
+        <td>
+          <{if $cp.status==0}><{$smarty.const._MD_REGIST}>(0)<{/if}>
+          <{if $cp.status==-1}><{$smarty.const._MD_MODIFY}>(-1)<{/if}>
+          <{if $cp.status==-2}><{$smarty.const._MD_DELETE}>(-2)<{/if}>
+        </td>
+        <td>
+          <a href="<{$myurl}>/index.php?page=edit&amp;lid=<{$cp.lid}>">
+            <{$smarty.const._MD_CONFIRM}>
+          </a>
+          <a href="<{$myurl}>/index.php?page=edit&amp;lid=<{$cp.lid}>" target="_blank">
+            <img src="<{$myurl}>/images/pop_win.gif" />
+          </a>
+        </td>
+        <td>
+          <{if $cp.status==-2}>
+            &nbsp;
+          <{else}>
+            <form action="" method="post" name="approvalform<{$cp.lid}>">
+              <input type="button" value="<{$smarty.const._MD_APPROVAL}>" onclick='if(confirm("<{$smarty.const._MD_APPROVE_MSG}>")){document.approvalform<{$cp.lid}>.approval.value="1";submit();}' />
+              <input type="hidden" name="approvalid" value="<{$cp.lid}>" />
+              <input type="hidden" name="approval" value="" />
+              <{$gticket}>
+            </form>
+          <{/if}>
+        </td>
+        <td>
+          <{if $cp.status==-2}>
+            <form action="" method="post" name="approvaldelform<{$cp.lid}>">
+              <input type="button" value="<{$smarty.const._MD_DELETE}>" onclick='if(confirm("<{$smarty.const._MD_COUPON_DEL_MSG}>")){document.approvaldelform<{$cp.lid}>.delete.value="1";submit();}' />
+              <input type="hidden" name="deleteid" value="<{$cp.lid}>" />
+              <input type="hidden" name="delete" value="" />
+              <{$gticket}>
+            </form>
+          <{else}>
+            &nbsp;
+          <{/if}>
+        </td>
+      </tr>
+    <{/foreach}>
+  </table>
+
+<{/if}>
