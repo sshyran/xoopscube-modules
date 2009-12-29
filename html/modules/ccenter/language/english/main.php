@@ -46,10 +46,11 @@ define('_MD_ATTACHMENT','Attachment');
 define('_MD_MSG_READTHIS','Readed');
 define('_MD_MSG_NOTREAD','No read');
 define('_MD_EVAL_THANKYOU','Thank you, Evaluating.');
-define('_MD_EVAL_VALUE','This contact response evaluation');
-define('_MD_EVAL_DESC','Contact us to be satisfied with the answers you? Your assessment, if you will respond to comments and please specify. If you have any further questions, the answers to comment "reply" to please.');
-define('_MD_EVAL_COMMENT','Evaluate Comment');
-define('_MD_EVAL_SUBMIT','Send Evaluate');
+define('_MD_EVAL_VALUE','Website Customer Survey');
+define('_MD_EVAL_DESC','We’re trying to improve the usefulness of this Website and we need your help! Your assessment and comments will help guide the future
+development of this site and will improve its usefulness for you. If you have any further question, please reply with "Post Comment" button.');
+define('_MD_EVAL_COMMENT','If you’d like to provide any other comment about your assessment or your contact, please do so below');
+define('_MD_EVAL_SUBMIT','Send Evaluation');
 define('_MD_EVAL_DATE','Evaluated');
 define('_MD_BYTE_UNIT','bytes');
 

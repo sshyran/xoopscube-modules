@@ -171,9 +171,9 @@ FROM ".FORMS." LEFT JOIN ".CCMES." ON fidref=formid AND status<>'x' GROUP BY for
 	}
 	
 	$bg = $n++%2?'even':'odd';
-	$ope = "<a href='?formid=$id'><img src='".XOOPS_URL."/images/icons/edit.png' alt='"._EDIT."' title='"._EDIT."' /></a>".
-	    " <a href='?op=delete&formid=$id'<img src='".XOOPS_URL."/images/icons/delete.png' alt='>"._DELETE."' /></a>".
-	    " <a href='$mbase/reception.php?form=$id'><img src='".XOOPS_URL."/images/icons/view.png' alt='"._AM_DETAIL."' /></a>";
+	$ope = "<a href='?formid=$id'><img src='".XOOPS_URL."/images/icons/form_edit.png' alt='"._EDIT."' title='"._EDIT."' /></a>".
+	    " <a href='?op=delete&formid=$id'<img src='".XOOPS_URL."/images/icons/form_delete.png' alt='>"._DELETE."' /></a>".
+	    " <a href='$mbase/reception.php?form=$id'><img src='".XOOPS_URL."/images/icons/form_view.png' alt='"._AM_DETAIL."' /></a>";
 	echo "<tr class='$bg'><td>$id</td>
 <td><a href='$form' target='preview'>$title</a></td>
 <td>$contact</td>";
