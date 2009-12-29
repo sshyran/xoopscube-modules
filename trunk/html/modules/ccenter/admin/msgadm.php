@@ -143,8 +143,8 @@ LEFT JOIN $users u ON touid=u.uid LEFT JOIN $users f ON m.uid=f.uid";
 	    $priuname = empty($data['uname'])?_AM_FORM_PRIM_NONE:htmlspecialchars($data['uname']);
 	    $from = empty($data['uid'])?$data['email']:htmlspecialchars($data['cfrom']);
 	    $box = "<input type='checkbox' name='ids[]' value='$id'/>";
-	    $ope = "<a href='?msgid=$id'><img src='".XOOPS_URL."/images/icons/edit.png' alt='"._EDIT."' title='"._EDIT."' /></a>";
-	    $ope .= " <a href='$msg'><img src='".XOOPS_URL."/images/icons/view.png' alt='"._AM_DETAIL."' title='"._AM_DETAIL."' /></a>";
+	    $ope = "<a href='?msgid=$id'><img src='".XOOPS_URL."/images/icons/form_edit.png' alt='"._EDIT."' title='"._EDIT."' /></a>";
+	    $ope .= " <a href='$msg'><img src='".XOOPS_URL."/images/icons/form_view.png' alt='"._AM_DETAIL."' title='"._AM_DETAIL."' /></a>";
 	    $vals = unserialize_text($data['body']);
 	    $fval = preg_replace('/[\n\r].*$/', '...', array_shift($vals));
 	    $slen = 30;
@@ -155,14 +155,14 @@ LEFT JOIN $users u ON touid=u.uid LEFT JOIN $users f ON m.uid=f.uid";
 	    $readit = $data['mtime']<$data['atime']?_CC_MARK_READIT:'';
 	    echo "<tr class='$bg stat$stat'><td align='center'>$box</td><td>$date</td><td>".$msg_status[$stat].$readit."</td><td>$title: $fval</td><td>$from</td><td>$priuname</td><td class='num'>".$data['comms']."</td><td align='center'>$ope</td></tr>\n";
 	}
-	echo "</table>\n";
-	echo "<div>"._AM_MSG_CHANGESTATUS." <select name='op'><option></option>\n";
+	
+	echo "<tr><td colspan='8' class='foot'>"._AM_MSG_CHANGESTATUS." <select name='op'><option></option>\n";
 	foreach ($msg_status as $k=>$v) {
 	    echo "<option value='$k'>$v</option>\n";
 	}
 	echo "</select>\n";
 	echo "<input type='submit' value='"._AM_SUBMIT."'/>";
-	echo "</div>\n";
+	echo "</td></tr></table>\n";
 	echo "</form>\n";
     } else {
 	echo _AM_NODATA;
@@ -191,10 +191,10 @@ function msg_detail($msgid) {
 		  'stat'=>_AM_MSG_STATUS, 'cdate'=>_AM_MSG_CTIME, 
 		  'mdate'=>_AM_MSG_MTIME, 'uname'=>_AM_MSG_CHARGE);
     $touid = false;
-    echo "<h2>"._AM_MSG_ADMIN."</h2>\n";
+    echo "<div class='adminnavi'>"._AM_MSG_ADMIN."</div>\n";
     echo "<form method='post'>\n";
     echo "<input type='hidden' name='msgid' value='$msgid'/>\n";
-    echo "<table class='ccinfo' cellspacing='1' width='100%'>\n";
+    echo "<table class='outer' cellspacing='1'>\n";
     $n = 0;
     $upage = "../message.php?id=$msgid";
     foreach ($labs as $k=>$lab) {
@@ -228,9 +228,9 @@ function msg_detail($msgid) {
 	    break;
 	default:
 	}
-	echo "<tr><th>$lab</th><td>$val</td></tr>\n";
+	echo "<tr><td class='head'>$lab</td><td class='$bg'>$val</td></tr>\n";
     }
-    echo "<tr><th></th><td><input type='submit' name='store' value='"._AM_SUBMIT."'/></td></tr>\n";
+    echo "<tr><td colspan='2' class='foot'><input type='submit' name='store' value='"._AM_SUBMIT."'/></td></tr>\n";
     echo "</table>\n";
     echo "</from><br/>\n";
     if (!empty($touid)) {

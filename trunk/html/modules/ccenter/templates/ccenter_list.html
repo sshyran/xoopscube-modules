@@ -1,10 +1,10 @@
-<H3><{$smarty.const._MD_CCENTER_QUERY}></h3>
+<div class="itemHeader"><p class="itemTitle"><{$smarty.const._MD_CCENTER_QUERY}></p></div>
 
-<table class="ccctrl" width="100%">
+<table class="outer" width="100%">
 <tr>
-  <td class="ccinfo"><{$smarty.const._MD_COUNT}>: <{$total}></td>
-  <td class="ccpagenav" align="center"><{$pagenav}></td>
-  <td class="ccstatus" align="right">
+  <th><{$smarty.const._MD_COUNT}>: <{$total}></th>
+  <th align="center"><{$pagenav}></th>
+  <th align="right">
     <form method="get">
       <{$smarty.const._CC_STATUS}>
 	<{$statctrl}>
@@ -12,7 +12,7 @@
 	<input type="submit" type="submit" value="<{$smarty.const._MD_SUBMIT_VIEW}>">
       </noscript>
     </form>
-  </td>
+  </th>
 </tr>
 </table>
 <{if $list}>
