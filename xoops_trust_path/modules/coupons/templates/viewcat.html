@@ -1,0 +1,66 @@
+<{include file="db:`$mydirname`_header.html"}>
+
+
+<{if count($subcategories) gt 0}>
+  <div style="margin:16px 0 3px 0; border-top:1px solid #AAA;border-bottom:1px solid #AAA;width:100%;padding:6px 0 0 0;">
+  <{foreach item=subcat from=$subcategories name=i key=count}>
+    <div style="float:left;width:23%;margin:3px 3px 8px 3px;">
+      <a href="index.php?cid=<{$subcat.id}>"><{$subcat.title}></a>&nbsp;(<{$subcat.totallinks}>)
+      <div class="subcategories"><{$subcat.infercategories}></div>
+    </div>
+    <{if ($count+1) is div by 4 || $smarty.foreach.i.last}>
+      <br style="clear:both;" />
+    <{/if}>
+  <{/foreach}>
+  </div>
+<{/if}>
+
+
+
+<{if count($coupons) gt 0}>
+
+<div style="margin:16px 0;"><{$lang_thereare}></div>
+
+<{*
+  <{if count($coupons) gt 1}>
+    <div style="text-align:center; margin:16px;">
+      <{$lang_sortby}>&nbsp;&nbsp;
+      <{$lang_title}> (<a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=titleA"><img src="<{$myurl}>/images/up<{if $order=='title ASC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a><a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=titleD"><img src="<{$myurl}>/images/down<{if $order=='title DESC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a>)
+      <{$lang_date}> (<a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=dateA"><img src="<{$myurl}>/images/up<{if $order=='date ASC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a><a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=dateD"><img src="<{$myurl}>/images/down<{if $order=='date DESC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a>)
+      <{$lang_rating}> (<a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=ratingA"><img src="<{$myurl}>/images/up<{if $order=='rating ASC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a><a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=ratingD"><img src="<{$myurl}>/images/down<{if $order=='rating DESC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a>)
+      <{$lang_popularity}> (<a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=hitsA"><img src="<{$myurl}>/images/up<{if $order=='hits ASC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a><a href="<{$myurl}>/index.php?cid=<{$category_id}>&amp;orderby=hitsD"><img src="<{$myurl}>/images/down<{if $order=='hits DESC'}>_red<{/if}>.png" border="0" alt="" style="vertical-align:text-top" /></a>)
+      <br /><{$lang_cursortedby}>
+    </div>
+  <{/if}>
+*}>
+
+  <{if $navdisp}>
+    <div style="float:left;"><{$navinfo}></div>
+    <div style="text-align:right;"><{$nav}></div>
+    <br style="clear:both;" />
+  <{/if}>
+
+
+
+  <!-- Start new link loop -->
+  <div style="width:100%;">
+  <{foreach item=coupon from=$coupons key=count name=i}>
+      <{include file="db:`$mydirname`_coupon.html"}>
+  <{/foreach}>
+  </div>
+  <!-- End new link loop -->
+
+
+
+  <{if $navdisp}>
+    <div style="float:left;"><{$navinfo}></div>
+    <div style="text-align:right;"><{$nav}></div>
+    <br style="clear:both;" />
+  <{/if}>
+
+
+<{/if}>
+
+<{include file='db:system_notification_select.html'}>
+
+<{include file="db:`$mydirname`_footer.html"}>

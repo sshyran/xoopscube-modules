@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title><{$channel_title}></title>
+    <link><{$channel_link}></link>
+    <description><{$channel_description}></description>
+    <lastBuildDate><{$channel_lastbuild}></lastBuildDate>
+    <docs>http://backend.userland.com/rss/</docs>
+    <generator><{$channel_generator}></generator>
+    <category><{$channel_category}></category>
+    <managingEditor><{$channel_editor}></managingEditor>
+    <webMaster><{$channel_webmaster}></webMaster>
+    <language><{$channel_language}></language>
+    <{foreach item=cp from=$coupons}>
+    <item>
+      <title><{$cp.title}></title>
+      <link><{$myurl}>/index.php?lid=<{$cp.lid}></link>
+      <description><![CDATA[
+        <{$cp.description}>
+      ]]></description>
+      <pubDate><{$cp.regidate}></pubDate>
+      <guid><{$cp.lid}></guid>
+      <author><{$cp.author}></author>
+      <category><{$cp.category}></category>
+    </item>
+    <{/foreach}>
+  </channel>
+</rss>

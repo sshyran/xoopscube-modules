@@ -1,0 +1,36 @@
+/* $Id: README 598 2009-05-18 04:22:17Z hodaka $ */
+[Feature]
+- A brand-new and simple d3-typed blog module.
+- Simple, but an adequate permission system with entry-by controlling if you prefer.
+- Implimented with a blog entry approval function(also with a trackback approval).
+- Due day to publish a blog entry enabled.
+- With no imagemanager implimented, alternatives such as FCKeditor and myalbum imagemanager are supposed.
+- More semantic by an original text sanitizer. More details in include/d3blogTextSanitizer.class.php.
+  ex.
+  [code] to be converted to <pre class="blogCode"><code>,
+  [quote] to <span class="blogQuote"> with diplay:block markups.
+  [blockquote] is added converting to <span class="blogQuote"> with diplay:block markups.
+  [img align=left|center|right] to be converted to <span class="blog\\1"><img... /></span>
+  [b] to be converted to <strong style="font-weight:bold">
+  [em] is added to be converted to [em=rrggbb] -> <em style="color:#rrggbb;">
+  v1.02>=
+  [fig] and [sitefig] are added, for figure layout markups, to be converted to
+  <div class="figure"><img src="..." /><p class="credit">..</p><p class="caption">... </p></div>
+- Simple comment posting with more semantic comments form.
+- Easy setup of d3forum comment integrations.
+- Various options available against trackback SPAMS, tight or loose.
+- Database is importable, both from weblog1.42 and weblogD3 modules, and from xeblog. From d3blog? Of cource, yes.
+- IE Styles, v6 or lower, are re-definitioned in main_styleIE.css and block_styleIE.css.
+  Each styles are created from templates by a css manager in the admin section.
+  Also dynamic css enabled.
+- Enables to synchronize with d3pipes.
+- Xmobile plugin file available.
+- piCal plugin with a category selection option available.
+- Can choose FCKeditor as default.
+- [fig] and [sitefig] tags make figure markups pretty.
+
+[INSTALL]
+See INSTALL or visit http://labo.hodaka.org/modules/d3blog/.
+
+[DISCUSSION]
+http://labo.hodaka.org

@@ -1,0 +1,7 @@
+
+<ul>
+  <{foreach item=cp from=$block.coupons}>
+    <li><a href="<{$myurl}>/index.php?lid=<{$cp.lid}>" title="<{$cp.title}>"><{$cp.title}></a> (<{$lang_limitdate}> <{$cp.endtime}>)</li>
+  <{/foreach}>
+</ul>
+

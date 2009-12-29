@@ -1,0 +1,31 @@
+<div class="itemHead">
+ <p class="itemTitle"> <a href="<{$myurl}>/"><img src="<{$myurl}>/images/logo.gif" alt="" /></a></p>
+</div>
+
+<div class="breadcrumbs">
+  <a href="<{$xoops_url}>/">SiteTop</a>
+  <{foreach from=$xoops_breadcrumbs item="crumb" key=count}>
+    <{*if $count gt 0 *}><img src="<{$myurl}>/images/a_red.gif" /> <{*/if*}>
+    <{if $crumb.url}>
+      <a href="<{$crumb.url}>"><{$crumb.name}></a>
+    <{else}>
+      <{$crumb.name}>
+    <{/if}>
+ <{/foreach}>
+</div>
+
+
+<div style="text-align:right;margin:0 0 8px 0;">
+| 
+<a href="<{$myurl}>/index.php?page=topten<{if $category_id}>&amp;cid=<{$category_id}><{/if}>"><{$smarty.const._MD_POPULAR}></a> | 
+<{if $isadmin}>
+  <a href="<{$myurl}>/index.php?page=past"><{$smarty.const._MD_PAST}></a> | 
+  <a href="<{$myurl}>/index.php?page=future"><{$smarty.const._MD_FUTURE}></a> | 
+<{/if}>
+<{if $postperm}>
+  <a href="index.php?page=submit<{if $category_id}>&amp;cid=<{$category_id}><{/if}>"><{$smarty.const._MD_SUBMITCOUPON}></a> | 
+<{/if}>
+<a href="<{$myurl}>/index.php?page=rss<{if $category_id}>&amp;cid=<{$category_id}><{/if}>" title="RSS2.0 RECENT<{if $category_id}> <{$allcat[$category_id]}><{/if}>">
+  <img src="<{$myurl}>/images/rss.png" alt="RSS2.0" style="vertical-align:text-bottom;" />
+</a> | 
+</div>

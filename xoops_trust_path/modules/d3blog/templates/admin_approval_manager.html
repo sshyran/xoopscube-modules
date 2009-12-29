@@ -1,0 +1,52 @@
+<div class="adminnavi"><{$myname}> &raquo;&raquo; <{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL_MANAGER}></div>
+
+<p style="text-align:right;"><{$page_navigater}></p>
+<form name="approvalform" id="approvalform" action="" method="post">
+<table id="d3blogArchTable" class="outer" summary="<{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL_SUMMARY}>">
+<thead>
+<tr class="head">
+	<th width="5%" scope="col"></th>
+	<th width="20%" scope="col"><{$smarty.const._MD_A_D3BLOG_LANG_ENTRY_TITLE}></th>	
+	<th width="10%" scope="col"><{$smarty.const._MD_A_D3BLOG_LANG_CREATE_DATE}></th>
+	<th width="20%" scope="col"><{$smarty.const._MD_A_D3BLOG_LANG_BLOG_NAME_INBOUND}></th>
+	<th width="20%" scope="col"><{$smarty.const._MD_A_D3BLOG_LANG_BLOG_EXCERPT_INBOUND}></th>
+	<th width="10%" scope="col"><{$smarty.const._MD_A_D3BLOG_LANG_TRACKBACK_DATE_INBOUND}></th>
+	<th width="5%" scope="col"><{$smarty.const._EDIT}></th>
+	<th width="5%" scope="col"><{$smarty.const._MD_A_D3BLOG_LANG_APPROVAL}></th>
+	<th width="5%" scope="col"><{$smarty.const._DELETE}></th>
+</tr>
+</thead>
+	<{foreach item=row from=$rows name=rowloop}>
+		<{if $smarty.foreach.rowloop.iteration > $start and $smarty.foreach.rowloop.iteration <= $limit}>
+<tr class="<{cycle values="even, odd"}>">
+	<td><{$row.bid}></td>
+	<td><{$row.title}></td>
+	<td><{$row.posted|formatTimestamp:"m"}></td>
+		<{if $row.tid}>
+	<td><a href="<{$row.url}>"><{$row.blog_name}></a></td>
+	<td><{$row.excerpt|xoops_substr:"30":"..."}></td>
+	<td><{$row.transmitted|formatTimestamp:"m"}></td>
+		<{else}>
+	<td colspan="3"></td>
+		<{/if}>
+        
+	<td><a href="<{$mod_url}>/submit.php?bid=<{$row.bid}>" title="<{$smarty.const._EDIT}>">
+    <img src="<{$mod_url}>/images/edit.png" alt="<{$smarty.const._EDIT}>" /></a></td>
+		
+<{if $row.tid}>
+	<td style="text-align:center;"><input type="checkbox" name="approve_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
+	<td style="text-align:center;"><input type="checkbox" name="delete_tb[<{$row.bid}>][<{$row.tid}>]" value="1" /></td>
+		<{else}>		
+	<td colspan="2"></td>
+	<{/if}>
+</tr>
+		<{/if}>
+	<{/foreach}>
+<tr>
+	<td colspan="9" class="foot">
+		<{$gticket_hidden}>
+		<input type="submit" name="send" value="<{$smarty.const._SEND}>" />
+	</td>
+</tr>
+</table>	
+</form>
