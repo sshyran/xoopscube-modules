@@ -63,7 +63,7 @@ define("_MI_SAMPLE_DEFS","Your name*,size=40\nEmail*,mail,size=60\nAbout*,radio,
 // for altsys 
 if (!defined('_MD_A_MYMENU_MYTPLSADMIN')) {
     define('_MD_A_MYMENU_MYTPLSADMIN','Templates');
-    define('_MD_A_MYMENU_MYBLOCKSADMIN','Block/Permissions');
+    define('_MD_A_MYMENU_MYBLOCKSADMIN','Block');
     define('_MD_A_MYMENU_MYPREFERENCES','Preferences');
 }
 ?>
