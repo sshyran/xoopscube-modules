@@ -1,0 +1,28 @@
+<table class="outer" cellpadding="1" cellspacing="1" border="0">
+    <tr>
+        <td class="head" align="center" nowrap="nowrap"><{$block.langs._UNAME}></td>
+        <td class="head" align="center" nowrap="nowrap"><{$block.langs._ADD_DATE}></td>
+        <{foreach from=$block.item_defs item="item" key="item_name"}>
+        <{if $item.list && $item.type != 'image' && $item.type != 'file'}>
+        <td class="head" align="center" nowrap="nowrap"><{$item.caption}></td>
+        <{/if}>
+        <{/foreach}>
+    </tr>
+    <{foreach item="info" from=$block.infos}>
+    <tr class="<{cycle values="odd,even"}>">
+        <td nowrap>
+            <{if $info.add_uid > 0}>
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$info.add_uid}>"><{$info.uname}></a>
+            <{else}>
+            <{$smarty.const._GUESTS}>
+            <{/if}>
+        </td>
+        <td nowrap align="center"><{$info.add_date}></td>
+        <{foreach from=$block.item_defs item="item" key="item_name"}>
+        <{if $item.list && $item.type != 'image' && $item.type != 'file'}>
+        <td><{$info.$item_name}></td>
+        <{/if}>
+        <{/foreach}>
+    </tr>
+    <{/foreach}>
+</table>
