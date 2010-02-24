@@ -1,0 +1,103 @@
+<form name="form" action="" method="post">
+    <table class="outer" cellpadding="1" cellspacing="1" border="0">
+        <tr>
+            <th colspan="2" align="center"><{$_SEARCH}></th>
+        </tr>
+        <{foreach from=$search_defs item="item" key="item_name"}>
+        <tr>
+            <td class="head" nowrap="nowrap">
+                <{$item.caption}>
+                <{if $item.search_desc !== ''}><br /><span style="font-weight: normal; font-size: 80%;"><{$item.search_desc}></span><{/if}>
+            </td>
+            <td class="<{cycle values="odd,even"}>">
+                <{$item.value}>
+            </td>
+        </tr>
+        <{/foreach}>
+    </table>
+    <br />
+    <div align="center">
+        <input type="hidden" name="op" value="search" />
+        <input type="submit" name="button" value="<{$_SEARCH}>" />
+    </div>
+</form>
+
+<{if isset($infos)}>
+<br />
+<table class="outer" cellpadding="1" cellspacing="1" border="0">
+    <tr>
+        <th colspan="<{$list_item_num}>" align="center"><{$_SEARCH_RESULT}></th>
+    </tr>
+    <tr>
+        <td class="head" align="center" nowrap="nowrap">
+            <{if $order_item != 'uname' || $order != 'asc'}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?start=<{$start}>&amp;<{$queries}>&amp;order_item=uname&amp;order=asc"><img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/asc.gif" /></a><{/if}>
+            <{$_UNAME}>
+            <{if $order_item != 'uname' || $order != 'desc'}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?start=<{$start}>&amp;<{$queries}>&amp;order_item=uname&amp;order=desc"><img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/desc.gif" /></a><{/if}>
+        </td>
+        <td class="head" align="center" nowrap="nowrap">
+            <{if $order_item != 'add_date' || $order != 'asc'}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?start=<{$start}>&amp;<{$queries}>&amp;order_item=add_date&amp;order=asc"><img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/asc.gif" /></a><{/if}>
+            <{$_ADD_DATE}>
+            <{if $order_item != 'add_date' || $order != 'desc'}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?start=<{$start}>&amp;<{$queries}>&amp;order_item=add_date&amp;order=desc"><img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/desc.gif" /></a><{/if}>
+        </td>
+        <{foreach from=$item_defs item="item" key="item_name"}>
+        <{if $item.list}>
+        <td class="head" align="center" nowrap="nowrap">
+            <{if $order_item != $item_name || $order != 'asc'}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?start=<{$start}>&amp;<{$queries}>&amp;order_item=<{$item_name}>&amp;order=asc"><img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/asc.gif" /></a><{/if}>
+            <{$item.caption}>
+            <{if $order_item != $item_name || $order != 'desc'}><a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?start=<{$start}>&amp;<{$queries}>&amp;order_item=<{$item_name}>&amp;order=desc"><img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/desc.gif" /></a><{/if}>
+        </td>
+        <{/if}>
+        <{/foreach}>
+    </tr>
+    <{foreach item="info" from=$infos}>
+    <tr class="<{cycle values="odd,even"}>">
+        <td nowrap>
+            <{if $info.add_uid > 0}>
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$info.add_uid}>"><{$info.uname}></a>
+            <{else}>
+            <{$smarty.const._GUESTS}>
+            <{/if}>
+        </td>
+        <td nowrap align="center"><{$info.add_date}></td>
+        <{foreach from=$item_defs item="item" key="item_name"}>
+        <{if $item.list}>
+        <td>
+            <{if $item.type == 'image'}>
+            <{if $info.$item_name != ''}>
+            <a href="<{$info.$item_name}>" target="_blank"><img src="<{$info.$item_name}>" alt="<{$item.caption}>" width="<{$cfg_list_image_width}>px" /></a>
+            <{/if}>
+            <{elseif $item.type == 'file'}>
+            <{if $info.$item_name != ''}>
+            <a href="<{$info.$item_name}>" target="_blank"><{$_FILE}></a>
+            <{/if}>
+            <{else}>
+            <{if $item.list_link}>
+            <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/detail.php?id=<{$info.id}>"><{$info.$item_name}></a>
+            <{else}>
+            <{$info.$item_name}>
+            <{/if}>
+            <{/if}>
+        </td>
+        <{/if}>
+        <{/foreach}>
+    </tr>
+    <{/foreach}>
+</table>
+
+<table width="100%">
+    <tr>
+        <{if isset($pagenavi_html)}>
+        <td width="20%" align="left"><{$pagenavi_html}></td>
+        <{/if}>
+        <td align="center" nowrap><{$pagenavi_info}></td>
+        <{if isset($pagenavi_html)}>
+        <td width="20%" align="right"><{$pagenavi_html}></td>
+        <{/if}>
+    </tr>
+</table>
+<{elseif $op == 'search' && !isset($infos)}>
+<br />
+<center><{$_NOT_FOUND_MSG}></center>
+<{/if}>
+
+<{include file='db:system_notification_select.html'}>

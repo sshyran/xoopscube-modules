@@ -1,0 +1,66 @@
+<{if count($errors) > 0}>
+<div class="errorMsg">
+    <{foreach item=error from=$errors}>
+    <{$error}><br />
+    <{/foreach}>
+</div>
+<br />
+<{/if}>
+
+<form name="form" action="" method="post" enctype="multipart/form-data" >
+    <table class="outer" cellpadding="1" cellspacing="1" border="0">
+        <tr>
+            <th colspan="2" align="center"><{$_UPDATE}></th>
+        </tr>
+        <tr>
+            <td class="head" nowrap="nowrap"><{$_UNAME}></td>
+            <td class="<{cycle values="odd,even"}>">
+                <{if $item_defs.add_uid.value > 0}>
+                <a href="<{$xoops_url}>/userinfo.php?uid=<{$item_defs.add_uid.value}>"><{$item_defs.uname.value}></a>
+                <{else}>
+                <{$smarty.const._GUESTS}>
+                <{/if}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head" nowrap="nowrap"><{$_ADD_DATE}></td>
+            <td class="<{cycle values="odd,even"}>"><{$item_defs.add_date.value}></td>
+        </tr>
+        <{foreach from=$update_item_defs item="item" key="item_name"}>
+        <tr>
+            <td class="head" nowrap="nowrap">
+                <{$item.caption}>
+                <{if $item.required}><{$_REQ_MARK}><{/if}>
+                <{if $item.input_desc !== ''}><br /><span style="font-weight: normal; font-size: 80%;"><{$item.input_desc}></span><{/if}>
+            </td>
+            <td class="<{cycle values="odd,even"}>">
+                <{if $item.type == 'image' && $item.current_value}>
+                <a href="<{$item.current_value}>" target="_blank"><img src="<{$item.current_value}>" alt="<{$item.caption}>" width="<{$cfg_detail_image_width}>px" /></a><br /><br />
+                <{elseif $item.type == 'file' && $item.current_value}>
+                <a href="<{$item.current_value}>" target="_blank"><{$_FILE}></a>&nbsp;&nbsp;&nbsp;
+                <{/if}>
+                <{$item.value}>
+                <{if ($item.type == 'file' || $item.type == 'image') && $item.current_value && !$item.required}>
+                <label style="margin-left: 1em;"><input type="checkbox" name="<{$item_name}>_delete" value="1" /><{$_DELETE}></label>
+                <{/if}>
+                <font color="red"><{$item.error}></font>
+            </td>
+        </tr>
+        <{/foreach}>
+    </table>
+    <br />
+    
+    <table width="100%">
+        <tr>
+            <td width="50%" align="center">
+                <input type="submit" name="update" value="<{$_UPDATE}>" />
+            </td>
+            <td width="50%" align="center">
+                <input type="submit" name="cancel" value="<{$_CANCEL}>" />
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="id" value="<{$item_defs.id.value}>" />
+    <input type="hidden" name="op" value="update" />
+    <{$token}>
+</form>
