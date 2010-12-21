@@ -142,6 +142,7 @@ function ccOpenCid()
 
 // ]]> -->
 </script>
+<{$xoops_module_header}>
 </head>
 <body onload="ccToggle(cid);onloadEffect('leftcolumn', 'minimizelc', 'lcimage');">
 
@@ -182,9 +183,9 @@ function ccOpenCid()
 <tr>
 <td id="leftcolumn">
    <span id="toggleall" style="padding:0px 10px;">
-   <a href="javascript:void(0)" onclick="ccOpenAll()")"><img src="<{"design/menu_openall.png"|theme}>" alt="Click me if you want to open all sidemenu!"  title="Click me if you want to open all sidemenu!" /></a>&nbsp;
-   <a href="javascript:void(0)" onclick="ccCloseAll()")"><img src="<{"design/menu_closeall.png"|theme}>" alt="Click me if you want to close all sidemenu!" title="Click me if you want to close all sidemenu!"/></a>&nbsp;
-   <a href="javascript:void(0)" onclick="ccOpenCid()")"><img src="<{"design/menu_openactive.png"|theme}>" alt="Click me if you want to open only the sidemenu of current module!" title="Click me if you want to open only the sidemenu of current module!"/></a>&nbsp;
+   <a href="javascript:void(0)" onclick="ccOpenAll()"><img src="<{"design/menu_openall.png"|theme}>" alt="Click me if you want to open all sidemenu!"  title="Click me if you want to open all sidemenu!" /></a>&nbsp;
+   <a href="javascript:void(0)" onclick="ccCloseAll()"><img src="<{"design/menu_closeall.png"|theme}>" alt="Click me if you want to close all sidemenu!" title="Click me if you want to close all sidemenu!"/></a>&nbsp;
+   <a href="javascript:void(0)" onclick="ccOpenCid()"><img src="<{"design/menu_openactive.png"|theme}>" alt="Click me if you want to open only the sidemenu of current module!" title="Click me if you want to open only the sidemenu of current module!"/></a>&nbsp;
    <a href="#contentBottom"><img src="<{"design/menu_bottom.png"|theme}>" alt="Go to Bottom" title="Go to Bottom"/></a>&nbsp;
    <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><img src="<{"design/menu_help.png"|theme}>" alt="Help" title="Help"/></a>&nbsp;
    </span>
@@ -242,8 +243,8 @@ function ccOpenCid()
 </table>
 </div>
 
-<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy; 2001-2009 <a href="http://sourceforge.net/projects/xoopscube/" target="_blank" alt="XOOPS Cube Project">The XOOPS Cube Project<br />
-</a>Help Us to Improve <a href="http://xoopscube.org/" target="_blank">XOOPS Cube</a> - Report All Bugs to: <a href="http://sourceforge.net/tracker/?group_id=159211"> Project Bug Tracker <img src="<{"icons/bug.png"|theme}>" alt="Bug report" /></a></div>
+<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy; 2001-2009 <a href="http://sourceforge.net/projects/xoopscube/" rel="external">The XOOPS Cube Project<br />
+</a>Help Us to Improve <a href="http://xoopscube.org/" rel="external">XOOPS Cube</a> - Report All Bugs to: <a href="http://sourceforge.net/tracker/?group_id=159211"> Project Bug Tracker <img src="<{"icons/bug.png"|theme}>" alt="Bug report" /></a></div>
 
 </div>
 </body>

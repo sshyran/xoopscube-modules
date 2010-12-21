@@ -41,7 +41,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		// $this->mActionForm =& new Profile_DataEditForm();
+		// $this->mActionForm =new Profile_DataEditForm();
 		$this->mActionForm =& $this->mAsset->create('form', "edit_data");
 		$this->mActionForm->prepare();
 	}
@@ -56,11 +56,6 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 	
 		$defHandler =& xoops_getmodulehandler('definitions');
 		$this->mFields =& $defHandler->getFields4DataEdit();
-		foreach(array_keys($this->mFields) as $key){
-			if($this->mFields[$key]->get('type')=="selectbox"){
-				$this->mFields[$key]->mOptions = explode("|", $this->mFields[$key]->get('options'));
-			}
-		}
 	}
 
 	/**
@@ -72,6 +67,8 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('fields', $this->mFields);
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addScript('$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});');
 	}
 
 	/**

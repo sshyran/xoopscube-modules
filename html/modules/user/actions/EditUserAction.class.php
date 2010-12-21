@@ -49,10 +49,22 @@ class User_EditUserAction extends User_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_EditUserForm($this->mConfig);
+		$this->mActionForm =new User_EditUserForm($this->mConfig);
 		$this->mActionForm->prepare();
 	}
-	
+
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName($this->_getId());
+	}
+
 	function isEnableCreate()
 	{
 		return false;
@@ -91,11 +103,49 @@ class User_EditUserAction extends User_AbstractEditAction
 			else {
 				setcookie($this->mUserCookie);
 			}
-			
-			return true;
+			return $this->_doExecuteProfile();
 		}
 		else {
 			return false;
+		}
+	}
+
+	protected function _doExecuteProfile()
+	{
+		//XCL2.2
+		$req = XCube_Root::getSingleton()->mContext->mRequest;
+	
+		$dhandler = xoops_getmodulehandler('definitions', 'profile');
+		$definitions = $dhandler->getDefinitionsArr(false);
+		if(count($definitions)==0){
+			return true;
+		}
+		$profile = $this->_getProfileObject();
+		$phandler = xoops_getmodulehandler('data', 'profile');
+		foreach(array_keys($definitions) as $key){
+			$profile->setField($definitions[$key]['field_name'], $req->getRequest($definitions[$key]['field_name']));
+		}
+		if(! $phandler->insert($profile)){
+			echo "failed to update Profile DB";die();
+		}
+		return true;
+	}
+
+	/**
+	 * @protected
+	 */
+	protected function _getProfileObject()
+	{
+		$phandler = xoops_getmodulehandler('data', 'profile');
+		$profile = $phandler->get($this->_getId());
+	
+		if($profile===null){
+			$profile = $phandler->create();
+			$profile->set('uid', $this->_getId());
+			return $profile;
+		}
+		else{
+			return $profile;
 		}
 	}
 
@@ -155,38 +205,21 @@ class User_EditUserAction extends User_AbstractEditAction
 
 		$render->setAttribute('notify_modeOptions', $modeOptions);
 	
-		//XCL2.2 TEST:Profile_Service
-		$service = $root->mServiceManager->getService("Profile_Service");
-		$client = $root->mServiceManager->createClient($service);
-		if (is_object($client)) {
-			$definitions = $client->call('getDefinitions', array('show_form'=>true));
-			$render->setAttribute('definitions', $definitions);
-		
-			$data = $client->call('getProfile', array('uid'=>$this->mObject->get('uid')));
-			$render->setAttribute('data', $data);
-		}
-		//XCL2.2 TEST END:Profile_Service
+		//XCL2.2
+		$dhandler = xoops_getmodulehandler('definitions', 'profile');
+		$render->setAttribute('definitions', $dhandler->getFields4DataEdit());
+		$render->setAttribute('data', $this->_getProfileObject());
+		$this->_setDatepicker();
+	}
+
+	protected function _setDatepicker()
+	{
+		$headerScript = XCube_Root::getSingleton()->mContext->getAttribute('headerScript');
+		$headerScript->addScript('$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});');
 	}
 
 	function executeViewSuccess(&$controller,&$xoopsUser,&$render)
 	{
-		//XCL2.2 TEST:Profile_Service
-		$root = XCube_Root::getSingleton();
-		$uid = ($root->mContext->mXoopsUser) ? $root->mContext->mXoopsUser->get('uid') : 0;
-		$profileArr = xoops_getrequest('profile');
-	
-		$service = $root->mServiceManager->getService("Profile_Service");
-		$client = $root->mServiceManager->createClient($service);
-		if (is_object($client)) {
-			$definitions = $client->call('getDefinitions', array('uid'=>$uid, 'show_form'=>true));
-			foreach(array_keys($definitions) as $key){
-				$arr[$definitions[$key]['field_name']] = $profileArr[$definitions[$key]['field_name']]; 
-			}
-			$arr['uid'] = $uid;
-			$client->call('setProfiles', $arr);
-		}
-		//XCL2.2 TEST END:Profile_Service
-	
 		$controller->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid'));
 	}
 

@@ -22,7 +22,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 	
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_BlockListForm();
+		$this->mActionForm =new Legacy_BlockListForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -34,13 +34,13 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_BlockFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_BlockFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 	
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 
 		$root =& XCube_Root::getSingleton();
 		$perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
@@ -93,13 +93,13 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 		$render->setAttribute('ActiveBlockTotal', $active_block_total);
 		$render->setAttribute('InactiveBlockTotal', $inactive_block_total);
 
-		$active_installed_criteria = & new CriteriaCompo(new Criteria('visible', 1));
+		$active_installed_criteria = new CriteriaCompo(new Criteria('visible', 1));
 		$active_installed_criteria->add(new Criteria('isactive', 1));
 		$active_installed_block_total = $block_handler->getCount($active_installed_criteria);
 		$render->setAttribute('ActiveInstalledBlockTotal', $active_installed_block_total);
 		$render->setAttribute('ActiveUninstalledBlockTotal', $active_block_total - $active_installed_block_total);
 
-		$inactive_installed_criteria = & new CriteriaCompo(new Criteria('visible', 1));
+		$inactive_installed_criteria = new CriteriaCompo(new Criteria('visible', 1));
 		$inactive_installed_criteria->add(new Criteria('isactive', 0));
 		$inactive_installed_block_total = $block_handler->getCount($inactive_installed_criteria);
 		$render->setAttribute('InactiveInstalledBlockTotal', $inactive_installed_block_total);
@@ -127,7 +127,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
 	function _processConfirm(&$controller,&$xoopsUser)
 	{
-        		$titleArr = $this->mActionForm->get('title');
+				$titleArr = $this->mActionForm->get('title');
 		$blockHandler =& xoops_getmodulehandler('newblocks');
 		//
 		// Do mapping.
@@ -147,7 +147,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
 	function _processSave(&$controller, &$xoopsUser)
 	{
-		$titleArr = $this->mActionForm->get('title');		
+		$titleArr = $this->mActionForm->get('title');
 		$blockHandler =& xoops_getmodulehandler('newblocks');
 
 		foreach (array_keys($titleArr) as $bid) {
@@ -170,12 +170,12 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 			if (!$blockHandler->insert($block)) {
 			return LEGACY_FRAME_VIEW_ERROR;
 			}
-    			}//count if
+				}//count if
 			}//object if
 		}
 
 		//uninstall process
-        		foreach(array_keys($titleArr) as $bid) {
+				foreach(array_keys($titleArr) as $bid) {
 		if($this->mActionForm->get('uninstall', $bid) == 1) {
 			$block =& $blockHandler->get($bid);
 			if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {

@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -36,6 +36,11 @@ class XoopsTplfile extends XoopsObject
 
 	function XoopsTplfile()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+		    $this->vars = $initVars;
+		    return;
+		}
 		$this->XoopsObject();
 		$this->initVar('tpl_id', XOBJ_DTYPE_INT, null, false);
 		$this->initVar('tpl_refid', XOBJ_DTYPE_INT, 0, false);
@@ -47,6 +52,7 @@ class XoopsTplfile extends XoopsObject
 		$this->initVar('tpl_module', XOBJ_DTYPE_OTHER, null, false);
 		$this->initVar('tpl_type', XOBJ_DTYPE_OTHER, null, false);
 		$this->initVar('tpl_source', XOBJ_DTYPE_SOURCE, null, false);
+		$initVars = $this->vars;
 	}
 
 	function &getSource()
@@ -75,7 +81,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     function &create($isNew = true)
     {
-        $tplfile =& new XoopsTplfile();
+        $tplfile =new XoopsTplfile();
         if ($isNew) {
             $tplfile->setNew();
         }
@@ -95,7 +101,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $ret =& new XoopsTplfile();
+                        $ret =new XoopsTplfile();
                         $ret->assignVars($this->db->fetchArray($result));
                 }
             }
@@ -252,7 +258,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $tplfile =& new XoopsTplfile();
+            $tplfile =new XoopsTplfile();
             $tplfile->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $tplfile;

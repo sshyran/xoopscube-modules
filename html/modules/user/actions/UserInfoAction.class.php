@@ -29,6 +29,18 @@ class User_UserInfoAction extends User_Action
 	
 	var $mPmliteURL = null;
 
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName(Legacy_Utils::getUid());
+	}
+
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		$this->mSelfDelete = $moduleConfig['self_delete'];
@@ -90,7 +102,7 @@ class User_UserInfoAction extends User_Action
 				}
 			}
 		}
-
+	
 		return USER_FRAME_VIEW_SUCCESS;
 	}
 	
@@ -130,20 +142,28 @@ class User_UserInfoAction extends User_Action
 			$render->setAttribute('enableSelfDelete', false);
 		}
 	
-		//XCL2.2 TEST:Profile_Service
-		$root =& $controller->mRoot;
-		$service = $root->mServiceManager->getService("Profile_Service");
-		$client = $root->mServiceManager->createClient($service);
-		if (is_object($client)) {
-			$definitions = $client->call('getDefinitions', array());
-			$render->setAttribute('definitions', $definitions);
-		
-			$data = $client->call('getProfile', array('uid'=>$this->mObject->get('uid')));
-			$render->setAttribute('data', $data);
-		}
-		//XCL2.2 TEST END:Profile_Service
+		//XCL2.2
+		$render->setAttribute('definitions', $this->_getProfileDefinitions());
+		$render->setAttribute('data', $this->_getProfileData());
 	}
-	
+
+	protected function _getProfileDefinitions()
+	{
+		return xoops_getmodulehandler('definitions', 'profile')->getDefinitionsArr();
+	}
+
+	protected function _getProfileData()
+	{
+		$handler = xoops_getmodulehandler('data', 'profile');
+		$obj = $handler->get($this->mObject->get('uid'));
+		if(is_object($obj)){
+			return $obj;
+		}
+		else{
+			return $handler->create();
+		}
+	}
+
 	function executeViewError(&$controller, &$xoopsUser, &$render)
 	{
 		$controller->executeForward(XOOPS_URL . '/user.php');

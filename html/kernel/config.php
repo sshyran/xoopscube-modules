@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -91,8 +91,8 @@ class XoopsConfigHandler
      */
     function XoopsConfigHandler(&$db)
     {
-        $this->_cHandler =& new XoopsConfigItemHandler($db);
-        $this->_oHandler =& new XoopsConfigOptionHandler($db);
+        $this->_cHandler =new XoopsConfigItemHandler($db);
+        $this->_oHandler =new XoopsConfigOptionHandler($db);
     }
 
     /**

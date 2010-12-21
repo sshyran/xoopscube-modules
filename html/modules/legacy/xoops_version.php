@@ -126,6 +126,12 @@ $modversion['templates'][45]['file'] = 'legacy_xoopsform_opt_validationjs.html';
 $modversion['templates'][45]['description'] = 'The embedded template for the javascriot of the the xoopsform to validation the input value.';
 $modversion['templates'][46]['file'] = 'legacy_xoopsform_grouppermform.html';
 $modversion['templates'][46]['description'] = 'The embedded template for the groupperm form of the the xoopsform.';
+$modversion['templates'][47]['file'] = 'legacy_inc_tree.html';
+$modversion['templates'][47]['description'] = 'legacy_tree default template';
+$modversion['templates'][48]['file'] = 'legacy_inc_tag_select.html';
+$modversion['templates'][48]['description'] = 'legacy_tag_select default template';
+$modversion['templates'][49]['file'] = 'legacy_inc_tag_cloud.html';
+$modversion['templates'][49]['description'] = 'legacy_tag_cloud default template';
 
 // Menu
 $modversion['hasMain'] = 0;
@@ -170,7 +176,7 @@ $modversion['blocks'][5]['name'] = _MI_LEGACY_BLOCK_SITEINFO_NAME;
 $modversion['blocks'][5]['description'] = _MI_LEGACY_BLOCK_SITEINFO_DESC;
 $modversion['blocks'][5]['show_func'] = "b_legacy_siteinfo_show";
 $modversion['blocks'][5]['edit_func'] = "b_legacy_siteinfo_edit";
-$modversion['blocks'][5]['options'] = "320|190|s_poweredby.png|1";
+$modversion['blocks'][5]['options'] = "320|190|s_poweredby.gif|1";
 $modversion['blocks'][5]['template'] = 'legacy_block_siteinfo.html';
 $modversion['blocks'][5]['show_all_module'] = true;
 
