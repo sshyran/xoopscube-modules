@@ -118,7 +118,7 @@
     <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
     <td class="<{cycle values='odd,even'}>">
       <{if $object->getShow('url')}>
-        <a href="<{$object->getShow('url')}>" target="_blank"><{$object->getShow('url')}></a>
+        <a href="<{$object->getShow('url')}>" rel="external"><{$object->getShow('url')}></a>
       <{/if}>
     </td>
   </tr>
@@ -229,7 +229,7 @@
 			  <td class="head"><{$def.label}></td>
 			  <td class="<{cycle values='odd,even'}>">
 			  	<{assign var="defkey" value=$def.field_name}>
-			    <{$data.$defkey|xoops_escape}>
+			    <{$data->showField($defkey, 2)}>
 			  </td>
 			</tr>
   <{/foreach}>

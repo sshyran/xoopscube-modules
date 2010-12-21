@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -141,7 +141,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $perm =& new XoopsGroupPerm();
+        $perm =new XoopsGroupPerm();
         if ($isNew) {
             $perm->setNew();
         }
@@ -163,7 +163,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ( $numrows == 1 ) {
-                        $perm =& new XoopsGroupPerm();
+                        $perm =new XoopsGroupPerm();
                     $perm->assignVars($this->db->fetchArray($result));
                         $ret =& $perm;
                 }
@@ -252,7 +252,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $perm =& new XoopsGroupPerm();
+            $perm =new XoopsGroupPerm();
             $perm->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $perm;

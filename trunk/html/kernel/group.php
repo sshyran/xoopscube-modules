@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -78,7 +78,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $group =& new XoopsGroup();
+        $group =new XoopsGroup();
         if ($isNew) {
             $group->setNew();
         }
@@ -187,7 +187,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $group =& new XoopsGroup();
+            $group =new XoopsGroup();
             $group->assignVars($myrow);
 			if (!$id_as_key) {
             	$ret[] =& $group;
@@ -242,7 +242,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $mship =& new XoopsMembership();
+        $mship =new XoopsMembership();
         if ($isNew) {
             $mship->setNew();
         }
@@ -263,7 +263,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $mship =& new XoopsMembership();
+                        $mship =new XoopsMembership();
                     $mship->assignVars($this->db->fetchArray($result));
                         $ret =& $mship;
                 }

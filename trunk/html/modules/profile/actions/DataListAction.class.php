@@ -25,7 +25,7 @@ class Profile_DataListAction extends Profile_AbstractListAction
 	 */
 	function &_getFilterForm()
 	{
-		// $filter =& new Profile_DataFilterForm();
+		// $filter =new Profile_DataFilterForm();
 		$filter =& $this->mAsset->create('filter', "data");
 		$filter->prepare($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
@@ -45,9 +45,10 @@ class Profile_DataListAction extends Profile_AbstractListAction
 	function executeViewIndex(&$render)
 	{
 		$render->setTemplateName("profile_data_list.html");
-		#cubson::lazy_load_array('data', $this->mObjects);
 		$render->setAttribute('objects', $this->mObjects);
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
+		$handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
+		$render->setAttribute('definitions', $handler->getFields4DataShow(Legacy_Utils::getUid()));
 	}
 }
 

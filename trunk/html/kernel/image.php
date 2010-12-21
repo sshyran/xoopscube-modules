@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -82,7 +82,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      **/
     function &create($isNew = true)
     {
-        $image =& new XoopsImage();
+        $image =new XoopsImage();
         if ($isNew) {
             $image->setNew();
         }
@@ -105,7 +105,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $image =& new XoopsImage();
+                        $image =new XoopsImage();
                     $image->assignVars($this->db->fetchArray($result));
                         $ret =& $image;
                 }
@@ -218,7 +218,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $image =& new XoopsImage();
+            $image =new XoopsImage();
             $image->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $image;

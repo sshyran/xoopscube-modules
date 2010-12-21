@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -73,6 +73,11 @@ class XoopsConfigItem extends XoopsObject
      */
     function XoopsConfigItem()
     {
+		static $initVars;
+		if (isset($initVars)) {
+		    $this->vars = $initVars;
+		    return;
+		}
         $this->initVar('conf_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('conf_modid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('conf_catid', XOBJ_DTYPE_INT, null, false);
@@ -83,6 +88,7 @@ class XoopsConfigItem extends XoopsObject
         $this->initVar('conf_formtype', XOBJ_DTYPE_OTHER);
         $this->initVar('conf_valuetype', XOBJ_DTYPE_OTHER);
         $this->initVar('conf_order', XOBJ_DTYPE_INT);
+        $initVars = $this->vars;
     }
     
     /**
@@ -112,6 +118,25 @@ class XoopsConfigItem extends XoopsObject
 		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
 		
 		return $optionArr;
+	}
+
+	/**
+	 * @return array()
+	 */
+	function getRoledModuleList()
+	{
+		$handler =& xoops_gethandler('config');
+		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
+		$list = array();
+		foreach($optionArr as $opt){
+			if($opt->get('confop_value')=='none'){
+				$list[] = '';
+			}
+			else{
+				$list = array_merge($list, Legacy_Utils::getCommonModuleList($opt->get('confop_value')));
+			}
+		}
+		return $list;
 	}
 
     /**
@@ -305,7 +330,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $config =& new XoopsConfigItem();
+        $config =new XoopsConfigItem();
         if ($isNew) {
             $config->setNew();
         }
@@ -328,7 +353,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
                     $myrow = $this->db->fetchArray($result);
-                        $config =& new XoopsConfigItem();
+                        $config =new XoopsConfigItem();
                     $config->assignVars($myrow);
                         $ret =& $config;
                 }
@@ -414,7 +439,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $config =& new XoopsConfigItem();
+            $config =new XoopsConfigItem();
             $config->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $config;
