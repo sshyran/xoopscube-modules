@@ -1,5 +1,5 @@
 <?php
-// $Id: install.php 374 2009-12-10 07:50:16Z mikhail $
+// $Id: install.php 763 2010-09-15 08:38:54Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
@@ -11,7 +11,7 @@
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
 // ## Skype..........: mikhailmiguel
-// ## Yahoo!.........: mikhail.miguel@yahoo.com
+// ## Yahoo!.........: mikhail.miguel@yahoo.com.br
 // ############################################################### //
 // *************************************************************** //
 define("_INSTALL_CHARSET","UTF-8");
@@ -29,7 +29,7 @@ define("_INSTALL_L106","Não foi possível se conectar ao banco de dados.");
 define("_INSTALL_L107","Por favor, verifique a configuração do banco de dados.");
 define("_INSTALL_L108","O XOOPS Cube se conectou ao banco de dados corretamente.");
 define("_INSTALL_L109","O banco de dados %s não existe.");
-define("_INSTALL_L11","O caminho físico do diretório raiz (root) de seu servidor:");
+define("_INSTALL_L11","O caminho físico do diretório raiz (<i>root</i>) de seu servidor:");
 define("_INSTALL_L110","O banco de dados %s existe, e uma conexão foi realizada corretamente.");
 define("_INSTALL_L111","A conexão com o banco de dados foi realizada corretamente.<br />Prossiga para criar as tabelas.");
 define("_INSTALL_L112","Configuração do administrador");
@@ -90,6 +90,9 @@ define("_INSTALL_L162","É necessário selecionar uma permissão para cada tipo 
 define("_INSTALL_L163","A tabela %s foi removida corretamente...");
 define("_INSTALL_L164","Ocorreu um erro, não foi possível remover a tabela %s.");
 define("_INSTALL_L165","Estamos no meio de uma manutenção temporária do portal. Volte em alguns instantes. Pedimos desculpas pelo transtorno.");
+define("_INSTALL_L166","Verifique as permissões de acesso do XOOPS_TRUST_PATH");
+define("_INSTALL_L167","Verificando as permissões de leitura e escrita de diretórios e arquivos...");
+define("_INSTALL_L168","O XOOPS Cube Legacy 2.2 requer PHP5.");
 define("_INSTALL_L17","%s é o nome do utilizador ('<em>username</em>') de sua conta de banco de dados.");
 define("_INSTALL_L18","%s é a senha solicitada para aceder ao banco de dados.");
 define("_INSTALL_L19","%s é o nome da suo banco de dados onde as tabelas do XOOPS Cube serão criadas.");
@@ -98,7 +101,7 @@ define("_INSTALL_L20","%s é o prefixo das tabelas que serão criadas durante a 
 define("_INSTALL_L200","Atualizar");
 define("_INSTALL_L21","O seguinte banco de dados não foi encontrado no servidor:");
 define("_INSTALL_L210","Segunda etapa da instalação");
-define("_INSTALL_L22","Deseja tentar criá-lo?");
+define("_INSTALL_L22","<b>Se desejar, prossiga para que o instalador tente criá-lo.</b>");
 define("_INSTALL_L23","Sim");
 define("_INSTALL_L24","Não");
 define("_INSTALL_L25","Detectamos a seguinte informação do banco de dados nas suas configurações do arquivo mainfile.php. Por favor, corrija-a agora se ela não estiver correta.");
@@ -120,7 +123,7 @@ define("_INSTALL_L4","Certo, alterei as configurações acima, deixe-me tentar d
 define("_INSTALL_L40","Criar tabelas");
 define("_INSTALL_L41","Por favor, retorne e escreva todas as informações solicitadas.");
 define("_INSTALL_L42","Retornar");
-define("_INSTALL_L43","Banco de dados %s criado.");
+define("_INSTALL_L43","Banco de dados %s criado corretamente.");
 define("_INSTALL_L44","Não foi possível criar %s");
 define("_INSTALL_L45","Tabela %s criada");
 define("_INSTALL_L46","Para que os módulos inclusos neste pacote funcionem corretamente, os seguintes arquivos precisam ter permissão de leitura/alteração pelo servidor. Por favor, altere as permissões para estes arquivos. (por exemplo:");
@@ -139,7 +142,7 @@ define("_INSTALL_L6","Há uma confusão entre a configuração de XOOPS_ROOT_PAT
 define("_INSTALL_L60","Não foi possível abrir o arquivo mainfile.php. Verfique as permissões desse arquivo e tente de novo.");
 define("_INSTALL_L61","Não foi possível gravar no arquivo mainfile.php. Entre em contacto com o administrador do sistema para maiores detalhes.");
 define("_INSTALL_L62","Os dados da configuração foram gravados corretamente. Clique no botão abaixo para continuar.");
-define("_INSTALL_L63","Este prefixo será adicionado a todas as novas tabelas criadas para evitar conflitos com o banco de dados. Se você ainda não tiver certeza, use o prefixo padrão.");
+define("_INSTALL_L63","Este prefixo será acrescentado a todas as novas tabelas criadas para evitar conflitos com o banco de dados. Se você ainda não tiver certeza, use o prefixo padrão.");
 define("_INSTALL_L64","O nome do banco de dados no servidor. O assistente de instalação tentará criar o banco de dados se ele não existir.");
 define("_INSTALL_L65","Nome do utilizador (<q>username</q>) do banco de dados");
 define("_INSTALL_L66","Escolha o tipo de banco de dados a ser utilizado");
@@ -149,11 +152,12 @@ define("_INSTALL_L69","Deixe como está, caso não saiba do que se trata.");
 define("_INSTALL_L7","A sua configuração:");
 define("_INSTALL_L70","Por favor, altere as permissões do arquivo mainfile.php de forma que ele se torne executável pelo servidor (por exemplo: chmod 777 mainfile.php em um servidor UNIX/LINUX, ou verfique as prorpriedades do arquivo e assegure-se que a opção");
 define("_INSTALL_L71","Pressione o botão abaixo para prosseguir.");
-define("_INSTALL_L72","Os seguintes diretórios devem possuir permissões de leitura e escrita pelo servidor. (por exemplo");
+define("_INSTALL_L72","Os seguintes diretórios devem possuir permissões de leitura e escrita pelo servidor (<q>chmod 777 directory_name</q> em um servidor UNIX/LINUX).");
 define("_INSTALL_L73","Endereço de e-mail inválido.");
 define("_INSTALL_L74","Confirme a senha");
 define("_INSTALL_L75","Caminho físico do XOOPS_TRUST_PATH ");
 define("_INSTALL_L76","Diretório completo de onde está localizada a pasta XOOPS_TRUST_PATH, sem a barra no final.<br />Essa pasta deverá estar fora do PUBLIC_HTML, e os seus arquivos não deverão ser acessados via Web.");
+define("_INSTALL_L77","Defina o fuso-horário padrão");
 define("_INSTALL_L8","Foi detectado:");
 define("_INSTALL_L80","Introdução");
 define("_INSTALL_L81","Verifique as permissões dos arquivos");

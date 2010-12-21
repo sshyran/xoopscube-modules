@@ -1,16 +1,16 @@
 <?php
 // Translation Info
-// $Id: finish.php 336 2009-07-31 09:53:22Z mikhail $
+// $Id: finish.php 682 2010-06-08 20:23:26Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
 // ## Website........: http://xoopscube.com.br
 // ############################################################### //
 // *************************************************************** //
-$content .= "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
+$content = "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
 <p>A primeira etapa da instalação do XOOPS Cube está completa, e os próximos passos serão relativos à instalação dos primeiros módulos. Leia atentamente as instruções antes de continuar:</p>
 <p>Ao clicar no botão [Prosseguir], aparecerá uma tela de entrada (<em>login</em>). Nela, escreva o codinome e senha escolhidos na etapa anterior e então clique no botão [Entrar].</p>
 <p>Uma lista com os módulos disponíveis para instalação será mostrada. Escolha aqueles que você irá utilizar e clique no botão [Instalar].</p>

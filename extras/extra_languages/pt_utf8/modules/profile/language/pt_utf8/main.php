@@ -2,7 +2,7 @@
 // ******************************************************************** //
 // ** XOOPS Cube Legacy - Profile Module - Portuguese
 // ** Por Mikhail Miguel <mikhail@underpop.com> - http://xoopscube.com.br/
-// ** $Id: main.php 374 2009-12-10 07:50:16Z mikhail $
+// ** $Id: main.php 682 2010-06-08 20:23:26Z mikhail $
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // ******************************************************************** //
 define("_MD_PROFILE_LANG_FIELD_TIP1","<i>String</i>: uma sequência de caracteres alfa-numéricos.");
@@ -24,8 +24,8 @@ define("_MD_PROFILE_ERROR_MINLENGTH","Entrada {0} com  {1} ou mais personagens")
 define("_MD_PROFILE_ERROR_OBJECTEXIST","Entrada incorreta em {0}.");
 define("_MD_PROFILE_ERROR_REQUIRED","{0} é um valor necessário.");
 define("_MD_PROFILE_LANG_ACCESS","Grupos de acesso ");
-define("_MD_PROFILE_LANG_ADD_A_NEW_DATA","Incluir um novo dado");
-define("_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS","Incluir um novo campo");
+define("_MD_PROFILE_LANG_ADD_A_NEW_DATA","Acrescentar um novo dado");
+define("_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS","Acrescentar um novo campo");
 define("_MD_PROFILE_LANG_CANCEL","Cancelar");
 define("_MD_PROFILE_LANG_CONTROL","Ação");
 define("_MD_PROFILE_LANG_DATA_EDIT","Editar perfil");

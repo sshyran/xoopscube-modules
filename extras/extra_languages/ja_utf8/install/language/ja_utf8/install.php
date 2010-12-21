@@ -1,6 +1,7 @@
 <?php
 // $Id: install.php,v 1.4 2007/07/02 02:18:11 minahito Exp $
-define("_INSTALL_L0","XOOPS Cube 2.1 インストールウィザードへようこそ");
+define("_INSTALL_L0","XOOPS Cube 2.2 インストールウィザードへようこそ");
+define("_INSTALL_L168","XOOPS Cube Legacy の動作には PHP5 以降が必要です");
 define("_INSTALL_L70","サーバ上のmainfile.php への書き込み権限を与えてください。<br />（例：UNIX/LINUXサーバの場合はchmod 777 mainfile.php、Windowsサーバの場合は読み取り専用プロパティがセットされていないかチェックする。）<br />権限の設定完了後、ブラウザの「更新」ボタンを押してこのページを再度読み込んでください。");
 //define("_INSTALL_L71","下記のボタンをクリックするとインストールを開始します。");
 define("_INSTALL_L1","mainfile.phpを開き、31行目に以下のコードがあることを確認してください。");
@@ -45,6 +46,8 @@ define("_INSTALL_L54","データベースへ持続的接続");
 define("_INSTALL_L69","　デフォルトは「いいえ」です。よく分からない場合は「いいえ」を選択してください。");
 define("_INSTALL_L55","XOOPS Cubeへのパス");
 define("_INSTALL_L59","　XOOPS Cubeが設置されているディレクトリへのフルパスを入力してください。<br />　末尾には「/」を付加しないでください。");
+define("_INSTALL_L75","XOOPS_TRUST_PATH へのパス");
+define("_INSTALL_L76","XOOPS_TRUST_PATH ディレクトリへのフルパスを入力してください。末尾には「/」を付加しないでください。<br />XOOPS_TRUST_PATH はドキュメントルートの外に置いてください（'public_html', 'html'などのディレクトリの下はNGです）。");
 define("_INSTALL_L56","XOOPS CubeへのURL");
 define("_INSTALL_L58","　XOOPS CubeにアクセスするURLを入力してください。<br />　末尾には「/」を付加しないでください。");
 
@@ -57,6 +60,7 @@ define("_INSTALL_L37","管理者ユーザ名");
 define("_INSTALL_L38","管理者メールアドレス");
 define("_INSTALL_L39","管理者パスワード");
 define("_INSTALL_L74","管理者パスワード(再入力)");
+define("_INSTALL_L77","タイムゾーン");
 
 define("_INSTALL_L40","データベーステーブル作成");
 define("_INSTALL_L41","必要なデータをすべて入力してください。");
@@ -91,6 +95,8 @@ define("_INSTALL_L85","ディレクトリ%sは、書込不可となっていま�
 define("_INSTALL_L86","ディレクトリ%sは、書込可です。");
 define("_INSTALL_L87","アクセス権に問題はありません。");
 define("_INSTALL_L88","ファイル・ディレクトリのアクセス権をチェックしてください。");
+define("_INSTALL_L166","XOOPS_TRUST_PATH のアクセス権チェック");
+define("_INSTALL_L167","XOOPS_TRUST_PATH のファイルのアクセス権のチェック");
 define("_INSTALL_L89","設定の入力");
 define("_INSTALL_L90","データベース、およびパス・URLの設定");
 define("_INSTALL_L91","確認");
@@ -148,7 +154,7 @@ define("_INSTALL_L139","アバターのアップデート");
 define("_INSTALL_L140","顔アイコンのアップデート");
 define("_INSTALL_L141","インストーラは今から、XOOPS Cubeで動くように各モジュールをアップデートします。<br />XOOPS Cubeのパッケージに含まれるすべてのファイルがサーバにアップロードされているか確認してください。<br />これが完了するまでには、しばらく時間が掛かるかもしれません。");
 define("_INSTALL_L142","モジュールのアップデート中…");
-define("_INSTALL_L143","The installer will now update configuration data of XOOPS 1.3.x to be used with XOOPS Cube.");  //[MADA]
+define("_INSTALL_L143","The installer will now update configuration data of XOOPS 1.3.x to be used with XOOPS Cube.");	//[MADA]
 define("_INSTALL_L144","コンフィギュレーションのアップデート");
 define("_INSTALL_L145","コメント(ID: %s)をデータベースに格納しました。");
 define("_INSTALL_L146","コメント(ID: %s)がデータベースに格納できません。");
@@ -187,9 +193,11 @@ define('_INSTALL_LANG_XOOPS_SALT_DESC', "暗号・トークンを生成するた
 
 define('_INSTALL_HEADER_MESSAGE','画面上の指示に従って設定を行ってください');
 
-mb_language( 'Japanese' ) ;
-mb_internal_encoding( 'UTF-8' ) ;
-mb_http_output( 'UTF-8' ) ;
+if (function_exists("mb_language")) { 
+	mb_language( 'Japanese' ) ;
+	mb_internal_encoding( 'UTF-8' ) ;
+	mb_http_output( 'UTF-8' ) ;
+}
 @ini_set('default_charset', _INSTALL_CHARSET);
 
 ?>

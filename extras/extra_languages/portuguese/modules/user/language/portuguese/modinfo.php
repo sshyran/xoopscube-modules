@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php 342 2009-08-03 19:50:55Z mikhail $
+// $Id: modinfo.php 682 2010-06-08 20:23:26Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MI_USER_ADMENU_AVATAR_MANAGE","Avatares");
 define("_MI_USER_ADMENU_GROUP_LIST","Grupos e permissões");
@@ -64,13 +64,13 @@ define("_MI_USER_KEYWORD_CREATE_AVATAR","Enviar avatar");
 define("_MI_USER_KEYWORD_CREATE_GROUP","Criar grupo");
 define("_MI_USER_KEYWORD_CREATE_RANK","Criar graduação");
 define("_MI_USER_KEYWORD_CREATE_USER","Criar cadastro");
-define("_MI_USER_KEYWORD_GROUP_LIST","listar editar modificar remover utilizador permissão incluir remover associado");
+define("_MI_USER_KEYWORD_GROUP_LIST","listar editar modificar remover utilizador permissão acrescentar remover associado");
 define("_MI_USER_KEYWORD_MAILJOB_LINK_LIST","Mailjob lista de links");
 define("_MI_USER_KEYWORD_MAILJOB_MANAGE","Gestor de mala-direta");
 define("_MI_USER_KEYWORD_USER_LIST","Listar associados");
 define("_MI_USER_KEYWORD_USER_SEARCH","Localizar associado");
 define("_MI_USER_LANG_MAILJOB_LINK_LIST","Lista de links Mailjob ");
-define("_MI_USER_MENU_CREATE_AVATAR","Incluir avatar");
+define("_MI_USER_MENU_CREATE_AVATAR","Acrescentar avatar");
 define("_MI_USER_MENU_CREATE_GROUP","Criar grupo");
 define("_MI_USER_MENU_CREATE_RANK","Criar graduação");
 define("_MI_USER_MENU_CREATE_USER","Criar cadastro");

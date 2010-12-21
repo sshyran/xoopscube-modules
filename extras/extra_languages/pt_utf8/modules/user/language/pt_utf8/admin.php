@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 374 2009-12-10 07:50:16Z mikhail $
+// $Id: admin.php 682 2010-06-08 20:23:26Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_AD_USER_DATA_DOWNLOAD_DO","Descarregar em CSV");
 define("_AD_USER_DATA_NUM","%d visitantes cadastrados.");
@@ -34,7 +34,7 @@ define("_AD_USER_LANG_AVATAR_DISPLAY","Mostrar");
 define("_AD_USER_LANG_AVATAR_FILE","Arquivo");
 define("_AD_USER_LANG_AVATAR_MIMETYPE","Formato Mimetype");
 define("_AD_USER_LANG_AVATAR_NAME","Nome");
-define("_AD_USER_LANG_AVATAR_NEW","Incluir um avatar");
+define("_AD_USER_LANG_AVATAR_NEW","Acrescentar um avatar");
 define("_AD_USER_LANG_AVATAR_TOTAL","Total de avatares");
 define("_AD_USER_LANG_AVATAR_TYPE","Tipo");
 define("_AD_USER_LANG_AVATAR_TYPE_C","Personalizar");
@@ -58,7 +58,7 @@ define("_AD_USER_LANG_FROM_EMAIL","Endereço do rementente");
 define("_AD_USER_LANG_FROM_NAME","Nome do rementente");
 define("_AD_USER_LANG_GROUP","Grupo");
 define("_AD_USER_LANG_GROUP_AMMO","Contador");
-define("_AD_USER_LANG_GROUP_ASSIGN","Incluir um associado");
+define("_AD_USER_LANG_GROUP_ASSIGN","Acrescentar um associado");
 define("_AD_USER_LANG_GROUP_ASSIN_MEMBERS","Lista de associados deste grupo");
 define("_AD_USER_LANG_GROUP_DELETE","Remover grupo");
 define("_AD_USER_LANG_GROUP_DELETE_ADVICE","Remover");
@@ -134,8 +134,8 @@ define("_AD_USER_LANG_USER_DELETE","Remover associado");
 define("_AD_USER_LANG_USER_DELETE_ADVICE","Tem certeza de que deseja remover este associado?");
 define("_AD_USER_LANG_USER_EDIT","Editar associado");
 define("_AD_USER_LANG_USER_LIST","Cadastros");
-define("_AD_USER_LANG_USER_NEW","Incluir manualmente um novo associado");
-define("_AD_USER_LANG_USER_NEW_FIELD","Incluir um novo campo");
+define("_AD_USER_LANG_USER_NEW","Acrescentar manualmente um novo associado");
+define("_AD_USER_LANG_USER_NEW_FIELD","Acrescentar um novo campo");
 define("_AD_USER_LANG_USER_SEARCH_LIST","Lista de associados");
 define("_AD_USER_LANG_USER_TOTAL","Visitantes associados");
 define("_AD_USER_LANG_USER_UPDATECONF","Confirme a atualização do associado");
