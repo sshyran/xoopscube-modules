@@ -36,5 +36,19 @@ define('_MD_PROFILE_LANG_ADD_A_NEW_DATA', "プロフィールを編集する");
 define('_MD_PROFILE_LANG_UID', "ユーザID");
 define('_MD_PROFILE_LANG_DATA_EDIT', "プロフィールを編集する");
 define('_MD_PROFILE_DESC_OPTIONS', "オプションは、| で区切ってください。例：tea|coffee|green tea");
+define('_MD_PROFILE_ERROR_DUPLICATED_FIELD_NAME', 'フィールド名がすでに使用されています。');
+define('_MD_PROFILE_ERROR_RESERVED_NAME', 'このフィールド名はユーザモジュールで使われているため使えません。');
+define('_MD_PROFILE_LANG_FIELD_NAME_DESC', 'これは内部でのみ使用されます！');
+define('_MD_PROFILE_LANG_SHOW_FORM_DESC', 'ユーザプロフィールのフィールドを表示するにはオプションをチェック');
+define('_MD_PROFILE_LANG_UNAME', 'ユーザー名');
+define('_MD_PROFILE_LANG_FIELD_TIP1', '文字列 - 一連の文字で格納できます。');
+define('_MD_PROFILE_LANG_FIELD_TIP2', '文書 - テキストエリアで編集する。');
+define('_MD_PROFILE_LANG_FIELD_TIP3', 'Int（整数） - 値は10進数の数字を含むことができます。');
+define('_MD_PROFILE_LANG_FIELD_TIP4', '日付 - 特定の日付のフォーマットができます。');
+define('_MD_PROFILE_LANG_FIELD_TIP5', 'チェックボックス - 0または1、trueまたはfalseを選択できます。');
+define('_MD_PROFILE_LANG_FIELD_TIP6', 'セレクトボックス - 複数のオプションの例を参照できます。');
+define('_MD_PROFILE_LANG_DATA_DELETE', 'プロフィールデータを削除');
+define('_MD_PROFILE_LANG_DEFINITIONS_DELETE', 'フォームフィールド削除する');
+
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php 342 2009-08-03 19:50:55Z mikhail $
+// $Id: main.php 682 2010-06-08 20:23:26Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_USER_ERROR_AVATAR_EXTENSION","Lamento, o envio de arquivos com essa extensão ainda não foi habilitado.");
 define("_MD_USER_ERROR_AVATAR_MAXFILESIZE","O arquivo enviado excede o limite de tamanho permitido para avatares.");
@@ -20,8 +20,8 @@ define("_MD_USER_ERROR_TIMEZONE","Fuso horário");
 define("_MD_USER_ERROR_UNEEDAGREE","Lamento que você não concorda com as Regras de Conduta...");
 define("_MD_USER_ERROR_YOURREGMAILNG","ATENÇÃO: você completou o seu cadastrado. Porém, por um erro do servidor, não foi possível te enviar a mensagem com o código de ativação. Por favor, entre em contato com a administração e comunique o ocorrido.");
 define("_MD_USER_LANG_ALLABOUT","Informações acerca de %s");
-define("_MD_USER_LANG_ASSIGN","Incluir");
-define("_MD_USER_LANG_ATTACHSIG","Sempre incluir a minha assinatura");
+define("_MD_USER_LANG_ASSIGN","Acrescentar");
+define("_MD_USER_LANG_ATTACHSIG","Sempre acrescentar a minha assinatura");
 define("_MD_USER_LANG_AVATAR","Avatar");
 define("_MD_USER_LANG_AVATAR_EDIT","Alterar avatar");
 define("_MD_USER_LANG_AVATAR_ID","N°");

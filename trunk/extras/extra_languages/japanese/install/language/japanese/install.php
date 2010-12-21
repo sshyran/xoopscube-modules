@@ -1,6 +1,7 @@
 <?php
 // $Id: install.php,v 1.3 2008/03/15 06:20:01 gusagi Exp $
-define("_INSTALL_L0","XOOPS Cube 2.1 ¥¤¥ó¥¹¥È¡¼¥ë¥¦¥£¥¶¡¼¥É¤Ø¤è¤¦¤³¤½");
+define("_INSTALL_L0","XOOPS Cube 2.2 ¥¤¥ó¥¹¥È¡¼¥ë¥¦¥£¥¶¡¼¥É¤Ø¤è¤¦¤³¤½");
+define("_INSTALL_L168","XOOPS Cube Legacy ¤ÎÆ°ºî¤Ë¤Ï PHP5 °Ê¹ß¤¬É¬Í×¤Ç¤¹");
 define("_INSTALL_L70","¥µ¡¼¥Ð¾å¤Îmainfile.php ¤Ø¤Î½ñ¤­¹þ¤ß¸¢¸Â¤òÍ¿¤¨¤Æ¤¯¤À¤µ¤¤¡£<br />¡ÊÎã¡§UNIX/LINUX¥µ¡¼¥Ð¤Î¾ì¹ç¤Ïchmod 777 mainfile.php¡¢Windows¥µ¡¼¥Ð¤Î¾ì¹ç¤ÏÆÉ¤ß¼è¤êÀìÍÑ¥×¥í¥Ñ¥Æ¥£¤¬¥»¥Ã¥È¤µ¤ì¤Æ¤¤¤Ê¤¤¤«¥Á¥§¥Ã¥¯¤¹¤ë¡£¡Ë<br />¸¢¸Â¤ÎÀßÄê´°Î»¸å¡¢¥Ö¥é¥¦¥¶¤Î¡Ö¹¹¿·¡×¥Ü¥¿¥ó¤ò²¡¤·¤Æ¤³¤Î¥Ú¡¼¥¸¤òºÆÅÙÆÉ¤ß¹þ¤ó¤Ç¤¯¤À¤µ¤¤¡£");
 //define("_INSTALL_L71","²¼µ­¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¥¤¥ó¥¹¥È¡¼¥ë¤ò³«»Ï¤·¤Þ¤¹¡£");
 define("_INSTALL_L1","mainfile.php¤ò³«¤­¡¢31¹ÔÌÜ¤Ë°Ê²¼¤Î¥³¡¼¥É¤¬¤¢¤ë¤³¤È¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£");
@@ -45,6 +46,8 @@ define("_INSTALL_L54","¥Ç¡¼¥¿¥Ù¡¼¥¹¤Ø»ýÂ³ÅªÀÜÂ³");
 define("_INSTALL_L69","¡¡¥Ç¥Õ¥©¥ë¥È¤Ï¡Ö¤¤¤¤¤¨¡×¤Ç¤¹¡£¤è¤¯Ê¬¤«¤é¤Ê¤¤¾ì¹ç¤Ï¡Ö¤¤¤¤¤¨¡×¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡£");
 define("_INSTALL_L55","XOOPS Cube¤Ø¤Î¥Ñ¥¹");
 define("_INSTALL_L59","¡¡XOOPS Cube¤¬ÀßÃÖ¤µ¤ì¤Æ¤¤¤ë¥Ç¥£¥ì¥¯¥È¥ê¤Ø¤Î¥Õ¥ë¥Ñ¥¹¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£<br />¡¡ËöÈø¤Ë¤Ï¡Ö/¡×¤òÉÕ²Ã¤·¤Ê¤¤¤Ç¤¯¤À¤µ¤¤¡£");
+define("_INSTALL_L75","XOOPS_TRUST_PATH ¤Ø¤Î¥Ñ¥¹");
+define("_INSTALL_L76","XOOPS_TRUST_PATH ¥Ç¥£¥ì¥¯¥È¥ê¤Ø¤Î¥Õ¥ë¥Ñ¥¹¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£ËöÈø¤Ë¤Ï¡Ö/¡×¤òÉÕ²Ã¤·¤Ê¤¤¤Ç¤¯¤À¤µ¤¤¡£<br />XOOPS_TRUST_PATH ¤Ï¥É¥­¥å¥á¥ó¥È¥ë¡¼¥È¤Î³°¤ËÃÖ¤¤¤Æ¤¯¤À¤µ¤¤¡Ê'public_html', 'html'¤Ê¤É¤Î¥Ç¥£¥ì¥¯¥È¥ê¤Î²¼¤ÏNG¤Ç¤¹¡Ë¡£");
 define("_INSTALL_L56","XOOPS Cube¤Ø¤ÎURL");
 define("_INSTALL_L58","¡¡XOOPS Cube¤Ë¥¢¥¯¥»¥¹¤¹¤ëURL¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£<br />¡¡ËöÈø¤Ë¤Ï¡Ö/¡×¤òÉÕ²Ã¤·¤Ê¤¤¤Ç¤¯¤À¤µ¤¤¡£");
 
@@ -57,6 +60,7 @@ define("_INSTALL_L37","´ÉÍý¼Ô¥æ¡¼¥¶Ì¾");
 define("_INSTALL_L38","´ÉÍý¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹");
 define("_INSTALL_L39","´ÉÍý¼Ô¥Ñ¥¹¥ï¡¼¥É");
 define("_INSTALL_L74","´ÉÍý¼Ô¥Ñ¥¹¥ï¡¼¥É(ºÆÆþÎÏ)");
+define("_INSTALL_L77","¥¿¥¤¥à¥¾¡¼¥ó");
 
 define("_INSTALL_L40","¥Ç¡¼¥¿¥Ù¡¼¥¹¥Æ¡¼¥Ö¥ëºîÀ®");
 define("_INSTALL_L41","É¬Í×¤Ê¥Ç¡¼¥¿¤ò¤¹¤Ù¤ÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
@@ -91,6 +95,8 @@ define("_INSTALL_L85","¥Ç¥£¥ì¥¯¥È¥ê%s¤Ï¡¢½ñ¹þÉÔ²Ä¤È¤Ê¤Ã¤Æ¤¤¤Þ¤¹¡£chmod 777¤·¤Æ¤¯
 define("_INSTALL_L86","¥Ç¥£¥ì¥¯¥È¥ê%s¤Ï¡¢½ñ¹þ²Ä¤Ç¤¹¡£");
 define("_INSTALL_L87","¥¢¥¯¥»¥¹¸¢¤ËÌäÂê¤Ï¤¢¤ê¤Þ¤»¤ó¡£");
 define("_INSTALL_L88","¥Õ¥¡¥¤¥ë¡¦¥Ç¥£¥ì¥¯¥È¥ê¤Î¥¢¥¯¥»¥¹¸¢¤ò¥Á¥§¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£");
+define("_INSTALL_L166","XOOPS_TRUST_PATH ¤Î¥¢¥¯¥»¥¹¸¢¥Á¥§¥Ã¥¯");
+define("_INSTALL_L167","XOOPS_TRUST_PATH ¤Î¥Õ¥¡¥¤¥ë¤Î¥¢¥¯¥»¥¹¸¢¤Î¥Á¥§¥Ã¥¯");
 define("_INSTALL_L89","ÀßÄê¤ÎÆþÎÏ");
 define("_INSTALL_L90","¥Ç¡¼¥¿¥Ù¡¼¥¹¡¢¤ª¤è¤Ó¥Ñ¥¹¡¦URL¤ÎÀßÄê");
 define("_INSTALL_L91","³ÎÇ§");
@@ -148,7 +154,7 @@ define("_INSTALL_L139","¥¢¥Ð¥¿¡¼¤Î¥¢¥Ã¥×¥Ç¡¼¥È");
 define("_INSTALL_L140","´é¥¢¥¤¥³¥ó¤Î¥¢¥Ã¥×¥Ç¡¼¥È");
 define("_INSTALL_L141","¥¤¥ó¥¹¥È¡¼¥é¤Ïº£¤«¤é¡¢XOOPS Cube¤ÇÆ°¤¯¤è¤¦¤Ë³Æ¥â¥¸¥å¡¼¥ë¤ò¥¢¥Ã¥×¥Ç¡¼¥È¤·¤Þ¤¹¡£<br />XOOPS Cube¤Î¥Ñ¥Ã¥±¡¼¥¸¤Ë´Þ¤Þ¤ì¤ë¤¹¤Ù¤Æ¤Î¥Õ¥¡¥¤¥ë¤¬¥µ¡¼¥Ð¤Ë¥¢¥Ã¥×¥í¡¼¥É¤µ¤ì¤Æ¤¤¤ë¤«³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£<br />¤³¤ì¤¬´°Î»¤¹¤ë¤Þ¤Ç¤Ë¤Ï¡¢¤·¤Ð¤é¤¯»þ´Ö¤¬³Ý¤«¤ë¤«¤â¤·¤ì¤Þ¤»¤ó¡£");
 define("_INSTALL_L142","¥â¥¸¥å¡¼¥ë¤Î¥¢¥Ã¥×¥Ç¡¼¥ÈÃæ¡Ä");
-define("_INSTALL_L143","The installer will now update configuration data of XOOPS 1.3.x to be used with XOOPS Cube.");  //[MADA]
+define("_INSTALL_L143","The installer will now update configuration data of XOOPS 1.3.x to be used with XOOPS Cube.");	//[MADA]
 define("_INSTALL_L144","¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥·¥ç¥ó¤Î¥¢¥Ã¥×¥Ç¡¼¥È");
 define("_INSTALL_L145","¥³¥á¥ó¥È(ID: %s)¤ò¥Ç¡¼¥¿¥Ù¡¼¥¹¤Ë³ÊÇ¼¤·¤Þ¤·¤¿¡£");
 define("_INSTALL_L146","¥³¥á¥ó¥È(ID: %s)¤¬¥Ç¡¼¥¿¥Ù¡¼¥¹¤Ë³ÊÇ¼¤Ç¤­¤Þ¤»¤ó¡£");
@@ -187,9 +193,11 @@ define('_INSTALL_LANG_XOOPS_SALT_DESC', "°Å¹æ¡¦¥È¡¼¥¯¥ó¤òÀ¸À®¤¹¤ë¤¿¤á¤ÎÊä½õÅª¤Ê¾
 
 define('_INSTALL_HEADER_MESSAGE','²èÌÌ¾å¤Î»Ø¼¨¤Ë½¾¤Ã¤ÆÀßÄê¤ò¹Ô¤Ã¤Æ¤¯¤À¤µ¤¤');
 
-mb_language( 'Japanese' ) ;
-mb_internal_encoding( 'EUC-JP' ) ;
-mb_http_output( 'EUC-JP' ) ;
+if (function_exists("mb_language")) { 
+	mb_language( 'Japanese' ) ;
+	mb_internal_encoding( 'EUC-JP' ) ;
+	mb_http_output( 'EUC-JP' ) ;
+}
 @ini_set('default_charset', _INSTALL_CHARSET);
 
 ?>

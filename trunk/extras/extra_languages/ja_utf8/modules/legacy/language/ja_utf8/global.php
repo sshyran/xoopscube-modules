@@ -61,7 +61,7 @@ define('_GUESTS', 'ゲスト');
 define('_MEMBERS', '登録ユーザ');
 define('_ONLINEPHRASE','%s 人のユーザが現在オンラインです。');
 define('_ONLINEPHRASEX','%s 人のユーザが %s を参照しています。');
-define('_CLOSE','閉じる');  // Close window
+define('_CLOSE','閉じる');	// Close window
 
 //%%%%%%	File Name module.textsanitizer.php 	%%%%%
 define('_QUOTEC','引用：');
@@ -95,9 +95,9 @@ define('_READS','ヒット');
 define('_WELCOMETO','%sへようこそ');
 define('_SEARCH','検索');
 define('_ALL', 'すべて');
-define('_TITLE', '題名');      //-no use
+define('_TITLE', '題名');	   //-no use
 define('_OPTIONS', 'オプション');
-define('_QUOTE', '引用');     //-no use
+define('_QUOTE', '引用');	  //-no use
 define('_LIST', '一覧');
 define('_LOGIN','ログイン');
 define('_USERNAME','ユーザ名: ');
@@ -144,7 +144,7 @@ define('_REGISTER','登録');
 //%%%%%%	File Name xoopscodes.php 	%%%%%
 define('_SIZE','大きさ');  // font size
 define('_FONT','フォント');  // font family
-define('_COLOR','色');  // font color
+define('_COLOR','色');	// font color
 define('_EXAMPLE','サンプル');
 define('_ENTERURL','リンクしたいサイトのURLを入力してください。');
 define('_ENTERWEBTITLE','サイト名を入力してください。');
@@ -163,10 +163,6 @@ define('_MESSAGETOOLONG','メッセージ文が長すぎます。');
 
 //%%%%%		TIME FORMAT SETTINGS   %%%%%
 
-define("_DATESTRING","Y-n-j G:i:s");
-define("_MEDIUMDATESTRING","Y-n-j G:i");
-define("_SHORTDATESTRING","Y-n-j");
-
 define('_SECOND', '1秒');
 define('_SECONDS', '%s秒');
 define('_MINUTE', '1分');
@@ -180,62 +176,21 @@ define('_MONTH', '1ヶ月');
 
 define('_HELP', "ヘルプ");
 
-//%%%%%		LANGUAGE SPECIFIC SETTINGS   %%%%%
-@define('_CHARSET', 'UTF-8');
-@define('_LANGCODE', 'ja');
-mb_language( 'ja' ) ;
-// mb_internal_encoding( 'UTF-8' ) ;
-// mb_http_output( 'UTF-8' ) ;
-@ini_set('default_charset', _CHARSET);
+define('_CATEGORY', "カテゴリ");
+define('_TAG', "タグ");
+define('_STATUS', "ステータス");
+define('_STATUS_DELETED', "削除済み");
+define('_STATUS_REJECTED', "却下");
+define('_STATUS_POSTED', "投稿済み");
+define('_STATUS_PUBLISHED', "承認済み");
 
-// If _MBSTRING_LANGUAGE is defined, the Legacy_LanguageManager class initializes mb functions.
-// This mechanism exists for CJK --- Chinese, Japanese, Korean ---
-define("_MBSTRING_LANGUAGE", "japanese");
-
-// change 0 to 1 if this language is a multi-bytes language
-define('XOOPS_USE_MULTIBYTES', '1');
-
-//
-// Register the function about local.
-//
-
-if ( class_exists( 'XCube_Root' ) && function_exists('mb_convert_encoding') && function_exists('mb_convert_kana')) {
-	$root =& XCube_Root::getSingleton();
-	$root->mDelegateManager->add('Legacy_Mailer.ConvertLocal', 'Legacy_JapaneseUtf8_convLocal');
-}
-
-@define('LEGACY_MAIL_LANG','ja');
-@define('LEGACY_MAIL_CHAR','iso-2022-jp');
-@define('LEGACY_MAIL_ENCO','7bit');
-
-if( ! defined( 'FOR_XOOPS_LANG_CHECKER' ) ) {
-
-function Legacy_JapaneseUtf8_convLocal(&$text, $mime)
-{
-	if ($mime) {
-		switch ($mime) {
-			case '1':
-				$text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', "\n");
-				break;
-			case '2':
-				$text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', "");
-				break;
-		}
-	}
-	else {
-		$text = mb_convert_encoding($text, 'JIS', _CHARSET);
-	}
-}
-
-function xoops_language_trim($text)
-{
-	if (function_exists('mb_convert_kana')) {
-		$text = mb_convert_kana($text, 's');
-	}
-	$text = trim($text);
-	return $text;
-}
-
-}
+//%%%%% Group %%%%%
+define('_GROUP', "グループ");
+define('_MEMBER', "会員");
+define('_GROUP_RANK_GUEST', "ゲスト");
+define('_GROUP_RANK_ASSOCIATE', "準会員");
+define('_GROUP_RANK_REGULAR', "正会員");
+define('_GROUP_RANK_STAFF', "スタッフ");
+define('_GROUP_RANK_OWNER', "管理者");
 
 ?>

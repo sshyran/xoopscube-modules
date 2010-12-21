@@ -52,7 +52,6 @@ define('_MD_USER_LANG_NO', "いいえ");
 define('_MD_USER_LANG_NOACTTPADM', "選択されたユーザはまだ存在しないか、承認が完了していません。");
 define('_MD_USER_LANG_NOPROBLEM', "ご心配なく。まずはあなたが登録に使用したメールアドレスを入力し、ボタンをクリックしてください。 パスワード取得用のリンクが記載されたメールがあなたの登録メールアドレス宛に送られます。");
 define('_MD_USER_LANG_NOREGISTER', "申し訳ございませんが、現在このサイトでは新規ユーザの登録受付を行っておりません。");
-define('_MD_USER_LANG_NOTIFY', "イベント通知");
 define('_MD_USER_LANG_NOTIFY_METHOD', "イベント更新通知メッセージの受取方法");
 define('_MD_USER_LANG_NOTIFY_MODE', "イベント通知のタイミング");
 define('_MD_USER_LANG_NOTREGISTERED', "今すぐ登録？");
@@ -112,7 +111,8 @@ define('_MD_USER_MESSAGE_OLDDELETED', "古いアバター画像は上書きされます。");
 define('_MD_USER_MESSAGE_SEND_PASSWORD', "パスワードをメールで送信しました");
 define('_MD_USER_MESSAGE_SURETODEL', "ユーザアカウントを本当に削除しても良いですか？");
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "アカウントを削除しました。");
-define('_MD_USER_MESSAGE_YOURREGISTERED', "登録が完了しました。記載されたメールを登録メールアドレス宛に承認キーを送信しました。メールの指示に従い、承認を完了してください。");
-define('_MD_USER_MESSAGE_YOURREGISTERED2', "登録が完了しました。サイト管理者がアカウントを承認するまでお待ちください。承認完了時にはメールにてお知らせします。");
+define('_MD_USER_MESSAGE_YOURREGISTERED', "登録申請が完了しました。記載されたメールを登録メールアドレス宛に承認キーを送信しました。メールの指示に従い、承認を完了してください。");
+define('_MD_USER_MESSAGE_YOURREGISTERED2', "登録申請が完了しました。サイト管理者がアカウントを承認するまでお待ちください。承認完了時にはメールにてお知らせします。");
+define('_MD_USER_LANG_NOTIFY', '通知');
 
 ?>

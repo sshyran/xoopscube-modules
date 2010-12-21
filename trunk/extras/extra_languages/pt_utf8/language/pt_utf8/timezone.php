@@ -1,9 +1,9 @@
 <?php
 // Translation Info
-// $Id: timezone.php 336 2009-07-31 09:53:22Z mikhail $
+// $Id: timezone.php 682 2010-06-08 20:23:26Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com

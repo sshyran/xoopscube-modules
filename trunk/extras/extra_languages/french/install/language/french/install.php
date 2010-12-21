@@ -1,6 +1,7 @@
 <?php
 // $Id$
 define("_INSTALL_L0","Bienvenue dans l'assistant d'installation de XOOPS Cube 2.2");
+define("_INSTALL_L168","XOOPS Cube Legacy requires PHP5 or later");
 define("_INSTALL_L70","Merci de changer les permissions du fichier mainfile.php afin qu'il soit accessible en écriture par le serveur (ex. chmod 777 sur un serveur UNIX/LINUX, ou vérifier les propriétés du fichier et s'assurer que l'option 'Lecture seule' n'est pas cochée sur un serveur Windows). Rechargez cette page une fois les permissions changées.");
 //define("_INSTALL_L71","Cliquez sur le bouton ci-dessous pour commencer l'installation.");
 define("_INSTALL_L1","Ouvrez le fichier mainfile.php avec un éditeur de texte et cherchez le code suivant à la ligne 31 :");
@@ -60,6 +61,7 @@ define("_INSTALL_L37","Nom de l'Administrateur");
 define("_INSTALL_L38","E-mail de l'Administrateur");
 define("_INSTALL_L39","Mot de passe de l'Administrateur");
 define("_INSTALL_L74","Confirmation du mot de passe");
+define("_INSTALL_L77","Set Default Timezone");
 define("_INSTALL_L40","Créer les tables"); 
 define("_INSTALL_L41","Merci de revenir en arrière et de saisir toutes les informations requises.");
 define("_INSTALL_L42","Retour");
@@ -98,6 +100,8 @@ define("_INSTALL_L91","Valider");
 define("_INSTALL_L92","Sauvegarder les paramètres"); 
 define("_INSTALL_L93","Modifier les paramètres"); 
 define("_INSTALL_L88","Sauvegarde des données de configuration...");
+define("_INSTALL_L166","Vérifier les permissions des fichiers XOOPS_TRUST_PATH");
+define("_INSTALL_L167","Vérification des permissions des fichiers et des répertoires...");
 define("_INSTALL_L94","Vérifier le chemin & l'URL"); 
 define("_INSTALL_L127","Vérification du chemin des fichiers & de l'URL.");
 define("_INSTALL_L95","Impossible de détecter le chemin physique de votre répertoire XOOPS Cube.");
