@@ -11,19 +11,35 @@
 /*
  * Smarty plugin
  * -------------------------------------------------------------
- * Type:     modifier
- * Name:     xoops_user
+ * Type:	 modifier
+ * Name:	 xoops_user
  * Purpose:  Adapter for XoopsUserObject::getVar with using $uid parameter.
- * Input:    uid: user id
- *           key: XoopsUserObject property name
+ * Input:	 uid : user id
+ *			 key : XoopsUserObject/Profile_DataObject property name OR user_name
+ *			 flag: Enum(Profile_ActionType) 
+ *			   If you set 0, you can get raw value.
+ *			   If you set 2, you can get escaped value.
  * -------------------------------------------------------------
  */
-function smarty_modifier_xoops_user($uid, $key)
+function smarty_modifier_xoops_user($uid, $key, $flag=2)
 {
-	$handler=&xoops_gethandler('member');
-	$user=&$handler->getUser(intval($uid));
-	if(is_object($user)&&$user->isActive()) {
-		return $user->getShow($key);
+	require_once XOOPS_MODULE_PATH.'/profile/class/handler/Definitions.class.php';
+	if(in_array($key, Profile_DefinitionsHandler::getReservedNameList())){
+		if($key=='user_name'){
+			return Legacy_Utils::getUserName($uid);
+		}
+		$handler=&xoops_gethandler('member');
+		$user=&$handler->getUser(intval($uid));
+		if(is_object($user) && $user->isActive()) {
+			return ($flag==2) ? $user->getShow($key) : $user->get($key);
+		}
+	}
+	else{
+		$handler =& Legacy_Utils::getModuleHandler('data', 'profile');
+		$user =& $handler->get($uid);
+		if(is_object($user) && $user->isActive()) {
+			return $user->showField($key, $flag);
+		}
 	}
 
 	return null;
