@@ -28,7 +28,7 @@ function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
-		$instance =& new MyBlocksAdminForICMS();
+		$instance = new MyBlocksAdminForICMS();
 		$instance->construct() ;
 	}
 	return $instance;

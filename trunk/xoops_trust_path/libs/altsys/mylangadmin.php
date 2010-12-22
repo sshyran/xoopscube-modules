@@ -254,7 +254,7 @@ if( $breadcrumbsObj->hasPaths() ) {
 }
 
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
-$tpl =& new D3Tpl() ;
+$tpl = new D3Tpl() ;
 $tpl->assign( array(
 	'target_dirname' => $target_dirname ,
 	'target_mname' => $target_mname ,

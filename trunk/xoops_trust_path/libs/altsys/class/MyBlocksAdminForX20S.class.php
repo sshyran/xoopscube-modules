@@ -34,7 +34,7 @@ function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
-		$instance =& new MyBlocksAdminForX20S();
+		$instance = new MyBlocksAdminForX20S();
 		$instance->construct() ;
 	}
 	return $instance;

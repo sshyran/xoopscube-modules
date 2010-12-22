@@ -118,7 +118,7 @@ function b_altsys_admin_menu_show( $options )
 	}
 
 	require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
-	$tpl =& new D3Tpl() ;
+	$tpl = new D3Tpl() ;
 	$tpl->assign( 'block' , $block ) ;
 	$ret['content'] = $tpl->fetch( $this_template ) ;
 	return $ret ;
