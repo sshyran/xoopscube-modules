@@ -17,7 +17,7 @@ function PicoContentHandler( $mydirname )
 
 function getCategoryContents( &$categoryObj , $return_prohibited_also = false )
 {
-	$db =& Database::getInstance() ;
+	$db = Database::getInstance() ;
 
 	$cat_data = $categoryObj->getData() ;
 
