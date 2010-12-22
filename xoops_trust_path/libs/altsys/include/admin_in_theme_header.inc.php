@@ -133,7 +133,7 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 		$sql = 'SELECT b.* FROM '.$db->prefix('newblocks').' b, '.$db->prefix('block_module_link').' m WHERE m.block_id=b.bid AND b.isactive=1 AND b.visible=1 AND m.module_id='.intval($altsysModuleId).' AND b.bid IN ('.implode(',', $blockids).') ORDER BY b.weight,b.bid' ;
 		$result = $db->query($sql);
 		while( $myrow = $db->fetchArray( $result ) ) {
-			$block =& new XoopsBlock( $myrow ) ;
+			$block = new XoopsBlock( $myrow ) ;
 			$block_arr[ $myrow['bid'] ] = $block ;
 		}
 	}

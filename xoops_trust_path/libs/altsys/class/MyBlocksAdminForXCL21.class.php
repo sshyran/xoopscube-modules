@@ -14,7 +14,7 @@ function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
-		$instance =& new MyBlocksAdminForXCL21();
+		$instance = new MyBlocksAdminForXCL21();
 		$instance->construct() ;
 	}
 	return $instance;

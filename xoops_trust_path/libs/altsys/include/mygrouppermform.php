@@ -174,7 +174,7 @@ class MyXoopsGroupPermForm extends XoopsForm
 		}
 
 		// GIJ start
-		$jstray = new XoopsFormElementTray('&nbsp;');
+		$jstray = new XoopsFormElementTray(' &nbsp; ');
 		$jsuncheckbutton = new XoopsFormButton('', 'none', _NONE, 'button');
 		$jsuncheckbutton->setExtra( "onclick=\"with(document.groupperm_form){for(i=0;i<length;i++){if(elements[i].type=='checkbox'){elements[i].checked=false;}}}\"" ) ;
 		$jscheckbutton = new XoopsFormButton('', 'all', _ALL, 'button');
@@ -318,7 +318,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
 				$name = 'perms['.$append['permname'].']' ;
 				$itemid = $append['itemid'] ;
 				$itemid = $append['itemid'] ;
-				$ret .= "<td class=\"odd\"><input type=\"checkbox\" name=\"{$name}[groups][$this->_groupId][$itemid]\" id=\"{$name}[groups][$this->_groupId][$itemid]\" value=\"1\" $checked /> {$append['itemname']}<input type=\"hidden\" name=\"{$name}[parents][$itemid]\" value=\"\" /><input type=\"hidden\" name=\"{$name}[itemname][$itemid]\" value=\"{$append['itemname']}\" /><br /></td>" ;
+				$ret .= "<td class=\"odd\"><input type=\"checkbox\" name=\"{$name}[groups][$this->_groupId][$itemid]\" id=\"{$name}[groups][$this->_groupId][$itemid]\" value=\"1\" $checked />{$append['itemname']}<input type=\"hidden\" name=\"{$name}[parents][$itemid]\" value=\"\" /><input type=\"hidden\" name=\"{$name}[itemname][$itemid]\" value=\"{$append['itemname']}\" /><br /></td>" ;
 				$cols++;
 			}
 			$ret .= '</tr></table>';
@@ -374,7 +374,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
 		if ( isset( $this->_value ) && in_array($option['id'], $this->_value)) {
 			$tree .= ' checked="checked"';
 		}
-		$tree .= " /> ".$option['name']."<input type=\"hidden\" name=\"".$this->getName()."[parents][".$option['id']."]\" value=\"".implode(':', $parentIds)."\" /><input type=\"hidden\" name=\"".$this->getName()."[itemname][".$option['id']."]\" value=\"".htmlspecialchars($option['name'])."\" />\n";
+		$tree .= " />".$option['name']."<input type=\"hidden\" name=\"".$this->getName()."[parents][".$option['id']."]\" value=\"".implode(':', $parentIds)."\" /><input type=\"hidden\" name=\"".$this->getName()."[itemname][".$option['id']."]\" value=\"".htmlspecialchars($option['name'])."\" /><br />\n";
 		if( isset( $option['children'] ) ) foreach ($option['children'] as $child) {
 			array_push($parentIds, $option['id']);
 			$this->_renderOptionTree($tree, $this->_optionTree[$child], $prefix.'&nbsp;-', $parentIds);

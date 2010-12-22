@@ -58,7 +58,7 @@ function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
-		$instance =& new MyBlocksAdmin() ;
+		$instance = new MyBlocksAdmin() ;
 		$instance->construct() ;
 	}
 	return $instance;
@@ -386,7 +386,7 @@ function list_blocks()
 
 	// display
 	require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
-	$tpl =& new D3Tpl() ;
+	$tpl = new D3Tpl() ;
 	$tpl->assign( array(
 		'target_mid' => $this->target_mid ,
 		'target_dirname' => $this->target_dirname ,
@@ -778,7 +778,7 @@ function form_edit( $bid , $mode = 'edit' )
 
 	// display
 	require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
-	$tpl =& new D3Tpl() ;
+	$tpl = new D3Tpl() ;
 	$tpl->assign( array(
 		'target_dirname' => $this->target_dirname ,
 		'target_mname' => $this->target_mname ,

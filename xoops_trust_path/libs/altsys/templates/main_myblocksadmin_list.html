@@ -44,7 +44,7 @@
 					<{html_options options=$cachetime_options selected=$block.bcachetime}>
 				</select>
 			</td>
-			<td align="center">
+			<td align="<{$smarty.const._GLOBAL_RIGHT}>">
 				<{if $block.can_edit}>
 					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=edit&amp;bid=<{$block.bid}>"><img src="<{$xoops_url}>/images/icons/block_edit.png" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
 				<{/if}>

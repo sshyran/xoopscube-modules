@@ -21,7 +21,7 @@ function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
-		$instance =& new MyBlocksAdminForX22();
+		$instance = new MyBlocksAdminForX22();
 		$instance->construct() ;
 	}
 	return $instance;
