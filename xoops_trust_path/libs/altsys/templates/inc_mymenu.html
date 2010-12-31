@@ -1,4 +1,5 @@
-<div id="moduletabs"><ul class="modulenav" style="text-align:<{$smarty.const._GLOBAL_LEFT}>">
+<div id="moduletabs">
+	<ul class="modulenav" style="text-align:<{$smarty.const._GLOBAL_LEFT}>">
     <{foreach from=$adminmenu item="menuitem"}>
         <li <{if $menuitem.selected}>class="current"><{else}>><{/if}>
         <a href="<{$menuitem.link|escape}>"><span><{$menuitem.title|escape}></span></a>

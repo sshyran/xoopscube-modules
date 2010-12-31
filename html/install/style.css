@@ -22,7 +22,7 @@ table {border:0; width:100%; border-collapse:collapse;}
 th {
 	text-align:center;
 	padding:5px 1px;
-	background:#eee url(img/bg_blockcontent.gif) top left repeat-x;
+	background:#eee;
 }
 
 td {vertical-align:top;}

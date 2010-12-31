@@ -44,7 +44,7 @@ function b_pico_list_show( $options )
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 
 	// content handler
-	$content_handler =& new PicoContentHandler( $mydirname ) ;
+	$content_handler = new PicoContentHandler( $mydirname ) ;
 
 	// contentObjects
 	if( sizeof( $categories ) == 0 ) {
@@ -64,9 +64,9 @@ function b_pico_list_show( $options )
 	}
 
 	// module config (not overridden yet)
-	$module_handler =& xoops_gethandler('module');
+	$module_handler = xoops_gethandler('module');
 	$module =& $module_handler->getByDirname($mydirname);
-	$config_handler =& xoops_gethandler('config');
+	$config_handler = xoops_gethandler('config');
 	$configs = $config_handler->getConfigList( $module->mid() ) ;
 
 	// constpref
@@ -88,7 +88,7 @@ function b_pico_list_show( $options )
 	if( empty( $options['disable_renderer'] ) ) {
 		// render it
 		require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-		$tpl =& new XoopsTpl() ;
+		$tpl = new XoopsTpl() ;
 		$tpl->assign( 'block' , $block ) ;
 		$ret['content'] = $tpl->fetch( $this_template ) ;
 		return $ret ;
@@ -114,7 +114,7 @@ function b_pico_list_edit( $options )
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-	$tpl =& new XoopsTpl() ;
+	$tpl = new XoopsTpl() ;
 	$tpl->assign( array(
 		'mydirname' => $mydirname ,
 		'categories' => $categories ,
