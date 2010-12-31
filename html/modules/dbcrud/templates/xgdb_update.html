@@ -35,10 +35,11 @@
             </td>
             <td class="<{cycle values="odd,even"}>">
                 <{if $item.type == 'image' && $item.current_value}>
-                <a href="<{$item.current_value}>" target="_blank"><img src="<{$item.current_value}>" alt="<{$item.caption}>" width="<{$cfg_detail_image_width}>px" /></a><br /><br />
+                <a href="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>" target="_blank"><img src="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>" alt="<{$item.caption}>" width="<{$item.width}>px" /></a>&nbsp;&nbsp;&nbsp;
                 <{elseif $item.type == 'file' && $item.current_value}>
-                <a href="<{$item.current_value}>" target="_blank"><{$_FILE}></a>&nbsp;&nbsp;&nbsp;
+                <a href="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>" target="_blank"><{$item.current_value}></a>&nbsp;&nbsp;&nbsp;
                 <{/if}>
+                <{if $item.type == 'file' || $item.type == 'image'}><br /><{/if}>
                 <{$item.value}>
                 <{if ($item.type == 'file' || $item.type == 'image') && $item.current_value && !$item.required}>
                 <label style="margin-left: 1em;"><input type="checkbox" name="<{$item_name}>_delete" value="1" /><{$_DELETE}></label>

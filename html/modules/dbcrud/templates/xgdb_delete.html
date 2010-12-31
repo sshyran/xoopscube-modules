@@ -60,11 +60,11 @@
         <td class="<{cycle values="odd,even"}>">
             <{if $item.type == 'image'}>
             <{if $item.value != ''}>
-            <a href="<{$item.value}>" target="_blank"><img src="<{$item.value}>" alt="<{$item.caption}>" width="<{$cfg_detail_image_width}>px" /></a>
+            <a href="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>" target="_blank"><img src="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>" alt="<{$item.caption}>" width="<{$item.width}>px" /></a>
             <{/if}>
             <{elseif $item.type == 'file'}>
             <{if $item.value != ''}>
-            <a href="<{$item.value}>" target="_blank"><{$_FILE}></a>
+            <a href="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>" target="_blank"><{$item.value}></a>
             <{/if}>
             <{else}>
             <{$item.value}>

@@ -1,12 +1,11 @@
 <?php
 
 $dirname = basename(dirname(__FILE__));
-$mydirpath = basename( dirname( dirname( __FILE__ ) ) ) ;
 $affix = strtoupper(strlen($dirname) >= 3 ? substr($dirname, 0, 3) : $dirname);
 
 // Basic informations
 $modversion['name'] = constant('_MI_' . $affix . '_MODULE_NAME');
-$modversion['version'] = 0.1;
+$modversion['version'] = 0.4;
 $modversion['description'] = constant('_MI_' . $affix . '_MODULE_DESC');
 $modversion['credits'] = 't.kishimoto';
 $modversion['author'] = 't.kishimoto';

@@ -11,6 +11,7 @@
             </td>
             <td class="<{cycle values="odd,even"}>">
                 <{$item.value}>
+                <{if $item.disp_cond}><{$item.condition}><{/if}>
             </td>
         </tr>
         <{/foreach}>
@@ -64,11 +65,11 @@
         <td>
             <{if $item.type == 'image'}>
             <{if $info.$item_name != ''}>
-            <a href="<{$info.$item_name}>" target="_blank"><img src="<{$info.$item_name}>" alt="<{$item.caption}>" width="<{$cfg_list_image_width}>px" /></a>
+            <a href="download.php?id=<{$info.id}>&amp;col_name=<{$item_name}>" target="_blank"><img src="download.php?id=<{$info.id}>&amp;col_name=<{$item_name}>" alt="<{$info.caption}>" width="<{$item.width}>px" /></a>
             <{/if}>
             <{elseif $item.type == 'file'}>
             <{if $info.$item_name != ''}>
-            <a href="<{$info.$item_name}>" target="_blank"><{$_FILE}></a>
+            <a href="download.php?id=<{$info.id}>&amp;col_name=<{$item_name}>" target="_blank"><{$info.$item_name}></a>
             <{/if}>
             <{else}>
             <{if $item.list_link}>
