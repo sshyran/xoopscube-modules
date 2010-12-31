@@ -78,6 +78,7 @@ class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager
 		parent::loadPageTypeMessageCatalog($type);
 		error_reporting( $original_error_level ) ;
 	}
+	
 
 	function loadGlobalMessageCatalog()
 	{
@@ -85,7 +86,7 @@ class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager
 			$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/english/global.php");
 		} */
 		$this->_loadLanguage( 'legacy' , 'global' ) ;
-
+		$this->_loadLanguage( 'legacy' , 'setting' ) ;
 		//
 		// Now, if XOOPS_USE_MULTIBYTES isn't defined, set zero to it.
 		//
