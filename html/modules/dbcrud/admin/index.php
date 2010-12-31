@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../../include/cp_header.php';
-require_once 'include/common.php';
+require_once './include/common.php';
 
 $errors = array();
 if (!extension_loaded('mbstring')) {
@@ -45,7 +45,7 @@ $type_item_def = array(
     'type'       => 'select',
     'value_type' => 'string'
 );
-$item_add_msg = sprintf($admin_consts['_ITEM_ADD_MSG'], makeSelectForm($dirname, 'type', $type_item_def, ''));
+$item_add_msg = sprintf($admin_consts['_ITEM_ADD_MSG'], makeSelectForm('type', $type_item_def, ''));
 $xoopsTpl->assign('item_add_msg', $item_add_msg);
 $xoopsTpl->assign('errors', $errors);
 

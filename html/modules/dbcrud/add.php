@@ -2,21 +2,21 @@
 
 require_once '../../mainfile.php';
 require_once XOOPS_ROOT_PATH . '/header.php';
-require_once 'include/common.php';
+require_once './include/common.php';
 $xoopsOption['template_main'] = $dirname . '_xgdb_add.html';
 
 // 権限チェック
 if ($uid && !checkPerm($gids, $cfg_add_gids)) {
-    redirect_header($module_url . '/', 5, constant('_MD_' . $affix . '_PERM_ERR_MSG'));
+    redirect_header($module_url . '/index.php', 5, constant('_MD_' . $affix . '_PERM_ERR_MSG'));
 } elseif (!$cfg_add_guest && !checkPerm($gids, $cfg_add_gids)) {
-    redirect_header($module_url . '/', 5, constant('_MD_' . $affix . '_PERM_ERR_MSG'));
+    redirect_header($module_url . '/index.php', 5, constant('_MD_' . $affix . '_PERM_ERR_MSG'));
 }
 
 $op = isset($_POST['op']) && $_POST['op'] !== '' ? $_POST['op'] : '';
 
 $errors = array();
 $uploaded_file_defs = array();
-$moved_file_names = array();
+$upload_file_names = array();
 
 // 登録処理
 if ($op == 'add') {
@@ -43,6 +43,7 @@ if ($op == 'add') {
                         $errors[] = sprintf(constant('_MD_' . $affix . '_FILE_SIZE_ERR_MSG'), $item_def['caption']);
                         $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_MD_' . $affix . '_FILE_SIZE_ERR_MSG'), $item_def['caption']);
                     } else {
+                        $$item_name = $_FILES[$item_name]['name'];
                         $uploaded_file_defs[$item_name] = $item_def;
                     }
                 } else {
@@ -62,11 +63,11 @@ if ($op == 'add') {
                         $errors[] = sprintf(constant('_MD_' . $affix . '_FLOAT_ERR_MSG'), $item_def['caption']);
                         $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_MD_' . $affix . '_FLOAT_ERR_MSG'), $item_def['caption']);
                     } elseif ($item_def['type'] == 'text' && isset($item_def['value_range_min']) && $$item_name < $item_def['value_range_min']) {
-                        $errors[] = sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
-                        $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
+                        $errors[] = sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
+                        $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
                     } elseif ($item_def['type'] == 'text' && isset($item_def['value_range_max']) && $$item_name > $item_def['value_range_max']) {
-                        $errors[] = sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
-                        $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
+                        $errors[] = sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
+                        $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_MD_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
                     }
                 } else {
                     if ($item_def['required']) {
@@ -84,26 +85,19 @@ if ($op == 'add') {
     // 重複チェック
     $dup_item_defs = getDefs($item_defs, 'duplicate');
     if (count($dup_item_defs) > 0) {
-        $sql = "SELECT * FROM $data_tbl WHERE ";
-        $wheres = array();
         foreach ($dup_item_defs as $item_name => $item_def) {
+            $sql = "SELECT * FROM $data_tbl WHERE ";
             $where_value = is_array($$item_name) ? array2string($$item_name) : $$item_name;
             if ($where_value === '') {
-                $wheres[] = $item_name . " IS NULL";
+                $sql .= $item_name . " IS NULL";
             } else {
-                $wheres[] = $item_name . " = '" . addslashes($where_value) . "'";
+                $sql .= $item_name . " = '" . addslashes($where_value) . "'";
             }
-        }
-        foreach ($wheres as $where) {
-            $sql .= $where . ' AND ';
-        }
-        $sql = substr($sql, 0, -5);
-        $res = $xoopsDB->query($sql);
-        if ($xoopsDB->getRowsNum($res) > 0) {
-            foreach ($dup_item_defs as $item_name => $item_def) {
+            $res = $xoopsDB->query($sql);
+            if ($xoopsDB->getRowsNum($res) > 0) {
                 $item_defs[$item_name]['error'] = '<br />' . constant('_MD_' . $affix . '_DUPLICATE_ERR_MSG');
+                if (!in_array(constant('_MD_' . $affix . '_DUPLICATE_ERR_MSG'), $errors)) $errors[] = constant('_MD_' . $affix . '_DUPLICATE_ERR_MSG');
             }
-            $errors[] = constant('_MD_' . $affix . '_DUPLICATE_ERR_MSG');
         }
     }
 
@@ -138,16 +132,17 @@ if ($op == 'add') {
             if (count($uploaded_file_defs) > 0) {
                 $update_sql = "UPDATE $data_tbl SET ";
                 foreach ($uploaded_file_defs as $item_name => $item_def) {
-                    $file_name = getUniqueFileName(pathinfo($_FILES[$item_name]['name'], PATHINFO_EXTENSION), $module_upload_dir . '/');
+                    $file_name = $_FILES[$item_name]['name'];
+                    $enc_file_name = getRealFileName($id, $item_name, $file_name);
                     $update_sql .= "$item_name = '" . addslashes($file_name) . "', ";
-                    if (!move_uploaded_file($_FILES[$item_name]['tmp_name'], $module_upload_dir . '/' . $file_name)) {
+                    if (!move_uploaded_file($_FILES[$item_name]['tmp_name'], $module_upload_dir . '/' . $enc_file_name)) {
                         $errors[] = sprintf(constant('_MD_' . $affix . '_FILE_TYPE_ERR_MSG'), $item_def['caption']);
                         $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_MD_' . $affix . '_FILE_TYPE_ERR_MSG'), $item_def['caption']);
                         break;
                     } else {
-                        $moved_file_names[] = $file_name;
+                        $upload_file_names[] = $enc_file_name;
                         if ($item_def['type'] == 'image') {
-                            resizeImage($module_upload_dir . '/' . $file_name, $item_def['max_image_size']);
+                            resizeImage($module_upload_dir . '/' . $enc_file_name, $item_def['max_image_size']);
                         }
                     }
                 }
@@ -160,8 +155,8 @@ if ($op == 'add') {
                     }
                 } else {
                     // 登録処理失敗の場合、アップロードされたファイルを削除
-                    foreach ($moved_file_names as $moved_file_name) {
-                        @unlink($module_upload_dir . '/' . $moved_file_name);
+                    foreach ($upload_file_names as $upload_file_name) {
+                        @unlink($module_upload_dir . '/' . $upload_file_name);
                     }
                 }
             }
@@ -201,7 +196,7 @@ foreach ($item_defs as $item_name => $item_def) {
     } elseif ($item_def['type'] == 'radio') {
         $item_defs[$item_name]['value'] = makeRadioForm($item_name, $item_def, $$item_name);
     } elseif ($item_def['type'] == 'select') {
-        $item_defs[$item_name]['value'] = makeSelectForm($dirname, $item_name, $item_def, $$item_name);
+        $item_defs[$item_name]['value'] = makeSelectForm($item_name, $item_def, $$item_name);
     } elseif ($item_def['type'] == 'mselect') {
         $item_defs[$item_name]['value'] = makeMSelectForm($item_name, $item_def, $$item_name);
     } elseif ($item_def['type'] == 'tarea') {

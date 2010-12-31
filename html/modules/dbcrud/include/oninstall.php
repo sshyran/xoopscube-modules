@@ -8,7 +8,7 @@ eval('function xoops_module_install_' . $dirname . '($module){
 
 if (!function_exists('xgdb_oninstall')) {
     function xgdb_oninstall($module, $dirname) {
-        global $ret, $xoopsConfig;
+        global $ret, $xoopsConfig, $xoopsUser;
         $myts =& MyTextSanitizer::getInstance();
         $xoopsDB =& Database::getInstance();
         $tplfile_tbl = $xoopsDB->prefix("tplfile");
@@ -19,10 +19,10 @@ if (!function_exists('xgdb_oninstall')) {
         @mkdir(XOOPS_UPLOAD_PATH . "/" . $dirname, 0777);
         $file = fopen(XOOPS_UPLOAD_PATH . "/" . $dirname . "/.htaccess", "w");
         flock($file, LOCK_EX);
-        fputs($file, 'SetEnvIf Referer "^' . XOOPS_URL . "/modules/" . $dirname . '/(.+\.php)?" ref_ok' . "\n");
+        //        fputs($file, 'SetEnvIf Referer "^' . XOOPS_URL . "/modules/" . $dirname . '/(.+\.php)?" ref_ok' . "\n");
         fputs($file, "order deny,allow\n");
         fputs($file, "deny from all\n");
-        fputs($file, "allow from env=ref_ok\n");
+        //        fputs($file, "allow from env=ref_ok\n");
         flock($file, LOCK_UN);
         fclose($file);
 
@@ -57,6 +57,13 @@ if (!function_exists('xgdb_oninstall')) {
                 }
             }
         }
+
+        $res = $xoopsDB->query("SELECT groupid FROM " . $xoopsDB->prefix('groups') . " ORDER BY groupid ASC");
+        $gidstring = '|';
+        while (list($groupid) = $xoopsDB->fetchRow($res)) {
+            $gidstring .= $groupid . '|';
+        }
+        $xoopsDB->query("UPDATE `$prefix" . "_xgdb_item` SET show_gids = '$gidstring'");
 
         $tplfile_handler =& xoops_gethandler('tplfile');
         $template_dir = XOOPS_ROOT_PATH . '/modules/' . $dirname . '/templates';

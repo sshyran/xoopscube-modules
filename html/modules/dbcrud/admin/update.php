@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../../include/cp_header.php';
-require_once 'include/common.php';
+require_once './include/common.php';
 
 $op = isset($_POST['op']) && $_POST['op'] !== '' ? $_POST['op'] : '';
 $iid = isset($_POST['iid']) && $_POST['iid'] != '' ? intval($_POST['iid']) : 0;
@@ -11,11 +11,11 @@ if (isset($_POST['cancel']) && $_POST['cancel'] !== '') {
 }
 
 if ($iid < 1) {
-    redirect_header($module_url . '/admin/', 5, constant('_AM_' . $affix . '_NO_ERR_MSG'));
+    redirect_header($module_url . '/admin/index.php', 5, constant('_AM_' . $affix . '_NO_ERR_MSG'));
 }
 $res = $xoopsDB->query("SELECT * FROM $item_tbl WHERE iid = $iid");
 if ($xoopsDB->getRowsNum($res) == 0) {
-    redirect_header($module_url . '/admin/', 5, constant('_AM_' . $affix . '_NO_ERR_MSG'));
+    redirect_header($module_url . '/admin/index.php', 5, constant('_AM_' . $affix . '_NO_ERR_MSG'));
 }
 $row = $xoopsDB->fetchArray($res);
 
@@ -25,7 +25,7 @@ if ($row['value_type'] == 'string') {
     unset($item_defs['value_range_min']);
     unset($item_defs['value_range_max']);
 } elseif ($row['value_type'] == 'int' || $row['value_type'] == 'float') {
-    unset($item_defs['ambiguous']);
+    unset($item_defs['search_cond']);
 }
 
 if ($op == 'update') {
@@ -42,11 +42,11 @@ if ($op == 'update') {
             if (isset($_POST[$item_name]) && $_POST[$item_name] !== '') {
                 $$item_name = $_POST[$item_name];
                 if ($item_def['type'] == 'text' && isset($item_def['value_range_min']) && $$item_name < $item_def['value_range_min']) {
-                    $errors[] = sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
-                    $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
+                    $errors[] = sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
+                    $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
                 } elseif ($item_def['type'] == 'text' && isset($item_def['value_range_max']) && $$item_name > $item_def['value_range_max']) {
-                    $errors[] = sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
-                    $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($dirname, $item_def['value_range_min'], $item_def['value_range_max']));
+                    $errors[] = sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
+                    $item_defs[$item_name]['error'] = '<br />' . sprintf(constant('_AM_' . $affix . '_RANGE_ERR_MSG'), $item_def['caption'], getRangeText($item_def['value_range_min'], $item_def['value_range_max']));
                 }
             } elseif ($item_def['required']) {
                 if (!($item_name == 'list_link' && $row['list_link'])) {
@@ -85,6 +85,8 @@ if ($op == 'update') {
             if ($item_name == 'name') continue;
             if ($$item_name === '') {
                 $sql .= '`' . addslashes($item_name) . "` = NULL, ";
+            } elseif ($item_name == 'show_gids') {
+                $sql .= '`' . addslashes($item_name) . "` = '|" . addslashes(array2string($$item_name)) . "|', ";
             } else {
                 $sql .= '`' . addslashes($item_name) . "` = '" . addslashes($$item_name) . "', ";
             }
@@ -121,7 +123,7 @@ foreach ($item_defs as $item_name => $item_def) {
     } elseif ($item_def['type'] == 'radio') {
         $item_defs[$item_name]['value'] = makeRadioForm($item_name, $item_def, $$item_name);
     } elseif ($item_def['type'] == 'select') {
-        $item_defs[$item_name]['value'] = makeSelectForm($dirname, $item_name, $item_def, $$item_name);
+        $item_defs[$item_name]['value'] = makeSelectForm($item_name, $item_def, $$item_name);
     } elseif ($item_def['type'] == 'mselect') {
         $item_defs[$item_name]['value'] = makeMSelectForm($item_name, $item_def, $$item_name);
     } elseif ($item_def['type'] == 'tarea') {

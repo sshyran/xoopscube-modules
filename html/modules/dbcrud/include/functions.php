@@ -75,14 +75,13 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
     /**
      * プルダウンメニューのselectタグを生成する.
      *
-     * @param String  $dirname モジュールディレクトリ名
      * @param String $name name属性の値
      * @param Array $item_def 項目の定義情報
      * @param String $default 初期値
      * @return String プルダウンメニューのselectタグ
      */
-    function makeSelectForm($dirname, $name, $item_def, $default) {
-        $affix = strtoupper(strlen($dirname) >= 3 ? substr($dirname, 0, 3) : $dirname);
+    function makeSelectForm($name, $item_def, $default) {
+        global $affix;
         $myts =& MyTextSanitizer::getInstance();
 
         $not_selected_ary = array(constant('_' . $affix . '_NOT_SELECTED') => '');
@@ -166,6 +165,82 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
     function makeFileForm($name, $item_def) {
         $myts =& MyTextSanitizer::getInstance();
         $ret = '<input type="file" name="' . $myts->htmlSpecialChars($name) . '" size="' . intval($item_def['size']) . ' maxlength="' . intval($item_def['max_length']) . '"  />';
+
+        return $ret;
+    }
+
+    /**
+     * 検索条件のラジオボタンのinputタグを生成する.
+     *
+     * @param String $name name属性の値
+     * @param Array $options 選択肢の配列
+     * @param String $default 初期値
+     * @return String ラジオボタンのinputタグ
+     */
+    function makeCondForm($name, $options, $default) {
+        global $affix;
+        $myts =& MyTextSanitizer::getInstance();
+
+        $ret = '<br />' . constant('_MD_' . $affix . '_COND_LABEL');
+
+        foreach ($options as $key => $value) {
+            $ret .= '<label style="margin-right: 1em;"><input type="radio" name="' . $myts->htmlSpecialChars($name) . '" value="' . $myts->htmlSpecialChars($value) . '"';
+            if ($default == $value) $ret .= " checked";
+            $ret .= '/>' . $myts->htmlSpecialChars($key) . '</label>';
+        }
+
+        return $ret;
+    }
+
+    /**
+     * グループのセレクトボックスに使用するグループ名とグループIDの文字列を生成する.
+     *
+     * @return String グループのセレクトボックスに使用するグループ名とグループIDの文字列
+     */
+    function makeGroupSelectOptions() {
+        $xoopsDB =& Database::getInstance();
+        $ret = '';
+
+        $sql = "SELECT groupid, name FROM " . $xoopsDB->prefix('groups') . " ORDER BY groupid ASC";
+        $res = $xoopsDB->query($sql);
+        $groups_ary = array();
+        while (list($gid, $gname) = $xoopsDB->fetchRow($res)) {
+            $groups_ary[$gid] = $gname;
+        }
+
+        foreach ($groups_ary as $gid => $gname) {
+            $ret .= "$gname|$gid\n";
+        }
+
+        if ($ret !== '') $ret = substr($ret, 0, -1);
+        return $ret;
+    }
+
+    /**
+     * グループIDの文字列のリストを改行済みのグループ名の文字列に変換する.
+     *
+     * @param String $gidstring グループIDの文字列のリスト
+     * @return String 改行済みのグループ名の文字列
+     */
+    function gidstring2brgroup($gidstring) {
+        if (!isset($gidstring) || $gidstring === '') return '';
+
+        $xoopsDB =& Database::getInstance();
+        $myts =& MyTextSanitizer::getInstance();
+        $ret = '';
+
+        $sql = "SELECT groupid, name FROM " . $xoopsDB->prefix('groups') . " ORDER BY groupid ASC";
+        $res = $xoopsDB->query($sql);
+        $groups_ary = array();
+        while (list($gid, $gname) = $xoopsDB->fetchRow($res)) {
+            $groups_ary[$gid] = $gname;
+        }
+
+        $gid_ary = string2array($gidstring);
+        foreach ($gid_ary as $gid) {
+            if ($gid === '') continue;
+            $ret .= $myts->htmlSpecialChars($groups_ary[$gid]) . '<br />';
+        }
 
         return $ret;
     }
@@ -392,16 +467,37 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
     }
 
     /**
+     * グループIDのWHERE句を生成する.
+     *
+     * @param Array $gids グループIDの配列
+     * @param String $as xgdb_itemテーブルの別名
+     * @return String グループIDのWHERE句
+     */
+    function makeWhereGID($gids, $as = '') {
+        $ret = '(';
+
+        foreach ($gids as $gid) {
+            if ($as) $ret .= "($as.show_gids LIKE '%|$gid|%') OR ";
+            else $ret .= "(show_gids LIKE '%|$gid|%') OR ";
+        }
+        $ret = substr($ret, 0, -4);
+
+        $ret .= ')';
+        return $ret;
+    }
+
+    /**
      * すべての項目の情報を返す.
      *
      * @return Array 項目情報の配列
      */
-    function getItemDefs($dirname) {
+    function getItemDefs($dirname, $gids) {
+        //global $gids;
         $xoopsDB =& Database::getInstance();
         $myts =& MyTextSanitizer::getInstance();
 
         $ret = array();
-        $sql = "SELECT * FROM " . $xoopsDB->prefix($dirname . '_xgdb_item') . " ORDER BY `sequence` ASC, `iid` ASC";
+        $sql = "SELECT * FROM " . $xoopsDB->prefix($dirname . '_xgdb_item') . " WHERE " . makeWhereGID($gids) . " ORDER BY `sequence` ASC, `iid` ASC";
         $res = $xoopsDB->query($sql);
         while ($row = $xoopsDB->fetchArray($res)) {
             $item = array();
@@ -419,6 +515,8 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
             $item['search_desc'] = $myts->displayTarea($row['search_desc']);
             $item['show_desc'] = $myts->displayTarea($row['show_desc']);
             $item['input_desc'] = $myts->displayTarea($row['input_desc']);
+            $item['disp_cond'] = intval($row['disp_cond']);
+            $item['search_cond'] = intval($row['search_cond']);
             if ($row['type'] == 'text') {
                 $item['list_link'] = $row['list_link'];
                 $item['value_type'] = $myts->htmlSpecialChars($row['value_type']);
@@ -431,7 +529,6 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
                 $item['default'] = $myts->htmlSpecialChars($row['default']);
                 $item['size'] = $row['size'];
                 $item['max_length'] = $row['max_length'];
-                $item['ambiguous'] = $row['ambiguous'];
             } elseif ($row['type'] == 'cbox') {
                 $item['value_type'] = $myts->htmlSpecialChars($row['value_type']);
                 $item['default'] = nl2array($row['default']);
@@ -447,6 +544,7 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
                 $item['list_link'] = $row['list_link'];
                 $item['value_type'] = $myts->htmlSpecialChars($row['value_type']);
                 $item['default'] = $myts->htmlSpecialChars($row['default']);
+                $item['size'] = 3;
                 $item['options'] = nl2array($row['options']);
             } elseif ($row['type'] == 'mselect') {
                 $item['value_type'] = $myts->htmlSpecialChars($row['value_type']);
@@ -551,7 +649,7 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
                     }
                 }
             } else {
-                $value = $myts->htmlSpecialChars($value);
+                $value = $myts->makeClickable($myts->htmlSpecialChars($value));
             }
         }
 
@@ -597,14 +695,13 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
     /**
      * 最小値と最大値の範囲をあらわす文字列表現を返す.
      *
-     * @param String  $dirname モジュールディレクトリ名
      * @param String  $value_range_min 最小値
      * @param String  $value_range_max 最大値
      *
      * @return String 最小値と最大値の範囲
      */
-    function getRangeText($dirname, $value_range_min, $value_range_max) {
-        $affix = strtoupper(strlen($dirname) >= 3 ? substr($dirname, 0, 3) : $dirname);
+    function getRangeText($value_range_min, $value_range_max) {
+        global $affix;
         $ret = '';
         if (isset($value_range_min)) {
             $ret .= $value_range_min . constant('_' . $affix . '_MORE_THAN');
@@ -662,6 +759,35 @@ if (!defined('_XGDB_FUNCTIONS_INCLUDED')) {
             return true;
         }
     }
+
+    /**
+     * 保存されているファイル名を返す.
+     *
+     * @param String  $id データID
+     * @param String  $col_name 列名
+     * @param String  $file_name テーブル上のファイル名
+     * @return String 保存されているファイル名
+     */
+    function getRealFileName($id, $col_name, $file_name) {
+        return urlencode("$id-$col_name-$file_name");
+    }
+
+    /**
+     * 画像ファイルの幅を返す.
+     *
+     * @param String  $filename 画像ファイルの絶対パス
+     * @param String  $cfg_width 画像ファイルの幅の設定値
+     * @return int 画像ファイルの幅
+     */
+    function getImageWidth($filename, $cfg_width) {
+        list($x, $y, $type) = getImageSize($filename);
+
+        if ($x > $cfg_width) $ret = $cfg_width;
+        else return $ret = $x;
+
+        return $ret;
+    }
+
 }
 
 ?>

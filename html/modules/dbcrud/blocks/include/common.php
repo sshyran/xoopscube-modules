@@ -29,11 +29,20 @@ foreach ($block_consts as $key => $value) {
     $block['langs'][$key] = $value;
 }
 
+// ユーザ情報を初期化
+if (is_object($xoopsUser)) {
+    $uid = $xoopsUser->getVar('uid');
+    $gids = $xoopsUser->getGroups();
+} else {
+    $uid = 0;
+    $gids = array(3);
+}
+
 // 関数定義ファイルを読み込み
 require_once XOOPS_ROOT_PATH . '/modules/' . $dirname . '/include/functions.php';
 
 // 項目定義情報を初期化する
-$item_defs = getItemDefs($dirname);
+$item_defs = getItemDefs($dirname, $gids);
 $block['item_defs'] = $item_defs;
 
 // GP変数の値のマジッククォートを無効化する

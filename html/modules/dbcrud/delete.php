@@ -2,7 +2,7 @@
 
 require_once '../../mainfile.php';
 require_once XOOPS_ROOT_PATH . '/header.php';
-require_once 'include/common.php';
+require_once './include/common.php';
 $xoopsOption['template_main'] = $dirname . '_xgdb_delete.html';
 
 $op = isset($_POST['op']) && $_POST['op'] !== '' ? $_POST['op'] : '';
@@ -12,13 +12,13 @@ $id = isset($_POST['id']) && $_POST['id'] !== '' ? intval($_POST['id']) : 0;
 $sql = "SELECT d.*, u.uname FROM $data_tbl AS d LEFT OUTER JOIN $users_tbl AS u ON d.add_uid = u.uid WHERE d.id = $id";
 $res = $xoopsDB->query($sql);
 if ($xoopsDB->getRowsNum($res) == 0) {
-    redirect_header($module_url . '/', 5, constant('_MD_' . $affix . '_NO_ERR_MSG'));
+    redirect_header($module_url . '/index.php', 5, constant('_MD_' . $affix . '_NO_ERR_MSG'));
 }
 
 // 権限チェック
 $row = $xoopsDB->fetchArray($res);
 if (!checkPerm($gids, $cfg_manage_gids) && $uid != $row['add_uid']) {
-    redirect_header($module_url . '/', 5, constant('_MD_' . $affix . '_PERM_ERR_MSG'));
+    redirect_header($module_url . '/index.php', 5, constant('_MD_' . $affix . '_PERM_ERR_MSG'));
 }
 
 $errors = array();
@@ -32,7 +32,7 @@ if ($op == 'delete') {
         } else {
             foreach ($item_defs as $item_name => $item_def) {
                 if ($item_def['type'] == 'file' || $item_def['type'] == 'image') {
-                    @unlink($module_upload_dir . '/' . $row[$item_name]);
+                    @unlink($module_upload_dir . '/' . getRealFileName($id, $item_name, $row[$item_name]));
                 }
             }
 
@@ -45,7 +45,7 @@ if ($op == 'delete') {
             $notification_handler->triggerEvent('change', $id, 'delete', $extra_tags);
             $notification_handler->unsubscribeByItem($xoopsModule->getVar('mid'), 'change', $id);
 
-            redirect_header($module_url . '/', 5, constant('_MD_' . $affix . '_DELETE_MSG'));
+            redirect_header($module_url . '/index.php', 5, constant('_MD_' . $affix . '_DELETE_MSG'));
         }
     }
 } else {
@@ -55,6 +55,8 @@ if ($op == 'delete') {
             $item_defs[$key]['value'] = $myts->htmlSpecialChars($value);
         } elseif ($key == 'add_date' || $key == 'update_date') {
             $item_defs[$key]['value'] = date($cfg_date_format, strtotime($value));
+        } elseif (!isset($item_defs[$key])) {
+            continue;
         } elseif ($item_defs[$key]['type'] == 'text' || $item_defs[$key]['type'] == 'radio' || $item_defs[$key]['type'] == 'select') {
             $item_defs[$key]['value'] = sanitize($value, $item_defs[$key]);
         } elseif ($item_defs[$key]['type'] == 'cbox' || $item_defs[$key]['type'] == 'mselect') {
@@ -65,10 +67,11 @@ if ($op == 'delete') {
             }
         } elseif ($item_defs[$key]['type'] == 'tarea' || $item_defs[$key]['type'] == 'xtarea') {
             $item_defs[$key]['value'] = $myts->displayTarea($value, $item_defs[$key]['html'], $item_defs[$key]['smily'], $item_defs[$key]['xcode'], $item_defs[$key]['image'], $item_defs[$key]['br']);
-        } elseif ($item_defs[$key]['type'] == 'image' || $item_defs[$key]['type'] == 'file') {
-            if ($value != '') {
-                $item_defs[$key]['value'] = $module_upload_url . '/' . $myts->htmlSpecialChars($value);
-            }
+        } elseif ($item_defs[$key]['type'] == 'image') {
+            if ($value != '') $item_defs[$key]['width'] = getImageWidth($module_upload_dir . '/' . getRealFileName($row['id'], $key, $value), $cfg_detail_image_width);
+            $item_defs[$key]['value'] = $myts->htmlSpecialChars($value);
+        } elseif ($item_defs[$key]['type'] == 'file') {
+            $item_defs[$key]['value'] = $myts->htmlSpecialChars($value);
         }
     }
     $xoopsTpl->assign('item_defs', $item_defs);
