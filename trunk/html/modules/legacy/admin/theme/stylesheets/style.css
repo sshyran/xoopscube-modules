@@ -374,14 +374,14 @@ background:#f2f2f2 url(<{"icons/block_add.png"|theme}>) 5px center no-repeat;
 ul.toptab li.addBlockEdit {
 background:#f2f2f2 url(<{"icons/block_edit.png"|theme}>) 5px center no-repeat;
 }
+ul.toptab li.addCategory {
+background:#f2f2f2 url(<{"icons/folder_add.png"|theme}>) 5px center no-repeat;
+}
 ul.toptab li.addFile {
 background:#f2f2f2 url(<{"icons/page_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addField {
 background:#f2f2f2 url(<{"icons/add_field.png"|theme}>) 5px center no-repeat;
-}
-ul.toptab li.addFolder {
-background:#f2f2f2 url(<{"icons/folder_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addGroup {
 background:#f2f2f2 url(<{"icons/group_add.png"|theme}>) 5px center no-repeat;
@@ -404,11 +404,11 @@ background:#f2f2f2 url(<{"icons/search_add.png"|theme}>) 5px center no-repeat;
 ul.toptab li.addSend {
 background:#f2f2f2 url(<{"icons/send.png"|theme}>) 5px center no-repeat;
 }
+ul.toptab li.editCategory {
+background:#f2f2f2 url(<{"icons/folder_edit.png"|theme}>) 5px center no-repeat;
+}
 ul.toptab li.editFile {
 background:#f2f2f2 url(<{"icons/page_edit.png"|theme}>) 5px center no-repeat;
-}
-ul.toptab li.editFolder {
-background:#f2f2f2 url(<{"icons/folder_edit.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.group {
 background:#f2f2f2 url(<{"icons/group.png"|theme}>) 5px center no-repeat;
