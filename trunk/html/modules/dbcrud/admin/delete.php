@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../../include/cp_header.php';
-require_once 'include/common.php';
+require_once './include/common.php';
 
 $op = isset($_POST['op']) && $_POST['op'] !== '' ? $_POST['op'] : '';
 $iid = isset($_POST['iid']) && $_POST['iid'] != '' ? intval($_POST['iid']) : 0;
@@ -9,12 +9,12 @@ if ($iid == '') $iid = isset($_GET['iid']) && $_GET['iid'] != '' ? intval($_GET[
 
 // 存在チェック
 if ($iid < 1) {
-    redirect_header($module_url . '/admin/', 5, $admin_consts['_NO_ERR_MSG']);
+    redirect_header($module_url . '/admin/index.php', 5, $admin_consts['_NO_ERR_MSG']);
 }
 $res = $xoopsDB->query("SELECT * FROM $item_tbl WHERE iid = " . $iid);
 $row = $xoopsDB->fetchArray($res);
 if ($xoopsDB->getRowsNum($res) == 0) {
-    redirect_header($module_url . '/admin/', 5, $admin_consts['_NO_ERR_MSG']);
+    redirect_header($module_url . '/admin/index.php', 5, $admin_consts['_NO_ERR_MSG']);
 }
 if ($row['list_link']) {
     $res = $xoopsDB->query("SELECT * FROM $item_tbl WHERE list_link = 1 AND iid != $iid");
@@ -31,18 +31,18 @@ if ($op == 'delete') {
         redirect_header($module_url . '/admin/detail.php?iid=' . $iid, 5, $admin_consts['_TOKEN_ERR_MSG']);
     } else {
         if (!$xoopsDB->query("DELETE FROM $item_tbl WHERE iid = $iid")) {
-            redirect_header($module_url . '/admin/', 5, $admin_consts['_SYSTEM_ERR_MS']);
+            redirect_header($module_url . '/admin/index.php', 5, $admin_consts['_SYSTEM_ERR_MS']);
         } else {
             if ($row['type'] == 'file' || $row['type'] == 'image') {
-                $res = $xoopsDB->query("SELECT " . $row['name'] . " FROM $data_tbl");
-                while (list($file_name) = $xoopsDB->fetchRow($res)) {
-                    @unlink($module_upload_dir . '/' . $file_name);
+                $res = $xoopsDB->query("SELECT id, " . $row['name'] . " FROM $data_tbl");
+                while (list($id, $file_name) = $xoopsDB->fetchRow($res)) {
+                    @unlink($module_upload_dir . '/' . getRealFileName($id, $row['name'], $file_name));
                 }
             }
             if (!$xoopsDB->query("ALTER TABLE $data_tbl DROP `" . $row['name'] . "`")) {
-                redirect_header($module_url . '/admin/', 5, $admin_consts['_SYSTEM_ERR_MS']);
+                redirect_header($module_url . '/admin/index.php', 5, $admin_consts['_SYSTEM_ERR_MS']);
             } else {
-                redirect_header($module_url . '/admin/', 5, $admin_consts['_DELETE_MSG']);
+                redirect_header($module_url . '/admin/index.php', 5, $admin_consts['_DELETE_MSG']);
             }
         }
     }
@@ -54,7 +54,7 @@ if ($op == 'delete') {
         unset($item_defs['value_range_min']);
         unset($item_defs['value_range_max']);
     } elseif ($row['value_type'] == 'int' || $row['value_type'] == 'float') {
-        unset($item_defs['ambiguous']);
+        unset($item_defs['search_cond']);
     }
 
     foreach ($item_defs as $item_name => $item_def) {
@@ -64,9 +64,11 @@ if ($op == 'delete') {
             $item_defs[$item_name]['value'] = $types[$row[$item_name]];
         } elseif ($item_name == 'required' || $item_name == 'site_search' || $item_name == 'duplicate' || $item_name == 'list_link') {
             $item_defs[$item_name]['value'] = $row[$item_name] ? $admin_consts['_YES'] : $admin_consts['_NO'];
+        } elseif ($item_name == 'show_gids') {
+            $item_defs[$item_name]['value'] = gidstring2brgroup($row[$item_name]);
         } elseif ($item_name == 'sequence' || $item_name == 'value_range_min' || $item_name == 'value_range_max' || $item_name == 'size' || $item_name == 'max_length' || $item_name == 'rows' || $item_name == 'cols' || $item_name == 'max_file_size' || $item_name == 'max_image_size') {
             $item_defs[$item_name]['value'] = sanitize($row[$item_name], $item_def);
-        } elseif ($item_name == 'search' || $item_name == 'list' || $item_name == 'add' || $item_name == 'update' || $item_name == 'detail') {
+        } elseif ($item_name == 'search' || $item_name == 'list' || $item_name == 'add' || $item_name == 'update' || $item_name == 'detail' || $item_name == 'disp_cond') {
             $item_defs[$item_name]['value'] = $row[$item_name] ? $admin_consts['_DISP'] : $admin_consts['_NOT_DISP'];
         } elseif ($item_name == 'value_type') {
             $item_defs[$item_name]['value'] = $value_types[$row[$item_name]];
@@ -78,10 +80,16 @@ if ($op == 'delete') {
             }
         } elseif ($item_name == 'options') {
             $item_defs[$item_name]['value'] = array2brstring(nl2array($row[$item_name]));
-        } elseif ($item_name == 'ambiguous' || $item_name == 'option_br' || $item_name == 'html' || $item_name == 'smily' || $item_name == 'xcode' || $item_name == 'image' || $item_name == 'br') {
+        } elseif ($item_name == 'option_br' || $item_name == 'html' || $item_name == 'smily' || $item_name == 'xcode' || $item_name == 'image' || $item_name == 'br') {
             $item_defs[$item_name]['value'] = $row[$item_name] ? $admin_consts['_ENABLE'] : $admin_consts['_DISABLE'];
         } elseif ($item_name == 'allowed_exts' || $item_name == 'allowed_mimes') {
             $item_defs[$item_name]['value'] = nl2br($myts->htmlSpecialChars($row[$item_name]));
+        } elseif ($item_name == 'search_cond') {
+            if ($row['type'] === 'text' || $row['type'] === 'file' || $row['type'] === 'image') {
+                $item_defs[$item_name]['value'] = $row[$item_name] ? $admin_consts['_COMP_MATCH'] : $admin_consts['_PART_MATCH'];
+            } elseif ($row['type'] === 'cbox' || $row['type'] === 'mselect') {
+                $item_defs[$item_name]['value'] = $row[$item_name] ? $admin_consts['_AND_MATCH'] : $admin_consts['_OR_MATCH'];
+            }
         }
     }
 

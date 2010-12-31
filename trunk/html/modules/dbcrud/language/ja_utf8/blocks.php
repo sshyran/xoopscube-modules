@@ -7,10 +7,10 @@ $affix = strtoupper(strlen($dirname) >= 3 ? substr($dirname, 0, 3) : $dirname);
 include_once XOOPS_ROOT_PATH . "/modules/$dirname/language/$lang_dirname/common.php";
 
 $block_consts = array(
-    '_SHOW_NUM' => 'É½¼¨·ï¿ô',
-    '_ADD_DATE' => 'ÅÐÏ¿Æü»þ',
-    '_UNAME'    => 'ÅÐÏ¿¥æ¡¼¥¶Ì¾',
-    '_FILE'     => '¥Õ¥¡¥¤¥ë'
+    '_SHOW_NUM' => 'è¡¨ç¤ºä»¶æ•°',
+    '_ADD_DATE' => 'ç™»éŒ²æ—¥æ™‚',
+    '_UNAME'    => 'ç™»éŒ²ãƒ¦ãƒ¼ã‚¶å',
+    '_FILE'     => 'ãƒ•ã‚¡ã‚¤ãƒ«'
 );
 
 foreach ($block_consts as $key => $value) {

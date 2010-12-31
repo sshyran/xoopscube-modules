@@ -1,41 +1,48 @@
 <?php
 
 $dirname = basename(dirname(dirname(dirname(__FILE__))));
+$lang_dirname = basename(dirname(__FILE__));
 $affix = strtoupper(strlen($dirname) >= 3 ? substr($dirname, 0, 3) : $dirname);
 
-include_once 'common.php';
+include_once XOOPS_ROOT_PATH . "/modules/$dirname/language/$lang_dirname/common.php";
 
 $main_consts = array(
-    '_PAGENAVI_INFO' => 'Results All% s,% s from% s show up first of all',
-    '_REQ_MARK' => '<font Color="red"> (required) </ font>',
+    '_PAGENAVI_INFO'      => 'All %s, From %s To %s',
+    '_REQ_MARK'           => '<font color="red">(Req)</font>',
     '_SEARCH'             => 'Search',
-    '_SEARCH_RESULT' => 'Search results',
-    '_ADD_DATE' => 'Registered',
-    '_UNAME' => 'User name registration',
-    '_FILE' => 'File',
-    '_ADD' => 'Register',
-    '_ADD_MSG' => 'Has been registered. ',
-    '_UPDATE' => 'Updated',
-    '_UPDATE_MSG' => 'Has been updated. ',
-    '_DELETE' => 'Delete',
-    '_DELETE_CONFIRM_MSG' => 'Do you want to delete this information true? ',
-    '_DELETE_MSG' => 'Has been deleted. ',
-    '_DETAIL' => 'Description',
-    '_CANCEL' => 'Cancel',
-    '_NOT_FOUND_MSG'      => 'Not Found Msg ',
-    '_REQ_ERR_MSG' => ' "% S", please be sure to input or select. ',
-    '_RANGE_ERR_MSG' => ' "% S" acceptable range of input values (% s) exceeded. ',
-    '_INT_ERR_MSG' => ' "% S" has entered the non-integer values. ',
-    '_FLOAT_ERR_MSG' => ' "% S" non-numeric input is small. ',
-    '_FILE_TYPE_ERR_MSG' => 'File "% s" could not be uploaded. ',
-    '_FILE_SIZE_ERR_MSG' => 'File "% s" is greater than the capacity limit. ',
-    '_FILE_SAME_ERR_MSG' => 'File "% s" can not simultaneously uploading and deleting. ',
-    '_DUPLICATE_ERR_MSG' => 'For the same information as is already registered, not registered. ',
-    '_TOKEN_ERR_MSG' => 'Tokunera occurred. ',
-    '_SYSTEM_ERR_MSG' => 'System error has occurred. ',
-    '_PARAM_ERR_MSG' => 'Parameter is incorrect. ',
-    '_PERM_ERR_MSG' => 'Do not have permission to perform this operation. ',
-    '_NO_ERR_MSG' => 'Information is not specified. '
+    '_SEARCH_RESULT'      => 'Search Result',
+    '_ADD_DATE'           => 'Add Date',
+    '_UNAME'              => 'Add User Name',
+    '_FILE'               => 'File',
+    '_ADD'                => 'Add',
+    '_ADD_MSG'            => 'Added.',
+    '_UPDATE'             => 'Update',
+    '_UPDATE_MSG'         => 'Updated.',
+    '_DELETE'             => 'Delete',
+    '_DELETE_CONFIRM_MSG' => 'Do you delete it really?',
+    '_DELETE_MSG'         => 'Deleted.',
+    '_DETAIL'             => 'Detail',
+    '_CANCEL'             => 'Cancel',
+    '_BACK'               => 'Back',
+    '_COND_LABEL'         => 'Search Conditions:',
+    '_COMP_MATCH'         => 'Fully Match',
+    '_PART_MATCH'         => 'Partially Match',
+    '_AND_MATCH'          => 'AND(And Match)',
+    '_OR_MATCH'           => 'OR(Or Match)',
+    '_NOT_FOUND_MSG'      => 'There are not the data which fell under search condition.',
+    '_REQ_ERR_MSG'        => '%s is required.',
+    '_RANGE_ERR_MSG'      => '%s is over range.',
+    '_INT_ERR_MSG'        => '%s is not integer value.',
+    '_FLOAT_ERR_MSG'      => '%s is not float value.',
+    '_FILE_TYPE_ERR_MSG'  => 'File %s can not be uploaded.',
+    '_FILE_SIZE_ERR_MSG'  => 'File %s \'s size is over.',
+    '_FILE_SAME_ERR_MSG'  => 'You can not do same time uploading and deleting file %s.',
+    '_DUPLICATE_ERR_MSG'  => 'You can not add the data because the same data has already added.',
+    '_TOKEN_ERR_MSG'      => 'Token Error occurred.',
+    '_SYSTEM_ERR_MSG'     => 'System Error occurred.',
+    '_PARAM_ERR_MSG'      => 'Parameter is invalid.',
+    '_PERM_ERR_MSG'       => 'There are not permission.',
+    '_NO_ERR_MSG'         => 'There are not appointed data.'
 );
 
 foreach ($main_consts as $key => $value) {

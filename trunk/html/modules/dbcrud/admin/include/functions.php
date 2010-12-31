@@ -59,6 +59,15 @@ function getAdminItemDefs($type) {
     $item_defs['required'] = $item_def;
 
     $item_def = array();
+    $item_def['caption'] = constant('_AM_' . $affix . '_SHOW_GIDS');
+    $item_def['type'] = 'mselect';
+    $item_def['required'] = 0;
+    $item_def['value_type'] = 'int';
+    $item_def['input_desc'] = constant('_AM_' . $affix . '_SHOW_GIDS_DESC');
+    $item_def['options'] = nl2array(makeGroupSelectOptions());
+    $item_defs['show_gids'] = $item_def;
+
+    $item_def = array();
     $item_def['caption'] = constant('_AM_' . $affix . '_SEQUENCE');
     $item_def['type'] = 'text';
     $item_def['required'] = 1;
@@ -171,7 +180,26 @@ function getAdminItemDefs($type) {
     $item_def['br'] = 1;
     $item_defs['input_desc'] = $item_def;
 
+    $item_def = array();
+    $item_def['caption'] = constant('_AM_' . $affix . '_DISP_COND');
+    $item_def['type'] = 'radio';
+    $item_def['required'] = 1;
+    $item_def['value_type'] = 'int';
+    $item_def['options'] = nl2array(constant('_AM_' . $affix . '_DISP') . "|1\n" . constant('_AM_' . $affix . '_NOT_DISP') . "|0");
+    $item_def['option_br'] = 0;
+    $item_defs['disp_cond'] = $item_def;
+
     if ($type == 'text') {
+        $item_def = array();
+        $item_def['caption'] = constant('_AM_' . $affix . '_SEARCH_COND');
+        $item_def['type'] = 'radio';
+        $item_def['required'] = 1;
+        $item_def['value_type'] = 'int';
+        $item_def['input_desc'] = constant('_AM_' . $affix . '_SEARCH_COND_DESC');
+        $item_def['options'] = nl2array(constant('_AM_' . $affix . '_COMP_MATCH') . "|1\n" . constant('_AM_' . $affix . '_PART_MATCH') . "|0");
+        $item_def['option_br'] = 0;
+        $item_defs['search_cond'] = $item_def;
+
         $item_def = array();
         $item_def['caption'] = constant('_AM_' . $affix . '_LIST_LINK');
         $item_def['type'] = 'radio';
@@ -241,17 +269,19 @@ function getAdminItemDefs($type) {
         $item_def['size'] = 4;
         $item_def['max_length'] = 4;
         $item_defs['max_length'] = $item_def;
-
-        $item_def = array();
-        $item_def['caption'] = constant('_AM_' . $affix . '_AMBIGUOUS');
-        $item_def['type'] = 'radio';
-        $item_def['required'] = 1;
-        $item_def['value_type'] = 'int';
-        $item_def['input_desc'] = constant('_AM_' . $affix . '_AMBIGUOUS_DESC');
-        $item_def['options'] = nl2array(constant('_AM_' . $affix . '_ENABLE') . "|1\n" . constant('_AM_' . $affix . '_DISABLE') . "|0");
-        $item_def['option_br'] = 0;
-        $item_defs['ambiguous'] = $item_def;
     } elseif ($type == 'cbox' || $type == 'radio') {
+        if ($type == 'cbox') {
+            $item_def = array();
+            $item_def['caption'] = constant('_AM_' . $affix . '_SEARCH_COND');
+            $item_def['type'] = 'radio';
+            $item_def['required'] = 1;
+            $item_def['value_type'] = 'int';
+            $item_def['input_desc'] = '';
+            $item_def['options'] = nl2array(constant('_AM_' . $affix . '_AND_MATCH') . "|1\n" . constant('_AM_' . $affix . '_OR_MATCH') . "|0");
+            $item_def['option_br'] = 0;
+            $item_defs['search_cond'] = $item_def;
+        }
+
         if ($type == 'radio') {
             $item_def = array();
             $item_def['caption'] = constant('_AM_' . $affix . '_LIST_LINK');
@@ -325,6 +355,18 @@ function getAdminItemDefs($type) {
         $item_def['option_br'] = 0;
         $item_defs['option_br'] = $item_def;
     } elseif ($type == 'select' || $type == 'mselect') {
+        if ($type == 'mselect') {
+            $item_def = array();
+            $item_def['caption'] = constant('_AM_' . $affix . '_SEARCH_COND');
+            $item_def['type'] = 'radio';
+            $item_def['required'] = 1;
+            $item_def['value_type'] = 'int';
+            $item_def['input_desc'] = '';
+            $item_def['options'] = nl2array(constant('_AM_' . $affix . '_AND_MATCH') . "|1\n" . constant('_AM_' . $affix . '_OR_MATCH') . "|0");
+            $item_def['option_br'] = 0;
+            $item_defs['search_cond'] = $item_def;
+        }
+
         if ($type == 'select') {
             $item_def = array();
             $item_def['caption'] = constant('_AM_' . $affix . '_LIST_LINK');
@@ -505,6 +547,16 @@ function getAdminItemDefs($type) {
         $item_defs['br'] = $item_def;
     } elseif ($type == 'file' || $type == 'image') {
         $item_def = array();
+        $item_def['caption'] = constant('_AM_' . $affix . '_SEARCH_COND');
+        $item_def['type'] = 'radio';
+        $item_def['required'] = 1;
+        $item_def['value_type'] = 'int';
+        $item_def['input_desc'] = '';
+        $item_def['options'] = nl2array(constant('_AM_' . $affix . '_COMP_MATCH') . "|1\n" . constant('_AM_' . $affix . '_PART_MATCH') . "|0");
+        $item_def['option_br'] = 0;
+        $item_defs['search_cond'] = $item_def;
+
+        $item_def = array();
         $item_def['caption'] = constant('_AM_' . $affix . '_SIZE');
         $item_def['type'] = 'text';
         $item_def['required'] = 1;
@@ -554,8 +606,8 @@ function getAdminItemDefs($type) {
         $item_def['caption'] = constant('_AM_' . $affix . '_ALLOWED_EXTS');
         $item_def['type'] = 'tarea';
         $item_def['required'] = 1;
-        $item_def['input_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_EXTS');
-        $item_def['show_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_EXTS');
+        if ($type == 'file') $item_def['input_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_FILE_EXTS');
+        else $item_def['input_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_IMG_EXTS');
         $item_def['rows'] = 5;
         $item_def['cols'] = 50;
         $item_def['html'] = 0;
@@ -569,8 +621,8 @@ function getAdminItemDefs($type) {
         $item_def['caption'] = constant('_AM_' . $affix . '_ALLOWED_MIMES');
         $item_def['type'] = 'tarea';
         $item_def['required'] = 1;
-        $item_def['input_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_MIMES');
-        $item_def['show_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_MIMES');
+        if ($type == 'file') $item_def['input_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_FILE_MIMES');
+        else $item_def['input_desc'] = constant('_AM_' . $affix . '_NOTE_VALUE_SEP') . constant('_AM_' . $affix . '_NOTE_ALLOWED_IMG_MIMES');
         $item_def['rows'] = 5;
         $item_def['cols'] = 50;
         $item_def['html'] = 0;

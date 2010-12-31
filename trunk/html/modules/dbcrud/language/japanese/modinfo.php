@@ -1,9 +1,10 @@
 <?php
 
 $dirname = basename(dirname(dirname(dirname(__FILE__))));
+$lang_dirname = basename(dirname(__FILE__));
 $affix = strtoupper(strlen($dirname) >= 3 ? substr($dirname, 0, 3) : $dirname);
 
-include_once 'common.php';
+include_once XOOPS_ROOT_PATH . "/modules/$dirname/language/$lang_dirname/common.php";
 
 $modinfo_consts = array(
     '_MODULE_NAME'          => 'XOOPS汎用データベース',

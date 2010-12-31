@@ -8,14 +8,17 @@ eval('function xoops_module_update_' . $dirname . '($module, $prev_version){
 
 if (!function_exists('xgdb_onupdate')) {
     function xgdb_onupdate($module, $prev_version, $dirname) {
-        global $msgs, $xoopsConfig;
+        global $msgs, $xoopsConfig, $xoopsUser;
         $myts =& MyTextSanitizer::getInstance();
         if (!is_array($msgs)) $msgs = array();
         $xoopsDB =& Database::getInstance();
         $tplfile_tbl = $xoopsDB->prefix("tplfile");
         $tplsource_tbl = $xoopsDB->prefix("tplsource");
+        $data_tbl = $xoopsDB->prefix($dirname . '_xgdb_data');
+        $item_tbl = $xoopsDB->prefix($dirname . '_xgdb_item');
         $newblocks_tbl = $xoopsDB->prefix("newblocks");
         $mid = $module->getVar('mid');
+        $module_upload_dir = XOOPS_UPLOAD_PATH . '/' . $dirname;
 
         $tplfile_handler =& xoops_gethandler('tplfile');
         $template_dir = XOOPS_ROOT_PATH . '/modules/' . $dirname . '/templates';
@@ -102,6 +105,38 @@ if (!function_exists('xgdb_onupdate')) {
                     }
                 }
             }
+        }
+
+        if ($prev_version < 30) {
+            $file = fopen(XOOPS_UPLOAD_PATH . "/" . $dirname . "/.htaccess", "w");
+            flock($file, LOCK_EX);
+            fputs($file, "order deny,allow\n");
+            fputs($file, "deny from all\n");
+            flock($file, LOCK_UN);
+            fclose($file);
+
+            $res_item = $xoopsDB->query("SELECT name FROM $item_tbl WHERE type = 'file' OR type = 'image'");
+            while (list($col_name) = $xoopsDB->fetchRow($res_item)) {
+                $res_data = $xoopsDB->query("SELECT id, $col_name FROM $data_tbl WHERE $col_name IS NOT NULL AND $col_name != ''");
+                while (list($id, $file_name) = $xoopsDB->fetchRow($res_data)) {
+                    $real_file_name = urlencode("$id-$col_name-$file_name");
+                    @copy($module_upload_dir . '/' . $file_name, $module_upload_dir . '/' . $real_file_name);
+                }
+            }
+
+            $xoopsDB->query("ALTER TABLE `$item_tbl` CHANGE `ambiguous` `search_cond` TINYINT(1) UNSIGNED NULL DEFAULT NULL;");
+            $xoopsDB->query("ALTER TABLE `$item_tbl` ADD `disp_cond` TINYINT(1) UNSIGNED NULL AFTER `input_desc`;");
+        }
+
+        if ($prev_version < 40) {
+            $xoopsDB->query("ALTER TABLE `$item_tbl` ADD `show_gids` VARCHAR(255) AFTER `required`;");
+
+            $res = $xoopsDB->query("SELECT groupid FROM " . $xoopsDB->prefix('groups') . " ORDER BY groupid ASC");
+            $gidstring = '|';
+            while (list($groupid) = $xoopsDB->fetchRow($res)) {
+                $gidstring .= $groupid . '|';
+            }
+            $xoopsDB->query("UPDATE `$item_tbl` SET show_gids = '$gidstring'");
         }
 
         return true;

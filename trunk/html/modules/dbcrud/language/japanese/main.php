@@ -1,9 +1,10 @@
 <?php
 
 $dirname = basename(dirname(dirname(dirname(__FILE__))));
+$lang_dirname = basename(dirname(__FILE__));
 $affix = strtoupper(strlen($dirname) >= 3 ? substr($dirname, 0, 3) : $dirname);
 
-include_once 'common.php';
+include_once XOOPS_ROOT_PATH . "/modules/$dirname/language/$lang_dirname/common.php";
 
 $main_consts = array(
     '_PAGENAVI_INFO'      => '全%s件中、 %s件目から%s件目までを表示',
@@ -22,7 +23,13 @@ $main_consts = array(
     '_DELETE_MSG'         => '削除しました。',
     '_DETAIL'             => '詳細',
     '_CANCEL'             => 'キャンセル',
-    '_NOT_FOUND_MSG'      => '検索条件に該当する資料はありませんでした。',
+    '_BACK'               => '戻る',
+    '_COND_LABEL'         => '検索条件：',
+    '_COMP_MATCH'         => '完全一致',
+    '_PART_MATCH'         => '部分一致',
+    '_AND_MATCH'          => 'AND(すべて一致)',
+    '_OR_MATCH'           => 'OR(いずれかに一致)',
+    '_NOT_FOUND_MSG'      => '検索条件に該当するデータはありませんでした。',
     '_REQ_ERR_MSG'        => '「%s」は、必ず入力もしくは選択してください。',
     '_RANGE_ERR_MSG'      => '「%s」の入力値が許容範囲(%s)を超えています。',
     '_INT_ERR_MSG'        => '「%s」に整数値以外が入力されています。',

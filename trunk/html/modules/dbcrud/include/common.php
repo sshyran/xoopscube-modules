@@ -73,7 +73,7 @@ if ($cfg_auto_update) {
 }
 
 // 項目定義情報を初期化する
-$item_defs = getItemDefs($dirname);
+$item_defs = getItemDefs($dirname, $gids);
 $list_link_item_def = getListLinkItemDef($item_defs);
 $list_link_item_name = $list_link_item_def['item_name'];
 

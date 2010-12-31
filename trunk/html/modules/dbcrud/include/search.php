@@ -8,12 +8,16 @@ eval('function ' . $dirname . '_xgdb_search($keywords, $andor, $limit, $offset, 
 
 if (!function_exists('xgdb_search')) {
     function xgdb_search($dirname, $keywords, $andor, $limit, $offset, $userid) {
+        global $xoopsUser;
         require_once XOOPS_ROOT_PATH . '/modules/' . $dirname . '/include/functions.php';
         $myts =& MyTextsanitizer::getInstance();
         $xoopsDB =& Database::getInstance();
         $data_tbl = $xoopsDB->prefix($dirname . '_xgdb_data');
 
-        $item_defs = getItemDefs($dirname);
+        if (is_object($xoopsUser)) $gids = $xoopsUser->getGroups();
+        else $gids = array(3);
+
+        $item_defs = getItemDefs($dirname, $gids);
         $site_search_defs = getDefs($item_defs, 'site_search');
 
         // GP変数の値のマジッククォートを無効化する
