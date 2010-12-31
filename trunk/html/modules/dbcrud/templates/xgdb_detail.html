@@ -1,16 +1,34 @@
 <{if $perm}>
 <table width="100%">
     <tr>
-        <td width="50%" align="center">
+        <td align="center">
             <form action="update.php" method="post">
                 <input type="hidden" name="id" value="<{$item_defs.id.value}>" />
                 <input type="submit" value="<{$_UPDATE}>" />
             </form>
         </td>
-        <td width="50%" align="center">
+        <td align="center">
             <form action="delete.php" method="post">
                 <input type="hidden" name="id" value="<{$item_defs.id.value}>" />
                 <input type="submit" value="<{$_DELETE}>" />
+            </form>
+        </td>
+        <td align="center">
+            <form action="index.php" method="post">
+                <input type="hidden" name="op" value="back_search" />
+                <input type="submit" value="<{$_BACK}>" />
+            </form>
+        </td>
+    </tr>
+</table>
+<br />
+<{else}>
+<table width="100%">
+    <tr>
+        <td align="center">
+            <form action="index.php" method="post">
+                <input type="hidden" name="op" value="back_search" />
+                <input type="submit" value="<{$_BACK}>" />
             </form>
         </td>
     </tr>
@@ -46,11 +64,11 @@
         <td class="<{cycle values="odd,even"}>">
             <{if $item.type == 'image'}>
             <{if $item.value != ''}>
-            <a href="<{$item.value}>" target="_blank"><img src="<{$item.value}>" alt="<{$item.caption}>" width="<{$cfg_detail_image_width}>px" /></a>
+            <a href="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>"><img src="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>" alt="<{$item.caption}>" width="<{$item.width}>px" /></a>
             <{/if}>
             <{elseif $item.type == 'file'}>
             <{if $item.value != ''}>
-            <a href="<{$item.value}>" target="_blank"><{$_FILE}></a>
+            <a href="download.php?id=<{$item_defs.id.value}>&amp;col_name=<{$item_name}>"><{$item.value}></a>
             <{/if}>
             <{else}>
             <{$item.value}>
