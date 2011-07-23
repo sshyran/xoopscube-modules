@@ -13,7 +13,7 @@ $mydirpath = basename( dirname( __FILE__ ) ) ;
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_PROFILE_LANG_PROFILE;
-$modversion['version'] = 2.00;
+$modversion['version'] = 2.01;
 $modversion['description'] = _MI_PROFILE_DESC_PROFILE;
 $modversion['author'] = "kilica";
 $modversion['credits'] = "";
@@ -43,6 +43,8 @@ $modversion['templates'][1]['file'] = 'profile_data_edit.html';
 $modversion['templates'][2]['file'] = 'profile_data_delete.html';
 $modversion['templates'][3]['file'] = 'profile_data_view.html';
 $modversion['templates'][4]['file'] = 'profile_data_list.html';
+$modversion['templates'][5]['file'] = 'profile_inc_data_edit.html';
+$modversion['templates'][6]['file'] = 'profile_inc_data_view.html';
 ##[/cubson:templates]
 
 //
