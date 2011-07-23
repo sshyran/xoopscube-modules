@@ -275,13 +275,17 @@ google.load("jqueryui", "'. $this->_mUi .'");
 			if($this->_mType == "google"){
 				$html .= "google.setOnLoadCallback(function() {\n";
 			}
-			else{
-				$html .= "$(document).ready(function(){\n";
+			if($this->mUsePrototype == true){
+				$html .= "jQuery.noConflict();\n";
 			}
+			$html .= "jQuery(function($){\n";
 			$html .= $this->_makeScript(true);
+			if($this->_mType == "google"){
+				$html .= "\n});\n";
+			}
 			$html .= "\n});\n";
 			$html .= $this->_makeScript(false);
-			$html .= "// --></script>"."\n";
+			$html .= "//--></script>"."\n";
 		}
 		return $html;
 	}
