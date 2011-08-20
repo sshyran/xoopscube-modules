@@ -2,8 +2,11 @@
 
 xoops_cp_header();
 include dirname(__FILE__)."/mymenu.php" ;
+if (function_exists('Legacy_function_stylesheet')) {
+    echo "<link href=\"".XOOPS_URL."/modules/legacyRender/admin/css.php?file=module.css&dirname=legacy\" media=\"all\" type=\"text/css\" rel=\"stylesheet\" />\n";
+}
 echo "<h3>".$xoopsModule->getVar('name')."</h3>"; 
-echo "<h4>The module for static contents</h4>
+echo "<div class='help'><h4>The module for static contents</h4>
 
 <p>This a module for static contents based on Duplicatable V3 (D3).
 <br />
@@ -62,7 +65,7 @@ Of course, you can upgrade your contents from TinyD to pico easily.</p>
 - any number of extra fields or images as you like<br />
 - tag<br />
 - hierarchical permission system (succeeding or independent as you like)<br />
-- waiting/expiring contents</p>";
+- waiting/expiring contents</p></div>";
 xoops_cp_footer();
 
 ?>
