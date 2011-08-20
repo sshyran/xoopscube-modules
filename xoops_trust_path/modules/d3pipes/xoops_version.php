@@ -12,7 +12,7 @@ $constpref = '_MI_' . strtoupper( $mydirname ) ;
 $modversion['name'] = $mydirname ;
 $modversion['description'] = constant($constpref.'_DESC') ;
 $modversion['version'] = 0.68 ;
-$modversion['credits'] = "PEAK Corp.";
+$modversion['credits'] = "PEAK Corp. review by Domifara and Gigamaster";
 $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(http://www.peak.ne.jp/)" ;
 $modversion['help'] = "" ;
 $modversion['license'] = "GPL" ;

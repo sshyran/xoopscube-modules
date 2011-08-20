@@ -13,9 +13,9 @@ function b_d3pipes_async_show( $options )
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 
-	$module_handler = xoops_gethandler('module');
+	$module_handler =& xoops_gethandler('module');
 	$module =& $module_handler->getByDirname($mydirname);
-	$config_handler = xoops_gethandler('config');
+	$config_handler =& xoops_gethandler('config');
 	$configs = $config_handler->getConfigList( $module->mid() ) ;
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
@@ -23,7 +23,7 @@ function b_d3pipes_async_show( $options )
 	// insert javascript if necessary
 	d3pipes_insert_javascript4async() ;
 
-	$block = array( 
+	$block = array(
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$configs['images_dir'] ,
@@ -63,7 +63,7 @@ function d3pipes_insert_javascript4async()
 			script.setAttribute("charset", "'._CHARSET.'");
 			document.getElementsByTagName("head").item(0).appendChild(script);
 		}
-		
+
 		function d3pipes_insert_html( id , html )
 		{
 		  document.getElementById( id ).innerHTML = html ;

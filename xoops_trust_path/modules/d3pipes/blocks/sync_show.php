@@ -13,9 +13,9 @@ function b_d3pipes_sync_show( $options )
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 
-	$module_handler = xoops_gethandler('module');
+	$module_handler =& xoops_gethandler('module');
 	$module =& $module_handler->getByDirname($mydirname);
-	$config_handler = xoops_gethandler('config');
+	$config_handler =& xoops_gethandler('config');
 	$configs = $config_handler->getConfigList( $module->mid() ) ;
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;

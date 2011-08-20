@@ -98,7 +98,7 @@ function d3pipes_common_get_default_joint_class( $mydirname , $joint_type )
 			}
 		}
 	}
-	
+
 	return $ret ;
 }
 
@@ -247,11 +247,20 @@ function d3pipes_common_fetch_entries( $mydirname , $pipe_row , $max_entries , &
 		$class_name = 'D3pipes'.ucfirst($joint['joint']).ucfirst($joint['joint_class']) ;
 		require_once $joints_dir.'/'.$joint['joint'].'/'.$class_name.'.class.php' ;
 		if( ! class_exists( $class_name ) ) die( 'Class '.$class_name.' does not exist' ) ;
-		$obj = new $class_name( $mydirname , $pipe_id , $joint['option'] ) ;
+//COMENT by domifara for php5.2-
+/*
+		$obj =& new $class_name( $mydirname , $pipe_id , $joint['option'] ) ;
 		$obj->setModConfigs( $mod_configs ) ;
 		$obj->setStage( $stage ) ;
-		$objects[ $stage ] = $obj ;
+		$objects[ $stage ] =& $obj ;
 		if( $obj->isCached() ) break ;
+*/
+//HACK by domifara for php5.2-
+		${$class_name} = new $class_name( $mydirname , $pipe_id , $joint['option'] ) ;
+		${$class_name}->setModConfigs( $mod_configs ) ;
+		${$class_name}->setStage( $stage ) ;
+		$objects[ $stage ] =& ${$class_name} ;
+		if( ${$class_name}->isCached() ) break ;
 	}
 
 	if( empty( $objects ) ) return false ;
