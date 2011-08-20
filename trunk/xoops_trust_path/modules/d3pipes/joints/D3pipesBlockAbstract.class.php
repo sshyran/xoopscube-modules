@@ -1,27 +1,35 @@
 <?php
+/**
+ * @version $Id: D3pipesBlockAbstract.class.php ,ver0.00 2011-07-04 04:15:00 domifara $
+ * @brief block for Xoop module and Xoops Cube Legacy
+ * @@author domifara
+ */
 
 require_once dirname(__FILE__).'/D3pipesJointAbstract.class.php' ;
 
-class D3pipesBlockAbstract extends D3pipesJointAbstract {
+class D3pipesBlockAbstractBase extends D3pipesJointAbstract {
 
-	var $option ;
-	var $func_file = '' ;
-	var $func_name = '' ;
-	var $target_dirname = '' ;
-	var $block_options = array() ;
-	var $db ;
+	public $option ;
+	public $func_file = '' ;
+	public $func_name = '' ;
+	public $target_dirname = '' ;
+	public $block_options = array() ;
+	public $db ;
+//XCL block mode
+	public $class_name = '' ;
 
 	// constructor
-	function D3pipesBlockAbstract( $mydirname , $pipe_id , $option )
+	function D3pipesBlockAbstractBase( $mydirname , $pipe_id , $option )
 	{
 		$this->mydirname = $mydirname ;
 		$this->pipe_id = intval( $pipe_id ) ;
 		$this->option = $option ;
 		$this->db =& Database::getInstance() ;
 	}
-	
+
 	function execute( $dummy = '' , $max_entries = '' )
 	{
+
 		if( ! $this->init() ) {
 			return array() ;
 		}
@@ -77,7 +85,7 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 		$ret = array() ;
 		$module_handler =& xoops_gethandler( 'module' ) ;
 		$modules = $module_handler->getList( null , true ) ;
-	
+
 		if( ! empty( $this->trustdirname ) ) {
 			foreach( array_keys( $modules ) as $mydirname ) {
 				$trustpath_file = XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/mytrustdirname.php' ;
@@ -134,5 +142,11 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 
 }
 
+//----- core type ----------
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		include_once dirname(__FILE__).'/D3pipesBlockAbstractXCL2.class.php' ;
+	}else{
+		include_once dirname(__FILE__).'/D3pipesBlockAbstractXOOPS.class.php' ;
+	}
 
 ?>
