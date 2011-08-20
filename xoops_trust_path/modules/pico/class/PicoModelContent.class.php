@@ -17,7 +17,7 @@ function PicoContentHandler( $mydirname )
 
 function getCategoryContents( &$categoryObj , $return_prohibited_also = false )
 {
-	$db = Database::getInstance() ;
+	$db =& Database::getInstance() ;
 
 	$cat_data = $categoryObj->getData() ;
 
@@ -29,7 +29,7 @@ function getCategoryContents( &$categoryObj , $return_prohibited_also = false )
 
 	$ret = array() ;
 	while( list( $content_id ) = $db->fetchRow( $ors ) ) {
-		$objTemp = new PicoContent( $this->mydirname , $content_id , $categoryObj ) ;
+		$objTemp =& new PicoContent( $this->mydirname , $content_id , $categoryObj ) ;
 		if( $return_prohibited_also || $objTemp->data['can_read'] ) $ret[ $content_id ] =& $objTemp ;
 	}
 
@@ -56,7 +56,7 @@ function getCategoryLatestContents( &$categoryObj , $num = 10 , $fetch_from_subc
 
 	$ret = array() ;
 	while( list( $content_id ) = $db->fetchRow( $result ) ) {
-		$objTemp = new PicoContent( $this->mydirname , $content_id ) ;
+		$objTemp =& new PicoContent( $this->mydirname , $content_id ) ;
 		$ret[ $content_id ] =& $objTemp ;
 		//if( $objTemp->data['can_read'] ) $ret[ $content_id ] =& $objTemp ;
 	}
@@ -145,7 +145,7 @@ function PicoContent( $mydirname , $content_id , $categoryObj = null , $allow_ma
 	if( empty( $this->categoryObj ) ) {
 		$picoPermission =& PicoPermission::getInstance() ;
 		$permissions = $picoPermission->getPermissions( $mydirname ) ;
-		$this->categoryObj = new PicoCategory( $mydirname , $content_row['cat_id'] , $permissions ) ;
+		$this->categoryObj =& new PicoCategory( $mydirname , $content_row['cat_id'] , $permissions ) ;
 	}
 	$cat_data = $this->categoryObj->getData() ;
 
@@ -359,7 +359,7 @@ function &getPrevContent()
 
 	$ret = null ;
 	if( ! empty( $prev_content_id ) ) {
-		$ret = new PicoContent( $this->mydirname , $prev_content_id , $this->categoryObj ) ;
+		$ret =& new PicoContent( $this->mydirname , $prev_content_id , $this->categoryObj ) ;
 	}
 	return $ret ;
 }
@@ -372,7 +372,7 @@ function &getNextContent()
 
 	$ret = null ;
 	if( ! empty( $next_content_id ) ) {
-		$ret = new PicoContent( $this->mydirname , $next_content_id , $this->categoryObj ) ;
+		$ret =& new PicoContent( $this->mydirname , $next_content_id , $this->categoryObj ) ;
 	}
 	return $ret ;
 }
