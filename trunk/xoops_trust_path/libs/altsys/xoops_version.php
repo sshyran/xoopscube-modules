@@ -6,7 +6,7 @@ include_once dirname(__FILE__).'/include/altsys_functions.php' ;
 altsys_include_language_file( 'modinfo' ) ;
 
 $modversion['name'] = _MI_ALTSYS_MODULENAME ;
-$modversion['version'] = '0.71' ;
+$modversion['version'] = '0.80' ;
 $modversion['description'] = _MI_ALTSYS_MODULEDESC ;
 $modversion['credits'] = "PEAK Corp.";
 $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(http://www.peak.ne.jp/)" ;

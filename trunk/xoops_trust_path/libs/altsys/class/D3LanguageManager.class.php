@@ -10,7 +10,9 @@ var $cache_prefix = 'lang' ;
 var $my_language = false ;
 
 
-function D3LanguageManager()
+//HACK by domifara
+//public function D3LanguageManager()
+public function __construct()
 {
 	$this->language = preg_replace( '/[^0-9a-zA-Z_-]/' , '' , @$GLOBALS['xoopsConfig']['language'] ) ;
 	$this->salt = substr( md5( XOOPS_ROOT_PATH . XOOPS_DB_USER . XOOPS_DB_PREFIX ) , 0 , 6 ) ;
@@ -72,7 +74,7 @@ function read( $resource , $mydirname , $mytrustdirname = null , $read_once = tr
 		// D3 modules
 		$trust_file = XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/language/'.$this->language.'/'.$resource ;
 		$default_file = XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/language/'.$this->default_language.'/'.$resource ;
-	
+
 		if( file_exists( $cache_file ) ) {
 			require_once $cache_file ;
 		} else if( file_exists( $root_file ) ) {
