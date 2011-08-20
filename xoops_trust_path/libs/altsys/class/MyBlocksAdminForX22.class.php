@@ -35,7 +35,7 @@ function list_blocks( $target_mid , $target_dirname )
 	$myts =& MyTextSanitizer::getInstance() ;
 
 	// main query
-	$db =& Database::getInstance();
+	$db = Database::getInstance();
 	if( $target_mid ) {
 		// normal
 		$sql = "SELECT bid,name,show_func,func_file,template FROM ".$db->prefix("newblocks")." WHERE mid='$target_mid'";
@@ -364,7 +364,7 @@ function do_order()
 			}
 
 			$bmodule = (isset($_POST['bmodule'][$i]) && is_array($_POST['bmodule'][$i])) ? $_POST['bmodule'][$i] : array(-1) ;
-	
+
 			$this->update_blockinstance($i, $side[$i], $_POST['weight'][$i], $visible[$i], $_POST['title'][$i], null , null , $_POST['bcachetime'][$i], $bmodule, array());
 
 		}

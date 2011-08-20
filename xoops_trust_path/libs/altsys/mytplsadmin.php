@@ -182,7 +182,7 @@ $tplset_options = "<option value=''>----</option>\n" ;
 foreach( $tplsets as $tplset ) {
 	$tplset4disp = htmlspecialchars( $tplset , ENT_QUOTES ) ;
 	$th_style = $tplset == $xoopsConfig['template_set'] ? "style='color:#FF9900;'" : "" ;
-	$tplsets_th4disp .= "<th $th_style><input type='checkbox' title='"._MYTPLSADMIN_TITLE_CHECKALL."' onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].name.indexOf('{$tplset4disp}_check')>=0){elements[i].checked=this.checked;}}}\" /> DB-{$tplset4disp}</th>" ;
+	$tplsets_th4disp .= "<th $th_style><input type='checkbox' title='"._MYTPLSADMIN_TITLE_CHECKALL."' onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].name.indexOf('{$tplset4disp}_check')>=0){elements[i].checked=this.checked;}}}\" />DB-{$tplset4disp}</th>" ;
 	$tplset_options .= "<option value='$tplset4disp'>$tplset4disp</option>\n" ;
 }
 
