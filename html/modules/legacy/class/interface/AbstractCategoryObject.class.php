@@ -17,6 +17,7 @@ abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 {
 	const PRIMARY = 'cat_id';
 	const DATANAME = 'cat';
+	public $mChildren = array();	//Legacy_AbstractCategoryObject[]
 
 	public function __construct()
 	{

@@ -61,13 +61,31 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 		return $prefix . $body;
 	}
 
+    /**
+     * is image file ?
+     * 
+     * @param   int	$tsize
+     * 
+     * @return  bool
+     */
+    public function isImage(/*** int ***/ $tsize=0)
+    {
+    	$srcPath = $this->getFilePath($tsize);
+        if(file_exists($srcPath) && @exif_imagetype($srcPath)!==false){
+        	return true;
+        }
+        else{
+        	return false;
+        }
+    }
+
 	/**
 	 * Return file size.
 	 * @return int
 	 */
 	public function getImageInfo($type, $tsize=0)
 	{
-		if(! file_exists($this->getFilePath($tsize))){
+		if(! $this->isImage($tsize)){
 			return null;
 		}
 		$info = getimagesize($this->getFilePath($tsize));
