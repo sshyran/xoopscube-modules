@@ -11,8 +11,8 @@ $constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 $modversion['name'] = constant($constpref.'_NAME') ;
 $modversion['description'] = constant($constpref.'_DESC') ;
-$modversion['version'] = 0.85 ;
-$modversion['credits'] = "PEAK Corp. and JIDAIKOBO";
+$modversion['version'] = 0.90 ;
+$modversion['credits'] = "PEAK Corp. and JIDAIKOBO, rev. by Naao and Gigamaster";
 $modversion['author'] = "GIJ=CHECKMATE and JIDAIKOBO" ;
 $modversion['help'] = "" ;
 $modversion['license'] = "GPL" ;
@@ -118,6 +118,16 @@ $modversion['config'][] = array(
 	'default'		=> 'smiley,xcode,br,number_entity' ,
 	'options'		=> array()
 ) ;
+
+$modversion['config'][] = array(
+	'name'			=> 'use_name' ,
+	'title'			=> $constpref.'_USENAME' ,
+	'description'		=> $constpref.'_USENAMEDESC' ,
+	'formtype'		=> 'select',
+	'valuetype'		=> 'int',
+	'default'		=> '0',
+	'options'		=> array( $constpref.'_USENAME_UNAME' => 0, $constpref.'_USENAME_NAME' => 1)
+);
 
 $modversion['config'][] = array(
 	'name'			=> 'allow_html' ,
@@ -335,7 +345,7 @@ $modversion['config'][] = array(
 	'description'	=> $constpref.'_ANTISPAM_CLASSDSC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'text' ,
-	'default'		=> 'default' ,
+	'default'		=> 'defaultmobile' ,
 	'options'		=> array()
 ) ;
 

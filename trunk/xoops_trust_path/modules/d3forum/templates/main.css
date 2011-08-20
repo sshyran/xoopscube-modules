@@ -154,6 +154,7 @@ div.d3f_breadcrumbs{
 <{if $images.d3f_info_bg != ''}>
 	background-image		:url(<{$xoops_imageurl}><{$images.d3f_info_bg}>);
 <{/if}>}
+
 <{if $d3f.tree_indicator}>
 	.d3f_head_tree_depth{
 		z-index				:100;
@@ -283,7 +284,8 @@ ul.d3f_eachbranch li img{
 
 /* d3f_currenttopic */
 
-.d3f_eachbranch li.d3f_eachbranchitem{
+.d3f_eachbranch li.d3f_eachbranchitem, 
+.d3f_eachbranch span.d3f_eachbranchitem {
 	padding-top			:2px;
 	padding-bottom		:2px;
 	background-color		:<{$color.d3f_bottom_tree_bg}>;}
@@ -350,9 +352,7 @@ div.d3f_bbsviewctrl form *,p.d3f_bbsviewctrl *{
 table.d3f_table{
 	width				:100%;
 	clear				:both;}
-table.d3f_table thead th{
-	color				:<{$color.d3f_head}>;
-	background-color		:<{$color.d3f_head_bg}>;}
+table.d3f_table thead th{}
 table.d3f_table thead th,
 table.d3f_table td{
 	text-align			:center !important;
@@ -420,4 +420,34 @@ p.d3f_submit{
 	text-align			:center;
 	margin				:0;
 	padding				:10px;}
+	
+/*  Page Navigation */
 
+div.boxNavi .itemBody {
+	margin: 1px 2px 5px 2px;
+	text-align:center;
+	list-style-type: none;
+	background-color: transparent;
+}
+div.boxNavi .itemBody li{
+	display: inline;
+	margin: 1px 2px 1px 2px;
+	padding: 5px 0px 5px 0px;
+	font-weight: bold;
+	text-align:center;
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+}
+
+div.boxNavi .itemBody li.txt span,
+div.boxNavi .itemBody li.this span,
+div.boxNavi .itemBody li a {
+	margin: 0;
+	padding: 5px 7px 5px 10px;
+	text-decoration: none;
+}
+div.boxNavi .itemBody li.this span {
+	background-color: #CCCCCC;
+}

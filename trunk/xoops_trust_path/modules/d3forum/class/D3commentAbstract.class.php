@@ -208,7 +208,6 @@ function onUpdate( $mode , $link_id , $forum_id , $topic_id , $post_id = 0 )
 // override it if necessary
 function canVote( $link_id , $original_flag , $post_id )
 {
-	return true ;
 	return $original_flag ;
 }
 
