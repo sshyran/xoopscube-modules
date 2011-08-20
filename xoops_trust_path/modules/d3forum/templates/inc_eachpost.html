@@ -1,5 +1,6 @@
 <!-- start each post -->
-<div class="d3f_head">
+<div class="itemHead">
+
 <{if $post.poster_avatar}>
 	<{if $post.poster_avatar.height > 80}>
 		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" height="80" alt="" class="d3f_avatar" />
@@ -7,7 +8,7 @@
 		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="" class="d3f_avatar" />
 	<{/if}>
 <{/if}>
-	<h2<{if $post.invisible || ! $post.approval }> class="<{if $post.invisible}> invisible<{elseif ! $post.approval}> yetapproval<{/if}>"<{/if}>>
+	<h2 class="<{if $post.invisible || ! $post.approval }><{if $post.invisible}> invisible<{elseif ! $post.approval}> yetapproval<{/if}><{/if}> itemTitle">
 	<a id="post_id<{$post.id}>" name="post_id<{$post.id}>"><img src="<{$mod_imageurl}>/posticon<{$post.icon}>.gif" alt="<{$icon_meanings[$post.icon]}>" /></a>
 	<{if $caller == 'listposts'}>
 		<a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" name="post_path<{$post.unique_path}>"><{$post.subject}></a>
@@ -56,7 +57,7 @@
 	</div>
 </div>
 <!-- poster info -->
-<div class="d3f_info_sub">
+<div class="itemInfo" style="text-align:left;">
 <{if $post.poster_uid != 0}><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{/if}><{$post.poster_uname}><{if $post.poster_uid != 0}></a><{/if}>&nbsp;
 <{if $post.poster_uid != 0}>
 	<{if $post.poster_rank_title}>
@@ -83,9 +84,9 @@
 </div>
 
 <!-- post foot control -->
-<div class="d3f_info_ctrl">
+<div class="itemFoot">
 <{if $forum.isadminormod}>
-	<a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" class="cutpaste"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a> |
+	<a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" class="cutpaste"><img src="<{$mod_imageurl}>/adminicon_cutpaste.png" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a> |
 <{/if}>
 
 <{if ! $post.approval && $forum.isadminormod}>
