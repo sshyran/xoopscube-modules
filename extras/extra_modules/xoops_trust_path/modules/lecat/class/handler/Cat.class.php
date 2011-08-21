@@ -62,7 +62,7 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	 * @public
 	 * load child categories Objects of this category.
 	 */
-	public function loadChildren($module)
+	public function loadChildren($module=null)
 	{
 		if ($this->_mChildrenLoadedFlag == false) {
 			$handler = Legacy_Utils::getModuleHandler('cat', $this->getDirname());
@@ -293,16 +293,45 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	 *  $client['dirname']
 	 *  $client['dataname']
 	 *  $client['fieldname']
+	 * @param	mixed[]	$list
+	 *	string	$list['dirname'][]
+	 *	string	$list['dataname'][]
+	 *	string	$list['title'][]
+	 *	string	$list['template_name'][]
+	 *	mixed	$list['data'][]
 	 * 
 	 * @return	mixed[]
+	 *	string	$list['dirname'][]
+	 *	string	$list['dataname'][]
+	 *	string	$list['title'][]
 	 *	string	$list['template_name'][]
-	 *	string	$list['data'][]
+	 *	mixed	$list['data'][]
 	**/
-	public function getClientData(/*** string ***/ $client)
+	public function getClientData(/*** mixed[] ***/ $client, /*** mixed ***/ $list)
 	{
-		$list = array('template_name'=>array(), 'data'=>array(), 'dirname'=>array(), 'dataname'=>array());
 		XCube_DelegateUtils::call('Legacy_CategoryClient.'.$client['dirname'].'.GetClientData', new XCube_Ref($list), $client['dirname'], $client['dataname'], $client['fieldname'], $this->get('cat_id'));
 		return $list;
+	}
+
+	/**
+	 * Has client date ?
+	 * Mainly this method is used when category is going to be deleted.
+	 * 
+	 * @param	array	$client
+	 * 
+	 * @return	mixed[]
+	**/
+	public function hasClientData()
+	{
+		$clientList = Lecat_Utils::getClientList($this->getDirname());
+		$list = array('title'=>array(), 'template_name'=>array(), 'data'=>array(), 'dirname'=>array(), 'dataname'=>array());
+		foreach($clientList as $client){
+			$list = $this->getClientData($client, $list);
+			if(count($list['data'])>0){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -388,7 +417,7 @@ class Lecat_CatHandler extends XoopsObjectGenericHandler
 	**/
 	public function delete(&$obj)
 	{
-		$handler = Legacy_Utils::getModuleHandler('permit', $this->getDirname());;
+		$handler = Legacy_Utils::getModuleHandler('permit', $this->getDirname());
 		$handler->deleteAll(new Criteria('cat_id', $obj->get('cat_id')));
 		unset($handler);
 	

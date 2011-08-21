@@ -15,6 +15,8 @@ define('_MD_LECAT_ERROR_MAX', '{0}は{1}以下の数値を指定して下さい'
 define('_MD_LECAT_ERROR_OBJECTEXIST', '{0}の入力値が不正です');
 define('_MD_LECAT_ERROR_DBUPDATE_FAILED', 'データベースの更新に失敗しました');
 define('_MD_LECAT_ERROR_EMAIL', '{0}は不正なメールアドレスです');
+define('_MD_LECAT_ERROR_HAS_CHILDREN', '子カテゴリが存在しているため、削除できません。');
+define('_MD_LECAT_ERROR_HAS_CLIENT_DATA', 'このカテゴリを使っているデータがあるため、削除できません。');
 define('_MD_LECAT_MESSAGE_CONFIRM_DELETE', '以下のデータを本当に削除しますか？');
 define('_MD_LECAT_LANG_ADD_A_NEW_CAT', 'カテゴリの追加');
 define('_MD_LECAT_LANG_CAT_ID', 'カテゴリID');
@@ -45,7 +47,7 @@ define('_MD_LECAT_LANG_AUTH_SETTING', '権限の設定');
 define('_MD_LECAT_LANG_AUTH_KEY', '権限キー名');
 define('_MD_LECAT_LANG_AUTH_TITLE', '権限名');
 define('_MD_LECAT_LANG_AUTH_DEFAULT', '初期値');
-define('_MD_LECAT_LANG_EDIT_ACTOR', 'Edit Actors');
+define('_MD_LECAT_LANG_EDIT_ACTOR', '権限キーの設定');
 define('_MD_LECAT_LANG_MODULES_CONFINEMENT', 'モジュールの限定');
 define('_MD_LECAT_LANG_PERMISSION_TYPE', 'アクセス権タイプ');
 define('_MD_LECAT_LANG_DEFAULT_PERMISSIONS', 'アクセス権の初期設定');

@@ -16,6 +16,8 @@ define('_MD_LECAT_ERROR_OBJECTEXIST', 'Incorrect input on {0}.');
 define('_MD_LECAT_ERROR_DBUPDATE_FAILED', 'Failed updating database.');
 define('_MD_LECAT_ERROR_EMAIL', '{0} is an incorrect email address.');
 define('_MD_LECAT_ERROR_NO_CATEGORY_REQUESTED', 'No Category is requested');
+define('_MD_LECAT_ERROR_HAS_CHILDREN', 'Cannot delete this category because some children categories exist. Delete them first or set &force=1 on GET request !');
+define('_MD_LECAT_ERROR_HAS_CLIENT_DATA', 'Cannot delete this category because some data use this category. Delete them first !');
 define('_MD_LECAT_MESSAGE_CONFIRM_DELETE', 'Are you sure to delete?');
 define('_MD_LECAT_LANG_ADD_A_NEW_CAT', 'Add a new Category');
 define('_MD_LECAT_LANG_CAT_ID', 'CAT_ID');

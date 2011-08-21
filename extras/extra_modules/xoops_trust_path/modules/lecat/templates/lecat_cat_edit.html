@@ -1,4 +1,6 @@
 <div id="lecat">
+<{include file="db:`$dirname`_inc_menu.html" dirname=$dirname}>
+
 <{if $actionForm->hasError()}>
   <ul class="error">
     <{foreach item=message from=$actionForm->getErrorMessages()}>
@@ -6,6 +8,7 @@
     <{/foreach}>
   </ul>
 <{/if}>
+<h1><{$smarty.const._MD_LECAT_LANG_CAT_EDIT}></h1>
 <form action="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>" method="post">
   <table class="outer" summary="">
     <caption>
@@ -25,12 +28,10 @@
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_PARENT}></th>
         <td class="<{cycle values="odd,even"}>">
-	      	<select name="p_id">
-		      	<option value="0">TOP</option>
-		      	<{foreach item=cat from=$catArr}>
-			        <option value="<{$cat->get('cat_id')}>" <{if $cat->get('cat_id') == $actionForm->get('p_id')}> selected="selected"<{/if}>><{$cat->getShow('title')}></option>
-		        <{/foreach}>
-	        </select>
+          <select name="p_id">
+          <option value="0">TOP</option>
+          <{legacy_category_select tree=$catArr selectedValue=$object->get('p_id')}>
+          </select>
         </td>
       </tr>
       <tr>

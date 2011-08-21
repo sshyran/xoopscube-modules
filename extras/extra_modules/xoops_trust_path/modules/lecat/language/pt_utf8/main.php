@@ -1,9 +1,9 @@
 <?php
 /**
-* $Id: main.php 825 2010-11-04 19:44:22Z mikhail $
+* $Id: main.php 981 2011-08-05 09:07:51Z mikhail $
 * XOOPS Cube Legacy 2.2 - Módulo LeCAT - Tradução para o Português
 * Traduzido por Mikhail Miguel < mailto:mikhail.miguel@gmail.com >
-* http://xoops.net.br/ | http://card.ly/mikhail
+* http://xoops.net.br/ | http://about.me/mikhail.miguel
 * Esta tradução encontra-se licenciada sob a licença Creative Commons Attribution 2.5 Brazil.
 * Para ler uma cópia da licença, visite: http://creativecommons.org/licenses/by/2.5/br/
 **/
@@ -13,6 +13,8 @@ define("_MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND","O conteúdo requisitado não foi 
 define("_MD_LECAT_ERROR_DBUPDATE_FAILED","Ocorreu um erro ao tentar atualizar o banco de dados.");
 define("_MD_LECAT_ERROR_EMAIL","{0} é um endereço de e-mail inválido.");
 define("_MD_LECAT_ERROR_EXTENSION","A extensão do arquivo inserido não corresponde a qualquer entrada na lista de tipos permitidos.");
+define("_MD_LECAT_ERROR_HAS_CHILDREN", "Atenção: para remover esta categoria, remova todas as suas respectivas subcategorias ou acrescente <code>&amp;force=1</code> à requisição GET.");
+define("_MD_LECAT_ERROR_HAS_CLIENT_DATA", "Não foi possível remover esta categoria pois ela está vinculada a outros dados que impedem a sua remoção. Elimine esses vínculos antes de tentar remover esta categoria de novo.");
 define("_MD_LECAT_ERROR_INTRANGE","Entrada incorreta em {0}.");
 define("_MD_LECAT_ERROR_MAX","Entrada {0} com um valor numérico igual ou menor que {1}.");
 define("_MD_LECAT_ERROR_MAXLENGTH","Entrada {0} com {1} ou menos caracteres.");

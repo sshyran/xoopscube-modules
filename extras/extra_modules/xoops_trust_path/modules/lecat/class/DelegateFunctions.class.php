@@ -117,7 +117,10 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 */ 
 	public static function getTitle(/*** string ***/ &$title, /*** string ***/ $catDir, /*** int ***/ $catId)
 	{
-		$title = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId)->get('title');
+		$cat = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
+		if(is_object($cat)){
+			$title = $cat->get('title');
+		}
 	}
 
 	/**
@@ -247,8 +250,13 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	public static function getCatPath(/*** array ***/ &$catPath, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $order='ASC')
 	{
 		$cat = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
-		if($cat){
+		if(is_object($cat)){
 			$cat->loadCatPath();
+			//add current category
+			array_unshift($cat->mCatPath['cat_id'], $cat->get('cat_id'));
+			array_unshift($cat->mCatPath['title'], $cat->get('title'));
+		
+			//sort category path
 			if($order=='ASC' && count($cat->mCatPath)>0){
 				$catPath['cat_id'] = array_reverse($cat->mCatPath['cat_id']);
 				$catPath['title'] = array_reverse($cat->mCatPath['title']);
