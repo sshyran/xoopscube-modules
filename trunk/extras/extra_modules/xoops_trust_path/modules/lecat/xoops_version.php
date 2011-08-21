@@ -21,7 +21,7 @@ require_once LECAT_TRUST_PATH . '/class/LecatUtils.class.php';
 // Define a basic manifesto.
 //
 $modversion['name'] = $myDirName;
-$modversion['version'] = 2.00;
+$modversion['version'] = 2.01;
 $modversion['description'] = _MI_LECAT_DESC_LECAT;
 $modversion['author'] = _MI_LECAT_LANG_AUTHOR;
 $modversion['credits'] = _MI_LECAT_LANG_CREDITS;
@@ -79,6 +79,7 @@ $modversion['templates'] = array(
 	array('file' => '{dirname}_cat_view.html','description' => _MI_LECAT_TPL_CAT_VIEW),
 	array('file' => '{dirname}_default_set.html','description' => _MI_LECAT_TPL_DEFAULT_SET),
 	array('file' => '{dirname}_actor_edit.html','description' => _MI_LECAT_TPL_ACTOR_EDIT),
+	array('file' => '{dirname}_inc_menu.html','description' => 'module menu'),
 ##[/cubson:templates]
 );
 

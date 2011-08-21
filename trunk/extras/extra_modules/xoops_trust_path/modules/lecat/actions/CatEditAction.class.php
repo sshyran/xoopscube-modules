@@ -116,13 +116,16 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 	**/
 	public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
 	{
-		//load Category for Parent Selection
-		$catCriteria=new CriteriaCompo();
-		if($this->mObject->get('cat_id')){
-			$catCriteria->add(new Criteria('cat_id', $this->mObject->get('cat_id'), '!='));
-		}
 		$catHandler = $this->_getHandler();
-		$catArr = $catHandler->getObjects($catCriteria);
+		//load Category for Parent Selection
+		if($this->mObject->get('cat_id')){
+			$catCriteria=new CriteriaCompo();
+			$catCriteria->add(new Criteria('cat_id', $this->mObject->get('cat_id'), '!='));
+			$catArr = $catHandler->getObjects($catCriteria);
+		}
+		else{
+			$catArr = $catHandler->getTree();
+		}
 	
 		//remove descendant categories
 		$deepest = 0;	//the deepest category level in given category's descendant

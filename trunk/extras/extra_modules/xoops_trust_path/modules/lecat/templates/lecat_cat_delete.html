@@ -1,5 +1,7 @@
 <div id="lecat">
-<h3><{$smarty.const._MD_LECAT_LANG_CAT_DELETE}></h3>
+<{include file="db:`$dirname`_inc_menu.html" dirname=$dirname}>
+
+<h1><{$smarty.const._MD_LECAT_LANG_CAT_DELETE}></h1>
 
 <div class="confirm"><{$smarty.const._MD_LECAT_MESSAGE_CONFIRM_DELETE}></div>
 
@@ -25,10 +27,6 @@
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_DESCRIPTION}></th>
         <td class="<{cycle values="odd,even"}>"><{$object->getShow('description')}></td>
-      </tr>
-      <tr>
-        <th class="head"><{$smarty.const._MD_LECAT_LANG_DEPTH}></th>
-        <td class="<{cycle values="odd,even"}>"><{$object->getShow('depth')}></td>
       </tr>
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_WEIGHT}></th>
