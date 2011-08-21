@@ -69,7 +69,7 @@ define('_CLOSE','閉じる');	// Close window
 define('_QUOTEC','引用：');
 
 //%%%%%%	File Name admin.php 	%%%%%
-define('_NOPERM','このエリアへのアクセスは許可されていません。');
+define('_NOPERM','このエリアへのアクセスは、ログイン若しくは許可された権限が必要です。');
 
 //%%%%%		Common Phrases		%%%%%
 define('_NO','いいえ');
@@ -187,11 +187,10 @@ define('_STATUS_PUBLISHED', "承認済み");
 
 //%%%%% Group %%%%%
 define('_GROUP', "グループ");
-define('_MEMBER', "会員");
+define('_MEMBER', "メンバー");
 define('_GROUP_RANK_GUEST', "ゲスト");
 define('_GROUP_RANK_ASSOCIATE', "準会員");
-define('_GROUP_RANK_REGULAR', "正会員");
+define('_GROUP_RANK_REGULAR', "会員");
 define('_GROUP_RANK_STAFF', "スタッフ");
-define('_GROUP_RANK_OWNER', "管理者");
-
+define('_GROUP_RANK_OWNER', "オーナー");
 ?>
