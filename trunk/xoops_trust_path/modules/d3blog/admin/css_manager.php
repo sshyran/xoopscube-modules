@@ -199,7 +199,6 @@ include dirname(__FILE__).'/mymenu.php' ;
 $tpl = new XoopsTpl();
 $tpl->assign( array(
     'mymid' => $myModule->module_id,
-	'myname' => $myModule->module_name,
     'mydirname' => $mydirname4show,
     'mod_url' => XOOPS_URL.'/modules/'.$mydirname4show,
     'xoopsModuleConfig' => $myModule->module_config,

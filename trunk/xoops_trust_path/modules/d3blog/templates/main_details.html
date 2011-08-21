@@ -1,4 +1,6 @@
+<{if $entry.tb_acceptable}>
 <{$entry.embeddedRDF}>
+<{/if}>
 <{include file="db:`$mydirname`_inc_header.html"}>
 <div id="d3blogCommonNavi">
     <ul class="d3blogCatNavi">
@@ -18,13 +20,15 @@
 <{if !$moduleConfig.perm_by_entry or $entry.permed_group}>
 <!-- Trackbacks -->
 <h4 id="d3blogTrackback"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK}></h4>
-    <{if !$moduleConfig.trackback_ticket}>
+    <{if $entry.tb_acceptable}>
+        <{if !$moduleConfig.trackback_ticket}>
 <h5 id="d3blogShowTrackbackURL"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_URL}>
 <span id="d3blogTrackbackURL"><{$entry.trackback_url}></span></h5>
-    <{else}>
+        <{else}>
 <h5 id="d3blogShowTrackbackURL"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_URL}>
 <span id='d3blogGetTrackbackURL'><a href='javascript:getTrackbackValidKey(<{$entry.bid}>)'><{$smarty.const._MD_D3BLOG_LANG_GET_VALID_TRACKBACK_URL_KEY}></a></span>
 <span id="d3blogTrackbackURL"></span></h5>
+        <{/if}>
     <{/if}>
     <{if $entry.trackback}>
         <{if $entry.trackback.outbound}>

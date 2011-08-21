@@ -49,6 +49,7 @@ CREATE TABLE entry (
   trackbacks int(10) NOT NULL default '0',
   approved tinyint(1) NOT NULL default '0',
   notified tinyint(1) NOT NULL default '0',
+  tb_acceptable tinyint(1) NOT NULL default '1',
   published int(10) NOT NULL default '0',
   modified int(10) NOT NULL default '0',
   created int(10) NOT NULL default '0',

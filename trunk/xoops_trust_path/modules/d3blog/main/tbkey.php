@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: tbkey.php 281 2008-02-23 09:49:31Z hodaka $
+ * @version $Id: tbkey.php 642 2010-07-02 16:42:24Z hodaka $
  * @brief Generate trackback sending onetime ticket key
  * @author Takeshi Kuriyama <kuri@keynext.co.jp>
  */
@@ -23,6 +23,11 @@ $entry =& $entry_handler->getEntry($bid);
 if(!$entry)
     exit(responseMessage('No such an entry.', 1));
 
+// is trackback permitted?
+if(!$entry->isTrackbackAcceptable()) {
+    exit(responseMessage('You can\'t post a trackback to this entry', 1));
+}
+
 // generate trackback ticket key
 $tbkey = md5($_SERVER['REMOTE_ADDR'].time().rand());
 $tbkey= substr(base_convert($tbkey, 16, 32),0,12);
@@ -40,7 +45,7 @@ if( !$tb_handler->insert($trackback) ) {
 
 } else {
     // garbage ticket key
-    $percetage = 5;        // perform garbage at 5%(every 20 times) 
+    $percetage = 5;        // perform garbage at 5%(every 20 times)
     $expiration = 3600*24;  // default 1day
     $tb_handler->garbageTrackbackKey($percetage, $expiration);
 

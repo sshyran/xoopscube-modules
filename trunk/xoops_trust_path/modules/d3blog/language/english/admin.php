@@ -103,7 +103,7 @@ define ( '_MD_A_D3BLOG_BTN_DOSYNCHRONIZE', 'Start re-calculate');
 define ( '_MD_A_D3BLOG_CONFIRM_DOIMPORT', 'Are you sure to import database tables?');
 define ( '_MD_A_D3BLOG_CONFIRM_DOCOMIMPORT', 'Are you sure to import comments and notifications?');
 define ( '_MD_A_D3BLOG_CONFIRM_DOSYNCHRONIZE', 'Are you sure to re-caliculate?');
-define ( '_MD_A_D3BLOG_HELP_IMPORTFROM', '<p>Table data are <strong>copied</strong> from importable module. Importable module\'s table data are kept until uninstalling.</p>'.
+define ( '_MD_A_D3BLOG_HELP_IMPORTFROM', '<p>Table data are <strong>copied</strong> from importable module. Import from weblog-1.42, weblogD3, xeblog and d3blog. Importable module\'s table data are kept until uninstalling.</p>'.
     '<p><strong style="padding-right:1em">NOTICE </strong>Configurations of blocks, templates and module preferences are not imported.</p>');
 define('_MD_A_D3BLOG_HELP_COMIMPORT', '<p>Comments and event notifications configs are moved to this module.</p>'.
     '<p><strong style="padding-right:1em">NOTICE </strong>Re-caliculate both this module and export modules.</p>');

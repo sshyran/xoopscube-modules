@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: admin.inc.php 445 2008-05-30 08:21:20Z hodaka $
+ * $Id: admin.inc.php 631 2010-06-23 04:36:31Z hodaka $
  */
 if( ! defined( 'XOOPS_ROOT_PATH' ) ) exit ;
 
@@ -31,9 +31,9 @@ function import_from_weblog( $from_prefix , $import_mid )
     if($res = $db->query("SELECT count(*) as count FROM `$from_table` WHERE 1")) {
         if($re = $db->query("SELECT * FROM `$from_table` WHERE 1")) {
             while($entry = $db->fetchArray($re)) {
-                $excerpt = str_replace(_BL_ENTRY_SEPARATOR_DELIMETER, "[seperator]", $entry['contents']);
-                $excerpt = str_replace(MEMBER_ONLY_READ_DELIMETER, "[seperator]", $excerpt);
-                $arr = preg_split("/((\015\012)|(\015)|(\012))?\[seperator\]((\015\012)|(\015)|(\012))?/", $excerpt );
+                $excerpt = str_replace(_BL_ENTRY_SEPARATOR_DELIMETER, "[separator]", $entry['contents']);
+                $excerpt = str_replace(MEMBER_ONLY_READ_DELIMETER, "[separator]", $excerpt);
+                $arr = preg_split("/((\015\012)|(\015)|(\012))?\[separator\]((\015\012)|(\015)|(\012))?/", $excerpt );
                 $excerpt = array_shift($arr);
                 $body = implode('', $arr);
                 
@@ -110,9 +110,9 @@ function import_from_weblogD3( $from_prefix , $import_mid )
     if($res = $db->query("SELECT count(*) as count FROM `$from_table` WHERE 1")) {
         if($re = $db->query("SELECT * FROM `$from_table` WHERE 1")) {
             while($entry = $db->fetchArray($re)) {
-                $excerpt = str_replace(_BL_ENTRY_SEPARATOR_DELIMETER, "[seperator]", $entry['contents']);
-                $excerpt = str_replace(MEMBER_ONLY_READ_DELIMETER, "[seperator]", $excerpt);
-                $arr = preg_split("/((\015\012)|(\015)|(\012))?\[seperator\]((\015\012)|(\015)|(\012))?/", $excerpt );
+                $excerpt = str_replace(_BL_ENTRY_SEPARATOR_DELIMETER, "[separator]", $entry['contents']);
+                $excerpt = str_replace(MEMBER_ONLY_READ_DELIMETER, "[separator]", $excerpt);
+                $arr = preg_split("/((\015\012)|(\015)|(\012))?\[separator\]((\015\012)|(\015)|(\012))?/", $excerpt );
                 $excerpt = array_shift($arr);
                 $body = implode('', $arr);
 
@@ -495,8 +495,8 @@ function make_excerpt($table)
     if(!$rs = $db->query("SELECT * FROM `$table` WHERE 1"))
         return null;
     while($entry = $db->fetchArray($rs)) {
-        $excerpt = str_replace(_BL_ENTRY_SEPARATOR_DELIMETER, "[seperator]", $entry['contents']);
-        $arr = preg_split("/((\015\012)|(\015)|(\012))?\[seperator\]((\015\012)|(\015)|(\012))?/", $excerpt );
+        $excerpt = str_replace(_BL_ENTRY_SEPARATOR_DELIMETER, "[separator]", $entry['contents']);
+        $arr = preg_split("/((\015\012)|(\015)|(\012))?\[separator\]((\015\012)|(\015)|(\012))?/", $excerpt );
         $excerpt = array_shift($arr);
         $body = implode('', $arr);
 

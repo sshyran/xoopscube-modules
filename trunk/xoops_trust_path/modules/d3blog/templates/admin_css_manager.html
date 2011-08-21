@@ -7,6 +7,8 @@
 <{$smarty.const._MD_A_D3BLOG_HELP_CSSMANAGER}>
 </div>
 
+<h4 class="head"><{$smarty.const._MD_A_D3BLOG_FORMAT_CSS_DIRECTORY|replace:"%s":$css_dir}></h4>
+
 <{if $check_dir}>
 	<{foreach item=msg from=$check_dir}>
 	<div class="errorMsg"><{$msg}></div>

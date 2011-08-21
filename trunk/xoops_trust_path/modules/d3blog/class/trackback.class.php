@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: trackback.class.php 418 2008-04-04 11:10:34Z hodaka $
+ * @version $Id: trackback.class.php 638 2010-06-26 05:31:52Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -54,14 +54,14 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
             $this->setErrors('Could not get contents of '.$this->getVar('trackback_url'));
             return false;
         }
-      
+
         // get trackback identifier
         if (!preg_match('@dc:identifier\s*=\s*["\'](http:[^"\']+)"@i', $contents, $matches)) {
             $this->setErrors('No trackback RDF found in "'.$this->getVar('trackback_url').'".');
             return false;
         }
         $identifier = trim($matches[1]);
-        
+
         // get trackback URI
         if (!preg_match('@trackback:ping\s*=\s*["\'](http:[^"\']+)"@i', $contents, $matches)) {
             $this->setErrors('No trackback URI found in "'.$this->getVar('trackback_url').'".');
@@ -74,7 +74,7 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
             $this->setErrors('URLs mismatch. "'.$this->getVar('trackback_url').'" not equal to "'.$identifier.'".');
             return false;
         }
-        
+
         $this->setVar('trackback_url', $trackbackUrl);
         return true;
     }
@@ -94,13 +94,13 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
             $this->_encoding = mb_detect_encoding( serialize($_POST) );
             mb_convert_variables( $internalEncoding, $this->_encoding, $_POST );
         }
-        
+
         $this->setVars($_POST);
         $this->setVar('trackback_url', '');
         if(!$this->_checkItems()) {
             return false;
         }
-        
+
         return true;
     }
 
@@ -110,13 +110,13 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
         if(is_array($check_items) && in_array('n', $check_items)) {
             return true;
         }
-        
+
         // multibytes characters check
         if(XOOPS_USE_MULTIBYTES == 1 && function_exists('mb_strlen') && in_array('l', $check_items) && $myModule->getConfig('regex_pattern')) {
             $elements = array('title', 'blog_name', 'excerpt');
             $string = mb_convert_encoding($this->_makeString($elements), 'UTF-8');
             $pattern = mb_convert_encoding($myModule->getConfig('regex_pattern'), 'UTF-8');
-            
+
             $matched = '';
             if(preg_match_all("/($pattern)/ux", $string, $matches)) {
                 $matched = join("", $matches[1]);
@@ -134,13 +134,13 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
             $string = $this->_makeString($elements);
             foreach($patterns as $pattern) {
 //                if(false !== stripos($string, $pattern)) {
-                if(preg_match("/$pattern/i", $string)) { 
+                if(preg_match("/$pattern/i", $string)) {
                     $this->setErrors('Your trackback contains a banned word. ');
                     return false;
                 }
             }
         }
-        
+
         // regex check
         if(in_array('r', $check_items) && $myModule->getConfig('regex')) {
             $elements = array('title', 'blog_name', 'excerpt', 'url');
@@ -151,7 +151,7 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
                 return false;
             }
         }
-        
+
         // dnsbl check
         if(in_array('d', $check_items) && $myModule->getConfig('dnsbl')) {
             $dnsbls = preg_split("/[\s]+/", $myModule->getConfig('dnsbl'));
@@ -173,15 +173,15 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
                 unset($blacklist);
             }
         }
-        
+
         // SURBL check
         if(in_array('s', $check_items) && $myModule->getConfig('surbl')) {
             $elements = array('title', 'excerpt', 'blog_name');
             $urls = $this->_extractURLs($this->_makeString($elements));
             if(count($urls) > 0) {
                 $blacklist = new Blacklist();
-                
-                // strip domain prefix to get a domain 
+
+                // strip domain prefix to get a domain
                 $blacklist->buildLookupDomain();
 
                 // check if a domain is ip address
@@ -205,18 +205,18 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
                             }
                         }
                     }
-                }   
+                }
             }
-            unset($blacklist);            
+            unset($blacklist);
         }
-        
+
         // reference check
         if(in_array('f', $check_items)) {
             $references = array(
                 XOOPS_URL.'/modules/'.$this->mydirname_.'/details.php?bid='.$this->getVar('bid'),
                 XOOPS_URL.'/modules/'.$this->mydirname_.'/tb.php/'.$this->tbkey_
             );
-            
+
             // check the remote site
             $contents = $this->_getContents($this->getVar('url'));
             if(!$contents) {
@@ -245,7 +245,7 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
         $fp = fsockopen($parsed_url['host'], 80, $errno, $errstr, $timeout);
 
         if (!$fp) {
-            $this->setErrors('Connection to RPC server ' 
+            $this->setErrors('Connection to RPC server '
                             . htmlspecialchars($rpc_server, ENT_QUOTES) . ':' . 80
                             . ' failed. ' . $errstr);
             return false;
@@ -259,7 +259,7 @@ class d3blogTrackbackObjectBase extends myXoopsObject {
         $updateping_headers = $this->_getUpdatepingHeader($parsed_url, strlen($updateping_body));
         $op  = $updateping_headers . "\r\n\r\n" . $updateping_body;
         if(!fputs($fp, $op, strlen($op))) {
-            $this->setErrors('Transmission to RPC server ' 
+            $this->setErrors('Transmission to RPC server '
                             . htmlspecialchars($rpc_server, ENT_QUOTES) . ':' . 80
                             . ' failed. ');
             return false;
@@ -303,7 +303,7 @@ EOD;
         $headers .= 'Host: ' . $parsed_url['host'] . "\r\n";
         $headers .= "Content-Type: text/xml\r\n";
         $headers .= 'Content-Length: ' . $length;
-        return $headers;        
+        return $headers;
     }
 
     function _extractURLs($string) {
@@ -346,7 +346,7 @@ EOD;
     function _checkItems() {
         foreach(array_keys($this->_data) as $key) {
             if(!isset($this->vars[$key]) || !$this->getVar($key)) {
-                $this->setErrors($key.' is not found in your trackback. '); 
+                $this->setErrors($key.' is not found in your trackback. ');
                 return false;
             }
         }
@@ -366,7 +366,7 @@ EOD;
             $this->setErrors($snoopy->error);
             unset($snoopy);
             return false;
-        }       
+        }
     }
 
     function _interpreteTrackbackResponse($response)
@@ -376,12 +376,12 @@ EOD;
             return false;
         }
         $errorCode = $matches[1];
-        
+
         // Error code 0 means no error.
         if ($errorCode == 0) {
             return true;
         }
-        
+
         if (!preg_match('@<message>([^<]+)</message>@', $response, $matches)) {
             $this->setErrors('Error code '.$errorCode.', no message received.');
         }
@@ -394,13 +394,13 @@ EOD;
 
 class d3blogTrackbackObjectHandlerBase extends myXoopsObjectHandler
 {
-    var $mydirname_; 
+    var $mydirname_;
     var $filter_;
 
-    function d3blogTrackbackObjectHandlerBase($db,$classname=null) { 
-        parent::myXoopsObjectHandler($db,$classname); 
-        $this->mydirname_ = '';   
-    } 
+    function d3blogTrackbackObjectHandlerBase($db,$classname=null) {
+        parent::myXoopsObjectHandler($db,$classname);
+        $this->mydirname_ = '';
+    }
 
     function getId() {
         if (array_key_exists('PATH_INFO', $_SERVER)) {
@@ -421,42 +421,42 @@ class d3blogTrackbackObjectHandlerBase extends myXoopsObjectHandler
         }
         return str_replace("\0", "", $id);
     }
-    
+
 
 
     function getDefaultCriteria() {
         // get a default trackback criteria thru filter
         $this->filter_ = call_user_func(array($this->mydirname_.'TrackbackFilter', 'getInstance'));
         $criteria =& $this->filter_->getDefaultCriteria();
-        return $criteria;           
+        return $criteria;
     }
 
     function getCriteria() {
         // get trackback criteria thru filter
         $this->filter_ = call_user_func(array($this->mydirname_.'TrackbackFilter', 'getInstance'));
         $criteria =& $this->filter_->getCriteria();
-        return $criteria;           
+        return $criteria;
     }
 
-    function getTrackback($bid, $direction=null, $as_object=false) {
+    function getTrackback($bid, $boundfor=null, $as_object=false) {
         $myModule = call_user_func(array($this->mydirname_, 'getInstance'));
         $return = array();
-        
+
         if(empty($bid))
             return $return;
 
-        $this->filter_ = call_user_func(array($this->mydirname_.'TrackbackFilter', 'getInstance'));        
-        $criteria = $this->filter_->getCriteria(); 
+        $this->filter_ = call_user_func(array($this->mydirname_.'TrackbackFilter', 'getInstance'));
+        $criteria = $this->filter_->getCriteria();
 
-        $criteria->add(new criteria('bid', intval($bid))); 
+        $criteria->add(new criteria('bid', intval($bid)));
 
-        if($direction)
-            $criteria->add(new criteria('direction', intval($direction)));            
+        if($boundfor)
+            $criteria->add(new criteria('direction', intval($boundfor)));
         else
             $criteria->add(new criteria('direction', '0', '<>'));
-        
+
         $objs =& $this->getObjects($criteria);
-     
+
         if(count($objs)) {
             foreach($objs as $obj) {
                 $direction = $obj->getVar('direction')==1? 'outbound' : 'inbound';
@@ -467,12 +467,12 @@ class d3blogTrackbackObjectHandlerBase extends myXoopsObjectHandler
                 }
             }
         }
-        return $return;  
+        return $return;
     }
 
     function getByTbkey($id) {
         $myts =& d3blogTextSanitizer:: getInstance();
-        $criteria = new criteriaCompo(new criteria('tbkey', $myts->addSlashes($id)));    
+        $criteria = new criteriaCompo(new criteria('tbkey', $myts->addSlashes($id)));
         return $this->getOne($criteria);
     }
 
@@ -498,13 +498,13 @@ class d3blogTrackbackObjectHandlerBase extends myXoopsObjectHandler
 <title>%s</title>
 <link>%s</link>
 <description>%s</description>
-</item>      
+</item>
 EOF;
             foreach($rss['items'] as $r) {
                 $items .= sprintf($item, $r['title'], $r['url'], $r['excerpt']);
             }
         }
-        
+
         $res = <<<EOD
 <?xml version="1.0" encoding="%s"?>
 <response>

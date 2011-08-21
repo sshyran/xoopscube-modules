@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: modinfo.php 622 2009-09-06 17:23:01Z hodaka $
+ * @version $Id: modinfo.php 624 2010-02-15 07:43:09Z hodaka $
  * @author kuri <kuri@keynext.co.jp>
  */
 

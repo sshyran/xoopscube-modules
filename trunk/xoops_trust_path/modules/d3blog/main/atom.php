@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: atom.php 565 2008-12-22 17:54:19Z hodaka $
+ * @version $Id: atom.php 664 2010-10-20 13:56:43Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -9,6 +9,10 @@ if(!$currentUser->blog_perm_view()) {
     exit(d3blog_responseError("Sorry, you don't have permission to get atom feed", 1));
 }
 
+// mbstring
+if(function_exists('mb_http_output'))
+    mb_http_output('pass');
+
 require_once(XOOPS_ROOT_PATH.'/class/template.php');
 $myModule = call_user_func(array($mydirname, 'getInstance'));
 
@@ -16,16 +20,14 @@ $entry_handler =& $myModule->getHandler('entry');
 $cat_handler =& $myModule->getHandler('category');
 $all_categories =& $cat_handler->getAll();
 
-$myts =& d3blogTextSanitizer::getInstance();
+$myts =& MyTextSanitizer::getInstance();
 //$mydirname4show = $myts->htmlSpecialChars($mydirname);
 
-header ('Content-Type:text/xml; charset=utf-8');
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2);
-$tpl->xoops_setCacheTime(10);
+$tpl->xoops_setCacheTime(0);
 
-if (!$tpl->is_cached("db:{$mydirname}_main_atom.xml")) {
-
+if(!$tpl->is_cached("db:{$mydirname}_main_atom.xml")) {
     // Meta tags
     $xoopsConfigMetaFooter = array();
     $config_handler =& xoops_gethandler('config');
@@ -41,7 +43,7 @@ if (!$tpl->is_cached("db:{$mydirname}_main_atom.xml")) {
 
     $feed['lang'] = _LANGCODE;
     $feed['subtitle'] = xoops_convert_encoding($myts->htmlSpecialChars($xoopsConfig['sitename'].'-'.$xoopsConfig['slogan']));
-    $feed['title'] = xoops_convert_encoding($myModule->module_name);
+    $feed['title'] = xoops_convert_encoding($myts->htmlSpecialChars($myModule->module_name, ENT_QUOTES));
     $feed['link'] = $feed['generator_url'] = xoops_convert_encoding($myts->htmlSpecialChars(XOOPS_URL.'/'));
     $feed['link_self'] = xoops_convert_encoding($myts->htmlSpecialChars(XOOPS_URL."/modules/$mydirname/index.php?page=atom"));
     preg_match('@^(?:http://)?([^/]+)@i', XOOPS_URL, $matches);
@@ -69,7 +71,7 @@ if (!$tpl->is_cached("db:{$mydirname}_main_atom.xml")) {
     foreach($entries as $entry) {
         $category =& $all_categories[$entry->cid()];
         $arr =& $entry->getStructure();
-        $item['title'] = xoops_convert_encoding($entry->getVar('title'));
+        $item['title'] = xoops_convert_encoding(htmlspecialchars($entry->getVar('title', 'n'), ENT_QUOTES));
         $item['link'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, $mydirname4show, $entry->bid());
         $item['tag_url'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, $mydirname4show, $entry->bid());
         $item['modified'] = d3blog_iso8601_date($entry->modified());
@@ -77,15 +79,17 @@ if (!$tpl->is_cached("db:{$mydirname}_main_atom.xml")) {
         $item['created'] = d3blog_iso8601_date($entry->created());
         $item['category'] = xoops_convert_encoding($category->getVar('name'));
         $item['blogger'] = xoops_convert_encoding($arr['blogger']['uname']);
-        $item['excerpt'] = xoops_convert_encoding($entry->pingExcerpt(0));
+        $item['excerpt'] = xoops_convert_encoding($entry->pingExcerpt());
         $item['contents'] = xoops_convert_encoding($entry->renderContents(false));
-        $item['contentsStripped'] = xoops_convert_encoding($entry->renderContents(true));
+        $item['contentsStripped'] = xoops_convert_encoding($entry->renderContents());
         $items[] = $item;
         unset($arr);
     }
 
     $tpl->assign('feed', $feed);
     $tpl->assign('entries', $items);
-    $tpl->display("db:{$mydirname}_main_atom.xml");
 }
+
+header ('Content-Type:text/xml; charset=utf-8');
+$tpl->display("db:{$mydirname}_main_atom.xml");
 ?>

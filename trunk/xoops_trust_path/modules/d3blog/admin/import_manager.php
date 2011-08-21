@@ -140,7 +140,6 @@ include dirname(__FILE__).'/mymenu.php' ;
 $tpl = new XoopsTpl() ;
 $tpl->assign( array(
     'mymid' => $mymid,
-	'myname' => $myModule->module_name,
     'mydirname' => htmlspecialchars($mydirname, ENT_QUOTES) ,
     'mod_url' => XOOPS_URL.'/modules/'.htmlspecialchars($mydirname, ENT_QUOTES) ,
     'import_from_options' => $importable_modules ,

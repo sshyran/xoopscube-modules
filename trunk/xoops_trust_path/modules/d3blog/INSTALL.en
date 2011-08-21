@@ -1,4 +1,4 @@
-/* $Id: INSTALL.en 620 2009-08-29 01:21:28Z hodaka $ */
+/* $Id: INSTALL.en 630 2010-06-22 16:11:25Z hodaka $ */
 
 == INSTALL ==
 
@@ -40,7 +40,7 @@
 
 == UPGRADE ==
 
-１．v1.00 => v1.01
+1．v1.00 => v1.01
     1) Delete all the d3blog files in both root-side and trust-side before uploading.
 
     2) Update a module.
