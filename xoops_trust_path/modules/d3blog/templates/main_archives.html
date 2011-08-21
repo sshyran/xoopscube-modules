@@ -44,7 +44,7 @@
 	<{foreach item=entry from=$entries}>
 <tr class="<{cycle values="even, odd"}>">
 	<td><{$entry.category.name}></td>
-	<td><{$entry.publish_date}></td>
+	<td><{$entry.published|formatTimestamp:"Y-m-d"}></td>
 	<td><a href="<{$mod_url}>/details.php?bid=<{$entry.bid}><{if $filter.uid_}>&amp;uid=<{$filter.uid_}><{/if}><{if $filter.cid_}>&amp;cid=<{$filter.cid_}><{/if}><{if $filter.date_}>&amp;date=<{$filter.date_}><{/if}>" title="<{$smarty.const._MD_D3BLOG_LANG_LINK_TO_PAGE_OF|replace:'%s':$entry.title}>"><{$entry.title}></a></td>
 	<td><{$entry.summary}></td>
 		<{if $bloggers > 1}>

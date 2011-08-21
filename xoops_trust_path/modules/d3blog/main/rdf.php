@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: rdf.php 565 2008-12-22 17:54:19Z hodaka $
+ * @version $Id: rdf.php 664 2010-10-20 13:56:43Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -9,15 +9,18 @@ if(!$currentUser->blog_perm()) {
     exit(d3blog_responseError("Sorry, you don't have permission to get atom feed", 1));
 }
 
+// mbstring
+if(function_exists('mb_http_output'))
+    mb_http_output('pass');
+
 require_once(XOOPS_ROOT_PATH.'/class/template.php');
 $entry_handler =& $myModule->getHandler('entry');
 
-$myts =& d3blogTextSanitizer::getInstance();
+$myts =& MyTextSanitizer::getInstance();
 
-header ('Content-Type:text/xml; charset=utf-8');
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2);
-$tpl->xoops_setCacheTime(10);
+$tpl->xoops_setCacheTime(0);
 
 if (!$tpl->is_cached("db:{$mydirname}_main_rdf.xml")) {
     // Meta tags
@@ -35,7 +38,7 @@ if (!$tpl->is_cached("db:{$mydirname}_main_rdf.xml")) {
 
     $feed['language'] = _LANGCODE;
     $feed['description'] = xoops_convert_encoding(htmlspecialchars($xoopsConfig['sitename'].'-'.$xoopsConfig['slogan'], ENT_QUOTES));
-    $feed['title'] = xoops_convert_encoding($myModule->module_name);
+    $feed['title'] = xoops_convert_encoding(htmlspecialchars($myModule->module_name, ENT_QUOTES));
     $feed['link'] = sprintf('%s/modules/%s/index.php', XOOPS_URL, $mydirname4show);
     $feed['creater'] = xoops_convert_encoding(htmlspecialchars($xoopsConfigMetaFooter['meta_author'], ENT_QUOTES));
 
@@ -51,13 +54,13 @@ if (!$tpl->is_cached("db:{$mydirname}_main_rdf.xml")) {
     $entries =& $entry_handler->getObjects($criteria);
 
     foreach($entries as $entry) {
-        $item['title'] = xoops_convert_encoding($entry->title());
+        $item['title'] = xoops_convert_encoding(htmlspecialchars($entry->getVar('title', 'n'), ENT_QUOTES));
         $item['link'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, $mydirname4show, $entry->bid());
         $item['date'] = d3blog_iso8601_date($entry->published());
         // blogger's info
         $blogger = $entry->blogger();
         $item['creater'] = xoops_convert_encoding($blogger->getVar('uname'));
-        $item['description'] = xoops_convert_encoding($entry->pingExcerpt(0));
+        $item['description'] = xoops_convert_encoding($entry->pingExcerpt());
         $items[] = $item;
     }
 
@@ -65,6 +68,8 @@ if (!$tpl->is_cached("db:{$mydirname}_main_rdf.xml")) {
     $tpl->assign('entries', $items);
     $tpl->assign('mydirname', $mydirname4show);
     $tpl->assign('mod_url', sprintf("%s/modules/%s", XOOPS_URL, $mydirname4show));
-    $tpl->display("db:{$mydirname}_main_rdf.xml");
 }
+
+header ('Content-Type:text/xml; charset=utf-8');
+$tpl->display("db:{$mydirname}_main_rdf.xml");
 ?>

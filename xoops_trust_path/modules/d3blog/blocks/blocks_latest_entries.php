@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: blocks_latest_entries.php 566 2008-12-22 18:01:08Z hodaka $
+ * @version $Id: blocks_latest_entries.php 645 2010-07-04 02:05:32Z hodaka $
  * @author Takeshi Kuriyama <kuri@keynext.co.jp>
  * @copyright (c) 2007 by Takeshi Kuriyama <kuri@keynext.co.jp>
  */
@@ -27,7 +27,7 @@ function b_d3blog_latest_entries_show($options) {
     $mydirname4show = htmlspecialchars($mydirname, ENT_QUOTES);
 
     $max_entries = !empty($options[1])? intval($options[1]) : 5;
-    $title_max_size = !empty($options[2])? intval($options[2]) : 25;
+    $title_max_size = !empty($options[2])? intval($options[2]) : 0;
     $date_format = !empty($options[3])? trim($options[3]) : 'Y/m/d';
     $block_type = !empty($options[4])? intval($options[4]) : 1;
     $show_contents = !empty($options[5])? intval($options[5]) : 0;
@@ -42,8 +42,8 @@ function b_d3blog_latest_entries_show($options) {
 
     $block = array();
 
-    // CURRENT USER'S INFO 
-    global $currentUser; 
+    // CURRENT USER'S INFO
+    global $currentUser;
 
     if($currentUser->blog_perm_view($myModule->module_id)) {
         $entry_handler =& $myModule->getHandler('entry');
@@ -73,24 +73,24 @@ function b_d3blog_latest_entries_show($options) {
         } else {
             $objs =& $entry_handler->getObjects($criteria);
         }
-        
+
         $entries = array();
         $first = true;
         $cat_handler =& $myModule->getHandler('category');
         $catall =& $cat_handler->getAll();
 
         $myts =& MyTextSanitizer::getInstance();
-        
+
         foreach($objs as $obj) {
             $entry = $obj->getStructure();
             // shorten title
-            if(strlen($entry['title']) > $title_max_size) {
+            if($title_max_size > 0 && strlen($entry['title']) > $title_max_size) {
                 $entry['title'] = xoops_substr($entry['title'], 0, ($title_max_size -1)) ;
             }
-        
+
             // date format
             $entry['date'] = formatTimestamp($entry['published'], $date_format);
-        
+
             unset($entry['contents']);
             // contents
             if($show_contents) {
@@ -102,7 +102,7 @@ function b_d3blog_latest_entries_show($options) {
                         if($show_contents == 2) {
                             $contents .= "\n".$body;
                         } elseif($show_contents == 1) {
-                            $entry['readMore'] = 1;                         
+                            $entry['readMore'] = 1;
                         }
                     }
                     // truncate ? then strip tags

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: tb.php 398 2008-03-26 02:20:50Z hodaka $
+ * @version $Id: tb.php 642 2010-07-02 16:42:24Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -27,14 +27,14 @@ switch( $_SERVER['REQUEST_METHOD'] ) {
 
 case 'GET':
 default:
-    if($myModule->getConfig('trackback_ticket')) {  
+    if($myModule->getConfig('trackback_ticket')) {
         // get blog ID when a ticket url system is on.
         if(preg_match("/^[0-9a-z]+$/", $id) && strlen($id) == 12) {
             // get bid
             $obj =& $tb_handler->getByTbkey($id);
             if(!$obj) {
                 exit(d3blog_responseError('No such key id found. Re-get trackback ticket.', 1));
-            }       
+            }
             $bid = $obj->getVar('bid');
         } else {
             $bid = intval($id);
@@ -46,6 +46,12 @@ default:
     $entry =& $entry_handler->getEntry($bid, false);
     if(!$entry) {
         exit(d3blog_responseError('No such blog entry found', 1));
+    }
+
+    // is trackback permitted?
+    if(!$entry->isTrackbackAcceptable()) {
+        header('Location:' . sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, $mydirname, $bid )) ;
+        exit;
     }
 
     if( isset($_GET['__mode']) && $_GET['__mode'] == "rss" ) {
@@ -93,6 +99,11 @@ case 'POST':
         exit(d3blog_responseError('No such blog entry found', 1));
     }
 
+    // is trackback permitted?
+    if(!$entry->isTrackbackAcceptable()) {
+        exit(d3blog_responseError('You can\'t post a trackback to this entry', 1));
+    }
+
     if(!isset($trackback)) {
         $trackback =& $tb_handler->create();
     }
@@ -106,7 +117,7 @@ case 'POST':
     } else {
         $trackback->setVar('approved', 1);
     }
-    
+
     // receive trackback
     if(!$trackback->receive()) {
         exit(d3blog_responseError(implode('',$trackback->getErrors()), 1));
@@ -146,7 +157,7 @@ case 'POST':
         // notify
         $notification_handler->triggerEvent('global', 0, 'trackback', $tags);
         $notification_handler->triggerEvent('entry', $bid, 'trackback', $tags);
-        
+
         // increment trackback count
         $entry->synchronizeTrackbacks();
         $entry_handler->insert($entry);

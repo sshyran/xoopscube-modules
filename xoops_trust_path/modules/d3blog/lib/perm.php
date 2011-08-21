@@ -391,7 +391,9 @@ class myXoopsGroupPermObject extends myXoopsObject
 {
     function myXoopsGroupPermObject($id=null)
     {
-        parent::myXoopsObject($id);
+        
+		//parent::myXoopsObject($id);
+		$id = new myXoopsObject(); // Gigamaster  27.07.2011
         $this->initVar('gperm_id',XOBJ_DTYPE_INT,0,false);
         $this->initVar('gperm_groupid',XOBJ_DTYPE_INT,0,false);
         $this->initVar('gperm_itemid',XOBJ_DTYPE_INT,0,false);

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: xmobile.inc.php 494 2008-07-29 07:33:46Z hodaka $
+ * @version $Id: xmobile.inc.php 631 2010-06-23 04:36:31Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -585,7 +585,7 @@ class XmobileD3blogPluginHandlerBase extends XmobilePluginHandler
                 $entry->setVar('notified', $this->d3blogPerm($user, 'blog_autoapprove')? 1 : 0);
                 $entry->setVar('cid', $cat_id);
                 $entry->setVar('title', $title);
-                // divide contents into excerpt and body by seperator
+                // divide contents into excerpt and body by separator
                 $entry->divideContents($contents);
                 $entry->setVar('groups', '|'.implode('|', is_array($myModule->getConfig('default_groups'))? $myModule->getConfig('default_groups') : array('1')).'|');
 
@@ -615,7 +615,7 @@ class XmobileD3blogPluginHandlerBase extends XmobilePluginHandler
                     $entry->setVar('modified', time());
                     $entry->setVar('cid', $cat_id);
                     $entry->setVar('title', $title);
-                    // divide contents into excerpt and body by seperator
+                    // divide contents into excerpt and body by separator
                     $entry->divideContents($contents);
 
                     if(False != $entry_handler->insert($entry)) {

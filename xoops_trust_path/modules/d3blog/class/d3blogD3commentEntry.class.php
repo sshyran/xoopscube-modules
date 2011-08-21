@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: d3blogD3commentEntry.class.php 570 2009-01-27 14:57:21Z hodaka $
+ * @version $Id: d3blogD3commentEntry.class.php 624 2010-02-15 07:43:09Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  * @package a class for d3forum comment integration
  */
@@ -14,30 +14,33 @@ function fetchSummary( $external_link_id )
     $db =& Database::getInstance();
 
     $return = array();
-    
+
     if( preg_match( '/[^0-9a-zA-Z_-]/' , $this->mydirname ) ) die( 'Invalid mydirname' );
 
     $mydirname = $this->mydirname;  // just to get module instance
     require_once dirname(dirname(__FILE__)).'/include/prepend.inc.php';
     $myModule = call_user_func(array($mydirname, 'getInstance'));
 
-	// PERMISSION
+    // PERMISSION
     global $currentUser;
     if($currentUser->blog_perm($myModule->module_id) < D3BLOG_CAN_VIEW) {
-        return $return;
+        redirect_header(XOOPS_URL.'/user.php',3,_NOPERM);
+        exit();
     }
-	
-    $entry_handler =& $myModule->getHandler('entry');
-    $criteria = new criteriaCompo(new criteria('bid', intval($external_link_id)));
-    $entry = $entry_handler->getOne($criteria);
 
-    if(is_object($entry)){
-        $return['dirname'] = htmlspecialchars($mydirname, ENT_QUOTES);
-        $return['module_name'] = $myModule->module_name;
-        $return['uri'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, htmlspecialchars($mydirname, ENT_QUOTES), intval($external_link_id));  
-        $return['subject'] = $entry->title();
-        $return['summary'] = $entry->pingExcerpt();
+    $entry_handler =& $myModule->getHandler('entry');
+    $entry =& $entry_handler->getEntry(intval($external_link_id), false);
+
+    if(!is_object($entry)) {
+        redirect_header(XOOPS_URL.'/user.php',3,_NOPERM);
+        exit();
     }
+
+    $return['dirname'] = htmlspecialchars($mydirname, ENT_QUOTES);
+    $return['module_name'] = $myModule->module_name;
+    $return['uri'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, htmlspecialchars($mydirname, ENT_QUOTES), intval($external_link_id));
+    $return['subject'] = $entry->title();
+    $return['summary'] = $entry->pingExcerpt();
 
     return $return;
 }
@@ -55,7 +58,7 @@ function validate_id($link_id)
     $myModule = call_user_func(array($mydirname, 'getInstance'));
     $entry_handler =& $myModule->getHandler('entry');
     $entry =& $entry_handler->getEntry(intval($link_id), false);
-    
+
     if(is_object($entry))
         return intval($link_id);
     else

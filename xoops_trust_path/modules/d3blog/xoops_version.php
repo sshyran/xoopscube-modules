@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: xoops_version.php 622 2009-09-06 17:23:01Z hodaka $
+ * @version $Id: xoops_version.php 664 2010-10-20 13:56:43Z hodaka $
  * @brief dupulicatable(v3) blog module
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  * @copyright Copyrighted (c) 2007 by Takeshi Kuriyama <kuri@keynext.co.jp>
@@ -17,7 +17,7 @@ $constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 $modversion['name'] = constant($constpref.'_BASIC_MODULE_NAME');
 $modversion['description'] = constant($constpref.'_BASIC_MODULE_NAME_DSC');
-$modversion['version'] = 1.05;
+$modversion['version'] = 1.08;
 $modversion['author'] = "T.Kuriyama <kuri@keynext.co.jp>";
 $modversion['credits'] = "www.kuri3.net";
 $modversion['help'] = "{$mydirname}_help.html";
@@ -183,14 +183,14 @@ $modversion['config'][$k]['title'] = $constpref.'_LOGOPATH';
 $modversion['config'][$k]['description'] = $constpref.'_LOGOPATH_DSC';
 $modversion['config'][$k]['formtype'] = 'textbox';
 $modversion['config'][$k]['valuetype'] = 'text';
-$modversion['config'][$k]['default'] = XOOPS_ROOT_PATH.'/images/logo.png';
+$modversion['config'][$k]['default'] = XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/images/logo.gif';
 $k++;
 $modversion['config'][$k]['name'] = 'categoryicon_path';
 $modversion['config'][$k]['title'] = $constpref.'_CAT_ICON';
 $modversion['config'][$k]['description'] = $constpref.'_CAT_ICON_DSC';
 $modversion['config'][$k]['formtype'] = 'textbox';
 $modversion['config'][$k]['valuetype'] = 'text';
-$modversion['config'][$k]['default'] = XOOPS_ROOT_PATH.'/uploads/categories/'.$mydirname.'';
+$modversion['config'][$k]['default'] = XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/images/caticon';
 $k++;
 $modversion['config'][$k]['name'] = 'wysiwyg_editor';
 $modversion['config'][$k]['title'] = $constpref.'_WYSIWYG';

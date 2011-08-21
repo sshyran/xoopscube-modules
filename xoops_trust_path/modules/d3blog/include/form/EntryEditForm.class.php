@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: EntryEditForm.class.php 558 2008-12-10 01:04:16Z hodaka $
+ * @version $Id: EntryEditForm.class.php 642 2010-07-02 16:42:24Z hodaka $
  * @author Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -19,12 +19,13 @@ class EntryEditForm extends myActionFormEx
     var $dobr_;
     var $approved_;
     var $notified_;
+    var $tb_acceptable_;
     var $published_;
     var $created_;
     var $uid_;
     var $groups_;
     // extra
-	var $groupids_;    // just used in the submit.html tpl
+    var $groupids_;    // just used in the submit.html tpl
     var $contents_;
     var $publishable_ = false;
     var $update_ping_ = false;
@@ -43,7 +44,7 @@ class EntryEditForm extends myActionFormEx
     var $mydirname_;
 
     function EntryEditForm($dirname) {
-    	parent::myActionFormEx();
+        parent::myActionFormEx();
         $this->mydirname_ = $dirname;
     }
 
@@ -51,14 +52,14 @@ class EntryEditForm extends myActionFormEx
         global $currentUser, $xoopsGTicket;
         $myModule = call_user_func(array($this->mydirname_, 'getInstance'));
         $myts =& MyTextSanitizer::getInstance();
-        
+
         if ( ! $xoopsGTicket->check(true,'d3blog_admin') ) {
             redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
             exit;
         }
 
         $this->bid_ = intval(@$_POST['bid']);
-        
+
         $this->cid_ = intval(@$_POST['cid']);
         if(!$this->cid_) {
             $this->addError(_MD_D3BLOG_ERROR_CATEGORY_REQUIRED);
@@ -102,14 +103,15 @@ class EntryEditForm extends myActionFormEx
         }
         $this->groups_ = array();
         if(is_array($groups)) {
-        	foreach($groups as $group) {
- 	        	$this->groups_[] = intval($group); 	
-        	}
+            foreach($groups as $group) {
+                 $this->groups_[] = intval($group);
+            }
         }
-		$this->groupids_ = array_flip($this->groups_);
-		array_walk($this->groupids_, create_function('&$v,$k', '$v = 1;'));   // reset all values true 
+        $this->groupids_ = array_flip($this->groups_);
+        array_walk($this->groupids_, create_function('&$v,$k', '$v = 1;'));   // reset all values true
 
         // trackback related
+        $this->tb_acceptable_ = isset($_POST['tb_acceptable'])? 1 : 0;
         $this->autodiscovery_ = isset($_POST['autodiscovery'])? true : false;
         $this->trackback_url_ = @($_POST['trackback_url']);
         $this->tb_url_ = @($_POST['tb_url']);
@@ -128,10 +130,10 @@ class EntryEditForm extends myActionFormEx
             foreach($configUrls as $ukey=>$url) {
                 $this->updateping_urls_[$ukey]['url'] = $url;
                 if($u < $max_urls && isset($updateping_urls) && in_array($ukey, $updateping_urls)) {
-                    $this->updateping_urls_[$ukey]['selected'] = 1; 
+                    $this->updateping_urls_[$ukey]['selected'] = 1;
                     $u++;
                 } else {
-            	   $this->updateping_urls_[$ukey]['selected'] = 0;
+                   $this->updateping_urls_[$ukey]['selected'] = 0;
                 }
             }
         }
@@ -152,6 +154,7 @@ class EntryEditForm extends myActionFormEx
         $this->dobr_ = $master->getVar ( 'dobr', 'e' );
         $this->approved_ = $master->getVar ( 'approved', 'e' );
         $this->notified_ = $master->getVar ( 'notified', 'e' );
+        $this->tb_acceptable_ = $master->getVar ( 'tb_acceptable', 'e' );
         $this->published_ = $master->getVar ( 'published', 'e' ) + $currentUser->getTimeoffset();
         $this->uid_ = $master->getVar ( 'uid', 'e' );
 
@@ -169,7 +172,7 @@ class EntryEditForm extends myActionFormEx
                 if($u < $max_urls) {
                     $this->updateping_urls_[$u]['selected'] = 1;
                 } else {
-            	   $this->updateping_urls_[$u]['selected'] = 0;
+                   $this->updateping_urls_[$u]['selected'] = 0;
                 }
                 $u++;
             }
@@ -186,12 +189,13 @@ class EntryEditForm extends myActionFormEx
         $master->setVar ( 'doxcode', $this->doxcode_ );
         $master->setVar ( 'doimage', $this->doimage_ );
         $master->setVar ( 'dobr', $this->dobr_ );
+        $master->setVar ( 'tb_acceptable', $this->tb_acceptable_ );
         if($master->getVar('approved') != $this->approved_)
             $master->setVar ( 'approved', $this->approved_ );
         $master->setVar ( 'published', $this->published_ - $currentUser->getTimeoffset());
         $master->setVar ( 'groups', '|'.implode('|', $this->groups_).'|' );
 
-        // divide contents into excerpt and body by seperator
+        // divide contents into excerpt and body by separator
         $master->divideContents($this->contents_);
 
         // blogger's info
@@ -210,7 +214,7 @@ class EntryEditForm extends myActionFormEx
         $this->pingdata_['blog_topurl'] = sprintf('%s/modules/%s/index.php', XOOPS_URL, $this->mydirname_);
         $this->pingdata_['url'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, $this->mydirname_, $master->bid());
         $this->pingdata_['trackback_url'] = $master->trackbackUrl();
-        $this->pingdata_['excerpt'] = $master->pingExcerpt();    	
+        $this->pingdata_['excerpt'] = $master->pingExcerpt();
     }
 
 }

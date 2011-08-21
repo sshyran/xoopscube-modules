@@ -1,14 +1,14 @@
 <?php
 /**
- * @version $Id: onupdate.php 445 2008-05-30 08:21:20Z hodaka $
+ * @version $Id: onupdate.php 642 2010-07-02 16:42:24Z hodaka $
  */
 
-eval( ' function xoops_module_update_'.$mydirname.'( $module ) { return d3blog_onupdate_base( $module , "'.$mydirname.'" ) ; } ' ) ;
+eval( ' function xoops_module_update_'.$mydirname.'( $module, $current_version ) { return d3blog_onupdate_base( $module, $current_version, "'.$mydirname.'" ) ; } ' ) ;
 
 
 if( ! function_exists( 'd3blog_onupdate_base' ) ) {
 
-function d3blog_onupdate_base( $module , $mydirname )
+function d3blog_onupdate_base( $module, $current_version, $mydirname )
 {
     // transations on module update
 
@@ -40,7 +40,7 @@ function d3blog_onupdate_base( $module , $mydirname )
             $asql = "ALTER TABLE ".$db->prefix($mydirname.'_entry')." ADD `groups` text NOT NULL AFTER `dobr`";
             if($db->queryF($asql)) {
                 $msgs[] = 'Database table <strong>entry</strong> succefully altered.</span>';
-                
+
                 $entry_handler = call_user_func(array($mydirname, 'getHandler'), 'entry');
                 $objs =& $entry_handler->getObjects();
                 if(count($objs)) {
@@ -57,7 +57,7 @@ function d3blog_onupdate_base( $module , $mydirname )
                 $msgs[] = '<span style="color:#ff0000;">ERROR: Failed to alter entry table structure.</span>';
             }
         } else {    // ->v1.02
-        	$sql = "DESCRIBE ".$db->prefix($mydirname.'_entry')." `groups`";
+            $sql = "DESCRIBE ".$db->prefix($mydirname.'_entry')." `groups`";
             if($res = $db->query($sql)) {
                 if($row = $db->fetchRow($res)) {
                     if(preg_match("/^varchar(.*)$/", $row[1])) {
@@ -77,7 +77,7 @@ function d3blog_onupdate_base( $module , $mydirname )
                             }
                             $msgs[] = 'Database table <strong>entry</strong> succefully altered.</span>';
                         } else {
-                        	$msgs[] = '<span style="color:#ff0000;">ERROR: Failed to alter entry table structure, groups.</span>';
+                            $msgs[] = '<span style="color:#ff0000;">ERROR: Failed to alter entry table structure, groups.</span>';
                         }
                     }
                 }
@@ -88,49 +88,62 @@ function d3blog_onupdate_base( $module , $mydirname )
     // -> 1.0.2
     $sql = "SHOW COLUMNS FROM ".$db->prefix($mydirname.'_entry')." LIKE 'doimage'";
     if($res = $db->query($sql)) {
-    	if(!$row =$db->fetchRow($res)) {
+        if(!$row =$db->fetchRow($res)) {
             $altsql = "ALTER TABLE ".$db->prefix($mydirname."_entry")." ADD `doxcode` TINYINT( 1 ) UNSIGNED NOT NULL default '1' AFTER `dohtml`, ADD `doimage` TINYINT( 1 ) UNSIGNED NOT NULL DEFAULT '1' AFTER `doxcode`";
             if(!$db->queryF($altsql)) {
-            	$msgs[] = '<span style="color:#ff0000;">ERROR: Failed to alter entry table structure, doxcode and doimage.</span>';
+                $msgs[] = '<span style="color:#ff0000;">ERROR: Failed to alter entry table structure, doxcode and doimage.</span>';
             } else {
                 $msgs[] = 'Database table <strong>entry</strong>, columns of doxcode and doimage succefully added.</span>';
             }
         }
     }
-  
+
+    // -> 1.07
+    $sql = "SHOW COLUMNS FROM ".$db->prefix($mydirname.'_entry')." LIKE 'tb_acceptable'";
+    if($res = $db->query($sql)) {
+        if(!$row =$db->fetchRow($res)) {
+            $altsql = "ALTER TABLE ".$db->prefix($mydirname."_entry")." ADD `tb_acceptable` TINYINT( 1 ) UNSIGNED NOT NULL default '1' AFTER `notified`";
+            if(!$db->queryF($altsql)) {
+                $msgs[] = '<span style="color:#ff0000;">ERROR: Failed to alter entry table structure, column of tb_acceptable.</span>';
+            } else {
+                $msgs[] = 'Database table <strong>entry</strong>, columns of tb_acceptable succefully added.</span>';
+            }
+        }
+    }
+
 /*    // v1.0x -> v1.10
     $sql = "SHOW COLUMNS FROM ".$db->prefix($mydirname.'_comment')." LIKE 'user_name'";
     $res = $db->query($sql);
     if(!$res) {
-    	// d3blog -> d3blogEx
-    	$sql = "CREATE TABLE IF NOT EXISTS ".$db->prefix($mydirname.'_comment')."(";
-    	$sql .= "`com_id` INT( 10 ) NOT NULL AUTO_INCREMENT,";
-    	$sql .= "`com_bid` INT( 8 ) NOT NULL DEFAULT '0',";
-    	$sql .= "`com_rootid` INT( 10 ) NOT NULL DEFAULT '0',";
-    	$sql .= "`com_pid` INT( 10 ) NOT NULL DEFAULT '0',";
-    	$sql .= "`com_tid` INT( 8 ) NOT NULL DEFAULT '0',";
-    	$sql .= "`com_type` ENUM( '1', '2' ) NOT NULL DEFAULT '1',";
-    	$sql .= "`com_status` ENUM( '1', '2', '3' ) NOT NULL DEFAULT '1',";
-    	$sql .= "`com_title` VARCHAR( 255 ) NOT NULL ,";
-    	$sql .= "`com_text` TEXT NOT NULL ,";
-    	$sql .= "`user_id` INT( 11 ) NOT NULL DEFAULT '0',";
-    	$sql .= "`user_name` VARCHAR( 60 ) NOT NULL ,";
-    	$sql .= "`user_email` varchar( 60 ) NOT NULL,";
-    	$sql .= "`user_url` varchar( 100 ) NOT NULL,";
-    	$sql .= "`user_host` varchar( 60 ) NOT NULL,";
-    	$sql .= "`dohtml` INT( 1 ) NOT NULL DEFAULT '0',";
-    	$sql .= "`doimage` INT( 1 ) NOT NULL DEFAULT '0',";
-    	$sql .= "`dobr` INT( 1 ) NOT NULL DEFAULT '1',";
-    	$sql .= "`created` int( 10 ) NOT NULL default '0',";
-    	$sql .= "`modified` int( 10 ) NOT NULL default '0',";
-    	$sql .= "PRIMARY KEY (com_id),KEY com_bid (com_bid),KEY com_rootid (com_rootid),KEY com_pid (com_pid)";
-    	$sql .= ") TYPE=MyISAM;";
+        // d3blog -> d3blogEx
+        $sql = "CREATE TABLE IF NOT EXISTS ".$db->prefix($mydirname.'_comment')."(";
+        $sql .= "`com_id` INT( 10 ) NOT NULL AUTO_INCREMENT,";
+        $sql .= "`com_bid` INT( 8 ) NOT NULL DEFAULT '0',";
+        $sql .= "`com_rootid` INT( 10 ) NOT NULL DEFAULT '0',";
+        $sql .= "`com_pid` INT( 10 ) NOT NULL DEFAULT '0',";
+        $sql .= "`com_tid` INT( 8 ) NOT NULL DEFAULT '0',";
+        $sql .= "`com_type` ENUM( '1', '2' ) NOT NULL DEFAULT '1',";
+        $sql .= "`com_status` ENUM( '1', '2', '3' ) NOT NULL DEFAULT '1',";
+        $sql .= "`com_title` VARCHAR( 255 ) NOT NULL ,";
+        $sql .= "`com_text` TEXT NOT NULL ,";
+        $sql .= "`user_id` INT( 11 ) NOT NULL DEFAULT '0',";
+        $sql .= "`user_name` VARCHAR( 60 ) NOT NULL ,";
+        $sql .= "`user_email` varchar( 60 ) NOT NULL,";
+        $sql .= "`user_url` varchar( 100 ) NOT NULL,";
+        $sql .= "`user_host` varchar( 60 ) NOT NULL,";
+        $sql .= "`dohtml` INT( 1 ) NOT NULL DEFAULT '0',";
+        $sql .= "`doimage` INT( 1 ) NOT NULL DEFAULT '0',";
+        $sql .= "`dobr` INT( 1 ) NOT NULL DEFAULT '1',";
+        $sql .= "`created` int( 10 ) NOT NULL default '0',";
+        $sql .= "`modified` int( 10 ) NOT NULL default '0',";
+        $sql .= "PRIMARY KEY (com_id),KEY com_bid (com_bid),KEY com_rootid (com_rootid),KEY com_pid (com_pid)";
+        $sql .= ") TYPE=MyISAM;";
 
-    	if($res = $db->queryF($sql)) {
-        	$msgs[] = 'Database table <strong>comment</strong> succefully created.</span>';
-    	} else {
-        	$msgs[] = '<span style="color:#ff0000;">ERROR: Failed to create comment table structure.</span>';
-    	}
+        if($res = $db->queryF($sql)) {
+            $msgs[] = 'Database table <strong>comment</strong> succefully created.</span>';
+        } else {
+            $msgs[] = '<span style="color:#ff0000;">ERROR: Failed to create comment table structure.</span>';
+        }
     }*/
 
     // TEMPLATES (all templates have been already removed by modulesadmin)

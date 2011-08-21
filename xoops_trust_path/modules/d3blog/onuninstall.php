@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: onuninstall.php 442 2008-05-24 02:12:53Z hodaka $
+ * @version $Id: onuninstall.php 630 2010-06-22 16:11:25Z hodaka $
  */
 
 eval( ' function xoops_module_uninstall_'.$mydirname.'( $module ) { return d3blog_onuninstall_base( $module , "'.$mydirname.'" ) ; } ' ) ;
@@ -18,7 +18,7 @@ function d3blog_onuninstall_base( $module , $mydirname )
     if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
         $root =& XCube_Root::getSingleton();
         $root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUninstall.' . ucfirst($mydirname) . '.Success' , 'd3blog_message_append_onuninstall' ) ;
-        $root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUninstall.' . ucfirst($mydirname) . '.Fail' , 'd3blog_message_append_oninstall' ) ;
+        $root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUninstall.' . ucfirst($mydirname) . '.Fail' , 'd3blog_message_append_onuninstall' ) ;
         $ret = array() ;
     } else {
         if( ! is_array( $ret ) ) $ret = array() ;

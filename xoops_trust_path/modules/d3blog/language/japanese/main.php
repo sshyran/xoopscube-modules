@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: main.php 585 2009-04-25 02:16:14Z hodaka $
+ * @version $Id: main.php 642 2010-07-02 16:42:24Z hodaka $
  * @author Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -31,6 +31,7 @@ define ( '_MD_D3BLOG_LANG_ENTRY_OPTIONS','オプション' );
 define ( '_MD_D3BLOG_LANG_HTML_ENABLE','HTMLを有効にする' );
 define ( '_MD_D3BLOG_LANG_AUTO_BR','改行を自動挿入する' );
 define ( '_MD_D3BLOG_LANG_XCODE_ENABLE','XOOPSコードを有効にする' );
+define ( '_MD_D3BLOG_LANG_TRACKBACK_ACCEPTABLE','トラックバック受信する' );
 define ( '_MD_D3BLOG_LANG_UPDATE_PING','更新pingを送信する' );
 define ( '_MD_D3BLOG_LANG_SELECT_PING_URLS','更新ping送信先を選択(最高%d個まで)' );
 define ( '_MD_D3BLOG_LANG_TRACKBACKS_OUTBOUND','リンク先' );

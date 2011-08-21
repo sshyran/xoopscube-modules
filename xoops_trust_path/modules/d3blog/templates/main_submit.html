@@ -64,11 +64,11 @@
 <label for="switch_bbcode"><{$smarty.const._MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET}></label></div>
 <{xoopsdhtmltarea name=contents cols=65 rows=10 value=$entry.contents4edit pre_style="display:none;" post_style="display:none;"}>
 <{/if}>
-<{*   seperator   *}>
+<{*   separator   *}>
 <div id="d3blogSeperator">
-<input type="button" id="entry_seperator" value="<{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR}>" onclick='xoopsCodeSmilie("contents", "\n[seperator]\n");' />
+<input type="button" id="entry_separator" value="<{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR}>" onclick='xoopsCodeSmilie("contents", "\n[separator]\n");' />
 <input type="checkbox" id="switch_help" name="switch_help" onclick="if(this.checked){document.getElementById('show_help').style.display='block';}else{document.getElementById('show_help').style.display='none';};" /><label for="switch_help"><{$smarty.const._MD_D3BLOG_LANG_INSERT_HELP}></label>
-<label for="entry_seperator" id="show_help" style="display:none;"><{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR_ON_CLICK}></label>
+<label for="entry_separator" id="show_help" style="display:none;"><{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR_ON_CLICK}></label>
 </div>
 </div>
 <{*   groups    *}>
@@ -101,6 +101,8 @@
 <!-- publish date -->
 <{html_select_date time=$form.published_ start_year="-1" end_year="+2" month_format="%m" day_format="%d" field_order="YMD" field_array="published"}>
 <{html_select_time time=$form.published_ minute_interval="10" display_seconds=false field_array="published"}><br />
+<!-- tb_acceptable -->
+<input type="checkbox" name="tb_acceptable" id="tb_acceptable" value="1"<{if $entry.tb_acceptable}> checked="checked"<{/if}> /><label for="tb_acceptable"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_ACCEPTABLE}></label><br />
 <!-- update ping -->
     <{if $currentUser.user_perm.blog_autoapprove}>
 <input type="checkbox" name="update_ping" id="update_ping" value="1"<{if $form.update_ping_}> checked="checked"<{/if}> /><label for="update_ping"><{$smarty.const._MD_D3BLOG_LANG_UPDATE_PING}></label><br />

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: blocks_common.php 566 2008-12-22 18:01:08Z hodaka $
+ * @version $Id: blocks_common.php 645 2010-07-04 02:05:32Z hodaka $
  * @author kuri <kuri@keynext.co.jp>
  */
 
@@ -21,7 +21,7 @@ define('_MB_D3BLOG_EDIT_NUMBER_OF_COMMENTS', '表示するコメントの数');
 // archives
 define('_MB_D3BLOG_EDIT_ARCHIVE_NUMBER_PER_PAGE', '表示する年月の数');
 // common
-define('_MB_D3BLOG_EDIT_MAX_TITLE_LENGTH','表示タイトル長');
+define('_MB_D3BLOG_EDIT_MAX_TITLE_LENGTH','表示タイトル長(0=無制限)');
 define('_MB_D3BLOG_EDIT_MAX_CONTENTS_LENGTH','表示コンテンツ長(0=無制限)(指定した場合タグを削除します)');
 define('_MB_D3BLOG_EDIT_DATE_FORMAT','日付書式');
 define('_MB_D3BLOG_EDIT_TYPE','タイプ(1=list形式、2=table形式)');

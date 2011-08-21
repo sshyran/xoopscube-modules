@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: entry.class.php 622 2009-09-06 17:23:01Z hodaka $
+ * @version $Id: entry.class.php 664 2010-10-20 13:56:43Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  */
 
@@ -31,6 +31,7 @@ class d3blogEntryObjectBase extends myXoopsObject {
         $this->initVar("trackbacks", XOBJ_DTYPE_INT, 0, false);
         $this->initVar("approved", XOBJ_DTYPE_INT, 0, false);
         $this->initVar("notified", XOBJ_DTYPE_INT, 1, false);
+        $this->initVar("tb_acceptable", XOBJ_DTYPE_INT, 1, false);
         $this->initVar("published", XOBJ_DTYPE_INT, time(), false);
         $this->initVar("modified", XOBJ_DTYPE_INT, time(), false);
         $this->initVar("created", XOBJ_DTYPE_INT, time(), false);
@@ -210,6 +211,10 @@ class d3blogEntryObjectBase extends myXoopsObject {
             return false;
     }
 
+    function isTrackbackAcceptable() {
+        return $this->getVar('tb_acceptable');
+    }
+
     function trackbackUrl() {
         // (ex. IIS)
         if( (isset( $_SERVER['SERVER_SOFTWARE'] ) && preg_match("/Microsoft-IIS/i",$_SERVER['SERVER_SOFTWARE'])) || ! isset( $_SERVER['REQUEST_URI'] ) ){
@@ -221,14 +226,14 @@ class d3blogEntryObjectBase extends myXoopsObject {
     }
 
     function divideContents(&$text) {
-        $arr = preg_split("/((\015\012)|(\015)|(\012))?\[seperator\]((\015\012)|(\015)|(\012))?/", $text );
+        $arr = preg_split("/((\015\012)|(\015)|(\012))?\[separator\]((\015\012)|(\015)|(\012))?/", $text );
         $this->setVar ( 'excerpt', array_shift($arr) );
         $this->setVar ( 'body', implode('', $arr) );
     }
 
     function reuniteContents($type='e') {
         if(strlen($this->getVar('body'))) {
-            return $this->getVar('excerpt', $type) . "\n[seperator]\n" . $this->getVar('body', $type);
+            return $this->getVar('excerpt', $type) . "\n[separator]\n" . $this->getVar('body', $type);
         } else {
             return $this->getVar('excerpt', $type);
         }
@@ -270,21 +275,17 @@ EOD;
         if($length > 0) {
             $strip_tags = true;
         }
+
         $excerpt = $myts->displayTarea($this->getVar('excerpt', 'n'), $this->dohtml(), 1, $this->doxcode(), $this->doimage(), $this->dobr());
         if($strip_tags) {
             $excerpt = strip_tags($excerpt);
         }
 
-        // special chracters
-        $patterns = array('/\&\#([0-9]{2,10}\;)/', '/\&(amp;)?([a-zA-Z]{2,10}\;)/');
-        $replacement = array('&amp;#\\1;', '&amp;\\1\\2');
-        $excerpt = preg_replace($patterns, $replacement, $excerpt);
-
         if($length > 0) {
             return xoops_substr($excerpt, 0, $length, '...');
-        } elseif($length <= 0) {
-            return $excerpt;
         }
+
+        return $excerpt;
     }
 
     function renderContents($strip_tags=true, $type='s') {
@@ -300,7 +301,7 @@ EOD;
 
         if($type == 's') {
             if($strip_tags)
-                return strip_tags($myts->displayTarea(strip_tags($contents), $this->dohtml(), 1, $this->doxcode(), $this->doimage(), $this->dobr()));
+                return strip_tags($myts->displayTarea($contents, $this->dohtml(), 1, $this->doxcode(), $this->doimage(), $this->dobr()));
             else
                 return $myts->displayTarea($contents, $this->dohtml(), 1, $this->doxcode(), $this->doimage(), $this->dobr());
         } elseif($type == 'e') {
@@ -496,8 +497,8 @@ EOD;
         $ret['groups'] = $this->groups();
         $ret['permed_group'] = $this->isPermedGroup();
 
-        $ret['publish_date'] = formatTimestamp($this->published(), "Y/m/d");
-        $ret['publish_time'] = formatTimestamp($this->published(), "H:M");
+//        $ret['publish_date'] = formatTimestamp($this->published(), "Y/m/d");
+//        $ret['publish_time'] = formatTimestamp($this->published(), "H:i");
 
         $ret['pingExcerpt'] = $this->pingExcerpt();
 
@@ -506,7 +507,9 @@ EOD;
 
         if(is_object($xoopsModule) && $xoopsModule->dirname() == $this->mydirname_) {
             $ret['trackback_url'] = $this->trackbackUrl();
-            $ret['embeddedRDF'] = $this->embeddedRDF();
+            if($this->isTrackbackAcceptable()) {
+                $ret['embeddedRDF'] = $this->embeddedRDF();
+            }
 
             $cat_handler =& $myModule->getHandler('category');
             $ret['categorypath'] = array_reverse($cat_handler->getNicePathArrayFromId($this->cid(), XOOPS_URL."/modules/".$this->mydirname_."/index.php"));

@@ -1,4 +1,20 @@
 [CHANGES]
+- v1.08
+  Modified feeder contents.
+- v1.07.02
+  Fixed a publish date timeformating.
+- v1.07.01
+  Block title length is optin.
+- v1.07
+  Each entry has a switch to accept or not trackbacks. Default is 'yes';
+- v1.06.01
+  Added portuguesebr language files, thanks to leco.
+- v1.06
+  Renamed the page separator.
+- v1.05.2
+  Fixed the escaping of rss feeder.
+- v1.05.1
+  Fixed d3blogD3commentEntry.class.php, thanx to naao;
 - v1.05
   Will not validate posted contents if wysiwyg editor chosen.
   Changed the d3comment forum directory name setting.
@@ -117,7 +133,7 @@
   Fixed styles applied to a category block.
   Fixed approval waiting data assigned to tpl.
   Fixed to read a language file 'admin.php' on XC2.0.
-  Handles a seperator like a paragraph with margin-top.
+  Handles a separator like a paragraph with margin-top.
   Fixed xmobile permission check.
 - v0.9.9.4
   Added language manager.

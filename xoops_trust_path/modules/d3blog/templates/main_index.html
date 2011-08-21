@@ -10,7 +10,9 @@
 </ul>
 </div>
 <{foreach item=entry from=$entries}>
+    <{if $entry.tb_acceptable}>
 <{$entry.embeddedRDF}>
+    <{/if}>
 <{include file="db:`$mydirname`_inc_entry.html" entry=$entry}>
 <{/foreach}>
 <{if $page_navigater}>

@@ -1,8 +1,12 @@
 <?php
 /**
- * @version $Id: rss.php 565 2008-12-22 17:54:19Z hodaka $
+ * @version $Id: rss.php 664 2010-10-20 13:56:43Z hodaka $
  * @author  Takeshi Kuriyama <kuri@keynext.co.jp>
  */
+
+// mbstring
+if(function_exists('mb_http_output'))
+    mb_http_output('pass');
 
 require_once(XOOPS_ROOT_PATH.'/class/template.php');
 
@@ -14,7 +18,7 @@ if(!$currentUser->blog_perm()) {
 $cat_handler =& $myModule->getHandler('category');
 $entry_handler =& $myModule->getHandler('entry');
 $tb_handler =& $myModule->getHandler('trackback');
-$myts =& d3blogTextSanitizer::getInstance();
+$myts =& MyTextSanitizer::getInstance();
 
 // CRITERIA FOR TOTAL ENTRIES COUNT
 $criteria =& $entry_handler->getCriteria();
@@ -25,19 +29,18 @@ if(!$criteria) {
     redirect_header(sprintf('%s/modules/%s/index.php', XOOPS_URL, $mydirname), 1, htmlspecialchars($ermsg, ENT_QUOTES));
 }
 
-header ('Content-Type:text/xml; charset=utf-8');
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2);
-$tpl->xoops_setCacheTime(10);
+$tpl->xoops_setCacheTime(0);
 
 if (!$tpl->is_cached("db:{$mydirname}_main_rss.xml")) {
-
+    $module_name = xoops_convert_encoding(htmlspecialchars($myModule->module_name, ENT_QUOTES));
     $feed['lang'] = _LANGCODE;
-    $feed['title'] = xoops_convert_encoding($myModule->module_name);
+    $feed['title'] = $module_name;
     $feed['link'] = XOOPS_URL.'/';
     $feed['desc'] = xoops_convert_encoding(htmlspecialchars($xoopsConfig['sitename'].'-'.$xoopsConfig['slogan'], ENT_QUOTES));
     $feed['lastbuild'] = d3blog_rfc2822_date(time());
-    $feed['category'] = xoops_convert_encoding($myModule->module_name);
+    $feed['category'] = $module_name;
     $feed['generator'] = xoops_convert_encoding(htmlspecialchars('D3BLOG - XOOPS BLOG MODULE', ENT_QUOTES));
     $logo_path = $myModule->getConfig('logo_path');
     $feed['logo_url'] = '';
@@ -64,11 +67,11 @@ if (!$tpl->is_cached("db:{$mydirname}_main_rss.xml")) {
     $entries =& $entry_handler->getObjects($criteria);
 
     foreach($entries as $entry) {
-        $item['title'] = xoops_convert_encoding($entry->getVar('title'));
+        $item['title'] = xoops_convert_encoding(htmlspecialchars($entry->getVar('title', 'n'), ENT_QUOTES));
         $item['link'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, $mydirname4show, $entry->bid());
         $item['guid'] = sprintf('%s/modules/%s/details.php?bid=%d', XOOPS_URL, $mydirname4show, $entry->bid());
         $item['pubdate'] = d3blog_rfc2822_date($entry->published());
-        $item['description'] = xoops_convert_encoding($entry->pingExcerpt(0));
+        $item['description'] = xoops_convert_encoding($entry->pingExcerpt());
         $items[] = $item;
     }
 
@@ -77,5 +80,6 @@ if (!$tpl->is_cached("db:{$mydirname}_main_rss.xml")) {
 
 }
 
+header ('Content-Type:text/xml; charset=utf-8');
 $tpl->display("db:{$mydirname}_main_rss.xml");
 ?>

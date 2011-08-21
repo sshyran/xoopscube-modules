@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Id: main.php 585 2009-04-25 02:16:14Z hodaka $
+ * @version $Id: main.php 642 2010-07-02 16:42:24Z hodaka $
  * @author kuri <kuri@keynext.co.jp>
  */
 
@@ -30,6 +30,7 @@ define ( '_MD_D3BLOG_LANG_ENTRY_OPTIONS','Options' );
 define ( '_MD_D3BLOG_LANG_HTML_ENABLE','HTML allowed' );
 define ( '_MD_D3BLOG_LANG_AUTO_BR','Auto break' );
 define ( '_MD_D3BLOG_LANG_XCODE_ENABLE','XCODE allowed' );
+define ( '_MD_D3BLOG_LANG_TRACKBACK_ACCEPTABLE','Accept trackback' );
 define ( '_MD_D3BLOG_LANG_CATEGORY','Category' );
 define ( '_MD_D3BLOG_LANG_UPDATE_PING','Send an update ping' );
 define ( '_MD_D3BLOG_LANG_SELECT_PING_URLS','Choose updateping urls(max. %d)' );
@@ -85,13 +86,13 @@ define ( '_MD_D3BLOG_LANG_CATEGORY_NAVIGATION_PATH','CATEGORY NAVIGATION PATH' )
 define ( '_MD_D3BLOG_LANG_INTO_CURRENT_CATEGORY_NAVIGATION','CATEGORY NAVIGATION TO THE CURRENT' );
 define ( '_MD_D3BLOG_LANG_READ_ENTRY_OF_CATEGORY','Read entries of category %s' );
 define ( '_MD_D3BLOG_LANG_BACK_AND_FORTH_NAVIGATION','BACK AND FORTH NAVIGATION' );
-define ( '_MD_D3BLOG_LANG_INSERT_SEPERATOR','Seperator' );
+define ( '_MD_D3BLOG_LANG_INSERT_SEPERATOR','Separator' );
 define ( '_MD_D3BLOG_LANG_INSERT_SEPERATOR_ON_CLICK',
-        'The seperator splits the contents, the first half as an excerpt, the latter as a body. '.
+        'The separator splits the contents, the first half as an excerpt, the latter as a body. '.
         'Below is the case of groups with no entry-by privilege:<br />'.
         'A title and an excerpt are visible to the groups forbidden when the preferences is on. '.
-        'If a seperator is located at the beginning of the contents, then will show a title only. '.
-        'Whole the entry is invisible if a seperator does not exist.' );
+        'If a separator is located at the beginning of the contents, then will show a title only. '.
+        'Whole the entry is invisible if a separator does not exist.' );
 define ( '_MD_D3BLOG_LANG_INSERT_HELP','Help' );
 define ( '_MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET','Display xcode editor.' );
 define ( '_MD_D3BLOG_LANG_DISPLAY_OPTIONS','Display options' );
