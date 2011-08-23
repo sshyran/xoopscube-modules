@@ -9,7 +9,7 @@ function inputchk(fm) {
 	if ( fm.blogtype.value != '0' && fm.blogurl.value == "") {
 		alert("\n<{$smarty.const._MD_CONF_ALT0}>");
 		return false;
-	} else if ( fm.blogtype.value != '0' && fm.rss.value == "") {
+	} else if ( fm.blogtype.value == '100' && fm.rss.value == "") {
 		alert("\n<{$smarty.const._MD_CONF_ALT100}>");
 		return false;
 	} else {

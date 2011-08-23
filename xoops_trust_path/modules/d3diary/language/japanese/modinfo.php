@@ -21,6 +21,7 @@ define($constpref."_CONFIG","Æüµ­¤ÎÀßÄê");
 define($constpref."_CONFIG_CATEGORY","¥«¥Æ¥´¥ê¡¼¤ÎÀßÄê");
 define($constpref."_YES","¤Ï¤¤");
 define($constpref."_NO","¤¤¤¤¤¨");
+define($constpref."_PHOTOLIST","²èÁü°ìÍ÷");
 
 // Admin
 define($constpref.'_ADMENU_MYLANGADMIN','¸À¸ìÄê¿ô´ÉÍý');
@@ -97,6 +98,16 @@ define($constpref."_USE_MYFRIENDS_Y","myfriends¤È¤ÎÏ¢·È¡§ON");
 define($constpref."_FRIEND_DIRNAME","Í§¿Íµ¡Ç½¥â¥¸¥å¡¼¥ë¤Î¥Ç¥£¥ì¥¯¥È¥êÌ¾");
 define($constpref."_FRIEND_DIRNAMEDESC","Í§¿Íµ¡Ç½¤È¤ÎÏ¢·È¤ò¹Ô¤¦¾ì¹ç¡¢Í§¿Íµ¡Ç½¥â¥¸¥å¡¼¥ë¤Î¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
 
+define($constpref."_EXCERPTOK","¥¿¥¤¥È¥ë¡¦Í×ÌóÉôÊ¬¤Ï±ÜÍ÷²ÄÇ½");
+define($constpref."_EXCERPTOKDESC","µ­»öÃ±°Ì¤Ç¸¢¸Â¤Î¤Ê¤¤±ÜÍ÷¼Ô¤Ë¡¢¡Ö²¼½ñ¤­¡×°Ê³°¤Î<br/>µ­»ö¥¿¥¤¥È¥ë¡¦Í×ÌóÉôÊ¬¤ò¥ª¡¼¥×¥ó¤Ë¤¹¤ëÈÏ°Ï¤òÁªÂò¤·¤Þ¤¹¡£");
+define($constpref."_EXCERPTOK_NOUSE","±ÜÍ÷¸¢¸Â¤ÎÌµ¤¤µ­»ö¤Ï¥¿¥¤¥È¥ë¡¦Í×Ìó¤âÉ½¼¨¤·¤Ê¤¤");
+//define($constpref."_EXCERPTOK_BYPERSON","³Æ¿Í¤ÎÆüµ­Á´ÂÎ¤ÎÀßÄê¤Ë°Ñ¾ù¤¹¤ë");
+define($constpref."_EXCERPTOK_FORMEMBER","¥í¥°¥¤¥ó¥á¥ó¥Ð¡¼¤Þ¤Ç¥ª¡¼¥×¥ó¤Ë¤¹¤ë");
+define($constpref."_EXCERPTOK_FORGUEST","¥²¥¹¥È¤Þ¤Ç¥ª¡¼¥×¥ó¤Ë¤¹¤ë");
+
+define($constpref."_DISP_EXCERPTCOM","¥¿¥¤¥È¥ë¡¦Í×ÌóÉôÊ¬¤Î¤ß±ÜÍ÷²ÄÇ½¤Î¾ì¹ç¤Î¥³¥á¥ó¥ÈÉ½¼¨");
+define($constpref."_DISP_EXCERPTCOMDESC","¥³¥á¥ó¥È¤òÉ½¼¨¤¹¤ë¾ì¹ç¤Ï¡Ö¤Ï¤¤¡×¡¢<br/>ÈóÉ½¼¨¤Ë¤·¤Æ¤ª¤¯¾ì¹ç¤Ï¡Ö¤¤¤¤¤¨¡×¤òÁªÂò¡£");
+
 define($constpref."_USE_TAG","¥¿¥°µ¡Ç½¤ÎON/OFF");
 define($constpref."_USE_TAGDESC","¥¿¥°µ¡Ç½¤ò»ÈÍÑ¤¹¤ë¾ì¹ç¡¢¥¿¥°¥¯¥é¥¦¥É¤òÉ½¼¨¤¹¤ë¥Ú¡¼¥¸¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡£");
 define($constpref."_USE_TAG_N","¥¿¥°µ¡Ç½¡§OFF");
@@ -118,9 +129,25 @@ define($constpref."_UPDATEPING_DSC","¹¹¿·ping¥µ¡¼¥Ð¡¼¤ò»ØÄê¤·¤Þ¤¹¡£²þ¹Ô¤Ç¶èÀÚ¤ê¤
 define($constpref."_UPDATEPING_SERVERS","http://ping.rss.drecom.jp/\nhttp://blog.goo.ne.jp/XMLRPC" );
 define($constpref."_ENC_FROM" , "RSS¥Õ¥£¡¼¥É¤Ø¤ÎÊÑ´¹ÍÑ¤ÎÆâÉô¥¨¥ó¥³¡¼¥É");
 define($constpref."_ENC_FROMDSC" , "ÄÌ¾ï¤Ï'default'¤ÇOK¤Ç¤¹¤¬¡¢RSS¥Õ¥£¡¼¥É¤¬Ê¸»ú²½¤±¤¹¤ë¾ì¹ç¤Ï¡¢'xoops_chrset'¤ä'auto'¤ò¤ª»î¤·¤¯¤À¤µ¤¤¡£");
-
 define($constpref.'_PERM_CLASS' , '±ÜÍ÷¸¢¸Â½èÍý¥¯¥é¥¹Ì¾');
 define($constpref.'_PERM_CLASSDSC' , '±ÜÍ÷¸¢¸Â½èÍý¤ò¥ª¡¼¥Ð¡¼¥é¥¤¥É¤·¤¿¤¤»þ¤Ë»ØÄê¡£¥Ç¥Õ¥©¥ë¥È¤Ïd3diaryPermission');
+
+define($constpref.'_USE_MAILPOST' , '¥á¡¼¥ë¤Ë¤è¤ëÅê¹Æ¤ò²ÄÇ½¤Ë¤¹¤ë');
+define($constpref.'_USE_MAILPOSTDSC' , '¥á¡¼¥ë¤Ë¤è¤ëÅê¹Æ¤ò²ÄÇ½¤Ë¤¹¤ë¾ì¹ç¤Ï¡Öyes¡×¤òÁªÂò¤·¡¢¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó¤Ç¥°¥ë¡¼¥×¤Ëµö²Ä¤òÍ¿¤¨¤Þ¤¹¡£');
+define($constpref."_POP3_SERVER","¼õ¿®¥á¡¼¥ë¥µ¡¼¥Ð");
+define($constpref."_POP3_SERVER_DESC","¼õ¿®¥á¡¼¥ë¤ÎPOP3¥µ¡¼¥ÐÌ¾");
+define($constpref."_POP3_PORT","¼õ¿®¥Ý¡¼¥ÈÈÖ¹æ");
+define($constpref."_POP3_PORT_DESC","pop3¥µ¡¼¥Ð¤Ï¤¿¤¤¤Æ¤¤110¤Ç¤¹¤¬¡¢¥µ¡¼¥Ð¤Ë¹ç¤ï¤»¤Æ¤¯¤À¤µ¤¤¡£");
+define($constpref."_POP3_APOP","APOP°Å¹æ²½Ç§¾Ú¤ò»ÈÍÑ¤¹¤ë");
+define($constpref."_POP3_APOP_DESC","APOP°Å¹æ²½Ç§¾Ú¤ò»ÈÍÑ¤¹¤ë¤«¤É¤¦¤«¡¢¥µ¡¼¥Ð¤ÎÀßÄê¤Ë¹ç¤ï¤»¤Æ¤¯¤À¤µ¤¤¡£");
+define($constpref."_POST_EMAIL_ADDRESS","¼è¹þ¤ßÍÑ¥á¡¼¥ë¥¢¥«¥¦¥ó¥ÈID");
+define($constpref."_POST_EMAIL_ADDRESS_DESC","¼è¹þ¤ßÍÑ¤Î¥á¡¼¥ë¥¢¥«¥¦¥ó¥ÈID¤òÀßÄê¤·¤Æ²¼¤µ¤¤¡£");
+define($constpref."_POST_EMAIL_PASSWORD","¼è¹þ¤ßÍÑ¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î¥Ñ¥¹¥ï¡¼¥É");
+define($constpref."_POST_EMAIL_PASSWORD_DESC","¼è¹þ¤ßÍÑ¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î¥Ñ¥¹¥ï¡¼¥É¤òÀßÄê¤·¤Æ²¼¤µ¤¤¡£");
+define($constpref."_POST_EMAIL_FULLADD","¥á¡¼¥ëÁ÷¿®Àè¥¢¥É¥ì¥¹");
+define($constpref."_POST_EMAIL_FULLADDDSC","¼è¹þ¤ßÍÑ¤Î¥á¡¼¥ëÁ÷¿®Àè¥¢¥É¥ì¥¹¡£ÀâÌÀ¥Ú¡¼¥¸¤Ø¤ÎÉ½¼¨ÍÑ¤Ç¡¢À©¸æ¤Ë¤Ï»È¤ï¤ì¤Þ¤»¤ó¡£");
+define($constpref."_POST_DETECT_ORDER","¥á¡¼¥ëÊ¸»úÎó¥¨¥ó¥³¡¼¥É¸¡½Ð½ç»ØÄê");
+define($constpref."_POST_DETECT_ORDERDSC","¥á¡¼¥ëÊ¸»úÎó¥¨¥ó¥³¡¼¥É¤Î¸¡½Ð½ç¤ò»ØÄê¤·¤Þ¤¹¡£<br />¶õÍó¤Ï'auto'¤ò°ÕÌ£¤·¡¢¤³¤ì¤ÇÊ¸»ú²½¤±¤¹¤ë¾ì¹ç¡¢'ISO-2022-JP, UTF-8, UTF-7, ASCII, EUC-JP, JIS, SJIS, eucJP-win, SJIS-win'¤ÎÃæ¤«¤éÎóµó¤·¤Æ¤ß¤Þ¤¹¡£<br />Îã¡§'ISO-2022-JP, UTF-8, JIS, EUC-JP, eucJP-win, SJIS'");
 
 define($constpref."_USE_SIMPLECOMMENT","¥³¥á¥ó¥È¤ÎÉ½¼¨¥â¡¼¥É");
 define($constpref."_USE_SIMPLECOMMENTDESC","½¾Íè¤ÎXOOPSÉ¸½à¤Î¥³¥á¥ó¥È¤ò»È¤¦Âå¤ï¤ê¤Ë¡¢<br/>´Ê°×Åª¤Ê¥³¥á¥ó¥È¥Õ¥©¡¼¥à¤ò»È¤¦¤³¤È¤¬¤Ç¤­¤Þ¤¹¡£<br/><br/>¢¨´Ê°×¥Õ¥©¡¼¥à¤Î¾ì¹ç¡¢Æ¿Ì¾Åê¹Æ¤Ï¤Ç¤­¤Þ¤»¤ó¡£");

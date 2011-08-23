@@ -10,7 +10,7 @@ $langman->read( 'modinfo.php' , $mydirname , $mytrustdirname , false ) ;
 $constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 $modversion['name']        = $mydirname;
-$modversion['version']     = 0.14;
+$modversion['version']     = 0.22;
 $modversion['description'] = constant($constpref."_DIARY_DESC");
 $modversion['credits']     = 'Motion Create Inc. (http://www.mc8.jp/)';
 $modversion['author'] 	   = 'naaon (original-module "minidiary" by matoyan)';
@@ -202,6 +202,27 @@ $modversion['config'][] = array(
 );
 
 $modversion['config'][] = array(
+	'name'			=> 'can_read_excerpt' ,
+	'title'			=> $constpref.'_EXCERPTOK' ,
+	'description'		=> $constpref.'_EXCERPTOKDESC' ,
+	'formtype'		=> 'select',
+	'valuetype'		=> 'int',
+	'default'		=> '0',
+	'options'		=> array( $constpref.'_EXCERPTOK_NOUSE' => 0, 
+		  					  $constpref.'_EXCERPTOK_FORMEMBER' => 2,
+		  					  $constpref.'_EXCERPTOK_FORGUEST' => 3)
+);
+		  					  //$constpref.'_EXCERPTOK_BYPERSON' => 1, 
+$modversion['config'][] = array(
+	'name'			=> 'can_disp_com' ,
+	'title'			=> $constpref.'_DISP_EXCERPTCOM' ,
+	'description'		=> $constpref.'_DISP_EXCERPTCOMDESC' ,
+	'formtype'		=> 'yesno' ,
+	'valuetype'		=> 'int' ,
+	'default'		=> '0'
+);
+
+$modversion['config'][] = array(
 	'name'			=> 'use_tag' ,
 	'title'			=> $constpref.'_USE_TAG' ,
 	'description'		=> $constpref.'_USE_TAGDESC' ,
@@ -283,13 +304,84 @@ $modversion['config'][] = array(
 ) ;
 
 $modversion['config'][] = array(
+	'name'			=> 'use_mailpost' ,
+	'title'			=> $constpref.'_USE_MAILPOST' ,
+	'description'		=> $constpref.'_USE_MAILPOSTDSC' ,
+	'formtype'		=> 'yesno' ,
+	'valuetype'		=> 'int' ,
+	'default'		=> '0'
+) ;
+
+$modversion['config'][] = array(
+	'name'			=> 'pop3_server' ,
+	'title'			=> $constpref.'_POP3_SERVER' ,
+	'description'		=> $constpref.'_POP3_SERVER_DESC' ,
+	'formtype'		=> 'textbox',
+	'valuetype'		=> 'text',
+	'default'		=> ''
+);
+
+$modversion['config'][] = array(
+	'name'			=> 'pop3_port' ,
+	'title'			=> $constpref.'_POP3_PORT' ,
+	'description'		=> $constpref.'_POP3_PORT_DESC' ,
+	'formtype'		=> 'textbox',
+	'valuetype'		=> 'int',
+	'default'		=> '110'
+);
+
+$modversion['config'][] = array(
+	'name'			=> 'pop3_apop' ,
+	'title'			=> $constpref.'_POP3_APOP' ,
+	'description'		=> $constpref.'_POP3_APOP_DESC' ,
+	'formtype'		=> 'yesno' ,
+	'valuetype'		=> 'int' ,
+	'default'		=> '0'
+);
+
+$modversion['config'][] = array(
+	'name'			=> 'post_email_address' ,
+	'title'			=> $constpref.'_POST_EMAIL_ADDRESS' ,
+	'description'		=> $constpref.'_POST_EMAIL_ADDRESS_DESC' ,
+	'formtype'		=> 'textbox',
+	'valuetype'		=> 'text',
+	'default'		=> ''
+);
+
+$modversion['config'][] = array(
+	'name'			=> 'post_email_password' ,
+	'title'			=> $constpref.'_POST_EMAIL_PASSWORD' ,
+	'description'		=> $constpref.'_POST_EMAIL_PASSWORD_DESC' ,
+	'formtype'		=> 'password',
+	'valuetype'		=> 'text',
+	'default'		=> ''
+);
+
+$modversion['config'][] = array(
+	'name'			=> 'post_email_fulladd' ,
+	'title'			=> $constpref.'_POST_EMAIL_FULLADD' ,
+	'description'		=> $constpref.'_POST_EMAIL_FULLADDDSC' ,
+	'formtype'		=> 'textbox',
+	'valuetype'		=> 'text',
+	'default'		=> ''
+);
+
+$modversion['config'][] = array(
+	'name'			=> 'post_detect_order' ,
+	'title'			=> $constpref.'_POST_DETECT_ORDER' ,
+	'description'		=> $constpref.'_POST_DETECT_ORDERDSC' ,
+	'formtype'		=> 'textbox',
+	'valuetype'		=> 'text',
+	'default'		=> ''
+);
+
+$modversion['config'][] = array(
 	'name'			=> 'comment_dirname' ,
 	'title'			=> $constpref.'_COM_DIRNAME' ,
 	'description'		=> $constpref.'_COM_DIRNAMEDSC' ,
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
-	'default'		=> '',
-	'options'		=> array()
+	'default'		=> ''
 );
 
 $modversion['config'][]= array(
@@ -298,8 +390,7 @@ $modversion['config'][]= array(
 	'description'		=> $constpref.'_COM_FORUMIDDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
-	'default'		=> '0',
-	'options'		=> array()
+	'default'		=> '0'
 );
 
 $modversion['config'][] = array(
@@ -328,8 +419,7 @@ $modversion['config'][] = array(
 	'description'		=> '' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'int' ,
-	'default'		=> '10' ,
-	'options'		=> array()
+	'default'		=> '10'
 ) ;
 
 $modversion['config'][] = array(
@@ -583,6 +673,7 @@ if (is_object(@$GLOBALS['xoopsUser'])) {
 		}
 	}
 }
+$modversion['sub'][] = array('name' => constant($constpref.'_PHOTOLIST'), 'url' => 'index.php?page=photolist');
 $modversion['sub'][] = array('name' => constant($constpref.'_COMMENT'), 'url' => 'index.php?page=viewcomment');
 if (is_object(@$GLOBALS['xoopsUser'])) {
 	$modversion['sub'][] = array('name' => constant($constpref.'_EDIT'), 'url' => 'index.php?page=edit');

@@ -14,12 +14,13 @@ class D3diaryFunc {
 	var $dcfg ;
 	var $uid ;
 	var $req_uid ;
+	var $page ;
 	var $arr_weeks ;
 	var $arr_monthes ;
 	var $arr_dclass ;
 	var $arr_wclass ;
 
-function D3diaryFunc( & $d3dConf ){
+public function __construct( & $d3dConf ){
 
 	$this->d3dConf = & $d3dConf;
 }
@@ -28,13 +29,13 @@ function ini_set()
 {	//must be set $this->mydirname, $req_uid before call it
 
 	// copying parent's parameters
-	$this->mydirname = $this->d3dConf->mydirname;
-	$this->mid = $this->d3dConf->mid;
+	$this->mydirname = & $this->d3dConf->mydirname;
+	$this->mid = & $this->d3dConf->mid;
 
-	$this->uid = $this->d3dConf->uid;
-	$this->mod_config = $this->d3dConf->mod_config;
-	$this->dcfg = $this->d3dConf->dcfg;
-	$this->req_uid = $this->d3dConf->req_uid;
+	$this->uid = & $this->d3dConf->uid;
+	$this->mod_config = & $this->d3dConf->mod_config;
+	$this->dcfg = & $this->d3dConf->dcfg;
+	$this->req_uid = & $this->d3dConf->req_uid;
 	
 	$this->mPerm = & $this->d3dConf->mPerm;
 	$this->gPerm = & $this->d3dConf->gPerm;
@@ -42,6 +43,8 @@ function ini_set()
 	$this->myts =& MyTextSanitizer::getInstance();
 
 	list( $this->arr_weeks, $this->arr_monthes, $this->arr_dclass, $this->arr_wclass ) = $this->initBoxArr();
+	
+
 
 }
 
@@ -80,7 +83,7 @@ function get_xoopsuname($uid){
 
 	$db = & $this->d3dConf->db;
 	
-	$sql = "SELECT uname, name 
+	$sql = "SELECT uname, name, email 
 			FROM ".$db->prefix('users')." WHERE uid='".intval($uid)."'";
 	$result = $db->query($sql);
 	
@@ -142,7 +145,7 @@ function get_count_diary($uid)
 	return $row['cnt'];
 }
 
-// “ú‹L—pƒJƒEƒ“ƒ^
+// coutup
 function countup_diary($uid, $bid=0)
 {
 	$db = & $this->d3dConf->db;
@@ -156,7 +159,7 @@ function countup_diary($uid, $bid=0)
 			SET view = (view + 1) WHERE bid = '".$bid."'");
 	}
 
-	$interval=5*60; // 5•ª1ƒJƒEƒ“ƒg
+	$interval=5*60; // 5 min * 60 sec
 	
 	$NowTime = time() + 9 * 60 * 60;
 	$NowYMD = date('Y-m-d', $NowTime);
@@ -169,7 +172,7 @@ function countup_diary($uid, $bid=0)
 	//	Delete Old Access Data
 	$db->queryF("DELETE FROM ".$db->prefix($this->mydirname."_cnt_ip")." WHERE acctime < '".($NowTime - $interval)."'");
 	
-	// ‚ ‚Á‚½‚çŽžXV‚Ì‚Ý
+	//	Uodate time
 	$sql = "SELECT accip FROM ".$db->prefix($this->mydirname."_cnt_ip")." 
 		WHERE accip = '$slashedRH' AND uid='$uid'";
 	if ($db->getRowsNum($db->query($sql)) != 0) {
@@ -196,27 +199,41 @@ function countup_diary($uid, $bid=0)
 
 }
 
-# ƒJƒeƒSƒŠ[ƒŠƒXƒg
-function get_categories($req_uid, $uid){
+// category list
+function get_categories($req_uid, $uid, $block=false){
 
 	$db = & $this->d3dConf->db;
 	
 	$editperm=0;
-	$whr_openarea = "(openarea <>100 OR uid = $uid) AND";
+
+	if ( $block==true ) {
+		$constpref = "_MB_" . strtoupper( $this->mydirname ) ;
+		$no_category = constant($constpref."_NOCNAME");
+	} else {
+		$no_category = constant("_MD_NOCNAME");
+	}
+
+	//$whr_openarea = "(openarea <>100 OR uid = $uid) AND";
 	if($this->mPerm->isadmin){
 		$editperm=1;
-		$whr_openarea = "";
+	//	$whr_openarea = "";
 	}
 	if($req_uid==$uid){$owner=1;}
 
-	if($req_uid==0){	// for diarylist
-		$on_uid = "ON ( c.uid='0' AND d.cid=c.cid) " ;
-		$whr_uid1 = " c.uid='0' " ;
-		$whr_uid2 = " c.uid='0' " ;
-	} else {		// for personal index
-		$on_uid = "ON ((d.uid=c.uid  OR c.uid='0') AND d.cid=c.cid) " ;
-		$whr_uid1 = " d.uid='".intval($req_uid)."' " ;
-		$whr_uid2 = " (c.uid='".intval($req_uid)."' OR c.uid='0') " ;
+	if ( $this->d3dConf->q_fr==1 && $req_uid>0 ) {
+			$on_uid = "ON ((d.uid=c.uid  OR c.uid='0') AND d.cid=c.cid) " ;
+			$whr_uid1 = " d.uid IN (". implode(',', $this->mPerm->req_friends).")" ;
+			$whr_uid2 = " (c.uid IN (". implode(',', $this->mPerm->req_friends).") OR c.uid='0') " ;
+	} else {
+		if($req_uid==0){	// for diarylist
+			$on_uid = "ON ( c.uid='0' AND d.cid=c.cid) " ;
+			$whr_uid1 = " (c.uid='0' OR c.uid IS NULL) " ;
+			$whr_uid2 = " c.uid='0' " ;
+		} else {		// for personal index
+			$on_uid = "ON ((d.uid=c.uid  OR c.uid='0') AND d.cid=c.cid) " ;
+			$whr_uid1 = " d.uid='".intval($req_uid)."' " ;
+			$whr_uid2 = " (c.uid='".intval($req_uid)."' OR c.uid='0') " ;
+		}
 	}
 
 	if($this->mPerm->isadmin){
@@ -234,7 +251,7 @@ function get_categories($req_uid, $uid){
 		$whr_nofuture = " AND d.create_time<'".$now."' ";
 	} else { $whr_nofuture = ""; }
 
-	$sql = "SELECT c.cid, count(*) as d_count 
+	$sql = "SELECT d.cid as cid, count(d.bid) as d_count 
 			FROM ".$db->prefix($this->mydirname.'_diary')." d 
 			LEFT JOIN ".$db->prefix($this->mydirname.'_category')." c ".$on_uid." 
 			LEFT JOIN ".$db->prefix($this->mydirname.'_config')." cfg ON d.uid=cfg.uid 
@@ -258,22 +275,23 @@ function get_categories($req_uid, $uid){
 	$sql = "SELECT * 
 			FROM ".$db->prefix($this->mydirname.'_category')." c 
 	          	WHERE ".$whr_uid2." AND ".$whr_openarea." ORDER BY c.corder ASC";
-	//var_dump($sql);
+
 	$result = $db->query($sql);
 	while ( $dbdat = $db->fetchArray($result) ) {
 		if (isset($arr_entry[intval($dbdat['cid'])])) {	$catopt['num']=$arr_entry[intval($dbdat['cid'])]; }
 		else { $catopt['num']=0; }
 		$catopt['cid']  = intval($dbdat['cid']);
-		$catopt['cname']  = $dbdat['cname'] ? $this->myts->makeTboxData4Show($dbdat['cname']) : constant("_MD_NOCNAME");
+		$catopt['cname']  = $dbdat['cname'] ? $this->myts->makeTboxData4Show($dbdat['cname']) : $no_category;
 		$catopt['subcat']  = intval($dbdat['subcat']);
 		$catopt['blogtype']  = intval($dbdat['blogtype']);
 		$arr_catopt[] = $catopt;
 		//$xoopsTpl->append("catopt", $catopt);
 	}
+		// for uncategorized entries
 		if (isset($arr_entry[0])) {
 			$catopt['num']=$arr_entry[0];
 			$catopt['cid']   = 0;
-			$catopt['cname']   = constant("_MD_NOCNAME");
+			$catopt['cname']   = $no_category;
 			$catopt['subcat']  = 0;
 			$arr_catopt[] = $catopt;
 			//$xoopsTpl->append("catopt", $catopt);
@@ -281,6 +299,7 @@ function get_categories($req_uid, $uid){
 	return $arr_catopt;
 }
 
+// calender
 function get_calender( $req_uid, $year, $month, $uid, $base_url="", $block=false )
 {
 
@@ -296,20 +315,26 @@ function get_calender( $req_uid, $year, $month, $uid, $base_url="", $block=false
 	}
 
 	$editperm=0;
-
-	if($req_uid==0){	// for diarylist
-		$whr_uid = " 1 " ;
-	} else {		// for personal index
-		$whr_uid = " d.uid='".intval($req_uid)."'" ;
+	if ( $this->d3dConf->q_fr==1 && $req_uid>0 ) {
+		$whr_uid= " d.uid IN (". implode(',', $this->mPerm->req_friends).")" ;
+	} else {
+		if($req_uid==0){	// for diarylist
+			$whr_uid = " 1 " ;
+		} else {		// for personal index
+			$whr_uid = " d.uid='".intval($req_uid)."'" ;
+		}
 	}
 	$on_uid = "ON ((d.uid=c.uid  OR c.uid='0') AND d.cid=c.cid) " ;
 
-	if( $req_uid > 0 ) {
-		$base_url = XOOPS_URL."/modules/".$this->mydirname."/index.php?page=index";
-	} else {
-		$base_url = XOOPS_URL."/modules/".$this->mydirname."/index.php?page=diarylist";
+	if (empty($base_url)) {
+		$page = !empty($this->d3dConf->page) ? $this->d3dConf->page : (($req_uid > 0) ? 'index' : 'diarylist');
+		$base_url=XOOPS_URL."/modules/".$this->mydirname."/index.php?page=".$page;
+		if( $req_uid > 0 ) { 
+			$base_url .= "&amp;req_uid=".$req_uid."&amp;";
+		} else {
+			$base_url .= "&amp;";
+		}
 	}
-		
 
 	if($this->mPerm->isadmin){
 		$editperm=1;
@@ -322,18 +347,23 @@ function get_calender( $req_uid, $year, $month, $uid, $base_url="", $block=false
 		//var_dump($whr_openarea);
 	}
 
+	$now = date("Y-m-d H:i:s");
+	if ($this->mPerm->isadmin!=true and $this->mPerm->isauthor!=true) {
+		$whr_nofuture = " AND d.create_time<'".$now."' ";
+	} else { $whr_nofuture = ""; }
+
 	$sql = "SELECT d.uid, d.bid, d.cid, d.create_time, d.openarea, 
 			c.cid, c.openarea AS openareacat 
 			FROM ".$db->prefix($this->mydirname.'_diary')." d 
 			LEFT JOIN ".$db->prefix($this->mydirname.'_category')." c ".$on_uid." 
 			LEFT JOIN ".$db->prefix($this->mydirname.'_config')." cfg ON d.uid=cfg.uid 
-			WHERE ".$whr_uid." AND ".$whr_openarea." 
+			WHERE ".$whr_uid." AND ".$whr_openarea.$whr_nofuture." 
 			AND create_time>='".$start."' AND create_time<'".$end."'";
 	//echo"<br/>"; var_dump($sql);echo"<br/>"; echo"<br/>"; 
 	
 	$result = $db->query($sql);
 	while ( $dbdat = $db->fetchArray($result)){
-		$ctime = preg_split("/[-: ]/",$dbdat['create_time']);
+		$ctime=preg_split("/[-: ]/",$dbdat['create_time']);
 		$tmp=$this->myformatTimestamp(mktime($ctime[3],$ctime[4],$ctime[5],$ctime[1],$ctime[2],$ctime[0]), "d");
 		$dcnt[intval($tmp)]=(empty($dcnt[intval($tmp)])) ? 1 : $dcnt[intval($tmp)]+1;
 	}
@@ -361,7 +391,7 @@ function get_calender( $req_uid, $year, $month, $uid, $base_url="", $block=false
 	
 	$result = $db->query($sql);
 	while ( $dbdat = $db->fetchArray($result)){
-		$ctime = preg_split("/[-: ]/",$dbdat['create_time']);
+		$ctime=preg_split("/[-: ]/",$dbdat['create_time']);
 		$tmp=$this->myformatTimestamp(mktime($ctime[3],$ctime[4],$ctime[5],$ctime[1],$ctime[2],$ctime[0]), "d");
 		$dcnt[intval($tmp)]=(empty($dcnt[intval($tmp)])) ? 1 : $dcnt[intval($tmp)]+1;
 	}
@@ -379,8 +409,8 @@ function get_calender( $req_uid, $year, $month, $uid, $base_url="", $block=false
 	}
 
 	$html="<tr><td colspan=7>";
-	$html.="<a style='float:left;' href='".$base_url."&amp;req_uid=".$req_uid."&amp;mode=month&amp;year=".$before_month_y."&amp;month=".$before_month_m."'>&laquo;".$const_before_month."</a>";
-	$html.="<a style='float:right;' href='".$base_url."&amp;req_uid=".$req_uid."&amp;mode=month&amp;year=".$next_month_y."&amp;month=".$next_month_m."'>".$const_next_month."&raquo;</a><div class='clear'></div></td></tr>";
+	$html.="<a style='float:left;' href='".$base_url."year=".$before_month_y."&amp;month=".$before_month_m."'>&laquo;".$const_before_month."</a>";
+	$html.="<a style='float:right;' href='".$base_url."year=".$next_month_y."&amp;month=".$next_month_m."'>".$const_next_month."&raquo;</a><div class='clear'></div></td></tr>";
 	$html.="<tr class='d3d_week'><td><font color='red'>".$week_arr[0]."</font></td>";
 	$html.="<td>".$week_arr[1]."</td>";
 	$html.="<td>".$week_arr[2]."</td>";
@@ -397,7 +427,7 @@ function get_calender( $req_uid, $year, $month, $uid, $base_url="", $block=false
 			$html.="</tr><tr>";
 		}
 		if(!empty($dcnt[$j]) and intval($dcnt[$j])>0){
-			$html.="<td><a href='".$base_url."&amp;req_uid=".$req_uid."&amp;mode=date&amp;year=".$year."&amp;month=".$month."&amp;day=".$j."' style='text-decoration:underline;'>".$j."</a></td>";
+			$html.="<td><a href='".$base_url."year=".$year."&amp;month=".$month."&amp;day=".$j."' style='text-decoration:underline;'>".$j."</a></td>";
 		}else{
 			$html.="<td>".$j."</td>";
 		}
@@ -445,7 +475,7 @@ function get_friends($my_friends){
 	
 	if($count>$max_size){
             if( !empty($_SERVER['QUERY_STRING'])) {
-                if( ereg("^offset=[0-9]+$", $_SERVER['QUERY_STRING']) ) {
+                if( preg_match("/^offset=[0-9]+$/", $_SERVER['QUERY_STRING']) ) {
                     $url = "";
                 } else {
                     $url = preg_replace("/^(.*)\&offset=[0-9]+$/", "$1", $_SERVER['QUERY_STRING']);
@@ -463,7 +493,7 @@ function get_friends($my_friends){
   	return array( $arr_friends, $yd_friendsnavi);
 }
 
-# “o˜^ŒŽƒŠƒXƒg
+// month list
 function get_monlist( $req_uid, $uid, $max_size =12 ){
 
 	global $openarea;
@@ -479,10 +509,14 @@ function get_monlist( $req_uid, $uid, $max_size =12 ){
 		$_month = (int)$this->getpost_param('month');
 	}
 
-	if($req_uid==0){	// for diarylist
-		$whr_uid = " 1 " ;
-	} else {		// for personal index
-		$whr_uid = " d.uid='".intval($req_uid)."'" ;
+	if ( $this->d3dConf->q_fr==1 && $req_uid>0 ) {
+		$whr_uid= " d.uid IN (". implode(',', $this->mPerm->req_friends).")" ;
+	} else {
+		if($req_uid==0){	// for diarylist
+			$whr_uid = " 1 " ;
+		} else {		// for personal index
+			$whr_uid = " d.uid='".intval($req_uid)."'" ;
+		}
 	}
 
 	$now = date("Y-m-d H:i:s");
@@ -531,7 +565,7 @@ function get_monlist( $req_uid, $uid, $max_size =12 ){
 
 	if($count>$max_size){
             if( !empty($_SERVER['QUERY_STRING'])) {
-                if( ereg("^mofst=[0-9]+", $_SERVER['QUERY_STRING']) ) {
+                if(preg_match("/^mofst=[0-9]+/", $_SERVER['QUERY_STRING']) ) {
                     $url = "";
                 } else {
                     $url = preg_replace("/^(.*)\&mofst=[0-9]+/", "$1", $_SERVER['QUERY_STRING']);
@@ -548,14 +582,14 @@ function get_monlist( $req_uid, $uid, $max_size =12 ){
 	return array( $yd_monlist, $yd_monthnavi );
 }
 
-// ÅV“ú‹LƒŠƒXƒg
+// diary list
 function get_blist($req_uid, $uid, $maxnum=7, $dosort=true, $params=array() ){
 	$mytstamp = array();
 	return $this->get_blist_tstamp($req_uid, $uid, $maxnum, $dosort, $mytstamp, $params);
 	
 }
 
-// ÅV“ú‹LƒŠƒXƒg
+// diary list
 function get_blist_tstamp($req_uid, $uid, $maxnum=7, $dosort=true, & $mytstamp, $params=array() ){
 	global $openarea ;
 
@@ -620,7 +654,7 @@ function get_blist_tstamp($req_uid, $uid, $maxnum=7, $dosort=true, & $mytstamp, 
 	}
 
 	// entries
-	$sql = "SELECT d.uid AS uid, d.bid AS bid, d.title, d.cid, d.diary, d.create_time, d.openarea AS openarea_entry, d.dohtml, 
+	$sql = "SELECT d.uid AS uid, d.bid AS bid, d.title, d.cid, d.diary, d.create_time, d.openarea AS openarea_entry, d.dohtml, d.view, 
 			u.uname, u.name, u.user_avatar, c.openarea AS openarea_cat, c.cname, cfg.openarea 
 			FROM ".$db->prefix($this->mydirname.'_diary')." d 
 			INNER JOIN ".$db->prefix('users')." u USING(uid) 
@@ -683,6 +717,8 @@ function get_blist_tstamp($req_uid, $uid, $maxnum=7, $dosort=true, & $mytstamp, 
 	// newentries (other)
 	if (!empty($first_date)) {
 		$whr_nofuture = " AND d.create_time>'" . $first_date . "' " . $whr_nofuture ;
+	} else {
+		$whr_nofuture = "" ;
 	}
 	
 	if($this->mPerm->isadmin){
@@ -791,6 +827,8 @@ function get_commentlist($req_uid, $uid, $maxnum=30, $only_count=false, $dosort=
 	$req_uid2=intval($this->getpost_param('req_uid'));
 	if(intval($req_uid2)>0) {
 		$whr_uids="AND d.uid=".intval($req_uid2);
+	} elseif(intval($req_uid)>0)  {
+		$whr_uids="AND d.uid=".intval($req_uid);
 	} else {$whr_uids="";}
 
 	if($this->d3dConf->mPerm->isadmin){
@@ -988,12 +1026,184 @@ function get_commentlist($req_uid, $uid, $maxnum=30, $only_count=false, $dosort=
 
 }
 
-function get_photolist( $req_uid, $uid, $max_entry, $offset, $params=array() ){
+function get_bloggerlist( $req_uid, $uid, $max_entry, $offset=0, $params=array() ){
 
 	$db = & $this->d3dConf->db;
 	
 	$on_uid = "ON ((d.uid=c.uid  OR c.uid='0') AND d.cid=c.cid) " ;
+	$max_entry = !empty($max_entry) ? (int)$max_entry : 0 ;
 
+	// openarea permissions 
+	//if($this->mPerm->isadmin){
+	//	$whr_openarea = " 1 ";
+	//} else {
+		//$req_uid is changed by page, so this method is not valid
+		//$_params4op['use_gp'] = $this->gPerm->use_gp;
+		//$_params4op['use_pp'] = $this->gPerm->use_pp;
+		//$whr_openarea = $this->mPerm->get_open_query( "bloggerlist", $_params4op );
+		//$whr_openarea = "(d.uid='".$uid."' OR d.openarea <>'100') AND cfg.blogtype != '100' ";
+		$whr_openarea = "d.openarea <>'100' ";
+		//var_dump($whr_openarea);
+	//}
+
+		$now = date("Y-m-d H:i:s");
+		if ($this->mPerm->isadmin!=true and $this->mPerm->isauthor!=true) {
+			$whr_nofuture = " AND d.create_time<'".$now."' ";
+		} else {
+			$whr_nofuture = "";
+		}
+
+	$whr_cid = "" ;
+	$whr_cat = "" ;
+	$whr_tag = "" ;
+	$table_tag = "" ;
+
+	if (!empty($params)){
+		if(!empty($params['order'])){
+			switch ($params['order']) {
+			case 'name_asc' :
+				$odr = ($this->module_config['use_name'] == true) ? "u.name ASC" : "u.uname ASC" ;
+				break;
+			case 'name_dsc' :
+				$odr = ($this->module_config['use_name'] == true) ? "u.name DESC" : "u.uname DESC" ;
+				break;
+			case 'count_asc' :
+				$odr = "count ASC" ;
+				break;
+			case 'posted' :
+			case 'count_dsc' :
+				$odr = "count DESC" ;
+				break;
+			case 'hit_asc' :
+				$odr = "hit ASC" ;
+				break;
+			case 'hit_dsc' :
+				$odr = "hit DESC" ;
+				break;
+			case 'time_asc' :
+				$odr = "max_create_time ASC" ;
+				break;
+			case 'time' :
+			case 'time_dsc' :
+			default :
+				$odr = "max_create_time DESC" ;
+			}
+		}
+
+		$ofst_key = !empty($params['ofst_key']) ? $params['ofst_key'] : "bgofst";
+
+		if(!empty($params['cids'])){
+			$whr_cid = " AND c.cid IN (".implode("," , $params['cids']).")" ;
+		}
+		if(!empty($params['tags'])){
+			$table_tag = "LEFT JOIN ".$db->prefix($this->mydirname.'_tag')." t ON d.bid=t.bid " ;
+			$whr_tag = " AND (" ;
+		      	foreach($params['tags'] as $tag) {
+				$whr_tag .= "t.tag_name LIKE '".$tag."' OR ";
+			}
+            		$whr_tag = rtrim( $whr_tag, "OR " ). ")" ;
+		}
+	}
+		// first, get external blogger list
+		$sql = "SELECT DISTINCT cfg.uid, u.name, u.uname from "
+				.$db->prefix($this->mydirname."_config")." cfg LEFT JOIN "
+				.$db->prefix("users")
+				." u ON cfg.uid=u.uid WHERE cfg.blogtype>'0'" ;
+
+		$result = $db->query($sql);
+	
+		$rtn2_ = array(); $_dat = array(); $blogger2_ids = array(); 
+		while( $dbdat = $db->fetchArray( $result ) ) {
+			$_dat['uid'] = (int)$dbdat['uid'];
+			$_dat['uname'] = htmlSpecialChars( $dbdat['uname'], ENT_QUOTES );
+			$_dat['name'] = htmlSpecialChars( $dbdat['name'], ENT_QUOTES );
+			$rtn2_[] = $_dat;
+			$blogger2_ids[] = $_dat['uid'];
+		}
+	
+		$sql_base = "FROM ".$db->prefix($this->mydirname."_diary")." d 
+				INNER JOIN ".$db->prefix("users")." u USING(uid) 
+				LEFT JOIN ".$db->prefix($this->mydirname.'_category')." c ".$on_uid." 
+				LEFT JOIN ".$db->prefix($this->mydirname.'_config')." cfg ON d.uid=cfg.uid 
+				LEFT JOIN ".$db->prefix($this->mydirname.'_cnt')." cnt ON d.uid=cnt.uid 
+				".$table_tag." 
+				WHERE ".$whr_openarea.$whr_nofuture.$whr_cid.$whr_tag ;
+
+		$sql1 = "SELECT d.uid ".$sql_base." GROUP BY d.uid" ;
+		$sql2 = "SELECT d.uid, count(d.uid) AS count, MAX(d.create_time) AS max_create_time, 
+				u.name, u.uname, cnt.cnt AS hit ".$sql_base." GROUP BY d.uid, u.name, u.uname 
+				ORDER BY ".$odr ;
+
+		$sql3 = "SELECT p.uid, count(p.uid) as pcount 
+				FROM ".$db->prefix($this->mydirname."_photo")." p 
+				INNER JOIN ".$db->prefix($this->mydirname."_diary")." d USING(uid,bid) 
+				INNER JOIN ".$db->prefix('users')." u USING(uid) 
+				LEFT JOIN ".$db->prefix($this->mydirname.'_category')." c ".$on_uid." 
+				LEFT JOIN ".$db->prefix($this->mydirname.'_config')." cfg ON d.uid=cfg.uid 
+				".$table_tag." 
+				WHERE ".$whr_openarea.$whr_nofuture.$whr_cid.$whr_tag." 
+				GROUP BY d.uid" ;
+
+	//var_dump($sql1); echo"<br />"; var_dump($sql2); echo"<br />"; var_dump($sql3); echo"<br />";
+
+	// get total users count
+	$result = $db->query($sql1);
+	while( $row[] = $db->fetchArray( $result ) ) {	}
+	$count = count($row);
+	
+	if($count>$max_entry){
+            if( !empty($_SERVER['QUERY_STRING'])) {
+                if( preg_match("/^".$ofst_key."=[0-9]+/", $_SERVER['QUERY_STRING']) ) {
+                    $url = "";
+                } else {
+                    $url = preg_replace("/^(.*)\&".$ofst_key."=[0-9]+/", "$1", $_SERVER['QUERY_STRING']);
+                }
+            } else {
+                $url = "";
+            }
+	    include_once dirname( dirname(__FILE__) ).'/class/d3diaryPagenavi.class.php';
+            $nav = new d3diaryPageNav($count, $max_entry, $offset, $ofst_key, $url);
+            if (!empty($params['getnav'])) {
+        	$got_navi = $nav->getNav();
+         	$got_navi['count'] = $count ;
+          } else {
+        	$got_navi = $nav->renderNav();
+             }
+        } else {
+            $got_navi = "";
+        }
+
+	// get photo counts for each uid
+	$result = $db->query($sql3);
+	$p_count = array();
+	while ($row = $db->fetchRow($result)) {
+	    $p_count[$row[0]] = (int)$row[1];
+	}
+
+	// finally get user list
+        $result = $db->query($sql2, $max_entry, $offset);
+	$rtn_ = array(); $_dat = array();
+	while ( $dbdat = $db->fetchArray($result) ) {
+		if(!in_array($dbdat['uid'],$blogger2_ids)) {
+			$_dat['uid'] = (int)$dbdat['uid'];
+			$_dat['count'] = (int)$dbdat['count'];
+			$_dat['p_count'] = !empty($p_count[$_dat['uid']]) ? $p_count[$_dat['uid']] : 0 ;
+			$_dat['time'] = $dbdat['max_create_time'] ;
+			$_dat['uname'] = htmlSpecialChars( $dbdat['uname'], ENT_QUOTES );
+			$_dat['name'] = htmlSpecialChars( $dbdat['name'], ENT_QUOTES );
+			$_dat['hit'] = (int)$dbdat['hit'];
+			$rtn_[] = $_dat;
+		}
+	}
+	//var_dump($rtn_);
+  	return array( $rtn_, $rtn2_, $got_navi);
+}
+
+function get_photolist( $req_uid=array(), $uid, $max_entry, $offset=0, $params=array() ){
+
+	$db = & $this->d3dConf->db;
+	
+	$on_uid = "ON ((d.uid=c.uid  OR c.uid='0') AND d.cid=c.cid) " ;
 	$max_entry = !empty($max_entry) ? (int)$max_entry : 0 ;
 
 	if($this->mPerm->isadmin){
@@ -1002,15 +1212,12 @@ function get_photolist( $req_uid, $uid, $max_entry, $offset, $params=array() ){
 		// openarea permissions 
 		$_params4op['use_gp'] = $this->gPerm->use_gp;
 		$_params4op['use_pp'] = $this->gPerm->use_pp;
-		$whr_openarea = " AND ".$this->mPerm->get_open_query( "b_photolist", $_params4op );
+		$whr_openarea = " AND ".$this->mPerm->get_open_query( "photolist", $_params4op );
 		//var_dump($whr_openarea);
 	}
 
-	if(intval($req_uid)>0){
-		$whr_uids="d.uid='".intval($req_uid)."'";
-	} else {
-		$whr_uids=" 1 ";
-	}
+	$whr_uids = count($req_uid)>0 ? "d.uid IN (".implode(',',$req_uid).")" : " 1 ";
+	
 		$now = date("Y-m-d H:i:s");
 		if ($this->mPerm->isadmin!=true and $this->mPerm->isauthor!=true) {
 			$whr_nofuture = " AND d.create_time<'".$now."' ";
@@ -1018,9 +1225,11 @@ function get_photolist( $req_uid, $uid, $max_entry, $offset, $params=array() ){
 			$whr_nofuture = "";
 		}
 
+	$whr_cid = "" ;
 	$whr_cat = "" ;
 	$whr_tag = "" ;
 	$table_tag = "" ;
+	$whr_time = "";
 
 	if (!empty($params)){
 		$size = !empty($params['size']) ? (int)$params['size'] : 0 ;
@@ -1030,14 +1239,37 @@ function get_photolist( $req_uid, $uid, $max_entry, $offset, $params=array() ){
 			case 'random' :
 				$odr = "rand()" ;
 				break;
+			case 'title_asc' :
+				$odr = "cast(d.title as char) ASC" ;
+				break;
+			case 'title_dsc' :
+				$odr = "cast(d.title as char) DESC" ;
+				break;
+			case 'hit_asc' :
+				$odr = "d.view ASC" ;
+				break;
+			case 'hit_dsc' :
+				$odr = "d.view DESC" ;
+				break;
+			case 'time_asc' :
+				$odr = "d.create_time ASC" ;
+				break;
+			case 'time_dsc' :
 			case 'time' :
 			default :
-				$odr = "tstamp DESC" ;
+				$odr = "d.create_time DESC" ;
 			}
 		}
 
 		$ofst_key = !empty($params['ofst_key']) ? $params['ofst_key'] : "phofst";
 
+		if(!empty($params['cids'])){
+			if( $params['cids'][0] == 0 ) {
+				$whr_cid = " AND c.cid IS NULL " ;
+		 	} else {
+				$whr_cid = " AND c.cid IN (".implode("," , $params['cids']).")" ;
+			}
+		}
 		if(!empty($params['categories'])){
 			$whr_cat = " AND (" ;
 		      	foreach($params['categories'] as $cat) {
@@ -1053,6 +1285,27 @@ function get_photolist( $req_uid, $uid, $max_entry, $offset, $params=array() ){
 			}
             		$whr_tag = rtrim( $whr_tag, "OR " ). ")" ;
 		}
+		if(!empty($params['day'])){
+			$whr_time.=" AND d.create_time>='".$params['year']."-".$params['month']
+				."-".$params['day']." 00:00:00"."' ";
+			$whr_time.=" AND d.create_time<='".$params['year']."-".$params['month']
+				."-".$params['day']." 23:59:59"."' ";
+		} elseif(!empty($params['month'])){
+			if($params['month']==12){
+				$next_year=$params['year']+1;
+				$next_month=1;
+			}else{
+				$next_year=$params['year'];
+				$next_month=$params['month']+1;
+			}
+			$whr_time.=" AND d.create_time>='".$params['year']."-".$params['month']."-01 00:00:00"."' ";
+			$whr_time.=" AND d.create_time<'".$next_year."-".$next_month."-01 00:00:00"."' ";
+		}
+		
+		// params for info sanitize
+		$max_info = !empty($params['max_info']) ? $params['max_info'] : 30 ;
+		$enc = !empty($params['enc']) ? $params['enc'] : _CHARSET ;
+		$f_truncate = !empty($params['f_truncate']) ? $params['f_truncate'] : false ;
 	}
 
 	$sql_base = "FROM ".$db->prefix($this->mydirname.'_photo')." p 
@@ -1061,54 +1314,221 @@ function get_photolist( $req_uid, $uid, $max_entry, $offset, $params=array() ){
 			LEFT JOIN ".$db->prefix($this->mydirname.'_category')." c ".$on_uid." 
 			LEFT JOIN ".$db->prefix($this->mydirname.'_config')." cfg ON d.uid=cfg.uid 
 			".$table_tag."
-			WHERE ".$whr_uids.$whr_openarea.$whr_nofuture.$whr_cat.$whr_tag." 
+			WHERE ".$whr_uids.$whr_openarea.$whr_nofuture.$whr_cid.$whr_cat.$whr_tag.$whr_time." 
 			ORDER BY ".$odr ;
 
 	// get total photos count
 	$sql = "SELECT count(p.pid) as count ".$sql_base ;
-
 	$result = $db->query($sql);
 	list ($count) = $db->fetchRow($result);
-
 	if($count>$max_entry){
             if( !empty($_SERVER['QUERY_STRING'])) {
-                if( ereg("^".$ofst_key."=[0-9]+$", $_SERVER['QUERY_STRING']) ) {
+                if( preg_match("/^".$ofst_key."=[0-9]+/", $_SERVER['QUERY_STRING']) ) {
                     $url = "";
                 } else {
-                    $url = preg_replace("/^(.*)\&".$ofst_key."=[0-9]+$/", "$1", $_SERVER['QUERY_STRING']);
+                    $url = preg_replace("/^(.*)\&".$ofst_key."=[0-9]+/", "$1", $_SERVER['QUERY_STRING']);
                 }
             } else {
                 $url = "";
             }
 	    include_once dirname( dirname(__FILE__) ).'/class/d3diaryPagenavi.class.php';
             $nav = new d3diaryPageNav($count, $max_entry, $offset, $ofst_key, $url);
-            $photonavi = $nav->renderNav();
+            if (!empty($params['getnav'])) {
+        	$got_navi = $nav->getNav();
+         	$got_navi['count'] = $count ;
+          } else {
+        	$got_navi = $nav->renderNav();
+             }
         } else {
-            $photonavi = "";
+            $got_navi = array();
         }
 
 	$sql = "SELECT p.pid as pid, p.ptype as ptype, p.tstamp as tstamp, p.info as info, p.bid as bid, p.uid as uid, 
 			title, uname, name "
 			.$sql_base ;
         $result = $db->query($sql, $max_entry, $offset);
-	$rtn_photos = array();
+	$rtn_ = array();
 	while ( $dbdat = $db->fetchArray($result) ) {
-		$photo['bid'] = $dbdat['bid'];
+		$photo['bid'] = (int)$dbdat['bid'];
 		$photo['pid'] = $dbdat['pid'];
 		$photo['ptype']= $dbdat['ptype'];
 		$photo['pname'] = $this->myts->makeTboxData4Show($photo['pid'].$photo['ptype']);
 		$photo['thumbnail'] = "t_".$photo['pid'].$photo['ptype'];
-		$photo['info'] = $this->stripPb_Tarea( $dbdat['info'] ) ;
-		$photo['tstamp'] = $dbdat['tstamp'] ;
+		$photo['info'] = $dbdat['info'] ? $this->substrTarea( $dbdat['info'], 0, $max_info, $f_truncate, $enc ) : "" ;
+		$tmp = preg_split("/[-: ]/",$dbdat['tstamp']);
+		$photo['tstamp'] = mktime($tmp[3],$tmp[4],$tmp[5],$tmp[1],$tmp[2],$tmp[0]);
+		$photo['time'] = $dbdat['tstamp'] ;
 		$photo['title'] = $this->myts->makeTboxData4Show($dbdat['title']);
 		$photo['uid'] = (int)$dbdat['uid'];
 		$photo['uname'] = htmlSpecialChars( $dbdat['uname'], ENT_QUOTES );
 		$photo['name'] = htmlSpecialChars( $dbdat['name'], ENT_QUOTES );
 		
-		$rtn_photos[] = $photo;
+		$rtn_[] = $photo;
 	}
 
-  	return array( $rtn_photos, $photonavi);
+  	return array( $rtn_, $got_navi);
+
+}
+
+// can be called only by main pages
+function manage_photos ( & $photoObj, & $diaryObj, & $psels, & $psel_names, $action, $params=array() )
+{
+	list( $uploaddir, $previewdir ) = $this->d3dConf->get_photodir() ;
+	$previewpath = $uploaddir.$previewdir ;
+
+	$photos = array(); $prev_pnames = array();
+	$i = 0 ;
+	if( !empty( $psels ) ) {
+		$pattern = array("..","index.html",".php");
+		$replace = array("","","");
+		foreach ( $psels as $_pid ) {
+			$_pid = addslashes($_pid);
+			$sel_pname = addslashes($psel_names[$i]);
+			$trim_pname = str_replace($previewdir, "", $sel_pname);
+			$trim_pname = str_replace($pattern,$replace,$trim_pname);
+			$sel_pname2 = str_replace($pattern,$replace,$trim_pname);
+			if (strlen($sel_pname2) == strlen($sel_pname) and !empty($_pid)){
+				// registered files
+				$photoObj->pids[] = str_replace($previewdir, "", $_pid) ;
+			} else {
+				// previewed files
+				$prev_pnames[] = $sel_pname2 ;
+			}
+			$i++;
+		}
+		
+		 // check each photo owner's or isadmin's file is registered by self
+		$photoObj->readdb_bypids( $this->mydirname ) ;
+		if( !empty( $photoObj->photos ) ) {
+			foreach ( $photoObj->pids as $_pid ) {
+				//var_dump($photo); var_dump($_rtn[$photo]); echo"<br />";
+				if( $this->mPerm->isadmin || $photoObj->photos[$_pid]['uid'] == $this->uid ) {
+					$photos[] = $photoObj->photos[$_pid] ;
+				}
+			}
+			$photoObj->photos = $photos ;	// overrides : to use in photolist of case1 or case4
+		}
+	} else {
+		return false ;
+	}
+
+	switch ( $action ) {
+	case 1 :	// edit info selected
+		return true;
+		break;
+	case 11 :	// edit info action
+		$photoObj->init_values( $this->mydirname );
+		$i=0;
+		foreach ( $photos as $photo ) {
+			$photoObj->bid = $photo['bid'];
+			$photoObj->pid = $photo['pid'];
+			$photoObj->readdb( $this->mydirname );
+			$photoObj->info = htmlspecialchars( $params['pvinfo'][$i], ENT_QUOTES ) ;
+			$photoObj->updatedb( $this->mydirname );
+			$i++;
+		}  // end foreach $photos
+		return true;
+		break;
+	case 2 :	// left rotate
+	case 3 :	// right rotate
+		$i=0;
+		foreach ( $photos as $photo ) {
+			if ( $photo['bid']>0 ){
+				$uploadfile = $uploaddir.$photo['pname'];
+				$t_uploadfile = $uploaddir.$photo['thumbnail'];
+				list($width, $height, $type, $attr) = getimagesize($uploadfile);
+				if ( $action == 2 ) {
+					$degrees = 90;
+				} else {
+					$degrees = 270;
+				}
+				// rotate
+				if($type == 1){
+					$upimage = ImageCreateFromGIF($uploadfile);
+					$t_upimage = ImageCreateFromGIF($t_uploadfile);
+					$rotated = imagerotate($upimage, $degrees, 0);
+					$t_rotated = imagerotate($t_upimage, $degrees, 0);
+					imagegif($rotated,$uploadfile);
+					imagegif($t_rotated,$t_uploadfile);
+				} elseif($type == 2){
+					$upimage = ImageCreateFromJPEG($uploadfile);
+					$t_upimage = ImageCreateFromJPEG($t_uploadfile);
+					$rotated = imagerotate($upimage, $degrees, 0);
+					$t_rotated = imagerotate($t_upimage, $degrees, 0);
+					imagejpeg($rotated,$uploadfile);
+					imagejpeg($t_rotated,$t_uploadfile);
+				} else {
+					$upimage = ImageCreateFromPNG($uploadfile);
+					$t_upimage = ImageCreateFromPNG($t_uploadfile);
+					$rotated = imagerotate($upimage, $degrees, 0);
+					$t_rotated = imagerotate($t_upimage, $degrees, 0);
+					imagepng($rotated,$uploadfile);
+					imagepng($t_rotated,$t_uploadfile);
+				}
+			}
+			$i++;
+		}  // end foreach $photos
+		return true;
+		break;
+	case 4 :	// move selected
+		break;
+	case 41 :	// move action
+		$diaryObj->bids = array_unique( $params['bids'] );
+	    	$diaryObj->readdb_mul( $this->mydirname );
+	    	
+		$photoObj->init_values( $this->mydirname );
+		$i=0;
+		foreach ( $photos as $photo ) {
+			if( $this->mPerm->isadmin || $diaryObj->diaries[$params['bids'][$i]]['uid'] == $this->uid ) {
+				$photoObj->bid = $photo['bid'];
+				$photoObj->pid = $photo['pid'];
+				$photoObj->readdb( $this->mydirname );
+				if( $this->mPerm->isadmin ) { $photoObj->uid = (int)$diaryObj->diaries[$params['bids'][$i]]['uid'] ;}
+				$photoObj->updatedb_bid( $this->mydirname, $params['bids'][$i] );
+				//var_dump($photoObj); echo"<br />";
+			} else {
+				return false;
+			}
+			$i++;
+		}// end foreach $photos
+		return true;
+		break;
+	case 5 :	// delete
+		$i=0;
+		foreach ( $photos as $photo ) {
+			if ( $photo['bid']>0 ){
+				// once copy files into preview directory for transaction
+				$f_from = $uploaddir.$photo['pname'];
+				$f_to = $previewpath.$photo['pname'];
+				if (copy($f_from, $f_to)!=true){ return false ;}
+				$f_from = $uploaddir.$photo['thumbnail'];
+				$f_to = $previewpath.$photo['thumbnail'];
+				if (copy($f_from, $f_to)!=true){ return false ;}
+
+				// delete from db
+				$photoObj->bid = $photo['bid'];
+				$photoObj->pid = $photo['pid'];
+				if( ($result = $photoObj->deletedbF( $this->mydirname )) ==true ) {
+					unlink($uploaddir.$photo['pname']);
+					unlink($uploaddir.$photo['thumbnail']);
+				}
+					unlink($previewpath.$photo['pname']);
+					unlink($previewpath.$photo['thumbnail']);
+				//$yd_data['msg'] = _MD_FILEDELETED;
+			}
+		}// end foreach $photos
+		
+		$i=0;
+		foreach ( $prev_pnames as $prev_pname ) {
+			// delete previewed files
+			unlink( $previewpath.$prev_pname ) ;
+			unlink( $previewpath.'t_'.$prev_pname ) ;
+		}// end foreach $del_files
+		return true;
+		break;
+	default:
+	}
+	
 
 }
 
@@ -1122,7 +1542,6 @@ function substrTarea( $tex, $html = 0, $max = 30, $f_strip_tag=false, $enc="" )
 	$_pos = mb_strpos($tex, $pbreak, 0, $_enc);
 	//$_pos = mb_strpos($tex, $pbreak, 0);
 
-	//$pattern = array('/\[\[YT:([0-9a-z_-]+)\]\]/i','/\[\[ND:([\w\-]+)\]\]/i');
 	$pattern = array('/\[\[YT:([0-9a-z_\-]+)\]\]/i','/\[\[ND:([0-9a-z_\-]+)\]\]/i');
  	$replacement = array('','');
  	$tex = preg_replace($pattern,$replacement,$tex);
@@ -1159,6 +1578,11 @@ function substrTarea( $tex, $html = 0, $max = 30, $f_strip_tag=false, $enc="" )
 		$t_conv = $this->myts->displayTarea($_temptex,0,1,1,1,1);
 	}
     }
+
+	$pattern = array('/\[clearfloat\]/i');
+ 	$replacement = array("<div style='clear:both;'></div>");
+ 	$t_conv = preg_replace($pattern,$replacement,$t_conv);
+
 	return $t_conv;
 }
 
@@ -1172,8 +1596,7 @@ function stripPb_Tarea($tex, $html = 0)
 		$t_conv = $this->myts->displayTarea($tex,0,1,1,1,1);
 	}
 
-	//$pattern ='/\[\[YT:([\w\-]+)\]\]/i';
-	$pattern = array('/\[\[YT:([0-9a-z_-]+)\]\]/i','/\[\[ND:([0-9a-z_-]+)\]\]/i');
+	$pattern = array('/\[\[YT:([0-9a-z_-]+)\]\]/i','/\[\[ND:([0-9a-z_-]+)\]\]/i','/\[clearfloat\]/i');
 	$replacement1 = '<br /><object width="425" height="344">'.
 		'<param name="movie" value="http://www.youtube.com/v/$1&hl=ja&fs=1"></param>'.
 		'<param name="allowFullScreen" value="true"></param>'.
@@ -1181,7 +1604,7 @@ function stripPb_Tarea($tex, $html = 0)
 		'type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed>'.
 		'</object><br />';
 	$replacement2 = '<br /><script type="text/javascript" src="http://ext.nicovideo.jp/thumb_watch/$1?w=490&h=307"></script><noscript><a href="http://www.nicovideo.jp/watch/$1">Jump to Video</a></noscript><br />';
-	$replacement = array( $replacement1, $replacement2 );
+	$replacement = array( $replacement1, $replacement2, "<div style='clear:both;'></div>");
  	$t_conv = preg_replace($pattern,$replacement,$t_conv);
  	$_tex = str_replace($this->d3dConf->pbreak,"",$t_conv);
 
@@ -1201,7 +1624,8 @@ function get_breadcrumbs( $uid, $mode, $bc_para )
 				'url' => htmlSpecialChars($tmp_url[$i], ENT_QUOTES) ) ;
 
 	if(!empty($bc_para['mode'])){
-	    if(strcmp($bc_para['mode'], "comment")==0){
+	    if(strcmp($bc_para['mode'], "comment")==0 ||
+	    		strcmp($bc_para['mode'], "photolist")==0 ){
 		$i++;
 		$bc_para['mode'] = "";
 		$tmp_url[$i]=$tmp_url[0].$add_para[$i-1];
@@ -1366,6 +1790,7 @@ function get_taglist($uid=0, $bid=0, &$pop_tags, &$person_tags, &$entry_tags) {
 			$db_tags[] = $this->myts->makeTboxData4Show($dbdat['tag_name']);
 		}
 		if(!empty($db_tags)) $person_tags = array_unique($db_tags);
+		$pop_tags = !empty($person_tags) ? array_diff($pop_tags, $person_tags) : $pop_tags;
 
 	$sql = "SELECT *
 			FROM ".$db->prefix($this->mydirname.'_tag')."
@@ -1394,7 +1819,7 @@ function getTagCloud ( $where = null, $min_size = 80, $max_size = 160, $max_entr
 
 	$db = & $this->d3dConf->db;
 
-	$max_entry = !empty($max_entry) ? (int)$max_entry : 0 ;
+	$max_entry = !empty($max_entry) ? (int)$max_entry : 30 ;
 	$offset = !empty($offset) ?(int)$offset : 0;
 	//$odr = !empty($order) ? $order : "tag_name ASC";
 	$odr = !empty($params['order']) ? $params['order'] : "tag_name ASC";
@@ -1422,7 +1847,7 @@ function getTagCloud ( $where = null, $min_size = 80, $max_size = 160, $max_entr
 	} else {
 		if( $count>$max_entry ){
 	            if( !empty($_SERVER['QUERY_STRING'])) {
-	                if( ereg("^".$ofst_key."=[0-9]+", $_SERVER['QUERY_STRING']) ) {
+	                if( preg_match("/^".$ofst_key."=[0-9]+/", $_SERVER['QUERY_STRING']) ) {
 	                    $url = "";
 	                } else {
 	                    $url = preg_replace("/^(.*)\&".$ofst_key."=[0-9]+/", "$1", $_SERVER['QUERY_STRING']);
@@ -1486,7 +1911,7 @@ function update_other(){
 		$uid    = intval($line['uid']);
 		$cid    = 0;
 
-		# ‚Ü‚¸íœ
+		# £ü
 		$query = "DELETE FROM ".$db->prefix($this->mydirname.'_newentry')." WHERE uid='".$uid
 			."' AND cid='".$cid."'";
 		$result2 = $db->queryF($query);
@@ -1505,7 +1930,7 @@ function update_other(){
 	    	$yd_data['link'] = $item['link'];
 	    	$yd_data['blogtype'] = $line['blogtype'];
 		
-			# •’Ê‚Íelse•¶‚Ì•”•ª‚¾‚¯‚Å‚¢‚¢‚Í‚¸‚È‚ñ‚¾‚ªEEE
+			# ÉáÃÍseÉôÉ¦¡¦¡¦
 			if(!empty($item['dc']['date'])){
 				$tstamp=strtotime($item['dc']['date']);
 			}elseif(!empty($item['pubdate'])){
@@ -1538,7 +1963,7 @@ function update_other(){
 				$yd_data['diary']=addslashes($yd_data['diary']);
 			}
 	
-			# entry’Ç‰Á
+			# entry
 			$query = "INSERT INTO ".$db->prefix($this->mydirname.'_newentry')." (uid, cid, title, url, create_time, blogtype, diary)
 						VALUES (
 						'".$line['uid']."',
@@ -1551,7 +1976,7 @@ function update_other(){
 						)";
 			$result2 = $db->queryF($query);
 	
-			# Å‰‚ÌƒGƒ“ƒgƒŠ‚¾‚¯‚ÅI‚í‚è
+			# ¹é£¨¥ó¥È¥ê£ª
 			break;
 		}
 	}
@@ -1578,7 +2003,7 @@ function update_other_cat($uid){
 		//$uid    = intval($line['uid']);
 		$cid = intval($line['cid']);
 
-		# ‚Ü‚¸íœ
+		# £ü
 		$query = "DELETE FROM ".$db->prefix($this->mydirname.'_newentry')." WHERE uid='".$uid
 			."' AND cid='".$cid."'";
 		$result2 = $db->queryF($query);
@@ -1598,7 +2023,7 @@ function update_other_cat($uid){
 	    		$yd_data['blogtype'] = $line['blogtype'];
 			//var_dump($cid); var_dump($yd_data['title'] ); echo"<br />";
 
-			# •’Ê‚Íelse•¶‚Ì•”•ª‚¾‚¯‚Å‚¢‚¢‚Í‚¸‚È‚ñ‚¾‚ªEEE
+			# ÉáÃÍseÉôÉ¦¡¦¡¦
 			if(!empty($item['dc']['date'])){
 				$tstamp=strtotime($item['dc']['date']);
 			}elseif(!empty($item['pubdate'])){
@@ -1631,7 +2056,7 @@ function update_other_cat($uid){
 				$yd_data['diary']=addslashes($yd_data['diary']);
 			}
 	
-			# entry’Ç‰Á
+			# entry
 			$query = "INSERT INTO ".$db->prefix($this->mydirname.'_newentry')." (uid, cid, title, url, 
 						create_time, blogtype, diary) 
 						VALUES (
@@ -1645,10 +2070,93 @@ function update_other_cat($uid){
 						)";
 			$result2 = $db->queryF($query);
 	
-			# Å‰‚ÌƒGƒ“ƒgƒŠ‚¾‚¯‚ÅI‚í‚è
+			# ¹é£¨¥ó¥È¥ê£ª
 			break;
 		}
 	}
+	return true;
+}
+
+// set rss url for specified blog tools
+function get_ext_rssurl( $blogtype, &$url, &$rss )
+{
+	
+	if(!preg_match("/^.*\/$/i",$url)){
+		$url.="/";
+	}
+	
+	switch ($blogtype) {
+	case 0 :
+		// this site
+		$rss="";
+		$url="";
+		//d3diary_update_newentry($mydirname, $uid);
+		break;
+	case 1 :
+		// rakten
+		$rss=$url."rss";
+		preg_match("/^http:\/\/plaza.rakuten.co.jp(.*)$/i", $rss, $matches);
+		$rss = "http://api.plaza.rakuten.ne.jp".$matches[1];
+		break;
+	case 2 :
+		// hatena blog
+		$rss=$url."rss";
+		break;
+	case 3 :
+	case 4 :
+		// drecom
+		$rss=$url."index1_0.rdf";
+		break;
+	case 5 :
+	case 10 :
+	case 12 :
+	case 16 :
+	case 18 :
+		// channel kitaguni Seesaa goo BLOG blog gee(269g) So-net blog
+		$rss=$url."index.rdf";
+		break;
+	case 6 :
+		// livedoor Blog
+		$rss=$url."atom.xml";
+		break;
+	case 17 :
+		// cocolog
+		$rss=$url."blog/atom.xml";
+		break;
+	case 7 :
+		// Doblog
+		preg_match("/^http:\/\/www.doblog.com\/weblog\/myblog\/(\d+)/i",$url,$matches);
+		$rss="http://rss.doblog.com/rss/myrss.do?method=mypagerss&userid=".intval($matches[1])."&type=RSS_1_0";
+		break;
+	case 8 :
+	case 11 :
+		// Exciteblog  Movable Type
+		$rss=$url."index.xml";
+		break;
+	case 9 :
+		// JUGEM
+		$rss=$url."?mode=rss";
+		break;
+	case 13 :
+	case 19 :
+		// AOL diaryYahoo! blog
+		$rss=$url."rss.xml";
+		break;
+	case 14 :
+		// ameba blog
+		$rss=$url."rss.html";
+		break;
+	case 15 :
+		// fc2 blog
+		$rss=$url."?xml";
+
+	default:
+		// 
+		if($blogtype!=100 or empty($rss)){
+			return false;
+		}
+	}
+
 	return true;
 }
 
@@ -1729,7 +2237,7 @@ function &get_d3com_object( $forum_dirname, $external_link_format )
 	@list( $params['external_dirname'] , $params['classname'] , $params['external_trustdirname'] ) 
 		= explode( '::' , $external_link_format ) ;
 
-	$obj =& D3commentObj::getInstance ( $params ) ;
+	$obj =& d3diaryD3commentObj::getInstance ( $params ) ;
 	
 	return $obj->d3comObj ;
 }
@@ -1738,19 +2246,21 @@ function &get_d3com_object( $forum_dirname, $external_link_format )
 }
 
  // a class for Attachfile plugin D3comment Authorization
-if( ! class_exists( 'D3commentObj' ) ) {
-class D3commentObj {
+if( ! class_exists( 'd3dD3commentObj' ) ) {
+class d3diaryD3commentObj {
 
 var $d3comObj = null ;
 
-function D3commentObj($params )
+function d3diaryD3commentObj($params )
 //  $params['forum_dirname'] , $params['external_dirname'] , $params['classname'] , $params['external_trustdirname']
 {
 	//$this->mPlug = & $parentObj;
-	$mytrustdirpath = !empty($params['external_trustdirname']) ? XOOPS_TRUST_PATH.'/modules/'.$params['external_trustdirname'] : XOOPS_TRUST_PATH.'/modules/d3forum' ;
+	//$mytrustdirpath = !empty($params['external_trustdirname']) ? XOOPS_TRUST_PATH.'/modules/'.$params['external_trustdirname'] : XOOPS_TRUST_PATH.'/modules/d3forum' ;
+
+	$mytrustdirpath = XOOPS_TRUST_PATH.'/modules/d3forum';
 
 	if( empty( $params['classname'] ) ) {
-		include_once $mytrustdirpath.'/class/D3commentAbstract.class.php' ;
+		require_once $mytrustdirpath.'/class/D3commentAbstract.class.php' ;
 		$this->d3comObj = new D3commentAbstract( $forum_dirname , '' ) ;
 	}
 
@@ -1763,6 +2273,7 @@ function D3commentObj($params )
 
 	foreach( $class_bases as $class_base ) {
 		if( file_exists( $class_base.'/'.$params['classname'].'.class.php' ) ) {
+			require_once $mytrustdirpath.'/class/D3commentAbstract.class.php' ;
 			require_once $class_base.'/'.$params['classname'].'.class.php' ;
 			break ;
 		}
@@ -1770,7 +2281,7 @@ function D3commentObj($params )
 
 	// check the class
 	if( ! $params['classname'] || ! class_exists( $params['classname'] ) ) {
-		include_once $mytrustdirpath.'/class/D3commentAbstract.class.php' ;
+		require_once $mytrustdirpath.'/class/D3commentAbstract.class.php' ;
 		$this->d3comObj = new D3commentAbstract( $params['forum_dirname'] , $params['external_dirname'] ) ;
 	}
 
@@ -1784,7 +2295,7 @@ function & getInstance( $params )
 
 	static $instance ;
 	if( ! isset( $instance[$external_dirname] ) ) {
-		$instance[$external_dirname] = new D3commentObj( $params ) ;
+		$instance[$external_dirname] = new d3diaryD3commentObj( $params ) ;
 	}
 	return $instance[$external_dirname] ;
 }

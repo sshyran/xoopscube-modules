@@ -22,8 +22,12 @@ include_once dirname( dirname(__FILE__) ).'/class/d3diaryConf.class.php';
 	$req_uid = $uid;
 
 $d3dConf = & D3diaryConf::getInstance($mydirname, $req_uid, "usr_config");
+$func =& $d3dConf->func ;
 $dcfg =& $d3dConf->dcfg;
 $myts =& $d3dConf->myts;
+$mPerm =& $d3dConf->mPerm ;
+$gPerm =& $d3dConf->gPerm ;
+$mod_config =& $d3dConf->mod_config ;
 
 //--------------------------------------------------------------------
 // GET Initial Valuses
@@ -32,16 +36,25 @@ $myts =& $d3dConf->myts;
 $uname = $d3dConf->uname;
 $name = $d3dConf->name;
 // get permission unames for each groupPermission
-$_tempGperm = $d3dConf->gPerm->getUidsByName( array('allow_edit') );
-// check edit permission by group
+//$_tempGperm = $gPerm->getUidsByName( array('allow_edit') );
+$_tempGperm = $gPerm->getUidsByName( array_keys($gPerm->gperm_config) );
+// check edit permission for access user's group
 if(!empty($_tempGperm['allow_edit'])){
-	if(!in_array($uid, $_tempGperm['allow_edit'])) {
+	if(!isset($_tempGperm['allow_edit'][$uid])) {
 		redirect_header(XOOPS_URL.'/user.php',2,_MD_NOPERM_EDIT);
 		exit();
-	}	unset($_tempGperm);
+	}	//unset($_tempGperm);
 } else {
 	redirect_header(XOOPS_URL.'/user.php',2,_MD_NOPERM_EDIT);
 	exit();
+}
+
+// check mailpost permission for access user's group
+$allow_mailpost = 0;
+if(!empty($_tempGperm['allow_mailpost'])){
+	if(isset($_tempGperm['allow_mailpost'][$uid])) {
+		$allow_mailpost = 1;
+	}
 }
 
 // define Template
@@ -56,92 +69,58 @@ if(!empty($_POST['submit1'])){
 
 	$dcfg->uid = $uid;
 
-	$dcfg->blogurl=$d3dConf->func->getpost_param('blogurl');
-	$dcfg->blogtype=$d3dConf->func->getpost_param('blogtype');
-	$dcfg->rss=$d3dConf->func->getpost_param('rss');
-	$dcfg->openarea=intval($d3dConf->func->getpost_param('openarea'));
+	$dcfg->blogurl= htmlspecialchars($func->getpost_param('blogurl'), ENT_QUOTES);
+	$dcfg->blogtype= intval($func->getpost_param('blogtype'));
+	$dcfg->rss= htmlspecialchars($func->getpost_param('rss'), ENT_QUOTES);
+	$dcfg->openarea= intval($func->getpost_param('openarea'));
+	$dcfg->keep = intval($func->getpost_param('jump'));
+	if ($dcfg->blogtype==0 && $allow_mailpost==1) {
+		$dcfg->mailpost = intval($func->getpost_param('mailpost'));
+		$dcfg->address = htmlspecialchars($func->getpost_param('address'), ENT_QUOTES);
+		$dcfg->uptime = intval($func->getpost_param('uptime'));
+	} else {
+		$dcfg->mailpost = 0;
+		$dcfg->address = '';
+		$dcfg->uptime = 0;
+	}
+
+	// set update time before uptime ago
+	$dcfg->updated = time() - $dcfg->uptime;
 
 	if($dcfg->blogtype>0 and empty($dcfg->blogurl)){
-		redirect_header('index.php?page=usr_config',3,_MD_FAIL_UPDATED._MD_NODIARYURL);
+		redirect_header(XOOPS_URL.'/modules/'.$mydirname.'/index.php?page=usr_config',3,_MD_FAIL_UPDATED._MD_NODIARYURL);
 		exit();
 	}
 
-	// 最後にスラッシュを追加
-	if(!preg_match("/^.*\/$/i",$dcfg->blogurl)){
-		$dcfg->blogurl.="/";
-	}
+	$_url = $dcfg->blogurl;
+	$_rss = $dcfg->rss;
 	
-	if($dcfg->blogtype==0){
-		// このブログ
-		$dcfg->rss="";
-		$dcfg->blogurl="";
-		d3diary_update_newentry($mydirname, $uid);
-	}elseif($dcfg->blogtype==1){ 
-		// 楽天広場
-		$dcfg->rss=$dcfg->blogurl."rss";
-		preg_match("/^http:\/\/plaza.rakuten.co.jp(.*)$/i", $dcfg->rss, $matches);
-		$dcfg->rss = "http://api.plaza.rakuten.ne.jp".$matches[1];
+	// $_url, $_rss are by ref value
+	if ( $func->get_ext_rssurl( $dcfg->blogtype, $_url, $_rss )!=true ) {
+		redirect_header(XOOPS_URL.'/modules/'.$mydirname.'/index.php?page=usr_config',3,_MD_FAIL_UPDATED._MD_NORSSURL);
+		exit();
+	} else {
+		$dcfg->blogurl = $_url;
+		$dcfg->rss = $_rss;
+	}
 
-	}elseif($dcfg->blogtype==2){ 
-		// はてなダイアリ
-		$dcfg->rss=$dcfg->blogurl."rss";
+	//var_dump($dcfg);  echo("<br />");
 
-	}elseif($dcfg->blogtype==3 or $dcfg->blogtype==4){ 
-		// ドリコムブログ・ヤプログ
-		$dcfg->rss=$dcfg->blogurl."index1_0.rdf";
+	// check email for mailpost when it's enabled
+	if ( d3diary_check_existmail($mydirname, $uid, $dcfg->address) == true) {
+		redirect_header(XOOPS_URL.'/modules/'.$mydirname.'/index.php?page=usr_config',3,_MD_CONF_AL_EXISTMAIL);
+	} else {
 
-	}elseif($dcfg->blogtype==5 or $dcfg->blogtype==10 or 
-			$dcfg->blogtype==12 or $dcfg->blogtype==16 or $dcfg->blogtype==18){ 
-		// チャンネル北国tv Seesaa goo BLOG ブログ・ジー（269g） So-net blog
-		$dcfg->rss=$dcfg->blogurl."index.rdf";
-
-	}elseif($dcfg->blogtype==6){
-		// livedoor Blog
-		$dcfg->rss=$dcfg->blogurl."atom.xml";
-
-	}elseif($dcfg->blogtype==17){
-		// ココログ
-		$dcfg->rss=$dcfg->blogurl."blog/atom.xml";
-
-	}elseif($dcfg->blogtype==7){
-		// Doblog
-		preg_match("/^http:\/\/www.doblog.com\/weblog\/myblog\/(\d+)/i",$dcfg->blogurl,$matches);
-		$dcfg->rss="http://rss.doblog.com/rss/myrss.do?method=mypagerss&userid=".intval($matches[1])."&type=RSS_1_0";
-
-	}elseif($dcfg->blogtype==8 or $dcfg->blogtype==11){
-		// Exciteブログ Movable Type系 
-		$dcfg->rss=$dcfg->blogurl."index.xml";
-
-	}elseif($dcfg->blogtype==9){
-		// JUGEM
-		$dcfg->rss=$dcfg->blogurl."?mode=rss";
-
-	}elseif($dcfg->blogtype==13 or $dcfg->blogtype==19){
-		// AOLダイアリー Yahoo!ブログ
-		$dcfg->rss=$dcfg->blogurl."rss.xml";
-
-	}elseif($dcfg->blogtype==14){
-		// アメーバブログ
-		$dcfg->rss=$dcfg->blogurl."rss.html";
-
-	}elseif($dcfg->blogtype==15){
-		// fc2ブログ
-		$dcfg->rss=$dcfg->blogurl."?xml";
-
-	}else{
-		// その他
-		if($dcfg->blogtype!=100 or empty($dcfg->rss)){
-			redirect_header('index.php?page=usr_config',3,_MD_FAIL_UPDATED._MD_NORSSURL);
-			exit();
+		if($dcfg->blogtype==0){
+			// update this diary
+			d3diary_update_newentry($mydirname, $uid);
 		}
+
+		$dcfg->deletedb($mydirname);
+		$dcfg->insertdb($mydirname);
+		redirect_header( htmlspecialchars($func->getpost_param('referrer'), ENT_QUOTES), 3,_MD_CONF_UPDATED );
 	}
-	
-	// RSSフィードの読み込みチェック（省略）
 
-	$dcfg->deletedb($mydirname);
-	$dcfg->insertdb($mydirname);
-
-	redirect_header('index.php?page=usr_config',3,_MD_CONF_UPDATED);
 
 // show config
 } else {
@@ -158,6 +137,10 @@ if(!empty($_POST['submit1'])){
 	if ( $dbdat = $xoopsDB->fetchArray($result) ) {
 		$yd_cfg['blogtype'] = $dbdat['blogtype'];
 		$yd_cfg['openarea'] = $dbdat['openarea'];
+		$yd_cfg['mailpost'] = $dbdat['mailpost'];
+		$yd_cfg['address'] = $dbdat['address'];
+		$yd_cfg['jump'] = $dbdat['keep'];
+		$yd_cfg['uptime'] = $dbdat['uptime'];
 		if($dbdat['blogtype']>0){
 			$yd_cfg['blogurl'] = $dbdat['blogurl'];
 			if($dbdat['blogtype']==100){
@@ -167,6 +150,10 @@ if(!empty($_POST['submit1'])){
 	}else{
 		$yd_cfg['blogtype'] = 0;
 		$yd_cfg['openarea'] = 0;
+		$yd_cfg['mailpost'] = 0;
+		$yd_cfg['address'] = '';
+		$yd_cfg['jump'] = 0;
+		$yd_cfg['uptime'] = 0;
 	}
 }
 
@@ -178,7 +165,7 @@ if(!empty($_POST['submit1'])){
 	$bc_para['mode'] = "usr_config";
 	$bc_para['bc_name'] = constant('_MD_CONF_LINK');
 	
-	$breadcrumbs = $d3dConf->func->get_breadcrumbs( $uid, $bc_para['mode'], $bc_para );
+	$breadcrumbs = $func->get_breadcrumbs( $uid, $bc_para['mode'], $bc_para );
 	//var_dump($breadcrumbs);
 
 $xoopsTpl->assign(array(
@@ -186,9 +173,10 @@ $xoopsTpl->assign(array(
 		"yd_uname" => $uname,
 		"yd_name" => $name,
 		"yd_cfg" => $yd_cfg,
-		"yd_use_friend" => $d3dConf->mod_config['use_friend'],
+		"yd_mailpost"	=> $allow_mailpost,
+		"yd_use_friend" => $mod_config['use_friend'],
 		"mydirname" => $mydirname,
-		"mod_config" => $d3dConf->mod_config,
+		"mod_config" => $mod_config,
 		"xoops_breadcrumbs" => $breadcrumbs
 		));
 
@@ -227,6 +215,26 @@ function d3diary_update_newentry($mydirname, $uid)
 		$result = $xoopsDB->queryF($sql);
 	}
 
+}
+
+function d3diary_check_existmail($mydirname, $uid, $_address)
+{
+	global $xoopsDB;
+	
+	if ( empty($_address) ) { return false ; }
+
+	$sql1 = "SELECT uid from ".$xoopsDB->prefix('users')." WHERE email = '".$_address."'";
+	$result = $xoopsDB->query($sql1,1,0);
+	$exist1 = $xoopsDB -> fetchArray($result);
+
+	$sql2 = "SELECT uid from ".$xoopsDB->prefix($mydirname.'_config')." WHERE address = '".$_address."' 
+			AND uid <> '".$uid."'";
+	$result = $xoopsDB->query($sql2,1,0);
+	$exist2 = $xoopsDB -> fetchArray($result);
+
+	if ( empty($exist1) && empty($exist2) ) { return false; }
+	
+	return true;
 }
 
 include_once XOOPS_ROOT_PATH.'/footer.php';

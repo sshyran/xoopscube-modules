@@ -23,7 +23,7 @@ class D3dGperm
 	var $use_gp ;
 	var $use_pp ;
 
-	function D3dGperm( & $d3dConf ){
+	public function __construct( & $d3dConf ){
 
 		$this->d3dConf = & $d3dConf;
 
@@ -33,13 +33,13 @@ function ini_set()
 {	//must be set $this->mydirname, $req_uid before call it
 
 	// copying parent's parameters
-	$this->mydirname = $this->d3dConf->mydirname;
-	$this->mid = $this->d3dConf->mid;
+	$this->mydirname = & $this->d3dConf->mydirname;
+	$this->mid = & $this->d3dConf->mid;
 
-	$this->uid = $this->d3dConf->uid;
+	$this->uid = & $this->d3dConf->uid;
 	$this->mod_config = & $this->d3dConf->mod_config;
 	$this->dcfg = & $this->d3dConf->dcfg;
-	$this->req_uid = $this->d3dConf->req_uid;
+	$this->req_uid = & $this->d3dConf->req_uid;
 	
 	$this->mPerm = & $this->d3dConf->mPerm;
 	$this->func = & $this->d3dConf->func;
@@ -52,6 +52,7 @@ function ini_set()
   	    		'allow_edit' => '_MD_D3DIARY_PERMDESC_ALLOW_EDIT',
 	    		'allow_html' => '_MD_D3DIARY_PERMDESC_ALLOW_HTML',
 	    		'allow_regdate' => '_MD_D3DIARY_PERMDESC_ALLOW_REGDATE',
+    			'allow_mailpost' => '_MD_D3DIARY_PERMDESC_ALLOW_MAILPOST',
 	    		'allow_gpermission' => '_MD_D3DIARY_PERMDESC_ALLOW_GPERM',
 	    		'allow_ppermission' => '_MD_D3DIARY_PERMDESC_ALLOW_PPERM'
 			);
@@ -92,14 +93,13 @@ function &getUidsByName($item_name, $mid=null, $item_id=0)
 				ON gp.gperm_groupid=gu.groupid AND gp.gperm_modid='".$mid."' AND 
 				gp.gperm_name IN ('".$_item_name."') 
 				ORDER BY gp.gperm_name";
-
 	$result = $db->query($sql);
 	$i = 0; $lastkey = ""; $temp_gperm=array(); $uid_gperm=array();
 	while ( $dbdat = $db->fetchArray($result) ) {
-		$temp_gperm[$dbdat['gperm_name']][] = (int)$dbdat['uid'];
+		$temp_gperm[$dbdat['gperm_name']][(int)$dbdat['uid']] = 1 ;
 	}
 	
-	foreach ($temp_gperm as $key=>$gp) { $uid_gperm[$key] = array_unique($gp); }
+	foreach ($temp_gperm as $key=>$gp) { $uid_gperm[$key] = $gp; }
 	return $uid_gperm;
 }
 
@@ -121,10 +121,10 @@ function &getUsersByName($item_name, $mid=null, $item_id=0)
 	$result = $db->query($sql);
 	$i = 0; $lastkey = ""; $temp_gperm=array(); $uname_gperm=array();
 	while ( $dbdat = $db->fetchArray($result) ) {
-		$temp_gperm[$dbdat['gperm_name']][] = $dbdat['uname'];
+		$temp_gperm[$dbdat['gperm_name']][$dbdat['uname']] = 1;
 	}
 	
-	foreach ($temp_gperm as $key=>$gp) { $uname_gperm[$key] = array_unique($gp); }
+	foreach ($temp_gperm as $key=>$gp) { $uname_gperm[$key] = $gp; }
 	return $uname_gperm;
 }
 

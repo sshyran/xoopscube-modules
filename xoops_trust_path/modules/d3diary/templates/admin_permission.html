@@ -19,7 +19,7 @@
 				<span style="display:block;text-align:center;"><input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_gid<{$gid}>_')>=0){elements[i].checked=this.checked;}}}"></span>
 	<{foreach from=$groupperms[$cid][$gid].perms item=gperm_value key=gperm_name name=gpermloop}>
 				<td style="text-align:center;">
-		<{if $gid eq 3 and ($gperm_name eq "allow_edit" or $gperm_name eq "allow_html" or $gperm_name eq "allow_regdate" or $gperm_name eq "allow_gpermission" or $gperm_name eq "allow_ppermission")}>
+		<{if $gid eq 3 and ($gperm_name eq "allow_edit" or $gperm_name eq "allow_html" or $gperm_name eq "allow_regdate" or $gperm_name eq "allow_mailpost" or $gperm_name eq "allow_gpermission" or $gperm_name eq "allow_ppermission")}>
 
 				<input type="hidden" name="<{$gperm_name}>[<{$gid}>]" id="gcol_<{$smarty.foreach.gpermloop.iteration}>_gid<{$gid}>_" value="0" />
 		<{else}>

@@ -39,8 +39,8 @@ define("_MD_CATEGORY_ADDREQ","┐╖д╖дп─╔▓├д╣дыеле╞е┤еъб╝╠╛дЄ╡н╞■д╖д╞дпд└д╡ддбг");
 define("_MD_CATEGORY_ADD","┐╖д╖дделе╞е┤еъб╝ в═");
 define("_MD_CATEGORY_ADD_DO","еле╞е┤еъб╝д╬─╔▓├");
 define("_MD_CATEGORY_EDIT","еле╞е┤еъб╝д╬╩╘╜╕");
-define("_MD_CATEGORY_SWAPDSC","еле╞е┤еъб╝д╬╩┬д╙╜чбв╠╛┴░дЄ╩╤╣╣д╟днд▐д╣бг<br />
-еле╞е┤еъб╝дЄ║я╜№д╣дыд╚бвд╜д╬еле╞е┤еъб╝д╦╞■д├д╞ддд┐╞№╡нд╧б╓╠д╩м╬рб╫д╦░▄╞░д╖д▐д╣бг");
+define("_MD_CATEGORY_ORDER","╩┬д╙╜ч");
+define("_MD_CATEGORY_SWAPDSC","еле╞е┤еъб╝д╬╩┬д╙╜чбв╠╛┴░дЄ╩╤╣╣д╟днд▐д╣бг<br />еле╞е┤еъб╝дЄ║я╜№д╣дыд╚бвд╜д╬еле╞е┤еъб╝д╦╞■д├д╞ддд┐╞№╡нд╧б╓╠д╩м╬рб╫д╦░▄╞░д╖д▐д╣бг");
 define("_MD_CATEGORY_UP","ве╛хд╪░▄╞░");
 define("_MD_CATEGORY_DOWN","вз▓╝д╪░▄╞░");
 define("_MD_CATEGORY_SWAPPED","╩┬д╙┬╪дидЄ╣╘ддд▐д╖д┐");
@@ -77,6 +77,8 @@ define("_MD_DATE_YEAR","╟п");
 define("_MD_DATE_MONTH","╖ю");
 define("_MD_DATE_DAY","╞№");
 define("_MD_DATE_EACHMONTH","│╞╖ю");
+define("_MD_DIARY_COUNT","╡н╗Ў┐Ї");
+define("_MD_DIARY_NAME","╠╛┴░");
 
 define("_MD_DIARY_SWAPCAT","╡н╗Ў░ь│челе╞е┤еъб╝░▄╞░");
 define("_MD_DIARY_SWAPTO","░▄╞░└ш:");
@@ -93,15 +95,18 @@ define("_MD_DIARY_EDIT","╞№╡нд╬┼ъ╣╞б┐╩╘╜╕");
 define("_MD_DIARY_DEL","║я╜№д╣ды");
 define("_MD_DIARY_DELDEC","вид│д╬╞№╡ндЄ║я╜№д╖д▐д╣бг");
 define("_MD_DIARY_DELASC","╔╜╝и├цд╬╞№╡ндЄ║я╜№д╖д╞дтдшдэд╖ддд╟д╣длбй");
+define("_MD_DIARY_NOPERMBODY","д│д╬╡н╗Ўд╬┬│дндЄ╔╜╝ид╣ды╕в╕┬дмдвдъд▐д╗дєбг");
 
 define("_MD_YT_URL","YouTubeд╬╞░▓шURLбз");
 define("_MD_YT_ADD","╩╕├цд╦┴▐╞■");
 define("_MD_ND_URL","е╦е│е╦е│╞░▓шд╬╞░▓шURLбз");
 define("_MD_PHOTO","▓ш┴№");
 define("_MD_PHOTO_SELECT","▓ш┴№┴к┬Є");
+define("_MD_PHOTO_MANAGE","┴к┬Є▓ш┴№┴р║ю");
 define("_MD_PHOTO_ADD","▓ш┴№дЄ─╔▓├д╣ды");
 define("_MD_FILEDEL_CONFIRM","дЄ║я╜№д╖д▐д╣бг\\n░ь┼┘║я╜№д╣дыд╚╠сд╗д▐д╗дєбгдшдэд╖ддд╟д╣длбй");
 define("_MD_FILEDELETED","▓ш┴№дЄ║я╜№д╖д▐д╖д┐бг");
+define("_MD_FILEROTATED","▓ш┴№дЄ▓є┼╛д╖д▐д╖д┐бг");
 define("_MD_PHOTO_SHRINK","╦ч<br />640x640░╩▓╝д╦╜╠╛од╡дьд▐д╣бг");
 define("_MD_PHOTO_SHRINK2","ви╜─бж▓г╔¤дм640px░╩╛хд╬╛ь╣чд╧бв┼м└┌д╩е╡еде║д╦╩╤╣╣д╡дьд▐д╣бг");
 define("_MD_PHOTO_MAXSIZE","ви╝╠┐┐д╬┼╨╧┐▓─╟╜е╡еде║бз╣ч╖╫");
@@ -111,12 +116,30 @@ define("_MD_PREVIEW","е╫еье╙ехб╝");
 define("_MD_DO_HTML","HTML═н╕· (BBcode╠╡╕·)");
 define("_MD_PAGEBREAK","[pagebreak]е┐е░б╩╦▄╩╕╢ш└┌б╦дЄ┴▐╞■");
 define("_MD_SW_BBCODE","BBе│б╝е╔╞■╬╧╩ф╜їдЄ╔╜╝иб┐╚є╔╜╝и");
+define("_MD_ROTATE","▓є┼╛");
+define("_MD_RROTATE","▒ж90┼┘▓є┼╛");
+define("_MD_LROTATE","║╕90┼┘▓є┼╛");
+define("_MD_ROTATE_CONFIRM","дЄ▓є┼╛д╖д▐д╣бгдшдэд╖ддд╟д╣длбй");
+define("_MD_EDIT_PINFO","└т╠└д╬╩╘╜╕");
+define("_MD_PMOVE","┼║╔╒└шд╬░▄╞░");
+define("_MD_ROTATE_NOPREVIEW","е╫еье╙ехб╝▓ш┴№дмдвдыд┐дсд│д╬┴р║юд╧д╟днд▐д╗дєбг\\n░ь├╢│╬─ъ┴ў┐о╕хд╦бв║╞┼┘┴р║юд╖д╞дпд└д╡ддбг");
+define("_MD_ROTATE_NOPREVIEW2","е╫еье╙ехб╝▓ш┴№д╬▓є┼╛д╧д╟днд▐д╗дєбг\\n░ь├╢│╬─ъ┴ў┐о╕хд╦бв║╞┼┘┴р║юд╖д╞дпд└д╡ддбг");
+define("_MD_FILE_NOCHECK","┴р║ю┬╨╛▌д╬▓ш┴№дм┴к┬Єд╡дьд╞ддд▐д╗дєбг");
+define("_MD_P_INSOPEN","▓ш┴№д╬╦▄╩╕┴▐╞■┴р║юе╓еэе├епд╬│л╩─");
+define("_MD_P_WITHINFO","┼║ди╜ёдн╩╕дт─╔▓├");
+define("_MD_P_INSLEFT","║╕");
+define("_MD_P_INSCENTER","├ц▒√");
+define("_MD_P_INSRIGHT","▒ж");
+define("_MD_P_CLEARFLOAT","[clearfloat]е┐е░(╩╕╗·д╬▓єдъ╣■д▀▓Є╜№)дЄ┴▐╞■");
+define("_MD_P_INSSELECT","╦▄╩╕┴▐╞■▓ш┴№д╬┴к┬Є");
 
 //error
 define("_MD_INPUT_ERR","<font color='red'>ERROR:╞■╬╧╞т═╞дЄ│╬╟зд╖д╞дпд└д╡ддбг</font>");
 define("_MD_NODIARY_ERR","<font color='red'>ERROR:│║┼Ўд╣ды╞№╡ндм┬╕║▀д╖д▐д╗дєбг</font>");
 define("_MD_SIZEOVER","<font color='red'>ERROR:▓ш┴№е╡еде║дм┬чднд╣дод▐д╣бг</font>");
 define("_MD_NOFILE","<font color='red'>ERROR:╝╠┐┐е╒ебедеыдм╞╔д▀╝шдьд▐д╗дєд╟д╖д┐бг</font>");
+define("_MD_FAILED_FILEDELETE","<font color='red'>ERROR:▓ш┴№║я╜№д╦╝║╟╘д╖д▐д╖д┐бг</font>");
+define("_MD_FAILED_FILEROTATE","<font color='red'>ERROR:▓ш┴№▓є┼╛д╦╝║╟╘д╖д▐д╖д┐бг</font>");
 
 define("_MD_DATANUM1","┴┤<strong>");
 define("_MD_DATANUM2","</strong>╖яд╬джд┴<strong>");
@@ -173,6 +196,15 @@ define("_MD_CONF_BURL","╞№╡нбже╓еэе░д╬URL");
 define("_MD_CONF_BURLDESC","ви┼Ўе╡еде╚д╬╞№╡н░╩│░дЄ┴к┬Єд╡дьд┐╛ь╣чд╧бвдвд╩д┐д╬╞№╡нбже╓еэе░д╬еве╔еье╣дЄд┤╡н╞■дпд└д╡ддбг");
 define("_MD_CONF_RSSURL","RSSд╬URL");
 define("_MD_CONF_RSSURLDESC","виб╓╞№╡нбже╓еэе░д╬┴к┬Єб╫длдщб╓д╜д╬┬╛б╫дЄ┴к┬Єд╡дьд┐╛ь╣чд╧бвRSSд╬URLдтд┤╡н╞■дпд└д╡ддбг");
+define("_MD_CONF_USEMAIL","есб╝еыд╟┼ъ╣╞");
+define("_MD_CONF_USEMAILDESC","есб╝еыд╟д╬┼ъ╣╞дЄд╣ды╛ь╣чд╧бвесб╝еыд╬╝ш╣■д▀╩¤╦бдЄ╗╪─ъд╖д▐д╣бг<br />╝л╞░╝ш╣■д▀д╧┤╞╗ы╝■┤№д╟╝л╞░┼кд╦╝ш╣■д▀дЄ╗ю╣╘д╖д▐д╣дмбве┐еде╚еыбж╦▄╩╕бж▓ш┴№░╩│░д╬еле╞е┤еъб╝дф╕°│л╚╧░╧бве┐е░д╩д╔д╧╝ш╣■дєд└╕хд╟╩╘╜╕д╣ды╔м═╫дмдвдъд▐д╣бг<br />╝ъ╞░╝ш╣■д▀е┌б╝е╕д╟д╧бвесб╝еыдЄ┴к┬Єд╖еле╞е┤еъб╝дф╕°│л╚╧░╧┼∙дт╞▒╗■д╦╗╪─ъд╟днд▐д╣бг");
+define("_MD_CONF_MAILADDRESS","┴ў┐о╕╡есб╝еыеве╔еье╣");
+define("_MD_CONF_MAILADDRESSDESC","╝ш╣■д▀▓─╟╜д╩есб╝еы┴ў┐о╕╡еве╔еье╣бв╢ї═є▓─бг<br />еэе░едеєецб╝е╢б╝┼╨╧┐║╤д╬есб╝еыеве╔еье╣д╧═╜дс╞╔╣■д▀┬╨╛▌д╦д╩д├д╞дкдъбвд│д│д╦╡н║▄д╬╔м═╫д╧двдъд▐д╗дєбг");
+define("_MD_CONF_KEEPINDEX","еэе░едеє╗■д╬╞№╡нTOPе┌б╝е╕");
+define("_MD_CONF_KEEPINDEXDESC","╝л╩мд╬╞№╡н░ь═ўб┐┴┤░ўд╬╞№╡н░ь═ўд╬д╔д┴дщдлдЄ┴к┬Єбг");
+define("_MD_CONF_MAILUPTIME","╝л╞░╝ш╣■д╬┤╞╗ы╝■┤№");
+define("_MD_CONF_MAILUPTIMEDESC","╝л╞░д╟╝ш╣■др╛ь╣чд╬║╟├╗╝■┤№дЄ└▀─ъд╖д▐д╣бг<br />д│д╬╗■┤╓╖╨▓сд╬┼╘┼┘бвindexе┌б╝е╕дм╔╜╝ид╡дьды║▌д╦╝ш╣■д▀дм╗ю╣╘д╡дь╝бд╬╖╨▓с╗■┤╓─╠▓сдЄ┬╘д┴д▐д╣бгдвд▐дъ├╗╗■┤╓дЄ└▀─ъд╣дыд╚е╡б╝е╨б╝д╦╔щ▓┘дмдлдлдыд╬д╟═╫├э░╒бг");
+define("_MD_CONF_AL_EXISTMAIL","┤√д╦┼╨╧┐д╡дьд┐есб╝еыеве╔еье╣д╟д╣бг<br />╜┼╩гд╖д╩ддесб╝еыеве╔еье╣дЄ╗╪─ъд╖д╞дпд└д╡ддбг");
 
 define("_MD_CONF1_THIS","┼Ўе╡еде╚д╬╞№╡н");
 define("_MD_CONF1_1RAKTEN","│┌┼╖╣н╛ь");
@@ -205,6 +237,18 @@ define("_MD_CONF2_10GROUP","╕°│ле░еыб╝е╫дЄ╗╪─ъд╣ды");
 define("_MD_CONF2_20PERSON","╕°│ле░еыб╝е╫д╚ецб╝е╢б╝дЄ╗╪─ъд╣ды");
 define("_MD_CONF2_100HIDE","▓╝╜ёднб╩╝л╩м░╩│░╚є╕°│лб╦");
 
+define("_MD_CONF3_MAILNOUSE","╗╚═╤д╖д╩дд");
+define("_MD_CONF3_MAILMANUAL","╝ъ╞░╝ш╣■д▀");
+define("_MD_CONF3_MAILAUTOMANUAL","╝ъ╞░б┐╝л╞░╝ш╣■д▀╩╗═╤");
+define("_MD_CONF3_MAILAUTO","╝л╞░╝ш╣■д▀");
+
+define("_MD_CONF4_900","15╩м");
+define("_MD_CONF4_1800","30╩м");
+define("_MD_CONF4_3600","60╩м");
+
+define("_MD_CONF5_INDEXUSE","╝л╩мд╬╞№╡н░ь═ўдЄ╔╜╝и");
+define("_MD_CONF5_INDEXNOUSE","┴┤░ўд╬╞№╡н░ь═ўдЄ╔╜╝и");
+
 define("_MD_PERMED_VGROUP","е░еыб╝е╫╗╪─ъ");
 define("_MD_SEARCH_VPERSON","ецб╝е╢б╝╕б║ў:");
 define("_MD_SEARCH_VPERSONDESC","┴к┬ЄдЄ▓Є╜№д╣дыд╦д╧бв╠╛┴░дЄепеъе├епд╖д╞дпд└д╡ддбг");
@@ -212,10 +256,41 @@ define("_MD_SEARCH_VPERSONDESC","┴к┬ЄдЄ▓Є╜№д╣дыд╦д╧бв╠╛┴░дЄепеъе├епд╖д╞дпд└д╡ддб
 define("_MD_TAG","е┐е░");
 define("_MD_TAG_DESC","е┐е░д╧ [ ] д╟│чд├д╞дпд└д╡ддбг╬убз[е╤е╜е│еє][е╣е▌б╝е─] ");
 define("_MD_LANG_MY_TAGS","╝л╩мд╬╞№╡н╞тд╬е┐е░бз");
-define("_MD_LANG_POPULAR_TAGS","┴┤░ўд╬╞№╡н╞тд╬е┐е░бз");
+define("_MD_LANG_POPULAR_TAGS","┬╛┐═д╬╞№╡н╞тд╬е┐е░бз");
 define("_MD_TAG_CROUD","е┐е░епещеже╔");
 define("_MD_TAG_UNSELECT","├ъ╜╨е┐е░ б╓%s б╫д╬┴к┬ЄдЄ▓Є╜№д╣ды");
+define("_MD_TAG_UPDATED","е┐е░дЄеве├е╫е╟б╝е╚д╖д▐д╖д┐");
+define("_MD_TAG_DELETED","е┐е░дЄ║я╜№д╖д▐д╖д┐");
+define("_MD_TAG_SELECTDEL","┴к┬Є╡н╗Ўд╬бвд│д╬е┐е░дЄ░ь│ч║я╜№");
+define("_MD_TAG_SELECTEDIT","┴к┬Є╡н╗Ўд╬бвд│д╬е┐е░дЄ░ь│ч╩╘╜╕");
+define("_MD_TAG_SELECTADD","┴к┬Є╡н╗Ўд╦бв┐╖╡ме┐е░дЄ░ь│ч─╔▓├");
+define("_MD_TAG_EDIT","е┐е░╩╘╜╕");
+define("_MD_TAG_MODETO","е┐е░░ь│ч─╔▓├етб╝е╔д╪");
 
 define("_MD_AVATAR","еве╨е┐б╝");
+define("_MD_MAIL_OPENMANUAL","есб╝еы╝ъ╞░╝ш╣■");
+define("_MD_NOPERM_MAILPOST","есб╝еыдлдщд╬┼ъ╣╞д╧╡Ў▓─д╡дьд╞ддд▐д╗дє");
+define("_MD_NOSET_MAILMANUAL","есб╝еыд╬╝ъ╞░╝ш╣■д▀дм┴к┬Єд╡дьд╞ддд▐д╗дє");
+define("_MD_INV_PASS","есб╝еые╡б╝е╨б╝д╦еэе░едеєд╟днд▐д╗дєбг<br />┤╔═¤╝╘д╪╧в═эд╖д╞дпд└д╡ддбг");
+define("_MD_MAIL_KEEPNOUSE","╝ш╣■д▀╕хд╬есб╝еыд╧║я╜№д╣ды");
+define("_MD_MAIL_KEEPUSE","╝ш╣■д▀╕хдтесб╝еыд╧е╡б╝е╨б╝д╦╗─д╣");
+define("_MD_MAIL_DELONLY","┴к┬Єд╖д┐есб╝еыдЄ╝ш╣■д▐д║д╦е╡б╝е╨б╝╛хдлдщ║я╜№");
+define("_MD_MAILINFO_SUBMIT","╝ш╣■дресб╝еыд╦е┴езе├епдЄ╞■дьд╞┴ў┐од╖д▐д╣");
+define("_MD_NOSET_MAILPOST","есб╝еые╡б╝е╨б╝д╦└▄┬│д╟днд▐д╗дєбг<br />┤╔═¤╝╘д╪╧в═эд╖д╞дпд└д╡ддбг");
+define("_MD_NO_NEWMAIL","┐╖д╖ддесб╝еыд╧двдъд▐д╗дє");
+define("_MD_NOCHECKED_MAIL","╝ш╣■д▀┬╨╛▌есб╝еыдм┴к┬Єд╡дьд▐д╗дєд╟д╖д┐");
+define("_MD_MAIL_REGISTED","есб╝еыдлдщд╬┼ъ╣╞дЄ╝ш╣■д▀д▐д╖д┐");
+define("_MD_MAIL_DELETED","╝ш╣■дєд└есб╝еыдЄесб╝еые╡б╝е╨б╝длдщ║я╜№д╖д▐д╖д┐");
+define("_MD_MAIL_VIEWDIARY","е┐еде╚еыдЄепеъе├епд╣дыд╚╝ш╣■дєд└┼ъ╣╞дЄ│лднд▐д╣бг");
+define("_MD_MAILTO","░╕есб╝еыдЄ┴ў┐о");
+define("_MD_MAIL_CASEMANUAL","[╝ъ╞░└▀─ъд╬╛ь╣ч]");
+define("_MD_MAIL_TOSTEP0","STEP0д╪╠сды");
+
+define("_MD_NEWDIARY","╞№╡н░ь═ў");
+define("_MD_NEWPHOTO","▓ш┴№░ь═ў");
+define("_MD_QUERYOFF","├ъ╜╨╛Є╖я▓Є╜№");
+define("_MD_RTNTO_NEWDIARY","╞№╡н░ь═ўд╦╠сды");
+define("_MD_DSC","╣▀╜ч");
+define("_MD_ASC","╛║╜ч");
 
 ?>

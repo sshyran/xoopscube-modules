@@ -55,48 +55,39 @@ function inputchk(fm) {
 
 <br />
 
+<{if $yd_category|@count>0}>
+
 <table class="outer" cellspacing="1">
 <tr>
-<th align="left" colspan=3>
+<th align="left" colspan=4>
 <{$smarty.const._MD_CATEGORY_EDIT}>
 </th>
 </tr>
 
-<tr><td></td><td></td><td><{$smarty.const._MD_CATEGORY_SWAPDSC}><br /><br />SUB
-</td><tr>
+<tr><td class="head" ><{$smarty.const._MD_CATEGORY_ORDER}></td><td class="head" >SUB</td><td class="head"  colspan=2><{$smarty.const._MD_CATEGORY_SWAPDSC}><br /><br />
+</td></tr>
+<tr>
 <{section name=num loop=$yd_category}>
 <tr>
-<td style="text-align:center;width:70px;">
-<{if $yd_category[num].cid_before>0}>
-<form method='POST' action='index.php?page=editcategory' style="display:inline;" >
-<input type="hidden" name="cid1" value="<{$yd_category[num].cid_before}>" />
-<input type="hidden" name="cid2" value="<{$yd_category[num].cid}>" />
-<input type="submit" name="swapsub" value="<{$smarty.const._MD_CATEGORY_UP}>" />
-</form>
-<{/if}>
-</td><td style="text-align:center;width:70px;">
-<{if $yd_category[num].cid_after>0}>
 <form method='POST' action='index.php?page=editcategory' style="display:inline;">
-<input type="hidden" name="cid1" value="<{$yd_category[num].cid_after}>" />
-<input type="hidden" name="cid2" value="<{$yd_category[num].cid}>" />
-<input type="submit" name="swapsub" value="<{$smarty.const._MD_CATEGORY_DOWN}>" />
-</form>
-<{/if}>
-</td>
 <td style="text-align:left;">
-<form method='POST' action='index.php?page=editcategory' style="display:inline;">
+<input type="text" name="corder" size="3" value="<{$yd_category[num].corder}>"/>
+</td>
+<td style="text-align:center;">
 <input type="checkbox" name="subcat" value="1" <{if $yd_category[num].subcat==1 }>checked<{/if}> />
+</td>
+<td>
 <input type="text" name="cname" size="20" value="<{$yd_category[num].cname}>"/>
 <input type="hidden" name="cid" value="<{$yd_category[num].cid}>" />
 <input type="submit" name="editsub" value="<{$smarty.const._MD_SUBMIT}>" />
+</td>
 </form>
 
+<td>
 <form method='POST' action='index.php?page=editcategory' style="display:inline;">
 <input type="hidden" name="cid" value="<{$yd_category[num].cid}>" />
 <input type="submit" name="delsub" value="<{$smarty.const._MD_T_DEL}>" />
 </form>
-
-
 <{if $yd_use_open_cat}>
 <form method='POST' action='index.php?page=editcat_config' style="display:inline;">
 <input type="hidden" name="cid" value="<{$yd_category[num].cid}>" />
@@ -115,6 +106,7 @@ function inputchk(fm) {
 <{/section}>
 
 </table>
+<{/if}>
 <br />
 
 <{if $yd_isadmin}>
@@ -138,51 +130,41 @@ function inputchk(fm) {
 </form>
 <br />
 
+<{if $yd_common_cat|@count>0}>
 <table class="outer" cellspacing="1">
 <tr>
-<th align="left" colspan=3>
+<th align="left" colspan=4>
 <{$smarty.const._MD_CATEGORY_EDIT}>
 </th>
 </tr>
 
-<tr><td></td><td></td><td><{$smarty.const._MD_CATEGORY_SWAPDSC}><br /><br />SUB
-</td><tr>
+<tr><td class="head" ><{$smarty.const._MD_CATEGORY_ORDER}></td><td class="head" >SUB</td><td class="head"  colspan=2><{$smarty.const._MD_CATEGORY_SWAPDSC}><br /><br />
+</td></tr>
+
+<tr>
 <{section name=num loop=$yd_common_cat}>
 <tr>
-<td style="text-align:center;width:70px;">
-<{if $yd_common_cat[num].cid_before>0}>
-<form method='POST' action='index.php?page=editcategory' style="display:inline;" >
-<input type="hidden" name="common_cat" value="1" />
-<input type="hidden" name="cid1" value="<{$yd_common_cat[num].cid_before}>" />
-<input type="hidden" name="cid2" value="<{$yd_common_cat[num].cid}>" />
-<input type="submit" name="swapsub" value="<{$smarty.const._MD_CATEGORY_UP}>" />
-</form>
-<{/if}>
-</td><td style="text-align:center;width:70px;">
-<{if $yd_common_cat[num].cid_after>0}>
 <form method='POST' action='index.php?page=editcategory' style="display:inline;">
-<input type="hidden" name="common_cat" value="1" />
-<input type="hidden" name="cid1" value="<{$yd_common_cat[num].cid_after}>" />
-<input type="hidden" name="cid2" value="<{$yd_common_cat[num].cid}>" />
-<input type="submit" name="swapsub" value="<{$smarty.const._MD_CATEGORY_DOWN}>" />
-</form>
-<{/if}>
-</td>
 <td style="text-align:left;">
-<form method='POST' action='index.php?page=editcategory' style="display:inline;">
+<input type="text" name="corder" size="3" value="<{$yd_common_cat[num].corder}>"/>
+</td>
+<td style="text-align:center;">
 <input type="hidden" name="common_cat" value="1" />
 <input type="checkbox" name="subcat" value="1" <{if $yd_common_cat[num].subcat==1 }>checked<{/if}> />
+</td>
+<td>
 <input type="text" name="cname" size="20" value="<{$yd_common_cat[num].cname}>"/>
 <input type="hidden" name="cid" value="<{$yd_common_cat[num].cid}>" />
 <input type="submit" name="editsub" value="<{$smarty.const._MD_SUBMIT}>" />
+</td>
 </form>
 
+<td>
 <form method='POST' action='index.php?page=editcategory' style="display:inline;">
 <input type="hidden" name="common_cat" value="1" />
 <input type="hidden" name="cid" value="<{$yd_common_cat[num].cid}>" />
 <input type="submit" name="delsub" value="<{$smarty.const._MD_T_DEL}>" />
 </form>
-
 
 <{if $yd_use_open_cat}>
 <form method='POST' action='index.php?page=editcat_config' style="display:inline;">
@@ -203,6 +185,7 @@ function inputchk(fm) {
 <{/section}>
 
 </table>
+<{/if}>
 <{/if}>
 
 <{if $debug_time}>

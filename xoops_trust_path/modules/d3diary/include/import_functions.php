@@ -65,7 +65,7 @@ if ( ! function_exists('d3diary_import_from_minidiary') ) {
 		$from_table = $db->prefix( 'yd_config' ) ;
 		$to_table = $db->prefix( $mydirname.'_config' ) ;
 		$db->query( "DELETE FROM `$to_table`" ) ;
-		$irs = $db->query( "INSERT INTO `$to_table` (uid,blogtype,blogurl,rss,openarea) SELECT uid,blogtype,blogurl,rss,openarea FROM `$from_table`" ) ;
+		$irs = $db->query( "INSERT INTO `$to_table` (uid,blogtype,blogurl,rss,openarea,mailpost,address,keep,uptime,updated) SELECT uid,blogtype,blogurl,rss,openarea,mailpost,address,keep,uptime,updated FROM `$from_table`" ) ;
 		if( ! $irs ) redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=import" , 3 , $from_table._MD_IMPORTERROR ) ;
 
 		// diary 
@@ -145,7 +145,7 @@ if ( ! function_exists('d3diary_import_from_d3blog') ) {
 
 		while ( $dbdat[] = $db->fetchArray($result) ) {	}
 
-		$i=0;
+		$i=0; $k=0;
 		foreach ( $dbdat as $dbrow ) {
 			$j=0;
 			if($dbrow['subcat']==0){
@@ -205,7 +205,7 @@ if ( ! function_exists('d3diary_import_trackbacks') ) {
 				KEY bid (bid),
 				KEY tbkey (tbkey),
 				KEY trackback_url (trackback_url)
-				) TYPE=MyISAM" );
+				) ENGINE=MyISAM" );
 		}
 		$db->query( "DELETE FROM `$to_table`" ) ;
 		$irs = $db->query( "INSERT INTO `$to_table` 
@@ -238,6 +238,90 @@ if ( ! function_exists('d3diary_import_notifications') ) {
 	    	$sql = "UPDATE ".$table." SET not_modid=".intval($to_mid)." WHERE not_modid=".intval($from_mid);
 		$irs = $db->query( $sql ) ;
 	    	if(!$irs ) redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=import" , 3 ,_MD_IMPORTERROR ) ;
+	}
+}
+
+if ( ! function_exists('d3diary_import_from_weblogD3') ) {
+	function d3diary_import_from_weblogD3( $mydirname , $import_mid )
+	{
+		$db =& Database::getInstance() ;
+		$import_mid = intval( $import_mid ) ;
+
+		// get name of `contents` table 
+		$module_handler =& xoops_gethandler( 'module' ) ;
+		$from_module =& $module_handler->get( $import_mid ) ;
+		$from_dirname = $from_module->getVar('dirname') ;
+
+		// diary 
+		$gALL = 'all';
+		$gADM = (int)XOOPS_GROUP_ADMIN;
+		$gUSR = (int)XOOPS_GROUP_USERS;
+		$gANO = (int)XOOPS_GROUP_ANONYMOUS;
+
+			// translate weblogD3's group permission to d3diary's openarea entry
+		$slct_openarea = "IF(`private` LIKE 'Y',100, IF(`permission_group` LIKE '".$gALL."','', 
+					IF(`permission_group` LIKE '%|".$gANO."|%','',
+					IF(`permission_group` LIKE '%|".$gUSR."|%','1','10')))) ";
+
+			// erase d3blog's unneccesary group permission 
+		$slct_groups_sub = "TRIM(LEADING '|".$gANO."' FROM TRIM(LEADING '|".$gUSR."' 
+					FROM TRIM(LEADING '|".$gADM."' FROM TRIM(LEADING '".$gALL."' FROM permission_group))))";
+		$slct_groups = "IF(".$slct_openarea." LIKE '10',".$slct_groups_sub.",'')";
+
+		$weblog_pagebreak = "'---UnderThisSeparatorIsLatterHalf---'";
+		$from_table = $db->prefix( $from_dirname.'_entry' ) ;
+		$to_table = $db->prefix( $mydirname.'_diary' ) ;
+		$db->query( "DELETE FROM `$to_table`" ) ;
+		$sql =  "INSERT INTO `$to_table` (bid,cid,uid,title,diary,update_time,create_time,dohtml,openarea,vgids,view) 
+			SELECT blog_id,cat_id+10000,user_id,title,REPLACE(contents, $weblog_pagebreak, '[pagebreak]\n'),
+				FROM_UNIXTIME(created),FROM_UNIXTIME(created),dohtml,".$slct_openarea.",".$slct_groups.",`reads` 
+				FROM `$from_table`" ;
+		$irs = $db->query( $sql ) ;
+		if( ! $irs ) redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=import" , 3 , $from_table._MD_IMPORTERROR ) ;
+
+		// category 
+			// process subcat
+		$slct_subcat = "IF(`cat_pid`>0,'1','0')";
+		$from_table = $db->prefix( $from_dirname.'_category' ) ;
+		$to_table = $db->prefix( $mydirname.'_category' ) ;
+		$db->query( "DELETE FROM `$to_table`" ) ;
+		$irs = $db->query( "INSERT INTO `$to_table` (uid,cid,cname,corder,subcat,blogtype,blogurl,rss,openarea,vpids) SELECT '0',cat_id+10000,cat_title,'0',".$slct_subcat.",'0','','','0',cat_pid+10000 FROM `$from_table`" ) ;
+		if( ! $irs ) redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=import" , 3 , $from_table._MD_IMPORTERROR ) ;
+		
+
+		$sql = "SELECT * FROM `$to_table` ORDER BY vpids, corder";
+		$result = $db->query($sql);
+
+		while ( $dbdat[] = $db->fetchArray($result) ) {	}
+
+		$i=0; $k=0;
+		foreach ( $dbdat as $dbrow ) {
+			$j=0;
+			if($dbrow['subcat']==0){
+				$dbdat[$i]['corder'] = $k+10000 ;
+				$k++;
+				foreach ( $dbdat as $dbrow2 ) {
+					if( $dbrow['cid']==(int)$dbrow2['vpids'] ) {
+						$dbdat[$j]['corder'] = $k+10000 ;
+						$k++;
+					}
+					$j++;
+				}
+			}
+			$i++;
+		}
+
+		foreach ( $dbdat as $dbrow ) {
+			$sql = "UPDATE `$to_table` SET 
+					corder='".$dbrow['corder']."', vpids='' 
+					WHERE cid=".$dbrow['cid'];
+			$irs = $db->query($sql);
+			$i++;
+		}
+		
+		// trackbacks
+		//d3diary_import_trackbacks_weblogD3($mydirname , $from_dirname );
+		
 	}
 }
 

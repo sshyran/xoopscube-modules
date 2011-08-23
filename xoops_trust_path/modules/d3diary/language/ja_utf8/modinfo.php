@@ -21,6 +21,7 @@ define($constpref."_CONFIG","日記の設定");
 define($constpref."_CONFIG_CATEGORY","カテゴリーの設定");
 define($constpref."_YES","はい");
 define($constpref."_NO","いいえ");
+define($constpref."_PHOTOLIST","画像一覧");
 
 // Admin
 define($constpref.'_ADMENU_MYLANGADMIN','言語定数管理');
@@ -97,6 +98,16 @@ define($constpref."_USE_MYFRIENDS_Y","myfriendsとの連携：ON");
 define($constpref."_FRIEND_DIRNAME","友人機能モジュールのディレクトリ名");
 define($constpref."_FRIEND_DIRNAMEDESC","友人機能との連携を行う場合、友人機能モジュールのディレクトリ名を入力してください。");
 
+define($constpref."_EXCERPTOK","タイトル・要約部分は閲覧可能");
+define($constpref."_EXCERPTOKDESC","記事単位で権限のない閲覧者に、「下書き」以外の<br/>記事タイトル・要約部分をオープンにする範囲を選択します。");
+define($constpref."_EXCERPTOK_NOUSE","閲覧権限の無い記事はタイトル・要約も表示しない");
+//define($constpref."_EXCERPTOK_BYPERSON","各人の日記全体の設定に委譲する");
+define($constpref."_EXCERPTOK_FORMEMBER","ログインメンバーまでオープンにする");
+define($constpref."_EXCERPTOK_FORGUEST","ゲストまでオープンにする");
+
+define($constpref."_DISP_EXCERPTCOM","タイトル・要約部分のみ閲覧可能の場合のコメント表示");
+define($constpref."_DISP_EXCERPTCOMDESC","コメントを表示する場合は「はい」、<br/>非表示にしておく場合は「いいえ」を選択。");
+
 define($constpref."_USE_TAG","タグ機能のON/OFF");
 define($constpref."_USE_TAGDESC","タグ機能を使用する場合、タグクラウドを表示するページを選択してください。");
 define($constpref."_USE_TAG_N","タグ機能：OFF");
@@ -118,9 +129,25 @@ define($constpref."_UPDATEPING_DSC","更新pingサーバーを指定します。
 define($constpref."_UPDATEPING_SERVERS","http://ping.rss.drecom.jp/\nhttp://blog.goo.ne.jp/XMLRPC" );
 define($constpref."_ENC_FROM" , "RSSフィードへの変換用の内部エンコード");
 define($constpref."_ENC_FROMDSC" , "通常は'default'でOKですが、RSSフィードが文字化けする場合は、'xoops_chrset'や'auto'をお試しください。");
-
 define($constpref.'_PERM_CLASS' , '閲覧権限処理クラス名');
 define($constpref.'_PERM_CLASSDSC' , '閲覧権限処理をオーバーライドしたい時に指定。デフォルトはd3diaryPermission');
+
+define($constpref.'_USE_MAILPOST' , 'メールによる投稿を可能にする');
+define($constpref.'_USE_MAILPOSTDSC' , 'メールによる投稿を可能にする場合は「yes」を選択し、パーミッションでグループに許可を与えます。');
+define($constpref."_POP3_SERVER","受信メールサーバ");
+define($constpref."_POP3_SERVER_DESC","受信メールのPOP3サーバ名");
+define($constpref."_POP3_PORT","受信ポート番号");
+define($constpref."_POP3_PORT_DESC","pop3サーバはたいてい110ですが、サーバに合わせてください。");
+define($constpref."_POP3_APOP","APOP暗号化認証を使用する");
+define($constpref."_POP3_APOP_DESC","APOP暗号化認証を使用するかどうか、サーバの設定に合わせてください。");
+define($constpref."_POST_EMAIL_ADDRESS","取込み用メールアカウントID");
+define($constpref."_POST_EMAIL_ADDRESS_DESC","取込み用のメールアカウントIDを設定して下さい。");
+define($constpref."_POST_EMAIL_PASSWORD","取込み用メールアドレスのパスワード");
+define($constpref."_POST_EMAIL_PASSWORD_DESC","取込み用メールアドレスのパスワードを設定して下さい。");
+define($constpref."_POST_EMAIL_FULLADD","メール送信先アドレス");
+define($constpref."_POST_EMAIL_FULLADDDSC","取込み用のメール送信先アドレス。説明ページへの表示用で、制御には使われません。");
+define($constpref."_POST_DETECT_ORDER","メール文字列エンコード検出順指定");
+define($constpref."_POST_DETECT_ORDERDSC","メール文字列エンコードの検出順を指定します。<br />空欄は'auto'を意味し、これで文字化けする場合、'ISO-2022-JP, UTF-8, UTF-7, ASCII, EUC-JP, JIS, SJIS, eucJP-win, SJIS-win'の中から列挙してみます。<br />例：'ISO-2022-JP, UTF-8, JIS, EUC-JP, eucJP-win, SJIS'");
 
 define($constpref."_USE_SIMPLECOMMENT","コメントの表示モード");
 define($constpref."_USE_SIMPLECOMMENTDESC","従来のXOOPS標準のコメントを使う代わりに、<br/>簡易的なコメントフォームを使うことができます。<br/><br/>※簡易フォームの場合、匿名投稿はできません。");

@@ -8,9 +8,13 @@ class DiaryConfig
 	var $blogurl;
 	var $rss;
 	var $openarea;
-	
+	var $mailpost;
+	var $address;
+	var $keep;
+	var $uptime;
+	var $updated;
 
-	function DiaryConfig(){
+	public function __construct(){
 	}
 
     function &getInstance()
@@ -37,6 +41,11 @@ class DiaryConfig
 			$this->blogurl    = $dbdat['blogurl'];
 			$this->rss        = $dbdat['rss'];
 			$this->openarea   = $dbdat['openarea'];
+			$this->mailpost   = $dbdat['mailpost'];
+			$this->address    = $dbdat['address'];
+			$this->keep	  = $dbdat['keep'];
+			$this->uptime     = $dbdat['uptime'];
+			$this->updated    = $dbdat['updated'];
 		}
 		return $num_rows;
 	}
@@ -49,53 +58,81 @@ class DiaryConfig
 		return $this->uid;
 	}
 
-	function insertdb(){
-		global $xoopsDB, $mydirname;
+	function insertdb($mydirname){
+		global $xoopsDB;
+
+		$ctime = !empty( $this->updated ) ? $this->updated : time();
 
         if (!get_magic_quotes_gpc()) {
 			$sql = "INSERT INTO ".$xoopsDB->prefix($mydirname.'_config')."
-					(uid, blogtype, blogurl, rss, openarea)
+					(uid, blogtype, blogurl, rss, openarea, mailpost, address, keep, uptime, updated)
 					VALUES (
 					'".addslashes($this->uid)."',
 					'".addslashes($this->blogtype)."',
 					'".addslashes($this->blogurl)."',
 					'".addslashes($this->rss)."',
-					'".addslashes($this->openarea)."'
+					'".addslashes($this->openarea)."',
+					'".addslashes($this->mailpost)."',
+					'".addslashes($this->address)."',
+					'".addslashes($this->keep)."',
+					'".addslashes($this->uptime)."',
+					'".addslashes($ctime)."'
 					)";
 		} else {
 			$sql = "INSERT INTO ".$xoopsDB->prefix($mydirname.'_config')."
-					(uid, blogtype, blogurl, rss, openarea)
+					(uid, blogtype, blogurl, rss, openarea, mailpost, address, keep, uptime, updated)
 					VALUES (
 					'".$this->uid."',
 					'".$this->blogtype."',
 					'".$this->blogurl."',
 					'".$this->rss."',
-					'".$this->openarea."'
+					'".$this->openarea."',
+					'".$this->mailpost."',
+					'".$this->address."',
+					'".$this->keep."',
+					'".$this->uptime."',
+					'".$ctime."'
 					)";
 		}
 		$result = $xoopsDB->query($sql);
 		return $xoopsDB->getInsertId();
 	}
 
-	function updatedb($mydirname){
+	function updatedb($mydirname, $force=false ){
 		global $xoopsDB;
+
+		$ctime = time();
 
         if (!get_magic_quotes_gpc()) {
 			$sql = "UPDATE ".$xoopsDB->prefix($mydirname.'_config')." SET
 					blogtype='".addslashes($this->blogtype)."',
 					blogurl='".addslashes($this->blogurl)."',
 					rss='".addslashes($this->rss)."',
-					openarea='".addslashes($this->openarea)."'
+					openarea='".addslashes($this->openarea)."',
+					mailpost='".addslashes($this->mailpost)."',
+					address='".addslashes($this->address)."',
+					keep='".addslashes($this->keep)."',
+					uptime='".addslashes($this->uptime)."',
+					updated='".addslashes($ctime)."'
 					WHERE uid='".addslashes($this->uid)."'";
 		} else {
 			$sql = "UPDATE ".$xoopsDB->prefix($mydirname.'_config')." SET
 					blogtype='".$this->blogtype."',
 					blogurl='".$this->blogurl."',
 					rss='".$this->rss."',
-					openarea='".$this->openarea."'
+					openarea='".$this->openarea."',
+					mailpost='".$this->mailpost."',
+					address='".$this->address."',
+					keep='".$this->keep."',
+					uptime='".$this->uptime."',
+					updated='".$ctime."'
 					WHERE uid='".$this->uid."'";
 		}
-		$result = $xoopsDB->query($sql);
+		if ($force == true) {
+			$result = $xoopsDB->queryF($sql);
+		} else {
+			$result = $xoopsDB->query($sql);
+		}
 		return $this->uid;
 	}
 
