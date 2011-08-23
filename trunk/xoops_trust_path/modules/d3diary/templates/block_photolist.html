@@ -10,8 +10,8 @@
 	[<{$block.lang.order}>]
 </div><!-- /itemInfo -->
 
-<div class="itemBody">
 <{if $block.entry.0.pid|count_characters>0}>
+<div class="itemBody">
 <div class="<{$block.mydirname}>PhotoBox">
 	<{foreach from=$block.entry key="num" item="entry" name="list"}>
    		<{if $block.entry|@count==1}>

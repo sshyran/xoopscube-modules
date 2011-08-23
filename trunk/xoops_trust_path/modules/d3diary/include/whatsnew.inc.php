@@ -27,13 +27,14 @@ if( ! function_exists( 'd3diary_new_base' ) ) {
 		require_once $mytrustdirpath."/class/photo.class.php";
 
 		$d3dConf = D3diaryConf::getInstance($mydirname, 0, "whatsnew");
-		$photo =& Photo::getInstance();
+		$func =& $d3dConf->func ;
 		$myts =& $d3dConf->myts;
+		$photo =& D3diaryPhoto::getInstance();
 		$uid = $d3dConf->uid;
 		//$req_uid = $d3dConf->req_uid; // overrided by d3dConf
 		$req_uid = 0; // overrided by d3dConf
 
-		$entry	= $d3dConf->func->get_blist_tstamp ($req_uid, $uid, $limit, false, $mytstamp ); // dosort = false, byref $mytstamp
+		$entry	= $func->get_blist_tstamp ($req_uid, $uid, $limit, false, $mytstamp ); // dosort = false, byref $mytstamp
 
 		// random photos
 		$d3dConf->get_new_bids( $got_bids ) ;
@@ -44,13 +45,22 @@ if( ! function_exists( 'd3diary_new_base' ) ) {
 		}
 		unset($photo->photos);
 	
+		// comment counts, newest comments
+		list($yd_comment,$yd_com_key) = $func->get_commentlist(0,$uid,100,true,true);
+		if(!empty($yd_comment)){
+			foreach( $yd_comment as $_com){
+				$i = (int)$_com['bid'];
+				$entry[$i]['com_num'] = (int)$_com['com_num'];
+			}
+		}
+
 		$ret	= array();
 		if (!empty($entry)) {
 			array_multisort($mytstamp, SORT_DESC, $entry);
 			$i=0;
 			foreach ( $entry as $b => $e){
 				$entry_temp[$i]	= $e;
-				$ret[$i]['description']	= trim($d3dConf->func->substrTarea($e['diary'], $e['dohtml'], 0, true));
+				$ret[$i]['description']	= trim($func->substrTarea($e['diary'], $e['dohtml'], 500, true));
 				$ret[$i]['link']	= $e['url'];
 				$ret[$i]['cname'] 	=  $myts->makeTboxData4Show($e['cname']);
 				$ret[$i]['cat_link'] 	= $URL_MOD."/index.php?page=category&amp;cid=".$e['cid'];
@@ -58,6 +68,7 @@ if( ! function_exists( 'd3diary_new_base' ) ) {
 				$ret[$i]['time']	= $e['tstamp'];
 				$ret[$i]['uid']  	= $e['uid'];
 				$ret[$i]['hits'] 	= $e['view'];
+				$ret[$i]['replies'] 	= !empty($e['com_num']) ? $e['com_num'] : 0 ;
 				$ret[$i]['image']	= !empty($e['photo']) ? $URL_MOD."/upimg/".$e['photo'] : "";
 				$ret[$i]['id']   	= $e['bid'];
 				$i++;

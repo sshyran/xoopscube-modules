@@ -1,7 +1,7 @@
 <?php
 include_once XOOPS_ROOT_PATH."/class/xoopstree.php";
 
-class Tag
+class D3diaryTag
 {
 	var $tag_id;
 	var $tag_name;
@@ -13,14 +13,14 @@ class Tag
 	var $bids = array();	// for readdb_mul
 	var $tags = array();
 
-	function Tag(){
+	public function __construct(){
 	}
 
     function &getInstance()
     {
         static $instance;
         if (!isset($instance)) {
-            $instance = new Tag();
+            $instance = new D3diaryTag();
         }
         return $instance;
     }
@@ -73,6 +73,25 @@ class Tag
 		}
 	}
 
+	function read_bid_byname($mydirname) {
+		global $xoopsDB;
+	
+	       	if (!get_magic_quotes_gpc()) {
+			$tag_name = addslashes($this->tag_name);
+		} else {
+			$tag_name = $this->tag_name;
+		}
+
+		$sql = "SELECT bid FROM ".$xoopsDB->prefix($mydirname.'_tag')." 
+				WHERE uid='".$this->uid."' AND tag_name='".$tag_name."'";
+
+		$result = $xoopsDB->query($sql);
+		$this->bids = array();
+		while ( $dbdat = $xoopsDB->fetchArray($result) ) {
+			$this->bids[] = (int)$dbdat['bid'];
+		}
+	}
+
 	function deletedb($mydirname){
 		global $xoopsDB;
 
@@ -91,6 +110,22 @@ class Tag
 		global $xoopsDB;
 
 		$sql = "DELETE FROM ".$xoopsDB->prefix($mydirname.'_tag')." WHERE uid='".$this->uid."' AND bid='".$this->bid."'";
+		$result = $xoopsDB->query($sql);
+	}
+
+	function deletedb_byname_mul($mydirname) {
+		global $xoopsDB;
+	
+	       	if (!get_magic_quotes_gpc()) {
+			$tag_name = addslashes($this->tag_name);
+		} else {
+			$tag_name = $this->tag_name;
+		}
+
+		$sql = "DELETE FROM ".$xoopsDB->prefix($mydirname.'_tag')." 
+				WHERE uid='".$this->uid."' AND tag_name='".$tag_name."' 
+				AND bid IN (".implode(',',$this->bids).")";
+
 		$result = $xoopsDB->query($sql);
 	}
 
@@ -131,6 +166,36 @@ class Tag
 		return $this->tag_id;
 	}
 
+	function insertdb_byname_mul($mydirname){
+		global $xoopsDB;
+
+ 		if ($this->reg_unixtime) {
+			$ctime = $this->reg_unixtime;
+		} else {
+			$ctime = time();
+		}
+
+		foreach ($this->bids as $bid) {
+			$temp_arr = array($this->tag_id,
+					$this->tag_name,
+					$bid,
+					$this->uid,
+					$this->tag_group,
+					$ctime);
+			if (!get_magic_quotes_gpc()) { $temp_arr = array_map("addslashes",$temp_arr); }
+			$tag_arr[] = "('".implode( "','" , $temp_arr)."')";
+		}
+		
+		$tag_arr_str = implode( "," , $tag_arr );
+
+		$sql = "INSERT INTO ".$xoopsDB->prefix($mydirname.'_tag')."
+				(tag_id, tag_name, bid, uid, tag_group, reg_unixtime)
+				VALUES ".$tag_arr_str ;
+
+		$result = $xoopsDB->query($sql);
+
+	}
+
 	function updatedb($mydirname){
 		global $xoopsDB;
 
@@ -155,6 +220,28 @@ class Tag
 		}
 		$result = $xoopsDB->query($sql);
 		return $this->tag_id;
+	}
+
+	function updatedb_byname_mul($mydirname, $rev_tag){
+		global $xoopsDB;
+
+		$ctime = time();
+
+	       	if (!get_magic_quotes_gpc()) {
+			$tag_name = addslashes($this->tag_name);
+			$rev_tag = addslashes($rev_tag);
+		} else {
+			$tag_name = $this->tag_name;
+		}
+
+		$sql = "UPDATE ".$xoopsDB->prefix($mydirname.'_tag')." 
+				SET tag_name='".$rev_tag."',
+				reg_unixtime='".$ctime."' 
+				WHERE uid='".$this->uid."' AND tag_name='".$tag_name."' 
+				AND bid IN (".implode(',',$this->bids).")";
+
+		$result = $xoopsDB->query($sql);
+
 	}
 
 }

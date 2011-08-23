@@ -34,6 +34,11 @@ $GLOBALS['d3diary_tables'] = array(
 		'blogurl' ,
 		'rss' ,
 		'openarea' ,
+  		'mailpost' ,
+  		'address' ,
+		'keep' ,
+  		'uptime' ,
+  		'updated' ,
 	) ,
 
 	'diary' => array(

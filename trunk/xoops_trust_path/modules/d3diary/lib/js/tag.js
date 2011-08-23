@@ -28,17 +28,19 @@ function addonload(addition) {
 addonload(
     function () {
         var taglist = document.getElementById('tags');
-        var tags = taglist.value.match(/\[.+?\]/g);
+        if ( taglist !== null) {
+       		var tags = taglist.value.match(/\[.+?\]/g);
+               	var populartags = document.getElementById('popularTags').getElementsByTagName('span');
         
-        var populartags = document.getElementById('popularTags').getElementsByTagName('span');
+        	for (var i = 0; i < populartags.length; i++) {
+        		popTag = getUnescapedTag(populartags[i].innerHTML);
+            	    if (tags !== null && tags.contains('[' + popTag + ']')) {
+                	populartags[i].className = 'sTag';
+            	    } else {
+                	populartags[i].className = 'uTag';
+            	    }
         
-        for (var i = 0; i < populartags.length; i++) {
-        	popTag = getUnescapedTag(populartags[i].innerHTML);
-            if (tags !== null && tags.contains('[' + popTag + ']')) {
-                populartags[i].className = 'sTag';
-            } else {
-                populartags[i].className = 'uTag';
-            }
+        	}
         }
     }
 );
@@ -82,4 +84,33 @@ function addTag(ele) {
 
     
     document.getElementById('tags').focus();
+}
+
+function chgtagotherdisp() {
+	if(document.getElementById('rgn_content').style.display=='none'){
+		document.getElementById('rgn_content').style.display='block';
+		document.getElementById('rgn_button').innerHTML='- CLOSE';
+	}else{
+		document.getElementById('rgn_content').style.display='none';
+		document.getElementById('rgn_button').innerHTML='+ OPEN';
+	}
+}
+function chgtagaction(act) {
+	if (act == 2){
+		document.getElementById('rev_tag').style.display='block';
+	} else {
+		document.getElementById('rev_tag').style.display='none';
+	}
+
+	if (act == 3){
+		document.getElementById('tags_list').style.display='block';
+	} else {
+		document.getElementById('tags_list').style.display='none';
+	}
+
+	if (act > 0){
+		document.getElementById('tags_submit').style.display='block';
+	} else {
+		document.getElementById('tags_submit').style.display='none';
+	}
 }

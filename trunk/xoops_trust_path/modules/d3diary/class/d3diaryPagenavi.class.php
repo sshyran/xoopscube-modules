@@ -7,7 +7,7 @@ class d3diaryPageNav {
 	var $current;
 	var $url;
 
-    function d3diaryPageNav($total_items, $items_perpage, $current_start, $start_name="start", $extra_arg="")
+    public function __construct($total_items, $items_perpage, $current_start, $start_name="start", $extra_arg="")
     {
         $this->total = intval($total_items);
         $this->perpage = intval($items_perpage);
@@ -87,7 +87,7 @@ class d3diaryPageNav {
             while ( $i <= $total_pages ) {
                 if ( $i == $current_page ) {
                 	$nav[$j]['txt']= $i;
-                	$nav[$j]['class']= "txt";
+                	$nav[$j]['class']= "this";
                 	$nav[$j]['url']= "";
                 	$j++;
                 } elseif ( ($i > $current_page - $offset && $i < $current_page + $offset ) || $i == 1 || $i == $total_pages ) {

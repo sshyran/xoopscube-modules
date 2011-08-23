@@ -13,6 +13,7 @@ function b_d3dside_calendar_show( $options ){
 	require_once dirname( dirname(__FILE__) ).'/class/d3diaryConf.class.php';
 	
 	$d3dConf = & D3diaryConf::getInstance($mydirname, 0, "b_side_calendar");
+	$func =& $d3dConf->func ;
 	$uid = $d3dConf->uid;
 	$req_uid = $d3dConf->req_uid; // overrided by d3dConf
 	//var_dump($req_uid);
@@ -27,17 +28,25 @@ function b_d3dside_calendar_show( $options ){
 		$d3dConf->get_month ($_year, $_month);
 		$year = isset($_year) ? (int)$_year : intval(date("Y")) ;
 		$month = isset($_month) ? (int)$_month : intval(date("n")) ;
-		//var_dump( $d3dConf->mydirname );
-		//var_dump($_year);var_dump($_month);
-		//var_dump($year);var_dump($month);
 		
-		list( $yd_calender, $yd_cal_month ) = $d3dConf->func->get_calender ( $req_uid, $year, $month, $uid, "", true );
+		$page = $d3dConf->page ;
+
+	// create base url
+	//$page = & $d3dConf->page ;
+	//$q_mode = & $d3dConf->q_mode ;
+	//$q_cid = & $d3dConf->q_cid ;
+	//$q_tag = & $d3dConf->q_tag ;
+	$q_fr = $d3dConf->q_fr ;
 
 		if( $req_uid > 0 ) {
-			$base_url=XOOPS_URL."/modules/".$mydirname."/index.php?page=index&amp;req_uid=".$req_uid;
+			$base_url = $d3dConf->urluppr.$d3dConf->urlbase.$d3dConf->url4ex_date."&amp;";
+		} elseif( strcmp( $d3dConf->page, "photolist" ) == 0 ) {
+			$base_url = $d3dConf->urluppr."page=photolist".$d3dConf->url4ex_date."&amp;";
 		} else {
-			$base_url=XOOPS_URL."/modules/".$mydirname."/index.php?page=diarylist";
+			$base_url = $d3dConf->urluppr.$d3dConf->urlbase_dlst.$d3dConf->url4ex_date."&amp;";
 		}
+
+		list( $yd_calender, $yd_cal_month ) = $func->get_calender ( $req_uid, $year, $month, $uid, $base_url, true );
 
 		$lang = array();
 		//$lang['title'] = constant('_MD_CTITLE');

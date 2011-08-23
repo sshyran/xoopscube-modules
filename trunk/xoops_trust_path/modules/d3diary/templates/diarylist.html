@@ -76,6 +76,29 @@
 <{/if}>
 </div><!-- /boxNavi -->
 
+<div class="item" style="border:0px ;">
+<div class="itemInfo" style="text-align:center;">
+
+<span class="d3dlinkEntry" style="float:left;" /></span>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?page=photolist&amp;req_uid=<{$yd_uid}><{$base_qstr}>" title="<{$smarty.const._MD_NEWPHOTO}>" class="d3dlinkImage" style="float:left;" ></a>
+
+<div style="text-align:left;">
+<{if $yd_param.day>0}><span class="d3dQueryInfo"><a href="<{$url4ex_date}>" class="d3dTurnoff" title="<{$smarty.const._MD_QUERYOFF}>">[<{$yd_param.year}>-<{$yd_param.month}>-<{$yd_param.day}>]</a></span>
+<{elseif $yd_param.month>0}><span class="d3dQueryInfo"><a href="<{$url4ex_date}>" class="d3dTurnoff" title="<{$smarty.const._MD_QUERYOFF}>">[<{$yd_param.year}>-<{$yd_param.month}>]</a></span><{/if}>
+<{if $yd_param.mode=="category"}><span class="d3dQueryInfo"><a href="<{$url4ex_cat}>" class="d3dTurnoff" title="<{$smarty.const._MD_QUERYOFF}>"><{$smarty.const._MD_CATEGORY}>&nbsp;[<{$yd_param.cname}>]</a></span><{/if}>
+<{if $yd_param.tag}><span class="d3dQueryInfo"><a href="<{$url4ex_tag}>" class="d3dTurnoff" title="<{$smarty.const._MD_QUERYOFF}>"><{$smarty.const._MD_TAG}>&nbsp;[<{$yd_param.tag}>]</a></span><{/if}>
+</div>
+<br />
+
+<div style="clear:both;">
+[<{$smarty.const._MD_DIARY_DATE}><a href="<{$sort_baseurl}>&amp;odr=time_dsc" class="<{$style_s.time_dsc}>" title="<{$smarty.const._MD_DSC}>"><span>&nbsp;</span></a> <a href="<{$sort_baseurl}>&amp;odr=time_asc" class="<{$style_s.time_asc}>" title="<{$smarty.const._MD_ASC}>"><span>&nbsp;</span></a>]
+[<{$smarty.const._MD_DIARY_TITLE}><a href="<{$sort_baseurl}>&amp;odr=title_dsc" class="<{$style_s.title_dsc}>" title="<{$smarty.const._MD_DSC}>"><span>&nbsp;</span></a> <a href="<{$sort_baseurl}>&amp;odr=title_asc" class="<{$style_s.title_asc}>" title="<{$smarty.const._MD_ASC}>"><span>&nbsp;</span></a>]
+[<{$smarty.const._MD_PAGE_ACCESS}><a href="<{$sort_baseurl}>&amp;odr=hit_dsc" class="<{$style_s.hit_dsc}>" title="<{$smarty.const._MD_DSC}>"><span>&nbsp;</span></a> <a href="<{$sort_baseurl}>&amp;odr=hit_asc" class="<{$style_s.hit_asc}>" title="<{$smarty.const._MD_ASC}>"><span>&nbsp;</span></a>]
+</div>
+
+</div><!-- /itemInfo -->
+</div><!-- /item -->
+
 <{foreach from=$yd_data item=entry}>
 <{if $entry.can_disp}>
 
@@ -103,7 +126,7 @@
 </div><!-- /itemHead -->
 
 <div class="itemInfo" style="text-align:left;">
-	<img src="<{$xoops_url}>/modules/<{$mydirname}>/images/open<{$entry.openarea}>.gif" border=0 style="vertical-align:middle; float:right;" />
+	<{if $entry.openarea>0}><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/open<{$entry.openarea}>.gif" border=0 style="vertical-align:middle; float:right;" /><{/if}>
 <span class="itemPermaLink">
 	<{$smarty.const._MD_CATEGORY}>&nbsp;
 	<{if $entry.cname|count_characters>0}><{if $entry.other>0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?page=other&amp;req_uid=<{$entry.uid}>&amp;mode=category&amp;cid=<{$entry.cid}>">
@@ -127,17 +150,16 @@
 	<{if $mod_config.use_avatar}><img src="<{$entry.avatarurl}>"><{/if}>
 	</div>
 	<div class="thumb">
-	<{if $entry.photo|count_characters>0}>
+	<{if $entry.photo|count_characters>0 && $entry.photo_body_in != true}>
 	<img src="<{$xoops_url}>/modules/<{$mydirname}>/include/imgresize.php?maxsize=120&amp;fname=modules/<{$mydirname}>/upimg/t_<{$entry.photo}>" />
 	<{/if}>
 	</div>
 	<div class="itemText">
 	<{$entry.diary}>
 	</div>
-<div class="clear"></div>
 </div><!-- /itemBody -->
 
-<div class="itemFoot">
+<div class="itemFoot" style="clear:both;">
 <span class="itemPermaLink">
   <{if $entry.com_num > 0}>
 	<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?page=detail&amp;req_uid=<{$entry.uid}>&amp;bid=<{$entry.bid}><{$yd_com_key}><{$entry.unique_path}>" 

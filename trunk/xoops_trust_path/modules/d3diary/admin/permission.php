@@ -17,6 +17,9 @@ $gperm_config = array(
     'allow_regdate' => '_MD_D3DIARY_PERMDESC_ALLOW_REGDATE'
 );
 
+if( $d3dConf->mod_config['use_mailpost'] == 1) 
+	{ $gperm_config['allow_mailpost'] = '_MD_D3DIARY_PERMDESC_ALLOW_MAILPOST'; }
+
 if( $d3dConf->gPerm->use_gp == 1) 
 	{ $gperm_config['allow_gpermission'] = '_MD_D3DIARY_PERMDESC_ALLOW_GPERM'; }
 if( $d3dConf->gPerm->use_pp == 1) 

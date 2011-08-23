@@ -59,7 +59,7 @@ function d3diary_onupdate_base( $module , $mydirname )
 	// 0.01 -> 0.01
 	$check_sql = "SELECT tag_id FROM ".$db->prefix($mydirname."_tag") ;
 	if( ! $db->query( $check_sql ) ) {
-		$db->queryF( "CREATE TABLE ".$db->prefix($mydirname."_tag")." ( tag_id int(11) unsigned NOT NULL auto_increment, tag_name varchar(64) NOT NULL default '',	bid int(11) unsigned NOT NULL default '0', uid mediumint(8) unsigned NOT NULL default '0',	tag_group int(11) unsigned NOT NULL default '0', reg_unixtime int(11) unsigned NOT NULL default '0', PRIMARY KEY  (tag_id), KEY (tag_name), KEY (bid), KEY (uid) ) TYPE=MyISAM" ) ;
+		$db->queryF( "CREATE TABLE ".$db->prefix($mydirname."_tag")." ( tag_id int(11) unsigned NOT NULL auto_increment, tag_name varchar(64) NOT NULL default '',	bid int(11) unsigned NOT NULL default '0', uid mediumint(8) unsigned NOT NULL default '0',	tag_group int(11) unsigned NOT NULL default '0', reg_unixtime int(11) unsigned NOT NULL default '0', PRIMARY KEY  (tag_id), KEY (tag_name), KEY (bid), KEY (uid) ) ENGINE=MyISAM" ) ;
 	}
 	
 	// 0.01 -> 0.01
@@ -120,6 +120,35 @@ function d3diary_onupdate_base( $module , $mydirname )
 					reg_unixtime='".$tstamp."' WHERE tag_id='".$dbdat['tag_id']."'";
 			$irs = $db->query($sql);
 		}
+	}
+	
+	// 0.15 -> 0.16
+	// add mail post
+	$check_sql = "SELECT mailpost FROM ".$db->prefix($mydirname."_config") ;
+	if( ! $db->query( $check_sql ) ) {
+		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname."_config")." 
+			ADD `mailpost` tinyint(1) unsigned NOT NULL default '0' AFTER openarea" ) ;
+		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname."_config")." 
+			ADD `address` varchar(255) NOT NULL default '' AFTER mailpost" ) ;
+		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname."_config")." 
+			ADD `keep` tinyint(1) NOT NULL default '0' AFTER address" ) ;
+		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname."_config")." 
+			ADD `uptime` int(10) unsigned NOT NULL default '0' AFTER keep" ) ;
+		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname."_config")." 
+			ADD `updated` int(10) unsigned NOT NULL default '0' AFTER uptime" ) ;
+	}
+	
+	// 0.18
+	// modify photo `tstamp` column data type from timestamp to datetime
+	$result = mysql_query("SELECT `tstamp` FROM ".$db->prefix($mydirname."_photo")) ;
+	$field_type  = mysql_field_type($result, 0);
+	if ( $field_type == "timestamp" ) {
+		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname."_photo")." modify `tstamp` datetime NOT NULL" ) ;
+		// for NULL tstamp, copy from diary's create_time
+		$sql = "UPDATE ".$db->prefix($mydirname."_photo"). " p 
+				INNER JOIN ".$db->prefix($mydirname."_diary")." d USING(bid) 
+				SET p.tstamp=d.create_time WHERE (p.tstamp IS NULL) OR (p.tstamp = '0000-00-00 00:00:00')";
+		$result = $db->queryF( $sql ) ;
 	}
 	
 	// TEMPLATES (all templates have been already removed by modulesadmin)

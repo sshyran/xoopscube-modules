@@ -5,11 +5,10 @@ D3diary is a fork version of minidiary that is made to be reproduced by the D3(d
 
 ** Necessary environment
 -Core
--- XOOPS 2.0.16a-JP (Mybe JPEX available)
--- XOOPS Cube Legacy（checked on 2.1.6）
+-- XOOPS 2.0.16a-JP, JPEx
+-- XOOPS Cube Legacy（checked on 2.1.8）
 -PHP
--- PHP4.3.x or over
--- PHP5
+-- PHP5.1 over
 -MySQL
 -- MySQL-4.0.x or over (detail is not sure)
 -- (MyISAM)
@@ -30,8 +29,8 @@ D3diary is a fork version of minidiary that is made to be reproduced by the D3(d
     valid only with d3-comment integration, not with xoops original
     comment system
 
--inport from minidiary, d3diary or d3blog
--- Importing diary data (except for d3blog's trackback data)
+-inport from minidiary, d3diary, weblogD3 or d3blog
+-- Importing diary data (except for weblogD3 and d3blog's trackback data)
 -- Importing xoops comment
     Not necessay for d3-comment. In that case, setting for both d3diary
     and d3forum will be enough.
@@ -97,10 +96,108 @@ D3diary is a fork version of minidiary that is made to be reproduced by the D3(d
    the setting that displays the article text at the topics display. 
 
 **Future functions
--Increments of image uploading directory
--Trackback function
+- Increments of image uploading directory
+- Trackback function
 
 ** Changed history
+2011/ 8/21  ver0.22  (Requires module update)
+	- In diarylist block, added two sort order, new comment first and comment numbers .
+	  Both are only for sorting after licked up new diaries.
+	- Added diarylist block option that force eliminate tag. In case of selected "No" ,
+	  summary text before [pagebreak] as it is.
+	- Fixed bug of diarylist block option "Assign tetail text was not valid.
+	- Added function to insert and show the uploaded image into body text.
+
+2011/ 8/14  ver0.21  (Requires module update)
+	- Added function of d3blog's "Enable to show title and summary for not permitted entry".
+	　Added following two settings on prefferences screen.
+	-- Open area for title and summary.
+	-- Show comment or not in case of enabled showing title and summary.
+	- Trouble is found in rotation image deletion/processing that has been registered
+	  when there is a preview image in the edit display, and it was fixed.
+	- The detail of the template is changed a little for the smart phone display. 
+
+2011/ 8/11  ver0.20a
+	- Fixed no body text of mail importing from iPhone in case the body text after photos.(thx AXYZ-SAK)
+
+2011/ 8/ 8  ver0.20a
+	- With using d3comment class, since the constructor coding was wrong,
+	　screen whiteout occurs after d3forum version up to 0.86. It is fixed.
+
+2011/ 8/ 2  ver0.20a
+	- Fixed no body text of mail importing from iPhone.(thx Honda)
+
+2011/ 7/30  ver0.20a
+	- Fixed bug that jump to the shown personnel url although selected the block option
+	  "Show limitation" to "No limit, show all items even when each personal page"
+	  on category block, calendar block, and monthlist block. （thx ZAL2000）
+
+2011/ 7/25  ver0.20
+	- Block option cannot be edited on xoops-2 cores (thx zukkiina)
+	- Added color select on pagenavi's present page.
+
+2011/ 7/ 8  ver0.20 RC
+	- Remove the neccesary environment php4. php5.0 over is neccesary, php5.1 over is reccomended.
+	- Reduce notices for php5.3 environment.
+
+2011/ 6/16  ver0.18 alpha
+	- Fixed bug that cannot show date in photolist page. Module update is neccesary.
+
+2011/ 6/ 9  ver0.18 alpha
+	- Fixed hits and comments number were not assigned in whatsnew puguin.
+
+2011/ 6/ 4  ver0.18 alpha
+	- Fixed bug of photo info is not trancated in photolist block.
+	- Added photolist page and changed links in blocks of category, tagcroud, and blogger.
+	　Added submenu "Photo List" in main menu.
+	- Sorted view function is added in index, diarylist, bloggerlist, photolist pages.
+	　It sorts with keeping category or tag query condition.
+	- Fixed bug that "friend's diary" in main menu shows owner's diary.
+	- Changed class names to eliminate possobility of confliction with other modules.
+
+2011/ 5/ 6  ver0.17b
+	- Category swap function was very complecated in category edit screen because only swap each column.
+	  Now it's modified that you can input the sequence number directry.
+	- Fixed bug of redirect function when a guest acccess to the TOP page in version 0.17 and 0.17a.
+
+2011/ 5/ 5  ver0.17, 0.17a
+	- Image rotate (right 90degree / left 90degree) function is added on edit screen after e-mail import.
+	- Fixed an alart using FCKeditor even though body texed is written but "no input" is shown,
+	　changed by no check the body text when using FCKeditor. (thx nouphet)
+	- Changed behavior when the oversize error of uploaded image is occured, sent data will be remain with
+	  some notifying alart.
+	- Added import function from weblogD3. (trackback will not be imported)
+
+2011/ 5/ 3  ver0.16b
+	- Fixed unrecognized e-mail inport for "name" <mail address> type FROM address.(thx honda)
+	- Changed POP3 and mailDecode class name to avoid cinfliction.
+
+2011/ 4/18  ver0.16a
+	- To fix the garble by server multibyte environment when decode the mail, added input of character code detect order 
+	  in the prefference screen and changed the convert encoding in each time.
+	- Added "Mail Import" link at the top area of the owners' index page.
+	- Modified specification that future's entry link without permisstion was visible in calendar.
+
+2011/ 4/ 4  ver0.16
+	- Correction of bug that all comments on diary are displayed from newly arrived diary block
+	  of everybody to commenting newly arrived block after diary is clicked.
+	- The correction of trouble which the tag cloud in the upper part of the main page is not displayed. (thx hori)
+	- Fixed warning error in state without tag。(thx Ken@)
+	- Fixed the error of closing <div> tag in block_photolist.html template.(thx guest)
+	- It is corrected that the url automatic setting on each blog site rss was a unmounting by the setting of
+	  an external blog of the category. 
+	- Added function of the diary and the image by email. 
+
+2011/ 1/10  ver0.15
+	- Tag edit mode on personal entry list (index.php) page is added when queried on a tag.
+	-- Select entries by each CheckBox and select the operation at the bottom of the lists.
+	-- Delete / Edit / Add operation is available for multi entries at once.
+	- Also tag addition mode is available on category queried list bottom "Into tag edit mode" link.
+
+2010/12/22  ver0.14b
+	- Fixed bug that future time diary is shown on new dary/blog block, d3pipes joint etc.
+	　(trust- class/d3diaryPermissionAbstract.class.php)
+
 2010/12/15  ver0.14a
 	- Fixed breadcrumbs don't show diary title when selected a title after a category.（thx hiro1613）
 	- Fixed bug that missing stripslashes of diary's preview function in case of php setting "pagic_quote_GPC=on".（thx Sakai）

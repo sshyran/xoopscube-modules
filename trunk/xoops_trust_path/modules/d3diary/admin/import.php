@@ -34,11 +34,18 @@ foreach( $modules as $module ) {
 			$notifimportable_modules[ $mid ] = 'minidiary:'. $module->getVar('name')." ( $dirname )";
 		}
 	} elseif( $mytrustdirname == 'd3blog' ) {
-		// minidiary
+		// d3blog
 		$importable_modules[$mid] = 'd3blog:'.$module->getVar('name')." ($dirname)" ;
             	if($module->getVar('hascomments')) {
 			$comimportable_modules[ $mid ] = 'd3blog:'. $module->getVar('name')." ( $dirname )";
 			$notifimportable_modules[ $mid ] = 'd3blog:'. $module->getVar('name')." ( $dirname )";
+		}
+	} elseif( $mytrustdirname == 'weblogD3' ) {
+		// d3blog
+		$importable_modules[$mid] = 'weblogD3:'.$module->getVar('name')." ($dirname)" ;
+            	if($module->getVar('hascomments')) {
+			$comimportable_modules[ $mid ] = 'weblogD3:'. $module->getVar('name')." ( $dirname )";
+			$notifimportable_modules[ $mid ] = 'weblogD3:'. $module->getVar('name')." ( $dirname )";
 		}
 	}
 }
@@ -68,6 +75,9 @@ if( ! empty( $_POST['do_import'] ) && ! empty( $_POST['import_mid'] ) ) {
 			break ;
 		case 'd3blog' :
 			d3diary_import_from_d3blog( $mydirname , $import_mid ) ;
+			break ;
+		case 'weblogD3' :
+			d3diary_import_from_weblogD3( $mydirname , $import_mid ) ;
 			break ;
 	}
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=import" , 3 , $fromtype._MD_D3DIARY_IMPORTDONE ) ;

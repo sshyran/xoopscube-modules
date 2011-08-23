@@ -15,6 +15,9 @@ function b_d3dside_tagcroud_show( $options ){
 	require_once dirname( dirname(__FILE__) ).'/class/d3diaryConf.class.php';
 	
 	$d3dConf = & D3diaryConf::getInstance($mydirname, 0, "b_side_tagcroud");
+	$func =& $d3dConf->func ;
+	$mPerm =& $d3dConf->mPerm ;
+	$mod_config =& $d3dConf->mod_config ;
 	$uid = $d3dConf->uid;
 	$req_uid = $d3dConf->req_uid; // overrided by d3dConf
 	//var_dump($req_uid);
@@ -26,22 +29,32 @@ function b_d3dside_tagcroud_show( $options ){
 		return ;
 	} elseif( $limit_self == 3 && $req_uid == 0 ) {		// not show except for personal page
 		return ;
+	} elseif( $limit_self == 3 && $req_uid > 0 && $d3dConf->q_fr==1 ) {	// case of show friend page
+		$req_uid = 0 ;
 	}
 
-	if ((int)$d3dConf->mod_config['use_tag'] >= 1) {
-		if( $req_uid > 0 ) {
-			$base_url=XOOPS_URL."/modules/".$mydirname."/index.php?page=index&req_uid=".$req_uid;
-		} else {
-			$base_url=XOOPS_URL."/modules/".$mydirname."/index.php?page=diarylist";
-		}
-
+	if ((int)$mod_config['use_tag'] >= 1) {
+		// create base url
+		//$page = $d3dConf->page ;
+		//$q_mode = $d3dConf->q_mode ;
+		$q_cid = $d3dConf->q_cid ;
+		//$q_year = $d3dConf->q_year ;
+		//$q_month = $d3dConf->q_month ;
+		//$q_day = $d3dConf->q_day ;
+		$q_fr = $d3dConf->q_fr ;
+		
 		$where = "";
 		if($req_uid > 0 ){
-			$where= 'uid='. intval($req_uid);
+			if ( $q_fr==1 ) {
+				$where= "uid IN (". implode(',', $mPerm->req_friends).")";
+			} else {
+				$where= 'uid='. intval($req_uid);
+			}
 		}
+		$base_url = $d3dConf->urluppr.$d3dConf->urlbase.$d3dConf->url4ex_tag. "&amp;";
 
 		$params['ofst_key'] = "tofst" ;
-		$tofst = $d3dConf->func->getpost_param($params['ofst_key']);
+		$tofst = $func->getpost_param($params['ofst_key']);
 
 		switch ($params['order']) {
 			case 'tag_name DESC' :
@@ -60,8 +73,7 @@ function b_d3dside_tagcroud_show( $options ){
 		}
 
 		// getTagCloud ($where, $min_size, $max_size, $max_displays, $offset_page)
-		list( $tagCloud, $tagnavi ) = $d3dConf->func->getTagCloud($where, $min_size, $max_size, $max_entry, $tofst, $params);
-		$cid = (int)$d3dConf->getpost_param('cid') ;
+		list( $tagCloud, $tagnavi ) = $func->getTagCloud($where, $min_size, $max_size, $max_entry, $tofst, $params);
 
 		$lang = array();
 		//$lang['title'] = constant('_MD_CTITLE');
@@ -69,13 +81,14 @@ function b_d3dside_tagcroud_show( $options ){
 		$block="";
 
 		$block['tagCloud'] = $tagCloud;
-		$block['use_tag'] = $d3dConf->mod_config['use_tag'];
+		$block['use_tag'] = $mod_config['use_tag'];
 		$block['tagnavi'] = $tagnavi;
 		$block['lang'] = $lang;
 		$block['mydirname'] = $mydirname;
 		$block['base_url'] = $base_url;
-		$block['cid'] = $cid ;
+		$block['cid'] = $q_cid ;
 		$block['tofst'] = $tofst ;
+		$block['fr'] = $q_fr ;
 	}
 
 	$d3dConf->debug_appendtime('b_side_tagcroud');

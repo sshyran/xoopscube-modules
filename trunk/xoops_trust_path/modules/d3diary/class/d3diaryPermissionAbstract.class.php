@@ -25,8 +25,9 @@ var $isadmin = false ;	// boolean
 var $isauthor = false ;	// boolean
 var $d3d_conf = array();
 var $initialized = 0;
+var $exerpt_ok_bymod = false ;// allowed excerpt by mod_config
 
-function d3diaryPermissionAbstract(& $d3dConf)
+public function __construct(& $d3dConf)
 {
 	if (!defined('XOOPS_ROOT_PATH')) {
 	    exit();
@@ -67,7 +68,7 @@ function ini_set()
 
 	//var_dump($this->initialized); 	$this->initialized++;
  	$this->isadmin = $this->check_isadmin();
-	$this->isauthor =  $this->req_uid === $this->uid ? true : false ;
+	$this->isauthor =  ($this->uid > 0 && $this->req_uid === $this->uid) ? true : false ;
 
 	$use_friend = intval($this->mod_config['use_friend']);
 	// xsns: ==1 myfriends: ==2
@@ -88,6 +89,11 @@ function ini_set()
 		$this->d3d_conf['use_friend']=false;
 	}
 	//var_dump($this->mydirname); 
+
+	if( $this->mod_config['can_read_excerpt'] == 3 ){ $this->exerpt_ok_bymod = true ;	}
+	elseif( $this->uid > 0 && $this->mod_config['can_read_excerpt'] == 2 ){ $this->exerpt_ok_bymod = true ;	}
+
+
    //}
 }
 
@@ -127,9 +133,13 @@ function check_editperm($bid, $uid)
 {
 	$db = & $this->d3dConf->db;
 
-	$sql = "SELECT count(*) AS count_num FROM ".$db->prefix($this->mydirname."_diary")." 
-		WHERE (uid = '$uid') and (bid='$bid')";
-		
+	if( $this->isadmin ) {
+		$sql = "SELECT count(*) AS count_num FROM ".$db->prefix($this->mydirname."_diary")." 
+			WHERE bid='$bid'";
+	} else {
+		$sql = "SELECT count(*) AS count_num FROM ".$db->prefix($this->mydirname."_diary")." 
+			WHERE (uid = '$uid') and (bid='$bid')";
+	}
 	if ( !$result = $db->query($sql) ) {
 		return false;
 	}
@@ -137,14 +147,12 @@ function check_editperm($bid, $uid)
 		return false;
 	}
 	if ( $row['count_num'] <= 0 ) {
-		if ( !$this->isadmin ) {
 			return false;
-		}
 	}
   	return true;
 }
 
-function get_allowed_openarea()
+function get_allowed_openarea( $for_exerptok = true )
 {	// call from a specified personnel page only ( do not from diarylist, b_diarylist)
 	// return values are:
 	// 0=open, 1=members, 2=friends, 3=friends^2, 10=group, 20=personel, 100=scratch
@@ -152,9 +160,10 @@ function get_allowed_openarea()
 	$allowed_b = array();		// access uid's requiry permission
 	
 	// a return value
-	if( $this->uid <= 0 ) {			$allowed_b = array(0);		}
-	elseif ( $this->isauthor == true){	$allowed_b = array(0,1,3,2,100);	}
-	elseif ( $this->isadmin == true ){	$allowed_b = array(0,1,3,2,100);	}
+	if( $for_exerptok === true && $this->exerpt_ok_bymod == true ) { $allowed_b = array(0,1,3,2,10,20);	}
+	elseif( $this->uid <= 0 ) {			$allowed_b = array(0);		}
+	elseif ( $this->isauthor == true){		$allowed_b = array(0,1,3,2,10,20,100);	}
+	elseif ( $this->isadmin == true ){		$allowed_b = array(0,1,3,2,10,20,100);	}
 	elseif ( $this->d3d_conf['use_friend'] != true ) { $allowed_b = array(0,1);}
 	else {	//use friends
 		if( $this->is_friend == true){	$allowed_b = array(0,1,3,2);	}
@@ -212,6 +221,10 @@ function can_display($chk_uid, $op, $create_time = 0, $is_friend=false ,
 		}
 	}
 	return false;
+
+	// *** do not ovverride by "excerpt_ok" function
+	// *** to hide body text and d3 comments
+
 }
 
 function can_disp()
@@ -355,42 +368,6 @@ function get_users_can_read_entry( & $openarea, $op_ent, $op_cat=0, $gp_ent="", 
 	return $users2notify;
 }
 
-/*// added for edit.php Trigger Notification 2009/06/10
-function get_users_can_read_entry( $_uid, $openarea_entry, $openarea_category =0)
-{
-
-	$openarea = intval($this->dcfg->openarea);
-	if($openarea_category > 0){$openarea = $openarea_category;}
-	if($openarea_entry >0){$openarea = $openarea_entry;}
-
-    if ($openarea != 100){
-	
-	switch ($openarea) {
-	case 2:
-		$got_users2notify = $this->req_friends ;
-		if ( count($got_users2notify) > 0 ) {
-			$users2notify = $got_users2notify;
-		} else {
-			$users2notify = array( 0 ); // default_rev : everyone denied
-		}
-		break;
-	case 3:
-		$got_users2notify = $this->req_friends2 ;
-		if ( count($got_users2notify) > 0 ) {
-			$users2notify = $got_users2notify;
-		} else {
-			$users2notify = array( 0 ); // default_rev : everyone denied
-		}
-			break;
-	default:
-		$users2notify = array(); // default : everyone allowed
-	}
-    } else {
-		$users2notify = array( 0 ); // default_rev : everyone denied
-    }
-	return $users2notify;
-}
-*/
 function override_openarea( $op, $op_ent, $op_cat, $gp_ent="", $pp_ent="", $gp_cat="", $pp_cat="" ){
 	// strong order : 0 < 1 < 3 < 2 < 10 < 20 < 100
 	// in case of same numbers, $op_ent is storonger than $op_cat
@@ -480,6 +457,18 @@ function get_open_query( $caller, $params ) {
 					AND (c.openarea IN (".$allowed_openarea.") OR c.openarea IS NULL)) " ;
 			break;
 
+		case "viewcomment1":
+		case "b_side_com":	// for comments
+			if ( $this->mod_config['can_disp_com'] == 1 ) {
+				$allowed_openarea = implode(",",$this->get_allowed_openarea( true ));
+			} else {
+				$allowed_openarea = implode(",",$this->get_allowed_openarea( false ));
+			}
+			$whr_openarea = " ((d.openarea IN (".$allowed_openarea.")) 
+					AND (cfg.openarea IN (".$allowed_openarea.") OR cfg.openarea IS NULL) 
+					AND (c.openarea IN (".$allowed_openarea.") OR c.openarea IS NULL)) " ;
+			break;
+
 		case "dlist1":
 		case "right_blist":
 		case "b_com_topics":	// for req_uid == 0 pages with cfg.openarea
@@ -496,8 +485,8 @@ function get_open_query( $caller, $params ) {
 	// friends perm stage
 	if ($this->d3d_conf['use_friend'] === true) {
 		switch ($caller) {
-			case "right_cat2":
-				break ;
+			//case "right_cat2":
+			//	break ;
 			case "right_cal_other":
 			case "right_blist_other":
 			case "index1_other":		// without d.openarea, cfg.openarea

@@ -13,6 +13,7 @@ define($constpref."_DIARY_NAME","D3diary");
 define($constpref."_DIARY_DESC","D3diary");
 
 define($constpref."_DIARYLIST","New Diaries");
+define($constpref."_PHOTOLIST","New Images");
 define($constpref."_FRIENDSDIARY","Friends Diaries");
 define($constpref."_EDIT","Write Diary");
 define($constpref."_CATEGORY","Category");
@@ -63,7 +64,6 @@ define($constpref."_PHOTO_USERESIZE_N","NO Shrink");
 
 define($constpref."_PHOTO_THUMBSIZE","Thumbnail image size");
 define($constpref."_PHOTO_THUMBSIZEDESC","Set thumbnail image size in pixcels");
-
 // define($constpref."_PHOTO_RESIZEMAX","Maximum shrink size");
 // define($constpref."_PHOTO_RESIZEMAXDESC","Maximum shrink size setting by px (pixcel)");
 
@@ -98,6 +98,16 @@ define($constpref."_USE_MYFRIENDS_Y","Cooperation with Myfriends module:ON");
 define($constpref."_FRIEND_DIRNAME","Directory name of Friend Cooperation module");
 define($constpref."_FRIEND_DIRNAMEDESC","If you use Cooperation function with Friend module, input the directory name.");
 
+define($constpref."_EXCERPTOK","Enable to show title and summary for not permitted entry.");
+define($constpref."_EXCERPTOKDESC","Select openarea to be enabled to show the title and summary<br /> for not permitted entry except the draft.");
+define($constpref."_EXCERPTOK_NOUSE","Do not show for not permitted entry");
+//define($constpref."_EXCERPTOK_BYPERSON","Transfer it to the setting of everybody");
+define($constpref."_EXCERPTOK_FORMEMBER","Open for login members");
+define($constpref."_EXCERPTOK_FORGUEST","Open for all guests");
+
+define($constpref."_DISP_EXCERPTCOM","Show comment in case of enabled showing title and summary.");
+define($constpref."_DISP_EXCERPTCOMDESC","Select 'YES' to show comments, 'NO' to hide them.");
+
 define($constpref."_USE_TAG","TAG function ON/OFF");
 define($constpref."_USE_TAGDESC","Using TAG function , select the area to show TAG-Cloud.");
 define($constpref."_USE_TAG_N","TAG function :OFF");
@@ -119,9 +129,25 @@ define($constpref."_UPDATEPING_DSC","devide each URL by break" );
 define($constpref."_UPDATEPING_SERVERS","http://ping.rss.drecom.jp/\nhttp://blog.goo.ne.jp/XMLRPC" );
 define($constpref."_ENC_FROM" , "Internal encoding translation for RSS Feed");
 define($constpref."_ENC_FROMDSC" , "Normally 'default' is applicable, if RSS feed is garbleed, 'xoops_chrset' or 'auto' may be better.");
-
 define($constpref.'_PERM_CLASS' , 'Class name for view permission');
 define($constpref.'_PERM_CLASSDSC' , 'input Class name to overrides the view permission. Default is d3diaryPermission');
+
+define($constpref."_USE_MAILPOST" , 'Use post by e-mail');
+define($constpref."_USE_MAILPOSTDSC" , 'Select "YES" to enable post via e-mail, and check the group on permission setting.');
+define($constpref."_POP3_SERVER","POP mail server");
+define($constpref."_POP3_SERVER_DESC","POP mail server name");
+define($constpref."_POP3_PORT","POP server port");
+define($constpref."_POP3_PORT_DESC","Please contact to server administrator. Normally POP server uses port 110.");
+define($constpref."_POP3_APOP","Use APOP encrypt authorization");
+define($constpref."_POP3_APOP_DESC","Please contact to server administrator whether to use APOP encrypt authorization");
+define($constpref."_POST_EMAIL_ADDRESS","Mail account ID for inporting");
+define($constpref."_POST_EMAIL_ADDRESS_DESC","Input the POP3 account ID for inporting");
+define($constpref."_POST_EMAIL_PASSWORD","POP3 password for inporting");
+define($constpref."_POST_EMAIL_PASSWORD_DESC","Input the POP3 password for inporting");
+define($constpref."_POST_EMAIL_FULLADD","Mail full address");
+define($constpref."_POST_EMAIL_FULLADDDSC","Full address for post to which is not for control but only for show.");
+define($constpref."_POST_DETECT_ORDER","Mail text encoding detect order");
+define($constpref."_POST_DETECT_ORDERDSC","Set mail text encoding detect order.<br />Vacant means 'auto'. If some garble is occured, input text series from 'ISO-2022-JP, UTF-8, UTF-7, ASCII, EUC-JP, JIS, SJIS, eucJP-win, SJIS-win'<br />Ex: 'ISO-2022-JP, UTF-8, JIS, EUC-JP, eucJP-win, SJIS'");
 
 define($constpref."_USE_SIMPLECOMMENT","Comment mode");
 define($constpref."_USE_SIMPLECOMMENTDESC","You can use Easy Comment Form instead of XOOPS original comment form. <br/><br/> Guest cannot write using Easy Comment Form. ");
