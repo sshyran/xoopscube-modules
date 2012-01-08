@@ -16,7 +16,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHandler
 {
 	protected $_mClientField = array('title'=>'title', 'category'=>'category_id', 'posttime'=>'posttime');
-	protected $_mClientConfig = array('tag'=>'tag_dirname', 'image'=>'use_image', 'workflow'=>'use_workflow', 'activity'=>'use_activity');
+	protected $_mClientConfig = array('tag'=>'tag_dirname', 'image'=>'use_image', 'workflow'=>'use_workflow', 'activity'=>'use_activity', 'map'=>'use_map');
 
 	/**
 	 * _getTagList
@@ -27,17 +27,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	 */
 	protected function _getTagList(/*** XoopsSimpleObject ***/ $obj)
 	{
-	}
-
-	/**
-	 * _getTempImageList
-	 *
-	 * @param void
-	 *
-	 * @return	string[]	//$_FILES[$formName]['tmp_name']
-	 */
-	protected function _getTempImageList()
-	{
+		return $obj->mTag;
 	}
 
 	/**
@@ -51,7 +41,10 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	public function insert(/*** XoopsSimpleObject ***/ $obj, /*** bool ***/ $force=false)
 	{
 		$ret = parent::insert($obj, $force);
-		$this->_setClientData($obj);
+		if ($ret == true)
+		{
+			$ret = $this->_setClientData($obj);
+		}
 	
 		return $ret;
 	}
@@ -86,26 +79,33 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	
 		$ret = true;
 		if($this->_isActivityClient($conf)===true){
-			if($this->_setActivity($obj)===false){
+			if($this->_saveActivity($obj)===false){
 				$ret = false;
 			}
 		}
 	
 		if($this->_isTagClient($conf)===true){
-			if($this->_setTags($obj, $conf[$this->_mClientConfig['tag']])===false){
+			if($this->_saveTags($obj, $conf[$this->_mClientConfig['tag']])===false){
 				$ret = false;
 			}
 		}
 	
 		if($this->_isWorkflowClient($conf)===true){
-			$this->_setWorkflow($obj);
+			$this->_saveWorkflow($obj);
 		}
 	
 		if($this->_isImageClient($conf)===true){
-			if($this->_setImages($obj)===false){
+			if($this->_saveImages($obj)===false){
 				$ret = false;
 			}
 		}
+	
+		if($this->_isMapClient($conf)===true){
+			if($this->_saveMap($obj)===false){
+				$ret = false;
+			}
+		}
+	
 		return $ret;
 	}
 
@@ -147,13 +147,13 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	}
 
 	/**
-	 * set activity
+	 * save activity
 	 *
 	 * @param XoopsSimpleObject	$obj
 	 *
 	 * @return	bool
 	 */
-	protected function _setActivity(/*** XoopsSimpleObject ***/ $obj)
+	protected function _saveActivity(/*** XoopsSimpleObject ***/ $obj)
 	{
 		$ret = false;
 		XCube_DelegateUtils::call(
@@ -170,14 +170,14 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	}
 
 	/**
-	 * set tags
+	 * save tags
 	 *
 	 * @param XoopsSimpleObject	$obj
 	 * @param string	$tagDirname
 	 *
 	 * @return	bool
 	 */
-	protected function _setTags(/*** XoopsSimpleObject ***/ $obj, /*** string ***/ $tagDirname)
+	protected function _saveTags(/*** XoopsSimpleObject ***/ $obj, /*** string ***/ $tagDirname)
 	{
 		$ret = false;
 		XCube_DelegateUtils::call('Legacy_Tag.'.$tagDirname.'.SetTags', 
@@ -193,13 +193,13 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	}
 
 	/**
-	 * set workflow
+	 * save workflow
 	 *
 	 * @param XoopsSimpleObject	$obj
 	 *
 	 * @return	void
 	 */
-	protected function _setWorkflow(/*** XoopsSimpleObject ***/ $obj)
+	protected function _saveWorkflow(/*** XoopsSimpleObject ***/ $obj)
 	{
 		XCube_DelegateUtils::call(
 			'Legacy_Workflow.AddItem', 
@@ -212,35 +212,24 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	}
 
 	/**
-	 * upload and set images
+	 * upload and save images
 	 *
 	 * @param XoopsSimpleObject	$obj
 	 *
 	 * @return	bool
 	 */
-	protected function _setImages(/*** XoopsSimpleObject ***/ $obj)
+	protected function _saveImages(/*** Legacy_AbstractObject ***/ $obj)
 	{
 		$ret = true;
-		$imageList = $this->_getTempImageList($obj);
-		foreach(array_keys($imageList) as $key){
-			$imageObjs = array();
-			XCube_DelegateUtils::call('Legacy_Image.GetImageObjects', new XCube_Ref($imageObjs), $this->getDirname(), $this->getDataname(), $obj->get($this->mPrimary), $key+1);
-			if(count($imageObjs)>0){
-				$image = array_shift($imageObjs);
-			}
-			else{
-				$image = null;
-				XCube_DelegateUtils::call('Legacy_Image.CreateImageObject', new XCube_Ref($image));
-				$image->set('title', $obj->get($this->_mClientField['title']));
-				$image->set('uid', Legacy_Utils::getUid());
-				$image->set('dirname', $this->getDirname());
-				$image->set('dataname', $this->getDataname());
-				$image->set('data_id', $obj->get($this->mPrimary));
-				$image->set('num', $key+1);
-			}
-		
+		$obj->setupImages();
+		foreach($obj->mImage as $image){
 			$result = false;
-			XCube_DelegateUtils::call('Legacy_Image.SaveImage', new XCube_Ref($result), $imageList[$key], $image);
+			if($image->isDeleted()===true){	//delete image
+	        	XCube_DelegateUtils::call('Legacy_Image.DeleteImage', new XCube_Ref($result), $image);
+			}
+			else{	//save image
+				XCube_DelegateUtils::call('Legacy_Image.SaveImage', new XCube_Ref($result), $image);
+			}
 			if($result===false){
 				$ret = false;
 			}
@@ -248,6 +237,29 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	
 		return $ret;
 	}
+
+	/**
+	 * save map data
+	 *
+	 * @param XoopsSimpleObject	$obj
+	 *
+	 * @return	bool
+	 */
+    protected function _saveMap($obj)
+    {
+        $result = array();
+        XCube_DelegateUtils::call(
+        	'Legacy_Map.SetPlace', 
+        	new XCube_Ref($result), 
+        	$obj->getDirname(), 
+        	$obj->getDataname(), 
+        	$obj->get($obj->getPrimary()), 
+        	$obj->mLatlng, 
+        	$obj->get($this->_mClientField['posttime'])
+        );
+    
+        return $result;
+    }
 
 	/**
 	 * delete activity
@@ -308,10 +320,13 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	 */
 	protected function _deleteImages(/*** XoopsSimpleObject ***/ $obj)
 	{
-		$imageObjs = array();
-		XCube_DelegateUtils::call('Legacy_Image.GetImageObjects', new XCube_Ref($imageObjs), $obj->getDirname(), $this->getDataname(), $obj->get($obj->getPrimary()));
 		$ret = true;
-		foreach($imageObjs as $image){
+		$isPost = false;
+		$obj->setupImages($isPost);
+		foreach($obj->mImage as $image){
+			if(!($image instanceof Legacy_AbstractImageObject)){
+				continue;
+			}
 			$result = false;
 			XCube_DelegateUtils::call('Legacy_Image.DeleteImage', new XCube_Ref($result), $image);
 			if($result===false){
@@ -367,6 +382,30 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	protected function _isImageClient(/*** mixed[] ***/ $conf)
 	{
 		return $conf[$this->_mClientConfig['image']]==1 ? true : false;
+	}
+
+    /**
+     * check if use Legacy_Map
+     *
+     * @param mixed[]   $conf
+     *
+     * @return  bool
+     */
+    protected function _isMapClient(/*** mixed[] ***/ $conf)
+    {
+        return $conf[$this->_mClientConfig['map']] ? true : false;
+    }
+
+	/**
+	 * get client field name
+	 *
+	 * @param string	$key
+	 *
+	 * @return	string
+	 */
+	public function getClientField(/*** string ***/ $key)
+	{
+		return $this->_mClientField[$key];
 	}
 }
 
