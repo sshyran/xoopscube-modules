@@ -2,6 +2,6 @@
 /**
  * @file
  * @package lecat
- * @version $Id: admin.php 693 2010-07-06 04:41:35Z mikhail $
+ * @version $Id: admin.php 1040 2011-11-06 05:24:00Z mikhail $
 **/
 ?>

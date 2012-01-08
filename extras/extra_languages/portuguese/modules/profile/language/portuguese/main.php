@@ -1,8 +1,8 @@
 <?php
 // ******************************************************************** //
 // ** XOOPS Cube Legacy - Profile Module - Portuguese
-// ** Por Mikhail Miguel <mikhail@underpop.com> - http://xoopscube.com.br/
-// ** $Id: main.php 682 2010-06-08 20:23:26Z mikhail $
+// ** Por Mikhail Miguel <mikhail.miguel@gmail.com> - http://xoops.net.br/
+// ** $Id: main.php 1040 2011-11-06 05:24:00Z mikhail $
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // ******************************************************************** //
 define("_MD_PROFILE_LANG_FIELD_TIP1","<i>String</i>: uma sequência de caracteres alfa-numéricos.");

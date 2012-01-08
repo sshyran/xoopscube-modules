@@ -269,9 +269,10 @@ class XoopsObject extends AbstractXoopsObject
 	function setVar($key, $value, $not_gpc = false)
 	{
 		if (!empty($key) && isset($value) && isset($this->vars[$key])) {
-			$this->vars[$key]['value'] =& $value;
-			$this->vars[$key]['not_gpc'] = $not_gpc;
-			$this->vars[$key]['changed'] = true;
+			$var =& $this->vars[$key];
+			$var['value'] =& $value;
+			$var['not_gpc'] = $not_gpc;
+			$var['changed'] = true;
 			$this->setDirty();
 		}
 	}
@@ -332,8 +333,9 @@ class XoopsObject extends AbstractXoopsObject
 	*/
 	function &getVar($key, $format = 's')
 	{
-		$ret = $this->vars[$key]['value'];
-		switch ($this->vars[$key]['data_type']) {
+		$var =& $this->vars[$key];
+		$ret = $var['value'];
+		switch ($var['data_type']) {
 
 		case XOBJ_DTYPE_TXTBOX:
 			switch (strtolower($format)) {
@@ -342,93 +344,75 @@ class XoopsObject extends AbstractXoopsObject
 			case 'e':
 			case 'edit':
 				$ts =& MyTextSanitizer::getInstance();
-				$ret = $ts->htmlSpecialChars($ret);
-				break 1;
+				return $ts->htmlSpecialChars($ret);
 			case 'p':
 			case 'preview':
 			case 'f':
 			case 'formpreview':
 				$ts =& MyTextSanitizer::getInstance();
-				$ret = $ts->htmlSpecialChars($ts->stripSlashesGPC($ret));
-				break 1;
-			case 'n':
-			case 'none':
+				return $ts->htmlSpecialChars($ts->stripSlashesGPC($ret));
 			default:
-				break 1;
+				return $ret;
 			}
-			break;
 		case XOBJ_DTYPE_TXTAREA:
 			switch (strtolower($format)) {
 			case 's':
 			case 'show':
 				$ts =& MyTextSanitizer::getInstance();
-				$html = !empty($this->vars['dohtml']['value']) ? 1 : 0;
-				$xcode = (!isset($this->vars['doxcode']['value']) || $this->vars['doxcode']['value'] == 1) ? 1 : 0;
-				$smiley = (!isset($this->vars['dosmiley']['value']) || $this->vars['dosmiley']['value'] == 1) ? 1 : 0;
-				$image = (!isset($this->vars['doimage']['value']) || $this->vars['doimage']['value'] == 1) ? 1 : 0;
-				$br = (!isset($this->vars['dobr']['value']) || $this->vars['dobr']['value'] == 1) ? 1 : 0;
-				$ret = $ts->displayTarea($ret, $html, $smiley, $xcode, $image, $br);
-				break 1;
+				$vars =&$this->vars;
+				$html = !empty($vars['dohtml']['value']) ? 1 : 0;
+				$xcode = (!isset($vars['doxcode']['value']) || $vars['doxcode']['value'] == 1) ? 1 : 0;
+				$smiley = (!isset($vars['dosmiley']['value']) || $vars['dosmiley']['value'] == 1) ? 1 : 0;
+				$image = (!isset($vars['doimage']['value']) || $vars['doimage']['value'] == 1) ? 1 : 0;
+				$br = (!isset($vars['dobr']['value']) || $vars['dobr']['value'] == 1) ? 1 : 0;
+				return $ts->displayTarea($ret, $html, $smiley, $xcode, $image, $br);
 			case 'e':
 			case 'edit':
 				$ret = htmlspecialchars($ret, ENT_QUOTES);
-				break 1;
+				return $ret;
 			case 'p':
 			case 'preview':
 				$ts =& MyTextSanitizer::getInstance();
-				$html = !empty($this->vars['dohtml']['value']) ? 1 : 0;
-				$xcode = (!isset($this->vars['doxcode']['value']) || $this->vars['doxcode']['value'] == 1) ? 1 : 0;
-				$smiley = (!isset($this->vars['dosmiley']['value']) || $this->vars['dosmiley']['value'] == 1) ? 1 : 0;
-				$image = (!isset($this->vars['doimage']['value']) || $this->vars['doimage']['value'] == 1) ? 1 : 0;
-				$br = (!isset($this->vars['dobr']['value']) || $this->vars['dobr']['value'] == 1) ? 1 : 0;
-				$ret = $ts->previewTarea($ret, $html, $smiley, $xcode, $image, $br);
-				break 1;
+				$vars =&$this->vars;
+				$html = !empty($vars['dohtml']['value']) ? 1 : 0;
+				$xcode = (!isset($vars['doxcode']['value']) || $vars['doxcode']['value'] == 1) ? 1 : 0;
+				$smiley = (!isset($vars['dosmiley']['value']) || $vars['dosmiley']['value'] == 1) ? 1 : 0;
+				$image = (!isset($vars['doimage']['value']) || $vars['doimage']['value'] == 1) ? 1 : 0;
+				$br = (!isset($vars['dobr']['value']) || $vars['dobr']['value'] == 1) ? 1 : 0;
+				return $ts->previewTarea($ret, $html, $smiley, $xcode, $image, $br);
 			case 'f':
 			case 'formpreview':
 				$ts =& MyTextSanitizer::getInstance();
-				$ret = htmlspecialchars($ts->stripSlashesGPC($ret), ENT_QUOTES);
-				break 1;
-			case 'n':
-			case 'none':
+				return htmlspecialchars($ts->stripSlashesGPC($ret), ENT_QUOTES);
 			default:
-				break 1;
+				return $ret;
 			}
-			break;
 		case XOBJ_DTYPE_ARRAY:
-			$ret = unserialize($ret);
-			break;
+			return unserialize($ret);
 		case XOBJ_DTYPE_SOURCE:
 			switch (strtolower($format)) {
-			case 's':
-			case 'show':
-				break 1;
 			case 'e':
 			case 'edit':
-				$ret = htmlspecialchars($ret, ENT_QUOTES);
-				break 1;
+				return htmlspecialchars($ret, ENT_QUOTES);
 			case 'p':
 			case 'preview':
 				$ts =& MyTextSanitizer::getInstance();
-				$ret = $ts->stripSlashesGPC($ret);
-				break 1;
+				return $ts->stripSlashesGPC($ret);
 			case 'f':
 			case 'formpreview':
 				$ts =& MyTextSanitizer::getInstance();
 				$ret = htmlspecialchars($ts->stripSlashesGPC($ret), ENT_QUOTES);
-				break 1;
-			case 'n':
-			case 'none':
+				return $ret;
 			default:
-				break 1;
+				return $ret;
 			}
-			break;
 		default:
-			if ($this->vars[$key]['options'] != '' && $ret != '') {
+			if ($var['options'] != '' && $ret != '') {
 				switch (strtolower($format)) {
 				case 's':
 				case 'show':
 					$selected = explode('|', $ret);
-					$options = explode('|', $this->vars[$key]['options']);
+					$options = explode('|', $var['options']);
 					$i = 1;
 					$ret = array();
 					foreach ($options as $op) {
@@ -437,13 +421,12 @@ class XoopsObject extends AbstractXoopsObject
 						}
 						$i++;
 					}
-					$ret = implode(', ', $ret);
+					return implode(', ', $ret);
 				case 'e':
 				case 'edit':
-					$ret = explode('|', $ret);
-					break 1;
+					return explode('|', $ret);
 				default:
-					break 1;
+					return $ret;
 				}
 
 			}
@@ -515,8 +498,8 @@ class XoopsObject extends AbstractXoopsObject
 						$this->setErrors("$k is required.");
 						continue;
 					}
-					if (isset($v['maxlength']) && strlen($cleanv) > intval($v['maxlength'])) {
-						$this->setErrors("$k must be shorter than ".intval($v['maxlength'])." characters.");
+					if (isset($v['maxlength']) && strlen($cleanv) > (int)$v['maxlength']) {
+						$this->setErrors("$k must be shorter than ".(int)$v['maxlength']." characters.");
 						continue;
 					}
 					if (!$v['not_gpc']) {
@@ -545,11 +528,11 @@ class XoopsObject extends AbstractXoopsObject
 					break;
 
 				case XOBJ_DTYPE_INT:
-					$cleanv = intval($cleanv);
+					$cleanv = (int)$cleanv;
 					break;
 
 				case XOBJ_DTYPE_FLOAT:
-					$cleanv = floatval($cleanv);
+					$cleanv = (float)$cleanv;
 					break;
 
 				case XOBJ_DTYPE_BOOL:
@@ -587,7 +570,7 @@ class XoopsObject extends AbstractXoopsObject
 				case XOBJ_DTYPE_STIME:
 				case XOBJ_DTYPE_MTIME:
 				case XOBJ_DTYPE_LTIME:
-					$cleanv = !is_string($cleanv) ? intval($cleanv) : strtotime($cleanv);
+					$cleanv = !is_string($cleanv) ? (int)$cleanv : strtotime($cleanv);
 					break;
 				default:
 					break;

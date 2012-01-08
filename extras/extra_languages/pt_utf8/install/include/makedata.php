@@ -1,42 +1,29 @@
 <?php
-// $Id: makedata.php 856 2010-12-16 19:46:14Z mikhail $
-
+// $Id: makedata.php 1040 2011-11-06 05:24:00Z mikhail $
 
 include_once './class/dbmanager.php';
-
 // RMV
 // TODO: Shouldn't we insert specific field names??  That way we can use
 // the defaults specified in the database...!!!! (and don't have problem
 // of missing fields in install file, when add new fields to database)
-
 function make_groups(&$dbm){
 	$gruops['XOOPS_GROUP_ADMIN'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_WEBMASTER)."', '".addslashes(_INSTALL_WEBMASTERD)."', 'Admin')");
 	$gruops['XOOPS_GROUP_USERS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_REGUSERS)."', '".addslashes(_INSTALL_REGUSERSD)."', 'User')");
 	$gruops['XOOPS_GROUP_ANONYMOUS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_ANONUSERS)."', '".addslashes(_INSTALL_ANONUSERSD)."', 'Anonymous')");
-
 	if(!$gruops['XOOPS_GROUP_ADMIN'] || !$gruops['XOOPS_GROUP_USERS'] || !$gruops['XOOPS_GROUP_ANONYMOUS']){
 		return false;
 	}
-
 	return $gruops;
 }
 function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops, $timezone){
-
 	$myts =& textSanitizer::getInstance();
-
 	$tables = array();
-
 	// data for table 'banner'
-
 	$dbm->insert("banner", " (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlcode) VALUES (1, 1, 0, 1, 0, '".XOOPS_URL."/images/banners/banner.png', 'http://xoopscube.org/', 1008813250, '')");
-
 	// default theme
-
 	$time = time();
 	$dbm->insert('tplset', " VALUES (1, 'default', 'Conjunto de modelos padrão', '', ".$time.")");
-
 	// data for table 'config'
-
 	$dbm->insert('config', " VALUES (1, 0, 1, 'sitename', '_MD_AM_SITENAME', 'Meu Portal XOOPS Cube', '_MD_AM_SITENAMEDSC', 'textbox', 'text', 0)");
 	$dbm->insert('config', " VALUES (2, 0, 1, 'slogan', '_MD_AM_SLOGAN', 'Use e abuse!', '_MD_AM_SLOGANDSC', 'textbox', 'text', 2)");
 	$dbm->insert('config', " VALUES (3, 0, 1, 'language', '_MD_AM_LANGUAGE', '".addslashes($language)."', '_MD_AM_LANGUAGEDSC', 'language', 'other', 4)");
@@ -78,7 +65,6 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	$dbm->insert('config', " VALUES (61, 0, 1, 'sslpost_name', '_MD_AM_SSLPOST', 'xoops_ssl', '_MD_AM_SSLPOSTDSC', 'textbox', 'text', 31)");
 	$dbm->insert('config', " VALUES (62, 0, 1, 'module_cache', '_MD_AM_MODCACHE', '', '_MD_AM_MODCACHEDSC', 'module_cache', 'array', 50)");
 	$dbm->insert('config', " VALUES (63, 0, 1, 'template_set', '_MD_AM_DTPLSET', 'default', '_MD_AM_DTPLSETDSC', 'tplset', 'other', 14)");
-
 	$dbm->insert('config', " VALUES (64,0,6,'mailmethod','_MD_AM_MAILERMETHOD','mail','_MD_AM_MAILERMETHODDESC','select','text',4)");
 	$dbm->insert('config', " VALUES (65,0,6,'smtphost','_MD_AM_SMTPHOST','a:1:{i:0;s:0:\"\";}', '_MD_AM_SMTPHOSTDESC','textarea','array',6)");
 	$dbm->insert('config', " VALUES (66,0,6,'smtpuser','_MD_AM_SMTPUSER','','_MD_AM_SMTPUSERDESC','textbox','text',7)");
@@ -91,16 +77,12 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	// RMV-NOTIFY... Need to specify which user is sender of notification PM
 	$dbm->insert('config', " VALUES (73,0,6,'fromuid','_MD_AM_MAILFROMUID','1','_MD_AM_MAILFROMUIDDESC','user','int',3)");
 	// data for table 'users'
-
 	$temp = md5($adminpass);
 	$regdate = time();
 	$dbm->insert('users', " VALUES (1,'','".addslashes($adminname)."','".addslashes($adminmail)."','".XOOPS_URL."/','blank.gif','".$regdate."','','','',1,'','','','','".$temp."',0,0,7,5,'legacy_default','".$time_diff."',".time().",'thread',0,1,0,'','','',0)");
-
 	// data for table 'groups_users_link'
-
 	$dbm->insert('groups_users_link', " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 1)");
 	$dbm->insert('groups_users_link', " VALUES (0, ".$gruops['XOOPS_GROUP_USERS'].", 1)");
-
 /*
 	// install modules
 	installModule($dbm, 1, "system", _MI_SYSTEM_NAME, $language, $gruops);
@@ -109,7 +91,6 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	$dbm->insert("group_permission", " VALUES (0,".$gruops['XOOPS_GROUP_ADMIN'].",1,1, 'module_read')");
 	$dbm->insert("group_permission", " VALUES (0,".$gruops['XOOPS_GROUP_USERS'].",1,1,'module_read')");
 	$dbm->insert("group_permission", " VALUES (0,".$gruops['XOOPS_GROUP_ANONYMOUS'].",1,1,'module_read')");
-
 	$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",1,1,'system_admin')");
 	$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",2,1,'system_admin')");
 	$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",3,1,'system_admin')");
@@ -125,32 +106,24 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",13,1,'system_admin')");
 	$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",14,1,'system_admin')");
 	$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",15,1,'system_admin')");
-
 	installModule($dbm, 2, "legacy", _MI_LEGACY_NAME, $language, $gruops, true);
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 2, 1, 'module_admin')");
-
 	installModule($dbm, 3, "legacyRender", _MI_LEGACYRENDER_NAME, $language, $gruops, true);
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 3, 1, 'module_admin')");
-
 	installModule($dbm, 4, "user", _MI_USER_NAME, $language, $gruops, true);
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 4, 1, 'module_admin')");
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 4, 1, 'module_read')");
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_USERS'].", 4, 1, 'module_read')");
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ANONYMOUS'].", 4, 1, 'module_read')");
-
 	installModule($dbm, 5, "pm", _MI_PM_NAME, $language, $gruops, true);
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 5, 1, 'module_admin')");
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 5, 1, 'module_read')");
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_USERS'].", 5, 1, 'module_read')");
-
 	installModule($dbm, 6, "stdCache", _MI_STDCACHE_NAME, $language, $gruops, true);
 	$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 6, 1, 'module_admin')");
-
 	// data for table 'block_module_link'
-
 	$sql = 'SELECT bid, side FROM '.$dbm->prefix('newblocks');
 	$result = $dbm->query($sql);
-
 	while ($myrow = $dbm->fetchArray($result)) {
 		if ($myrow['side'] == 0) {
 			$dbm->insert("block_module_link", " VALUES (".$myrow['bid'].", 0)");
@@ -179,11 +152,9 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8'
 		include "../modules/${module}/language/pt_utf8/modinfo.php";
 		$language = 'pt_utf8';
 	}
-
 	$modversion = array();
 	require_once "../modules/${module}/xoops_version.php";
 	$time = time();
-
 	// RMV-NOTIFY (updated for extra column in table)
 	//
 	// TODO We should set hasconfig and more option values here.
@@ -194,7 +165,6 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8'
 		$hasmain = 1;
 	}
 	$dbm->insert("modules", " VALUES (${mid}, '" . constant($module_name) . "', 100, ".$time.", 0, 1, '${module}', ${hasmain}, 1, 0, ${hasconfig}, 0, 0)");
-
 	//
 	// Database
 	// TODO Dependence on mysql, Now.
@@ -202,7 +172,6 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8'
 	if (isset($modversion['sqlfile']['mysql'])) {
 		$dbm->queryFromFile("../modules/${module}/" . $modversion['sqlfile']['mysql']);
 	}
-
 	if (is_array($modversion['templates']) && count($modversion['templates']) > 0) {
 		foreach ($modversion['templates'] as $tplfile) {
 			if ($fp = fopen("../modules/${module}/templates/".$tplfile['file'], 'r')) {
@@ -219,7 +188,6 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8'
 			}
 		}
 	}
-
 	if (is_array($modversion['blocks']) && count($modversion['blocks']) > 0) {
 		foreach ($modversion['blocks'] as $func_num => $newblock) {
 			if ($fp = fopen("../modules/${module}/templates/blocks/".$newblock['template'], 'r')) {
@@ -245,7 +213,6 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8'
 				}
 				fclose($fp);
 				$dbm->insert('tplsource', " (tpl_id, tpl_source) VALUES (".$newtplid.", '".addslashes($tplsource)."')");
-
 				$dbm->insert("group_permission", " VALUES (0, ".$groups['XOOPS_GROUP_ADMIN'].", ".$newbid.", 1, 'block_read')");
 				//$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", ".$newbid.", 'xoops_blockadmiin')");
 				$dbm->insert("group_permission", " VALUES (0, ".$groups['XOOPS_GROUP_USERS'].", ".$newbid.", 1, 'block_read')");
@@ -253,7 +220,6 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8'
 			}
 		}
 	}
-
 	//
 	// Install preferences
 	//
@@ -269,22 +235,17 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8'
 			$formtype = $configInfo['formtype'];
 			$valuetype = $configInfo['valuetype'];
 			$default = $configInfo['default'];
-
 			if ($valuetype == "array") {
 				$default = serialize(explode('|', trim($default)));
 			}
-
 			$conf_id = $dbm->insert("config", " VALUES (0, ${mid}, 0, '${name}', '${title}', '${default}', '${desc}', '${formtype}', '${valuetype}', ${count})");
-
 			if (isset($configInfo['options']) && is_array($configInfo['options'])) {
 				foreach ($configInfo['options'] as $key => $value) {
 					$dbm->insert("configoption", " VALUES (0, '${key}', '${value}', ${conf_id})");
 				}
 			}
-
 			$count++;
 		}
 	}
 }
-
 ?>

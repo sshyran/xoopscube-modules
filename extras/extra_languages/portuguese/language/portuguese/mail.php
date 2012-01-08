@@ -1,13 +1,13 @@
 <?php
 // Translation Info
-// $Id: mail.php 374 2009-12-10 07:50:16Z mikhail $
+// $Id: mail.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## Yahoo!.........: mikhailmiguel@yahoo.com
 // ## MSN01..........: mikhailmiguel@msn.com
 // ## MSN02..........: mikhailmiguel@hotmail.com

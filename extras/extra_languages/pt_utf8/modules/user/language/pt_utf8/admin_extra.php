@@ -1,12 +1,12 @@
 <?php
-// $Id: admin_extra.php 493 2010-02-26 06:40:45Z mikhail $
+// $Id: admin_extra.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## Website........: http://xoops.net.br/
-// ## E-mail.........: mikhail@underpop.com
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhail.miguel@hotmail.com
 // ## Orkut..........: 15440532260129226492

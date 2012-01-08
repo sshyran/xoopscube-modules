@@ -1,12 +1,12 @@
 <?php
 // Translation Info
-// $Id: global.php 844 2010-12-04 23:53:18Z mikhail $
+// $Id: global.php 1040 2011-11-06 05:24:00Z mikhail $
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
@@ -126,7 +126,7 @@ define("_PLEASEWAIT","Por favor, aguarde.");
 define("_PLZCOMPLETE","Por favor, complete os campos 'assunto' e 'mensagem'.");
 define("_POSTANON","Postar anonimamente");
 define("_POSTEDBY","Por");
-define("_PREFERENCES","Definições");
+define("_PREFERENCES","Configurações");
 define("_PREVIEW","Mostrar");
 define("_PROFILE","Perfil");
 define("_QUOTE","Citar");
@@ -157,7 +157,7 @@ define("_SYS_MODULE_DISABLED","Necessário (desabilitado)");
 define("_SYS_MODULE_UNINSTALLED","Necessário (não instalado)");
 define("_SYS_OPTION_MODULES","Módulo opcional");
 define("_SYS_RECOMMENDED_MODULES","Módulo recomendado");
-define("_SYSTEM_MODULE_ERROR","Os módulos a seguir não foram instalados.");
+define("_SYSTEM_MODULE_ERROR","Selecione os módulos a serem instalados:");
 define("_TAG", "Marcador");
 define("_TAKINGBACK","Bad, bad server. No donut for you...");
 define("_THREADED","Ramificar por título");

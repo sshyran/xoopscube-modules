@@ -1,13 +1,13 @@
 <?php
 // Translation Info
-// $Id: blocks.php 342 2009-08-03 19:50:55Z mikhail $
+// $Id: blocks.php 1043 2011-11-10 14:46:31Z nbuy $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
@@ -43,4 +43,7 @@ define("_MB_LEGACY_SUBMS","Conteúdo pendente");
 define("_MB_LEGACY_VACNT","Informações");
 define("_MB_LEGACY_WDLS","Arquivos pendentes");
 define("_MB_LEGACY_WLNKS","Endereços pendentes");
+
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Mostrar todos os submenus");
+
 ?>

@@ -1,20 +1,11 @@
 <?php
-// Translation Info
-// $Id: admin.php 682 2010-06-08 20:23:26Z mikhail $
-// License http://creativecommons.org/licenses/by/2.5/br/
-// ############################################################### //
-// ## XOOPS Cube Legacy - Versão em Português
-// ############################################################### //
-// ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
-// ## AOL............: mikhailmiguel
-// ## MSN............: mikhailmiguel@msn.com
-// ## Orkut..........: 15440532260129226492
-// ## Skype..........: mikhailmiguel
-// ## Yahoo!.........: mikhailmiguel@yahoo.com
-// ############################################################### //
-// *************************************************************** //
+// ******************************************************************** //
+// ** XOOPS Cube Legacy - Legacy Module - Portuguese
+// ** Por Mikhail Miguel <mikhail.miguel@gmail.com> - http://xoops.net.br/
+// ** $Id: admin.php 1040 2011-11-06 05:24:00Z mikhail $
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// ******************************************************************** //
+//
 define("_AD_LEGACY_ERROR_ACTION_SEARCH_NORESULT","A sua pesquisa não retornou nenhum documento correspondente.");
 define("_AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN","Tente de novo com outra(s) palavra(s)-chave.");
 define("_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL","Não foi possível instalar o modelo do bloco {0}.");
@@ -106,7 +97,7 @@ define("_AD_LEGACY_LANG_COM_STATUS","Situação");
 define("_AD_LEGACY_LANG_COM_UID","N° do associado");
 define("_AD_LEGACY_LANG_CONFCAT_ID","Número da categoria");
 define("_AD_LEGACY_LANG_CONFCAT_NAME","Nome da categoria");
-define("_AD_LEGACY_LANG_CONFIG_INFO","Definições dos módulos");
+define("_AD_LEGACY_LANG_CONFIG_INFO","Configurações dos módulos");
 define("_AD_LEGACY_LANG_CONFIG_KEY","Chave");
 define("_AD_LEGACY_LANG_CONFIG_VAL","Valor");
 define("_AD_LEGACY_LANG_CONTENT","Conteúdo");
@@ -285,7 +276,7 @@ define("_AD_LEGACY_MESSAGE_BLOCK_INSTALLED","O bloco {0} foi instalado...");
 define("_AD_LEGACY_MESSAGE_BLOCK_TEMPLATE_INSTALLED","O modelo do bloco {0} foi instalado...");
 define("_AD_LEGACY_MESSAGE_CHILDREN_DELETED_TOGETHER","O conteúdo relacionado também foi removido...");
 define("_AD_LEGACY_MESSAGE_CONFIRM_DELETE","Tem certeza de que deseja continuar com a remoção?");
-define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_BLOCK","Tem certeza de que deseja atualizar bloco?");
+define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_BLOCK","Confirme as atualizações abaixo:");
 define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_COMMENT","Tem certeza de que deseja atualizar comentar?");
 define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMAGE","Tem certeza de que deseja atualizar a imagem?");
 define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMGCAT","Tem certeza de que deseja atualizar a categoria?");
@@ -336,13 +327,13 @@ define("_AD_LEGACY_PHPSETTING_ZLIB","Zlib ativado");
 define("_AD_LEGACY_PHPVERSION","Versão do PHP");
 define("_AD_LEGACY_SERVER","Servidor");
 define("_AD_LEGACY_SYSTEMINFO","Sistema de Informação");
-define("_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK","<a href='./index.php?action=BlockInstallList'>Install new blocks</a>, and set your site just the way you want it!<br/>If you want to have a block with free content that is not part of a module, simply <a href='index.php?action=CustomBlockEdit'>create a custom block</a> and write your message in it.");
+define("_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK","<a href='./index.php?action=BlockInstallList'>Install new blocks</a>, and set your <i>site</i> just the way you want it!<br/>If you want to have a block with free content that is not part of a module, simply <a href='index.php?action=CustomBlockEdit'>create a custom block</a> and write your message in it.");
 define("_AD_LEGACY_TIPS_BLOCK","Ou simplesmente <a href='./index.php?action=CustomBlockEdit'>crie um bloco personalizado</a> com seu próprio conteúdo");
 define("_AD_LEGACY_TIPS_BLOCK2","You can edit each block's options when you install the block.");
 define("_AD_LEGACY_TIPS_BLOCK_UNINSTALL","Mesmo se você desinstalar um bloco, a configuração do bloco não é removida. O bloco é removido simplesmente da vista. Consequentemente você pode reinstalar o bloco facilmente porque o instalador recorda a última configuração.");
 define("_AD_LEGACY_TIPS_COMMENT","Search and manage active, pending or hidden comments from any user on any module.");
 define("_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL","Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <q><a href='.\index.php?action=BlockInstallList'>install block page</a></q>.");
-define("_AD_LEGACY_TIPS_IMAGE","You can easily register many smiles by uploading a compressed archive!)");
+define("_AD_LEGACY_TIPS_IMAGE","Você pode facilmente registrar muitos ícones emotivos de uma só vez ao enviá-los em um arquivo compactado.)");
 define("_AD_LEGACY_TIPS_IMAGE_UPLOAD","Você pode facilmente registrar muitas imagens de arquivo, incluindo upload deles! <br /> Este lote-upload não verifica comprimento e Arquivo-Tamanho de cada imagem! <br /> Por favor, pré-ajustar-los antes de arquivar eles! <br /> (Apenas tar.gz ou zip)");
 define("_AD_LEGACY_TIPS_IMGCAT","Gestor do banco de imagens interno do portal, e de suas respectivas permissões.");
 define("_AD_LEGACY_TIPS_IMGCAT_STORETYPE","Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Do keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.");
@@ -351,7 +342,7 @@ define("_AD_LEGACY_TIPS_MOD", "Ao instalar um novo módulo, lembre-se de que ele 
 define("_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE","This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define("_AD_LEGACY_TIPS_SMILES","Mostra, renomeia, remove ou envia arquivos com os seus próprios ícones emotivos.");
 define("_AD_LEGACY_TIPS_SMILES_UPLOAD", "You can easily register many smiles by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each smiles!<br />Pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
-define("_AD_LEGACY_TIPS_THEME_ADMIN","Choose the look of your site by clicking the 'select' button next to your favourite theme.<br/> Let your users choose their own favourite look and feel for your site. Check the boxes to add a theme to the theme selection block. For more details, read the help.");
+define("_AD_LEGACY_TIPS_THEME_ADMIN","Choose the look of your <i>site</i> by clicking the 'select' button next to your favourite theme.<br/> Let your users choose their own favourite look and feel for your site. Check the boxes to add a theme to the theme selection block. For more details, read the help.");
 define("_AD_LEGACY_USERAGENT","Identidade do navegador ('<em><a href='http://goo.gl/WfF6'>UA</a></em>')");
 define("_AD_LEGACY_XCLEGACYVERSION","Versão do XOOPS Cube Legacy");
 define("_AD_LEGACY_XCVERSION","Versão do XOOPS Cube");
@@ -366,7 +357,7 @@ define("_MD_AM_ALWDHTML","Códigos HTML permitidos");
 define("_MD_AM_ANONNAME","Nome para os associados anônimos");
 define("_MD_AM_ANONPOST","Anônimos podem postar");
 define("_MD_AM_BADIPS","Digite quais números IP serão bloqueados separando-os por uma linha vertical: <strong>|</strong>.");
-define("_MD_AM_BADIPSDSC","^aaa.bbb.ccc bloqueia os números IP que comecem ou que contenham aaa.bbb.ccc. <strong>aaa.bbb.ccc$</strong> bloqueia os números IP que terminem em aaa.bbb.ccc.");
+define("_MD_AM_BADIPSDSC","<strong><code>^aaa.bbb.ccc</code></strong> bloqueia os números IP que comecem ou que contenham <strong><code>aaa.bbb.ccc</code></strong>. <strong><code>aaa.bbb.ccc$</code></strong> bloqueia os números IP que terminem em <strong><code>aaa.bbb.ccc</code></strong>.");
 define("_MD_AM_CENSOR","Palavras censuradas");
 define("_MD_AM_CENSORRPLC","As palavras censuradas serão substituídas por:");
 define("_MD_AM_CENSORRPLCDSC","As palavras censuradas serão substituídas por pelos caracteres inseridos neste campo");
@@ -375,7 +366,7 @@ define("_MD_AM_CENSORWRDDSC","Escreva as mensagens para serem censuradas nas men
 define("_MD_AM_CHNGUTHEME","Editar o tema de todos os associados");
 define("_MD_AM_CLOSESITE","Fechar temporariamente o portal?");
 define("_MD_AM_CLOSESITEDSC","Fechando o portal, somente os grupos com permissão de acesso poderão mostrar o conteúdo do mesmo.");
-define("_MD_AM_CLOSESITEOK","Grupos com acesso ao site bloqueado.");
+define("_MD_AM_CLOSESITEOK","Grupos com acesso ao <i>site</i> bloqueado.");
 define("_MD_AM_CLOSESITEOKDSC","Escolha os grupos que poderão acessar o portal enquanto este estiver bloqueado (administradores não precisam de permissão).");
 define("_MD_AM_CLOSESITETXT","Motivo para o fechamento temporário do portal.");
 define("_MD_AM_CLOSESITETXTDSC","Esta informação será mostrada quando o portal estiver fechado.");

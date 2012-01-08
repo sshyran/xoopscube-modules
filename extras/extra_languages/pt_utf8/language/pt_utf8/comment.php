@@ -2,12 +2,12 @@
 // Translation Info
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
-// ## $Id: comment.php 682 2010-06-08 20:23:26Z mikhail $
+// ## $Id: comment.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ############################################################### //
 // *************************************************************** //
 if (!defined("_CM_TITLE")) {

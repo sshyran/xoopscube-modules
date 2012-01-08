@@ -1,13 +1,13 @@
 <?php
 // Translation Info
-// $Id: setting.php 699 2010-07-14 03:29:33Z mikhail $
+// $Id: setting.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhail.miguel@hotmail.com
 // ## Orkut..........: 15440532260129226492
@@ -51,7 +51,7 @@ y -> Uma representação do ano com dois dígitos Exemplos: 99 ou 03
 TEMPO --- ---
 a -> Antes/Depois de meio-dia em minúsculo am or pm
 A -> Antes/Depois de meio-dia em maiúsculo AM or PM
-B -> Swatch Internet time 000 até 999
+B -> Swatch internet time 000 até 999
 g -> Formato 12-horas de uma hora sem preenchimento de zero 1 até 12
 G -> Formato 24-horas de uma hora sem preenchimento de zero 0 até 23
 h -> Formato 12-horas de uma hora com zero preenchendo à esquerda 01 até 12
