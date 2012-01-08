@@ -1,13 +1,13 @@
 <?php
 // Translation Info
-// $Id: main.php 336 2009-07-31 09:53:22Z mikhail $
+// $Id: main.php 928 2011-04-14 17:25:48Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ############################################################### //
 // *************************************************************** //
 define("_MD_PM_ERROR_ACCESS","Erro de acesso");

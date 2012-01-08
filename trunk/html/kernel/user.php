@@ -114,7 +114,7 @@ class XoopsUser extends XoopsObject
             if (is_array($id)) {
                 $this->assignVars($id);
             } else {
-                $member_handler =& xoops_gethandler('member');
+                $member_handler = xoops_gethandler('member');
                 $user =& $member_handler->getUser($id);
                 foreach ($user->vars as $k => $v) {
                     $this->assignVar($k, $v['value']);
@@ -143,21 +143,19 @@ class XoopsUser extends XoopsObject
 	 * @param int $usereal switch for usename or realname
 	 * @return string name of the user. name for "anonymous" if not found.
      */
-    function getUnameFromId( $userid, $usereal = 0 )
+    static function getUnameFromId( $userid, $usereal = 0 )
     {
-		$userid = intval($userid);
-		$usereal = intval($usereal);
+		$userid = (int)$userid;
+		$usereal = (int)$usereal;
 		if ($userid > 0) {
-            $member_handler =& xoops_gethandler('member');
+			static $nameCache;
+			$field = $usereal?'name':'uname';
+			if (isset($nameCache[$field][$userid])) return $nameCache[$field][$userid];
+            $member_handler = xoops_gethandler('member');
             $user =& $member_handler->getUser($userid);
             if (is_object($user)) {
-                $ts =& MyTextSanitizer::getInstance();
-                if ( $usereal ) { 
-					return $ts->htmlSpecialChars($user->getVar('name'));
-            	} else {
-					return $ts->htmlSpecialChars($user->getVar('uname'));
-				}
-            }
+				return ($nameCache[$field][$userid] = $user->getVar($field));
+			}
         }
         return $GLOBALS['xoopsConfig']['anonymous'];
     }
@@ -167,7 +165,7 @@ class XoopsUser extends XoopsObject
 	 * @deprecated
      */
     function incrementPost(){
-        $member_handler =& xoops_gethandler('member');
+        $member_handler = xoops_gethandler('member');
         return $member_handler->updateUserByField($this, 'posts', $this->getVar('posts') + 1);
     }
 	/**
@@ -196,7 +194,7 @@ class XoopsUser extends XoopsObject
     	}
     	
         if (empty($this->_groups)) {
-            $member_handler =& xoops_gethandler('member');
+            $member_handler = xoops_gethandler('member');
             $this->_groups = $member_handler->getGroupsByUser($this->getVar('uid'));
         }
         return $this->_groups;
@@ -232,12 +230,14 @@ class XoopsUser extends XoopsObject
 	 * @return bool is the user admin of that module?
      */
     function isAdmin( $module_id = null ) {
-		if ( is_null( $module_id ) ) {
-			$module_id = isset($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar( 'mid', 'n' ) : 1;
-		} elseif ( intval($module_id) < 1 ) {
+		if ( $module_id === null ) {
+			global $xoopsModule;
+			$module_id = isset($xoopsModule) ? $xoopsModule->getVar( 'mid', 'n' ) : 1;
+		} elseif ( (int)$module_id < 1 ) {
 			$module_id = 0;
 		}
-        $moduleperm_handler =& xoops_gethandler('groupperm');
+		static $moduleperm_handler;
+		isset($moduleperm_handler) || $moduleperm_handler = xoops_gethandler('groupperm');
         return $moduleperm_handler->checkRight('module_admin', $module_id, $this->getGroups());
     }
     /**
@@ -269,8 +269,8 @@ class XoopsUser extends XoopsObject
     function isOnline()
     {
         if (!isset($this->_isOnline)) {
-            $onlinehandler =& xoops_gethandler('online');
-            $this->_isOnline = ($onlinehandler->getCount(new Criteria('online_uid', $this->getVar('uid'))) > 0) ? true : false;
+            $onlinehandler = xoops_gethandler('online');
+            $this->_isOnline = ($onlinehandler->getCount(new Criteria('online_uid', $this->getVar('uid', 'N'))) > 0) ? true : false;
         }
         return $this->_isOnline;
     }
@@ -288,7 +288,7 @@ class XoopsUser extends XoopsObject
      */
     function uid()
     {
-        return $this->getVar("uid");
+        return $this->getVar('uid');
     }
     
     /**
@@ -541,7 +541,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        if (intval($id) > 0) {
+        if ((int)$id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('users').' WHERE uid='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
@@ -579,6 +579,11 @@ class XoopsUserHandler extends XoopsObjectHandler
         // RMV-NOTIFY
         // Added two fields, notify_method, notify_mode
         if ($user->isNew()) {
+            $config = xoops_gethandler('config');
+            $options = $config->getConfigs(new Criteria('conf_name', 'notify_method'));
+            if (isset($options) and (count($options) == 1)) {
+                $notify_method = $options[0]->getvar('conf_value');
+            }
             $uid = $this->db->genId('users_uid_seq');
             $sql = sprintf("INSERT INTO %s (uid, uname, name, email, url, user_avatar, user_regdate, user_icq, user_from, user_sig, user_viewemail, actkey, user_aim, user_yim, user_msnm, pass, posts, attachsig, rank, level, theme, timezone_offset, last_login, umode, uorder, notify_method, notify_mode, user_occ, bio, user_intrest, user_mailok) VALUES (%u, %s, %s, %s, %s, %s, %u, %s, %s, %s, %u, %s, %s, %s, %s, %s, %u, %u, %u, %u, %s, %.2f, %u, %s, %u, %u, %u, %s, %s, %s, %u)", $this->db->prefix('users'), $uid, $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), time(), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($actkey), $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $this->db->quoteString($pass), $posts, $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, 0, $this->db->quoteString($umode), $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok);
         } else {
@@ -668,7 +673,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     function &getObjectsByLevel($level=0)
     {
 		$ret=array();
-		$level=intval($level);
+		$level=(int)$level;
 		$result = $this->db->query("SELECT * FROM ".$this->db->prefix("users")." WHERE level > $level ORDER BY uname");
 		if(!$result)
 			return $ret;

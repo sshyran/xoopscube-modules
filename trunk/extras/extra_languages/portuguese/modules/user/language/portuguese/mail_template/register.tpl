@@ -2,18 +2,11 @@
 :: {SITENAME} :: Confirmação de Cadastro
 =======================================================================
 
-
 	Para confirmar o seu cadastro no {SITENAME}, visite:
 {USERACTLINK}
 
-
 	Lembre-se que “{X_UNAME}” foi o codinome escolhido no momento do cadastro, e
 que “{X_UEMAIL}” foi o endereço de correio eletrônico utilizado.
-
-
-
-
-
 
 
 
@@ -27,8 +20,6 @@ que “{X_UEMAIL}” foi o endereço de correio eletrônico utilizado.
 entre em contato com o administrador do {SITENAME} pelo endereço
 {ADMINMAIL} , ou via web, pela seção de contato do {SITENAME}:
 {SITEURL}
-
-
 
 
 *=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-

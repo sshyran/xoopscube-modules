@@ -36,12 +36,18 @@ class XoopsTplset extends XoopsObject
 
 	function XoopsTplset()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->vars = $initVars;
+			return;
+		}
 		$this->XoopsObject();
 		$this->initVar('tplset_id', XOBJ_DTYPE_INT, null, false);
 		$this->initVar('tplset_name', XOBJ_DTYPE_OTHER, null, false);
 		$this->initVar('tplset_desc', XOBJ_DTYPE_TXTBOX, null, false, 255);
 		$this->initVar('tplset_credits', XOBJ_DTYPE_TXTAREA, null, false);
 		$this->initVar('tplset_created', XOBJ_DTYPE_INT, 0, false);
+		$initVars = $this->vars;
 	}
 }
 
@@ -69,7 +75,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('tplset').' WHERE tplset_id='.$id;
             if ($result = $this->db->query($sql)) {
@@ -191,8 +197,9 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 	{
         $ret = array();
 		$tplsets =& $this->getObjects($criteria, true);
-		foreach (array_keys($tplsets) as $i) {
-            $ret[$tplsets[$i]->getVar('tplset_name')] = $tplsets[$i]->getVar('tplset_name');
+		foreach ($tplsets as $tpl) {
+			$name = $tpl->getVar('tplset_name');
+            $ret[$name] = $name;
         }
 		return $ret;
 	}

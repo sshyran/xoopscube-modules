@@ -23,9 +23,9 @@ define('XOOPS_CUBE_LEGACY', true);
 /**
  * This constant is the sign which this system is XOOPS Cube, for module
  * developers.
- * ex) if(defined('LEGACY_BASE_VERSION') && version_compare('LEGACY_BASE_VERSION', '2.2.0.0', '>='))
+ * ex) if(defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.0.0', '>='))
  */
-define('LEGACY_BASE_VERSION', '2.2.1.0');
+define('LEGACY_BASE_VERSION', '2.2.1.1');
 
 require_once XOOPS_ROOT_PATH . "/core/XCube_Root.class.php";
 require_once XOOPS_ROOT_PATH . "/core/XCube_Controller.class.php";

@@ -1,11 +1,11 @@
 <?php
 // TRANSLATION INFO
-// $Id: admin.php 787 2010-10-02 17:55:34Z mikhail $
+// $Id: admin.php 1040 2011-11-06 05:24:00Z mikhail $
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## Website........: http://xoops.net.br/
 // ## Plus...........: http://card.ly/mikhail
 // ############################################################### //

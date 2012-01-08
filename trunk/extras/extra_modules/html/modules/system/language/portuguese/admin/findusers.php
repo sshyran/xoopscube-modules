@@ -1,13 +1,13 @@
 <?php
 // Translation Info
-// $Id: findusers.php 616 2010-04-27 22:04:08Z mikhail $
+// $Id: findusers.php 928 2011-04-14 17:25:48Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ## Plus...........: http://card.ly/mikhail
 // ############################################################### //
 // *************************************************************** //

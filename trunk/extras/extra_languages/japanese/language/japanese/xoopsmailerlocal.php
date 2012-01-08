@@ -38,9 +38,9 @@ class XoopsMailerLocal extends XoopsMailer {
         $this->reset();
         $this->charSet = 'iso-2022-jp';
         $this->encoding = '7bit';
-				$this->multimailer->CharSet = $this->charSet;
-				$this->multimailer->SetLanguage('ja', XOOPS_ROOT_PATH . '/class/mail/phpmailer/language/');
-				$this->multimailer->Encoding = "7bit";
+        $this->multimailer->CharSet = $this->charSet;
+        $this->multimailer->SetLanguage('ja', XOOPS_ROOT_PATH . '/class/mail/phpmailer/language/');
+        $this->multimailer->Encoding = '7bit';
     }
 
     function encodeFromName($text){
@@ -117,7 +117,6 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
             $mb_overload = ini_get('mbstring.func_overload');
             if (($this->Mailer == 'mail') && (intval($mb_overload) & 1)) { //check if mbstring extension overloads mail()
                 $this->needs_encode = false;
-                $this->mail_overload = true;
             }
         }
     }
@@ -133,11 +132,14 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
     }
 
     function EncodeHeader ($str, $position = 'text', $force=false) {
-        if (!preg_match('/^4\.4\.[01]([^0-9]+|$)/',PHP_VERSION)) {
+        if (version_compare(PHP_VERSION, '4.4.1')>0) {
             if (function_exists('mb_convert_encoding')) { //Use mb_string extension if exists.
                 if ($this->needs_encode || $force) {
-                    $encoded = mb_convert_encoding($str, _CHARSET, mb_detect_encoding($str));
-                    $encoded = mb_encode_mimeheader($encoded, "ISO-2022-JP", "B", "\n");
+                    $enc = mb_internal_encoding();
+                    mb_internal_encoding('ISO-2022-JP');
+                    $eol = $this->Mailer=='mail'?"\r\n":"\n";	// XXX: this for bugs in PHP mail() subject with linefeed handling
+                    $encoded = mb_encode_mimeheader($str, 'ISO-2022-JP', 'B', $eol, 9); // offset strlen("Subject: ") as 9
+                    mb_internal_encoding($enc);
                 } else {
                     $encoded = $str;
                 }

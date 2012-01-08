@@ -62,7 +62,7 @@ class XoopsPrivmessage extends XoopsObject
     
     function &getFromUser()
     {
-		$userHandler=&xoops_gethandler('user');
+		$userHandler=xoops_gethandler('user');
 		$user=&$userHandler->get($this->getVar('from_userid'));
 		return $user;
 	}
@@ -111,7 +111,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('priv_msgs').' WHERE msg_id='.$id;
             if ($result = $this->db->query($sql)) {

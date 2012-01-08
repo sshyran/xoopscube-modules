@@ -1,5 +1,5 @@
 <?php
-// $Id: functions.php 753 2010-09-11 04:07:08Z mikhail $
+// $Id: functions.php 1040 2011-11-06 05:24:00Z mikhail $
 
 function getLanguage() {
  $language_array = array(

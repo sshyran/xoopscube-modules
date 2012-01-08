@@ -12,14 +12,16 @@ if (!defined('XCUBE_CORE_PATH')) define('XCUBE_CORE_PATH', dirname(__FILE__));
 
 require_once XCUBE_CORE_PATH . '/XCube_HttpContext.class.php';
 
-function XC_CLASS_EXISTS($className)
-{
-	if (version_compare(PHP_VERSION, "5.0", ">=")) {
-		return class_exists($className, false);
-	}
-	else {
-		return class_exists($className);
-	}
+if (version_compare(PHP_VERSION, "5.0", ">=")) {
+    function XC_CLASS_EXISTS($className)
+    {
+	return class_exists($className, false);
+    }
+} else {
+    function XC_CLASS_EXISTS($className)
+    {
+	return class_exists($className);
+    }
 }
 
 /**
@@ -125,7 +127,7 @@ class XCube_Root
 	 * @brief [Static] Gets a object of XCube_Root as singleton.
 	 * @return XCube_Root
 	 */
-	function &getSingleton()
+	static function &getSingleton()
 	{
 		static $instance;
 		
@@ -151,11 +153,14 @@ class XCube_Root
 	 */
 	function loadSiteConfig()
 	{
-		if (func_num_args() == 0) {
+		$n = func_num_args();
+		if ($n == 0) {
 			die("FETAL: open error: site setting config.");
 		}
 
-		$file = func_get_arg(0);
+		$files = func_get_args();
+		$file = array_shift($files);
+
 		if(!file_exists($file)) {
 			die("FETAL: open error: site setting config.");
 		}
@@ -165,10 +170,8 @@ class XCube_Root
 		//
 		// Override setting.
 		//
-		if (func_num_args() > 1) {
-			for ($i = 1; $i < func_num_args(); $i++) {
-				$overrideFile = func_get_arg($i);
-				
+		if ($n > 1) {
+			foreach ($files as $overrideFile) {
 				if (file_exists($overrideFile)) {
 					$this->overrideSiteConfig(parse_ini_file($overrideFile, true));
 				}
@@ -234,26 +237,21 @@ class XCube_Root
 		//
 		// TODO Check keys with using 'isset'
 		//
-		if (func_num_args() == 0) {
-			return $this->mSiteConfig;
+		$m = &$this->mSiteConfig;
+		$n = func_num_args();
+		if ($n == 0) return $m;
+		elseif ($n == 1) {
+			$a = func_get_arg(0);
+			if (isset($m[$a])) return $m[$a];
 		}
-		elseif (func_num_args() == 1) {
-			if (isset($this->mSiteConfig[func_get_arg(0)])) {
-				return $this->mSiteConfig[func_get_arg(0)];
-			}
+		elseif ($n == 2) {
+			list($a, $b) = func_get_args();
+			if (isset($m[$a][$b])) return $m[$a][$b];
 		}
-		elseif (func_num_args() == 2) {
-			if (isset($this->mSiteConfig[func_get_arg(0)][func_get_arg(1)])) {
-				return $this->mSiteConfig[func_get_arg(0)][func_get_arg(1)];
-			}
-		}
-		elseif (func_num_args() == 3) {
-			if (isset($this->mSiteConfig[func_get_arg(0)][func_get_arg(1)])) {
-				return $this->mSiteConfig[func_get_arg(0)][func_get_arg(1)];
-			}
-			else {
-				return func_get_arg(2); //return 3rd param as a default value;
-			}
+		elseif ($n == 3) {
+			list($a, $b, $c) = func_get_args();
+			if (isset($m[$a][$b])) return $m[$a][$b];
+			else return $c; //return 3rd param as a default value;
 		}
 
 		return null;
@@ -278,11 +276,12 @@ class XCube_Root
 		// We don't decide the style of SiteConfig.
 		//
 		$controllerName = $this->mSiteConfig['Cube']['Controller'];
-        if(isset($this->mSiteConfig[$controllerName]['root'])) {
-            $this->mController =& $this->_createInstance($this->mSiteConfig[$controllerName]['class'], $this->mSiteConfig[$controllerName]['path'], $this->mSiteConfig[$controllerName]['root']);
+		$controller =& $this->mSiteConfig[$controllerName];
+        if(isset($controller['root'])) {
+            $this->mController =& $this->_createInstance($controller['class'], $controller['path'], $controller['root']);
         }
         else {
-            $this->mController =& $this->_createInstance($this->mSiteConfig[$controllerName]['class'], $this->mSiteConfig[$controllerName]['path']);
+            $this->mController =& $this->_createInstance($controller['class'], $controller['path']);
         }
 		$this->mController->prepare($this);
 	}
@@ -373,28 +372,31 @@ class XCube_Root
 	 */
 	function &getRenderSystem($name)
 	{
-		if (isset($this->_mRenderSystems[$name])) {
-			return $this->_mRenderSystems[$name];
+		$mRS =& $this->_mRenderSystems;
+		if (isset($mRS[$name])) {
+			return $mRS[$name];
 		}
 		
 		//
 		// create
 		//
-		$chunkName = $this->mSiteConfig['RenderSystems'][$name];
-		if (isset($this->mSiteConfig[$chunkName]['root'])) {
-			$this->_mRenderSystems[$name] =& $this->_createInstance($this->mSiteConfig[$chunkName]['class'], $this->mSiteConfig[$chunkName]['path'], $this->mSiteConfig[$chunkName]['root']);
+		$config =& $this->mSiteConfig;
+		$chunkName = $config['RenderSystems'][$name];
+		$chunk =& $config[$chunkName];
+		if (isset($config[$chunkName]['root'])) {
+			$mRS[$name] =& $this->_createInstance($chunk['class'], $chunk['path'], $chunk['root']);
 		}
 		else {
-			$this->_mRenderSystems[$name] =& $this->_createInstance($this->mSiteConfig[$chunkName]['class'], $this->mSiteConfig[$chunkName]['path']);
+			$mRS[$name] =& $this->_createInstance($chunk['class'], $chunk['path']);
 		}
 		
-		if (!is_object($this->_mRenderSystems[$name])) {
+		if (!is_object($mRS[$name])) {
 			die("NO");
 		}
 		
-		$this->_mRenderSystems[$name]->prepare($this->mController);
+		$mRS[$name]->prepare($this->mController);
 		
-		return $this->_mRenderSystems[$name];
+		return $mRS[$name];
 	}
 	
 	/**
@@ -530,7 +532,7 @@ class XCube_Root
 				require_once $root . $classPath;
 			}
 			else {
-				require_once $root . $classPath . "/" . $className . ".class.php";
+				require_once $root . $classPath . '/' . $className . '.class.php';
 			}
 		}
 		
