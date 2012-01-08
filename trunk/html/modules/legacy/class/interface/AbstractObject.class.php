@@ -27,7 +27,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
 
     protected /*** bool ***/ $_mIsTagLoaded = false;
     public /*** string[] ***/ $mTag = array();
-    public /*** string ***/ $mTempImage = null;
+    public /*** Legacy_ImageObject[] ***/ $mImage = array();
 
     /**
      * __construct
@@ -38,6 +38,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
     **/
     public function __construct()
     {
+    	parent::__construct();
         $this->_setupChildTables();
     }
 
@@ -137,9 +138,59 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
     public function getImages()
     {
         $imageObjs = array();
-        XCube_DelegateUtils::call('Legacy_Image.GetImageObjects', new XCube_Ref($imageObjs), $this->getDirname(), $this->getDataname(), $this->get($this->getPrimary()));
+        if($this->get($this->getPrimary())>0){
+	        XCube_DelegateUtils::call('Legacy_Image.GetImageObjects', new XCube_Ref($imageObjs), $this->getDirname(), $this->getDataname(), $this->get($this->getPrimary()));
+	    }
         return $imageObjs;
     }
+
+    /**
+     * get number of image used in this table
+     * 
+     * @param   void
+     * 
+     * @return  int
+    **/
+	public function getImageNumber()
+	{
+		return 0;
+	}
+
+    /**
+     * Setup Image Objects linked to this object
+     * 
+     * @param   bool	$isPost
+     * 
+     * @return  void
+    **/
+	public function setupImages($isPost=true)
+	{
+		if(count($this->mImage)>0) return;
+		$handler = Legacy_Utils::getModuleHandler($this->getDataname(), $this->getDirname());
+	
+		$n = $this->getImageNumber();
+		if($n===0) return;
+	
+		$this->mImage = $this->getImages();
+	
+		$originalImage = array();
+		XCube_DelegateUtils::call('Legacy_Image.CreateImageObject', new XCube_Ref($originalImage));
+		$originalImage->set('title', $this->get($handler->getClientField('title')));
+		$originalImage->set('uid', Legacy_Utils::getUid());
+		$originalImage->set('dirname', $this->getDirname());
+		$originalImage->set('dataname', $this->getDataname());
+		$originalImage->set('data_id', $this->get($this->getPrimary()));
+	
+		for($i=1;$i<=$n;$i++){
+			if(! isset($this->mImage[$i])){
+				$this->mImage[$i] = clone $originalImage;
+				$this->mImage[$i]->set('num', $i);
+			}
+			if($isPost===true){
+				$this->mImage[$i]->setupPostData($i);
+			}
+		}
+	}
 
     /**
      * load tag array related to this page
@@ -167,10 +218,5 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
             $this->mTag = $tagArr;
             $this->_mIsTagLoaded = true;
         }
-    }
-
-    public function setTempImage()
-    {
-        $this->mTempImage = $_FILES['img']['tmp_name'];
     }
 }

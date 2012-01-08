@@ -20,6 +20,7 @@ interface Legacy_iImageDelegate
 	/**
 	 * createImageObject	Legacy_Image.CreateImageObject
 	 * Create new Image Object
+	 * must be 'setNew()'.
 	 *
 	 * @param Legacy_AbstractImageObject	&$obj
 	 *
@@ -30,16 +31,15 @@ interface Legacy_iImageDelegate
 	/**
 	 * saveImage	Legacy_Image.SaveImage
 	 * 1) insert Legacy_AbstractImageObject to database
-	 * 2) copy image from upload file($_FILES) to upload directory
+	 * 2) copy image from upload file($_FILES['legacy_image']) to upload directory
 	 * 3) create thumbnail if needed.
 	 *
 	 * @param bool		&$ret
-	 * @param string	$file	path to file as $_FILES['name']['tmp_name']
 	 * @param Abstract_ImageObject	$obj
 	 *
 	 * @return	void
 	 */ 
-	public static function saveImage(/*** bool ***/ &$ret, /*** string ***/ $file, /*** Legacy_AbstractImageObject ***/ $obj);
+	public static function saveImage(/*** bool ***/ &$ret, /*** Legacy_AbstractImageObject ***/ $obj);
 
 	/**
 	 * deleteImage	Legacy_Image.DeleteImage
@@ -68,7 +68,7 @@ interface Legacy_iImageDelegate
 	 *
 	 * @return	void
 	 */ 
-	public static function getImageObjects(/*** Legacy_AbstractImageObject ***/ &$objects, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $dataId=0, /*** int ***/ $num=0, /*** int ***/ $limit=10, /*** int ***/ $start=0);
+	public static function getImageObjects(/*** Legacy_AbstractImageObject[] ***/ &$objects, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $dataId=0, /*** int ***/ $num=0, /*** int ***/ $limit=10, /*** int ***/ $start=0);
 }
 
 ?>

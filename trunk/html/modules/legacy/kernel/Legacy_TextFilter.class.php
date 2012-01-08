@@ -74,25 +74,25 @@ class Legacy_TextFilter extends XCube_TextFilter
 	 */
 	function Legacy_TextFilter()
 	{
-		$this->mMakeClickableConvertTable = new XCube_Delegate;
-		$this->mMakeClickableConvertTable->register('Legacy_TextFilter.MakeClickableConvertTable');
-		$this->mMakeClickableConvertTable->add('Legacy_TextFilter::makeClickableConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+		$obj = $this->mMakeClickableConvertTable = new XCube_Delegate;
+		$obj->register('Legacy_TextFilter.MakeClickableConvertTable');
+		$obj->add('Legacy_TextFilter::makeClickableConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-		$this->mMakeXCodeConvertTable = new XCube_Delegate;
-		$this->mMakeXCodeConvertTable->register('Legacy_TextFilter.MakeXCodeConvertTable');
-		$this->mMakeXCodeConvertTable->add('Legacy_TextFilter::makeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+		$obj = $this->mMakeXCodeConvertTable = new XCube_Delegate;
+		$obj->register('Legacy_TextFilter.MakeXCodeConvertTable');
+		$obj->add('Legacy_TextFilter::makeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-		$this->mMakeXCodeCheckImgPatterns = new XCube_Delegate;
-		$this->mMakeXCodeCheckImgPatterns->register('Legacy_TextFilter.MakeXCodeCheckImgPatterns');
-		$this->mMakeXCodeCheckImgPatterns->add('Legacy_TextFilter::makeXCodeCheckImgPatterns', XCUBE_DELEGATE_PRIORITY_2);
+		$obj = $this->mMakeXCodeCheckImgPatterns = new XCube_Delegate;
+		$obj->register('Legacy_TextFilter.MakeXCodeCheckImgPatterns');
+		$obj->add('Legacy_TextFilter::makeXCodeCheckImgPatterns', XCUBE_DELEGATE_PRIORITY_2);
 
-		$this->mMakePreXCodeConvertTable = new XCube_Delegate;
-		$this->mMakePreXCodeConvertTable->register('Legacy_TextFilter.MakePreXCodeConvertTable');
-		$this->mMakePreXCodeConvertTable->add('Legacy_TextFilter::makePreXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+		$obj = $this->mMakePreXCodeConvertTable = new XCube_Delegate;
+		$obj->register('Legacy_TextFilter.MakePreXCodeConvertTable');
+		$obj->add('Legacy_TextFilter::makePreXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-		$this->mMakePostXCodeConvertTable = new XCube_Delegate;
-		$this->mMakePostXCodeConvertTable->register('Legacy_TextFilter.MakePostXCodeConvertTable');
-		$this->mMakePostXCodeConvertTable->add('Legacy_TextFilter::makePostXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+		$obj = $this->mMakePostXCodeConvertTable = new XCube_Delegate;
+		$obj->register('Legacy_TextFilter.MakePostXCodeConvertTable');
+		$obj->add('Legacy_TextFilter::makePostXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
 		//@deprecated
 		//Todo: For keeping compatible with XC2.1 Beta3
@@ -160,6 +160,23 @@ class Legacy_TextFilter extends XCube_TextFilter
 		if ($br != 0) $text = $this->nl2Br($text);
 		$text = $this->postConvertXCode($text, $xcode, $image);
 		return $text;
+	}
+
+	/**
+	 * Filters textarea data for preview
+	 *
+	 * @param	string	$text
+	 * @param	bool	$html	allow html?
+	 * @param	bool	$smiley allow smileys?
+	 * @param	bool	$xcode	allow xoopscode?
+	 * @param	bool	$image	allow inline images?
+	 * @param	bool	$br 	convert linebreaks?
+	 * @param	string	$x2comat
+	 * @return	string
+	 **/
+	function toPreviewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
+	{
+		return $this->toShowTarea($text, $html, $smiley, $xcode, $image, $br, $x2comat);
 	}
 
 	/**
@@ -254,11 +271,13 @@ class Legacy_TextFilter extends XCube_TextFilter
 	}
 
 	function makeClickableConvertTable(&$patterns, &$replacements) {
-		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/i";
+		// URI accept class ref. RFC 1738 (but not strict here)
+		$hpath = "[-_.!~*\'()a-z0-9;\/?:\@&=+\$,%#]+";
+		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/])([a-z]+?):\/\/($hpath)/i";
 		$replacements[] = "\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>";
-		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i";
+		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.($hpath)/i";
 		$replacements[] = "\\1<a href=\"http://www.\\2.\\3\" rel=\"external\">www.\\2.\\3</a>";
-		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/])ftp\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i";
+		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/])ftp\.([a-z0-9\-]+)\.($hpath)/i";
 		$replacements[] = "\\1<a href=\"ftp://ftp.\\2.\\3\" rel=\"external\">ftp.\\2.\\3</a>";
 		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/:\.])([a-z0-9\-_\.]+?)@([a-z0-9!#\$%&'\*\+\-\/=\?^_\`{\|}~\.]+)/i";
 		$replacements[] = "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>";
