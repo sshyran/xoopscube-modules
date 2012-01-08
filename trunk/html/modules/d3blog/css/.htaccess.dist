@@ -1,7 +1,0 @@
-# $Id: .htaccess.dist 108 2007-08-14 04:30:54Z hodaka $
-AddTYpe text/css .css
-AddType text/plain .php .php4 .php3 .html .phtml .shtml .cgi .pl
-deny from all
-<Files ~ "\.css$">
-    allow from all
-</Files>
