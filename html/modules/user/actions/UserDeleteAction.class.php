@@ -123,7 +123,7 @@ class User_UserDeleteAction extends User_Action
 	 * 
 	 * @return bool
 	 */
-	function _doDelete(&$flag, &$controller, &$xoopsUser)
+	function _doDelete(&$flag, $controller, $xoopsUser)
 	{
 		$handler =& xoops_gethandler('member');
 		if ($handler->deleteUser($xoopsUser)) {

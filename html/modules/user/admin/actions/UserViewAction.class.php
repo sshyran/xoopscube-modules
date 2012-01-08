@@ -122,20 +122,13 @@ class User_UserViewAction extends User_AbstractViewAction
 		                       XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT => _NOT_MODE_SENDONCEPERLOGIN
 		                 );
 		$render->setAttribute('notify_mode', $modeOptions[$this->mObject->get('notify_mode')]);
-		
-		//XCL2.2 TEST:Profile_Service
-		$root =& $controller->mRoot;
-		$service = $root->mServiceManager->getService("Profile_Service");
-		$client = $root->mServiceManager->createClient($service);
-		if (is_object($client)) {
-			$definitions = $client->call('getDefinitions', array());
-			$render->setAttribute('definitions', $definitions);
-		
-			$data = $client->call('getProfile', array('uid'=>$this->mObject->get('uid')));
-			$render->setAttribute('data', $data);
-		}
-		//XCL2.2 TEST END:Profile_Service
-		
+	
+		$definitions = array();
+		$profile = null;
+		XCube_DelegateUtils::call('Legacy_Profile.GetDefinition', new XCube_Ref($definitions), 'view');
+		XCube_DelegateUtils::call('Legacy_Profile.GetProfile', new XCube_Ref($profile), $this->mObject->get('uid'));
+		$render->setAttribute('definitions', $definitions);
+		$render->setAttribute('data', $profile);
 	}
 
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)

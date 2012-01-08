@@ -241,6 +241,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 				return false;
 			}
 		}
+	
 		$this->_resize();
 		
 		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif") {
@@ -285,7 +286,10 @@ class User_AvatarEditAction extends User_AbstractEditAction
     **/
     public function _resize()
     {
-    	$formFile = $this->mActionForm->mFormFile;
+		//resize requires GD library
+		if(! function_exists('imagecreatefromjpeg') || ! function_exists('imagecreatefrompng') || ! function_exists('imagecreatefromgif')) return;
+	
+    	if(! $formFile = $this->mActionForm->mFormFile) return;
     	$filePath = XOOPS_UPLOAD_PATH.'/'.$formFile->getFileName();
 		list($width,$height,$type,$attr)=getimagesize($filePath);
     	switch($type){
